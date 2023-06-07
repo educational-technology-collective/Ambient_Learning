@@ -1,0 +1,37 @@
+/* entire container, keeps perspective */
+.card-container {
+  perspective: 1000px;
+  display: flex;
+  position: relative;
+}
+
+/* flip speed goes here */
+.card-content {
+  transition: 0.7s;
+  transform-style: preserve-3d;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+/* hide back of pane during swap */
+.question-text,
+.answer-text {
+  backface-visibility: hidden;
+  font-size: 40px;
+  font-weight: 900;
+  position: absolute;
+  text-align: center;
+}
+
+/* front pane, placed above back */
+.question-text {
+  transform: rotateY(0deg);
+}
+
+/* back, initially hidden pane */
+.answer-text {
+  transform: rotateY(180deg);
+}

@@ -234,3 +234,16 @@ http://ionicframework.com/docs/theming/ */
     --ion-card-background: #1e1e1e;
   }
 }
+
+ion-content {
+  --background: none;
+  background-image: url('/assets/imgs/page_bg.jpg');
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+ion-toolbar {
+  --color: #ffffff;
+  --background: #0056D2;
+}
