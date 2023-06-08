@@ -1,22 +1,27 @@
-const flashCard = function (
-  index: number,
-  type : string,
-  seenTimes: number,
-  timeStamp: string,
-  timeInterval: number,
+interface flashCard {
+  index: number;
+  type: string;
+  seenTimes: number;
+  timeStamp: string;
+  timeInterval: number;
   content: {
-    question: string,
-    answer: string
-  }
-) {
-  return { index, type, seenTimes, timeStamp, timeInterval, content };
-};
+    question: string;
+    answer: any;
+  };
+}
 
 export const cardCollection = [
-  flashCard(1, "qa", 1, "2:03", 2, {
-    question: "How to define a function in python",
-    answer: "def func()",
-  }),
+  {
+    index: 1,
+    type: "qa",
+    seenTimes: 1,
+    timeStamp: "2:03",
+    timeInterval: 4,
+    content: {
+      question: "How to define a function in python",
+      answer: "def func()",
+    },
+  },
 
   // flashCard(2, "qaimg", 1, "3:03", 3, {
   //   imgURL:
@@ -35,10 +40,17 @@ export const cardCollection = [
   //   ],
   // }),
 
-  flashCard(4, "qa", 2, "12:10", 4, {
-    question: "Write code to increment variable x by 2",
-    answer: "x += 2",
-  }),
+  {
+    index: 4,
+    type: "qa",
+    seenTimes: 2,
+    timeStamp: "12:10",
+    timeInterval: 4,
+    content: {
+      question: "Writie Code to increment variable x by 2",
+      answer: "x += 2",
+    },
+  },
 
   // flashCard(5, "mcq", 2, "8: 12", 3, {
   //   question: "Negate the boolean variable isRight",
@@ -57,10 +69,29 @@ export const cardCollection = [
   //   answer: "For Loop",
   // }),
 
-  flashCard(7, "qa", 2, "31:10", 8, {
-    question: "What type fof statements are If/Else called?",
-    answer: "Conditional Statements",
-  }),
+  {
+    index: 7,
+    type: "qa",
+    seenTimes: 2,
+    timeStamp: "31:10",
+    timeInterval: 8,
+    content: {
+      question: "What type of statements are If/Else called",
+      answer: "Conditional Statements",
+    },
+  },
+
+  {
+    index: 7,
+    type: "qa",
+    seenTimes: 2,
+    timeStamp: "31:10",
+    timeInterval: 8,
+    content: {
+      question: "What type of statements are If/Else called",
+      answer: "Conditional Statements",
+    },
+  },
 
   // flashCard(8, "qaimg", 2, "21:10", 8, {
   //   imgURL:

@@ -35,3 +35,8 @@
 .answer-text {
   transform: rotateY(180deg);
 }
+.card-wrapper {
+  position: absolute;
+  height: 60%;
+  width: 100%;
+}

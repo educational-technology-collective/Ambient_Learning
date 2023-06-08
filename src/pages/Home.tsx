@@ -10,8 +10,13 @@ import QACard from "../components/QACard";
 import { cardCollection } from "../components/exampleData";
 
 const Home: React.FC = () => {
-  const f1 = cardCollection[0];
-  console.log(f1.content.question);
+  const cardEvent = {
+    positive: () => {},
+    negative: () => {},
+  };
+
+  let index = 0;
+
   return (
     <IonPage>
       <IonHeader color="tertiary">
@@ -19,8 +24,19 @@ const Home: React.FC = () => {
           <IonTitle>Blank</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen style={{ background: "rgba(215,224,255,1)" }}>
-        <QACard content={f1.content} />
+
+      <IonContent
+        style={{ background: "rgba(215,224,255,1)" }}
+        fullscreen
+        class="overall"
+        scrollY={false}
+      >
+        <div className="card-stacker">
+          {index < cardCollection.length - 1 ? (
+            <QACard obj={cardCollection[index + 1]} />
+          ) : null}
+          <QACard obj={cardCollection[index]} />
+        </div>
       </IonContent>
     </IonPage>
   );
