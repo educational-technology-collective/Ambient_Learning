@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { IonCard, IonCardContent, IonText, createGesture } from "@ionic/react";
 import "./QACard.css";
 
-const QACard: React.FC<{ obj: flashCard }> = (props) => {
+const QACard: React.FC<{ obj: flashCard}> = (props) => {
   const [isClicked, setIsClicked] = useState(false);
 
   const style = isClicked
@@ -38,8 +38,14 @@ const QACard: React.FC<{ obj: flashCard }> = (props) => {
             "0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
           if (detail.deltaX > windowWidth / 2) {
             card.style.transform = `translateX(${windowWidth * 1.5}px)`;
+            // props.moveCard();
+            
+            // card.style.transition =
+            // "0s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+            // card.style.transform = `translateX(${0}px)`;
           } else if (detail.deltaX < -windowWidth / 2) {
-            card.style.transform = `translateX(${-windowWidth * 1.5}px)`;
+           card.style.transform = `translateX(${-windowWidth * 1.5}px)`;
+           
           } else {
             card.style.transform = "";
           }
@@ -61,7 +67,7 @@ const QACard: React.FC<{ obj: flashCard }> = (props) => {
           if (detail.deltaY > windowHeight / 4) {
             card.style.transform = `translateY(${windowHeight * 1.5}px)`;
           } else if (detail.deltaY < -windowHeight / 4) {
-            card.style.transform = `translateY(${windowHeight * 1.5}px)`;
+            card.style.transform = `translateY(${-windowHeight * 1.5}px)`;
           } else {
             card.style.transform = "";
           }

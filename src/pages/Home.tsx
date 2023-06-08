@@ -8,15 +8,20 @@ import {
 import "./Home.css";
 import QACard from "../components/QACard";
 import { cardCollection } from "../components/exampleData";
-
+import {useState} from 'react'
 const Home: React.FC = () => {
   const cardEvent = {
     positive: () => {},
     negative: () => {},
   };
 
-  let index = 0;
+  const [index, setIndex] = useState(0);
 
+  const swipeNextCard = () => {
+    setIndex(index +1);
+  }
+
+  console.log(index);
   return (
     <IonPage>
       <IonHeader color="tertiary">
@@ -32,10 +37,11 @@ const Home: React.FC = () => {
         scrollY={false}
       >
         <div className="card-stacker">
-          {index < cardCollection.length - 1 ? (
-            <QACard obj={cardCollection[index + 1]} />
+          {/* {index < cardCollection.length - 1 ? (
+            <QACard obj={cardCollection[index + 1]} moveCard={swipeNextCard}/>
           ) : null}
-          <QACard obj={cardCollection[index]} />
+          {<QACard obj={cardCollection[index]} moveCard={swipeNextCard}/>} */}
+          {cardCollection.map(card => (<QACard obj={card} key ={card.index} />))}
         </div>
       </IonContent>
     </IonPage>

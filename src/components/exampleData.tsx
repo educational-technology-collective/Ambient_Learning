@@ -79,20 +79,7 @@ export const cardCollection = [
       question: "What type of statements are If/Else called",
       answer: "Conditional Statements",
     },
-  },
-
-  {
-    index: 7,
-    type: "qa",
-    seenTimes: 2,
-    timeStamp: "31:10",
-    timeInterval: 8,
-    content: {
-      question: "What type of statements are If/Else called",
-      answer: "Conditional Statements",
-    },
-  },
-
+  }
   // flashCard(8, "qaimg", 2, "21:10", 8, {
   //   imgURL:
   //     "https://i0.wp.com/pythonguides.com/wp-content/uploads/2021/10/Python-Numpy-3d-array.png",
