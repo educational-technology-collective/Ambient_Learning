@@ -1,14 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-  IonCard,
-  IonCardContent,
-  IonText,
-  createGesture,
-  IonItem,
-  IonIcon,
-} from "@ionic/react";
+import { IonCard, IonCardContent, IonText, createGesture } from "@ionic/react";
 import "./QACard.css";
-import { sadOutline, happy, card, close } from "ionicons/icons";
+import "./Indicators";
+import {
+  BackNegativeIndicator,
+  BackNoMoreIndicator,
+  BackOneMoreIndicator,
+  BackPositiveIndicator,
+  FrontNegativeIndicator,
+  FrontNoMoreIndicator,
+  FrontOneMoreIndicator,
+  FrontPositiveIndicator,
+} from "./Indicators";
 const QACard: React.FC<{ obj: flashCard }> = (props) => {
   const [isClicked, setIsClicked] = useState(false);
   const style = isClicked
@@ -111,114 +114,37 @@ const QACard: React.FC<{ obj: flashCard }> = (props) => {
         style={{ height: "100%", display: "flex" }}
         onClick={clickHandler}
       >
+        {/* Flipper Parent */}
         <IonCardContent class="card-content" style={style}>
           {/* //Front Negative */}
-          <div
-            className="front negative front-negative"
-            style={{ opacity: negativeOpacity }}
-          >
-            <IonItem className="action-container negative-container">
-              <IonText className="action-text negative-text">
-                F O R G E T{" "}
-              </IonText>
-              <IonIcon
-                icon={sadOutline}
-                style={{ color: "#D63230", fontSize: "2em" }}
-              ></IonIcon>
-            </IonItem>
-          </div>
+          <FrontNegativeIndicator negativeOpacity={negativeOpacity} />
 
           {/* Front Positive */}
-          <div
-            className="front positive front-positive"
-            style={{ opacity: positiveOpacity }}
-          >
-            <IonItem className="action-container positive-container">
-              <IonText className="action-text positive-text">K N O W</IonText>
-              <IonIcon
-                icon={happy}
-                style={{ color: "#256D1B", fontSize: "2em" }}
-              ></IonIcon>
-            </IonItem>
-          </div>
+          <FrontPositiveIndicator positiveOpacity={positiveOpacity} />
 
           {/* Front OneMore */}
-          <div className="front onemore" style={{ opacity: onemoreOpacity }}>
-            <IonItem className="action-container onemore-container">
-              <IonText className="action-text onemore-text">ONE MORE</IonText>
-              <IonIcon
-                icon={card}
-                style={{ color: "#7BB2D9", fontSize: "2em" }}
-              ></IonIcon>
-            </IonItem>
-          </div>
+          <FrontOneMoreIndicator onemoreOpacity={onemoreOpacity} />
 
           {/* Front Nomore */}
-          <div className="front nomore" style={{ opacity: nomoreOpacity }}>
-            <IonItem className="action-container nomore-container">
-              <IonText className="action-text nomore-text">NO MORE</IonText>
-              <IonIcon
-                icon={close}
-                style={{ color: "#E8871E", fontSize: "2em" }}
-              ></IonIcon>
-            </IonItem>
-          </div>
+          <FrontNoMoreIndicator nomoreOpacity={nomoreOpacity} />
 
+          {/* Front QuestionText */}
           <IonText class="question-text">{question}</IonText>
 
+          {/* Back AnswerText */}
           <IonText class="answer-text">{answer}</IonText>
 
           {/* Back Negative */}
-          <div
-            className="back negative back-negative"
-            style={{ opacity: negativeOpacity }}
-          >
-            <IonItem className="action-container negative-container">
-              <IonText className="action-text negative-text">
-                F O R G E T{" "}
-              </IonText>
-              <IonIcon
-                icon={sadOutline}
-                style={{ color: "#D63230", fontSize: "2em" }}
-              ></IonIcon>
-            </IonItem>
-          </div>
+          <BackNegativeIndicator negativeOpacity={negativeOpacity} />
 
           {/* Back Positive */}
-          <div
-            className="back positive back-positive"
-            style={{ opacity: positiveOpacity }}
-          >
-            <IonItem className="action-container positive-container">
-              <IonText className="action-text positive-text">K N O W</IonText>
-              <IonIcon
-                icon={happy}
-                style={{ color: "#256D1B", fontSize: "2em" }}
-              ></IonIcon>
-            </IonItem>
-          </div>
+          <BackPositiveIndicator positiveOpacity={positiveOpacity} />
 
           {/* Back OneMore */}
-          <div className="back onemore" style={{ opacity: onemoreOpacity }}>
-            <IonItem className="action-container onemore-container">
-              <IonText className="action-text onemore-text">ONE MORE</IonText>
-              <IonIcon
-                icon={card}
-                style={{ color: "#7BB2D9", fontSize: "2em" }}
-              ></IonIcon>
-            </IonItem>
-          </div>
+          <BackOneMoreIndicator onemoreOpacity={onemoreOpacity} />
 
           {/* Back NoMore */}
-          <div className="back nomore" style={{ opacity: nomoreOpacity }}>
-            <IonItem className="action-container nomore-container">
-              <IonText className="action-text nomore-text">NO MORE</IonText>
-              <IonIcon
-                icon={close}
-                style={{ color: "#E8871E", fontSize: "2em" }}
-              ></IonIcon>
-            </IonItem>
-          </div>
+          <BackNoMoreIndicator nomoreOpacity={nomoreOpacity} />
         </IonCardContent>
       </IonCard>
     </div>

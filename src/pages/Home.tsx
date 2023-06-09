@@ -8,7 +8,7 @@ import {
 import "./Home.css";
 import QACard from "../components/QACard";
 import { cardCollection } from "../components/exampleData";
-import {useState} from 'react'
+import { useState } from "react";
 const Home: React.FC = () => {
   const cardEvent = {
     positive: () => {},
@@ -18,10 +18,8 @@ const Home: React.FC = () => {
   const [index, setIndex] = useState(0);
 
   const swipeNextCard = () => {
-    setIndex(index +1);
-  }
-
-  console.log(index);
+    setIndex(index + 1);
+  };
   return (
     <IonPage>
       <IonHeader color="tertiary">
@@ -41,7 +39,9 @@ const Home: React.FC = () => {
             <QACard obj={cardCollection[index + 1]} moveCard={swipeNextCard}/>
           ) : null}
           {<QACard obj={cardCollection[index]} moveCard={swipeNextCard}/>} */}
-          {cardCollection.map(card => (<QACard obj={card} key ={card.index} />))}
+          {cardCollection.map((card) => (
+            <QACard obj={card} key={card.index} />
+          ))}
         </div>
       </IonContent>
     </IonPage>

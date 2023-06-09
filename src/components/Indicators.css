@@ -1,0 +1,100 @@
+.front {
+  backface-visibility: hidden;
+  position: absolute;
+  transform: rotateY(0deg);
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: rotateY(0deg);
+}
+
+.back {
+  backface-visibility: hidden;
+  position: absolute;
+  transform: rotateY(180deg) translateZ(3px);
+  -webkit-transform: rotateY(180deg) translateZ(3px);
+  -webkit-backface-visibility: hidden;
+}
+
+.negative {
+  top: 45px;
+  width: 50%;
+}
+
+.front-negative {
+  right: 30px;
+  rotate: 350deg;
+}
+
+.back-negative {
+  left: 30px;
+  rotate: 10deg;
+}
+.action-container {
+  --border-radius: 5px;
+  --border-width: 3px;
+}
+.negative-container {
+  --border-color: #d63230;
+}
+
+.action-text {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.negative-text {
+  color: #d63230;
+  padding: 3px;
+}
+
+.positive {
+  top: 45px;
+  width: 50%;
+  rotate: 10deg;
+}
+
+.front-positive {
+  left: 30px;
+  rotate: 10deg;
+}
+
+.back-positive {
+  right: 30px;
+  rotate: 350deg;
+}
+
+.positive-container {
+  --border-color: #256d1b;
+}
+
+.positive-text {
+  color: #256d1b;
+  padding: 8px;
+}
+
+.onemore {
+  bottom: 55px;
+  width: 50%;
+}
+
+.onemore-container {
+  --border-color: #7bb2d9;
+}
+
+.onemore-text {
+  color: #7bb2d9;
+  padding: 1px;
+}
+
+.nomore {
+  top: 45px;
+  width: 50%;
+}
+
+.nomore-container {
+  --border-color: #e8871e;
+}
+.nomore-text {
+  color: #e8871e;
+  padding: 3px;
+}
