@@ -40,3 +40,98 @@
   height: 60%;
   width: 100%;
 }
+
+.front{
+  backface-visibility: hidden;
+  position: absolute;
+  transform: rotateY(0deg);
+}
+
+.back{
+  backface-visibility: hidden;
+  position: absolute;
+  transform: rotateY(180deg);
+}
+
+.negative{
+  top: 45px;
+  width: 50%;
+}
+
+
+.front-negative{
+  right: 3px;
+}
+
+.back-negative{
+  left: 3px;
+}
+.action-container{
+  --border-radius:5px;
+  --border-width: 3px;
+}
+.negative-container{
+  --border-color: #D63230;
+}
+
+.action-text{
+  text-align: center;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.negative-text{
+  color:#D63230;
+  padding: 3px;
+}
+
+.positive{
+  top: 45px;
+  width: 50%;
+}
+
+.front-positive{
+  left: 3px;
+}
+
+.back-positive{
+  right: 3px;
+}
+
+.positive-container{
+  --border-color: #256D1B;
+}
+
+.positive-text{
+  color: #256D1B;
+  padding: 8px;
+}
+
+.onemore{
+  top: 55px;
+  width: 50%;
+}
+
+.onemore-container{
+  --border-color: #7BB2D9;
+}
+
+.onemore-text{
+  color: #7BB2D9;
+  padding: 1px;
+}
+
+.nomore{
+  bottom: 45px;
+  width: 50%;
+  
+}
+
+.nomore-container{
+  --border-color: #E8871E;
+
+}
+.nomore-text{
+  color: #E8871E;
+  padding: 3px;
+}
