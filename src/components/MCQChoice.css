@@ -1,0 +1,24 @@
+.choice-text{
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.hide-text{
+  opacity: 0;
+}
+
+.initial-button{
+  --background: slateblue;
+  
+}
+
+.correct-button{
+  --background: darkgreen;
+  --background-activated: darkgreen;
+}
+
+.incorrect-button{
+  --background: crimson;
+  --background-activated: crimson;
+  
+}
