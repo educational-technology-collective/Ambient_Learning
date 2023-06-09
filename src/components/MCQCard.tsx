@@ -11,6 +11,8 @@ const MCQCard : React.FC<{obj: flashCard}> = (props) => {
     const ref = useRef<HTMLInputElement>(null);
 
     const [clicked, setClick] = useState(false);
+    const [isCorrect, setCorrect] = useState(false);
+
 
     const setClickStatus = () => {
       setClick(true);
@@ -23,7 +25,6 @@ const MCQCard : React.FC<{obj: flashCard}> = (props) => {
         style={{ height: "100%", display: "flex", flexDirection: 'column' }}
       >
       <IonCardContent style={{height: '65%', justifyContent: 'center', alignItems: 'center', display: 'flex'}}>
-          {/* Front QuestionText */}
           <IonText class="question-text">{question}</IonText>
         </IonCardContent>
         <Choices answer = {choices} setClickStatus={setClickStatus} clicked={clicked}/>

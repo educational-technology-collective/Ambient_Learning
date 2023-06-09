@@ -13,7 +13,7 @@ interface flashCard {
 export const cardCollection = [
   {
     index: 1,
-    type: "qa",
+    type: "q",
     seenTimes: 1,
     timeStamp: "2:03",
     timeInterval: 4,
@@ -42,7 +42,7 @@ export const cardCollection = [
 
   {
     index: 4,
-    type: "qa",
+    type: "q",
     seenTimes: 2,
     timeStamp: "12:10",
     timeInterval: 4,
@@ -71,7 +71,7 @@ export const cardCollection = [
 
   {
     index: 7,
-    type: "qa",
+    type: "q",
     seenTimes: 2,
     timeStamp: "31:10",
     timeInterval: 8,
@@ -103,7 +103,7 @@ export const cardCollection = [
 
 
 export const MCQs = [
-  {index: 2, type: 'mcq', seenTimes: 2, timeStamp: "20: 14", timeInterval: 6, content: {
+  {index: 2, type: 'm', seenTimes: 2, timeStamp: "20: 14", timeInterval: 6, content: {
       question: "How to print a variable x in Python?",
       answer: [
         { option: "System.out.println(x)", isCorrect: false },
@@ -112,7 +112,7 @@ export const MCQs = [
         { option: "print(x)", isCorrect: true },
       ]} },
   
-     { index: 9, type: "mcq", seenTimes: 1, timeStamp: "11:11", timeInterval: 4, content: {
+     { index: 9, type: "m", seenTimes: 1, timeStamp: "11:11", timeInterval: 4, content: {
           question: "Extract 'word' from x = 'whatawordcool'",
           answer: [
             { option: "x[1, 12]", isCorrect: false },
@@ -126,7 +126,7 @@ export const MCQs = [
       } },
 
       {
-        index: 5, type: "mcq", seenTimes: 2, timeStamp: "8: 12", timeInterval: 3, content: {
+        index: 5, type: "m", seenTimes: 2, timeStamp: "8: 12", timeInterval: 3, content: {
             question: "Negate the boolean variable isRight",
             answer: [
               { option: "isRight == !isRight", isCorrect: false },
