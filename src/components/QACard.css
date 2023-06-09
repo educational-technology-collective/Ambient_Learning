@@ -3,6 +3,7 @@
   perspective: 1000px;
   display: flex;
   position: relative;
+  -webkit-perspective: 1000px;
 }
 
 /* flip speed goes here */
@@ -14,6 +15,9 @@
   justify-content: center;
   align-items: center;
   height: 100%;
+
+  -webkit-transition: 0.7s;
+  -webkit-transform-style: preserve-3d;
 }
 
 /* hide back of pane during swap */
@@ -24,16 +28,20 @@
   font-weight: 900;
   position: absolute;
   text-align: center;
+
+  -webkit-backface-visibility: hidden;
 }
 
 /* front pane, placed above back */
 .question-text {
   transform: rotateY(0deg);
+  -webkit-transform: rotateY(0deg);
 }
 
 /* back, initially hidden pane */
 .answer-text {
-  transform: rotateY(180deg);
+  transform: rotateY(180deg) translateZ(3px);
+  -webkit-transform: rotateY(180deg) translateZ(3px);
 }
 .card-wrapper {
   position: absolute;
@@ -41,102 +49,103 @@
   width: 100%;
 }
 
-.front{
+.front {
   backface-visibility: hidden;
   position: absolute;
   transform: rotateY(0deg);
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: rotateY(0deg);
 }
 
-.back{
+.back {
   backface-visibility: hidden;
   position: absolute;
-  transform: rotateY(180deg);
+  transform: rotateY(180deg) translateZ(3px);
+  -webkit-transform: rotateY(180deg) translateZ(3px);
+  -webkit-backface-visibility: hidden;
 }
 
-.negative{
+.negative {
   top: 45px;
-  width: 50%; 
+  width: 50%;
 }
 
-
-.front-negative{
+.front-negative {
   right: 30px;
   rotate: 350deg;
 }
 
-.back-negative{
+.back-negative {
   left: 30px;
   rotate: 10deg;
 }
-.action-container{
-  --border-radius:5px;
+.action-container {
+  --border-radius: 5px;
   --border-width: 3px;
 }
-.negative-container{
-  --border-color: #D63230;
+.negative-container {
+  --border-color: #d63230;
 }
 
-.action-text{
+.action-text {
   text-align: center;
   font-size: 20px;
   font-weight: 900;
 }
 
-.negative-text{
-  color:#D63230;
+.negative-text {
+  color: #d63230;
   padding: 3px;
 }
 
-.positive{
+.positive {
   top: 45px;
   width: 50%;
   rotate: 10deg;
 }
 
-.front-positive{
+.front-positive {
   left: 30px;
-  rotate: 10deg
+  rotate: 10deg;
 }
 
-.back-positive{
+.back-positive {
   right: 30px;
   rotate: 350deg;
 }
 
-.positive-container{
-  --border-color: #256D1B;
+.positive-container {
+  --border-color: #256d1b;
 }
 
-.positive-text{
-  color: #256D1B;
+.positive-text {
+  color: #256d1b;
   padding: 8px;
 }
 
-.onemore{
+.onemore {
   bottom: 55px;
   width: 50%;
 }
 
-.onemore-container{
-  --border-color: #7BB2D9;
+.onemore-container {
+  --border-color: #7bb2d9;
 }
 
-.onemore-text{
-  color: #7BB2D9;
+.onemore-text {
+  color: #7bb2d9;
   padding: 1px;
 }
 
-.nomore{
+.nomore {
   top: 45px;
   width: 50%;
-  
 }
 
-.nomore-container{
-  --border-color: #E8871E;
-
+.nomore-container {
+  --border-color: #e8871e;
 }
-.nomore-text{
-  color: #E8871E;
+.nomore-text {
+  color: #e8871e;
   padding: 3px;
 }
