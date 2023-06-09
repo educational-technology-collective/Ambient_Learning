@@ -56,15 +56,18 @@
 .negative{
   top: 45px;
   width: 50%;
+  
 }
 
 
 .front-negative{
-  right: 3px;
+  right: 30px;
+  rotate: 350deg;
 }
 
 .back-negative{
-  left: 3px;
+  left: 30px;
+  rotate: 10deg;
 }
 .action-container{
   --border-radius:5px;
@@ -88,14 +91,17 @@
 .positive{
   top: 45px;
   width: 50%;
+  rotate: 10deg;
 }
 
 .front-positive{
-  left: 3px;
+  left: 30px;
+  rotate: 10deg
 }
 
 .back-positive{
-  right: 3px;
+  right: 30px;
+  rotate: 350deg;
 }
 
 .positive-container{
