@@ -25,8 +25,14 @@ const QACard: React.FC<{ obj: flashCard}> = (props) => {
   const [onemoreOpacity, setOneMoreOp] = useState(0);
   const [nomoreOpacity, setNoMoreOp] = useState(0);
 
+  console.log('neg', negativeOpacity);
+  console.log('pos', positiveOpacity);
+  console.log('onemore', onemoreOpacity);
+  console.log('nomore', nomoreOpacity);
+
   const initGesture = () => {
     const card = ref.current;
+   
     if (card) {
       const gestureX = createGesture({
         el: card,
@@ -70,10 +76,10 @@ const QACard: React.FC<{ obj: flashCard}> = (props) => {
           card.style.transform = `translateY(${detail.deltaY}px)`;
           if(detail.deltaY > 0){
             setOneMoreOp(0);
-            setNoMoreOp(detail.deltaY / 250);
+            setNoMoreOp(detail.deltaY / 200);
           }else{
             setNoMoreOp(0);
-            setOneMoreOp(-detail.deltaY / 80);
+            setOneMoreOp(-detail.deltaY / 200);
           }
         },
 

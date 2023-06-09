@@ -55,8 +55,7 @@
 
 .negative{
   top: 45px;
-  width: 50%;
-  
+  width: 50%; 
 }
 
 
@@ -114,7 +113,7 @@
 }
 
 .onemore{
-  top: 55px;
+  bottom: 55px;
   width: 50%;
 }
 
@@ -128,7 +127,7 @@
 }
 
 .nomore{
-  bottom: 45px;
+  top: 45px;
   width: 50%;
   
 }
