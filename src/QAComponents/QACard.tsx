@@ -12,6 +12,7 @@ import {
   FrontOneMoreIndicator,
   FrontPositiveIndicator,
 } from "./Indicators";
+
 const QACard: React.FC<{ obj: flashCard }> = ({ obj }) => {
   const [isClicked, setIsClicked] = useState(false);
   const style = isClicked
@@ -34,6 +35,7 @@ const QACard: React.FC<{ obj: flashCard }> = ({ obj }) => {
   const [onemoreOpacity, setOneMoreOp] = useState(0);
   const [nomoreOpacity, setNoMoreOp] = useState(0);
 
+  //Function that Shows Positive and Negative Indicators
   const showHorizontalInd = (detail: any) => {
     //Swiping Right. Indicates Positive
     if (detail.deltaX > 0) {
@@ -71,7 +73,7 @@ const QACard: React.FC<{ obj: flashCard }> = ({ obj }) => {
     else if (detail.deltaX < -windowWidth / 2) {
       card.style.transform = `translateX(${-windowWidth * 1.5}px)`;
     }
-    //Not Swiping Enought. Reset the Card to its position
+    //Not Swiping Enough. Reset the Card to its position
     else {
       card.style.transform = "";
       setNegOp(0);
@@ -79,6 +81,50 @@ const QACard: React.FC<{ obj: flashCard }> = ({ obj }) => {
     }
   };
 
+  //Function that shows OneMore and NoMore Indicators
+  const showVerticalInd = (detail: any) => {
+    //Swiping Down. Indicates No More This Card
+    if (detail.deltaY > 0) {
+      setOneMoreOp(0);
+      setNoMoreOp(detail.deltaY / 180);
+    }
+    //Swiping Up. Indicates One More Simmilar Card
+    else {
+      setNoMoreOp(0);
+      setOneMoreOp(-detail.deltaY / 180);
+    }
+  };
+
+  //Vertical Swiping onMove Function
+  const VerticalMove = (detail: any, card: any) => {
+    card.style.transform = `translateY(${detail.deltaY}px)`;
+
+    //Set Vertical Indicators
+    showVerticalInd(detail);
+  };
+
+  //Vertical Swiping onEnd Function
+  const VerticalEnd = (detail: any, card: any) => {
+    const windowHeight = window.innerHeight;
+    card.style.transition = "0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+
+    //Swipe the card Down more than 1/5 of the window height. Move Card Down
+    if (detail.deltaY > windowHeight / 5) {
+      card.style.transform = `translateY(${windowHeight * 1.5}px)`;
+    }
+    //Swipe the Card Up more than 1/5 of the window height. Move Card Up
+    else if (detail.deltaY < -windowHeight / 5) {
+      card.style.transform = `translateY(${-windowHeight * 1.5}px)`;
+    }
+    //Not Swiping Enough. Reset Card to its original Position with 0 opacity
+    else {
+      card.style.transform = "";
+      setNoMoreOp(0);
+      setOneMoreOp(0);
+    }
+  };
+
+  //Gesture Management
   const initGesture = () => {
     const card = ref.current;
 
@@ -95,31 +141,9 @@ const QACard: React.FC<{ obj: flashCard }> = ({ obj }) => {
         el: card,
         direction: "y",
         gestureName: "swipe-y",
-        onMove: (detail) => {
-          card.style.transform = `translateY(${detail.deltaY}px)`;
-          if (detail.deltaY > 0) {
-            setOneMoreOp(0);
-            setNoMoreOp(detail.deltaY / 200);
-          } else {
-            setNoMoreOp(0);
-            setOneMoreOp(-detail.deltaY / 200);
-          }
-        },
+        onMove: (detail) => VerticalMove(detail, card),
 
-        onEnd: (detail) => {
-          const windowHeight = window.innerHeight;
-          card.style.transition =
-            "0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
-          if (detail.deltaY > windowHeight / 5) {
-            card.style.transform = `translateY(${windowHeight * 1.5}px)`;
-          } else if (detail.deltaY < -windowHeight / 5) {
-            card.style.transform = `translateY(${-windowHeight * 1.5}px)`;
-          } else {
-            card.style.transform = "";
-            setNoMoreOp(0);
-            setOneMoreOp(0);
-          }
-        },
+        onEnd: (detail) => VerticalEnd(detail, card),
       });
 
       gestureY.enable(true);
