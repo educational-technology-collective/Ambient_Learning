@@ -1,13 +1,21 @@
+.qacard-wrapper {
+  position: absolute;
+  height: 80%;
+  width: 100%;
+}
+
 /* entire container, keeps perspective */
-.card-container {
+.qacard-container {
   perspective: 1000px;
   display: flex;
   position: relative;
+  height: 100%;
   -webkit-perspective: 1000px;
+  
 }
 
 /* flip speed goes here */
-.card-content {
+.qacard-content {
   transition: 0.7s;
   transform-style: preserve-3d;
   position: relative;
@@ -21,8 +29,8 @@
 }
 
 /* hide back of pane during swap */
-.question-text,
-.answer-text {
+.qaquestion-text,
+.qaanswer-text {
   backface-visibility: hidden;
   font-size: 40px;
   font-weight: 900;
@@ -33,18 +41,13 @@
 }
 
 /* front pane, placed above back */
-.question-text {
+.qaquestion-text {
   transform: rotateY(0deg);
   -webkit-transform: rotateY(0deg);
 }
 
 /* back, initially hidden pane */
-.answer-text {
+.qaanswer-text {
   transform: rotateY(180deg) translateZ(3px);
   -webkit-transform: rotateY(180deg) translateZ(3px);
-}
-.card-wrapper {
-  position: absolute;
-  height: 80%;
-  width: 100%;
 }

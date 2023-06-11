@@ -25,12 +25,12 @@ const Home: React.FC = () => {
     <IonPage>
       <IonHeader color="tertiary">
         <IonToolbar>
-          <IonTitle>Blank</IonTitle>
+          <IonTitle>Card</IonTitle>
         </IonToolbar>
       </IonHeader>
 
       <IonContent
-        style={{ background: "rgba(215,224,255,1)" }}
+        className='page-content'
         fullscreen
         class="overall"
         scrollY={false}
@@ -42,11 +42,11 @@ const Home: React.FC = () => {
           {<QACard obj={cardCollection[index]} moveCard={swipeNextCard}/>} */}
 
 
-          {/* {cardCollection.map((card) => (
+          {cardCollection.map((card) => (
             <QACard obj={card} key={card.index} />
-          ))} */}
+          ))}
 
-          {MCQs.map((card) => (<MCQCard obj = {card} key = {card.index} />))}
+          {/* {MCQs.map((card) => (<MCQCard obj = {card} key = {card.index} />))} */}
 
         </div>
       </IonContent>

@@ -107,15 +107,14 @@ const QACard: React.FC<{ obj: flashCard }> = (props) => {
   };
 
   return (
-    <div className="card-wrapper" ref={ref}>
+    <div className="qacard-wrapper" ref={ref}>
       <IonCard
         button
-        className="card-container"
-        style={{ height: "100%", display: "flex" }}
+        className="qacard-container"
         onClick={clickHandler}
       >
         {/* Flipper Parent */}
-        <IonCardContent class="card-content" style={style}>
+        <IonCardContent className="qacard-content" style={style}>
           {/* //Front Negative */}
           <FrontNegativeIndicator negativeOpacity={negativeOpacity} />
 
@@ -129,10 +128,10 @@ const QACard: React.FC<{ obj: flashCard }> = (props) => {
           <FrontNoMoreIndicator nomoreOpacity={nomoreOpacity} />
 
           {/* Front QuestionText */}
-          <IonText class="question-text">{question}</IonText>
+          <IonText className="qaquestion-text">{question}</IonText>
 
           {/* Back AnswerText */}
-          <IonText class="answer-text">{answer}</IonText>
+          <IonText className="qaanswer-text">{answer}</IonText>
 
           {/* Back Negative */}
           <BackNegativeIndicator negativeOpacity={negativeOpacity} />

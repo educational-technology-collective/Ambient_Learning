@@ -1,5 +1,6 @@
 import { IncorrectChoice, CorrectChoice } from "./MCQChoice";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import './Choices.css'
 
 const Choices: React.FC<{
   answer: any;
@@ -8,9 +9,28 @@ const Choices: React.FC<{
 }> = (props) => {
   const choices = props.answer;
 
+
+  const shuffleArray = (array : any) => {
+    for(let i = array.length - 1; i > 0; i--)
+    {
+      let j = Math.floor(Math.random() * (i+1));
+      let temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+    return array;
+  }
+
+  const [randomArray, setArray] = useState([]);
+
+  useEffect(() => {
+    setArray(shuffleArray(choices));
+  }, [choices]);
+
+
   return (
-    <div style={{ flexDirection: "column", display: "flex" }}>
-      {choices.map((choice: any) =>
+    <div className="choice-container">
+      {randomArray.map((choice: any) =>
         choice.isCorrect ? (
           <CorrectChoice
             option={choice.option}
