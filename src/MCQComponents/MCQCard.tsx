@@ -1,6 +1,5 @@
 import {IonCard, IonText, IonCardContent, createGesture} from '@ionic/react'
 import {useRef, useState, useEffect} from 'react'
-import './QACard.css'
 import './MCQCard.css'
 import Choices from './Choices'
 

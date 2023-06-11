@@ -48,10 +48,10 @@ const QACard: React.FC<{ obj: flashCard }> = (props) => {
           }deg)`;
           if (detail.deltaX > 0) {
             setNegOp(0);
-            setPosOp(detail.deltaX / 250);
+            setPosOp(detail.deltaX / 180);
           } else {
             setPosOp(0);
-            setNegOp(-detail.deltaX / 250);
+            setNegOp(-detail.deltaX / 180);
           }
         },
         onEnd: (detail) => {

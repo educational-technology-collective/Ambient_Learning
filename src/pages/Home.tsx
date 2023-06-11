@@ -6,10 +6,10 @@ import {
   IonToolbar,
 } from "@ionic/react";
 import "./Home.css";
-import QACard from "../components/QACard";
+import QACard from "../QAComponents/QACard";
 import { cardCollection, MCQs } from "../components/exampleData";
 import { useState } from "react";
-import MCQCard from "../components/MCQCard";
+import MCQCard from "../MCQComponents/MCQCard";
 const Home: React.FC = () => {
   const cardEvent = {
     positive: () => {},
@@ -46,7 +46,7 @@ const Home: React.FC = () => {
             <QACard obj={card} key={card.index} />
           ))}
 
-          {/* {MCQs.map((card) => (<MCQCard obj = {card} key = {card.index} />))} */}
+          {MCQs.map((card) => (<MCQCard obj = {card} key = {card.index} />))}
 
         </div>
       </IonContent>
