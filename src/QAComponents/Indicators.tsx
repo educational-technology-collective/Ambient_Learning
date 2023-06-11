@@ -3,12 +3,12 @@ import "./Indicators.css";
 import { sadOutline, happy, card, close } from "ionicons/icons";
 
 export const FrontNegativeIndicator: React.FC<{ negativeOpacity: number }> = (
-  props
+  {negativeOpacity}
 ) => {
   return (
     <div
       className="front negative front-negative"
-      style={{ opacity: props.negativeOpacity }}
+      style={{ opacity: negativeOpacity }}
     >
       <IonItem className="action-container negative-container">
         <IonText className="action-text negative-text">F O R G E T </IonText>
@@ -22,12 +22,12 @@ export const FrontNegativeIndicator: React.FC<{ negativeOpacity: number }> = (
 };
 
 export const FrontPositiveIndicator: React.FC<{ positiveOpacity: number }> = (
-  props
+  {positiveOpacity}
 ) => {
   return (
     <div
       className="front positive front-positive"
-      style={{ opacity: props.positiveOpacity }}
+      style={{ opacity: positiveOpacity }}
     >
       <IonItem className="action-container positive-container">
         <IonText className="action-text positive-text">K N O W</IonText>
@@ -41,10 +41,10 @@ export const FrontPositiveIndicator: React.FC<{ positiveOpacity: number }> = (
 };
 
 export const FrontOneMoreIndicator: React.FC<{ onemoreOpacity: number }> = (
-  props
+  {onemoreOpacity}
 ) => {
   return (
-    <div className="front onemore" style={{ opacity: props.onemoreOpacity }}>
+    <div className="front onemore" style={{ opacity: onemoreOpacity }}>
       <IonItem className="action-container onemore-container">
         <IonText className="action-text onemore-text">ONE MORE</IonText>
         <IonIcon
@@ -57,10 +57,10 @@ export const FrontOneMoreIndicator: React.FC<{ onemoreOpacity: number }> = (
 };
 
 export const FrontNoMoreIndicator: React.FC<{ nomoreOpacity: number }> = (
-  props
+  {nomoreOpacity}
 ) => {
   return (
-    <div className="front nomore" style={{ opacity: props.nomoreOpacity }}>
+    <div className="front nomore" style={{ opacity: nomoreOpacity }}>
       <IonItem className="action-container nomore-container">
         <IonText className="action-text nomore-text">NO MORE</IonText>
         <IonIcon
@@ -73,12 +73,12 @@ export const FrontNoMoreIndicator: React.FC<{ nomoreOpacity: number }> = (
 };
 
 export const BackNegativeIndicator: React.FC<{ negativeOpacity: number }> = (
-  props
+  {negativeOpacity}
 ) => {
   return (
     <div
       className="back negative back-negative"
-      style={{ opacity: props.negativeOpacity }}
+      style={{ opacity: negativeOpacity }}
     >
       <IonItem className="action-container negative-container">
         <IonText className="action-text negative-text">F O R G E T </IonText>
@@ -92,12 +92,12 @@ export const BackNegativeIndicator: React.FC<{ negativeOpacity: number }> = (
 };
 
 export const BackPositiveIndicator: React.FC<{ positiveOpacity: number }> = (
-  props
+  {positiveOpacity}
 ) => {
   return (
     <div
       className="back positive back-positive"
-      style={{ opacity: props.positiveOpacity }}
+      style={{ opacity: positiveOpacity }}
     >
       <IonItem className="action-container positive-container">
         <IonText className="action-text positive-text">K N O W</IonText>
@@ -111,10 +111,10 @@ export const BackPositiveIndicator: React.FC<{ positiveOpacity: number }> = (
 };
 
 export const BackOneMoreIndicator: React.FC<{ onemoreOpacity: number }> = (
-  props
+  {onemoreOpacity}
 ) => {
   return (
-    <div className="back onemore" style={{ opacity: props.onemoreOpacity }}>
+    <div className="back onemore" style={{ opacity: onemoreOpacity }}>
       <IonItem className="action-container onemore-container">
         <IonText className="action-text onemore-text">ONE MORE</IonText>
         <IonIcon
@@ -126,10 +126,10 @@ export const BackOneMoreIndicator: React.FC<{ onemoreOpacity: number }> = (
   );
 };
 export const BackNoMoreIndicator: React.FC<{ nomoreOpacity: number }> = (
-  props
+  {nomoreOpacity}
 ) => {
   return (
-    <div className="back nomore" style={{ opacity: props.nomoreOpacity }}>
+    <div className="back nomore" style={{ opacity: nomoreOpacity }}>
       <IonItem className="action-container nomore-container">
         <IonText className="action-text nomore-text">NO MORE</IonText>
         <IonIcon

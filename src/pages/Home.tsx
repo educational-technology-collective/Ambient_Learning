@@ -43,10 +43,10 @@ const Home: React.FC = () => {
 
 
           {cardCollection.map((card) => (
-            <QACard obj={card} key={card.index} />
+            card.type === 'q' ? <QACard obj={card} key={card.index} /> : <MCQCard obj = {card} key={card.index} />
           ))}
 
-          {MCQs.map((card) => (<MCQCard obj = {card} key = {card.index} />))}
+          {/* {MCQs.map((card) => (<MCQCard obj = {card} key = {card.index} />))} */}
 
         </div>
       </IonContent>

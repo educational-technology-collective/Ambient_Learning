@@ -12,7 +12,7 @@ import {
   FrontOneMoreIndicator,
   FrontPositiveIndicator,
 } from "./Indicators";
-const QACard: React.FC<{ obj: flashCard }> = (props) => {
+const QACard: React.FC<{ obj: flashCard }> = ({obj}) => {
   const [isClicked, setIsClicked] = useState(false);
   const style = isClicked
     ? { transform: "rotateY(180deg)", background: "rgba(251,255,236,1)" }
@@ -20,8 +20,8 @@ const QACard: React.FC<{ obj: flashCard }> = (props) => {
   const clickHandler = () => {
     setIsClicked(!isClicked);
   };
-  const question = props.obj.content.question;
-  const answer = props.obj.content.answer;
+  const question = obj.content.question;
+  const answer = obj.content.answer;
 
   const ref = useRef<HTMLInputElement>(null);
 

@@ -6,8 +6,8 @@ const Choices: React.FC<{
   answer: any;
   clicked: boolean;
   setClickStatus: () => void;
-}> = (props) => {
-  const choices = props.answer;
+}> = ({answer, clicked, setClickStatus}) => {
+  const choices = answer;
 
 
   const shuffleArray = (array : any) => {
@@ -34,14 +34,14 @@ const Choices: React.FC<{
         choice.isCorrect ? (
           <CorrectChoice
             option={choice.option}
-            clicked={props.clicked}
-            setClickStatus={props.setClickStatus}
+            clicked={clicked}
+            setClickStatus={setClickStatus}
           />
         ) : (
           <IncorrectChoice
             option={choice.option}
-            clicked={props.clicked}
-            setClickStatus={props.setClickStatus}
+            clicked={clicked}
+            setClickStatus={setClickStatus}
           />
         )
       )}

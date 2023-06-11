@@ -3,10 +3,10 @@ import {useRef, useState, useEffect} from 'react'
 import './MCQCard.css'
 import Choices from './Choices'
 
-const MCQCard : React.FC<{obj: flashCard}> = (props) => {
+const MCQCard : React.FC<{obj: flashCard}> = ({obj}) => {
 
-    const question = props.obj.content.question;
-    const choices = props.obj.content.answer;
+    const question = obj.content.question;
+    const choices = obj.content.answer;
 
     const ref = useRef<HTMLInputElement>(null);
 
