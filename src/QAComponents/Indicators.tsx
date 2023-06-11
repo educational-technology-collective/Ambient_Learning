@@ -2,9 +2,9 @@ import { IonItem, IonText, IonIcon } from "@ionic/react";
 import "./Indicators.css";
 import { sadOutline, happy, card, close } from "ionicons/icons";
 
-export const FrontNegativeIndicator: React.FC<{ negativeOpacity: number }> = (
-  {negativeOpacity}
-) => {
+export const FrontNegativeIndicator: React.FC<{ negativeOpacity: number }> = ({
+  negativeOpacity,
+}) => {
   return (
     <div
       className="front negative front-negative"
@@ -21,9 +21,9 @@ export const FrontNegativeIndicator: React.FC<{ negativeOpacity: number }> = (
   );
 };
 
-export const FrontPositiveIndicator: React.FC<{ positiveOpacity: number }> = (
-  {positiveOpacity}
-) => {
+export const FrontPositiveIndicator: React.FC<{ positiveOpacity: number }> = ({
+  positiveOpacity,
+}) => {
   return (
     <div
       className="front positive front-positive"
@@ -40,9 +40,9 @@ export const FrontPositiveIndicator: React.FC<{ positiveOpacity: number }> = (
   );
 };
 
-export const FrontOneMoreIndicator: React.FC<{ onemoreOpacity: number }> = (
-  {onemoreOpacity}
-) => {
+export const FrontOneMoreIndicator: React.FC<{ onemoreOpacity: number }> = ({
+  onemoreOpacity,
+}) => {
   return (
     <div className="front onemore" style={{ opacity: onemoreOpacity }}>
       <IonItem className="action-container onemore-container">
@@ -56,9 +56,9 @@ export const FrontOneMoreIndicator: React.FC<{ onemoreOpacity: number }> = (
   );
 };
 
-export const FrontNoMoreIndicator: React.FC<{ nomoreOpacity: number }> = (
-  {nomoreOpacity}
-) => {
+export const FrontNoMoreIndicator: React.FC<{ nomoreOpacity: number }> = ({
+  nomoreOpacity,
+}) => {
   return (
     <div className="front nomore" style={{ opacity: nomoreOpacity }}>
       <IonItem className="action-container nomore-container">
@@ -72,9 +72,9 @@ export const FrontNoMoreIndicator: React.FC<{ nomoreOpacity: number }> = (
   );
 };
 
-export const BackNegativeIndicator: React.FC<{ negativeOpacity: number }> = (
-  {negativeOpacity}
-) => {
+export const BackNegativeIndicator: React.FC<{ negativeOpacity: number }> = ({
+  negativeOpacity,
+}) => {
   return (
     <div
       className="back negative back-negative"
@@ -91,9 +91,9 @@ export const BackNegativeIndicator: React.FC<{ negativeOpacity: number }> = (
   );
 };
 
-export const BackPositiveIndicator: React.FC<{ positiveOpacity: number }> = (
-  {positiveOpacity}
-) => {
+export const BackPositiveIndicator: React.FC<{ positiveOpacity: number }> = ({
+  positiveOpacity,
+}) => {
   return (
     <div
       className="back positive back-positive"
@@ -110,9 +110,9 @@ export const BackPositiveIndicator: React.FC<{ positiveOpacity: number }> = (
   );
 };
 
-export const BackOneMoreIndicator: React.FC<{ onemoreOpacity: number }> = (
-  {onemoreOpacity}
-) => {
+export const BackOneMoreIndicator: React.FC<{ onemoreOpacity: number }> = ({
+  onemoreOpacity,
+}) => {
   return (
     <div className="back onemore" style={{ opacity: onemoreOpacity }}>
       <IonItem className="action-container onemore-container">
@@ -125,9 +125,9 @@ export const BackOneMoreIndicator: React.FC<{ onemoreOpacity: number }> = (
     </div>
   );
 };
-export const BackNoMoreIndicator: React.FC<{ nomoreOpacity: number }> = (
-  {nomoreOpacity}
-) => {
+export const BackNoMoreIndicator: React.FC<{ nomoreOpacity: number }> = ({
+  nomoreOpacity,
+}) => {
   return (
     <div className="back nomore" style={{ opacity: nomoreOpacity }}>
       <IonItem className="action-container nomore-container">

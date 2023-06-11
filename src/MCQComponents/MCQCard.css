@@ -1,24 +1,24 @@
-.mcqcard-wrapper{
+.mcqcard-wrapper {
   position: absolute;
   height: 80%;
   width: 100%;
 }
 
-.mcqcard-container{
+.mcqcard-container {
   display: flex;
   flex-direction: column;
   height: 100%;
   position: relative;
 }
 
-.mcqcard-content{
+.mcqcard-content {
   justify-content: center;
   height: 65%;
   align-items: center;
   display: flex;
 }
 
-.mcqquestion-text{
+.mcqquestion-text {
   font-size: 40px;
   font-weight: 900;
   position: absolute;

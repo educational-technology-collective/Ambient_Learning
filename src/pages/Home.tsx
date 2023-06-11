@@ -11,11 +11,6 @@ import { cardCollection, MCQs } from "../components/exampleData";
 import { useState } from "react";
 import MCQCard from "../MCQComponents/MCQCard";
 const Home: React.FC = () => {
-  const cardEvent = {
-    positive: () => {},
-    negative: () => {},
-  };
-
   const [index, setIndex] = useState(0);
 
   const swipeNextCard = () => {
@@ -30,7 +25,7 @@ const Home: React.FC = () => {
       </IonHeader>
 
       <IonContent
-        className='page-content'
+        className="page-content"
         fullscreen
         class="overall"
         scrollY={false}
@@ -41,13 +36,13 @@ const Home: React.FC = () => {
           ) : null}
           {<QACard obj={cardCollection[index]} moveCard={swipeNextCard}/>} */}
 
-
-          {cardCollection.map((card) => (
-            card.type === 'q' ? <QACard obj={card} key={card.index} /> : <MCQCard obj = {card} key={card.index} />
-          ))}
-
-          {/* {MCQs.map((card) => (<MCQCard obj = {card} key = {card.index} />))} */}
-
+          {cardCollection.map((card) =>
+            card.type === "q" ? (
+              <QACard obj={card} key={card.index} />
+            ) : (
+              <MCQCard obj={card} key={card.index} />
+            )
+          )}
         </div>
       </IonContent>
     </IonPage>

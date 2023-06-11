@@ -1,22 +1,22 @@
-.choice-text{
+.choice-text {
   font-size: 25px;
   font-weight: bold;
 }
 
-.hide-text{
+.hide-text {
   opacity: 0;
 }
 
-.initial-button{
+.initial-button {
   --background: slateblue;
 }
 
-.correct-button{
+.correct-button {
   --background: darkgreen;
   --background-activated: darkgreen;
 }
 
-.incorrect-button{
+.incorrect-button {
   --background: crimson;
   --background-activated: crimson;
 }
