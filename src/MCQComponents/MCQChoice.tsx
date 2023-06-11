@@ -2,7 +2,7 @@ import { IonButton, IonText } from "@ionic/react";
 import { useState } from "react";
 import "./MCQChoice.css";
 
-//Incorrect Option Component
+// Incorrect Option Component
 export const IncorrectChoice: React.FC<{
   option: string;
   clicked: boolean;
@@ -12,8 +12,8 @@ export const IncorrectChoice: React.FC<{
 
   const [isChosen, setChosen] = useState(false);
 
-  //When the User Clicks Incorrect Option. We will highlight it red
-  //and set correct one green
+  // When the User Clicks Incorrect Option. We will highlight it red
+  // and set correct one green
   const inCorrectClick = () => {
     setClickStatus();
     setChosen(true);
@@ -32,7 +32,7 @@ export const IncorrectChoice: React.FC<{
   );
 };
 
-//Correct Option Component
+// Correct Option Component
 export const CorrectChoice: React.FC<{
   option: string;
   clicked: boolean;

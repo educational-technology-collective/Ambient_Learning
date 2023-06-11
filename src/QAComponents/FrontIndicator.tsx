@@ -12,7 +12,7 @@ const FrontIndicator: React.FC<{
 }> = ({ negativeOpacity, positiveOpacity, onemoreOpacity, nomoreOpacity }) => {
   return (
     <>
-      {/* //Front Negative */}
+      {/* Front Negative */}
       <FrontNegativeIndicator negativeOpacity={negativeOpacity} />
 
       {/* Front Positive */}

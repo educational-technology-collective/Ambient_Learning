@@ -11,7 +11,7 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
 
   const [clicked, setClick] = useState(false);
 
-  //Allows Gesture only after user clicks an option
+  // Allows Gesture only after user clicks an option
   useEffect(() => {
     enableGesture();
   }, [clicked]);
@@ -20,27 +20,27 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
     setClick(true);
   };
 
-  //Horizontal Swiping Function
+  // Horizontal Swiping Function
   const HorizontalMove = (detail: any, card: any) => {
     card.style.transform = `translateX(${detail.deltaX}px) rotate(${
       detail.deltaX / 20
     }deg)`;
   };
 
-  ////Horizontal Swipe End Function Determination
+  // Horizontal Swipe End Function Determination
   const HorizontalEnd = (detail: any, card: any) => {
     const windowWidth = window.innerWidth;
     card.style.transition = "0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
 
-    //Swiping Right more than half of window length. Move Card to Right
+    // Swiping Right more than half of window length. Move Card to Right
     if (detail.deltaX > windowWidth / 2) {
       card.style.transform = `translateX(${windowWidth * 1.5}px)`;
     }
-    //Swiping Left More than half of window length. Move Card to Left
+    // Swiping Left More than half of window length. Move Card to Left
     else if (detail.deltaX < -windowWidth / 2) {
       card.style.transform = `translateX(${-windowWidth * 1.5}px)`;
     }
-    //Not Swiping Enough. Reset the Card to its position
+    // Not Swiping Enough. Reset the Card to its position
     else {
       card.style.transform = "";
     }

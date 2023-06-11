@@ -9,7 +9,7 @@ const Choices: React.FC<{
 }> = ({ answer, clicked, setClickStatus }) => {
   const choices = answer;
 
-  //Function that Shuffles the Array of Choices
+  // Function that Shuffles the Array of Choices
   const shuffleArray = (array: any) => {
     for (let i = array.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
@@ -22,7 +22,7 @@ const Choices: React.FC<{
 
   const [randomArray, setArray] = useState([]);
 
-  //UseEffect makes sure that the choices are shuffled only once
+  // UseEffect makes sure that the choices are shuffled only once
   useEffect(() => {
     setArray(shuffleArray(choices));
   }, [choices]);

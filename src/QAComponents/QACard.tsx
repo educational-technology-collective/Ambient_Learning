@@ -27,45 +27,46 @@ const QACard: React.FC<{ obj: flashCard }> = ({ obj }) => {
   const [onemoreOpacity, setOneMoreOp] = useState(0);
   const [nomoreOpacity, setNoMoreOp] = useState(0);
 
-  //Function that Shows Positive and Negative Indicators
+  // Function that Shows Positive and Negative Indicators
   const showHorizontalInd = (detail: any) => {
-    //Swiping Right. Indicates Positive
+    // Swiping Right. Indicates Positive
     if (detail.deltaX > 0) {
       setNegOp(0);
       setPosOp(detail.deltaX / 180);
     }
-    //Swiping Left. Indicate Negative
+    // Swiping Left. Indicate Negative
     else {
       setPosOp(0);
       setNegOp(-detail.deltaX / 180);
     }
   };
 
-  //Horizontal Swiping Function
+  // Horizontal Swiping Function
   const HorizontalMove = (detail: any, card: any) => {
-    //Set the Rotation as Swiping Cards Horizontally
+
+    // Set the Rotation as Swiping Cards Horizontally
     card.style.transform = `translateX(${detail.deltaX}px) rotate(${
       detail.deltaX / 20
     }deg)`;
 
-    //Setting the Indicators' opacity based on the Direction
+    // Setting the Indicators' opacity based on the Direction
     showHorizontalInd(detail);
   };
 
-  //Horizontal Swipe End Function Determination
+  // Horizontal Swipe End Function Determination
   const HorizontalEnd = (detail: any, card: any) => {
     const windowWidth = window.innerWidth;
     card.style.transition = "0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
 
-    //Swiping Right more than half of window length. Move Card to Right
+    // Swiping Right more than half of window length. Move Card to Right
     if (detail.deltaX > windowWidth / 2) {
       card.style.transform = `translateX(${windowWidth * 1.5}px)`;
     }
-    //Swiping Left More than half of window length. Move Card to Left
+    // Swiping Left More than half of window length. Move Card to Left
     else if (detail.deltaX < -windowWidth / 2) {
       card.style.transform = `translateX(${-windowWidth * 1.5}px)`;
     }
-    //Not Swiping Enough. Reset the Card to its position
+    // Not Swiping Enough. Reset the Card to its position
     else {
       card.style.transform = "";
       setNegOp(0);
@@ -73,42 +74,42 @@ const QACard: React.FC<{ obj: flashCard }> = ({ obj }) => {
     }
   };
 
-  //Function that shows OneMore and NoMore Indicators
+  // Function that shows OneMore and NoMore Indicators
   const showVerticalInd = (detail: any) => {
-    //Swiping Down. Indicates No More This Card
+    // Swiping Down. Indicates No More This Card
     if (detail.deltaY > 0) {
       setOneMoreOp(0);
       setNoMoreOp(detail.deltaY / 180);
     }
-    //Swiping Up. Indicates One More Simmilar Card
+    // Swiping Up. Indicates One More Simmilar Card
     else {
       setNoMoreOp(0);
       setOneMoreOp(-detail.deltaY / 180);
     }
   };
 
-  //Vertical Swiping onMove Function
+  // Vertical Swiping onMove Function
   const VerticalMove = (detail: any, card: any) => {
     card.style.transform = `translateY(${detail.deltaY}px)`;
 
-    //Set Vertical Indicators
+    // Set Vertical Indicators
     showVerticalInd(detail);
   };
 
-  //Vertical Swiping onEnd Function
+  // Vertical Swiping onEnd Function
   const VerticalEnd = (detail: any, card: any) => {
     const windowHeight = window.innerHeight;
     card.style.transition = "0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
 
-    //Swipe the card Down more than 1/5 of the window height. Move Card Down
+    // Swipe the card Down more than 1/5 of the window height. Move Card Down
     if (detail.deltaY > windowHeight / 5) {
       card.style.transform = `translateY(${windowHeight * 1.5}px)`;
     }
-    //Swipe the Card Up more than 1/5 of the window height. Move Card Up
+    // Swipe the Card Up more than 1/5 of the window height. Move Card Up
     else if (detail.deltaY < -windowHeight / 5) {
       card.style.transform = `translateY(${-windowHeight * 1.5}px)`;
     }
-    //Not Swiping Enough. Reset Card to its original Position with 0 opacity
+    // Not Swiping Enough. Reset Card to its original Position with 0 opacity
     else {
       card.style.transform = "";
       setNoMoreOp(0);
@@ -116,7 +117,7 @@ const QACard: React.FC<{ obj: flashCard }> = ({ obj }) => {
     }
   };
 
-  //Gesture Management
+  // Gesture Management
   const initGesture = () => {
     const card = ref.current;
 
