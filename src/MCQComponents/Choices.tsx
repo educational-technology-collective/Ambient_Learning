@@ -10,6 +10,7 @@ const Choices: React.FC<{
   const choices = answer;
 
 
+  //Function that Shuffles the Array of Choices
   const shuffleArray = (array : any) => {
     for(let i = array.length - 1; i > 0; i--)
     {
@@ -23,6 +24,7 @@ const Choices: React.FC<{
 
   const [randomArray, setArray] = useState([]);
 
+  //UseEffect makes sure that the choices are shuffled only once
   useEffect(() => {
     setArray(shuffleArray(choices));
   }, [choices]);
@@ -30,6 +32,7 @@ const Choices: React.FC<{
 
   return (
     <div className="choice-container">
+      {/* Mapping the Choices Based on Whether they are correct or not */}
       {randomArray.map((choice: any) =>
         choice.isCorrect ? (
           <CorrectChoice

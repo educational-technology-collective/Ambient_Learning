@@ -12,7 +12,7 @@ import {
   FrontOneMoreIndicator,
   FrontPositiveIndicator,
 } from "./Indicators";
-const QACard: React.FC<{ obj: flashCard }> = ({obj}) => {
+const QACard: React.FC<{ obj: flashCard }> = ({ obj }) => {
   const [isClicked, setIsClicked] = useState(false);
   const style = isClicked
     ? { transform: "rotateY(180deg)", background: "rgba(251,255,236,1)" }
@@ -34,6 +34,26 @@ const QACard: React.FC<{ obj: flashCard }> = ({obj}) => {
   const [onemoreOpacity, setOneMoreOp] = useState(0);
   const [nomoreOpacity, setNoMoreOp] = useState(0);
 
+  const HorizontalMove = (detail: any, card: any) => {
+    //Set the Rotation as Swiping Cards Horizontally
+    card.style.transform = `translateX(${detail.deltaX}px) rotate(${
+      detail.deltaX / 20
+    }deg)`;
+
+    //Setting the Indicators' opacity based on the Direction
+
+    //Swiping Right. Indicates Positive
+    if (detail.deltaX > 0) {
+      setNegOp(0);
+      setPosOp(detail.deltaX / 180);
+    }
+    //Swiping Left. Indicate Negative
+    else {
+      setPosOp(0);
+      setNegOp(-detail.deltaX / 180);
+    }
+  };
+
   const initGesture = () => {
     const card = ref.current;
 
@@ -42,18 +62,7 @@ const QACard: React.FC<{ obj: flashCard }> = ({obj}) => {
         el: card,
         direction: "x",
         gestureName: "swipe-x",
-        onMove: (detail) => {
-          card.style.transform = `translateX(${detail.deltaX}px) rotate(${
-            detail.deltaX / 20
-          }deg)`;
-          if (detail.deltaX > 0) {
-            setNegOp(0);
-            setPosOp(detail.deltaX / 180);
-          } else {
-            setPosOp(0);
-            setNegOp(-detail.deltaX / 180);
-          }
-        },
+        onMove: (detail) => HorizontalMove(detail, card),
         onEnd: (detail) => {
           const windowWidth = window.innerWidth;
           card.style.transition =
@@ -108,11 +117,7 @@ const QACard: React.FC<{ obj: flashCard }> = ({obj}) => {
 
   return (
     <div className="qacard-wrapper" ref={ref}>
-      <IonCard
-        button
-        className="qacard-container"
-        onClick={clickHandler}
-      >
+      <IonCard button className="qacard-container" onClick={clickHandler}>
         {/* Flipper Parent */}
         <IonCardContent className="qacard-content" style={style}>
           {/* //Front Negative */}
