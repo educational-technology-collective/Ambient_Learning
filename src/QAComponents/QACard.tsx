@@ -2,16 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { IonCard, IonCardContent, IonText, createGesture } from "@ionic/react";
 import "./QACard.css";
 import "./Indicators";
-import {
-  BackNegativeIndicator,
-  BackNoMoreIndicator,
-  BackOneMoreIndicator,
-  BackPositiveIndicator,
-  FrontNegativeIndicator,
-  FrontNoMoreIndicator,
-  FrontOneMoreIndicator,
-  FrontPositiveIndicator,
-} from "./Indicators";
+import FrontIndicator from "./FrontIndicator";
+import BackIndicator from "./BackIndicator";
 
 const QACard: React.FC<{ obj: flashCard }> = ({ obj }) => {
   const [isClicked, setIsClicked] = useState(false);
@@ -156,17 +148,13 @@ const QACard: React.FC<{ obj: flashCard }> = ({ obj }) => {
       <IonCard button className="qacard-container" onClick={clickHandler}>
         {/* Flipper Parent */}
         <IonCardContent className="qacard-content" style={style}>
-          {/* //Front Negative */}
-          <FrontNegativeIndicator negativeOpacity={negativeOpacity} />
-
-          {/* Front Positive */}
-          <FrontPositiveIndicator positiveOpacity={positiveOpacity} />
-
-          {/* Front OneMore */}
-          <FrontOneMoreIndicator onemoreOpacity={onemoreOpacity} />
-
-          {/* Front Nomore */}
-          <FrontNoMoreIndicator nomoreOpacity={nomoreOpacity} />
+          {/* Indicators For the Front Page */}
+          <FrontIndicator
+            negativeOpacity={negativeOpacity}
+            positiveOpacity={positiveOpacity}
+            onemoreOpacity={onemoreOpacity}
+            nomoreOpacity={nomoreOpacity}
+          />
 
           {/* Front QuestionText */}
           <IonText className="qaquestion-text">{question}</IonText>
@@ -174,17 +162,13 @@ const QACard: React.FC<{ obj: flashCard }> = ({ obj }) => {
           {/* Back AnswerText */}
           <IonText className="qaanswer-text">{answer}</IonText>
 
-          {/* Back Negative */}
-          <BackNegativeIndicator negativeOpacity={negativeOpacity} />
-
-          {/* Back Positive */}
-          <BackPositiveIndicator positiveOpacity={positiveOpacity} />
-
-          {/* Back OneMore */}
-          <BackOneMoreIndicator onemoreOpacity={onemoreOpacity} />
-
-          {/* Back NoMore */}
-          <BackNoMoreIndicator nomoreOpacity={nomoreOpacity} />
+          {/* Indicators For the Back Page */}
+          <BackIndicator
+            negativeOpacity={negativeOpacity}
+            positiveOpacity={positiveOpacity}
+            onemoreOpacity={onemoreOpacity}
+            nomoreOpacity={nomoreOpacity}
+          />
         </IonCardContent>
       </IonCard>
     </div>
