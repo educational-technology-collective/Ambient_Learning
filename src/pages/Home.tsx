@@ -7,7 +7,7 @@ import {
 } from "@ionic/react";
 import "./Home.css";
 import QACard from "../QAComponents/QACard";
-import { cardCollection, MCQs } from "../components/exampleData";
+import { cardCollection} from "../components/exampleData";
 import { useState } from "react";
 import MCQCard from "../MCQComponents/MCQCard";
 const Home: React.FC = () => {
