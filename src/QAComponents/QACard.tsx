@@ -34,14 +34,7 @@ const QACard: React.FC<{ obj: flashCard }> = ({ obj }) => {
   const [onemoreOpacity, setOneMoreOp] = useState(0);
   const [nomoreOpacity, setNoMoreOp] = useState(0);
 
-  const HorizontalMove = (detail: any, card: any) => {
-    //Set the Rotation as Swiping Cards Horizontally
-    card.style.transform = `translateX(${detail.deltaX}px) rotate(${
-      detail.deltaX / 20
-    }deg)`;
-
-    //Setting the Indicators' opacity based on the Direction
-
+  const showHorizontalInd = (detail: any) => {
     //Swiping Right. Indicates Positive
     if (detail.deltaX > 0) {
       setNegOp(0);
@@ -54,6 +47,38 @@ const QACard: React.FC<{ obj: flashCard }> = ({ obj }) => {
     }
   };
 
+  //Horizontal Swiping Function
+  const HorizontalMove = (detail: any, card: any) => {
+    //Set the Rotation as Swiping Cards Horizontally
+    card.style.transform = `translateX(${detail.deltaX}px) rotate(${
+      detail.deltaX / 20
+    }deg)`;
+
+    //Setting the Indicators' opacity based on the Direction
+    showHorizontalInd(detail);
+  };
+
+  //Horizontal Swipe End Function Determination
+  const HorizontalEnd = (detail: any, card: any) => {
+    const windowWidth = window.innerWidth;
+    card.style.transition = "0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+
+    //Swiping Right more than half of window length. Move Card to Right
+    if (detail.deltaX > windowWidth / 2) {
+      card.style.transform = `translateX(${windowWidth * 1.5}px)`;
+    }
+    //Swiping Left More than half of window length. Move Card to Left
+    else if (detail.deltaX < -windowWidth / 2) {
+      card.style.transform = `translateX(${-windowWidth * 1.5}px)`;
+    }
+    //Not Swiping Enought. Reset the Card to its position
+    else {
+      card.style.transform = "";
+      setNegOp(0);
+      setPosOp(0);
+    }
+  };
+
   const initGesture = () => {
     const card = ref.current;
 
@@ -63,20 +88,7 @@ const QACard: React.FC<{ obj: flashCard }> = ({ obj }) => {
         direction: "x",
         gestureName: "swipe-x",
         onMove: (detail) => HorizontalMove(detail, card),
-        onEnd: (detail) => {
-          const windowWidth = window.innerWidth;
-          card.style.transition =
-            "0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
-          if (detail.deltaX > windowWidth / 2) {
-            card.style.transform = `translateX(${windowWidth * 1.5}px)`;
-          } else if (detail.deltaX < -windowWidth / 2) {
-            card.style.transform = `translateX(${-windowWidth * 1.5}px)`;
-          } else {
-            card.style.transform = "";
-            setNegOp(0);
-            setPosOp(0);
-          }
-        },
+        onEnd: (detail) => HorizontalEnd(detail, card),
       });
 
       const gestureY = createGesture({
