@@ -50,3 +50,6 @@ You can click the QA card itself to flip between the question and answer sides. 
 
 ### MCQ-Cards:
 You will be given four options for a multiple choice question. You will click the choice you think is correct, and the card will highlight the correct choice with green background color and the incorrect choice with red backrgound color, covering all the other choices. Then, you can swipe either left or right to move on to next card.
+
+## Contact
+Yunxuan "Haytham" Tang —— [yunxuant@umich.edu](mailto:yunxuant@umich.edu)
