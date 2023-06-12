@@ -3,7 +3,7 @@
 ## Description
 This is a mobile-app for space-repetition learning. The app is built using Ionic React. Currently, it includes two types of cards: QA(Question & Answer) and MCQ(Multiple Choice Question).
 
---- Haytham Tang
+—— Haytham Tang
 ## Set-Up
 **Ionic**: To test the app in your local environment, first follow the [ionic set-up](https://ionicframework.com/docs/intro/environment) to make sure you have installed the packages for ionic and node.js.
 
