@@ -1,4 +1,4 @@
-# Space-Repetition-App
+# Space-Repetition-App(Ionic)
 
 ## Description
 This is a mobile-app for space-repetition learning. The app is built using Ionic React. Currently, it includes two types of cards: QA(Question & Answer) and MCQ(Multiple Choice Question).
@@ -17,7 +17,7 @@ After you have set up the repo in your local directory. Run the following comman
 $ cd Space-Repetition-Ionic
 $ ionic serve
 ```
-It should automatically direct you to a local page on your default browser. You can also copy the link into a browser you like. Then use the developer tool to choose your device you can test on web (iPhone 12 Pro is used for development)
+It should automatically direct you to a local page on your default browser. You can also copy the link into a browser you like. Then use the developer tool to choose your device you can test on web(iPhone 12 Pro is used for development)
 ## Run on Simulators
 If you want to run the app on Ios/Android Simulators, make sure you have the emulators/devices installed in your computer.
 Then, run the following commands:
