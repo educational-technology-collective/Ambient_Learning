@@ -123,18 +123,23 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
     const windowHeight = window.innerHeight;
     card.style.transition = "0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
 
-    // Swipe the card Down more than 1/5 of the window height. Move Card Down
-    if (detail.deltaY > windowHeight / 5) {
+    // Before clicking and swipe down
+    if(!clicked && detail.deltaY > windowHeight / 5){
       card.style.transform = `translateY(${windowHeight * 1.5}px)`;
     }
-    // Swipe the Card Up more than 1/5 of the window height. Move Card Up
-    else if (detail.deltaY < -windowHeight / 5) {
-      card.style.transform = `translateY(${-windowHeight * 1.5}px)`;
+    // After clicking and swipe up for one more
+    else if(clicked && detail.deltaY < -windowHeight / 5){
+      card.style.transform = `translateY(${windowHeight * -1.5}px)`
     }
-    // Not Swiping Enough. Reset Card to its original Position with 0 opacity
-    else {
-      card.style.transform = "";
-      
+    // After clicking. Got right and swipe down for no more
+    else if(clicked && correct && detail.deltaY > windowHeight / 5){
+      card.style.transform = `translateY(${windowHeight * 1.5}px)`
+    }
+    // Reset
+    else{
+      card.style.transform = '';
+      setNoMoreOp(0);
+      setOneMoreOp(0);
     }
   };
 
@@ -152,8 +157,8 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
         el: card,
         gestureName: "swipe-mcq-y",
         direction: 'y',
-        onMove: (detail) => {VerticalMove(detail, card)},
-        onEnd: (detail) => {},
+        onMove: (detail) => VerticalMove(detail, card),
+        onEnd: (detail) => VerticalEnd(detail, card),
       });
       gestureY.enable()
       gestureX.enable();
