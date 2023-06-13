@@ -15,17 +15,17 @@
 }
 
 .negative {
-  top: 45px;
+  top: 3.5em;
   width: 50%;
 }
 
 .front-negative {
-  right: 30px;
+  right: 1.5em;
   rotate: 350deg;
 }
 
 .back-negative {
-  left: 30px;
+  left: 1.5em;
   rotate: 10deg;
 }
 .action-container {
@@ -38,7 +38,7 @@
 
 .action-text {
   text-align: center;
-  font-size: 20px;
+  font-size: 1.1em;
   font-weight: 900;
 }
 
@@ -48,18 +48,18 @@
 }
 
 .positive {
-  top: 45px;
+  top: 3.5em;
   width: 50%;
   rotate: 10deg;
 }
 
 .front-positive {
-  left: 30px;
+  left: 1.5em;
   rotate: 10deg;
 }
 
 .back-positive {
-  right: 30px;
+  right: 1.5em;
   rotate: 350deg;
 }
 
@@ -73,7 +73,7 @@
 }
 
 .onemore {
-  bottom: 55px;
+  bottom: 2em;
   width: 50%;
 }
 
@@ -87,7 +87,7 @@
 }
 
 .nomore {
-  top: 45px;
+  top: 2em;
   width: 50%;
 }
 

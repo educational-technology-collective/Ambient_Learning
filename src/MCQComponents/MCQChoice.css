@@ -9,14 +9,17 @@
 
 .initial-button {
   --background: slateblue;
+  flex-grow: 1;
 }
 
 .correct-button {
   --background: darkgreen;
   --background-activated: darkgreen;
+  flex-grow: 1;
 }
 
 .incorrect-button {
   --background: crimson;
   --background-activated: crimson;
+  flex-grow: 1;
 }
