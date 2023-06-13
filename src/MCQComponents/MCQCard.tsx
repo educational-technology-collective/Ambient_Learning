@@ -41,12 +41,12 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
     // Swipe Right
     if(detail.deltaX > 0){
       setNegOp(0);
-      setPosOp(detail.deltaX / 180);
+      setPosOp(detail.deltaX / 100);
     }
     // Swipe Left
     else{
       setPosOp(0);
-      setNegOp(-detail.deltaX / 180);
+      setNegOp(-detail.deltaX / 100);
     } 
   }
 
@@ -88,7 +88,7 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
       // Swipe Down to Show No More Card
       if(detail.deltaY > 0){
         setOneMoreOp(0);
-        setNoMoreOp(detail.deltaY / 180);
+        setNoMoreOp(detail.deltaY / 100);
       }
       // Swipe Up will show nothing
       else{
@@ -101,12 +101,14 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
       // Swipe Up will show One More Card
       if(detail.deltaY < 0){
         setNoMoreOp(0);
-        setOneMoreOp(-detail.deltaY / 180);
+        setOneMoreOp(-detail.deltaY / 100);
       }
       // Swipe Down will show no more card only if correct
-      else if(correct){
+      else{
         setOneMoreOp(0);
-        setNoMoreOp(detail.deltaY / 180);
+        if(correct){
+          setNoMoreOp(detail.deltaY / 100);
+        }
       }
     }
     

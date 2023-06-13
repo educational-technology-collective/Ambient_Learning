@@ -34,12 +34,12 @@ const QACard: React.FC<{ obj: flashCard }> = ({ obj }) => {
     // Swiping Right. Indicates Positive
     if (detail.deltaX > 0) {
       setNegOp(0);
-      setPosOp(detail.deltaX / 180);
+      setPosOp(detail.deltaX / 100);
     }
     // Swiping Left. Indicate Negative
     else {
       setPosOp(0);
-      setNegOp(-detail.deltaX / 180);
+      setNegOp(-detail.deltaX / 100);
     }
   };
 
@@ -81,12 +81,12 @@ const QACard: React.FC<{ obj: flashCard }> = ({ obj }) => {
     // Swiping Down. Indicates No More This Card
     if (detail.deltaY > 0) {
       setOneMoreOp(0);
-      setNoMoreOp(detail.deltaY / 180);
+      setNoMoreOp(detail.deltaY / 100);
     }
     // Swiping Up. Indicates One More Simmilar Card
     else {
       setNoMoreOp(0);
-      setOneMoreOp(-detail.deltaY / 180);
+      setOneMoreOp(-detail.deltaY / 100);
     }
   };
 
