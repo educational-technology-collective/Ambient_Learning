@@ -21,13 +21,12 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
     setClick(true);
   };
 
-
   // If the user answers correctly
   const [correct, setCorrect] = useState(false);
 
   const setCorrectStatus = () => {
     setCorrect(true);
-  }
+  };
 
   // Opacity State Variables
   const [negativeOpacity, setNegOp] = useState(0);
@@ -35,21 +34,19 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
   const [onemoreOpacity, setOneMoreOp] = useState(0);
   const [nomoreOpacity, setNoMoreOp] = useState(0);
 
-
   // Function that Present Horizontal Indicators through opacity change
   const showHorizontalInd = (detail: any) => {
     // Swipe Right
-    if(detail.deltaX > 0){
+    if (detail.deltaX > 0) {
       setNegOp(0);
       setPosOp(detail.deltaX / 100);
     }
     // Swipe Left
-    else{
+    else {
       setPosOp(0);
       setNegOp(-detail.deltaX / 100);
-    } 
-  }
-
+    }
+  };
 
   // Horizontal Swiping Function
   const HorizontalMove = (detail: any, card: any) => {
@@ -80,39 +77,37 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
     }
   };
 
-
   // Function that shows the vertical indicators based on states
   const showVerticalInd = (detail: any) => {
     // Before Clicking
-    if(!clicked){
+    if (!clicked) {
       // Swipe Down to Show No More Card
-      if(detail.deltaY > 0){
+      if (detail.deltaY > 0) {
         setOneMoreOp(0);
         setNoMoreOp(detail.deltaY / 100);
       }
       // Swipe Up will show nothing
-      else{
+      else {
         setNoMoreOp(0);
         setOneMoreOp(0);
       }
     }
     // After Clicking
-    else{
+    else {
       // Swipe Up will show One More Card
-      if(detail.deltaY < 0){
+      if (detail.deltaY < 0) {
         setNoMoreOp(0);
         setOneMoreOp(-detail.deltaY / 100);
       }
       // Swipe Down will show no more card only if correct
-      else{
+      else {
         setOneMoreOp(0);
-        if(correct){
+        if (correct) {
           setNoMoreOp(detail.deltaY / 100);
         }
       }
     }
-    
-  }
+  };
 
   // Vertical Swiping Function
   const VerticalMove = (detail: any, card: any) => {
@@ -126,20 +121,20 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
     card.style.transition = "0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
 
     // Before clicking and swipe down
-    if(!clicked && detail.deltaY > windowHeight / 5){
+    if (!clicked && detail.deltaY > windowHeight / 5) {
       card.style.transform = `translateY(${windowHeight * 1.5}px)`;
     }
     // After clicking and swipe up for one more
-    else if(clicked && detail.deltaY < -windowHeight / 5){
-      card.style.transform = `translateY(${windowHeight * -1.5}px)`
+    else if (clicked && detail.deltaY < -windowHeight / 5) {
+      card.style.transform = `translateY(${windowHeight * -1.5}px)`;
     }
     // After clicking. Got right and swipe down for no more
-    else if(clicked && correct && detail.deltaY > windowHeight / 5){
-      card.style.transform = `translateY(${windowHeight * 1.5}px)`
+    else if (clicked && correct && detail.deltaY > windowHeight / 5) {
+      card.style.transform = `translateY(${windowHeight * 1.5}px)`;
     }
     // Reset
-    else{
-      card.style.transform = '';
+    else {
+      card.style.transform = "";
       setNoMoreOp(0);
       setOneMoreOp(0);
     }
@@ -158,11 +153,11 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
       const gestureY = createGesture({
         el: card,
         gestureName: "swipe-mcq-y",
-        direction: 'y',
+        direction: "y",
         onMove: (detail) => VerticalMove(detail, card),
         onEnd: (detail) => VerticalEnd(detail, card),
       });
-      gestureY.enable()
+      gestureY.enable();
       gestureX.enable();
     }
   };
@@ -171,7 +166,7 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
     <div className="mcqcard-wrapper" ref={ref}>
       <IonCard className="mcqcard-container">
         <IonCardContent className="mcqcard-content">
-        <FrontIndicator
+          <FrontIndicator
             negativeOpacity={negativeOpacity}
             positiveOpacity={positiveOpacity}
             onemoreOpacity={onemoreOpacity}

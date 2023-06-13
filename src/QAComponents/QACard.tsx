@@ -22,7 +22,6 @@ const QACard: React.FC<{ obj: flashCard }> = ({ obj }) => {
     initGesture();
   }, []);
 
-
   // Opacity State Variables
   const [negativeOpacity, setNegOp] = useState(0);
   const [positiveOpacity, setPosOp] = useState(0);
@@ -45,7 +44,6 @@ const QACard: React.FC<{ obj: flashCard }> = ({ obj }) => {
 
   // Horizontal Swiping Function
   const HorizontalMove = (detail: any, card: any) => {
-
     // Set the Rotation as Swiping Cards Horizontally
     card.style.transform = `translateX(${detail.deltaX}px) rotate(${
       detail.deltaX / 20

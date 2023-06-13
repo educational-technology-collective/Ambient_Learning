@@ -1,4 +1,4 @@
-import { IonItem, IonText, IonIcon } from "@ionic/react";
+import { IonText, IonIcon } from "@ionic/react";
 import "./Indicators.css";
 import { sadOutline, happy, card, close } from "ionicons/icons";
 
@@ -33,7 +33,7 @@ export const FrontPositiveIndicator: React.FC<{ positiveOpacity: number }> = ({
         <IonText className="action-text positive-text">K N O W</IonText>
         <IonIcon
           icon={happy}
-          style={{ color: "#256D1B", fontSize: "1.8em", fontWeight: 'bold' }}
+          style={{ color: "#256D1B", fontSize: "1.8em", fontWeight: "bold" }}
         ></IonIcon>
       </div>
     </div>
