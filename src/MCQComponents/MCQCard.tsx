@@ -46,6 +46,32 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
     }
   };
 
+
+  //Vertical Swiping Function
+  const VerticalMove = (detail: any, card: any) => {
+    card.style.transform = `translateY(${detail.deltaY}px)`
+  };
+
+  //Vertical Swipe End Function Determination
+  const VerticalEnd = (detail: any, card: any) => {
+    const windowHeight = window.innerHeight;
+    card.style.transition = "0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+
+    // Swipe the card Down more than 1/5 of the window height. Move Card Down
+    if (detail.deltaY > windowHeight / 5) {
+      card.style.transform = `translateY(${windowHeight * 1.5}px)`;
+    }
+    // Swipe the Card Up more than 1/5 of the window height. Move Card Up
+    else if (detail.deltaY < -windowHeight / 5) {
+      card.style.transform = `translateY(${-windowHeight * 1.5}px)`;
+    }
+    // Not Swiping Enough. Reset Card to its original Position with 0 opacity
+    else {
+      card.style.transform = "";
+      
+    }
+  }
+
   const enableGesture = () => {
     const card = ref.current;
     if (card) {

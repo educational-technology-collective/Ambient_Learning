@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { IonCard, IonCardContent, IonText, createGesture } from "@ionic/react";
 import "./QACard.css";
 import "./Indicators";
-import FrontIndicator from "./FrontIndicator";
-import BackIndicator from "./BackIndicator";
+import FrontIndicator from "../components/FrontIndicator";
+import BackIndicator from "../components/BackIndicator";
 
 const QACard: React.FC<{ obj: flashCard }> = ({ obj }) => {
   const [isClicked, setIsClicked] = useState(false);
