@@ -27,6 +27,8 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
   const [onemoreOpacity, setOneMoreOp] = useState(0);
   const [nomoreOpacity, setNoMoreOp] = useState(0);
 
+
+  //Function that Present Horizontal Indicators through opacity change
   const showHorizontalInd = (detail: any) => {
     //Swipe Right
     if(detail.deltaX > 0){
@@ -94,19 +96,27 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
       card.style.transform = "";
       
     }
-  }
+  };
 
   const enableGesture = () => {
     const card = ref.current;
     if (card) {
       const gestureX = createGesture({
         el: card,
-        gestureName: "swipe-mcq",
+        gestureName: "swipe-mcq-x",
         direction: "x",
         onMove: (detail) => HorizontalMove(detail, card),
         onEnd: (detail) => HorizontalEnd(detail, card),
       });
-      gestureX.enable(clicked);
+      const gestureY = createGesture({
+        el: card,
+        gestureName: "swipe-mcq-y",
+        direction: 'y',
+        onMove: (detail) => {VerticalMove(detail, card)},
+        onEnd: (detail) => {},
+      });
+      gestureY.enable()
+      gestureX.enable();
     }
   };
 
