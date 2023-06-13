@@ -29,22 +29,27 @@
   rotate: 10deg;
 }
 .action-container {
-  --border-radius: 5px;
-  --border-width: 3px;
+  border-style: solid;
+  border-radius: 10px;
+  border-width: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
 }
 .negative-container {
-  --border-color: #d63230;
+  border-color: #d63230;
 }
 
 .action-text {
   text-align: center;
-  font-size: 1.1em;
+  font-size: 1.5em;
   font-weight: 900;
 }
 
 .negative-text {
   color: #d63230;
-  padding: 3px;
+  
 }
 
 .positive {
@@ -64,12 +69,11 @@
 }
 
 .positive-container {
-  --border-color: #256d1b;
+  border-color: #256d1b;
 }
 
 .positive-text {
   color: #256d1b;
-  padding: 8px;
 }
 
 .onemore {
@@ -78,12 +82,11 @@
 }
 
 .onemore-container {
-  --border-color: #7bb2d9;
+  border-color: #7bb2d9;
 }
 
 .onemore-text {
   color: #7bb2d9;
-  padding: 1px;
 }
 
 .nomore {
@@ -92,9 +95,8 @@
 }
 
 .nomore-container {
-  --border-color: #e8871e;
+  border-color: #e8871e;
 }
 .nomore-text {
   color: #e8871e;
-  padding: 3px;
 }
