@@ -23,7 +23,7 @@ const QACard: React.FC<{ obj: flashCard }> = ({ obj }) => {
   }, []);
 
 
-  //Opacity State Variables
+  // Opacity State Variables
   const [negativeOpacity, setNegOp] = useState(0);
   const [positiveOpacity, setPosOp] = useState(0);
   const [onemoreOpacity, setOneMoreOp] = useState(0);
@@ -61,11 +61,11 @@ const QACard: React.FC<{ obj: flashCard }> = ({ obj }) => {
     card.style.transition = "0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
 
     // Swiping Right more than half of window length. Move Card to Right
-    if (detail.deltaX > windowWidth / 2) {
+    if (detail.deltaX > windowWidth / 3) {
       card.style.transform = `translateX(${windowWidth * 1.5}px)`;
     }
     // Swiping Left More than half of window length. Move Card to Left
-    else if (detail.deltaX < -windowWidth / 2) {
+    else if (detail.deltaX < -windowWidth / 3) {
       card.style.transform = `translateX(${-windowWidth * 1.5}px)`;
     }
     // Not Swiping Enough. Reset the Card to its position

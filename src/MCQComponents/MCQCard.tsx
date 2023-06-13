@@ -21,21 +21,21 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
     setClick(true);
   };
 
-  //Opacity State Variables
+  // Opacity State Variables
   const [negativeOpacity, setNegOp] = useState(0);
   const [positiveOpacity, setPosOp] = useState(0);
   const [onemoreOpacity, setOneMoreOp] = useState(0);
   const [nomoreOpacity, setNoMoreOp] = useState(0);
 
 
-  //Function that Present Horizontal Indicators through opacity change
+  // Function that Present Horizontal Indicators through opacity change
   const showHorizontalInd = (detail: any) => {
-    //Swipe Right
+    // Swipe Right
     if(detail.deltaX > 0){
       setNegOp(0);
       setPosOp(detail.deltaX / 180);
     }
-    //Swipe Left
+    // Swipe Left
     else{
       setPosOp(0);
       setNegOp(-detail.deltaX / 180);
@@ -57,11 +57,11 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
     card.style.transition = "0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
 
     // Swiping Right more than half of window length. Move Card to Right
-    if (detail.deltaX > windowWidth / 2) {
+    if (detail.deltaX > windowWidth / 3) {
       card.style.transform = `translateX(${windowWidth * 1.5}px)`;
     }
     // Swiping Left More than half of window length. Move Card to Left
-    else if (detail.deltaX < -windowWidth / 2) {
+    else if (detail.deltaX < -windowWidth / 3) {
       card.style.transform = `translateX(${-windowWidth * 1.5}px)`;
     }
     // Not Swiping Enough. Reset the Card to its position
@@ -73,12 +73,19 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
   };
 
 
-  //Vertical Swiping Function
+  // Function that shows the vertical indicators based on states
+  const showVerticalInd = (detial: any, card: any) => {
+    // Swipe Down After Got Answer Correct
+    
+  }
+
+  // Vertical Swiping Function
   const VerticalMove = (detail: any, card: any) => {
-    card.style.transform = `translateY(${detail.deltaY}px)`
+    card.style.transform = `translateY(${detail.deltaY}px)`;
+
   };
 
-  //Vertical Swipe End Function Determination
+  // Vertical Swipe End Function Determination
   const VerticalEnd = (detail: any, card: any) => {
     const windowHeight = window.innerHeight;
     card.style.transition = "0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
