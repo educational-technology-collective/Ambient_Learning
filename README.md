@@ -38,6 +38,16 @@ Everytime you make a change to the code. You need to run the following command f
 ```
 ionic capacitor build ios
 ```
+### Android Studio: If you want to build the project on Android Studio
+(P.S: Android SDK 33 is the latest supported version)
+```
+npx cap open android
+```
+After that, choose a device/ios and run on the simulator.
+Everytime you make a change to the code. You need to run the following command first before reopening Xcode:
+```
+ionic capacitor build android
+```
 
 ## Interact with Cards
 ### QA-Cards:
