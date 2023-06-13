@@ -53,16 +53,34 @@ ionic capacitor build android
 ### QA-Cards:
 You can click the QA card itself to flip between the question and answer sides. Then, you can do the following gestures with different indications and move on to next card:
 
-**Swipe Right**: Indicates that you know and are positive about this card
+* ```Swipe Right```: Indicates that you know and are positive about this card
 
-**Swipe Left**: Indicates that you don't know and are negative about this card
+* ```Swipe Left```: Indicates that you don't know and are negative about this card
 
-**Swipe Up**: Indicates that you want one more card of same concept
+* ```Swipe Up```: Indicates that you want one more card of same concept
 
-**Swipe Down**: Indicates that you don't want this card to show up anymore in future reviews
+* ```Swipe Down```: Indicates that you don't want this card to show up anymore in future reviews
 
 ### MCQ-Cards:
-You will be given four options for a multiple choice question. You will click the choice you think is correct, and the card will highlight the correct choice with green background color and the incorrect choice with red backrgound color, covering all the other choices. Then, you can swipe either left or right to move on to next card.
+You will be given four options for a multiple choice question. You will click the choice you think is correct, and the card will highlight the correct choice with green background color and the incorrect choice with red backrgound color, covering all the other choices. The swiping gestures will be different from the QA Cards:
+
+#### Before Clicking Choice:
+
+* ```Swipe Right```: Indicates that you know and are positive about this card
+
+* ```Swipe Left```: Indicates that you don't know and are negative about this card
+
+* ```Swipe Down```: Indicates that you don't want this card to show up anymore
+
+#### After Clicking Choice: 
+
+* ```Swipe Right```: Indicates that you know and are positive about this card
+
+* ```Swipe Left```: Indicates that you don't know and are negative about this card
+
+* ```Swipe Up```: Indicates that you want one more card of same concept
+
+* ```Swipe Down(Only if you get Correct)```: Indicates that you don't want this card to show up anymore
 
 ## Contact
 Yunxuan "Haytham" Tang —— [yunxuant@umich.edu](mailto:yunxuant@umich.edu)
