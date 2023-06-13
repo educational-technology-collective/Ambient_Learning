@@ -31,7 +31,7 @@ You will be prompted to choose a device.
 
 ### XCode: If you want to build the project on Xcode
 ```
-npm cap open ios
+npx cap open ios
 ```
 After that, choose a device/ios and run on the simulator.
 Everytime you make a change to the code. You need to run the following command first before reopening Xcode:
