@@ -37,11 +37,13 @@ export const CorrectChoice: React.FC<{
   option: string;
   clicked: boolean;
   setClickStatus: () => void;
-}> = ({ option, clicked, setClickStatus }) => {
+  setCorrectStatus: () => void;
+}> = ({ option, clicked, setClickStatus, setCorrectStatus }) => {
   const choiceText = option;
 
   const correctClick = () => {
     setClickStatus();
+    setCorrectStatus();
   };
 
   return (

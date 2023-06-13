@@ -21,6 +21,14 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
     setClick(true);
   };
 
+
+  // If the user answers correctly
+  const [correct, setCorrect] = useState(false);
+
+  const setCorrectStatus = () => {
+    setCorrect(true);
+  }
+
   // Opacity State Variables
   const [negativeOpacity, setNegOp] = useState(0);
   const [positiveOpacity, setPosOp] = useState(0);
@@ -74,15 +82,40 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
 
 
   // Function that shows the vertical indicators based on states
-  const showVerticalInd = (detial: any, card: any) => {
-    // Swipe Down After Got Answer Correct
+  const showVerticalInd = (detail: any) => {
+    // Before Clicking
+    if(!clicked){
+      // Swipe Down to Show No More Card
+      if(detail.deltaY > 0){
+        setOneMoreOp(0);
+        setNoMoreOp(detail.deltaY / 180);
+      }
+      // Swipe Up will show nothing
+      else{
+        setNoMoreOp(0);
+        setOneMoreOp(0);
+      }
+    }
+    // After Clicking
+    else{
+      // Swipe Up will show One More Card
+      if(detail.deltaY < 0){
+        setNoMoreOp(0);
+        setOneMoreOp(-detail.deltaY / 180);
+      }
+      // Swipe Down will show no more card only if correct
+      else if(correct){
+        setOneMoreOp(0);
+        setNoMoreOp(detail.deltaY / 180);
+      }
+    }
     
   }
 
   // Vertical Swiping Function
   const VerticalMove = (detail: any, card: any) => {
     card.style.transform = `translateY(${detail.deltaY}px)`;
-
+    showVerticalInd(detail);
   };
 
   // Vertical Swipe End Function Determination
@@ -143,6 +176,7 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
           answer={choices}
           setClickStatus={setClickStatus}
           clicked={clicked}
+          setCorrectStatus={setCorrectStatus}
         />
       </IonCard>
     </div>
