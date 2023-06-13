@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { IonCard, IonCardContent, IonText, createGesture } from "@ionic/react";
 import "./QACard.css";
-import "./Indicators";
+import "../components/Indicators";
 import FrontIndicator from "../components/FrontIndicator";
 import BackIndicator from "../components/BackIndicator";
 
@@ -22,6 +22,8 @@ const QACard: React.FC<{ obj: flashCard }> = ({ obj }) => {
     initGesture();
   }, []);
 
+
+  //Opacity State Variables
   const [negativeOpacity, setNegOp] = useState(0);
   const [positiveOpacity, setPosOp] = useState(0);
   const [onemoreOpacity, setOneMoreOp] = useState(0);

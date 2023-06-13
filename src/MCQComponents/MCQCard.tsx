@@ -2,6 +2,7 @@ import { IonCard, IonText, IonCardContent, createGesture } from "@ionic/react";
 import { useRef, useState, useEffect } from "react";
 import "./MCQCard.css";
 import Choices from "./Choices";
+import FrontIndicator from "../components/FrontIndicator";
 
 const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
   const question = obj.content.question;
@@ -20,11 +21,32 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
     setClick(true);
   };
 
+  //Opacity State Variables
+  const [negativeOpacity, setNegOp] = useState(0);
+  const [positiveOpacity, setPosOp] = useState(0);
+  const [onemoreOpacity, setOneMoreOp] = useState(0);
+  const [nomoreOpacity, setNoMoreOp] = useState(0);
+
+  const showHorizontalInd = (detail: any) => {
+    //Swipe Right
+    if(detail.deltaX > 0){
+      setNegOp(0);
+      setPosOp(detail.deltaX / 180);
+    }
+    //Swipe Left
+    else{
+      setPosOp(0);
+      setNegOp(-detail.deltaX / 180);
+    } 
+  }
+
+
   // Horizontal Swiping Function
   const HorizontalMove = (detail: any, card: any) => {
     card.style.transform = `translateX(${detail.deltaX}px) rotate(${
       detail.deltaX / 20
     }deg)`;
+    showHorizontalInd(detail);
   };
 
   // Horizontal Swipe End Function Determination
@@ -43,6 +65,8 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
     // Not Swiping Enough. Reset the Card to its position
     else {
       card.style.transform = "";
+      setNegOp(0);
+      setPosOp(0);
     }
   };
 
@@ -90,6 +114,12 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
     <div className="mcqcard-wrapper" ref={ref}>
       <IonCard className="mcqcard-container">
         <IonCardContent className="mcqcard-content">
+        <FrontIndicator
+            negativeOpacity={negativeOpacity}
+            positiveOpacity={positiveOpacity}
+            onemoreOpacity={onemoreOpacity}
+            nomoreOpacity={nomoreOpacity}
+          />
           <IonText className="mcqquestion-text">{question}</IonText>
         </IonCardContent>
         <Choices
