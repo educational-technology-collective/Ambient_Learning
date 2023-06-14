@@ -49,6 +49,11 @@ Everytime you make a change to the code. You need to run the following command f
 ionic capacitor build android
 ```
 
+## Run on Devices
+**Ios**: Connect your devices to the computer. Use Xcode to build and run. You will need a Apple ID account and enable Developer Mode on your phone.
+
+**Android**: After you build your app on Android Studio. Go to ```Build``` -> ```Generate Signed Bundle/APK``` -> ```APK```. Generate an APK file and install it onto your device.
+
 ## Interact with Cards
 ### QA-Cards:
 You can click the QA card itself to flip between the question and answer sides. Then, you can do the following gestures with different indications and move on to next card:
