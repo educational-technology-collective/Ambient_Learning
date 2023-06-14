@@ -5,12 +5,12 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import "./Home.css";
+import "./CardScreen.css";
 import QACard from "../QAComponents/QACard";
 import { cardCollection} from "../components/exampleData";
 import { useState } from "react";
 import MCQCard from "../MCQComponents/MCQCard";
-const Home: React.FC = () => {
+const CardScreen: React.FC = () => {
   const [index, setIndex] = useState(0);
 
   const swipeNextCard = () => {
@@ -49,4 +49,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default CardScreen;
