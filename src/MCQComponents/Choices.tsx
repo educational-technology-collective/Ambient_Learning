@@ -31,19 +31,21 @@ const Choices: React.FC<{
   return (
     <div className="choice-container">
       {/* Mapping the Choices Based on Whether they are correct or not */}
-      {randomArray.map((choice: any) =>
+      {randomArray.map((choice: any, index) =>
         choice.isCorrect ? (
           <CorrectChoice
             option={choice.option}
             clicked={clicked}
             setClickStatus={setClickStatus}
             setCorrectStatus={setCorrectStatus}
+            key={index}
           />
         ) : (
           <IncorrectChoice
             option={choice.option}
             clicked={clicked}
             setClickStatus={setClickStatus}
+            key={index}
           />
         )
       )}
