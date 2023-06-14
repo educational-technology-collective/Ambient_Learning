@@ -114,7 +114,7 @@ const QACard: React.FC<{ obj: flashCard }> = ({ obj }) => {
       card.style.transform = `translateY(${windowHeight * 1.5}px)`;
     }
     // Swipe the card Down more than 1/5 of the window height. Move Card Down
-    else if (detail.deltaY > windowHeight / 5) {
+    else if (detail.deltaY > windowHeight / 4) {
       card.style.transform = `translateY(${windowHeight * 1.5}px)`;
     }
     // Swipe card up fast
@@ -122,7 +122,7 @@ const QACard: React.FC<{ obj: flashCard }> = ({ obj }) => {
       card.style.transform = `translateY(${windowHeight * -1.5}px)`;
     }
     // Swipe the Card Up more than 1/5 of the window height. Move Card Up
-    else if (detail.deltaY < -windowHeight / 5) {
+    else if (detail.deltaY < -windowHeight / 4) {
       card.style.transform = `translateY(${windowHeight * -1.5}px)`;
     }
     // Not Swiping Enough. Reset Card to its original Position with 0 opacity

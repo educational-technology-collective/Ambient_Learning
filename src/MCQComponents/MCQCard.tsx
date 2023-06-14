@@ -135,7 +135,7 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
         card.style.transform = `translateY(${windowHeight * 1.5}px)`;
       }
       // Swipe Down enough
-      else if (detail.deltaY > windowHeight / 5) {
+      else if (detail.deltaY > windowHeight / 4) {
         card.style.transform = `translateY(${windowHeight * 1.5}px)`;
       }
       // Reset
@@ -152,7 +152,7 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
         card.style.transform = `translateY(${windowHeight * -1.5}px)`;
       }
       // Swipe Up enough
-      else if (detail.deltaY < -windowHeight / 5) {
+      else if (detail.deltaY < -windowHeight / 4) {
         card.style.transform = `translateY(${windowHeight * -1.5}px)`;
       }
       // Correct and Swipe down fast
@@ -160,7 +160,7 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
         card.style.transform = `translateY(${windowHeight * 1.5}px)`;
       }
       // Correct and Swipe down enough
-      else if (correct && detail.deltaY > windowHeight / 5) {
+      else if (correct && detail.deltaY > windowHeight / 4) {
         card.style.transform = `translateY(${windowHeight * 1.5}px)`;
       }
       // Reset
