@@ -250,3 +250,7 @@ ion-toolbar {
 ion-button {
   text-transform: none;
 }
+
+ion-title{
+  font-weight: 700;
+}
