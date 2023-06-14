@@ -106,15 +106,23 @@ const QACard: React.FC<{ obj: flashCard }> = ({ obj }) => {
   // Vertical Swiping onEnd Function
   const VerticalEnd = (detail: any, card: any) => {
     const windowHeight = window.innerHeight;
-    card.style.transition = "0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+    card.style.transition = "0.65s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
 
     // Swipe the card Down more than 1/5 of the window height. Move Card Down
     if (detail.deltaY > windowHeight / 5) {
       card.style.transform = `translateY(${windowHeight * 1.5}px)`;
     }
+    // Swipe card down fast
+    else if(detail.velocityY > 0.25){
+      card.style.transform = `translateY(${windowHeight * 1.5}px)`;
+    }
     // Swipe the Card Up more than 1/5 of the window height. Move Card Up
     else if (detail.deltaY < -windowHeight / 5) {
-      card.style.transform = `translateY(${-windowHeight * 1.5}px)`;
+      card.style.transform = `translateY(${windowHeight * -1.5}px)`;
+    }
+    // Swipe card up fast
+    else if(detail.velocityY < -0.25){
+      card.style.transform = `translateY(${windowHeight * -1.5}px)`;
     }
     // Not Swiping Enough. Reset Card to its original Position with 0 opacity
     else {
