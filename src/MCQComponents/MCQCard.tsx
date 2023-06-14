@@ -61,23 +61,21 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
     const windowWidth = window.innerWidth;
     card.style.transition = "0.65s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
 
-    // Swiping Right more than half of window length. Move Card to Right
-    if (detail.deltaX > windowWidth / 3) {
+    // Swiping Right Quick Enough
+    if (detail.velocityX > 0.25) {
       card.style.transform = `translateX(${windowWidth * 1.5}px)`;
+    }
+    // Swiping Right more than half of window length. Move Card to Right
+    else if (detail.deltaX > windowWidth / 3) {
+      card.style.transform = `translateX(${windowWidth * 1.5}px)`;
+    }
+    // Swiping Left Quick Enough
+    else if (detail.velocityX < -0.25) {
+      card.style.transform = `translateX(${windowWidth * -1.5}px)`;
     }
     // Swiping Left More than half of window length. Move Card to Left
     else if (detail.deltaX < -windowWidth / 3) {
       card.style.transform = `translateX(${-windowWidth * 1.5}px)`;
-    }
-    // Swiping Right Quick Enough
-    else if(detail.velocityX > 0.25)
-    {
-      card.style.transform = `translateX(${windowWidth * 1.5}px)`;
-    }
-    // Swiping Left Quick Enough
-    else if(detail.velocityX < -0.25)
-    {
-      card.style.transform = `translateX(${windowWidth * -1.5}px)`;
     }
     // Not Swiping Enough. Reset the Card to its position
     else {
@@ -90,7 +88,6 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
   // Function that shows the vertical indicators based on states
   const showVerticalInd = (detail: any) => {
     // Before Clicking
-    console.log(clicked)
     if (!clicked) {
       // Swipe Down to Show No More Card
       if (detail.deltaY > 0) {
@@ -131,36 +128,47 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
     const windowHeight = window.innerHeight;
     card.style.transition = "0.65s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
 
-    // Before clicking and swipe down
-    if (!clicked && detail.deltaY > windowHeight / 5) {
-      card.style.transform = `translateY(${windowHeight * 1.5}px)`;
+    // Before clicking
+    if (!clicked) {
+      // Swipe Down fast
+      if (detail.velocityY > 0.25) {
+        card.style.transform = `translateY(${windowHeight * 1.5}px)`;
+      }
+      // Swipe Down enough
+      else if (detail.deltaY > windowHeight / 5) {
+        card.style.transform = `translateY(${windowHeight * 1.5}px)`;
+      }
+      // Reset
+      else {
+        card.style.transform = "";
+        setNoMoreOp(0);
+        setOneMoreOp(0);
+      }
     }
-    // Before Clicking and Fast Swipe Down
-    else if(!clicked && detail.velocityY > 0.25){
-      card.style.transform = `translateY(${windowHeight * 1.5}px)`;
-    }
-    // After clicking and swipe up for one more
-    else if (clicked && detail.deltaY < -windowHeight / 5) {
-      card.style.transform = `translateY(${windowHeight * -1.5}px)`;
-    }
-    // After clicking and swipe up fast
-    else if(clicked && detail.velocityY < -0.25){
-      card.style.transform = `translateY(${windowHeight * -1.5}px)`
-    }
-  
-    // After clicking. Got right and swipe down for no more
-    else if (clicked && correct && detail.deltaY > windowHeight / 5) {
-      card.style.transform = `translateY(${windowHeight * 1.5}px)`;
-    }
-    // After clicking. Got right and swipe down fast
-    else if(clicked && correct && detail.velocityY > 0.25){
-      card.style.transform = `translateY(${windowHeight * 1.5}px)`
-    }
-    // Reset
+    // After clicking
     else {
-      card.style.transform = "";
-      setNoMoreOp(0);
-      setOneMoreOp(0);
+      // Swipe Up fast
+      if (detail.velocityY < -0.25) {
+        card.style.transform = `translateY(${windowHeight * -1.5}px)`;
+      }
+      // Swipe Up enough
+      else if (detail.deltaY < -windowHeight / 5) {
+        card.style.transform = `translateY(${windowHeight * -1.5}px)`;
+      }
+      // Correct and Swipe down fast
+      else if (correct && detail.velocityY > 0.25) {
+        card.style.transform = `translateY(${windowHeight * 1.5}px)`;
+      }
+      // Correct and Swipe down enough
+      else if (correct && detail.deltaY > windowHeight / 5) {
+        card.style.transform = `translateY(${windowHeight * 1.5}px)`;
+      }
+      // Reset
+      else {
+        card.style.transform = "";
+        setNoMoreOp(0);
+        setOneMoreOp(0);
+      }
     }
   };
 
