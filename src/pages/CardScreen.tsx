@@ -4,12 +4,15 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
+  IonItem,
+ IonIcon
 } from "@ionic/react";
 import "./CardScreen.css";
 import QACard from "../QAComponents/QACard";
 import { cardCollection} from "../components/exampleData";
 import { useState } from "react";
 import MCQCard from "../MCQComponents/MCQCard";
+import { homeOutline } from "ionicons/icons";
 const CardScreen: React.FC = () => {
   const [index, setIndex] = useState(0);
 
@@ -27,7 +30,6 @@ const CardScreen: React.FC = () => {
       <IonContent
         className="page-content"
         fullscreen
-        class="overall"
         scrollY={false}
       >
         <div className="card-stacker">
@@ -44,6 +46,9 @@ const CardScreen: React.FC = () => {
             )
           )}
         </div>
+        <IonItem routerLink="/home">
+            <IonIcon icon={homeOutline}></IonIcon>
+        </IonItem>
       </IonContent>
     </IonPage>
   );
