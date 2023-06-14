@@ -59,7 +59,7 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
   // Horizontal Swipe End Function Determination
   const HorizontalEnd = (detail: any, card: any) => {
     const windowWidth = window.innerWidth;
-    card.style.transition = "0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+    card.style.transition = "0.65s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
 
     // Swiping Right more than half of window length. Move Card to Right
     if (detail.deltaX > windowWidth / 3) {
@@ -129,7 +129,7 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
   // Vertical Swipe End Function Determination
   const VerticalEnd = (detail: any, card: any) => {
     const windowHeight = window.innerHeight;
-    card.style.transition = "0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+    card.style.transition = "0.65s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
 
     // Before clicking and swipe down
     if (!clicked && detail.deltaY > windowHeight / 5) {
