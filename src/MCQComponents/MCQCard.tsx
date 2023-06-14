@@ -15,7 +15,7 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
   // Allows Gesture only after user clicks an option
   useEffect(() => {
     enableGesture();
-  }, []);
+  }, [clicked]);
 
   const setClickStatus = () => {
     setClick(true);
@@ -90,6 +90,7 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
   // Function that shows the vertical indicators based on states
   const showVerticalInd = (detail: any) => {
     // Before Clicking
+    console.log(clicked)
     if (!clicked) {
       // Swipe Down to Show No More Card
       if (detail.deltaY > 0) {
@@ -128,19 +129,32 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
   // Vertical Swipe End Function Determination
   const VerticalEnd = (detail: any, card: any) => {
     const windowHeight = window.innerHeight;
-    card.style.transition = "0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+    card.style.transition = "0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
 
     // Before clicking and swipe down
     if (!clicked && detail.deltaY > windowHeight / 5) {
+      card.style.transform = `translateY(${windowHeight * 1.5}px)`;
+    }
+    // Before Clicking and Fast Swipe Down
+    else if(!clicked && detail.velocityY > 0.25){
       card.style.transform = `translateY(${windowHeight * 1.5}px)`;
     }
     // After clicking and swipe up for one more
     else if (clicked && detail.deltaY < -windowHeight / 5) {
       card.style.transform = `translateY(${windowHeight * -1.5}px)`;
     }
+    // After clicking and swipe up fast
+    else if(clicked && detail.velocityY < -0.25){
+      card.style.transform = `translateY(${windowHeight * -1.5}px)`
+    }
+  
     // After clicking. Got right and swipe down for no more
     else if (clicked && correct && detail.deltaY > windowHeight / 5) {
       card.style.transform = `translateY(${windowHeight * 1.5}px)`;
+    }
+    // After clicking. Got right and swipe down fast
+    else if(clicked && correct && detail.velocityY > 0.25){
+      card.style.transform = `translateY(${windowHeight * 1.5}px)`
     }
     // Reset
     else {
