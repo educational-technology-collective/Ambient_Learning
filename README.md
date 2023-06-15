@@ -1,4 +1,4 @@
-# Space-Repetition-App(Ionic)
+# EiDetic (Space-Repeition-App)
 
 ## Description
 This is a mobile-app for space-repetition learning. The app is built using Ionic React. Currently, it includes two types of cards: QA(Question & Answer) and MCQ(Multiple Choice Question).
