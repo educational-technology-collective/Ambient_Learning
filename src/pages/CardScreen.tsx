@@ -51,8 +51,8 @@ const CardScreen: React.FC = () => {
             )
           )}
         </div>
-        <IonButton routerLink="/home" routerDirection="back">
-            <IonIcon icon={homeOutline}></IonIcon>
+        <IonButton className='home-button' routerLink="/home" routerDirection="back">
+            <IonIcon icon={homeOutline} style={{fontSize: '2.5em'}}></IonIcon>
         </IonButton>
       </IonContent>
     </IonPage>

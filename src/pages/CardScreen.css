@@ -16,3 +16,15 @@
   --progress-background: mediumseagreen;
   --buffer-background: snow;
 }
+
+.home-button{
+  position: absolute;
+  height: 10%;
+  width: 21%;
+  left: -1.2em;
+  bottom: -1.2em;
+  color: salmon;
+  --border-radius: 999px;
+  --background-activated: bisque;
+  --background: honeydew;
+}
