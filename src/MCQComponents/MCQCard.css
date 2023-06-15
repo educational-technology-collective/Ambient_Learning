@@ -1,6 +1,6 @@
 .mcqcard-wrapper {
   position: absolute;
-  height: 82%;
+  height: 90%;
   width: 100%;
 }
 
@@ -13,7 +13,7 @@
 
 .mcqcard-content {
   justify-content: center;
-  height: 65%;
+  height: 60%;
   align-items: center;
   display: flex;
 }

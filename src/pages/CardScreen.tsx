@@ -31,7 +31,6 @@ const CardScreen: React.FC = () => {
 
       <IonContent
         className="page-content"
-        fullscreen
         scrollY={false}
       >
 
