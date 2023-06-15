@@ -1,5 +1,5 @@
 import { Redirect, Route } from "react-router-dom";
-import { IonApp, IonRouterOutlet, setupIonicReact } from "@ionic/react";
+import { IonApp, IonRouterOutlet, IonTabs, IonTabBar, setupIonicReact, IonTabButton, IonIcon } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import CardScreen from "./pages/CardScreen";
 import Home from './pages/Home'
@@ -23,12 +23,14 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
+import { homeOutline, radio, save } from "ionicons/icons";
 
 setupIonicReact();
 
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
+      <IonTabs>
       <IonRouterOutlet>
         <Route exact path="/home" component={Home} />
         <Route exact path = '/cardscreen' component={CardScreen} />
@@ -36,7 +38,20 @@ const App: React.FC = () => (
           <Redirect to="/home" />
         </Route>
       </IonRouterOutlet>
-    </IonReactRouter>
+
+      <IonTabBar slot='bottom'>
+        <IonTabButton tab="home" href='/home'>
+            <IonIcon icon={homeOutline}></IonIcon>
+        </IonTabButton>
+        <IonTabButton>
+          <IonIcon icon={save}></IonIcon>
+        </IonTabButton>
+        <IonTabButton>
+          <IonIcon icon={radio}></IonIcon>
+        </IonTabButton>
+      </IonTabBar>
+    </IonTabs>
+   </IonReactRouter>
   </IonApp>
 );
 

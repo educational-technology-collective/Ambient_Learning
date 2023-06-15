@@ -25,7 +25,7 @@ const CardScreen: React.FC = () => {
     <IonPage>
       <IonHeader color="tertiary">
         <IonToolbar>
-          <IonTitle>Card</IonTitle>
+          <IonTitle className="title">20 / 35</IonTitle>
         </IonToolbar>
       </IonHeader>
 
@@ -34,9 +34,7 @@ const CardScreen: React.FC = () => {
         fullscreen
         scrollY={false}
       >
-        <IonProgressBar className='bar' value={0.8}>
 
-        </IonProgressBar>
         <div className="card-stacker">
           {/* {index < cardCollection.length - 1 ? (
             <QACard obj={cardCollection[index + 1]} moveCard={swipeNextCard}/>
@@ -51,9 +49,6 @@ const CardScreen: React.FC = () => {
             )
           )}
         </div>
-        <IonButton className='home-button' routerLink="/home" routerDirection="back">
-            <IonIcon icon={homeOutline} style={{fontSize: '2.5em'}}></IonIcon>
-        </IonButton>
       </IonContent>
     </IonPage>
   );

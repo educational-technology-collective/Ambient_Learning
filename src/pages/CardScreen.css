@@ -1,5 +1,11 @@
+.title{
+  font-size: 1.2em;
+  font-weight: 900;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 .card-stacker {
-  height: 85%;
+  height: 90%;
 }
 
 .page-content {
