@@ -5,7 +5,9 @@ import "../components/Indicators";
 import FrontIndicator from "../components/FrontIndicator";
 import BackIndicator from "../components/BackIndicator";
 
-const QACard: React.FC<{ obj: flashCard }> = ({ obj }) => {
+
+const QACard: React.FC<{ obj: flashCard, moveOn: (id : number) => void}> = ({ obj, moveOn }) => {
+  console.log(moveOn);
   const [isClicked, setIsClicked] = useState(false);
   const style = isClicked
     ? { transform: "rotateY(180deg)", background: "rgba(251,255,236,1)" }
@@ -61,18 +63,22 @@ const QACard: React.FC<{ obj: flashCard }> = ({ obj }) => {
     // Swipe Right fast
     if (detail.velocityX > 0.3) {
       card.style.transform = `translateX(${windowWidth * 1.5}px)`;
+      moveOn(obj.index);
     }
     // Swiping Right more than half of window length. Move Card to Right
     else if (detail.deltaX > windowWidth / 3) {
       card.style.transform = `translateX(${windowWidth * 1.5}px)`;
+      moveOn(obj.index);
     }
     // Swipe Left fast
     else if (detail.velocityX < -0.3) {
       card.style.transform = `translateX(${windowWidth * -1.5}px)`;
+      moveOn(obj.index);
     }
     // Swiping Left More than half of window length. Move Card to Left
     else if (detail.deltaX < -windowWidth / 3) {
       card.style.transform = `translateX(${windowWidth * -1.5}px)`;
+      moveOn(obj.index);
     }
     // Not Swiping Enough. Reset the Card to its position
     else {
@@ -112,18 +118,22 @@ const QACard: React.FC<{ obj: flashCard }> = ({ obj }) => {
     // Swipe card down fast
     if (detail.velocityY > 0.3) {
       card.style.transform = `translateY(${windowHeight * 1.5}px)`;
+      moveOn(obj.index);
     }
     // Swipe the card Down more than 1/5 of the window height. Move Card Down
     else if (detail.deltaY > windowHeight / 4) {
       card.style.transform = `translateY(${windowHeight * 1.5}px)`;
+      moveOn(obj.index);
     }
     // Swipe card up fast
     else if (detail.velocityY < -0.3) {
       card.style.transform = `translateY(${windowHeight * -1.5}px)`;
+      moveOn(obj.index);
     }
     // Swipe the Card Up more than 1/5 of the window height. Move Card Up
     else if (detail.deltaY < -windowHeight / 4) {
       card.style.transform = `translateY(${windowHeight * -1.5}px)`;
+      moveOn(obj.index);
     }
     // Not Swiping Enough. Reset Card to its original Position with 0 opacity
     else {

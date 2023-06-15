@@ -16,7 +16,7 @@ const Home: React.FC = () => {
           <IonTitle className="title">EiDetic</IonTitle>
         </IonToolbar>
         <IonContent fullscreen scrollY={false}>
-          <IonButton routerLink="/cardscreen">Check</IonButton>
+          <IonButton routerLink="/cardscreen" routerDirection="forward">Check</IonButton>
         </IonContent>
       </IonHeader>
     </IonPage>

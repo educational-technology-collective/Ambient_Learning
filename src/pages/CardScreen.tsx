@@ -16,16 +16,23 @@ import { useState } from "react";
 import MCQCard from "../MCQComponents/MCQCard";
 
 const CardScreen: React.FC = () => {
-  const [index, setIndex] = useState(0);
+  
+  const [finished, setFinished] = useState(0);
+  const [cardCol, setCards] = useState(cardCollection);
+  
 
-  const swipeNextCard = () => {
-    setIndex(index + 1);
+  const swipeNextCard = (id : number ) => {
+    setFinished((finished) => finished + 1);
+    console.log(id);
+    setCards((cards) => {return cards.filter(card => id !== card.index)})
+   
   };
+  
   return (
     <IonPage>
       <IonHeader color="tertiary">
         <IonToolbar>
-          <IonTitle className="title">20 / 35</IonTitle>
+          <IonTitle className="title">{finished} / {cardCollection.length}</IonTitle>
         </IonToolbar>
       </IonHeader>
 
@@ -36,11 +43,11 @@ const CardScreen: React.FC = () => {
           ) : null}
           {<QACard obj={cardCollection[index]} moveCard={swipeNextCard}/>} */}
 
-          {cardCollection.map((card) =>
+          {cardCol.map((card) =>
             card.type === "q" ? (
-              <QACard obj={card} key={card.index} />
+              <QACard obj={card} key={card.index} moveOn={swipeNextCard}/>
             ) : (
-              <MCQCard obj={card} key={card.index} />
+              <MCQCard obj={card} key={card.index} moveOn={swipeNextCard}/>
             )
           )}
         </div>

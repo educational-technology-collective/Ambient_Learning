@@ -3,8 +3,9 @@ import { useRef, useState, useEffect } from "react";
 import "./MCQCard.css";
 import Choices from "./Choices";
 import FrontIndicator from "../components/FrontIndicator";
+import { move } from "ionicons/icons";
 
-const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
+const MCQCard: React.FC<{ obj: flashCard, moveOn: (id : number) => void}> = ({ obj, moveOn }) => {
   const question = obj.content.question;
   const choices = obj.content.answer;
 
@@ -64,18 +65,22 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
     // Swiping Right Quick Enough
     if (detail.velocityX > 0.3) {
       card.style.transform = `translateX(${windowWidth * 1.5}px)`;
+      moveOn(obj.index);
     }
     // Swiping Right more than half of window length. Move Card to Right
     else if (detail.deltaX > windowWidth / 3) {
       card.style.transform = `translateX(${windowWidth * 1.5}px)`;
+      moveOn(obj.index);
     }
     // Swiping Left Quick Enough
     else if (detail.velocityX < -0.3) {
       card.style.transform = `translateX(${windowWidth * -1.5}px)`;
+      moveOn(obj.index);
     }
     // Swiping Left More than half of window length. Move Card to Left
     else if (detail.deltaX < -windowWidth / 3) {
       card.style.transform = `translateX(${-windowWidth * 1.5}px)`;
+      moveOn(obj.index);
     }
     // Not Swiping Enough. Reset the Card to its position
     else {
@@ -135,10 +140,12 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
       // Swipe Down fast
       if (detail.velocityY > 0.3) {
         card.style.transform = `translateY(${windowHeight * 1.5}px)`;
+        moveOn(obj.index);
       }
       // Swipe Down enough
       else if (detail.deltaY > windowHeight / 4) {
         card.style.transform = `translateY(${windowHeight * 1.5}px)`;
+        moveOn(obj.index);
       }
       // Reset
       else {
@@ -152,18 +159,22 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
       // Swipe Up fast
       if (detail.velocityY < -0.3) {
         card.style.transform = `translateY(${windowHeight * -1.5}px)`;
+        moveOn(obj.index);
       }
       // Swipe Up enough
       else if (detail.deltaY < -windowHeight / 4) {
         card.style.transform = `translateY(${windowHeight * -1.5}px)`;
+        moveOn(obj.index);
       }
       // Correct and Swipe down fast
       else if (correct && detail.velocityY > 0.3) {
         card.style.transform = `translateY(${windowHeight * 1.5}px)`;
+        moveOn(obj.index);
       }
       // Correct and Swipe down enough
       else if (correct && detail.deltaY > windowHeight / 4) {
         card.style.transform = `translateY(${windowHeight * 1.5}px)`;
+        moveOn(obj.index);
       }
       // Reset
       else {
