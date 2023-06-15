@@ -1,6 +1,5 @@
-import { IonButton, IonContent, IonHeader, IonIcon, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButton, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import './Home.css'
-import { homeOutline } from 'ionicons/icons';
 
 
 const Home : React.FC = () => {
@@ -9,7 +8,7 @@ const Home : React.FC = () => {
     <IonPage>
       <IonHeader color='tertiary'>
         <IonToolbar>
-          <IonTitle>Space Repetition Learner</IonTitle>
+          <IonTitle className='title'>Eidetic</IonTitle>
         </IonToolbar>
         <IonContent fullscreen scrollY={false}>
           <IonButton routerLink='/cardscreen'>Check</IonButton>
