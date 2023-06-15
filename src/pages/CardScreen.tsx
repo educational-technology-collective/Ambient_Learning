@@ -6,15 +6,15 @@ import {
   IonToolbar,
   IonButton,
   IonItem,
- IonIcon,
- IonProgressBar
+  IonIcon,
+  IonProgressBar,
 } from "@ionic/react";
 import "./CardScreen.css";
 import QACard from "../QAComponents/QACard";
-import { cardCollection} from "../components/exampleData";
+import { cardCollection } from "../components/exampleData";
 import { useState } from "react";
 import MCQCard from "../MCQComponents/MCQCard";
-import { homeOutline } from "ionicons/icons";
+
 const CardScreen: React.FC = () => {
   const [index, setIndex] = useState(0);
 
@@ -29,11 +29,7 @@ const CardScreen: React.FC = () => {
         </IonToolbar>
       </IonHeader>
 
-      <IonContent
-        className="page-content"
-        scrollY={false}
-      >
-
+      <IonContent className="page-content" scrollY={false}>
         <div className="card-stacker">
           {/* {index < cardCollection.length - 1 ? (
             <QACard obj={cardCollection[index + 1]} moveCard={swipeNextCard}/>

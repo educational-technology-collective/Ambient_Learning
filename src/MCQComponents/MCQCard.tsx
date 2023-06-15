@@ -119,7 +119,9 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
 
   // Vertical Swiping Function
   const VerticalMove = (detail: any, card: any) => {
-    card.style.transform = `translateY(${detail.deltaY}px) rotate(${detail.deltaY / 90}deg)`;
+    card.style.transform = `translateY(${detail.deltaY}px) rotate(${
+      detail.deltaY / 90
+    }deg)`;
     showVerticalInd(detail);
   };
 

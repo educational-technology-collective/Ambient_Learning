@@ -1,9 +1,17 @@
 import { Redirect, Route } from "react-router-dom";
-import { IonApp, IonRouterOutlet, IonTabs, IonTabBar, setupIonicReact, IonTabButton, IonIcon } from "@ionic/react";
+import {
+  IonApp,
+  IonRouterOutlet,
+  IonTabs,
+  IonTabBar,
+  setupIonicReact,
+  IonTabButton,
+  IonIcon,
+} from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import {TbHomeEdit} from 'react-icons/tb'
+import { TbHomeEdit } from "react-icons/tb";
 import CardScreen from "./pages/CardScreen";
-import Home from './pages/Home'
+import Home from "./pages/Home";
 import "./App.css";
 
 /* Core CSS required for Ionic components to work properly */
@@ -24,7 +32,7 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
-import { homeOutline, radio, save } from "ionicons/icons";
+import { radio, save } from "ionicons/icons";
 
 setupIonicReact();
 
@@ -32,27 +40,27 @@ const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonTabs>
-      <IonRouterOutlet>
-        <Route exact path="/home" component={Home} />
-        <Route exact path = '/cardscreen' component={CardScreen} />
-        <Route exact path="/">
-          <Redirect to="/home" />
-        </Route>
-      </IonRouterOutlet>
+        <IonRouterOutlet>
+          <Route exact path="/home" component={Home} />
+          <Route exact path="/cardscreen" component={CardScreen} />
+          <Route exact path="/">
+            <Redirect to="/home" />
+          </Route>
+        </IonRouterOutlet>
 
-      <IonTabBar slot='bottom'>
-        <IonTabButton tab="home" href='/home'>
-          <TbHomeEdit size='3em'/>
-        </IonTabButton>
-        <IonTabButton>
-          <IonIcon icon={save}></IonIcon>
-        </IonTabButton>
-        <IonTabButton>
-          <IonIcon icon={radio}></IonIcon>
-        </IonTabButton>
-      </IonTabBar>
-    </IonTabs>
-   </IonReactRouter>
+        <IonTabBar slot="bottom">
+          <IonTabButton tab="home" href="/home">
+            <TbHomeEdit size="3em" />
+          </IonTabButton>
+          <IonTabButton>
+            <IonIcon icon={save}></IonIcon>
+          </IonTabButton>
+          <IonTabButton>
+            <IonIcon icon={radio}></IonIcon>
+          </IonTabButton>
+        </IonTabBar>
+      </IonTabs>
+    </IonReactRouter>
   </IonApp>
 );
 
