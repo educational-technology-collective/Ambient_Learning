@@ -62,7 +62,7 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
     card.style.transition = "0.65s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
 
     // Swiping Right Quick Enough
-    if (detail.velocityX > 0.25) {
+    if (detail.velocityX > 0.3) {
       card.style.transform = `translateX(${windowWidth * 1.5}px)`;
     }
     // Swiping Right more than half of window length. Move Card to Right
@@ -70,7 +70,7 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
       card.style.transform = `translateX(${windowWidth * 1.5}px)`;
     }
     // Swiping Left Quick Enough
-    else if (detail.velocityX < -0.25) {
+    else if (detail.velocityX < -0.3) {
       card.style.transform = `translateX(${windowWidth * -1.5}px)`;
     }
     // Swiping Left More than half of window length. Move Card to Left
@@ -131,7 +131,7 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
     // Before clicking
     if (!clicked) {
       // Swipe Down fast
-      if (detail.velocityY > 0.25) {
+      if (detail.velocityY > 0.3) {
         card.style.transform = `translateY(${windowHeight * 1.5}px)`;
       }
       // Swipe Down enough
@@ -148,7 +148,7 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
     // After clicking
     else {
       // Swipe Up fast
-      if (detail.velocityY < -0.25) {
+      if (detail.velocityY < -0.3) {
         card.style.transform = `translateY(${windowHeight * -1.5}px)`;
       }
       // Swipe Up enough
@@ -156,7 +156,7 @@ const MCQCard: React.FC<{ obj: flashCard }> = ({ obj }) => {
         card.style.transform = `translateY(${windowHeight * -1.5}px)`;
       }
       // Correct and Swipe down fast
-      else if (correct && detail.velocityY > 0.25) {
+      else if (correct && detail.velocityY > 0.3) {
         card.style.transform = `translateY(${windowHeight * 1.5}px)`;
       }
       // Correct and Swipe down enough

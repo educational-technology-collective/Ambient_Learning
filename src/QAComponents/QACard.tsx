@@ -59,7 +59,7 @@ const QACard: React.FC<{ obj: flashCard }> = ({ obj }) => {
     card.style.transition = "0.65s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
 
     // Swipe Right fast
-    if (detail.velocityX > 0.25) {
+    if (detail.velocityX > 0.3) {
       card.style.transform = `translateX(${windowWidth * 1.5}px)`;
     }
     // Swiping Right more than half of window length. Move Card to Right
@@ -67,7 +67,7 @@ const QACard: React.FC<{ obj: flashCard }> = ({ obj }) => {
       card.style.transform = `translateX(${windowWidth * 1.5}px)`;
     }
     // Swipe Left fast
-    else if (detail.velocityX < -0.25) {
+    else if (detail.velocityX < -0.3) {
       card.style.transform = `translateX(${windowWidth * -1.5}px)`;
     }
     // Swiping Left More than half of window length. Move Card to Left
@@ -110,7 +110,7 @@ const QACard: React.FC<{ obj: flashCard }> = ({ obj }) => {
     card.style.transition = "0.65s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
 
     // Swipe card down fast
-    if (detail.velocityY > 0.25) {
+    if (detail.velocityY > 0.3) {
       card.style.transform = `translateY(${windowHeight * 1.5}px)`;
     }
     // Swipe the card Down more than 1/5 of the window height. Move Card Down
@@ -118,7 +118,7 @@ const QACard: React.FC<{ obj: flashCard }> = ({ obj }) => {
       card.style.transform = `translateY(${windowHeight * 1.5}px)`;
     }
     // Swipe card up fast
-    else if (detail.velocityY < -0.25) {
+    else if (detail.velocityY < -0.3) {
       card.style.transform = `translateY(${windowHeight * -1.5}px)`;
     }
     // Swipe the Card Up more than 1/5 of the window height. Move Card Up
