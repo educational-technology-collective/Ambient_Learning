@@ -15,6 +15,11 @@ const MCQCard: React.FC<{ obj: flashCard; moveOn: (id: number) => void }> = ({
 
   const [clicked, setClick] = useState(false);
 
+  // Function that goes to next card after some time
+  const timeOutFunc = () => {
+    moveOn(obj.index);
+  };
+
   // Allows Gesture only after user clicks an option
   useEffect(() => {
     enableGesture();
@@ -67,22 +72,22 @@ const MCQCard: React.FC<{ obj: flashCard; moveOn: (id: number) => void }> = ({
     // Swiping Right Quick Enough
     if (detail.velocityX > 0.3) {
       card.style.transform = `translateX(${windowWidth * 1.5}px)`;
-      moveOn(obj.index);
+      setTimeout(timeOutFunc, 100);
     }
     // Swiping Right more than half of window length. Move Card to Right
     else if (detail.deltaX > windowWidth / 3) {
       card.style.transform = `translateX(${windowWidth * 1.5}px)`;
-      moveOn(obj.index);
+      setTimeout(timeOutFunc, 100);
     }
     // Swiping Left Quick Enough
     else if (detail.velocityX < -0.3) {
       card.style.transform = `translateX(${windowWidth * -1.5}px)`;
-      moveOn(obj.index);
+      setTimeout(timeOutFunc, 100);
     }
     // Swiping Left More than half of window length. Move Card to Left
     else if (detail.deltaX < -windowWidth / 3) {
       card.style.transform = `translateX(${-windowWidth * 1.5}px)`;
-      moveOn(obj.index);
+      setTimeout(timeOutFunc, 100);
     }
     // Not Swiping Enough. Reset the Card to its position
     else {
@@ -142,12 +147,12 @@ const MCQCard: React.FC<{ obj: flashCard; moveOn: (id: number) => void }> = ({
       // Swipe Down fast
       if (detail.velocityY > 0.3) {
         card.style.transform = `translateY(${windowHeight * 1.5}px)`;
-        moveOn(obj.index);
+        setTimeout(timeOutFunc, 100);
       }
       // Swipe Down enough
       else if (detail.deltaY > windowHeight / 4) {
         card.style.transform = `translateY(${windowHeight * 1.5}px)`;
-        moveOn(obj.index);
+        setTimeout(timeOutFunc, 100);
       }
       // Reset
       else {
@@ -161,22 +166,22 @@ const MCQCard: React.FC<{ obj: flashCard; moveOn: (id: number) => void }> = ({
       // Swipe Up fast
       if (detail.velocityY < -0.3) {
         card.style.transform = `translateY(${windowHeight * -1.5}px)`;
-        moveOn(obj.index);
+        setTimeout(timeOutFunc, 100);
       }
       // Swipe Up enough
       else if (detail.deltaY < -windowHeight / 4) {
         card.style.transform = `translateY(${windowHeight * -1.5}px)`;
-        moveOn(obj.index);
+        setTimeout(timeOutFunc, 100);
       }
       // Correct and Swipe down fast
       else if (correct && detail.velocityY > 0.3) {
         card.style.transform = `translateY(${windowHeight * 1.5}px)`;
-        moveOn(obj.index);
+        setTimeout(timeOutFunc, 100);
       }
       // Correct and Swipe down enough
       else if (correct && detail.deltaY > windowHeight / 4) {
         card.style.transform = `translateY(${windowHeight * 1.5}px)`;
-        moveOn(obj.index);
+        setTimeout(timeOutFunc, 100);
       }
       // Reset
       else {
