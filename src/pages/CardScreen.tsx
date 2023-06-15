@@ -4,6 +4,7 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
+  IonButton,
   IonItem,
  IonIcon,
  IonProgressBar
@@ -50,9 +51,9 @@ const CardScreen: React.FC = () => {
             )
           )}
         </div>
-        <IonItem routerLink="/home">
+        <IonButton routerLink="/home" routerDirection="back">
             <IonIcon icon={homeOutline}></IonIcon>
-        </IonItem>
+        </IonButton>
       </IonContent>
     </IonPage>
   );
