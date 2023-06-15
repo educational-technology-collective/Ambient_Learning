@@ -1,6 +1,7 @@
 import { Redirect, Route } from "react-router-dom";
 import { IonApp, IonRouterOutlet, IonTabs, IonTabBar, setupIonicReact, IonTabButton, IonIcon } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
+import {TbHomeEdit} from 'react-icons/tb'
 import CardScreen from "./pages/CardScreen";
 import Home from './pages/Home'
 import "./App.css";
@@ -41,7 +42,7 @@ const App: React.FC = () => (
 
       <IonTabBar slot='bottom'>
         <IonTabButton tab="home" href='/home'>
-            <IonIcon icon={homeOutline}></IonIcon>
+          <TbHomeEdit size='3em'/>
         </IonTabButton>
         <IonTabButton>
           <IonIcon icon={save}></IonIcon>
