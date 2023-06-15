@@ -13,4 +13,6 @@
   margin-top: 1em;
   width: 70%;
   margin-left: 15%;
+  --progress-background: mediumseagreen;
+  --buffer-background: snow;
 }
