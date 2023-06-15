@@ -9,31 +9,30 @@ import "./CardScreen.css";
 import QACard from "../QAComponents/QACard";
 import { cardCollection } from "../components/exampleData";
 import MCQCard from "../MCQComponents/MCQCard";
-import React from 'react'
+import React from "react";
 
-const CardScreen: React.FC<{finished: number, cardCol: any[], swipeNextCard : (id : number) => void}> = React.memo(({finished, cardCol, swipeNextCard}) => {
-  
-  
+const CardScreen: React.FC<{
+  finished: number;
+  cardCol: any[];
+  swipeNextCard: (id: number) => void;
+}> = React.memo(({ finished, cardCol, swipeNextCard }) => {
   return (
     <IonPage>
       <IonHeader color="tertiary">
         <IonToolbar>
-          <IonTitle className="title">{finished} / {cardCollection.length}</IonTitle>
+          <IonTitle className="title">
+            {finished} / {cardCollection.length}
+          </IonTitle>
         </IonToolbar>
       </IonHeader>
 
       <IonContent className="page-content" scrollY={false}>
         <div className="card-stacker">
-          {/* {index < cardCollection.length - 1 ? (
-            <QACard obj={cardCollection[index + 1]} moveCard={swipeNextCard}/>
-          ) : null}
-          {<QACard obj={cardCollection[index]} moveCard={swipeNextCard}/>} */}
-
           {cardCol.map((card) =>
             card.type === "q" ? (
-              <QACard obj={card} key={card.index} moveOn={swipeNextCard}/>
+              <QACard obj={card} key={card.index} moveOn={swipeNextCard} />
             ) : (
-              <MCQCard obj={card} key={card.index} moveOn={swipeNextCard}/>
+              <MCQCard obj={card} key={card.index} moveOn={swipeNextCard} />
             )
           )}
         </div>

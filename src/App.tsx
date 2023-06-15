@@ -36,51 +36,61 @@ import "./theme/variables.css";
 import { radio, save } from "ionicons/icons";
 import { cardCollection } from "./components/exampleData";
 setupIonicReact({
-  swipeBackEnabled: false
+  swipeBackEnabled: false,
 });
 
-
 const App: React.FC = () => {
+  // The Card Array
+  const [cardCol, setCards] = useState(cardCollection);
 
-const [cardCol, setCards] = useState(cardCollection);
-const [finished, setFinished] = useState(0);
+  // How Many Cards Finished
+  const [finished, setFinished] = useState(0);
 
-const swipeNextCard = (id : number ) => {
-  setFinished((prevFinished) => prevFinished + 1);
-  setCards((cards) => {return cards.filter(card => id !== card.index)})
- 
+  // Logic to Move On to Next Card
+  const swipeNextCard = (id: number) => {
+    setFinished((prevFinished) => prevFinished + 1);
+    setCards((cards) => {
+      return cards.filter((card) => id !== card.index);
+    });
+  };
+
+  return (
+    <IonApp>
+      <IonReactRouter>
+        <IonTabs>
+          <IonRouterOutlet>
+            <Route exact path="/home" component={Home} />
+            <Route
+              exact
+              path="/cardscreen"
+              render={() => (
+                <CardScreen
+                  finished={finished}
+                  cardCol={cardCol}
+                  swipeNextCard={swipeNextCard}
+                />
+              )}
+            />
+            <Route exact path="/">
+              <Redirect to="/home" />
+            </Route>
+          </IonRouterOutlet>
+
+          <IonTabBar slot="bottom">
+            <IonTabButton tab="home" href="/home">
+              <TbHomeEdit size="3em" />
+            </IonTabButton>
+            <IonTabButton>
+              <IonIcon icon={save}></IonIcon>
+            </IonTabButton>
+            <IonTabButton>
+              <IonIcon icon={radio}></IonIcon>
+            </IonTabButton>
+          </IonTabBar>
+        </IonTabs>
+      </IonReactRouter>
+    </IonApp>
+  );
 };
-
-return (
-
-<IonApp>
-    <IonReactRouter>
-      <IonTabs>
-        <IonRouterOutlet>
-          <Route exact path="/home" component={Home} />
-          <Route exact path="/cardscreen" render={() => <CardScreen finished = {finished} cardCol = {cardCol} swipeNextCard = {swipeNextCard} />} />
-          <Route exact path="/">
-            <Redirect to="/home" />
-          </Route>
-        </IonRouterOutlet>
-
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="home" href="/home">
-            <TbHomeEdit size="3em" />
-          </IonTabButton>
-          <IonTabButton>
-            <IonIcon icon={save}></IonIcon>
-          </IonTabButton>
-          <IonTabButton>
-            <IonIcon icon={radio}></IonIcon>
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
-    </IonReactRouter>
-  </IonApp>
-)
-}
-  
-;
 
 export default App;

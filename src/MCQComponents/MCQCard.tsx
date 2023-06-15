@@ -3,9 +3,11 @@ import { useRef, useState, useEffect } from "react";
 import "./MCQCard.css";
 import Choices from "./Choices";
 import FrontIndicator from "../components/FrontIndicator";
-import { move } from "ionicons/icons";
 
-const MCQCard: React.FC<{ obj: flashCard, moveOn: (id : number) => void}> = ({ obj, moveOn }) => {
+const MCQCard: React.FC<{ obj: flashCard; moveOn: (id: number) => void }> = ({
+  obj,
+  moveOn,
+}) => {
   const question = obj.content.question;
   const choices = obj.content.answer;
 

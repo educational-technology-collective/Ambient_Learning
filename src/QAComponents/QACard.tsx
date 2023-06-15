@@ -5,8 +5,10 @@ import "../components/Indicators";
 import FrontIndicator from "../components/FrontIndicator";
 import BackIndicator from "../components/BackIndicator";
 
-
-const QACard: React.FC<{ obj: flashCard, moveOn: (id : number) => void}> = ({ obj, moveOn }) => {
+const QACard: React.FC<{ obj: flashCard; moveOn: (id: number) => void }> = ({
+  obj,
+  moveOn,
+}) => {
   const [isClicked, setIsClicked] = useState(false);
   const style = isClicked
     ? { transform: "rotateY(180deg)", background: "rgba(251,255,236,1)" }
@@ -103,7 +105,9 @@ const QACard: React.FC<{ obj: flashCard, moveOn: (id : number) => void}> = ({ ob
 
   // Vertical Swiping onMove Function
   const VerticalMove = (detail: any, card: any) => {
-    card.style.transform = `translateY(${detail.deltaY}px) rotate(${detail.deltaY / 90}deg)`;
+    card.style.transform = `translateY(${detail.deltaY}px) rotate(${
+      detail.deltaY / 90
+    }deg)`;
 
     // Set Vertical Indicators
     showVerticalInd(detail);

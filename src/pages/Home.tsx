@@ -7,18 +7,13 @@ import {
   IonToolbar,
 } from "@ionic/react";
 import "./Home.css";
-import { useHistory } from 'react-router-dom';
-import {useContext} from 'react';
-import CardContext from "./CardContext";
+import { useHistory } from "react-router-dom";
 
 const Home: React.FC = () => {
-  
-  const { finished, cardCol, setFinished, setCards } = useContext(CardContext);
-
   const history = useHistory();
 
   const navigateToCardScreen = () => {
-    history.push('/cardscreen');
+    history.push("/cardscreen");
   };
   return (
     <IonPage>
