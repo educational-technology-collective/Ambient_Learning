@@ -21,10 +21,10 @@ const Home: React.FC = () => {
         <IonToolbar>
           <IonTitle className="title">EiDetic</IonTitle>
         </IonToolbar>
-        <IonContent fullscreen scrollY={false}>
+      </IonHeader>
+      <IonContent scrollY={false}>
           <IonButton onClick={navigateToCardScreen}>Check</IonButton>
         </IonContent>
-      </IonHeader>
     </IonPage>
   );
 };
