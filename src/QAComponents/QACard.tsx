@@ -7,7 +7,6 @@ import BackIndicator from "../components/BackIndicator";
 
 
 const QACard: React.FC<{ obj: flashCard, moveOn: (id : number) => void}> = ({ obj, moveOn }) => {
-  console.log(moveOn);
   const [isClicked, setIsClicked] = useState(false);
   const style = isClicked
     ? { transform: "rotateY(180deg)", background: "rgba(251,255,236,1)" }

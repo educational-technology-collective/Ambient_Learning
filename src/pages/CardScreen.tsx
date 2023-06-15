@@ -4,29 +4,15 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
-  IonButton,
-  IonItem,
-  IonIcon,
-  IonProgressBar,
 } from "@ionic/react";
 import "./CardScreen.css";
 import QACard from "../QAComponents/QACard";
 import { cardCollection } from "../components/exampleData";
-import { useState } from "react";
 import MCQCard from "../MCQComponents/MCQCard";
+import React from 'react'
 
-const CardScreen: React.FC = () => {
+const CardScreen: React.FC<{finished: number, cardCol: any[], swipeNextCard : (id : number) => void}> = React.memo(({finished, cardCol, swipeNextCard}) => {
   
-  const [finished, setFinished] = useState(0);
-  const [cardCol, setCards] = useState(cardCollection);
-  
-
-  const swipeNextCard = (id : number ) => {
-    setFinished((finished) => finished + 1);
-    console.log(id);
-    setCards((cards) => {return cards.filter(card => id !== card.index)})
-   
-  };
   
   return (
     <IonPage>
@@ -54,6 +40,6 @@ const CardScreen: React.FC = () => {
       </IonContent>
     </IonPage>
   );
-};
+});
 
 export default CardScreen;

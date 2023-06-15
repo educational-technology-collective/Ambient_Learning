@@ -7,8 +7,19 @@ import {
   IonToolbar,
 } from "@ionic/react";
 import "./Home.css";
+import { useHistory } from 'react-router-dom';
+import {useContext} from 'react';
+import CardContext from "./CardContext";
 
 const Home: React.FC = () => {
+  
+  const { finished, cardCol, setFinished, setCards } = useContext(CardContext);
+
+  const history = useHistory();
+
+  const navigateToCardScreen = () => {
+    history.push('/cardscreen');
+  };
   return (
     <IonPage>
       <IonHeader color="tertiary">
@@ -16,7 +27,7 @@ const Home: React.FC = () => {
           <IonTitle className="title">EiDetic</IonTitle>
         </IonToolbar>
         <IonContent fullscreen scrollY={false}>
-          <IonButton routerLink="/cardscreen" routerDirection="forward">Check</IonButton>
+          <IonButton onClick={navigateToCardScreen}>Check</IonButton>
         </IonContent>
       </IonHeader>
     </IonPage>

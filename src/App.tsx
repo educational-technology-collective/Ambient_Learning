@@ -10,6 +10,7 @@ import {
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { TbHomeEdit } from "react-icons/tb";
+import { useState } from "react";
 import CardScreen from "./pages/CardScreen";
 import Home from "./pages/Home";
 import "./App.css";
@@ -33,16 +34,31 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 import "./theme/variables.css";
 import { radio, save } from "ionicons/icons";
+import { cardCollection } from "./components/exampleData";
+setupIonicReact({
+  swipeBackEnabled: false
+});
 
-setupIonicReact();
 
-const App: React.FC = () => (
-  <IonApp>
+const App: React.FC = () => {
+
+const [cardCol, setCards] = useState(cardCollection);
+const [finished, setFinished] = useState(0);
+
+const swipeNextCard = (id : number ) => {
+  setFinished((prevFinished) => prevFinished + 1);
+  setCards((cards) => {return cards.filter(card => id !== card.index)})
+ 
+};
+
+return (
+
+<IonApp>
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
           <Route exact path="/home" component={Home} />
-          <Route exact path="/cardscreen" component={CardScreen} />
+          <Route exact path="/cardscreen" render={() => <CardScreen finished = {finished} cardCol = {cardCol} swipeNextCard = {swipeNextCard} />} />
           <Route exact path="/">
             <Redirect to="/home" />
           </Route>
@@ -62,6 +78,9 @@ const App: React.FC = () => (
       </IonTabs>
     </IonReactRouter>
   </IonApp>
-);
+)
+}
+  
+;
 
 export default App;
