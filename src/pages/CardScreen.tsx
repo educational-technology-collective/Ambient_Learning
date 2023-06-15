@@ -5,7 +5,8 @@ import {
   IonTitle,
   IonToolbar,
   IonItem,
- IonIcon
+ IonIcon,
+ IonProgressBar
 } from "@ionic/react";
 import "./CardScreen.css";
 import QACard from "../QAComponents/QACard";
@@ -32,6 +33,9 @@ const CardScreen: React.FC = () => {
         fullscreen
         scrollY={false}
       >
+        <IonProgressBar className='bar' value={0.8}>
+
+        </IonProgressBar>
         <div className="card-stacker">
           {/* {index < cardCollection.length - 1 ? (
             <QACard obj={cardCollection[index + 1]} moveCard={swipeNextCard}/>
