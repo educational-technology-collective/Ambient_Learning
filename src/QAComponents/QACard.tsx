@@ -59,7 +59,7 @@ const QACard: React.FC<{ obj: flashCard; moveOn: (id: number) => void }> = ({
   // Horizontal Swipe End Function Determination
   const HorizontalEnd = (detail: any, card: any) => {
     const windowWidth = window.innerWidth;
-    card.style.transition = "0.65s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+    card.style.transition = "0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
 
     // Swipe Right fast
     if (detail.velocityX > 0.3) {
@@ -116,7 +116,7 @@ const QACard: React.FC<{ obj: flashCard; moveOn: (id: number) => void }> = ({
   // Vertical Swiping onEnd Function
   const VerticalEnd = (detail: any, card: any) => {
     const windowHeight = window.innerHeight;
-    card.style.transition = "0.65s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+    card.style.transition = "0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
 
     // Swipe card down fast
     if (detail.velocityY > 0.3) {
