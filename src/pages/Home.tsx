@@ -45,13 +45,13 @@ const Home: React.FC<{ finished: number }> = ({ finished }) => {
         <IonCard className="task-card">
           <IonCardContent className="remaining-content">
             <IonText className="today-task">Today's Task:</IonText>
-            <IonCard className={shadow} onClick={navigateToCardScreen}>
+            {finished !== cardCollection.length ? <IonCard className={shadow} onClick={navigateToCardScreen}>
               <IonCardContent className="wrapped-card-content">
                 <IonText className="today-task">
                   {cardCollection.length - finished}
                 </IonText>
               </IonCardContent>
-            </IonCard>
+            </IonCard> : <IonText>Luke Anger: You are done with cards. Go touch grass, Loser!</IonText>}
           </IonCardContent>
         </IonCard>
       </IonContent>
