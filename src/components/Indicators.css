@@ -15,17 +15,17 @@
 }
 
 .negative {
-  top: 3.5em;
+  top: 1.2em;
   width: 50%;
 }
 
 .front-negative {
-  right: 1.5em;
+  right: 1em;
   rotate: 350deg;
 }
 
 .back-negative {
-  left: 1.5em;
+  left: 1em;
   rotate: 10deg;
 }
 .action-container {
@@ -52,18 +52,18 @@
 }
 
 .positive {
-  top: 3.5em;
+  top: 1.2em;
   width: 50%;
   rotate: 10deg;
 }
 
 .front-positive {
-  left: 1.5em;
+  left: 1em;
   rotate: 10deg;
 }
 
 .back-positive {
-  right: 1.5em;
+  right: 1em;
   rotate: 350deg;
 }
 
