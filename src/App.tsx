@@ -76,14 +76,14 @@ const App: React.FC = () => {
             </Route>
           </IonRouterOutlet>
 
-          <IonTabBar slot="bottom">
-            <IonTabButton tab="home" href="/home">
+          <IonTabBar slot="bottom" className="tab-bar">
+            <IonTabButton tab="home" href="/home" className="icons">
               <TbHomeEdit size="3em" />
             </IonTabButton>
-            <IonTabButton>
+            <IonTabButton className="icons">
               <IonIcon icon={save}></IonIcon>
             </IonTabButton>
-            <IonTabButton>
+            <IonTabButton className="icons">
               <IonIcon icon={radio}></IonIcon>
             </IonTabButton>
           </IonTabBar>

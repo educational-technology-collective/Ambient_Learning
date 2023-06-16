@@ -2,3 +2,12 @@
   background-color: aliceblue;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
+
+.tab-bar {
+  --background: #0056d2;
+}
+
+.icons {
+  --color: aliceblue;
+  --color-selected: aquamarine;
+}
