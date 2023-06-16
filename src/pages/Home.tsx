@@ -51,7 +51,7 @@ const Home: React.FC<{ finished: number }> = ({ finished }) => {
                   {cardCollection.length - finished}
                 </IonText>
               </IonCardContent>
-            </IonCard> : <IonText>Luke Anger: You are done with cards. Go touch grass, Loser!</IonText>}
+            </IonCard> : <IonText>"You are done with cards. Go touch grass, Loser!" — Luke Anger</IonText>}
           </IonCardContent>
         </IonCard>
       </IonContent>
