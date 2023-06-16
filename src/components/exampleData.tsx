@@ -35,7 +35,7 @@ export const cardCollection = [
     timeStamp: "12:10",
     timeInterval: 4,
     content: {
-      question: "Writie Code to increment variable x by 2",
+      question: "Write Code to increment variable x by 2",
       answer: "x += 2",
     },
   },
@@ -90,57 +90,66 @@ export const cardCollection = [
   },
 
   {
-    index: 12, 
-    type: 'q',
+    index: 12,
+    type: "q",
     seenTimes: 3,
-    timeStamp: '12: 12',
+    timeStamp: "12: 12",
     timeInterval: 4,
     content: {
-      question: 'x = x + 1 is equivalent to x += 1',
-      answer: 'True' 
-    }
+      question: "x = x + 1 is equivalent to x += 1",
+      answer: "True",
+    },
   },
 
   {
     index: 45,
-    type: 'q',
+    type: "q",
     seenTimes: 3,
-    timeStamp: '12:08',
+    timeStamp: "12:08",
     timeInterval: 5,
     content: {
-      question: 'Describe what is happening:\ndef func():\n\t func()',
-      answer: 'Recursion'
-    }
+      question: "Describe what is happening:\ndef func():\n\t func()",
+      answer: "Recursion",
+    },
   },
 
   {
     index: 31,
-    type: 'm',
+    type: "m",
     seenTime: 5,
-    timeStamp: '08:09',
+    timeStamp: "08:09",
     timeInterval: 3,
     content: {
       question: 'What is the output of:\n print("12" + 13)',
-      answer:[{
-        option: '1213', isCorrect: false
-      },
-    {option: '25', isCorrect: false},
-  {option: 'Error', isCorrect: true},
-{option: '12 13', isCorrect: false}]
-    }
+      answer: [
+        {
+          option: "1213",
+          isCorrect: false,
+        },
+        { option: "25", isCorrect: false },
+        { option: "Error", isCorrect: true },
+        { option: "12 13", isCorrect: false },
+      ],
+    },
   },
 
   {
     index: 25,
-    type: 'm',
+    type: "m",
     seenTime: 10,
-    timeStamp: '04: 12',
+    timeStamp: "04: 12",
     timeInterval: 10,
     content: {
-      question: 'answer = [15, 28, 19, 20, 45]\nWhat is answer[-1]',
-      answer: [{option: '15', isCorrect: false}, {
-        option: '45', isCorrect: true
-      }, {option: 'Error', isCorrect: false}, {option:'28', isCorect: false}]
-    }
-  }
+      question: "answer = [15, 28, 19, 20, 45]\nWhat is answer[-1]",
+      answer: [
+        { option: "15", isCorrect: false },
+        {
+          option: "45",
+          isCorrect: true,
+        },
+        { option: "Error", isCorrect: false },
+        { option: "28", isCorect: false },
+      ],
+    },
+  },
 ];
