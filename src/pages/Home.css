@@ -22,11 +22,24 @@
   align-items: center;
 }
 
-.wrapped-card {
+.wrapped-card-3 {
   background: snow;
   justify-self: flex-end;
   width: 30%;
   box-shadow: 3px -3px darkkhaki, 8px -8px grey;
+}
+
+.wrapped-card-2 {
+  background: snow;
+  justify-self: flex-end;
+  width: 30%;
+  box-shadow: 3px -3px grey;
+}
+
+.wrapped-card-1 {
+  background: snow;
+  justify-self: flex-end;
+  width: 30%;
 }
 
 .wrapped-card-content {

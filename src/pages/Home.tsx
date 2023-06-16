@@ -20,6 +20,16 @@ const Home: React.FC<{ finished: number }> = ({ finished }) => {
   const navigateToCardScreen = () => {
     history.push("/cardscreen");
   };
+
+  let shadow;
+  if(cardCollection.length - finished >= 3){
+    shadow = 'wrapped-card-3';
+  }
+  else if(cardCollection.length - finished === 2){
+    shadow = 'wrapped-card-2';
+  }else{
+    shadow = 'wrapped-card-1';
+  }
   return (
     <IonPage>
       <IonHeader color="tertiary">
@@ -35,7 +45,7 @@ const Home: React.FC<{ finished: number }> = ({ finished }) => {
         <IonCard className="task-card">
           <IonCardContent className="remaining-content">
             <IonText className="today-task">Today's Task:</IonText>
-            <IonCard className="wrapped-card" onClick={navigateToCardScreen}>
+            <IonCard className={shadow} onClick={navigateToCardScreen}>
               <IonCardContent className="wrapped-card-content">
                 <IonText className="today-task">
                   {cardCollection.length - finished}
