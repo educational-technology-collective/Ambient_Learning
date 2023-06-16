@@ -18,13 +18,13 @@
 }
 
 .remaining-content {
-  display: flex;
+  display: grid;
   align-items: center;
 }
 
 .wrapped-card {
   background: snow;
-  left: 2.5em;
+  justify-self: flex-end;
   width: 30%;
   box-shadow: 3px -3px darkkhaki, 8px -8px grey;
 }
