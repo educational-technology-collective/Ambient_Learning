@@ -1,5 +1,7 @@
 import {
   IonButton,
+  IonCard,
+  IonCardContent,
   IonContent,
   IonHeader,
   IonPage,
@@ -22,8 +24,12 @@ const Home: React.FC = () => {
           <IonTitle className="title">EiDetic</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent scrollY={false}>
-          <IonButton onClick={navigateToCardScreen}>Check</IonButton>
+      <IonContent scrollY={false} className="home-content">
+          <IonCard>
+            <IonCardContent>
+              Here you go
+            </IonCardContent>
+          </IonCard>
         </IonContent>
     </IonPage>
   );
