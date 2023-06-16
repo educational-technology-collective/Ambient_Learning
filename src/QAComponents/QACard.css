@@ -27,7 +27,7 @@
 .qaquestion-text,
 .qaanswer-text {
   backface-visibility: hidden;
-  font-size: 40px;
+  font-size: 2.5em;
   font-weight: 900;
   position: absolute;
   text-align: center;
