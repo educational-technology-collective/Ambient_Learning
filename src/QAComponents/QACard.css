@@ -29,6 +29,7 @@
   backface-visibility: hidden;
   font-size: 2.5em;
   font-weight: 900;
+  margin: 0 0.1rem;
   position: absolute;
   text-align: center;
 }
