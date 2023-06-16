@@ -7,3 +7,29 @@
 .home-content {
   background: rgba(215, 224, 255, 1);
 }
+
+.task-card {
+  background: paleturquoise;
+}
+
+.today-task {
+  font-size: 1.5em;
+  font-weight: 900;
+}
+
+.remaining-content {
+  display: flex;
+  align-items: center;
+}
+
+.wrapped-card {
+  background: snow;
+  left: 2.5em;
+  width: 30%;
+  box-shadow: 3px -3px darkkhaki, 8px -8px grey;
+}
+
+.wrapped-card-content {
+  display: flex;
+  justify-content: center;
+}
