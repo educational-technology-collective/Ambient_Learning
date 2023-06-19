@@ -1,10 +1,14 @@
 export const cardCollection = [
+  
+  
   {
-    index: 1,
-    type: "q",
-    seenTimes: 1,
-    timeStamp: "2:03",
-    timeInterval: 4,
+    index: 1, // Used For Key
+    type: "q", // Identify Type of Card MCQ/QA
+    seenTimes: 1, // **Used for Algorithm
+    timeStamp: "2:03", // Not Sure Yet
+    timeInterval: 4, // ** Used For Algorithm
+
+    // This is the only thing displays
     content: {
       question: "How to define a function in python",
       answer: "def func()",
@@ -12,11 +16,13 @@ export const cardCollection = [
   },
 
   {
-    index: 2,
-    type: "m",
-    seenTimes: 2,
-    timeStamp: "20: 14",
-    timeInterval: 6,
+    index: 2, //Used For Key
+    type: "m", //Identify Type of Card MCQ/QA
+    seenTimes: 2, // **Used for Algorithm
+    timeStamp: "20: 14", // Not sure yet
+    timeInterval: 6,// ** Used for Algorithm
+
+    //This is the only thing Displays
     content: {
       question: "How to print a variable x in Python?",
       answer: [
