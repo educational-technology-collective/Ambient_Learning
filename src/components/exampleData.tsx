@@ -164,5 +164,29 @@ export const backendCollection = [
         question: 'Index -1 returns the __ element of an array',
         answer: 'Last/End'
       }
+  },
+
+  {
+      index: 10,
+      type: 'q', 
+      seenTime: 5,
+      timeInterval: 10,
+      content: {
+        question: 'What operator to look up a value with key',
+        answer: '[]'
+      }
+  },
+
+  {
+    index: 341,
+    type: 'm',
+    seenTime: 3,
+    timeInterval: 8,
+    content: {
+      question: 'Which of the following is by OneRepublic',
+      answer: [{
+        option: 'Sugar', isCorrect: false
+      }, {option: 'Viva la Vida', isCorrect: false}, {option: 'Moves Like Jagger', isCorrect: false}, {option: 'Apologize', isCorrect: true}]
+    }
   }
 ]
