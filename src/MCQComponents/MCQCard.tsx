@@ -4,9 +4,10 @@ import "./MCQCard.css";
 import Choices from "./Choices";
 import FrontMCQIndicator from "../components/FrontMCQIndicator";
 
-const MCQCard: React.FC<{ obj: flashCard; moveOn: (id: number) => void }> = ({
+const MCQCard: React.FC<{ obj: flashCard; moveOn: (id: number) => void; oneMore: (id: number) => void }> = ({
   obj,
   moveOn,
+  oneMore
 }) => {
   const question = obj.content.question;
   const choices = obj.content.answer;
@@ -29,6 +30,12 @@ const MCQCard: React.FC<{ obj: flashCard; moveOn: (id: number) => void }> = ({
   };
 
   const [clicked, setClick] = useState(false);
+
+
+  // Function for one more swipe time out
+  const oneMoreTimeOut = () => {
+    oneMore(obj.index);
+  }
 
   // Function that goes to next card after some time
   const timeOutFunc = () => {
@@ -179,12 +186,12 @@ const MCQCard: React.FC<{ obj: flashCard; moveOn: (id: number) => void }> = ({
       // Swipe Up fast
       if (detail.velocityY < -0.3) {
         card.style.transform = `translateY(${windowHeight * -1.5}px)`;
-        setTimeout(timeOutFunc, 100);
+        setTimeout(oneMoreTimeOut, 100);
       }
       // Swipe Up enough
       else if (detail.deltaY < -windowHeight / 4) {
         card.style.transform = `translateY(${windowHeight * -1.5}px)`;
-        setTimeout(timeOutFunc, 100);
+        setTimeout(oneMoreTimeOut, 100);
       }
       //  Swipe down fast
       else if (detail.velocityY > 0.3) {

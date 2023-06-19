@@ -15,7 +15,8 @@ const CardScreen: React.FC<{
   finished: number;
   cardCol: any[];
   swipeNextCard: (id: number) => void;
-}> = React.memo(({ finished, cardCol, swipeNextCard }) => {
+  swipeOneMoreCard: (id: number) => void
+}> = React.memo(({ finished, cardCol, swipeNextCard, swipeOneMoreCard }) => {
   return (
     <IonPage>
       <IonHeader color="tertiary">
@@ -30,9 +31,9 @@ const CardScreen: React.FC<{
         <div className="card-stacker">
           {cardCol.map((card) =>
             card.type === "q" ? (
-              <QACard obj={card} key={card.index} moveOn={swipeNextCard} />
+              <QACard obj={card} key={card.index} moveOn={swipeNextCard} oneMore={swipeOneMoreCard}/>
             ) : (
-              <MCQCard obj={card} key={card.index} moveOn={swipeNextCard} />
+              <MCQCard obj={card} key={card.index} moveOn={swipeNextCard} oneMore={swipeOneMoreCard}/>
             )
           )}
         </div>

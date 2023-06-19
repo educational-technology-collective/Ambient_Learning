@@ -1,8 +1,6 @@
 import { TbTimelineEventText } from "react-icons/tb";
 
 export const cardCollection = [
-  
-  
   {
     index: 1, // Used For Key
     type: "q", // Identify Type of Card MCQ/QA
@@ -21,7 +19,7 @@ export const cardCollection = [
     index: 2, //Used For Key
     type: "m", //Identify Type of Card MCQ/QA
     seenTimes: 2, // **Used for Algorithm
-    timeInterval: 6,// ** Used for Algorithm
+    timeInterval: 6, // ** Used for Algorithm
 
     //This is the only thing Displays
     content: {
@@ -156,37 +154,42 @@ export const cardCollection = [
 
 export const backendCollection = [
   {
-      index: 99,
-      type: 'q',
-      seenTime: 2,
-      timeInterval: 3,
-      content: {
-        question: 'Index -1 returns the __ element of an array',
-        answer: 'Last/End'
-      }
-  },
-
-  {
-      index: 10,
-      type: 'q', 
-      seenTime: 5,
-      timeInterval: 10,
-      content: {
-        question: 'What operator to look up a value with key',
-        answer: '[]'
-      }
-  },
-
-  {
     index: 341,
-    type: 'm',
+    type: "m",
     seenTime: 3,
     timeInterval: 8,
     content: {
-      question: 'Which of the following is by OneRepublic',
-      answer: [{
-        option: 'Sugar', isCorrect: false
-      }, {option: 'Viva la Vida', isCorrect: false}, {option: 'Moves Like Jagger', isCorrect: false}, {option: 'Apologize', isCorrect: true}]
-    }
-  }
-]
+      question: "Which of the following is by OneRepublic",
+      answer: [
+        {
+          option: "Sugar",
+          isCorrect: false,
+        },
+        { option: "Viva la Vida", isCorrect: false },
+        { option: "Moves Like Jagger", isCorrect: false },
+        { option: "Apologize", isCorrect: true },
+      ],
+    },
+  },
+  {
+    index: 99,
+    type: "q",
+    seenTime: 2,
+    timeInterval: 3,
+    content: {
+      question: "Index -1 returns the __ element of an array",
+      answer: "Last/End",
+    },
+  },
+
+  {
+    index: 10,
+    type: "q",
+    seenTime: 5,
+    timeInterval: 10,
+    content: {
+      question: "What operator to look up a value with key",
+      answer: "[]",
+    },
+  },
+];

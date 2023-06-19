@@ -54,9 +54,23 @@ const App: React.FC = () => {
     });
   };
 
+  // How Many OneMore Cards used
+
+  const [current, setCurrent] = useState(0);
+
   // Function that swipes for one more card
   const swipeOneMoreCard = (id: number) => {
-
+    if(current === backendCollection.length){
+      alert('No More Similar Cards Available!');
+    }
+    else{
+      setFinished((prevFinished) => prevFinished + 1);
+      setCards((cards) => {
+        return cards.filter((card) => id !== card.index);
+      });
+      setCards((cards) => {return cards.concat(backendCollection[current])});
+      setCurrent((prevCurrent) => prevCurrent + 1);
+    }
   };
 
   return (
@@ -77,6 +91,7 @@ const App: React.FC = () => {
                   finished={finished}
                   cardCol={cardCol}
                   swipeNextCard={swipeNextCard}
+                  swipeOneMoreCard = {swipeOneMoreCard}
                 />
               )}
             />

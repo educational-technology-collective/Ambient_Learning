@@ -5,9 +5,10 @@ import "../components/Indicators";
 import FrontIndicator from "../components/FrontIndicator";
 import BackIndicator from "../components/BackIndicator";
 
-const QACard: React.FC<{ obj: flashCard; moveOn: (id: number) => void }> = ({
+const QACard: React.FC<{ obj: flashCard; moveOn: (id: number) => void; oneMore : (id : number) => void }> = ({
   obj,
   moveOn,
+  oneMore
 }) => {
   const [isClicked, setIsClicked] = useState(false);
   const style = isClicked
@@ -23,6 +24,11 @@ const QACard: React.FC<{ obj: flashCard; moveOn: (id: number) => void }> = ({
   const timeOutFunc = () => {
     moveOn(obj.index);
   };
+
+  // Funcion that times out for One More Swiping
+  const oneMoreTimeOut = () => {
+    oneMore(obj.index);
+  }
 
   const ref = useRef<HTMLInputElement>(null);
 
@@ -136,12 +142,12 @@ const QACard: React.FC<{ obj: flashCard; moveOn: (id: number) => void }> = ({
     // Clicked and Swipe card up fast and
     else if (isClicked && detail.velocityY < -0.3) {
       card.style.transform = `translateY(${windowHeight * -1.5}px)`;
-      setTimeout(timeOutFunc, 100);
+      setTimeout(oneMoreTimeOut, 100);
     }
     // Clicked Swipe the Card Up more than 1/5 of the window height. Move Card Up
     else if (isClicked && detail.deltaY < -windowHeight / 4) {
       card.style.transform = `translateY(${windowHeight * -1.5}px)`;
-      setTimeout(timeOutFunc, 100);
+      setTimeout(oneMoreTimeOut, 100);
     }
     // Not Swiping Enough. Reset Card to its original Position with 0 opacity
     else {
