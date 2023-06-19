@@ -2,7 +2,7 @@ import { IonCard, IonText, IonCardContent, createGesture } from "@ionic/react";
 import { useRef, useState, useEffect } from "react";
 import "./MCQCard.css";
 import Choices from "./Choices";
-import FrontIndicator from "../components/FrontIndicator";
+import FrontMCQIndicator from "../components/FrontMCQIndicator";
 
 const MCQCard: React.FC<{ obj: flashCard; moveOn: (id: number) => void }> = ({
   obj,
@@ -134,9 +134,7 @@ const MCQCard: React.FC<{ obj: flashCard; moveOn: (id: number) => void }> = ({
       // Swipe Down will show no more card only if correct
       else {
         setOneMoreOp(0);
-        if (correct) {
-          setNoMoreOp(detail.deltaY / 100);
-        }
+        setNoMoreOp(detail.deltaY / 100);
       }
     }
   };
@@ -185,13 +183,13 @@ const MCQCard: React.FC<{ obj: flashCard; moveOn: (id: number) => void }> = ({
         card.style.transform = `translateY(${windowHeight * -1.5}px)`;
         setTimeout(timeOutFunc, 100);
       }
-      // Correct and Swipe down fast
-      else if (correct && detail.velocityY > 0.3) {
+      //  Swipe down fast
+      else if (detail.velocityY > 0.3) {
         card.style.transform = `translateY(${windowHeight * 1.5}px)`;
         setTimeout(timeOutFunc, 100);
       }
-      // Correct and Swipe down enough
-      else if (correct && detail.deltaY > windowHeight / 4) {
+      // Swipe down enough
+      else if (detail.deltaY > windowHeight / 4) {
         card.style.transform = `translateY(${windowHeight * 1.5}px)`;
         setTimeout(timeOutFunc, 100);
       }
@@ -222,7 +220,7 @@ const MCQCard: React.FC<{ obj: flashCard; moveOn: (id: number) => void }> = ({
         onEnd: (detail) => VerticalEnd(detail, card),
       });
       gestureY.enable();
-      gestureX.enable();
+      gestureX.enable(clicked);
     }
   };
 
@@ -230,8 +228,10 @@ const MCQCard: React.FC<{ obj: flashCard; moveOn: (id: number) => void }> = ({
     <div className="mcqcard-wrapper" ref={ref}>
       <IonCard className="mcqcard-container" onClick={clickHandler} disabled={clicked}>
         <IonCardContent className="mcqcard-content" style={style}>
-          <FrontIndicator
-            
+          <FrontMCQIndicator
+            negativeOpacity={negativeOpacity}
+            positiveOpacity={positiveOpacity}
+            onemoreOpacity={onemoreOpacity}
             nomoreOpacity={nomoreOpacity}
           />
           <IonText className="mcqquestion-text">{question}</IonText>
