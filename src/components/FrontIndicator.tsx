@@ -1,26 +1,9 @@
-import {
-  FrontNegativeIndicator,
-  FrontPositiveIndicator,
-  FrontOneMoreIndicator,
-  FrontNoMoreIndicator,
-} from "./Indicators";
+import { FrontNoMoreIndicator } from "./Indicators";
 const FrontIndicator: React.FC<{
-  negativeOpacity: number;
-  positiveOpacity: number;
-  onemoreOpacity: number;
   nomoreOpacity: number;
-}> = ({ negativeOpacity, positiveOpacity, onemoreOpacity, nomoreOpacity }) => {
+}> = ({ nomoreOpacity }) => {
   return (
     <>
-      {/* Front Negative */}
-      <FrontNegativeIndicator negativeOpacity={negativeOpacity} />
-
-      {/* Front Positive */}
-      <FrontPositiveIndicator positiveOpacity={positiveOpacity} />
-
-      {/* Front OneMore */}
-      <FrontOneMoreIndicator onemoreOpacity={onemoreOpacity} />
-
       {/* Front Nomore */}
       <FrontNoMoreIndicator nomoreOpacity={nomoreOpacity} />
     </>

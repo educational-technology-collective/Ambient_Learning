@@ -28,7 +28,7 @@ const QACard: React.FC<{ obj: flashCard; moveOn: (id: number) => void }> = ({
 
   useEffect(() => {
     initGesture();
-  }, []);
+  }, [isClicked]);
 
   // Opacity State Variables
   const [negativeOpacity, setNegOp] = useState(0);
@@ -102,7 +102,7 @@ const QACard: React.FC<{ obj: flashCard; moveOn: (id: number) => void }> = ({
       setNoMoreOp(detail.deltaY / 100);
     }
     // Swiping Up. Indicates One More Simmilar Card
-    else {
+    else if (isClicked && detail.deltaY < 0) {
       setNoMoreOp(0);
       setOneMoreOp(-detail.deltaY / 100);
     }
@@ -133,13 +133,13 @@ const QACard: React.FC<{ obj: flashCard; moveOn: (id: number) => void }> = ({
       card.style.transform = `translateY(${windowHeight * 1.5}px)`;
       setTimeout(timeOutFunc, 100);
     }
-    // Swipe card up fast
-    else if (detail.velocityY < -0.3) {
+    // Clicked and Swipe card up fast and
+    else if (isClicked && detail.velocityY < -0.3) {
       card.style.transform = `translateY(${windowHeight * -1.5}px)`;
       setTimeout(timeOutFunc, 100);
     }
-    // Swipe the Card Up more than 1/5 of the window height. Move Card Up
-    else if (detail.deltaY < -windowHeight / 4) {
+    // Clicked Swipe the Card Up more than 1/5 of the window height. Move Card Up
+    else if (isClicked && detail.deltaY < -windowHeight / 4) {
       card.style.transform = `translateY(${windowHeight * -1.5}px)`;
       setTimeout(timeOutFunc, 100);
     }
@@ -174,22 +174,22 @@ const QACard: React.FC<{ obj: flashCard; moveOn: (id: number) => void }> = ({
       });
 
       gestureY.enable(true);
-      gestureX.enable(true);
+      gestureX.enable(isClicked);
     }
   };
 
   return (
     <div className="qacard-wrapper" ref={ref}>
-      <IonCard button className="qacard-container" onClick={clickHandler}>
+      <IonCard
+        button
+        className="qacard-container"
+        onClick={clickHandler}
+        disabled={isClicked}
+      >
         {/* Flipper Parent */}
         <IonCardContent className="qacard-content" style={style}>
           {/* Indicators For the Front Page */}
-          <FrontIndicator
-            negativeOpacity={negativeOpacity}
-            positiveOpacity={positiveOpacity}
-            onemoreOpacity={onemoreOpacity}
-            nomoreOpacity={nomoreOpacity}
-          />
+          <FrontIndicator nomoreOpacity={nomoreOpacity} />
 
           {/* Front QuestionText */}
           <IonText className="qaquestion-text">{question}</IonText>
