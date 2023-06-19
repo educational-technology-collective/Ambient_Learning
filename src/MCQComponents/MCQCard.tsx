@@ -13,6 +13,18 @@ const MCQCard: React.FC<{ obj: flashCard; moveOn: (id: number) => void }> = ({
 
   const ref = useRef<HTMLInputElement>(null);
 
+  const [isClicked, setIsClicked] = useState(false);
+  const style = isClicked
+    ? { transform: "rotateY(360deg)", background: "rgba(251,255,236,1)"}
+    : { transform: "rotateY(0deg)" };
+  const clickHandler = () => {
+    setIsClicked(!isClicked);
+    setClick(true);
+    setCorrect(true);
+
+  };
+  
+
   const [clicked, setClick] = useState(false);
 
   // Function that goes to next card after some time
@@ -216,22 +228,21 @@ const MCQCard: React.FC<{ obj: flashCard; moveOn: (id: number) => void }> = ({
 
   return (
     <div className="mcqcard-wrapper" ref={ref}>
-      <IonCard className="mcqcard-container">
-        <IonCardContent className="mcqcard-content">
+      <IonCard className="mcqcard-container" onClick={clickHandler} disabled={clicked}>
+        <IonCardContent className="mcqcard-content" style={style}>
           <FrontIndicator
-            negativeOpacity={negativeOpacity}
-            positiveOpacity={positiveOpacity}
-            onemoreOpacity={onemoreOpacity}
+            
             nomoreOpacity={nomoreOpacity}
           />
           <IonText className="mcqquestion-text">{question}</IonText>
-        </IonCardContent>
-        <Choices
+          <Choices
           answer={choices}
           setClickStatus={setClickStatus}
           clicked={clicked}
           setCorrectStatus={setCorrectStatus}
         />
+        </IonCardContent>
+        
       </IonCard>
     </div>
   );

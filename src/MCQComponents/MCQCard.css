@@ -5,23 +5,33 @@
 }
 
 .mcqcard-container {
+  perspective: 1000px;
   display: flex;
   flex-direction: column;
   height: 100%;
   position: relative;
+  opacity: 1;
 }
 
 .mcqcard-content {
+  transition: 0.5s;
+  transform-style: preserve-3d;
   justify-content: center;
-  height: 62%;
+  height: 100%;
   align-items: center;
   display: flex;
 }
 
 .mcqquestion-text {
+  backface-visibility: hidden;
   font-size: 2em;
   font-weight: 900;
   position: absolute;
   text-align: center;
   margin: 0 0.1rem;
+  height: 62%;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

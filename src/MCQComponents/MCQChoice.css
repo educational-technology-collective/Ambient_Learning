@@ -3,9 +3,6 @@
   font-weight: bold;
 }
 
-.hide-text {
-  opacity: 0;
-}
 
 .initial-button {
   --background: slateblue;

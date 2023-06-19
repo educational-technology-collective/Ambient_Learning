@@ -25,7 +25,7 @@ export const IncorrectChoice: React.FC<{
       disabled={clicked}
       onClick={inCorrectClick}
     >
-      <IonText className={clicked && !isChosen ? "hide-text" : "choice-text"}>
+      <IonText className="choice-text">
         {choiceText}
       </IonText>
     </IonButton>
