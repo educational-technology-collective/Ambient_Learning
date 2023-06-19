@@ -40,7 +40,7 @@ const Home: React.FC<{ finished: number }> = ({ finished }) => {
     <IonPage>
       <IonHeader color="tertiary">
         <IonToolbar>
-          <IonTitle className="title">EiDetic</IonTitle>
+          <IonTitle className="title">StorMind</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent scrollY={false} className="home-content">
