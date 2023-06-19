@@ -34,7 +34,7 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 import "./theme/variables.css";
 import { radio, save } from "ionicons/icons";
-import { cardCollection } from "./components/exampleData";
+import { cardCollection, backendCollection } from "./components/exampleData";
 setupIonicReact({
   swipeBackEnabled: false,
 });
@@ -52,6 +52,11 @@ const App: React.FC = () => {
     setCards((cards) => {
       return cards.filter((card) => id !== card.index);
     });
+  };
+
+  // Function that swipes for one more card
+  const swipeOneMoreCard = (id: number) => {
+
   };
 
   return (

@@ -13,10 +13,15 @@ const MCQCard: React.FC<{ obj: flashCard; moveOn: (id: number) => void }> = ({
 
   const ref = useRef<HTMLInputElement>(null);
 
+  // This isClicked is for the tap of the card
   const [isClicked, setIsClicked] = useState(false);
+
+  // Transform with 360 degree flipping
   const style = isClicked
     ? { transform: "rotateY(360deg)", background: "rgba(251,255,236,1)" }
     : { transform: "rotateY(0deg)" };
+  
+  // Callback for the tap of card
   const clickHandler = () => {
     setIsClicked(!isClicked);
     setClick(true);
