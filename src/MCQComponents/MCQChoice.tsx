@@ -25,9 +25,7 @@ export const IncorrectChoice: React.FC<{
       disabled={clicked}
       onClick={inCorrectClick}
     >
-      <IonText className="choice-text">
-        {choiceText}
-      </IonText>
+      <IonText className="choice-text">{choiceText}</IonText>
     </IonButton>
   );
 };

@@ -15,15 +15,13 @@ const MCQCard: React.FC<{ obj: flashCard; moveOn: (id: number) => void }> = ({
 
   const [isClicked, setIsClicked] = useState(false);
   const style = isClicked
-    ? { transform: "rotateY(360deg)", background: "rgba(251,255,236,1)"}
+    ? { transform: "rotateY(360deg)", background: "rgba(251,255,236,1)" }
     : { transform: "rotateY(0deg)" };
   const clickHandler = () => {
     setIsClicked(!isClicked);
     setClick(true);
     setCorrect(true);
-
   };
-  
 
   const [clicked, setClick] = useState(false);
 
@@ -226,7 +224,11 @@ const MCQCard: React.FC<{ obj: flashCard; moveOn: (id: number) => void }> = ({
 
   return (
     <div className="mcqcard-wrapper" ref={ref}>
-      <IonCard className="mcqcard-container" onClick={clickHandler} disabled={clicked}>
+      <IonCard
+        className="mcqcard-container"
+        onClick={clickHandler}
+        disabled={clicked}
+      >
         <IonCardContent className="mcqcard-content" style={style}>
           <FrontMCQIndicator
             negativeOpacity={negativeOpacity}
@@ -236,13 +238,12 @@ const MCQCard: React.FC<{ obj: flashCard; moveOn: (id: number) => void }> = ({
           />
           <IonText className="mcqquestion-text">{question}</IonText>
           <Choices
-          answer={choices}
-          setClickStatus={setClickStatus}
-          clicked={clicked}
-          setCorrectStatus={setCorrectStatus}
-        />
+            answer={choices}
+            setClickStatus={setClickStatus}
+            clicked={clicked}
+            setCorrectStatus={setCorrectStatus}
+          />
         </IonCardContent>
-        
       </IonCard>
     </div>
   );

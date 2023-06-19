@@ -2,16 +2,12 @@
   backface-visibility: hidden;
   position: absolute;
   transform: rotateY(0deg);
-  -webkit-backface-visibility: hidden;
-  -webkit-transform: rotateY(0deg);
 }
 
 .back {
   backface-visibility: hidden;
   position: absolute;
   transform: rotateY(180deg) translateZ(3px);
-  -webkit-transform: rotateY(180deg) translateZ(3px);
-  -webkit-backface-visibility: hidden;
 }
 
 .negative {
