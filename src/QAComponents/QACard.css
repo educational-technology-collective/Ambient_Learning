@@ -41,5 +41,26 @@
 
 /* back, initially hidden pane */
 .qaanswer-text {
+  height: 50%;
+  bottom: 0;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  transform: rotateY(180deg) translateZ(3px);
+}
+
+.qabackquestion-text {
+  backface-visibility: hidden;
+  font-size: 2em;
+  font-weight: 900;
+  margin: 0 0.1rem;
+  position: absolute;
+  text-align: center;
+  height: 50%;
+  top: 0;
+  border-bottom: 1px dashed crimson;
+  justify-content: center;
+  display: flex;
+  align-items: center;
   transform: rotateY(180deg) translateZ(3px);
 }

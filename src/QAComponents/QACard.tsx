@@ -22,7 +22,7 @@ const QACard: React.FC<{ obj: flashCard; moveOn: (id: number) => void }> = ({
   // Function that times out for swiping
   const timeOutFunc = () => {
     moveOn(obj.index);
-  }
+  };
 
   const ref = useRef<HTMLInputElement>(null);
 
@@ -195,6 +195,7 @@ const QACard: React.FC<{ obj: flashCard; moveOn: (id: number) => void }> = ({
           <IonText className="qaquestion-text">{question}</IonText>
 
           {/* Back AnswerText */}
+          <IonText className="qabackquestion-text">{question}</IonText>
           <IonText className="qaanswer-text">{answer}</IonText>
 
           {/* Indicators For the Back Page */}
