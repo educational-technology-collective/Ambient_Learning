@@ -13,6 +13,7 @@ export const cardCollection = [
       question: "How to define a function in python",
       answer: "def func()",
     },
+    // Concept ???
   },
 
   {
@@ -32,6 +33,7 @@ export const cardCollection = [
         { option: "print(x)", isCorrect: true },
       ],
     },
+    // Concept ??
   },
 
   {
