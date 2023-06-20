@@ -36,6 +36,7 @@ const CardScreen: React.FC<{
               <MCQCard obj={card} key={card.index} moveOn={swipeNextCard} oneMore={swipeOneMoreCard}/>
             )
           )}
+        
         </div>
       </IonContent>
     </IonPage>

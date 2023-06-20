@@ -68,7 +68,7 @@ const App: React.FC = () => {
       setCards((cards) => {
         return cards.filter((card) => id !== card.index);
       });
-      setCards((cards) => {return cards.concat(backendCollection[current])});
+      setCards((cards) => {return [...cards, backendCollection[current]]});
       setCurrent((prevCurrent) => prevCurrent + 1);
     }
   };

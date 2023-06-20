@@ -6,7 +6,7 @@ export const cardCollection = [
     type: "q", // Identify Type of Card MCQ/QA
     seenTimes: 1, // **Used for Algorithm
     timeInterval: 4, // ** Used For Algorithm
-
+   
     // This is the only thing displays
     content: {
       question: "How to define a function in python",
