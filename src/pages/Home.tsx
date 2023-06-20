@@ -66,7 +66,6 @@ const Home: React.FC<{ finished: number }> = ({ finished }) => {
                 "You are done with cards. Go touch grass, Loser!" — Luke Anger
               </IonText>
             )}
-
           </IonCardContent>
         </IonCard>
       </IonContent>

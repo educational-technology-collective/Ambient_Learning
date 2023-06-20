@@ -8,7 +8,7 @@ import {
 import "./CardScreen.css";
 import { cardCollection } from "../components/exampleData";
 import React from "react";
-import FlashCard from "../FlashCardComp/FlashCard";
+import FlashCardList from "../FlashCardComp/FlashCardList";
 
 const CardScreen: React.FC<{
   finished: number;
@@ -29,7 +29,7 @@ const CardScreen: React.FC<{
       <IonContent className="page-content" scrollY={false}>
         <div className="card-stacker">
           {cardCol.map((array, index) => (
-            <FlashCard
+            <FlashCardList
               array={array}
               key={index}
               swipeNextCard={swipeNextCard}

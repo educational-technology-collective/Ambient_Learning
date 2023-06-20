@@ -5,12 +5,12 @@ import "../components/Indicators";
 import FrontIndicator from "../components/FrontIndicator";
 import BackIndicator from "../components/BackIndicator";
 
-const QACard: React.FC<{ obj: flashCard; moveOn: (id: number) => void; oneMore : (id : number) => void, refTuple : React.RefObject<HTMLInputElement> }> = ({
-  obj,
-  moveOn,
-  oneMore,
-  refTuple
-}) => {
+const QACard: React.FC<{
+  obj: flashCard;
+  moveOn: (id: number) => void;
+  oneMore: (id: number) => void;
+  refTuple: React.RefObject<HTMLInputElement>;
+}> = ({ obj, moveOn, oneMore, refTuple }) => {
   const [isClicked, setIsClicked] = useState(false);
   const style = isClicked
     ? { transform: "rotateY(180deg)", background: "rgba(251,255,236,1)" }
@@ -29,7 +29,7 @@ const QACard: React.FC<{ obj: flashCard; moveOn: (id: number) => void; oneMore :
   // Funcion that times out for One More Swiping
   const oneMoreTimeOut = () => {
     oneMore(obj.id);
-  }
+  };
 
   const ref = useRef<HTMLInputElement>(null);
 
@@ -118,24 +118,22 @@ const QACard: React.FC<{ obj: flashCard; moveOn: (id: number) => void; oneMore :
 
   // Vertical Swiping onMove Function
   const VerticalMove = (detail: any, card: any, stuff: any) => {
-    
     // Before Flipping. Move Down will move the whole tuple
-    if(!isClicked)
-    {
+    if (!isClicked) {
       stuff.style.transform = `translateY(${detail.deltaY}px) rotate(${
         detail.deltaY / 90
       }deg)`;
     }
     // After Flipping.
-    else{
+    else {
       // Move Down will move the whole tuple
-      if(detail.deltaY > 0){
+      if (detail.deltaY > 0) {
         stuff.style.transform = `translateY(${detail.deltaY}px) rotate(${
           detail.deltaY / 90
         }deg)`;
       }
       // Move up will move the top card
-      else{
+      else {
         card.style.transform = `translateY(${detail.deltaY}px) rotate(${
           detail.deltaY / 90
         }deg)`;
@@ -194,7 +192,7 @@ const QACard: React.FC<{ obj: flashCard; moveOn: (id: number) => void; oneMore :
       // Reset
       else {
         card.style.transform = "";
-        stuff.style.transform = '';
+        stuff.style.transform = "";
         setNoMoreOp(0);
         setOneMoreOp(0);
       }
@@ -221,7 +219,7 @@ const QACard: React.FC<{ obj: flashCard; moveOn: (id: number) => void; oneMore :
         onMove: (detail) => VerticalMove(detail, card, stuff),
         onEnd: (detail) => VerticalEnd(detail, card, stuff),
       });
-     
+
       gestureY.enable();
       gestureX.enable(isClicked);
     }

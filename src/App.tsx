@@ -50,7 +50,7 @@ const App: React.FC = () => {
   const swipeNextCard = (id: number) => {
     setFinished((prevFinished) => prevFinished + 1);
     setCards((cards) => {
-      return cards.filter((card) => id !== card[card.length-1].id);
+      return cards.filter((card) => id !== card[card.length - 1].id);
     });
   };
 

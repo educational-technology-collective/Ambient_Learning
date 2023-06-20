@@ -4,12 +4,12 @@ import "./MCQCard.css";
 import Choices from "./Choices";
 import FrontMCQIndicator from "../components/FrontMCQIndicator";
 
-const MCQCard: React.FC<{ obj: flashCard; moveOn: (id: number) => void; oneMore: (id: number) => void, refTuple : React.RefObject<HTMLInputElement> }> = ({
-  obj,
-  moveOn,
-  oneMore,
-  refTuple
-}) => {
+const MCQCard: React.FC<{
+  obj: flashCard;
+  moveOn: (id: number) => void;
+  oneMore: (id: number) => void;
+  refTuple: React.RefObject<HTMLInputElement>;
+}> = ({ obj, moveOn, oneMore, refTuple }) => {
   const question = obj.content.question;
   const choices = obj.content.answer;
 
@@ -22,7 +22,7 @@ const MCQCard: React.FC<{ obj: flashCard; moveOn: (id: number) => void; oneMore:
   const style = isClicked
     ? { transform: "rotateY(360deg)", background: "rgba(251,255,236,1)" }
     : { transform: "rotateY(0deg)" };
-  
+
   // Callback for the tap of card
   const clickHandler = () => {
     setIsClicked(!isClicked);
@@ -32,11 +32,10 @@ const MCQCard: React.FC<{ obj: flashCard; moveOn: (id: number) => void; oneMore:
 
   const [clicked, setClick] = useState(false);
 
-
   // Function for one more swipe time out
   const oneMoreTimeOut = () => {
     oneMore(obj.id);
-  }
+  };
 
   // Function that goes to next card after some time
   const timeOutFunc = () => {
@@ -150,27 +149,24 @@ const MCQCard: React.FC<{ obj: flashCard; moveOn: (id: number) => void; oneMore:
     }
   };
 
-  
   // Vertical Swiping Function
-  const VerticalMove = (detail: any, card: any, stuff : any) => {
-
+  const VerticalMove = (detail: any, card: any, stuff: any) => {
     // Before Flipping. Move Down the Whole Tuple
-    if(!clicked)
-    {
+    if (!clicked) {
       stuff.style.transform = `translateY(${detail.deltaY}px) rotate(${
         detail.deltaY / 90
       }deg)`;
     }
     // After Flipping
-    else{
+    else {
       // Moving Down will move the whole Tuple
-      if(detail.deltaY > 0){
+      if (detail.deltaY > 0) {
         stuff.style.transform = `translateY(${detail.deltaY}px) rotate(${
           detail.deltaY / 90
         }deg)`;
       }
       // Moving Up will only move the top card
-      else{
+      else {
         card.style.transform = `translateY(${detail.deltaY}px) rotate(${
           detail.deltaY / 90
         }deg)`;
@@ -229,7 +225,7 @@ const MCQCard: React.FC<{ obj: flashCard; moveOn: (id: number) => void; oneMore:
       // Reset
       else {
         card.style.transform = "";
-        stuff.style.transform = '';
+        stuff.style.transform = "";
         setNoMoreOp(0);
         setOneMoreOp(0);
       }
@@ -250,17 +246,15 @@ const MCQCard: React.FC<{ obj: flashCard; moveOn: (id: number) => void; oneMore:
 
       const gestureY = createGesture({
         el: stuff,
-        gestureName: 'swipe-mcq-y',
-        direction: 'y',
+        gestureName: "swipe-mcq-y",
+        direction: "y",
         onMove: (detail) => VerticalMove(detail, card, stuff),
-        onEnd: (detail) => VerticalEnd(detail, card, stuff)
+        onEnd: (detail) => VerticalEnd(detail, card, stuff),
       });
-     
+
       gestureY.enable(true);
       gestureX.enable(clicked);
     }
-      
-    
   };
 
   return (
