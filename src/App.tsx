@@ -46,32 +46,36 @@ const App: React.FC = () => {
   // How Many Cards Finished
   const [finished, setFinished] = useState(0);
 
+  // How Many Cards in total
+  const [total, setTotal] = useState(cardCol.length);
+
   // Logic to Move On to Next Card
   const swipeNextCard = (id: number) => {
     setFinished((prevFinished) => prevFinished + 1);
     setCards((cards) => {
-      return cards.filter((card) => id !== card[card.length - 1].id);
+      return cards.filter((tuple) => id !== tuple[tuple.length - 1].id);
     });
   };
 
-  // How Many OneMore Cards used
-
-  const [current, setCurrent] = useState(0);
-
   // Function that swipes for one more card
-  // const swipeOneMoreCard = (id: number) => {
-  //   if(current === backendCollection.length){
-  //     alert('No More Similar Cards Available!');
-  //   }
-  //   else{
-  //     setFinished((prevFinished) => prevFinished + 1);
-  //     setCards((cards) => {
-  //       return cards.filter((card) => id !== card.index);
-  //     });
-  //     setCards((cards) => {return [...cards, backendCollection[current]]});
-  //     setCurrent((prevCurrent) => prevCurrent + 1);
-  //   }
-  // };
+  const swipeOneMoreCard = (tupleIndex: number, id: number) => {
+    if (cardCol[tupleIndex].length === 1) {
+      alert("No More Simmilar Card!");
+      setFinished((prevFinished) => prevFinished + 1);
+     
+      setCards((cards) => {
+        return cards.filter((tuple) => id !== tuple[tuple.length - 1].id);
+      });
+     
+    } else {
+      setFinished((prevFinished) => prevFinished + 1);
+      setTotal((prevTotal) => prevTotal + 1);
+     
+      setCards((cards) => {
+        return cards.map((tuple) => tuple.filter((card) => card.id !== id));
+      });
+    }
+  };
 
   return (
     <IonApp>
@@ -89,9 +93,10 @@ const App: React.FC = () => {
               render={() => (
                 <CardScreen
                   finished={finished}
+                  total={total}
                   cardCol={cardCol}
                   swipeNextCard={swipeNextCard}
-                  swipeOneMoreCard={swipeNextCard}
+                  swipeOneMoreCard={swipeOneMoreCard}
                 />
               )}
             />

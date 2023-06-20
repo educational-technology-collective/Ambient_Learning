@@ -6,22 +6,22 @@ import {
   IonToolbar,
 } from "@ionic/react";
 import "./CardScreen.css";
-import { cardCollection } from "../components/exampleData";
 import React from "react";
 import FlashCardList from "../FlashCardComp/FlashCardList";
 
 const CardScreen: React.FC<{
   finished: number;
+  total: number
   cardCol: any[];
   swipeNextCard: (id: number) => void;
-  swipeOneMoreCard: (id: number) => void;
-}> = React.memo(({ finished, cardCol, swipeNextCard, swipeOneMoreCard }) => {
+  swipeOneMoreCard: (key: number, id: number) => void;
+}> = React.memo(({ finished, total, cardCol, swipeNextCard, swipeOneMoreCard }) => {
   return (
     <IonPage>
       <IonHeader color="tertiary">
         <IonToolbar>
           <IonTitle className="title">
-            {finished} / {cardCollection.length}
+            {finished} / {total}
           </IonTitle>
         </IonToolbar>
       </IonHeader>
@@ -34,6 +34,7 @@ const CardScreen: React.FC<{
               key={index}
               swipeNextCard={swipeNextCard}
               swipeOneMoreCard={swipeOneMoreCard}
+              tupleIndex={index}
             />
           ))}
         </div>

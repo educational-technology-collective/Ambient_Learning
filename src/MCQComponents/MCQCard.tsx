@@ -6,10 +6,11 @@ import FrontMCQIndicator from "../components/FrontMCQIndicator";
 
 const MCQCard: React.FC<{
   obj: flashCard;
+  tupleIndex: number;
   moveOn: (id: number) => void;
-  oneMore: (id: number) => void;
+  oneMore: (tupleIndex: number, id: number) => void;
   refTuple: React.RefObject<HTMLInputElement>;
-}> = ({ obj, moveOn, oneMore, refTuple }) => {
+}> = ({ obj, tupleIndex, moveOn, oneMore, refTuple }) => {
   const question = obj.content.question;
   const choices = obj.content.answer;
 
@@ -34,7 +35,7 @@ const MCQCard: React.FC<{
 
   // Function for one more swipe time out
   const oneMoreTimeOut = () => {
-    oneMore(obj.id);
+    oneMore(tupleIndex, obj.id);
   };
 
   // Function that goes to next card after some time
@@ -206,11 +207,13 @@ const MCQCard: React.FC<{
       if (detail.velocityY < -0.3) {
         card.style.transform = `translateY(${windowHeight * -1.5}px)`;
         setTimeout(oneMoreTimeOut, 100);
+        stuff.style.transform='';
       }
       // Swipe Up enough, clear the top card
       else if (detail.deltaY < -windowHeight / 4) {
         card.style.transform = `translateY(${windowHeight * -1.5}px)`;
         setTimeout(oneMoreTimeOut, 100);
+        stuff.style.transform='';
       }
       //  Swipe down fast, clear the tuple
       else if (detail.velocityY > 0.3) {

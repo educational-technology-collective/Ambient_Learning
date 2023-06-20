@@ -4,19 +4,20 @@ import QACard from "../QAComponents/QACard";
 import "./FlashCardList.css";
 const FlashCardList: React.FC<{
   array: any[];
+  tupleIndex: number;
   swipeNextCard: (id: number) => void;
-  swipeOneMoreCard: (id: number) => void;
-}> = ({ array, swipeNextCard, swipeOneMoreCard }) => {
+  swipeOneMoreCard: (tupleIndex: number, id: number) => void;
+}> = ({ array, tupleIndex, swipeNextCard, swipeOneMoreCard }) => {
   const refTuple = useRef<HTMLInputElement>(null);
   return (
     <div className="tuple" ref={refTuple}>
       {array.map((card) => {
-        console.log(card.type);
         const some =
           card.type === "q" ? (
             <QACard
               obj={card}
               key={card.id}
+              tupleIndex={tupleIndex}
               moveOn={swipeNextCard}
               oneMore={swipeOneMoreCard}
               refTuple={refTuple}
@@ -25,6 +26,7 @@ const FlashCardList: React.FC<{
             <MCQCard
               obj={card}
               key={card.id}
+              tupleIndex={tupleIndex}
               moveOn={swipeNextCard}
               oneMore={swipeOneMoreCard}
               refTuple={refTuple}

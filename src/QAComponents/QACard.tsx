@@ -7,10 +7,11 @@ import BackIndicator from "../components/BackIndicator";
 
 const QACard: React.FC<{
   obj: flashCard;
+  tupleIndex: number;
   moveOn: (id: number) => void;
-  oneMore: (id: number) => void;
+  oneMore: (tupleIndex: number, id: number) => void;
   refTuple: React.RefObject<HTMLInputElement>;
-}> = ({ obj, moveOn, oneMore, refTuple }) => {
+}> = ({ obj, tupleIndex, moveOn, oneMore, refTuple }) => {
   const [isClicked, setIsClicked] = useState(false);
   const style = isClicked
     ? { transform: "rotateY(180deg)", background: "rgba(251,255,236,1)" }
@@ -28,7 +29,7 @@ const QACard: React.FC<{
 
   // Funcion that times out for One More Swiping
   const oneMoreTimeOut = () => {
-    oneMore(obj.id);
+    oneMore(tupleIndex, obj.id);
   };
 
   const ref = useRef<HTMLInputElement>(null);
@@ -173,11 +174,13 @@ const QACard: React.FC<{
       if (detail.velocityY < -0.3) {
         card.style.transform = `translateY(${windowHeight * -1.5}px)`;
         setTimeout(oneMoreTimeOut, 100);
+        stuff.style.transform = '';
       }
       // Swipe Up enough, move the top card
       else if (detail.deltaY < -windowHeight / 4) {
         card.style.transform = `translateY(${windowHeight * -1.5}px)`;
         setTimeout(oneMoreTimeOut, 100);
+        stuff.style.trasnform = '';
       }
       // Swipe down fast, move the whole tuple
       else if (detail.velocityY > 0.3) {
