@@ -6,7 +6,7 @@ export const cardCollection = [
     type: "q", // Identify Type of Card MCQ/QA
     seenTimes: 1, // **Used for Algorithm
     timeInterval: 4, // ** Used For Algorithm
-   
+
     // This is the only thing displays
     content: {
       question: "How to define a function in python",
@@ -152,44 +152,83 @@ export const cardCollection = [
   },
 ];
 
-export const backendCollection = [
-  {
-    index: 341,
-    type: "m",
-    seenTime: 3,
-    timeInterval: 8,
-    content: {
-      question: "Which of the following is by OneRepublic",
-      answer: [
-        {
-          option: "Sugar",
-          isCorrect: false,
-        },
-        { option: "Viva la Vida", isCorrect: false },
-        { option: "Moves Like Jagger", isCorrect: false },
-        { option: "Apologize", isCorrect: true },
-      ],
+export const bufferCardMap = {
+  4: [
+    {
+      index: 341,
+      type: "m",
+      seenTime: 3,
+      timeInterval: 8,
+      content: {
+        question: "Which of the following is by OneRepublic",
+        answer: [
+          {
+            option: "Sugar",
+            isCorrect: false,
+          },
+          { option: "Viva la Vida", isCorrect: false },
+          { option: "Moves Like Jagger", isCorrect: false },
+          { option: "Apologize", isCorrect: true },
+        ],
+      },
     },
-  },
-  {
-    index: 99,
-    type: "q",
-    seenTime: 2,
-    timeInterval: 3,
-    content: {
-      question: "Index -1 returns the __ element of an array",
-      answer: "Last/End",
+    {
+      index: 99,
+      type: "q",
+      seenTime: 2,
+      timeInterval: 3,
+      content: {
+        question: "Index -1 returns the ___ element of an array",
+        answer: "Last/End",
+      },
     },
-  },
+  ],
 
-  {
-    index: 10,
-    type: "q",
-    seenTime: 5,
-    timeInterval: 10,
-    content: {
-      question: "What operator to look up a value with key",
-      answer: "[]",
+  2: [
+    {
+      index: 10,
+      type: "q",
+      seenTime: 5,
+      timeInterval: 10,
+      content: {
+        question: "What operator to look up a value with key",
+        answer: "[]",
+      },
     },
-  },
-];
+  ],
+
+  7: [
+    {
+      index: 132,
+      type: "m",
+      seenTime: 3,
+      timeInterval: 4,
+      content: {
+        question:
+          "What keyword flags statement is true as long as one conditon is true",
+        answer: [
+          { option: "and", isCorrect: false },
+          { option: "or", isCorrect: true },
+          { option: "not", isCorrect: false },
+          { option: "continue", isCorrect: false },
+        ],
+      },
+    },
+    {
+      index: 135,
+      type: "m",
+      seenTime: 4,
+      timeInterval: 10,
+      content: {
+        question:
+          "What keyword flags statement is true only if all conditions are true",
+        answer: [
+          { option: "and", isCorrect: true },
+          { option: "or", isCorrect: false },
+          { option: "not", isCorrect: false },
+          { option: "break", isCorrect: false },
+        ],
+      },
+    },
+  ],
+};
