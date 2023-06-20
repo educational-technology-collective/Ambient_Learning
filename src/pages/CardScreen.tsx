@@ -6,10 +6,9 @@ import {
   IonToolbar,
 } from "@ionic/react";
 import "./CardScreen.css";
-import QACard from "../QAComponents/QACard";
 import { cardCollection } from "../components/exampleData";
-import MCQCard from "../MCQComponents/MCQCard";
 import React from "react";
+import FlashCard from "../FlashCardComp/FlashCard";
 
 const CardScreen: React.FC<{
   finished: number;
@@ -29,14 +28,8 @@ const CardScreen: React.FC<{
 
       <IonContent className="page-content" scrollY={false}>
         <div className="card-stacker">
-          {cardCol.map((card) =>
-            card.type === "q" ? (
-              <QACard obj={card} key={card.index} moveOn={swipeNextCard} oneMore={swipeOneMoreCard}/>
-            ) : (
-              <MCQCard obj={card} key={card.index} moveOn={swipeNextCard} oneMore={swipeOneMoreCard}/>
-            )
-          )}
-        
+          {cardCol.map((array, index) =>
+           <FlashCard array={array} key={index} swipeNextCard={swipeNextCard} swipeOneMoreCard={swipeOneMoreCard} />) }
         </div>
       </IonContent>
     </IonPage>

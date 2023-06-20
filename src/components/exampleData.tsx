@@ -69,7 +69,7 @@ export const cardCollection = [
   [
     {
       id: 465,
-      type: "q",
+      type: "m",
       content: {
         question: "x = '34512', x[1] = ?",
         answer: [

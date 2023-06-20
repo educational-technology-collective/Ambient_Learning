@@ -1,14 +1,20 @@
+import {useRef} from 'react'
 import MCQCard from "../MCQComponents/MCQCard";
 import QACard from "../QAComponents/QACard";
 import './FlashCard.css'
 const FlashCard: React.FC<{
-  array: flashCard[];
+  array: any[];
   swipeNextCard: (id: number) => void;
   swipeOneMoreCard: (id: number) => void;
 }> = ({ array, swipeNextCard, swipeOneMoreCard }) => {
-  return array.map((card: flashCard) =>
-    card.type === "q" ? (
-      <QACard
+  const refTuple = useRef<HTMLInputElement>(null);
+  return (
+    <div ref={refTuple}>
+    {array.map((card) => 
+    {
+    console.log(card.type)
+    const some = card.type === "q" ? (
+     <QACard
         obj={card}
         key={card.id}
         moveOn={swipeNextCard}
@@ -22,7 +28,10 @@ const FlashCard: React.FC<{
         oneMore={swipeOneMoreCard}
       />
     )
-  );
+    return some
+  }
+  )}
+  </div>);
 };
 
 export default FlashCard;

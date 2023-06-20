@@ -10,6 +10,7 @@ const QACard: React.FC<{ obj: flashCard; moveOn: (id: number) => void; oneMore :
   moveOn,
   oneMore
 }) => {
+  console.log('QA', obj);
   const [isClicked, setIsClicked] = useState(false);
   const style = isClicked
     ? { transform: "rotateY(180deg)", background: "rgba(251,255,236,1)" }

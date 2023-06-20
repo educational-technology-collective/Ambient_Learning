@@ -9,6 +9,7 @@ const MCQCard: React.FC<{ obj: flashCard; moveOn: (id: number) => void; oneMore:
   moveOn,
   oneMore
 }) => {
+  console.log('MCQ,', obj);
   const question = obj.content.question;
   const choices = obj.content.answer;
 
