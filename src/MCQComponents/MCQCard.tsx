@@ -80,41 +80,41 @@ const MCQCard: React.FC<{ obj: flashCard; moveOn: (id: number) => void; oneMore:
   };
 
   // Horizontal Swiping Function
-  const HorizontalMove = (detail: any, card: any) => {
-    card.style.transform = `translateX(${detail.deltaX}px) rotate(${
+  const HorizontalMove = (detail: any, stuff: any) => {
+    stuff.style.transform = `translateX(${detail.deltaX}px) rotate(${
       detail.deltaX / 20
     }deg)`;
     showHorizontalInd(detail);
   };
 
   // Horizontal Swipe End Function Determination
-  const HorizontalEnd = (detail: any, card: any) => {
+  const HorizontalEnd = (detail: any, stuff: any) => {
     const windowWidth = window.innerWidth;
-    card.style.transition = "0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+    stuff.style.transition = "0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
 
     // Swiping Right Quick Enough
     if (detail.velocityX > 0.3) {
-      card.style.transform = `translateX(${windowWidth * 1.5}px)`;
+      stuff.style.transform = `translateX(${windowWidth * 1.5}px)`;
       setTimeout(timeOutFunc, 100);
     }
     // Swiping Right more than half of window length. Move Card to Right
     else if (detail.deltaX > windowWidth / 3) {
-      card.style.transform = `translateX(${windowWidth * 1.5}px)`;
+      stuff.style.transform = `translateX(${windowWidth * 1.5}px)`;
       setTimeout(timeOutFunc, 100);
     }
     // Swiping Left Quick Enough
     else if (detail.velocityX < -0.3) {
-      card.style.transform = `translateX(${windowWidth * -1.5}px)`;
+      stuff.style.transform = `translateX(${windowWidth * -1.5}px)`;
       setTimeout(timeOutFunc, 100);
     }
     // Swiping Left More than half of window length. Move Card to Left
     else if (detail.deltaX < -windowWidth / 3) {
-      card.style.transform = `translateX(${-windowWidth * 1.5}px)`;
+      stuff.style.transform = `translateX(${-windowWidth * 1.5}px)`;
       setTimeout(timeOutFunc, 100);
     }
     // Not Swiping Enough. Reset the Card to its position
     else {
-      card.style.transform = "";
+      stuff.style.transform = "";
       setNegOp(0);
       setPosOp(0);
     }

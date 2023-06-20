@@ -14,7 +14,7 @@ const CardScreen: React.FC<{
   finished: number;
   cardCol: any[];
   swipeNextCard: (id: number) => void;
-  swipeOneMoreCard: (id: number) => void
+  swipeOneMoreCard: (id: number) => void;
 }> = React.memo(({ finished, cardCol, swipeNextCard, swipeOneMoreCard }) => {
   return (
     <IonPage>
@@ -28,8 +28,14 @@ const CardScreen: React.FC<{
 
       <IonContent className="page-content" scrollY={false}>
         <div className="card-stacker">
-          {cardCol.map((array, index) =>
-           <FlashCard array={array} key={index} swipeNextCard={swipeNextCard} swipeOneMoreCard={swipeOneMoreCard} />) }
+          {cardCol.map((array, index) => (
+            <FlashCard
+              array={array}
+              key={index}
+              swipeNextCard={swipeNextCard}
+              swipeOneMoreCard={swipeOneMoreCard}
+            />
+          ))}
         </div>
       </IonContent>
     </IonPage>
