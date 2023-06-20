@@ -247,7 +247,7 @@ export const cardCollection = [
             isCorrect: true,
           },
           { option: "Error", isCorrect: false },
-          { option: "28", isCorect: false },
+          { option: "28", isCorrect: false },
         ],
       },
     },

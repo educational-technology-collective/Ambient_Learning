@@ -22,12 +22,12 @@ const QACard: React.FC<{ obj: flashCard; moveOn: (id: number) => void; oneMore :
 
   // Function that times out for swiping
   const timeOutFunc = () => {
-    moveOn(obj.index);
+    moveOn(obj.id);
   };
 
   // Funcion that times out for One More Swiping
   const oneMoreTimeOut = () => {
-    oneMore(obj.index);
+    oneMore(obj.id);
   }
 
   const ref = useRef<HTMLInputElement>(null);

@@ -34,12 +34,12 @@ const MCQCard: React.FC<{ obj: flashCard; moveOn: (id: number) => void; oneMore:
 
   // Function for one more swipe time out
   const oneMoreTimeOut = () => {
-    oneMore(obj.index);
+    oneMore(obj.id);
   }
 
   // Function that goes to next card after some time
   const timeOutFunc = () => {
-    moveOn(obj.index);
+    moveOn(obj.id);
   };
 
   // Allows Gesture only after user clicks an option

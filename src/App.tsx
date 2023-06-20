@@ -34,7 +34,7 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 import "./theme/variables.css";
 import { radio, save } from "ionicons/icons";
-import { cardCollection, backendCollection } from "./components/exampleData";
+import { cardCollection } from "./components/exampleData";
 setupIonicReact({
   swipeBackEnabled: false,
 });
@@ -59,19 +59,19 @@ const App: React.FC = () => {
   const [current, setCurrent] = useState(0);
 
   // Function that swipes for one more card
-  const swipeOneMoreCard = (id: number) => {
-    if(current === backendCollection.length){
-      alert('No More Similar Cards Available!');
-    }
-    else{
-      setFinished((prevFinished) => prevFinished + 1);
-      setCards((cards) => {
-        return cards.filter((card) => id !== card.index);
-      });
-      setCards((cards) => {return [...cards, backendCollection[current]]});
-      setCurrent((prevCurrent) => prevCurrent + 1);
-    }
-  };
+  // const swipeOneMoreCard = (id: number) => {
+  //   if(current === backendCollection.length){
+  //     alert('No More Similar Cards Available!');
+  //   }
+  //   else{
+  //     setFinished((prevFinished) => prevFinished + 1);
+  //     setCards((cards) => {
+  //       return cards.filter((card) => id !== card.index);
+  //     });
+  //     setCards((cards) => {return [...cards, backendCollection[current]]});
+  //     setCurrent((prevCurrent) => prevCurrent + 1);
+  //   }
+  // };
 
   return (
     <IonApp>
