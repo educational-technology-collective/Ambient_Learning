@@ -11,6 +11,7 @@
   position: relative;
   height: 100%;
   opacity: 1;
+  box-shadow: rgba(123, 135, 185) 0px 4px 8px;
 }
 
 /* flip speed goes here */
