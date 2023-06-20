@@ -85,7 +85,7 @@ const App: React.FC = () => {
             <Route
               exact
               path="/home"
-              render={() => <Home finished={finished} />}
+              render={() => <Home finished={finished} total={total}/>}
             />
             <Route
               exact
