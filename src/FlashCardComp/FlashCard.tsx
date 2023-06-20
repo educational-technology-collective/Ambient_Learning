@@ -8,7 +8,6 @@ const FlashCard: React.FC<{
   swipeOneMoreCard: (id: number) => void;
 }> = ({ array, swipeNextCard, swipeOneMoreCard }) => {
   const refTuple = useRef<HTMLInputElement>(null);
-  console.log(refTuple.current);
   return (
     <div className='tuple' ref={refTuple}>
     {array.map((card) => 
