@@ -60,6 +60,7 @@ const QACard: React.FC<{ obj: flashCard; moveOn: (id: number) => void; oneMore :
   // Horizontal Swiping Function
   const HorizontalMove = (detail: any, stuff: any) => {
     // Set the Rotation as Swiping Cards Horizontally
+    // Move the whole tuple
     stuff.style.transform = `translateX(${detail.deltaX}px) rotate(${
       detail.deltaX / 20
     }deg)`;
@@ -117,18 +118,23 @@ const QACard: React.FC<{ obj: flashCard; moveOn: (id: number) => void; oneMore :
 
   // Vertical Swiping onMove Function
   const VerticalMove = (detail: any, card: any, stuff: any) => {
+    
+    // Before Flipping. Move Down will move the whole tuple
     if(!isClicked)
     {
       stuff.style.transform = `translateY(${detail.deltaY}px) rotate(${
         detail.deltaY / 90
       }deg)`;
     }
+    // After Flipping.
     else{
+      // Move Down will move the whole tuple
       if(detail.deltaY > 0){
         stuff.style.transform = `translateY(${detail.deltaY}px) rotate(${
           detail.deltaY / 90
         }deg)`;
       }
+      // Move up will move the top card
       else{
         card.style.transform = `translateY(${detail.deltaY}px) rotate(${
           detail.deltaY / 90
@@ -146,12 +152,12 @@ const QACard: React.FC<{ obj: flashCard; moveOn: (id: number) => void; oneMore :
 
     // Before clicking
     if (!isClicked) {
-      // Swipe Down fast
+      // Swipe Down fast, move the whole tuple
       if (detail.velocityY > 0.3) {
         stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
         setTimeout(timeOutFunc, 100);
       }
-      // Swipe Down enough
+      // Swipe Down enough, move the whole tuple
       else if (detail.deltaY > windowHeight / 4) {
         stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
         setTimeout(timeOutFunc, 100);
@@ -165,22 +171,22 @@ const QACard: React.FC<{ obj: flashCard; moveOn: (id: number) => void; oneMore :
     }
     // After clicking
     else {
-      // Swipe Up fast
+      // Swipe Up fast, move the top card
       if (detail.velocityY < -0.3) {
         card.style.transform = `translateY(${windowHeight * -1.5}px)`;
         setTimeout(oneMoreTimeOut, 100);
       }
-      // Swipe Up enough
+      // Swipe Up enough, move the top card
       else if (detail.deltaY < -windowHeight / 4) {
         card.style.transform = `translateY(${windowHeight * -1.5}px)`;
         setTimeout(oneMoreTimeOut, 100);
       }
-      //  Swipe down fast
+      // Swipe down fast, move the whole tuple
       else if (detail.velocityY > 0.3) {
         stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
         setTimeout(timeOutFunc, 100);
       }
-      // Swipe down enough
+      // Swipe down enough, mvoe the whole tuple
       else if (detail.deltaY > windowHeight / 4) {
         stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
         setTimeout(timeOutFunc, 100);
