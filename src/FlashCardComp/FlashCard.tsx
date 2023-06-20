@@ -8,8 +8,9 @@ const FlashCard: React.FC<{
   swipeOneMoreCard: (id: number) => void;
 }> = ({ array, swipeNextCard, swipeOneMoreCard }) => {
   const refTuple = useRef<HTMLInputElement>(null);
+  console.log(refTuple.current);
   return (
-    <div ref={refTuple}>
+    <div className='tuple' ref={refTuple}>
     {array.map((card) => 
     {
     console.log(card.type)
@@ -19,6 +20,7 @@ const FlashCard: React.FC<{
         key={card.id}
         moveOn={swipeNextCard}
         oneMore={swipeOneMoreCard}
+        refTuple={refTuple}
       />
     ) : (
       <MCQCard
@@ -26,6 +28,7 @@ const FlashCard: React.FC<{
         key={card.id}
         moveOn={swipeNextCard}
         oneMore={swipeOneMoreCard}
+        refTuple={refTuple}
       />
     )
     return some

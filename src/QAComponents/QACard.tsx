@@ -5,12 +5,12 @@ import "../components/Indicators";
 import FrontIndicator from "../components/FrontIndicator";
 import BackIndicator from "../components/BackIndicator";
 
-const QACard: React.FC<{ obj: flashCard; moveOn: (id: number) => void; oneMore : (id : number) => void }> = ({
+const QACard: React.FC<{ obj: flashCard; moveOn: (id: number) => void; oneMore : (id : number) => void, refTuple : React.RefObject<HTMLInputElement> }> = ({
   obj,
   moveOn,
-  oneMore
+  oneMore,
+  refTuple
 }) => {
-  console.log('QA', obj);
   const [isClicked, setIsClicked] = useState(false);
   const style = isClicked
     ? { transform: "rotateY(180deg)", background: "rgba(251,255,236,1)" }
@@ -58,9 +58,9 @@ const QACard: React.FC<{ obj: flashCard; moveOn: (id: number) => void; oneMore :
   };
 
   // Horizontal Swiping Function
-  const HorizontalMove = (detail: any, card: any) => {
+  const HorizontalMove = (detail: any, stuff: any) => {
     // Set the Rotation as Swiping Cards Horizontally
-    card.style.transform = `translateX(${detail.deltaX}px) rotate(${
+    stuff.style.transform = `translateX(${detail.deltaX}px) rotate(${
       detail.deltaX / 20
     }deg)`;
 
@@ -69,33 +69,33 @@ const QACard: React.FC<{ obj: flashCard; moveOn: (id: number) => void; oneMore :
   };
 
   // Horizontal Swipe End Function Determination
-  const HorizontalEnd = (detail: any, card: any) => {
+  const HorizontalEnd = (detail: any, stuff: any) => {
     const windowWidth = window.innerWidth;
-    card.style.transition = "0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+    stuff.style.transition = "0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
 
     // Swipe Right fast
     if (detail.velocityX > 0.3) {
-      card.style.transform = `translateX(${windowWidth * 1.5}px)`;
+      stuff.style.transform = `translateX(${windowWidth * 1.5}px)`;
       setTimeout(timeOutFunc, 100);
     }
     // Swiping Right more than half of window length. Move Card to Right
     else if (detail.deltaX > windowWidth / 3) {
-      card.style.transform = `translateX(${windowWidth * 1.5}px)`;
+      stuff.style.transform = `translateX(${windowWidth * 1.5}px)`;
       setTimeout(timeOutFunc, 100);
     }
     // Swipe Left fast
     else if (detail.velocityX < -0.3) {
-      card.style.transform = `translateX(${windowWidth * -1.5}px)`;
+      stuff.style.transform = `translateX(${windowWidth * -1.5}px)`;
       setTimeout(timeOutFunc, 100);
     }
     // Swiping Left More than half of window length. Move Card to Left
     else if (detail.deltaX < -windowWidth / 3) {
-      card.style.transform = `translateX(${windowWidth * -1.5}px)`;
+      stuff.style.transform = `translateX(${windowWidth * -1.5}px)`;
       setTimeout(timeOutFunc, 100);
     }
     // Not Swiping Enough. Reset the Card to its position
     else {
-      card.style.transform = "";
+      stuff.style.transform = "";
       setNegOp(0);
       setPosOp(0);
     }
@@ -116,71 +116,107 @@ const QACard: React.FC<{ obj: flashCard; moveOn: (id: number) => void; oneMore :
   };
 
   // Vertical Swiping onMove Function
-  const VerticalMove = (detail: any, card: any) => {
-    card.style.transform = `translateY(${detail.deltaY}px) rotate(${
-      detail.deltaY / 90
-    }deg)`;
-
-    // Set Vertical Indicators
+  const VerticalMove = (detail: any, card: any, stuff: any) => {
+    if(!isClicked)
+    {
+      stuff.style.transform = `translateY(${detail.deltaY}px) rotate(${
+        detail.deltaY / 90
+      }deg)`;
+    }
+    else{
+      if(detail.deltaY > 0){
+        stuff.style.transform = `translateY(${detail.deltaY}px) rotate(${
+          detail.deltaY / 90
+        }deg)`;
+      }
+      else{
+        card.style.transform = `translateY(${detail.deltaY}px) rotate(${
+          detail.deltaY / 90
+        }deg)`;
+      }
+    }
     showVerticalInd(detail);
   };
 
   // Vertical Swiping onEnd Function
-  const VerticalEnd = (detail: any, card: any) => {
+  const VerticalEnd = (detail: any, card: any, stuff: any) => {
     const windowHeight = window.innerHeight;
+    stuff.style.transition = "0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
     card.style.transition = "0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
 
-    // Swipe card down fast
-    if (detail.velocityY > 0.3) {
-      card.style.transform = `translateY(${windowHeight * 1.5}px)`;
-      setTimeout(timeOutFunc, 100);
+    // Before clicking
+    if (!isClicked) {
+      // Swipe Down fast
+      if (detail.velocityY > 0.3) {
+        stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
+        setTimeout(timeOutFunc, 100);
+      }
+      // Swipe Down enough
+      else if (detail.deltaY > windowHeight / 4) {
+        stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
+        setTimeout(timeOutFunc, 100);
+      }
+      // Reset
+      else {
+        stuff.style.transform = "";
+        setNoMoreOp(0);
+        setOneMoreOp(0);
+      }
     }
-    // Swipe the card Down more than 1/5 of the window height. Move Card Down
-    else if (detail.deltaY > windowHeight / 4) {
-      card.style.transform = `translateY(${windowHeight * 1.5}px)`;
-      setTimeout(timeOutFunc, 100);
-    }
-    // Clicked and Swipe card up fast and
-    else if (isClicked && detail.velocityY < -0.3) {
-      card.style.transform = `translateY(${windowHeight * -1.5}px)`;
-      setTimeout(oneMoreTimeOut, 100);
-    }
-    // Clicked Swipe the Card Up more than 1/5 of the window height. Move Card Up
-    else if (isClicked && detail.deltaY < -windowHeight / 4) {
-      card.style.transform = `translateY(${windowHeight * -1.5}px)`;
-      setTimeout(oneMoreTimeOut, 100);
-    }
-    // Not Swiping Enough. Reset Card to its original Position with 0 opacity
+    // After clicking
     else {
-      card.style.transform = "";
-      setNoMoreOp(0);
-      setOneMoreOp(0);
+      // Swipe Up fast
+      if (detail.velocityY < -0.3) {
+        card.style.transform = `translateY(${windowHeight * -1.5}px)`;
+        setTimeout(oneMoreTimeOut, 100);
+      }
+      // Swipe Up enough
+      else if (detail.deltaY < -windowHeight / 4) {
+        card.style.transform = `translateY(${windowHeight * -1.5}px)`;
+        setTimeout(oneMoreTimeOut, 100);
+      }
+      //  Swipe down fast
+      else if (detail.velocityY > 0.3) {
+        stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
+        setTimeout(timeOutFunc, 100);
+      }
+      // Swipe down enough
+      else if (detail.deltaY > windowHeight / 4) {
+        stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
+        setTimeout(timeOutFunc, 100);
+      }
+      // Reset
+      else {
+        card.style.transform = "";
+        stuff.style.transform = '';
+        setNoMoreOp(0);
+        setOneMoreOp(0);
+      }
     }
   };
 
   // Gesture Management
   const initGesture = () => {
     const card = ref.current;
-
-    if (card) {
+    const stuff = refTuple.current;
+    if (stuff && card) {
       const gestureX = createGesture({
-        el: card,
+        el: stuff,
         direction: "x",
         gestureName: "swipe-x",
-        onMove: (detail) => HorizontalMove(detail, card),
-        onEnd: (detail) => HorizontalEnd(detail, card),
+        onMove: (detail) => HorizontalMove(detail, stuff),
+        onEnd: (detail) => HorizontalEnd(detail, stuff),
       });
 
       const gestureY = createGesture({
-        el: card,
+        el: stuff,
         direction: "y",
         gestureName: "swipe-y",
-        onMove: (detail) => VerticalMove(detail, card),
-
-        onEnd: (detail) => VerticalEnd(detail, card),
+        onMove: (detail) => VerticalMove(detail, card, stuff),
+        onEnd: (detail) => VerticalEnd(detail, card, stuff),
       });
-
-      gestureY.enable(true);
+     
+      gestureY.enable();
       gestureX.enable(isClicked);
     }
   };
