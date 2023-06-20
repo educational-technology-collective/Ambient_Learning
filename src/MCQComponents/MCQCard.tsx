@@ -153,18 +153,23 @@ const MCQCard: React.FC<{ obj: flashCard; moveOn: (id: number) => void; oneMore:
   
   // Vertical Swiping Function
   const VerticalMove = (detail: any, card: any, stuff : any) => {
+
+    // Before Flipping. Move Down the Whole Tuple
     if(!clicked)
     {
       stuff.style.transform = `translateY(${detail.deltaY}px) rotate(${
         detail.deltaY / 90
       }deg)`;
     }
+    // After Flipping
     else{
+      // Moving Down will move the whole Tuple
       if(detail.deltaY > 0){
         stuff.style.transform = `translateY(${detail.deltaY}px) rotate(${
           detail.deltaY / 90
         }deg)`;
       }
+      // Moving Up will only move the top card
       else{
         card.style.transform = `translateY(${detail.deltaY}px) rotate(${
           detail.deltaY / 90
@@ -182,12 +187,12 @@ const MCQCard: React.FC<{ obj: flashCard; moveOn: (id: number) => void; oneMore:
 
     // Before clicking
     if (!clicked) {
-      // Swipe Down fast
+      // Swipe Down fast, clear the tuple
       if (detail.velocityY > 0.3) {
         stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
         setTimeout(timeOutFunc, 100);
       }
-      // Swipe Down enough
+      // Swipe Down enough, clear the tuple
       else if (detail.deltaY > windowHeight / 4) {
         stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
         setTimeout(timeOutFunc, 100);
@@ -201,22 +206,22 @@ const MCQCard: React.FC<{ obj: flashCard; moveOn: (id: number) => void; oneMore:
     }
     // After clicking
     else {
-      // Swipe Up fast
+      // Swipe Up fast, clear the top card
       if (detail.velocityY < -0.3) {
         card.style.transform = `translateY(${windowHeight * -1.5}px)`;
         setTimeout(oneMoreTimeOut, 100);
       }
-      // Swipe Up enough
+      // Swipe Up enough, clear the top card
       else if (detail.deltaY < -windowHeight / 4) {
         card.style.transform = `translateY(${windowHeight * -1.5}px)`;
         setTimeout(oneMoreTimeOut, 100);
       }
-      //  Swipe down fast
+      //  Swipe down fast, clear the tuple
       else if (detail.velocityY > 0.3) {
         stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
         setTimeout(timeOutFunc, 100);
       }
-      // Swipe down enough
+      // Swipe down enough, clear the tuple
       else if (detail.deltaY > windowHeight / 4) {
         stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
         setTimeout(timeOutFunc, 100);
