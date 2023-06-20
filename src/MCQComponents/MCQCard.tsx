@@ -4,12 +4,12 @@ import "./MCQCard.css";
 import Choices from "./Choices";
 import FrontMCQIndicator from "../components/FrontMCQIndicator";
 
-const MCQCard: React.FC<{ obj: flashCard; moveOn: (id: number) => void; oneMore: (id: number) => void }> = ({
+const MCQCard: React.FC<{ obj: flashCard; moveOn: (id: number) => void; oneMore: (id: number) => void, refTuple : React.RefObject<HTMLInputElement> }> = ({
   obj,
   moveOn,
-  oneMore
+  oneMore,
+  refTuple
 }) => {
-  console.log('MCQ,', obj);
   const question = obj.content.question;
   const choices = obj.content.answer;
 
@@ -150,34 +150,51 @@ const MCQCard: React.FC<{ obj: flashCard; moveOn: (id: number) => void; oneMore:
     }
   };
 
+  
   // Vertical Swiping Function
-  const VerticalMove = (detail: any, card: any) => {
-    card.style.transform = `translateY(${detail.deltaY}px) rotate(${
-      detail.deltaY / 90
-    }deg)`;
+  const VerticalMove = (detail: any, card: any, stuff : any) => {
+    if(!clicked)
+    {
+      stuff.style.transform = `translateY(${detail.deltaY}px) rotate(${
+        detail.deltaY / 90
+      }deg)`;
+    }
+    else{
+      if(detail.deltaY > 0){
+        stuff.style.transform = `translateY(${detail.deltaY}px) rotate(${
+          detail.deltaY / 90
+        }deg)`;
+      }
+      else{
+        card.style.transform = `translateY(${detail.deltaY}px) rotate(${
+          detail.deltaY / 90
+        }deg)`;
+      }
+    }
     showVerticalInd(detail);
   };
 
   // Vertical Swipe End Function Determination
-  const VerticalEnd = (detail: any, card: any) => {
+  const VerticalEnd = (detail: any, card: any, stuff: any) => {
     const windowHeight = window.innerHeight;
+    stuff.style.transition = "0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
     card.style.transition = "0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
 
     // Before clicking
     if (!clicked) {
       // Swipe Down fast
       if (detail.velocityY > 0.3) {
-        card.style.transform = `translateY(${windowHeight * 1.5}px)`;
+        stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
         setTimeout(timeOutFunc, 100);
       }
       // Swipe Down enough
       else if (detail.deltaY > windowHeight / 4) {
-        card.style.transform = `translateY(${windowHeight * 1.5}px)`;
+        stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
         setTimeout(timeOutFunc, 100);
       }
       // Reset
       else {
-        card.style.transform = "";
+        stuff.style.transform = "";
         setNoMoreOp(0);
         setOneMoreOp(0);
       }
@@ -196,17 +213,18 @@ const MCQCard: React.FC<{ obj: flashCard; moveOn: (id: number) => void; oneMore:
       }
       //  Swipe down fast
       else if (detail.velocityY > 0.3) {
-        card.style.transform = `translateY(${windowHeight * 1.5}px)`;
+        stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
         setTimeout(timeOutFunc, 100);
       }
       // Swipe down enough
       else if (detail.deltaY > windowHeight / 4) {
-        card.style.transform = `translateY(${windowHeight * 1.5}px)`;
+        stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
         setTimeout(timeOutFunc, 100);
       }
       // Reset
       else {
         card.style.transform = "";
+        stuff.style.transform = '';
         setNoMoreOp(0);
         setOneMoreOp(0);
       }
@@ -215,24 +233,29 @@ const MCQCard: React.FC<{ obj: flashCard; moveOn: (id: number) => void; oneMore:
 
   const enableGesture = () => {
     const card = ref.current;
-    if (card) {
+    const stuff = refTuple.current;
+    if (stuff && card) {
       const gestureX = createGesture({
-        el: card,
+        el: stuff,
         gestureName: "swipe-mcq-x",
         direction: "x",
-        onMove: (detail) => HorizontalMove(detail, card),
-        onEnd: (detail) => HorizontalEnd(detail, card),
+        onMove: (detail) => HorizontalMove(detail, stuff),
+        onEnd: (detail) => HorizontalEnd(detail, stuff),
       });
+
       const gestureY = createGesture({
-        el: card,
-        gestureName: "swipe-mcq-y",
-        direction: "y",
-        onMove: (detail) => VerticalMove(detail, card),
-        onEnd: (detail) => VerticalEnd(detail, card),
+        el: stuff,
+        gestureName: 'swipe-mcq-y',
+        direction: 'y',
+        onMove: (detail) => VerticalMove(detail, card, stuff),
+        onEnd: (detail) => VerticalEnd(detail, card, stuff)
       });
-      gestureY.enable();
+     
+      gestureY.enable(true);
       gestureX.enable(clicked);
     }
+      
+    
   };
 
   return (
