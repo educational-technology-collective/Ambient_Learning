@@ -66,17 +66,29 @@ export const cardCollection = [
     },
   ],
 
-  [
+  [ {
+    id: 415,
+    type: "m",
+    content: {
+      question: "x = '34512', x[1:] = ?",
+      answer: [
+        { option: "4", isCorrect: false },
+        { option: "3", isCorrect: false },
+        { option: "45", isCorrect: false },
+        { option: "4512", isCorrect: true },
+      ],
+    },
+  },
     {
       id: 465,
       type: "m",
       content: {
         question: "x = '34512', x[1] = ?",
         answer: [
-          { option: "4", isCorrect: false },
+          { option: "4", isCorrect: true },
           { option: "3", isCorrect: false },
           { option: "45", isCorrect: false },
-          { option: "4512", isCorrect: true },
+          { option: "4512", isCorrect: false },
         ],
       },
     },
