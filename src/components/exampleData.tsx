@@ -218,7 +218,12 @@ export const cardCollection = [
     },
   ],
 
-  [
+  [{id: 4123,
+    type: 'q',
+  content: {
+    question: "We Didn't start the Fire is by",
+    answer: 'Billy Joel'
+  }},
     {
       id: 341,
       type: "m",
