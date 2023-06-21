@@ -135,6 +135,7 @@ const QACard: React.FC<{
       }
       // Move up will move the top card
       else {
+        stuff.style.transform='';
         card.style.transform = `translateY(${detail.deltaY}px) rotate(${
           detail.deltaY / 90
         }deg)`;
