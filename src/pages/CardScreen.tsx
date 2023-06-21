@@ -13,16 +13,20 @@ const CardScreen: React.FC<{
   finished: number;
   total: number;
   counter: number;
+  cardStackClass: string;
   cardCol: any[];
   swipeNextCard: (id: number) => void;
   swipeOneMoreCard: (key: number, id: number) => void;
+  setClassBack: () => void
 }> = ({
   finished,
   total,
   counter,
+  cardStackClass,
   cardCol,
   swipeNextCard,
   swipeOneMoreCard,
+  setClassBack,
 }) => {
   return (
     <IonPage>
@@ -35,7 +39,7 @@ const CardScreen: React.FC<{
       </IonHeader>
 
       <IonContent className="page-content" scrollY={false}>
-        <div className="card-stacker">
+        <div className={cardStackClass}>
           {cardCol.map((array, index) => {
             if (index === counter - 1 || index === counter - 2) {
               return (
@@ -45,6 +49,7 @@ const CardScreen: React.FC<{
                   swipeNextCard={swipeNextCard}
                   swipeOneMoreCard={swipeOneMoreCard}
                   tupleIndex={index}
+                  setClassBack={setClassBack}
                 />
               );
             }

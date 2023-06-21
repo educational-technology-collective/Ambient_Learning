@@ -10,7 +10,8 @@ const MCQCard: React.FC<{
   moveOn: (id: number) => void;
   oneMore: (tupleIndex: number, id: number) => void;
   refTuple: React.RefObject<HTMLInputElement>;
-}> = ({ obj, tupleIndex, moveOn, oneMore, refTuple }) => {
+  setClassBack: () => void
+}> = ({ obj, tupleIndex, moveOn, oneMore, refTuple, setClassBack }) => {
   const question = obj.content.question;
   const choices = obj.content.answer;
 
@@ -207,10 +208,10 @@ const MCQCard: React.FC<{
     else {
       // Swipe Up fast, clear the top card
       if (detail.velocityY < -0.3) {
-       
         card.style.transform = `translateY(${windowHeight * -1.5}px)`;
         setTimeout(oneMoreTimeOut, 100);
         stuff.style.transform='';
+        setClassBack();
       }
       // Swipe Up enough, clear the top card
       else if (detail.deltaY < -windowHeight / 4) {
@@ -218,6 +219,7 @@ const MCQCard: React.FC<{
         card.style.transform = `translateY(${windowHeight * -1.5}px)`;
         setTimeout(oneMoreTimeOut, 100);
         stuff.style.transform='';
+        setClassBack();
       }
       //  Swipe down fast, clear the tuple
       else if (detail.velocityY > 0.3) {

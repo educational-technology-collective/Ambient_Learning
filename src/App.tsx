@@ -53,6 +53,13 @@ const App: React.FC = () => {
   // Counter used to display certain cards
   const [counter, setCounter] = useState(cardCol.length);
 
+  // Card-Stacker Visual Effect
+  const [cardStackClass, setClass] = useState('card-stacker');
+
+  const setClassBack = () => {
+    setClass('card-stacker');
+  }
+
   // Logic to Move On to Next Card
   const swipeNextCard = (id: number) => {
     setFinished((prevFinished) => prevFinished + 1);
@@ -66,6 +73,7 @@ const App: React.FC = () => {
   const swipeOneMoreCard = (tupleIndex: number, id: number) => {
     if (cardCol[tupleIndex].length === 1) {
       Haptics.vibrate({duration: 500});
+      setClass('card-stacker-animate');
       setFinished((prevFinished) => prevFinished + 1);
       setCounter((prevCounter) => prevCounter - 1);
       // setCards((cards) => {
@@ -100,8 +108,10 @@ const App: React.FC = () => {
                   total={total}
                   counter={counter}
                   cardCol={cardCol}
+                  cardStackClass={cardStackClass}
                   swipeNextCard={swipeNextCard}
                   swipeOneMoreCard={swipeOneMoreCard}
+                  setClassBack={setClassBack}
                 />
               )}
             />
