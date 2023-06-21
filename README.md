@@ -13,6 +13,11 @@ This is a mobile-app for space-repetition learning. The app is built using Ionic
 git clone https://github.com/educational-technology-collective/Space-Repetition-Ionic.git
 ```
 
+**Install Haptics Plugin**: Haptis Plugin Provided by Capacitor for physical feedback
+```
+npm install @capacitor/haptics
+npx cap sync
+```
 ## Run
 After you have set up the repo in your local directory. Run the following commands to try the app:
 ```
