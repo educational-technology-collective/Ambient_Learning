@@ -61,7 +61,8 @@ ionic capacitor build android
 **Android**: After you build your app on Android Studio. Go to ```Build``` -> ```Generate Signed Bundle/APK``` -> ```APK```. Generate an APK file and install it onto your device.
 
 ## Interact with Cards
-**All cards follow the structure of ```Think``` -> ```Tap``` -> ```Swipe```**
+
+***All cards follow the structure of ```Think``` -> ```Tap``` -> ```Swipe```***
 
 ### Think: 
 You will be presented with a card (**QA / MCQ**). 
