@@ -15,6 +15,7 @@ git clone https://github.com/educational-technology-collective/Space-Repetition-
 
 **Install Haptics Plugin**: Haptis Plugin Provided by Capacitor for physical feedback
 ```
+cd Space-Repetition-Ionic
 npm install @capacitor/haptics
 npx cap sync
 ```
