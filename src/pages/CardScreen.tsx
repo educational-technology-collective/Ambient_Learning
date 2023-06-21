@@ -8,7 +8,7 @@ import {
 import "./CardScreen.css";
 import React from "react";
 import FlashCardList from "../FlashCardComp/FlashCardList";
-import { useState, useEffect } from "react";
+
 const CardScreen: React.FC<{
   finished: number;
   total: number;
@@ -17,10 +17,6 @@ const CardScreen: React.FC<{
   swipeNextCard: (id: number) => void;
   swipeOneMoreCard: (key: number, id: number) => void;
 }> = ({ finished, total, counter, cardCol, swipeNextCard, swipeOneMoreCard }) => {
-  useEffect(() => {
-
-  }, [cardCol])
-  console.log(cardCol)
 
   
   return (
