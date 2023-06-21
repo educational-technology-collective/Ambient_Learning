@@ -9,7 +9,8 @@ import {
   IonIcon,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { TbDeviceMobileVibration, TbHomeEdit } from "react-icons/tb";
+import { TbHomeEdit } from "react-icons/tb";
+import { Haptics } from "@capacitor/haptics";
 import { useState } from "react";
 import CardScreen from "./pages/CardScreen";
 import Home from "./pages/Home";
@@ -64,7 +65,7 @@ const App: React.FC = () => {
   // Function that swipes for one more card
   const swipeOneMoreCard = (tupleIndex: number, id: number) => {
     if (cardCol[tupleIndex].length === 1) {
-      alert("No More Simmilar Card!");
+      Haptics.vibrate({duration: 500});
       setFinished((prevFinished) => prevFinished + 1);
       setCounter((prevCounter) => prevCounter - 1);
       // setCards((cards) => {
