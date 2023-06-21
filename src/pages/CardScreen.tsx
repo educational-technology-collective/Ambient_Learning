@@ -8,14 +8,21 @@ import {
 import "./CardScreen.css";
 import React from "react";
 import FlashCardList from "../FlashCardComp/FlashCardList";
-
+import { useState, useEffect } from "react";
 const CardScreen: React.FC<{
   finished: number;
-  total: number
+  total: number;
+  counter: number
   cardCol: any[];
   swipeNextCard: (id: number) => void;
   swipeOneMoreCard: (key: number, id: number) => void;
-}> = React.memo(({ finished, total, cardCol, swipeNextCard, swipeOneMoreCard }) => {
+}> = ({ finished, total, counter, cardCol, swipeNextCard, swipeOneMoreCard }) => {
+  useEffect(() => {
+
+  }, [cardCol])
+  console.log(cardCol)
+
+  
   return (
     <IonPage>
       <IonHeader color="tertiary">
@@ -28,19 +35,23 @@ const CardScreen: React.FC<{
 
       <IonContent className="page-content" scrollY={false}>
         <div className="card-stacker">
-          {cardCol.map((array, index) => (
-            <FlashCardList
+          {cardCol.map((array, index) => {
+         
+            if(index === counter - 1 || index === counter - 2){
+              return <FlashCardList
               array={array}
               key={index}
               swipeNextCard={swipeNextCard}
               swipeOneMoreCard={swipeOneMoreCard}
               tupleIndex={index}
             />
-          ))}
+            }
+          }        
+          )}
         </div>
       </IonContent>
     </IonPage>
   );
-});
+};
 
 export default CardScreen;

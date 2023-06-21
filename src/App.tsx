@@ -9,7 +9,7 @@ import {
   IonIcon,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { TbHomeEdit } from "react-icons/tb";
+import { TbDeviceMobileVibration, TbHomeEdit } from "react-icons/tb";
 import { useState } from "react";
 import CardScreen from "./pages/CardScreen";
 import Home from "./pages/Home";
@@ -49,23 +49,28 @@ const App: React.FC = () => {
   // How Many Cards in total
   const [total, setTotal] = useState(cardCol.length);
 
+
+  const [counter, setCounter] = useState(cardCol.length);
+
   // Logic to Move On to Next Card
   const swipeNextCard = (id: number) => {
     setFinished((prevFinished) => prevFinished + 1);
-    setCards((cards) => {
-      return cards.filter((tuple) => id !== tuple[tuple.length - 1].id);
-    });
+    setCounter(prevCounter => prevCounter - 1);
+    // setCards((cards) => {
+    //   return cards.filter((tuple) => id !== tuple[tuple.length - 1].id);
+    // });
   };
 
   // Function that swipes for one more card
   const swipeOneMoreCard = (tupleIndex: number, id: number) => {
     if (cardCol[tupleIndex].length === 1) {
+     
       alert("No More Simmilar Card!");
       setFinished((prevFinished) => prevFinished + 1);
-     
-      setCards((cards) => {
-        return cards.filter((tuple) => id !== tuple[tuple.length - 1].id);
-      });
+      setCounter(prevCounter => prevCounter - 1);
+      // setCards((cards) => {
+      //   return cards.filter((tuple) => id !== tuple[tuple.length - 1].id);
+      // });
      
     } else {
       setFinished((prevFinished) => prevFinished + 1);
@@ -94,6 +99,7 @@ const App: React.FC = () => {
                 <CardScreen
                   finished={finished}
                   total={total}
+                  counter = {counter}
                   cardCol={cardCol}
                   swipeNextCard={swipeNextCard}
                   swipeOneMoreCard={swipeOneMoreCard}

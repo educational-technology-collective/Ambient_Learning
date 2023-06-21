@@ -11,7 +11,7 @@
   height: 100%;
   position: relative;
   opacity: 1;
-  box-shadow: rgba(123,135, 185) 0px 4px 8px;
+  box-shadow: rgba(123,135, 185) 0px 8px 16px;
 }
 
 .mcqcard-content {
