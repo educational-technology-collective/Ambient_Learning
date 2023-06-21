@@ -37,7 +37,7 @@ const QACard: React.FC<{
 
   useEffect(() => {
     initGesture();
-  }, [isClicked]);
+  });
 
   // Opacity State Variables
   const [negativeOpacity, setNegOp] = useState(0);
@@ -111,10 +111,14 @@ const QACard: React.FC<{
       setOneMoreOp(0);
       setNoMoreOp(detail.deltaY / 100);
     }
-    // Swiping Up. Indicates One More Simmilar Card
+    // Clicked and Swiping Up. Indicates One More Simmilar Card
     else if (isClicked && detail.deltaY < 0) {
       setNoMoreOp(0);
       setOneMoreOp(-detail.deltaY / 100);
+    }
+    // Not Clicked But Swiping Up. Reset NoMore Opacity
+    else{
+      setNoMoreOp(0);
     }
   };
 
@@ -226,14 +230,14 @@ const QACard: React.FC<{
       });
 
       const gestureY = createGesture({
-        el: stuff,
+        el: card,
         direction: "y",
         gestureName: "swipe-y",
         onMove: (detail) => VerticalMove(detail, card, stuff),
         onEnd: (detail) => VerticalEnd(detail, card, stuff),
       });
 
-      gestureY.enable();
+      gestureY.enable(true);
       gestureX.enable(isClicked);
     }
   };

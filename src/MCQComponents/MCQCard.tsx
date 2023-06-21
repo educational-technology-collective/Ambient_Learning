@@ -47,7 +47,7 @@ const MCQCard: React.FC<{
   // Allows Gesture only after user clicks an option
   useEffect(() => {
     enableGesture();
-  }, [clicked]);
+  });
 
   const setClickStatus = () => {
     setClick(true);
@@ -220,9 +220,9 @@ const MCQCard: React.FC<{
       else if (detail.deltaY < -windowHeight / 4) {
         card.style.transform = `translateY(${windowHeight * -1.5}px)`;
         setTimeout(oneMoreTimeOut, 100);
-        stuff.style.transform = "";
 
         // Set all the style/className/isClicked back
+        stuff.style.transform = "";
         setClassBack();
         setClick(false);
         setIsClicked(false);
@@ -260,7 +260,7 @@ const MCQCard: React.FC<{
       });
 
       const gestureY = createGesture({
-        el: stuff,
+        el: card,
         gestureName: "swipe-mcq-y",
         direction: "y",
         onMove: (detail) => VerticalMove(detail, card, stuff),

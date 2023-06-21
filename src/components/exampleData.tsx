@@ -172,7 +172,19 @@ export const cardCollection = [
     },
   ],
 
-  [
+  [{id: 478,
+  type: 'm',
+content: {
+  question: 'What operator to negate a boolean value?',
+  answer: [
+    {option: '!==', isCorrect: false},
+    {
+      option: '!', isCorrect: true
+    },
+    {option: '===', isCorrect: false},
+    {option: '+==', isCorrect: false}
+  ]
+}},
     {
       id: 10,
       type: "q",
@@ -191,7 +203,14 @@ export const cardCollection = [
     },
   ],
 
-  [
+  [{
+    id: 24,
+    type: 'q',
+    content: {
+      question: 'Index 0 returns the ___ element of an array',
+      answer: 'First/Beginning'
+    }
+  },
     {
       id: 99,
       type: "q",
@@ -257,4 +276,8 @@ export const cardCollection = [
       },
     },
   ],
+
+
+
+  
 ];
