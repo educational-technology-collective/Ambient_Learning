@@ -6,4 +6,16 @@
   position: absolute;
   bottom: 0.3rem;
   width: 97%;
+  transform: rotateY(0deg)
+}
+
+.choice-container-back{
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 40%;
+  position: absolute;
+  bottom: 0.3rem;
+  width: 97%;
+  transform: rotateY(180deg) translateZ(3px)
 }

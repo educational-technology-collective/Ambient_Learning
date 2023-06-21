@@ -3,6 +3,8 @@ import { useRef, useState, useEffect } from "react";
 import "./MCQCard.css";
 import Choices from "./Choices";
 import FrontMCQIndicator from "../components/FrontMCQIndicator";
+import FrontIndicator from "../components/FrontIndicator";
+import BackIndicator from "../components/BackIndicator";
 
 const MCQCard: React.FC<{
   obj: flashCard;
@@ -22,7 +24,7 @@ const MCQCard: React.FC<{
 
   // Transform with 360 degree flipping
   const style = isClicked
-    ? { transform: "rotateY(360deg)", background: "rgba(251,255,236,1)" }
+    ? { transform: "rotateY(180deg)", background: "rgba(251,255,236,1)" }
     : { transform: "rotateY(0deg)" };
 
   // Callback for the tap of card
@@ -252,7 +254,7 @@ const MCQCard: React.FC<{
     const stuff = refTuple.current;
     if (stuff && card) {
       const gestureX = createGesture({
-        el: stuff,
+        el: card,
         gestureName: "swipe-mcq-x",
         direction: "x",
         onMove: (detail) => HorizontalMove(detail, stuff),
@@ -280,19 +282,24 @@ const MCQCard: React.FC<{
         disabled={clicked}
       >
         <IonCardContent className="mcqcard-content" style={style}>
-          <FrontMCQIndicator
-            negativeOpacity={negativeOpacity}
-            positiveOpacity={positiveOpacity}
-            onemoreOpacity={onemoreOpacity}
-            nomoreOpacity={nomoreOpacity}
-          />
-          <IonText className="mcqquestion-text">{question}</IonText>
+          <FrontIndicator
+            nomoreOpacity={nomoreOpacity}/>
+          <IonText className={!clicked ? "mcqquestion-text" : 'mcqquestion-text-back'}>{question}</IonText>
           <Choices
             answer={choices}
             setClickStatus={setClickStatus}
             clicked={clicked}
             setCorrectStatus={setCorrectStatus}
           />
+
+          {/* Indicators For the Back Page */}
+          <BackIndicator
+            negativeOpacity={negativeOpacity}
+            positiveOpacity={positiveOpacity}
+            onemoreOpacity={onemoreOpacity}
+            nomoreOpacity={nomoreOpacity}
+          />
+          
         </IonCardContent>
       </IonCard>
     </div>

@@ -222,7 +222,7 @@ const QACard: React.FC<{
     const stuff = refTuple.current;
     if (stuff && card) {
       const gestureX = createGesture({
-        el: stuff,
+        el: card,
         direction: "x",
         gestureName: "swipe-x",
         onMove: (detail) => HorizontalMove(detail, stuff),

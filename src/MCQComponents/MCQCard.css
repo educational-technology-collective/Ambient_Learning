@@ -35,4 +35,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transform: rotateY(0deg)
+}
+
+.mcqquestion-text-back {
+  backface-visibility: hidden;
+  font-size: 2em;
+  font-weight: 900;
+  position: absolute;
+  text-align: center;
+  margin: 0 0.75rem;
+  height: 60%;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotateY(180deg) translateZ(3px)
 }

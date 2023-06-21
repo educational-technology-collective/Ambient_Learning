@@ -29,7 +29,7 @@ const Choices: React.FC<{
   }, [choices]);
 
   return (
-    <div className="choice-container">
+    <div className={!clicked ?"choice-container" : 'choice-container-back'}>
       {/* Mapping the Choices Based on Whether they are correct or not */}
       {randomArray.map((choice: any, index) =>
         choice.isCorrect ? (
