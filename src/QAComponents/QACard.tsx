@@ -8,11 +8,11 @@ import BackIndicator from "../components/BackIndicator";
 const QACard: React.FC<{
   obj: flashCard;
   tupleIndex: number;
-  moveOn: (id: number) => void;
+  moveOn: (tupleIndex: number, id: number) => void;
   oneMore: (tupleIndex: number, id: number) => void;
   refTuple: React.RefObject<HTMLInputElement>;
-  setClassBack: () => void
-}> = ({ obj, tupleIndex, moveOn, oneMore, refTuple, setClassBack }) => {
+  setClassBack: () => void;
+}> = ({ obj, tupleIndex, moveOn, oneMore, refTuple, setClassBack}) => {
   const [isClicked, setIsClicked] = useState(false);
   const style = isClicked
     ? { transform: "rotateY(180deg)", background: "rgba(251,255,236,1)" }
@@ -25,7 +25,7 @@ const QACard: React.FC<{
 
   // Function that times out for swiping
   const timeOutFunc = () => {
-    moveOn(obj.id);
+    moveOn(tupleIndex, obj.id);
   };
 
   // Funcion that times out for One More Swiping

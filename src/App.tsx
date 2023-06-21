@@ -53,6 +53,9 @@ const App: React.FC = () => {
   // Counter used to display certain cards
   const [counter, setCounter] = useState(cardCol.length);
 
+  // Tuple Counter for One More Cards
+  const [tupleCounter, setTupleCounter] = useState(cardCol[cardCol.length-1].length);
+
   // Card-Stacker Visual Effect
   const [cardStackClass, setClass] = useState('card-stacker');
 
@@ -61,9 +64,13 @@ const App: React.FC = () => {
   }
 
   // Logic to Move On to Next Card
-  const swipeNextCard = (id: number) => {
+  const swipeNextCard = (tupleIndex: number, id: number) => {
     setFinished((prevFinished) => prevFinished + 1);
     setCounter((prevCounter) => prevCounter - 1);
+    if(tupleIndex > 0)
+    {
+      setTupleCounter(cardCol[tupleIndex - 1].length);
+    }
     // setCards((cards) => {
     //   return cards.filter((tuple) => id !== tuple[tuple.length - 1].id);
     // });
@@ -71,21 +78,25 @@ const App: React.FC = () => {
 
   // Function that swipes for one more card
   const swipeOneMoreCard = (tupleIndex: number, id: number) => {
-    if (cardCol[tupleIndex].length === 1) {
+    if (tupleCounter === 1) {
+      if(tupleIndex > 0)
+      {
+        setTupleCounter(cardCol[tupleIndex - 1].length);
+      }
       Haptics.vibrate({duration: 500});
       setClass('card-stacker-animate');
       setFinished((prevFinished) => prevFinished + 1);
-      setCounter((prevCounter) => prevCounter - 1);
+      setCounter((prevCounter) => prevCounter - 1);    
       // setCards((cards) => {
       //   return cards.filter((tuple) => id !== tuple[tuple.length - 1].id);
       // });
     } else {
       setFinished((prevFinished) => prevFinished + 1);
       setTotal((prevTotal) => prevTotal + 1);
-
-      setCards((cards) => {
-        return cards.map((tuple) => tuple.filter((card) => card.id !== id));
-      });
+      setTupleCounter(prevTupleCounter => prevTupleCounter - 1);
+      // setCards((cards) => {
+      //   return cards.map((tuple) => tuple.filter((card) => card.id !== id));
+      // });
     }
   };
 
@@ -107,6 +118,7 @@ const App: React.FC = () => {
                   finished={finished}
                   total={total}
                   counter={counter}
+                  tupleCounter={tupleCounter}
                   cardCol={cardCol}
                   cardStackClass={cardStackClass}
                   swipeNextCard={swipeNextCard}

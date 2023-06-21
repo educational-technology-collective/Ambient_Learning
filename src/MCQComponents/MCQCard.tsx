@@ -7,10 +7,10 @@ import FrontMCQIndicator from "../components/FrontMCQIndicator";
 const MCQCard: React.FC<{
   obj: flashCard;
   tupleIndex: number;
-  moveOn: (id: number) => void;
+  moveOn: (tupleIndex: number, id: number) => void;
   oneMore: (tupleIndex: number, id: number) => void;
   refTuple: React.RefObject<HTMLInputElement>;
-  setClassBack: () => void
+  setClassBack: () => void;
 }> = ({ obj, tupleIndex, moveOn, oneMore, refTuple, setClassBack }) => {
   const question = obj.content.question;
   const choices = obj.content.answer;
@@ -41,7 +41,7 @@ const MCQCard: React.FC<{
 
   // Function that goes to next card after some time
   const timeOutFunc = () => {
-    moveOn(obj.id);
+    moveOn(tupleIndex, obj.id);
   };
 
   // Allows Gesture only after user clicks an option
