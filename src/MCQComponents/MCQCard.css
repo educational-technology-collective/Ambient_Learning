@@ -15,7 +15,7 @@
 }
 
 .mcqcard-content {
-  transition: 0.6s;
+  transition: 0.3s;
   transform-style: preserve-3d;
   justify-content: center;
   height: 100%;
@@ -24,7 +24,7 @@
 }
 
 .mcqquestion-text {
-  backface-visibility: hidden;
+  backface-visibility:hidden;
   font-size: 2em;
   font-weight: 900;
   position: absolute;
