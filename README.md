@@ -60,37 +60,33 @@ ionic capacitor build android
 **Android**: After you build your app on Android Studio. Go to ```Build``` -> ```Generate Signed Bundle/APK``` -> ```APK```. Generate an APK file and install it onto your device.
 
 ## Interact with Cards
-### QA-Cards:
-You can click the QA card itself to flip between the question and answer sides. Then, you can do the following gestures with different indications and move on to next card:
+**All cards follow the structure of ```Think``` -> ```Tap``` -> ```Swipe```**
 
-* ```Swipe Right```: Indicates that you know and are positive about this card
+### Think: 
+You will be presented with a card (**QA / MCQ**). 
 
-* ```Swipe Left```: Indicates that you don't know and are negative about this card
+If it's a **QA-Card**, you will be given a question. 
 
-* ```Swipe Up```: Indicates that you want one more card of same concept
+If it's an **MCQ-Card**, you will be given a question with 4 options displayed at the bottom. 
 
-* ```Swipe Down```: Indicates that you don't want this card to show up anymore in future reviews
+### Tap:
+For a **QA-Card**, you can tap the QA Card itself to flip and see the question with the answer. 
 
-### MCQ-Cards:
-You will be given four options for a multiple choice question. You will click the choice you think is correct, and the card will highlight the correct choice with green background color and the incorrect choice with red backrgound color, covering all the other choices. The swiping gestures will be different from the QA Cards:
+For an **MCQ-Card**, you can tap the card without selecting any choices to flip and reveal the correct choice. You can also select the choice you think is correct, and the card will highlight the correct choice with green background color and the incorrect one with red background color.
 
-#### Before Clicking Choice:
+### Swipe:
 
-* ```Swipe Right```: Indicates that you know and are positive about this card
+#### Before Tapping/Clicking Choice:
+* ```Swipe Down```: Indicates that you don't want this card to show up anymore.
 
-* ```Swipe Left```: Indicates that you don't know and are negative about this card
+#### After Tapping/Clicking Choice:
+* ```Swipe Right```: Indicates that you know and are positive about this card.
 
-* ```Swipe Down```: Indicates that you don't want this card to show up anymore
+* ```Swipe Left```: Indicates that you don't know and are negative about this card.
 
-#### After Clicking Choice: 
+* ```Swipe Up```: Indicates that you want one more card of the same concept.
 
-* ```Swipe Right```: Indicates that you know and are positive about this card
-
-* ```Swipe Left```: Indicates that you don't know and are negative about this card
-
-* ```Swipe Up```: Indicates that you want one more card of same concept
-
-* ```Swipe Down(Only if you get Correct)```: Indicates that you don't want this card to show up anymore
+* ```Swipe Down```: Indicates that you don't want this card to show up anymore in future reviews.
 
 ## Contact
 Yunxuan "Haytham" Tang —— [yunxuant@umich.edu](mailto:yunxuant@umich.edu)
