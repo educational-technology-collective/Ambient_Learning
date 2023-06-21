@@ -178,6 +178,7 @@ const QACard: React.FC<{
         setTimeout(oneMoreTimeOut, 100);
         stuff.style.transform = '';
         setClassBack();
+        setIsClicked(false);
       }
       // Swipe Up enough, move the top card
       else if (detail.deltaY < -windowHeight / 4) {
@@ -185,6 +186,7 @@ const QACard: React.FC<{
         setTimeout(oneMoreTimeOut, 100);
         stuff.style.trasnform = '';
         setClassBack();
+        setIsClicked(false);
       }
       // Swipe down fast, move the whole tuple
       else if (detail.velocityY > 0.3) {

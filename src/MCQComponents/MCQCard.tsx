@@ -212,6 +212,8 @@ const MCQCard: React.FC<{
         setTimeout(oneMoreTimeOut, 100);
         stuff.style.transform='';
         setClassBack();
+        setClick(false);
+        setIsClicked(false);
       }
       // Swipe Up enough, clear the top card
       else if (detail.deltaY < -windowHeight / 4) {
@@ -220,6 +222,8 @@ const MCQCard: React.FC<{
         setTimeout(oneMoreTimeOut, 100);
         stuff.style.transform='';
         setClassBack();
+        setClick(false);
+        setIsClicked(false);
       }
       //  Swipe down fast, clear the tuple
       else if (detail.velocityY > 0.3) {
