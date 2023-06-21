@@ -18,7 +18,7 @@ const CardScreen: React.FC<{
   cardCol: any[];
   swipeNextCard: (tupleIndex: number) => void;
   swipeOneMoreCard: (tupleIndex: number) => void;
-  setClassBack: () => void
+  setClassBack: () => void;
 }> = ({
   finished,
   total,
@@ -56,8 +56,7 @@ const CardScreen: React.FC<{
                   setClassBack={setClassBack}
                 />
               );
-            }
-            else if(index === counter - 2){
+            } else if (index === counter - 2) {
               return (
                 <FlashCardList
                   array={array}

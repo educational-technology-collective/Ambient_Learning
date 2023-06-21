@@ -169,11 +169,10 @@ const MCQCard: React.FC<{
       }
       // Moving Up will only move the top card
       else {
-        stuff.style.transform='';
+        stuff.style.transform = "";
         card.style.transform = `translateY(${detail.deltaY}px) rotate(${
           detail.deltaY / 90
         }deg)`;
-        
       }
     }
     showVerticalInd(detail);
@@ -210,17 +209,16 @@ const MCQCard: React.FC<{
       if (detail.velocityY < -0.3) {
         card.style.transform = `translateY(${windowHeight * -1.5}px)`;
         setTimeout(oneMoreTimeOut, 100);
-        stuff.style.transform='';
+        stuff.style.transform = "";
         setClassBack();
         setClick(false);
         setIsClicked(false);
       }
       // Swipe Up enough, clear the top card
       else if (detail.deltaY < -windowHeight / 4) {
-       
         card.style.transform = `translateY(${windowHeight * -1.5}px)`;
         setTimeout(oneMoreTimeOut, 100);
-        stuff.style.transform='';
+        stuff.style.transform = "";
         setClassBack();
         setClick(false);
         setIsClicked(false);

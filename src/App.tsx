@@ -54,43 +54,40 @@ const App: React.FC = () => {
   const [counter, setCounter] = useState(cardCol.length);
 
   // Tuple Counter for One More Cards
-  const [tupleCounter, setTupleCounter] = useState(cardCol[cardCol.length-1].length);
+  const [tupleCounter, setTupleCounter] = useState(
+    cardCol[cardCol.length - 1].length
+  );
 
   // Card-Stacker Visual Effect
-  const [cardStackClass, setClass] = useState('card-stacker');
+  const [cardStackClass, setClass] = useState("card-stacker");
 
   const setClassBack = () => {
-    setClass('card-stacker');
-  }
+    setClass("card-stacker");
+  };
 
   // Logic to Move On to Next Card
   const swipeNextCard = (tupleIndex: number) => {
     setFinished((prevFinished) => prevFinished + 1);
     setCounter((prevCounter) => prevCounter - 1);
-    if(tupleIndex > 0)
-    {
+    if (tupleIndex > 0) {
       setTupleCounter(cardCol[tupleIndex - 1].length);
     }
-   
   };
 
   // Function that swipes for one more card
   const swipeOneMoreCard = (tupleIndex: number) => {
     if (tupleCounter === 1) {
-      if(tupleIndex > 0)
-      {
+      if (tupleIndex > 0) {
         setTupleCounter(cardCol[tupleIndex - 1].length);
       }
-      Haptics.vibrate({duration: 500});
-      setClass('card-stacker-animate');
+      Haptics.vibrate({ duration: 500 });
+      setClass("card-stacker-animate");
       setFinished((prevFinished) => prevFinished + 1);
-      setCounter((prevCounter) => prevCounter - 1);    
-     
+      setCounter((prevCounter) => prevCounter - 1);
     } else {
       setFinished((prevFinished) => prevFinished + 1);
       setTotal((prevTotal) => prevTotal + 1);
-      setTupleCounter(prevTupleCounter => prevTupleCounter - 1);
-     
+      setTupleCounter((prevTupleCounter) => prevTupleCounter - 1);
     }
   };
 

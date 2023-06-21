@@ -14,7 +14,10 @@ import { useHistory } from "react-router-dom";
 import { cardCollection } from "../components/exampleData";
 import { diamond } from "ionicons/icons";
 
-const Home: React.FC<{ finished: number, total:number }> = ({ finished, total }) => {
+const Home: React.FC<{ finished: number; total: number }> = ({
+  finished,
+  total,
+}) => {
   const history = useHistory();
 
   const navigateToCardScreen = () => {
@@ -56,9 +59,7 @@ const Home: React.FC<{ finished: number, total:number }> = ({ finished, total })
             {finished !== total ? (
               <IonCard className={shadow} onClick={navigateToCardScreen}>
                 <IonCardContent className="wrapped-card-content">
-                  <IonText className="today-task">
-                    {total - finished}
-                  </IonText>
+                  <IonText className="today-task">{total - finished}</IonText>
                 </IonCardContent>
               </IonCard>
             ) : (

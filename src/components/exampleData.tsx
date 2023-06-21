@@ -252,7 +252,4 @@ export const cardCollection = [
       },
     },
   ],
-
-  
-  
 ];
