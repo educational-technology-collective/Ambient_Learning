@@ -61,6 +61,7 @@ const App: React.FC = () => {
   // Card-Stacker Visual Effect
   const [cardStackClass, setClass] = useState("card-stacker");
 
+  // Handler that set the card-stacker back without shaking
   const setClassBack = () => {
     setClass("card-stacker");
   };
@@ -69,6 +70,9 @@ const App: React.FC = () => {
   const swipeNextCard = (tupleIndex: number) => {
     setFinished((prevFinished) => prevFinished + 1);
     setCounter((prevCounter) => prevCounter - 1);
+
+    // If the current tuple is not the last one, reset the counter of tuple
+    // to the next array's length
     if (tupleIndex > 0) {
       setTupleCounter(cardCol[tupleIndex - 1].length);
     }
@@ -76,17 +80,25 @@ const App: React.FC = () => {
 
   // Function that swipes for one more card
   const swipeOneMoreCard = (tupleIndex: number) => {
+    // Check if there is no onemore card for this card
     if (tupleCounter === 1) {
+      // If the current tuple is not the last one, reset the counter of tuple
+      // to the next array's length
       if (tupleIndex > 0) {
         setTupleCounter(cardCol[tupleIndex - 1].length);
       }
+      // Vibration of device
       Haptics.vibrate({ duration: 500 });
+
+      // Visual Vibration
       setClass("card-stacker-animate");
       setFinished((prevFinished) => prevFinished + 1);
       setCounter((prevCounter) => prevCounter - 1);
     } else {
       setFinished((prevFinished) => prevFinished + 1);
       setTotal((prevTotal) => prevTotal + 1);
+
+      // Decrement the Counter
       setTupleCounter((prevTupleCounter) => prevTupleCounter - 1);
     }
   };

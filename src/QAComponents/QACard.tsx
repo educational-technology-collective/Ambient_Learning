@@ -176,6 +176,8 @@ const QACard: React.FC<{
       if (detail.velocityY < -0.3) {
         card.style.transform = `translateY(${windowHeight * -1.5}px)`;
         setTimeout(oneMoreTimeOut, 100);
+
+        // Set all the style/className/isClicked back
         stuff.style.transform = "";
         setClassBack();
         setIsClicked(false);
@@ -184,6 +186,8 @@ const QACard: React.FC<{
       else if (detail.deltaY < -windowHeight / 4) {
         card.style.transform = `translateY(${windowHeight * -1.5}px)`;
         setTimeout(oneMoreTimeOut, 100);
+
+        // Set all the style/className/isClicked back
         stuff.style.trasnform = "";
         setClassBack();
         setIsClicked(false);

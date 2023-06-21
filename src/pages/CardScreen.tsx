@@ -42,7 +42,9 @@ const CardScreen: React.FC<{
 
       <IonContent className="page-content" scrollY={false}>
         <div className={cardStackClass}>
+          {/* We display two tuples at one time */}
           {cardCol.map((array, index) => {
+            // If the tuple is displayed on top
             if (index === counter - 1) {
               return (
                 <FlashCardList
@@ -56,7 +58,9 @@ const CardScreen: React.FC<{
                   setClassBack={setClassBack}
                 />
               );
-            } else if (index === counter - 2) {
+            } 
+            // If the tuple is displayed below
+            else if (index === counter - 2) {
               return (
                 <FlashCardList
                   array={array}

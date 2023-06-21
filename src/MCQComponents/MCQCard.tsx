@@ -209,6 +209,8 @@ const MCQCard: React.FC<{
       if (detail.velocityY < -0.3) {
         card.style.transform = `translateY(${windowHeight * -1.5}px)`;
         setTimeout(oneMoreTimeOut, 100);
+
+        // Set all the style/className/isClicked back
         stuff.style.transform = "";
         setClassBack();
         setClick(false);
@@ -219,6 +221,8 @@ const MCQCard: React.FC<{
         card.style.transform = `translateY(${windowHeight * -1.5}px)`;
         setTimeout(oneMoreTimeOut, 100);
         stuff.style.transform = "";
+
+        // Set all the style/className/isClicked back
         setClassBack();
         setClick(false);
         setIsClicked(false);
