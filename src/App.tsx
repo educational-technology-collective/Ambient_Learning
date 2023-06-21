@@ -49,13 +49,13 @@ const App: React.FC = () => {
   // How Many Cards in total
   const [total, setTotal] = useState(cardCol.length);
 
-
+  // Counter used to display certain cards
   const [counter, setCounter] = useState(cardCol.length);
 
   // Logic to Move On to Next Card
   const swipeNextCard = (id: number) => {
     setFinished((prevFinished) => prevFinished + 1);
-    setCounter(prevCounter => prevCounter - 1);
+    setCounter((prevCounter) => prevCounter - 1);
     // setCards((cards) => {
     //   return cards.filter((tuple) => id !== tuple[tuple.length - 1].id);
     // });
@@ -64,18 +64,16 @@ const App: React.FC = () => {
   // Function that swipes for one more card
   const swipeOneMoreCard = (tupleIndex: number, id: number) => {
     if (cardCol[tupleIndex].length === 1) {
-     
       alert("No More Simmilar Card!");
       setFinished((prevFinished) => prevFinished + 1);
-      setCounter(prevCounter => prevCounter - 1);
+      setCounter((prevCounter) => prevCounter - 1);
       // setCards((cards) => {
       //   return cards.filter((tuple) => id !== tuple[tuple.length - 1].id);
       // });
-     
     } else {
       setFinished((prevFinished) => prevFinished + 1);
       setTotal((prevTotal) => prevTotal + 1);
-     
+
       setCards((cards) => {
         return cards.map((tuple) => tuple.filter((card) => card.id !== id));
       });
@@ -90,7 +88,7 @@ const App: React.FC = () => {
             <Route
               exact
               path="/home"
-              render={() => <Home finished={finished} total={total}/>}
+              render={() => <Home finished={finished} total={total} />}
             />
             <Route
               exact
@@ -99,7 +97,7 @@ const App: React.FC = () => {
                 <CardScreen
                   finished={finished}
                   total={total}
-                  counter = {counter}
+                  counter={counter}
                   cardCol={cardCol}
                   swipeNextCard={swipeNextCard}
                   swipeOneMoreCard={swipeOneMoreCard}
