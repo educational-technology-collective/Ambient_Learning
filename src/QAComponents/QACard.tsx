@@ -117,7 +117,7 @@ const QACard: React.FC<{
       setOneMoreOp(-detail.deltaY / 100);
     }
     // Not Clicked But Swiping Up. Reset NoMore Opacity
-    else{
+    else {
       setNoMoreOp(0);
     }
   };

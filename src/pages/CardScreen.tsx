@@ -58,7 +58,7 @@ const CardScreen: React.FC<{
                   setClassBack={setClassBack}
                 />
               );
-            } 
+            }
             // If the tuple is displayed below
             else if (index === counter - 2) {
               return (

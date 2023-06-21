@@ -2,7 +2,6 @@ import { IonCard, IonText, IonCardContent, createGesture } from "@ionic/react";
 import { useRef, useState, useEffect } from "react";
 import "./MCQCard.css";
 import Choices from "./Choices";
-import FrontMCQIndicator from "../components/FrontMCQIndicator";
 import FrontIndicator from "../components/FrontIndicator";
 import BackIndicator from "../components/BackIndicator";
 
@@ -282,9 +281,15 @@ const MCQCard: React.FC<{
         disabled={clicked}
       >
         <IonCardContent className="mcqcard-content" style={style}>
-          <FrontIndicator
-            nomoreOpacity={nomoreOpacity}/>
-          <IonText className={!clicked ? "mcqquestion-text" : 'mcqquestion-text-back'}>{question}</IonText>
+          {/* Front Indicator */}
+          <FrontIndicator nomoreOpacity={nomoreOpacity} />
+
+          {/* Change text and choice front/back based on whether clicked */}
+          <IonText
+            className={!clicked ? "mcqquestion-text" : "mcqquestion-text-back"}
+          >
+            {question}
+          </IonText>
           <Choices
             answer={choices}
             setClickStatus={setClickStatus}
@@ -299,7 +304,6 @@ const MCQCard: React.FC<{
             onemoreOpacity={onemoreOpacity}
             nomoreOpacity={nomoreOpacity}
           />
-          
         </IonCardContent>
       </IonCard>
     </div>

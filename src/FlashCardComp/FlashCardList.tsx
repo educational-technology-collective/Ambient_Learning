@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import MCQCard from "../MCQComponents/MCQCard";
 import QACard from "../QAComponents/QACard";
 import "./FlashCardList.css";
@@ -49,7 +49,7 @@ const FlashCardList: React.FC<{
     <div className="tuple" ref={refTuple}>
       {isFrontTuple
         ? array.map((card, index) => {
-          // If the tuple is front, we display its top two cards
+            // If the tuple is front, we display its top two cards
             if (index === tupleCounter - 1 || index === tupleCounter - 2) {
               return card.type === "q" ? (
                 <QACard
@@ -74,8 +74,8 @@ const FlashCardList: React.FC<{
               );
             }
           })
-          // If the tuple is below. We only display the topmost one
-        : component}
+        : // If the tuple is below. We only display the topmost one
+          component}
     </div>
   );
 };
