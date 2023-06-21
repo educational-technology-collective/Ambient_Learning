@@ -7,8 +7,8 @@ const FlashCardList: React.FC<{
   tupleIndex: number;
   tupleCounter: number;
   isFrontTuple: boolean;
-  swipeNextCard: (tupleIndex: number, id: number) => void;
-  swipeOneMoreCard: (tupleIndex: number, id: number) => void;
+  swipeNextCard: (tupleIndex: number) => void;
+  swipeOneMoreCard: (tupleIndex: number) => void;
   setClassBack: () => void;
 }> = ({
   array,

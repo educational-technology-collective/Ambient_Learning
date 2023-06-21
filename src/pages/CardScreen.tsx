@@ -16,8 +16,8 @@ const CardScreen: React.FC<{
   tupleCounter: number;
   cardStackClass: string;
   cardCol: any[];
-  swipeNextCard: (tuple: number, id: number) => void;
-  swipeOneMoreCard: (key: number, id: number) => void;
+  swipeNextCard: (tupleIndex: number) => void;
+  swipeOneMoreCard: (tupleIndex: number) => void;
   setClassBack: () => void
 }> = ({
   finished,

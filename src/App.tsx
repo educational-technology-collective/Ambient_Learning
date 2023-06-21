@@ -64,20 +64,18 @@ const App: React.FC = () => {
   }
 
   // Logic to Move On to Next Card
-  const swipeNextCard = (tupleIndex: number, id: number) => {
+  const swipeNextCard = (tupleIndex: number) => {
     setFinished((prevFinished) => prevFinished + 1);
     setCounter((prevCounter) => prevCounter - 1);
     if(tupleIndex > 0)
     {
       setTupleCounter(cardCol[tupleIndex - 1].length);
     }
-    // setCards((cards) => {
-    //   return cards.filter((tuple) => id !== tuple[tuple.length - 1].id);
-    // });
+   
   };
 
   // Function that swipes for one more card
-  const swipeOneMoreCard = (tupleIndex: number, id: number) => {
+  const swipeOneMoreCard = (tupleIndex: number) => {
     if (tupleCounter === 1) {
       if(tupleIndex > 0)
       {
@@ -87,16 +85,12 @@ const App: React.FC = () => {
       setClass('card-stacker-animate');
       setFinished((prevFinished) => prevFinished + 1);
       setCounter((prevCounter) => prevCounter - 1);    
-      // setCards((cards) => {
-      //   return cards.filter((tuple) => id !== tuple[tuple.length - 1].id);
-      // });
+     
     } else {
       setFinished((prevFinished) => prevFinished + 1);
       setTotal((prevTotal) => prevTotal + 1);
       setTupleCounter(prevTupleCounter => prevTupleCounter - 1);
-      // setCards((cards) => {
-      //   return cards.map((tuple) => tuple.filter((card) => card.id !== id));
-      // });
+     
     }
   };
 

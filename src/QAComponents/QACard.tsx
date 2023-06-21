@@ -8,8 +8,8 @@ import BackIndicator from "../components/BackIndicator";
 const QACard: React.FC<{
   obj: flashCard;
   tupleIndex: number;
-  moveOn: (tupleIndex: number, id: number) => void;
-  oneMore: (tupleIndex: number, id: number) => void;
+  moveOn: (tupleIndex: number) => void;
+  oneMore: (tupleIndex: number) => void;
   refTuple: React.RefObject<HTMLInputElement>;
   setClassBack: () => void;
 }> = ({ obj, tupleIndex, moveOn, oneMore, refTuple, setClassBack}) => {
@@ -25,12 +25,12 @@ const QACard: React.FC<{
 
   // Function that times out for swiping
   const timeOutFunc = () => {
-    moveOn(tupleIndex, obj.id);
+    moveOn(tupleIndex);
   };
 
   // Funcion that times out for One More Swiping
   const oneMoreTimeOut = () => {
-    oneMore(tupleIndex, obj.id);
+    oneMore(tupleIndex);
   };
 
   const ref = useRef<HTMLInputElement>(null);
