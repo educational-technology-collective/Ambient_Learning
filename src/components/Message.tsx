@@ -1,11 +1,9 @@
-import { IonIcon } from "@ionic/react";
 import "./Message.css";
-import { alertCircleOutline } from "ionicons/icons";
 
 const Message: React.FC = () => {
   return (
-    <div className='toast toast-animate'>
-      <IonIcon
+    <div className="toast">
+      {/* <IonIcon
         icon={alertCircleOutline}
         style={{
           position: "absolute",
@@ -14,9 +12,9 @@ const Message: React.FC = () => {
           fontSize: "1.8rem",
           marginLeft: "0.5rem",
         }}
-      />
-      <div className="message-title">Oopsie!!!</div>
-      <div className="message-text">No More Similar Cards!</div>
+      /> */}
+      <div className="message-title">NO MORE CARD ON THIS TOPIC</div>
+      <div className="message-text">😕</div>
     </div>
   );
 };

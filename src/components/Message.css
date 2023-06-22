@@ -1,6 +1,5 @@
-
 .toast {
-  height: 10%;
+  height: 13%;
   width: 60%;
   color: white;
   padding: 0.02rem;
@@ -8,43 +7,40 @@
   border: 0.1rem solid aliceblue;
   box-shadow: 0rem 2px 4px gainsboro;
   border-radius: 0.4rem;
-  background-color: #d9534f;
-  top: 45%;
+  background-color: #f0ad4e;
+  top: 43%;
   left: 20%;
-  opacity: 0;
-  transition: transform 2s ease-in-out;
-  display: none;
- 
-}
-
-.toast-animate{
   display: block;
-  animation: toast-in-center 1.5s;
+  transition: transform 2s ease-in-out;
+  animation: toast-in-center 2.2s;
 }
 
-.message-title{
+.message-title {
   font-weight: bold;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   text-align: center;
-  margin-top: 0.5rem;
-  margin-bottom: 1rem;
+  margin-top: 0.1rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
 
-.message-text{
+.message-text {
   text-align: center;
-  margin-top: 1rem;
+  font-size: 1.2rem;
   font-weight: bold;
+  margin-top: 0.1rem;
+  margin-bottom: 0.05rem;
 }
 
 @keyframes toast-in-center {
- 0%{
-  opacity: 0;
- }
- 25%, 75%{
-  opacity: 0.95;
- }
- 100%{
-  opacity: 0;
- }
-	
+  0% {
+    opacity: 0;
+  }
+  25%,
+  85% {
+    opacity: 0.95;
+  }
+  100% {
+    opacity: 0;
+  }
 }

@@ -9,7 +9,6 @@ const FlashCardList: React.FC<{
   isFrontTuple: boolean;
   swipeNextCard: (tupleIndex: number) => void;
   swipeOneMoreCard: (tupleIndex: number) => void;
-  
 }> = ({
   array,
   tupleIndex,
@@ -17,7 +16,6 @@ const FlashCardList: React.FC<{
   isFrontTuple,
   swipeNextCard,
   swipeOneMoreCard,
- 
 }) => {
   const refTuple = useRef<HTMLInputElement>(null);
   let component;
@@ -41,7 +39,6 @@ const FlashCardList: React.FC<{
         moveOn={swipeNextCard}
         oneMore={swipeOneMoreCard}
         refTuple={refTuple}
-       
       />
     );
   return (
@@ -58,7 +55,6 @@ const FlashCardList: React.FC<{
                   moveOn={swipeNextCard}
                   oneMore={swipeOneMoreCard}
                   refTuple={refTuple}
-                
                 />
               ) : (
                 <MCQCard
@@ -68,7 +64,6 @@ const FlashCardList: React.FC<{
                   moveOn={swipeNextCard}
                   oneMore={swipeOneMoreCard}
                   refTuple={refTuple}
-               
                 />
               );
             }

@@ -4,6 +4,7 @@ import "./MCQCard.css";
 import Choices from "./Choices";
 import FrontIndicator from "../components/FrontIndicator";
 import BackIndicator from "../components/BackIndicator";
+import MCQ from "../FlashCardComp/MCQ";
 
 const MCQCard: React.FC<{
   obj: flashCard;
@@ -11,7 +12,6 @@ const MCQCard: React.FC<{
   moveOn: (tupleIndex: number) => void;
   oneMore: (tupleIndex: number) => void;
   refTuple: React.RefObject<HTMLInputElement>;
- 
 }> = ({ obj, tupleIndex, moveOn, oneMore, refTuple }) => {
   const question = obj.content.question;
   const choices = obj.content.answer;
@@ -66,7 +66,6 @@ const MCQCard: React.FC<{
   const [positiveOpacity, setPosOp] = useState(0);
   const [onemoreOpacity, setOneMoreOp] = useState(0);
   const [nomoreOpacity, setNoMoreOp] = useState(0);
-
 
   // Function that Present Horizontal Indicators through opacity change
   const showHorizontalInd = (detail: any) => {
@@ -126,7 +125,7 @@ const MCQCard: React.FC<{
   // Function that shows the vertical indicators based on states
   const showVerticalInd = (detail: any) => {
     // Before Clicking
-    if (!clicked) {
+    if (!isClicked) {
       // Swipe Down to Show No More Card
       if (detail.deltaY > 0) {
         setOneMoreOp(0);
@@ -156,7 +155,7 @@ const MCQCard: React.FC<{
   // Vertical Swiping Function
   const VerticalMove = (detail: any, card: any, stuff: any) => {
     // Before Flipping. Move Down the Whole Tuple
-    if (!clicked) {
+    if (!isClicked) {
       stuff.style.transform = `translateY(${detail.deltaY}px) rotate(${
         detail.deltaY / 90
       }deg)`;
@@ -187,7 +186,7 @@ const MCQCard: React.FC<{
     card.style.transition = "0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
 
     // Before clicking
-    if (!clicked) {
+    if (!isClicked) {
       // Swipe Down fast, clear the tuple
       if (detail.velocityY > 0.3) {
         stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
@@ -214,7 +213,7 @@ const MCQCard: React.FC<{
 
         // Set all the style/className/isClicked back
         stuff.style.transform = "";
-     
+
         setClick(false);
         setIsClicked(false);
       }
@@ -225,7 +224,7 @@ const MCQCard: React.FC<{
 
         // Set all the style/className/isClicked back
         stuff.style.transform = "";
-       
+
         setClick(false);
         setIsClicked(false);
       }
@@ -286,7 +285,7 @@ const MCQCard: React.FC<{
           <FrontIndicator nomoreOpacity={nomoreOpacity} />
 
           {/* Change text and choice front/back based on whether clicked */}
-          <IonText
+          {/* <IonText
             className={!clicked ? "mcqquestion-text" : "mcqquestion-text-back"}
           >
             {question}
@@ -296,7 +295,9 @@ const MCQCard: React.FC<{
             setClickStatus={setClickStatus}
             clicked={clicked}
             setCorrectStatus={setCorrectStatus}
-          />
+          /> */}
+
+          <MCQ obj={obj} clicked={clicked} setClickStatus={setClickStatus} setCorrectStatus={setCorrectStatus} />
 
           {/* Indicators For the Back Page */}
           <BackIndicator

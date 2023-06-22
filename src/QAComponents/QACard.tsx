@@ -11,7 +11,6 @@ const QACard: React.FC<{
   moveOn: (tupleIndex: number) => void;
   oneMore: (tupleIndex: number) => void;
   refTuple: React.RefObject<HTMLInputElement>;
-  
 }> = ({ obj, tupleIndex, moveOn, oneMore, refTuple }) => {
   const [isClicked, setIsClicked] = useState(false);
   const style = isClicked
@@ -32,8 +31,6 @@ const QACard: React.FC<{
   const oneMoreTimeOut = () => {
     oneMore(tupleIndex);
   };
-
-  
 
   const ref = useRef<HTMLInputElement>(null);
 
@@ -184,9 +181,9 @@ const QACard: React.FC<{
         setTimeout(oneMoreTimeOut, 100);
 
         // Set all the style/className/isClicked back
-       
+
         stuff.style.transform = "";
-    
+
         setIsClicked(false);
       }
       // Swipe Up enough, move the top card
@@ -196,7 +193,7 @@ const QACard: React.FC<{
 
         // Set all the style/className/isClicked back
         stuff.style.trasnform = "";
-    
+
         setIsClicked(false);
       }
       // Swipe down fast, move the whole tuple

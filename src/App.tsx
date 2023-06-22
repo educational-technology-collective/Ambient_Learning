@@ -6,7 +6,6 @@ import {
   IonTabBar,
   setupIonicReact,
   IonTabButton,
-  IonIcon,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { TbHomeEdit } from "react-icons/tb";
@@ -34,7 +33,6 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
-import { radio, save } from "ionicons/icons";
 import { cardCollection } from "./components/exampleData";
 setupIonicReact({
   swipeBackEnabled: false,
@@ -62,9 +60,12 @@ const App: React.FC = () => {
   const [isShake, setShake] = useState(false);
 
   // Handler that set the card-stacker back without shaking
-  const handleShake= () => {
+  const handleShake = () => {
+    // Set Shake to be true. Enables visual shaking and modal
     setShake(true);
-    setTimeout(() => setShake(false), 1600);
+
+    // Set Timeout of 2.2 seconds(consistent with animation time)
+    setTimeout(() => setShake(false), 2200);
   };
 
   // Logic to Move On to Next Card
@@ -90,7 +91,6 @@ const App: React.FC = () => {
       }
       // Vibration of device
       Haptics.vibrate({ duration: 500 });
-      
 
       // Visual Vibration
       handleShake();
@@ -128,7 +128,6 @@ const App: React.FC = () => {
                   isShake={isShake}
                   swipeNextCard={swipeNextCard}
                   swipeOneMoreCard={swipeOneMoreCard}
-                
                 />
               )}
             />
@@ -141,12 +140,12 @@ const App: React.FC = () => {
             <IonTabButton tab="home" href="/home" className="icons">
               <TbHomeEdit size="3em" />
             </IonTabButton>
-            <IonTabButton className="icons">
+            {/* <IonTabButton className="icons">
               <IonIcon icon={save}></IonIcon>
             </IonTabButton>
             <IonTabButton className="icons">
               <IonIcon icon={radio}></IonIcon>
-            </IonTabButton>
+            </IonTabButton> */}
           </IonTabBar>
         </IonTabs>
       </IonReactRouter>
