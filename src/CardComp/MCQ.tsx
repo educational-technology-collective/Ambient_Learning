@@ -1,6 +1,6 @@
 import { IonText } from "@ionic/react";
 import Choices from "../MCQComponents/Choices";
-import "../MCQComponents/MCQCard.css";
+import "./Card.css";
 
 const MCQ: React.FC<{
   obj: flashCard;
@@ -10,13 +10,12 @@ const MCQ: React.FC<{
 }> = ({ obj, clicked, setClickStatus, setCorrectStatus }) => {
   const question = obj.content.question;
   const choice = obj.content.answer;
+  const textStyle = !clicked
+    ? "card-text front-text mcqquestion"
+    : "card-text back-text mcqquestion";
   return (
     <>
-      <IonText
-        className={!clicked ? "mcqquestion-text" : "mcqquestion-text-back"}
-      >
-        {question}
-      </IonText>
+      <IonText className={textStyle}>{question}</IonText>
       <Choices
         answer={choice}
         setClickStatus={setClickStatus}

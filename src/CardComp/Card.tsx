@@ -1,10 +1,10 @@
 import { IonCard, IonCardContent, createGesture } from "@ionic/react";
 import { useRef, useState, useEffect } from "react";
-
+import './Card.css'
 import FrontIndicator from "../components/FrontIndicator";
 import BackIndicator from "../components/BackIndicator";
-import MCQ from "../FlashCardComp/MCQ";
-import QA from "../FlashCardComp/QA";
+import MCQ from "./MCQ";
+import QA from "./QA";
 const Card: React.FC<{
   obj: flashCard;
   tupleIndex: number;
@@ -12,9 +12,6 @@ const Card: React.FC<{
   oneMore: (tupleIndex: number) => void;
   refTuple: React.RefObject<HTMLInputElement>;
 }> = ({ obj, tupleIndex, moveOn, oneMore, refTuple }) => {
-
-  
-
   const ref = useRef<HTMLInputElement>(null);
 
   // This isClicked is for the tap of the card
@@ -60,7 +57,19 @@ const Card: React.FC<{
     setCorrect(true);
   };
 
-  const cardComp = obj.type === 'q' ? <QA obj={obj} /> :  <MCQ obj={obj} clicked={clicked} setClickStatus={setClickStatus} setCorrectStatus={setCorrectStatus} />
+  const cardComp =
+    obj.type === "q" ? (
+      <QA obj={obj} />
+    ) : (
+      <MCQ
+        obj={obj}
+        clicked={clicked}
+        setClickStatus={setClickStatus}
+        setCorrectStatus={setCorrectStatus}
+      />
+    );
+
+  const cardContentStyle = obj.type === 'q' ? 'card-content qacard-content' : 'card-content mcqcard-content';
 
   // Opacity State Variables
   const [negativeOpacity, setNegOp] = useState(0);
@@ -275,13 +284,13 @@ const Card: React.FC<{
   };
 
   return (
-    <div className="mcqcard-wrapper" ref={ref}>
+    <div className="card-wrapper" ref={ref}>
       <IonCard
-        className="mcqcard-container"
+        className="card-container"
         onClick={clickHandler}
         disabled={isClicked}
       >
-        <IonCardContent className="mcqcard-content" style={style}>
+        <IonCardContent className={cardContentStyle} style={style}>
           {/* Front Indicator */}
           <FrontIndicator nomoreOpacity={nomoreOpacity} />
 

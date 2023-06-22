@@ -4,7 +4,7 @@ import "./QACard.css";
 import "../components/Indicators";
 import FrontIndicator from "../components/FrontIndicator";
 import BackIndicator from "../components/BackIndicator";
-import QA from "../FlashCardComp/QA";
+import QA from "../CardComp/QA";
 
 const QACard: React.FC<{
   obj: flashCard;

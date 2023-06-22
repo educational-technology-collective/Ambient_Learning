@@ -1,5 +1,5 @@
 import { IonText } from "@ionic/react";
-import '../QAComponents/QACard.css'
+import './Card.css'
 
 const QA : React.FC<{obj: flashCard}> = ({obj}) => {
   const question = obj.content.question;
@@ -7,10 +7,10 @@ const QA : React.FC<{obj: flashCard}> = ({obj}) => {
     return(
       <>
         {/* Front QuestionText */}
-        <IonText className="qaquestion-text">{question}</IonText>
+        <IonText className="card-text front-text">{question}</IonText>
       {/* Back AnswerText */}
-      <IonText className="qabackquestion-text">{question}</IonText>
-      <IonText className="qaanswer-text">{answer}</IonText>
+      <IonText className="card-text back-text qaquestion-back">{question}</IonText>
+      <IonText className="card-text back-text qaanswer">{answer}</IonText>
 
       </>
     )

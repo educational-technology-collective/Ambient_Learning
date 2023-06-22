@@ -4,7 +4,7 @@ import "./MCQCard.css";
 import Choices from "./Choices";
 import FrontIndicator from "../components/FrontIndicator";
 import BackIndicator from "../components/BackIndicator";
-import MCQ from "../FlashCardComp/MCQ";
+import MCQ from "../CardComp/MCQ";
 
 const MCQCard: React.FC<{
   obj: flashCard;
@@ -13,7 +13,6 @@ const MCQCard: React.FC<{
   oneMore: (tupleIndex: number) => void;
   refTuple: React.RefObject<HTMLInputElement>;
 }> = ({ obj, tupleIndex, moveOn, oneMore, refTuple }) => {
-
   const ref = useRef<HTMLInputElement>(null);
 
   // This isClicked is for the tap of the card
@@ -282,7 +281,12 @@ const MCQCard: React.FC<{
           {/* Front Indicator */}
           <FrontIndicator nomoreOpacity={nomoreOpacity} />
 
-          <MCQ obj={obj} clicked={clicked} setClickStatus={setClickStatus} setCorrectStatus={setCorrectStatus} />
+          <MCQ
+            obj={obj}
+            clicked={clicked}
+            setClickStatus={setClickStatus}
+            setCorrectStatus={setCorrectStatus}
+          />
 
           {/* Indicators For the Back Page */}
           <BackIndicator
