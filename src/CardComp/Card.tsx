@@ -70,6 +70,7 @@ const Card: React.FC<{
     setCorrect(true);
   };
 
+  // Function that set the states back
   const backHandler = () => {
     setClick(false);
     setIsClicked(false);
@@ -94,26 +95,32 @@ const Card: React.FC<{
 
   const [indicatorOpacity, setOpacity] = useState({ index: 0, value: 0 });
 
-  const handlePositiveOpacity = (detail: any) => {
-    setOpacity({ index: 2, value: detail.deltaX / 100 });
-  };
-
-  const handleNegativeOpacity = (detail: any) => {
-    setOpacity({ index: 4, value: -detail.deltaX / 100 });
-  };
-
+  // Function that gives NoMore(Brown) Indicator
   const handleNoMoreOpacity = (detail: any) => {
     setOpacity({ index: 1, value: detail.deltaY / 100 });
   };
 
+  // Function that gives Positive(Green) Indicator
+  const handlePositiveOpacity = (detail: any) => {
+    setOpacity({ index: 2, value: detail.deltaX / 100 });
+  };
+
+  // Function that gives OneMore(Blue) Indicator
   const handleOneMoreOpacity = (detail: any) => {
     setOpacity({ index: 3, value: -detail.deltaY / 100 });
   };
 
+  // Function that gives Negative(Red) Indicator
+  const handleNegativeOpacity = (detail: any) => {
+    setOpacity({ index: 4, value: -detail.deltaX / 100 });
+  };
+
+  // Function that makes all indicators disappear
   const handleShowNothing = () => {
     setOpacity({ index: 0, value: 0 });
   };
 
+  // Component Being Rendered
   return (
     <div className="card-wrapper" ref={ref}>
       <IonCard

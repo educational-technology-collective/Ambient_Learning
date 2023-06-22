@@ -211,6 +211,7 @@ const VerticalEnd = (
   }
 };
 
+// Function that manages the gesture
 export const enableGesture = (
   card: any,
   stuff: any,

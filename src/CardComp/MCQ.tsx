@@ -13,6 +13,8 @@ const MCQ: React.FC<{
   const textStyle = !clicked
     ? "card-text front-text mcq-question"
     : "card-text back-text mcq-question";
+
+  // Component Being Rendered
   return (
     <>
       <IonText className={textStyle}>{question}</IonText>

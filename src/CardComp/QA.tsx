@@ -4,6 +4,8 @@ import "./Card.css";
 const QA: React.FC<{ obj: flashCard }> = ({ obj }) => {
   const question = obj.content.question;
   const answer = obj.content.answer;
+
+  // Coponent Being Rendered
   return (
     <>
       {/* Front QuestionText */}
