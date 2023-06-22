@@ -77,15 +77,23 @@ const Card: React.FC<{
 
   const [indicatorOpacity, setOpacity] = useState({index: 0, value: 0})
 
+  const handlePositiveOpacity = (detail: any) => {
+    setOpacity({index: 2, value: detail.deltaX / 100});
+  }
+
+  const handleNegativeOpacity = (detail: any) => {
+    setOpacity({index: 4, value: -detail.deltaX / 100});
+  }
+
   // Function that Present Horizontal Indicators through opacity change
   const showHorizontalInd = (detail: any) => {
     // Swipe Right
     if (detail.deltaX > 0) {
-      setOpacity({index : 2, value: detail.deltaX / 100 });
+      handlePositiveOpacity(detail);
     }
     // Swipe Left
     else {
-      setOpacity({index : 4, value: -detail.deltaX / 100});
+      handleNegativeOpacity(detail);
     }
   };
 
