@@ -1,10 +1,10 @@
-.mcqcard-wrapper {
+.card-wrapper {
   position: absolute;
   height: 100%;
   width: 100%;
 }
 
-.mcqcard-container {
+.card-container {
   perspective: 1000px;
   display: flex;
   flex-direction: column;
@@ -14,41 +14,55 @@
   box-shadow: rgba(123, 135, 185) 0px 4px 6px;
 }
 
-.mcqcard-content {
-  transition: 0.3s;
+.card-content {
   transform-style: preserve-3d;
+  position: relative;
+  display: flex;
   justify-content: center;
+  align-items: center;
   height: 100%;
-  align-items: center;
-  display: flex;
 }
 
-.mcqquestion-text {
-  backface-visibility:hidden;
-  font-size: 2em;
-  font-weight: 900;
-  position: absolute;
-  text-align: center;
-  margin: 0 0.75rem;
-  height: 60%;
-  top: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform: rotateY(0deg);
+.qa-card-content {
+  transition: 0.6s;
 }
 
-.mcqquestion-text-back {
+.mcq-card-content {
+  transition: 0.3s;
+}
+
+.card-text {
   backface-visibility: hidden;
   font-size: 2em;
   font-weight: 900;
+  margin: 0 0.75rem;
   position: absolute;
   text-align: center;
-  margin: 0 0.75rem;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.front-text {
+  transform: rotateY(0deg);
+}
+
+.back-text {
+  transform: rotateY(180deg) translateZ(3px);
+}
+
+.qa-question-back {
+  height: 50%;
+  top: 0;
+  border-bottom: 1px dashed crimson;
+}
+
+.qa-answer {
+  height: 50%;
+  bottom: 0;
+}
+
+.mcq-question {
   height: 60%;
   top: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform: rotateY(180deg) translateZ(3px);
 }

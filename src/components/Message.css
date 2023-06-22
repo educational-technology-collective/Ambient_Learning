@@ -1,4 +1,4 @@
-.toast {
+.message {
   height: 13%;
   width: 60%;
   color: white;
@@ -12,7 +12,7 @@
   left: 20%;
   display: block;
   transition: transform 2s ease-in-out;
-  animation: toast-in-center 2.2s;
+  animation: message-in-center 2.2s;
 }
 
 .message-title {
@@ -32,7 +32,7 @@
   margin-bottom: 0.05rem;
 }
 
-@keyframes toast-in-center {
+@keyframes message-in-center {
   0% {
     opacity: 0;
   }

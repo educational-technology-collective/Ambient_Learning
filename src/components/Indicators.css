@@ -10,24 +10,15 @@
   transform: rotateY(180deg) translateZ(3px);
 }
 
-.negative {
+.back-negative {
   top: 1.2em;
   width: 50%;
-}
-
-.front-negative {
-  right: 1em;
-  rotate: 350deg;
-}
-
-.back-negative {
   left: 1em;
   rotate: 10deg;
 }
 .action-container {
-  border-style: solid;
+  border: 3px solid;
   border-radius: 10px;
-  border-width: 3px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,18 +38,9 @@
   color: #d63230;
 }
 
-.positive {
+.back-positive {
   top: 1.2em;
   width: 50%;
-  rotate: 10deg;
-}
-
-.front-positive {
-  left: 1em;
-  rotate: 10deg;
-}
-
-.back-positive {
   right: 1em;
   rotate: 350deg;
 }

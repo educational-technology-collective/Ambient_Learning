@@ -39,6 +39,7 @@ const Home: React.FC<{ finished: number; total: number }> = ({
     shadow = "wrapped-card-1";
   }
 
+  // Screen Being Rendered
   return (
     <IonPage>
       <IonHeader color="tertiary">
@@ -63,9 +64,7 @@ const Home: React.FC<{ finished: number; total: number }> = ({
                 </IonCardContent>
               </IonCard>
             ) : (
-              <IonText>
-                You are done with cards. Go touch grass, bravo!
-              </IonText>
+              <IonText>You are done with cards. Go touch grass, bravo!</IonText>
             )}
           </IonCardContent>
         </IonCard>

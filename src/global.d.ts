@@ -9,4 +9,9 @@ declare global{
       answer: any;
     };
   }
+
+  interface indicatorOp {
+    index: number,
+    value: number
+  }
 }

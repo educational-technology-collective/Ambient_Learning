@@ -1,6 +1,5 @@
 import { useRef } from "react";
-import MCQCard from "../MCQComponents/MCQCard";
-import QACard from "../QAComponents/QACard";
+import Card from "../CardComp/Card";
 import "./FlashCardList.css";
 const FlashCardList: React.FC<{
   array: any[];
@@ -18,46 +17,29 @@ const FlashCardList: React.FC<{
   swipeOneMoreCard,
 }) => {
   const refTuple = useRef<HTMLInputElement>(null);
+  const tupleBehindCard = array[array.length - 1];
   let component;
 
-  // This is to determine the type of the card being displaed below
-  component =
-    array[array.length - 1].type === "q" ? (
-      <QACard
-        obj={array[array.length - 1]}
-        key={array[array.length - 1].id}
-        tupleIndex={tupleIndex}
-        moveOn={swipeNextCard}
-        oneMore={swipeOneMoreCard}
-        refTuple={refTuple}
-      />
-    ) : (
-      <MCQCard
-        obj={array[array.length - 1]}
-        key={array[array.length - 1].id}
-        tupleIndex={tupleIndex}
-        moveOn={swipeNextCard}
-        oneMore={swipeOneMoreCard}
-        refTuple={refTuple}
-      />
-    );
+  component = (
+    <Card
+      obj={tupleBehindCard}
+      key={tupleBehindCard.id}
+      tupleIndex={tupleIndex}
+      moveOn={swipeNextCard}
+      oneMore={swipeOneMoreCard}
+      refTuple={refTuple}
+    />
+  );
+
+  // Component Being Rendered
   return (
     <div className="tuple" ref={refTuple}>
       {isFrontTuple
         ? array.map((card, index) => {
             // If the tuple is front, we display its top two cards
             if (index === tupleCounter - 1 || index === tupleCounter - 2) {
-              return card.type === "q" ? (
-                <QACard
-                  obj={card}
-                  key={card.id}
-                  tupleIndex={tupleIndex}
-                  moveOn={swipeNextCard}
-                  oneMore={swipeOneMoreCard}
-                  refTuple={refTuple}
-                />
-              ) : (
-                <MCQCard
+              return (
+                <Card
                   obj={card}
                   key={card.id}
                   tupleIndex={tupleIndex}
