@@ -5,6 +5,7 @@ import FrontIndicator from "../components/FrontIndicator";
 import BackIndicator from "../components/BackIndicator";
 import MCQ from "./MCQ";
 import QA from "./QA";
+import { showHorizontalInd } from "./Gesture";
 const Card: React.FC<{
   obj: flashCard;
   tupleIndex: number;
@@ -97,24 +98,14 @@ const Card: React.FC<{
     setOpacity({index: 0, value: 0});
   }
 
-  // Function that Present Horizontal Indicators through opacity change
-  const showHorizontalInd = (detail: any) => {
-    // Swipe Right
-    if (detail.deltaX > 0) {
-      handlePositiveOpacity(detail);
-    }
-    // Swipe Left
-    else {
-      handleNegativeOpacity(detail);
-    }
-  };
+  
 
   // Horizontal Swiping Function
   const HorizontalMove = (detail: any, stuff: any) => {
     stuff.style.transform = `translateX(${detail.deltaX}px) rotate(${
       detail.deltaX / 20
     }deg)`;
-    showHorizontalInd(detail);
+    showHorizontalInd(detail, handleNegativeOpacity, handlePositiveOpacity);
   };
 
   // Horizontal Swipe End Function Determination
