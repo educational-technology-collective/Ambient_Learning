@@ -13,14 +13,10 @@
   left: 20%;
   opacity: 0;
   transition: transform 2s ease-in-out;
-  display: none;
- 
-}
-
-.toast-animate{
   display: block;
   animation: toast-in-center 2s;
 }
+
 
 .message-title{
   font-weight: bold;

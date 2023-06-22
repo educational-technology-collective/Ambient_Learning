@@ -4,7 +4,7 @@ import { alertCircleOutline } from "ionicons/icons";
 
 const Message: React.FC = () => {
   return (
-    <div className='toast toast-animate'>
+    <div className='toast'>
       <IonIcon
         icon={alertCircleOutline}
         style={{
