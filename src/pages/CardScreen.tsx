@@ -19,7 +19,6 @@ const CardScreen: React.FC<{
   cardCol: any[];
   swipeNextCard: (tupleIndex: number) => void;
   swipeOneMoreCard: (tupleIndex: number) => void;
- 
 }> = ({
   finished,
   total,
@@ -29,9 +28,10 @@ const CardScreen: React.FC<{
   cardCol,
   swipeNextCard,
   swipeOneMoreCard,
- 
 }) => {
-  const stackClass = isShake ? 'card-stacker card-stacker-animate' : 'card-stacker'
+  const stackClass = isShake
+    ? "card-stacker card-stacker-animate"
+    : "card-stacker";
   return (
     <IonPage>
       <IonHeader color="tertiary">
@@ -57,7 +57,6 @@ const CardScreen: React.FC<{
                   swipeOneMoreCard={swipeOneMoreCard}
                   tupleIndex={index}
                   tupleCounter={tupleCounter}
-                
                 />
               );
             }
@@ -72,12 +71,11 @@ const CardScreen: React.FC<{
                   swipeOneMoreCard={swipeOneMoreCard}
                   tupleIndex={index}
                   tupleCounter={tupleCounter}
-               
                 />
               );
             }
           })}
-          {isShake ? <Message/> : null}
+          {isShake ? <Message /> : null}
         </div>
       </IonContent>
     </IonPage>

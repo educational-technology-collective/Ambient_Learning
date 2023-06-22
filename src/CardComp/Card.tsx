@@ -1,6 +1,6 @@
 import { IonCard, IonCardContent, createGesture } from "@ionic/react";
 import { useRef, useState, useEffect } from "react";
-import './Card.css'
+import "./Card.css";
 import FrontIndicator from "../components/FrontIndicator";
 import BackIndicator from "../components/BackIndicator";
 import MCQ from "./MCQ";
@@ -69,7 +69,10 @@ const Card: React.FC<{
       />
     );
 
-  const cardContentStyle = obj.type === 'q' ? 'card-content qacard-content' : 'card-content mcqcard-content';
+  const cardContentStyle =
+    obj.type === "q"
+      ? "card-content qacard-content"
+      : "card-content mcqcard-content";
 
   // Opacity State Variables
   const [negativeOpacity, setNegOp] = useState(0);

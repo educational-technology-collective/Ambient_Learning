@@ -14,7 +14,7 @@
   box-shadow: rgba(123, 135, 185) 0px 4px 6px;
 }
 
-.card-content{
+.card-content {
   transform-style: preserve-3d;
   position: relative;
   display: flex;
@@ -43,7 +43,7 @@
   align-items: center;
 }
 
-.front-text{
+.front-text {
   transform: rotateY(0deg);
 }
 
@@ -51,20 +51,18 @@
   transform: rotateY(180deg) translateZ(3px);
 }
 
-.qaquestion-back{
+.qaquestion-back {
   height: 50%;
   top: 0;
   border-bottom: 1px dashed crimson;
 }
 
-.qaanswer{
+.qaanswer {
   height: 50%;
   bottom: 0;
 }
 
-.mcqquestion{
+.mcqquestion {
   height: 60%;
   top: 0;
 }
-
-
