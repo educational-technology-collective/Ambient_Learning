@@ -19,6 +19,7 @@ export const IncorrectChoice: React.FC<{
     setChosen(true);
   };
 
+  // Component Being Rendered
   return (
     <IonButton
       className={isChosen ? "incorrect-button" : "initial-button"}
@@ -44,6 +45,7 @@ export const CorrectChoice: React.FC<{
     setCorrectStatus();
   };
 
+  // Component Being Rendered
   return (
     <IonButton
       className={clicked ? "correct-button" : "initial-button"}

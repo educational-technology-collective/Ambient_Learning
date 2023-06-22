@@ -32,6 +32,8 @@ const CardScreen: React.FC<{
   const stackClass = isShake
     ? "card-stacker card-stacker-animate"
     : "card-stacker";
+
+  // Screen Being Rendered
   return (
     <IonPage>
       <IonHeader color="tertiary">

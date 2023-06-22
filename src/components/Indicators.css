@@ -10,7 +10,6 @@
   transform: rotateY(180deg) translateZ(3px);
 }
 
-
 .back-negative {
   top: 1.2em;
   width: 50%;
@@ -38,7 +37,6 @@
 .negative-text {
   color: #d63230;
 }
-
 
 .back-positive {
   top: 1.2em;

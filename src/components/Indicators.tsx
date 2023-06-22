@@ -1,7 +1,6 @@
 import { IonText } from "@ionic/react";
 import "./Indicators.css";
 
-
 export const FrontNoMoreIndicator: React.FC<{ nomoreOpacity: number }> = ({
   nomoreOpacity,
 }) => {

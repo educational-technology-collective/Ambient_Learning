@@ -31,6 +31,7 @@ const FlashCardList: React.FC<{
     />
   );
 
+  // Component Being Rendered
   return (
     <div className="tuple" ref={refTuple}>
       {isFrontTuple
