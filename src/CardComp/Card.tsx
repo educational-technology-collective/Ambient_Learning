@@ -85,6 +85,18 @@ const Card: React.FC<{
     setOpacity({index: 4, value: -detail.deltaX / 100});
   }
 
+  const handleNoMoreOpacity = (detail : any) => {
+    setOpacity({index: 1, value: detail.deltaY / 100});
+  }
+
+  const handleOneMoreOpacity = (detail: any) => {
+    setOpacity({index: 3, value: -detail.deltaY / 100});
+  }
+
+  const handleShowNothing = () => {
+    setOpacity({index: 0, value: 0});
+  }
+
   // Function that Present Horizontal Indicators through opacity change
   const showHorizontalInd = (detail: any) => {
     // Swipe Right
@@ -133,7 +145,7 @@ const Card: React.FC<{
     // Not Swiping Enough. Reset the Card to its position
     else {
       stuff.style.transform = "";
-      setOpacity({index: 0, value: 0});
+      handleShowNothing();
     }
   };
 
@@ -143,23 +155,22 @@ const Card: React.FC<{
     if (!isClicked) {
       // Swipe Down to Show No More Card
       if (detail.deltaY > 0) {
-        setOpacity({index: 1, value: detail.deltaY / 100});
-        
+       handleNoMoreOpacity(detail);
       }
       // Swipe Up will show nothing
       else {
-        setOpacity({index: 0, value: 0});
+        handleShowNothing();
       }
     }
     // After Clicking
     else {
       // Swipe Up will show One More Card
       if (detail.deltaY < 0) {
-        setOpacity({index: 3, value: -detail.deltaY / 100});
+        handleOneMoreOpacity(detail);
       }
       // Swipe Down will show no more card only if correct
       else {
-        setOpacity({index: 1, value: detail.deltaY / 100});
+        handleNoMoreOpacity(detail);
       }
     }
   };
@@ -212,7 +223,7 @@ const Card: React.FC<{
       // Reset
       else {
         stuff.style.transform = "";
-        setOpacity({index: 0, value: 0});
+        handleShowNothing();
       }
     }
     // After clicking
@@ -253,7 +264,7 @@ const Card: React.FC<{
       else {
         card.style.transform = "";
         stuff.style.transform = "";
-        setOpacity({index: 0, value: 0});
+        handleShowNothing();
       }
     }
   };
