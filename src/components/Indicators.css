@@ -10,20 +10,16 @@
   transform: rotateY(180deg) translateZ(3px);
 }
 
-.negative {
-  top: 1.2em;
-  width: 50%;
-}
-
 
 .back-negative {
+  top: 1.2em;
+  width: 50%;
   left: 1em;
   rotate: 10deg;
 }
 .action-container {
-  border-style: solid;
+  border: 3px solid;
   border-radius: 10px;
-  border-width: 3px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,14 +39,10 @@
   color: #d63230;
 }
 
-.positive {
-  top: 1.2em;
-  width: 50%;
-  rotate: 10deg;
-}
-
 
 .back-positive {
+  top: 1.2em;
+  width: 50%;
   right: 1em;
   rotate: 350deg;
 }
