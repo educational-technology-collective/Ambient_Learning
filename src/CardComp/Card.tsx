@@ -74,23 +74,18 @@ const Card: React.FC<{
       ? "card-content qacard-content"
       : "card-content mcqcard-content";
 
-  // Opacity State Variables
-  const [negativeOpacity, setNegOp] = useState(0);
-  const [positiveOpacity, setPosOp] = useState(0);
-  const [onemoreOpacity, setOneMoreOp] = useState(0);
-  const [nomoreOpacity, setNoMoreOp] = useState(0);
+
+  const [indicatorOpacity, setOpacity] = useState({index: 0, value: 0})
 
   // Function that Present Horizontal Indicators through opacity change
   const showHorizontalInd = (detail: any) => {
     // Swipe Right
     if (detail.deltaX > 0) {
-      setNegOp(0);
-      setPosOp(detail.deltaX / 100);
+      setOpacity({index : 2, value: detail.deltaX / 100 });
     }
     // Swipe Left
     else {
-      setPosOp(0);
-      setNegOp(-detail.deltaX / 100);
+      setOpacity({index : 4, value: -detail.deltaX / 100});
     }
   };
 
@@ -130,8 +125,7 @@ const Card: React.FC<{
     // Not Swiping Enough. Reset the Card to its position
     else {
       stuff.style.transform = "";
-      setNegOp(0);
-      setPosOp(0);
+      setOpacity({index: 0, value: 0});
     }
   };
 
@@ -141,26 +135,23 @@ const Card: React.FC<{
     if (!isClicked) {
       // Swipe Down to Show No More Card
       if (detail.deltaY > 0) {
-        setOneMoreOp(0);
-        setNoMoreOp(detail.deltaY / 100);
+        setOpacity({index: 1, value: detail.deltaY / 100});
+        
       }
       // Swipe Up will show nothing
       else {
-        setNoMoreOp(0);
-        setOneMoreOp(0);
+        setOpacity({index: 0, value: 0});
       }
     }
     // After Clicking
     else {
       // Swipe Up will show One More Card
       if (detail.deltaY < 0) {
-        setNoMoreOp(0);
-        setOneMoreOp(-detail.deltaY / 100);
+        setOpacity({index: 3, value: -detail.deltaY / 100});
       }
       // Swipe Down will show no more card only if correct
       else {
-        setOneMoreOp(0);
-        setNoMoreOp(detail.deltaY / 100);
+        setOpacity({index: 1, value: detail.deltaY / 100});
       }
     }
   };
@@ -213,8 +204,7 @@ const Card: React.FC<{
       // Reset
       else {
         stuff.style.transform = "";
-        setNoMoreOp(0);
-        setOneMoreOp(0);
+        setOpacity({index: 0, value: 0});
       }
     }
     // After clicking
@@ -255,8 +245,7 @@ const Card: React.FC<{
       else {
         card.style.transform = "";
         stuff.style.transform = "";
-        setNoMoreOp(0);
-        setOneMoreOp(0);
+        setOpacity({index: 0, value: 0});
       }
     }
   };
@@ -295,16 +284,12 @@ const Card: React.FC<{
       >
         <IonCardContent className={cardContentStyle} style={style}>
           {/* Front Indicator */}
-          <FrontIndicator nomoreOpacity={nomoreOpacity} />
+          <FrontIndicator indicatorOpacity={indicatorOpacity} />
 
           {cardComp}
-
           {/* Indicators For the Back Page */}
           <BackIndicator
-            negativeOpacity={negativeOpacity}
-            positiveOpacity={positiveOpacity}
-            onemoreOpacity={onemoreOpacity}
-            nomoreOpacity={nomoreOpacity}
+            indicatorOpacity={indicatorOpacity}
           />
         </IonCardContent>
       </IonCard>

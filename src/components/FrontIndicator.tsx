@@ -1,7 +1,10 @@
 import { FrontNoMoreIndicator } from "./Indicators";
 const FrontIndicator: React.FC<{
-  nomoreOpacity: number;
-}> = ({ nomoreOpacity }) => {
+  indicatorOpacity: indicatorOp
+}> = ({ indicatorOpacity }) => {
+  const index = indicatorOpacity.index;
+  const value = indicatorOpacity.value;
+  const nomoreOpacity = index === 1 ? value: 0;
   return (
     <>
       {/* Front Nomore */}

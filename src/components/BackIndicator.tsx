@@ -6,24 +6,34 @@ import {
 } from "./Indicators";
 
 const BackIndicator: React.FC<{
-  negativeOpacity: number;
-  positiveOpacity: number;
-  onemoreOpacity: number;
-  nomoreOpacity: number;
-}> = ({ negativeOpacity, positiveOpacity, onemoreOpacity, nomoreOpacity }) => {
+  indicatorOpacity: indicatorOp
+}> = ({ indicatorOpacity }) => {
+
+  const index = indicatorOpacity.index;
+  const value = indicatorOpacity.value;
+
+  const nomoreOpacity = index === 1 ? value : 0;
+
+  const positiveOpacity = index === 2 ? value : 0;
+
+  const onemoreOpacity = index === 3 ? value: 0;
+
+  const negativeOpacity = index === 4 ? value : 0;
+
   return (
     <>
-      {/* Back Negative */}
-      <BackNegativeIndicator negativeOpacity={negativeOpacity} />
+    {/* Back NoMore */}
+    <BackNoMoreIndicator nomoreOpacity={nomoreOpacity} />
 
-      {/* Back Positive */}
-      <BackPositiveIndicator positiveOpacity={positiveOpacity} />
-
+    {/* Back Positive */}
+    <BackPositiveIndicator positiveOpacity={positiveOpacity} />
+   
       {/* Back OneMore */}
       <BackOneMoreIndicator onemoreOpacity={onemoreOpacity} />
 
-      {/* Back NoMore */}
-      <BackNoMoreIndicator nomoreOpacity={nomoreOpacity} />
+ {/* Back Negative */}
+ <BackNegativeIndicator negativeOpacity={negativeOpacity} />
+      
     </>
   );
 };
