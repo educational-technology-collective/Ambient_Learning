@@ -34,7 +34,6 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
-import { radio, save } from "ionicons/icons";
 import { cardCollection } from "./components/exampleData";
 setupIonicReact({
   swipeBackEnabled: false,
@@ -64,7 +63,7 @@ const App: React.FC = () => {
   // Handler that set the card-stacker back without shaking
   const handleShake= () => {
     setShake(true);
-    setTimeout(() => setShake(false), 2100);
+    setTimeout(() => setShake(false), 2000);
   };
 
   // Logic to Move On to Next Card
