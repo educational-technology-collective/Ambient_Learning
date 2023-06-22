@@ -11,8 +11,8 @@ const MCQCard: React.FC<{
   moveOn: (tupleIndex: number) => void;
   oneMore: (tupleIndex: number) => void;
   refTuple: React.RefObject<HTMLInputElement>;
-  setClassBack: () => void;
-}> = ({ obj, tupleIndex, moveOn, oneMore, refTuple, setClassBack }) => {
+ 
+}> = ({ obj, tupleIndex, moveOn, oneMore, refTuple }) => {
   const question = obj.content.question;
   const choices = obj.content.answer;
 
@@ -66,6 +66,7 @@ const MCQCard: React.FC<{
   const [positiveOpacity, setPosOp] = useState(0);
   const [onemoreOpacity, setOneMoreOp] = useState(0);
   const [nomoreOpacity, setNoMoreOp] = useState(0);
+
 
   // Function that Present Horizontal Indicators through opacity change
   const showHorizontalInd = (detail: any) => {
@@ -213,7 +214,7 @@ const MCQCard: React.FC<{
 
         // Set all the style/className/isClicked back
         stuff.style.transform = "";
-        setClassBack();
+     
         setClick(false);
         setIsClicked(false);
       }
@@ -224,7 +225,7 @@ const MCQCard: React.FC<{
 
         // Set all the style/className/isClicked back
         stuff.style.transform = "";
-        setClassBack();
+       
         setClick(false);
         setIsClicked(false);
       }

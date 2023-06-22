@@ -59,11 +59,12 @@ const App: React.FC = () => {
   );
 
   // Card-Stacker Visual Effect
-  const [cardStackClass, setClass] = useState("card-stacker");
+  const [isShake, setShake] = useState(false);
 
   // Handler that set the card-stacker back without shaking
-  const setClassBack = () => {
-    setClass("card-stacker");
+  const handleShake= () => {
+    setShake(true);
+    setTimeout(() => setShake(false), 1600);
   };
 
   // Logic to Move On to Next Card
@@ -89,9 +90,10 @@ const App: React.FC = () => {
       }
       // Vibration of device
       Haptics.vibrate({ duration: 500 });
+      
 
       // Visual Vibration
-      setClass("card-stacker-animate");
+      handleShake();
       setFinished((prevFinished) => prevFinished + 1);
       setCounter((prevCounter) => prevCounter - 1);
     } else {
@@ -123,10 +125,10 @@ const App: React.FC = () => {
                   counter={counter}
                   tupleCounter={tupleCounter}
                   cardCol={cardCol}
-                  cardStackClass={cardStackClass}
+                  isShake={isShake}
                   swipeNextCard={swipeNextCard}
                   swipeOneMoreCard={swipeOneMoreCard}
-                  setClassBack={setClassBack}
+                
                 />
               )}
             />

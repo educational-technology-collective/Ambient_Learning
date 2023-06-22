@@ -11,8 +11,8 @@ const QACard: React.FC<{
   moveOn: (tupleIndex: number) => void;
   oneMore: (tupleIndex: number) => void;
   refTuple: React.RefObject<HTMLInputElement>;
-  setClassBack: () => void;
-}> = ({ obj, tupleIndex, moveOn, oneMore, refTuple, setClassBack }) => {
+  
+}> = ({ obj, tupleIndex, moveOn, oneMore, refTuple }) => {
   const [isClicked, setIsClicked] = useState(false);
   const style = isClicked
     ? { transform: "rotateY(180deg)", background: "rgba(251,255,236,1)" }
@@ -32,6 +32,8 @@ const QACard: React.FC<{
   const oneMoreTimeOut = () => {
     oneMore(tupleIndex);
   };
+
+  
 
   const ref = useRef<HTMLInputElement>(null);
 
@@ -182,8 +184,9 @@ const QACard: React.FC<{
         setTimeout(oneMoreTimeOut, 100);
 
         // Set all the style/className/isClicked back
+       
         stuff.style.transform = "";
-        setClassBack();
+    
         setIsClicked(false);
       }
       // Swipe Up enough, move the top card
@@ -193,7 +196,7 @@ const QACard: React.FC<{
 
         // Set all the style/className/isClicked back
         stuff.style.trasnform = "";
-        setClassBack();
+    
         setIsClicked(false);
       }
       // Swipe down fast, move the whole tuple

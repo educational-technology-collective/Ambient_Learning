@@ -8,28 +8,30 @@ import {
 import "./CardScreen.css";
 import React from "react";
 import FlashCardList from "../FlashCardComp/FlashCardList";
+import Message from "../components/Message";
 
 const CardScreen: React.FC<{
   finished: number;
   total: number;
   counter: number;
   tupleCounter: number;
-  cardStackClass: string;
+  isShake: boolean;
   cardCol: any[];
   swipeNextCard: (tupleIndex: number) => void;
   swipeOneMoreCard: (tupleIndex: number) => void;
-  setClassBack: () => void;
+ 
 }> = ({
   finished,
   total,
   counter,
   tupleCounter,
-  cardStackClass,
+  isShake,
   cardCol,
   swipeNextCard,
   swipeOneMoreCard,
-  setClassBack,
+ 
 }) => {
+  const stackClass = isShake ? 'card-stacker card-stacker-animate' : 'card-stacker'
   return (
     <IonPage>
       <IonHeader color="tertiary">
@@ -41,7 +43,7 @@ const CardScreen: React.FC<{
       </IonHeader>
 
       <IonContent className="page-content" scrollY={false}>
-        <div className={cardStackClass}>
+        <div className={stackClass}>
           {/* We display two tuples at one time */}
           {cardCol.map((array, index) => {
             // If the tuple is displayed on top
@@ -55,7 +57,7 @@ const CardScreen: React.FC<{
                   swipeOneMoreCard={swipeOneMoreCard}
                   tupleIndex={index}
                   tupleCounter={tupleCounter}
-                  setClassBack={setClassBack}
+                
                 />
               );
             }
@@ -70,11 +72,12 @@ const CardScreen: React.FC<{
                   swipeOneMoreCard={swipeOneMoreCard}
                   tupleIndex={index}
                   tupleCounter={tupleCounter}
-                  setClassBack={setClassBack}
+               
                 />
               );
             }
           })}
+          {isShake ? <Message/> : null}
         </div>
       </IonContent>
     </IonPage>
