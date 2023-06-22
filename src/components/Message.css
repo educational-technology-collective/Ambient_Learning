@@ -1,4 +1,3 @@
-
 .toast {
   height: 13%;
   width: 60%;
@@ -14,21 +13,18 @@
   display: block;
   transition: transform 2s ease-in-out;
   animation: toast-in-center 2.2s;
-  
 }
 
-
-.message-title{
+.message-title {
   font-weight: bold;
   font-size: 1.5rem;
   text-align: center;
   margin-top: 0.1rem;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
-  
 }
 
-.message-text{
+.message-text {
   text-align: center;
   font-size: 1.2rem;
   font-weight: bold;
@@ -37,14 +33,14 @@
 }
 
 @keyframes toast-in-center {
- 0%{
-  opacity: 0;
- }
- 25%, 85%{
-  opacity: 0.95;
- }
- 100%{
-  opacity: 0;
- }
-	
+  0% {
+    opacity: 0;
+  }
+  25%,
+  85% {
+    opacity: 0.95;
+  }
+  100% {
+    opacity: 0;
+  }
 }

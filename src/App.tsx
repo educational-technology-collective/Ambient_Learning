@@ -6,7 +6,6 @@ import {
   IonTabBar,
   setupIonicReact,
   IonTabButton,
-  IonIcon,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { TbHomeEdit } from "react-icons/tb";
@@ -61,8 +60,11 @@ const App: React.FC = () => {
   const [isShake, setShake] = useState(false);
 
   // Handler that set the card-stacker back without shaking
-  const handleShake= () => {
+  const handleShake = () => {
+    // Set Shake to be true. Enables visual shaking and modal
     setShake(true);
+
+    // Set Timeout of 2.2 seconds(consistent with animation time)
     setTimeout(() => setShake(false), 2200);
   };
 
@@ -89,7 +91,6 @@ const App: React.FC = () => {
       }
       // Vibration of device
       Haptics.vibrate({ duration: 500 });
-      
 
       // Visual Vibration
       handleShake();
@@ -127,7 +128,6 @@ const App: React.FC = () => {
                   isShake={isShake}
                   swipeNextCard={swipeNextCard}
                   swipeOneMoreCard={swipeOneMoreCard}
-                
                 />
               )}
             />

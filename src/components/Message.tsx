@@ -1,10 +1,8 @@
-import { IonIcon } from "@ionic/react";
 import "./Message.css";
-import { alertCircleOutline } from "ionicons/icons";
 
 const Message: React.FC = () => {
   return (
-    <div className='toast'>
+    <div className="toast">
       {/* <IonIcon
         icon={alertCircleOutline}
         style={{
