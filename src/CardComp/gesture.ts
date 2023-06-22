@@ -1,4 +1,3 @@
-
 // Function that Present Horizontal Indicators through opacity change
 export const showHorizontalInd = (
   detail: any,
@@ -15,9 +14,26 @@ export const showHorizontalInd = (
   }
 };
 
+// Horizontal Swiping Function
+export const HorizontalMove = (
+  detail: any,
+  stuff: any,
+  handleNegativeOpacity: (detail : any) => void,
+  handlePositiveOpacity: (detail: any) => void
+) => {
+  stuff.style.transform = `translateX(${detail.deltaX}px) rotate(${
+    detail.deltaX / 20
+  }deg)`;
+  showHorizontalInd(detail, handleNegativeOpacity, handlePositiveOpacity);
+};
 
 // Horizontal Swipe End Function Determination
-export const HorizontalEnd = (detail: any, stuff: any, handleShowNothing: () => void, timeOutFunc : () => void) => {
+export const HorizontalEnd = (
+  detail: any,
+  stuff: any,
+  handleShowNothing: () => void,
+  timeOutFunc: () => void
+) => {
   const windowWidth = window.innerWidth;
   stuff.style.transition = "0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
 

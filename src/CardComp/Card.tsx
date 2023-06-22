@@ -5,7 +5,7 @@ import FrontIndicator from "../components/FrontIndicator";
 import BackIndicator from "../components/BackIndicator";
 import MCQ from "./MCQ";
 import QA from "./QA";
-import { HorizontalEnd, showHorizontalInd } from "./Gesture";
+import { HorizontalEnd, HorizontalMove, showHorizontalInd } from "./Gesture";
 const Card: React.FC<{
   obj: flashCard;
   tupleIndex: number;
@@ -99,14 +99,6 @@ const Card: React.FC<{
   }
 
   
-
-  // Horizontal Swiping Function
-  const HorizontalMove = (detail: any, stuff: any) => {
-    stuff.style.transform = `translateX(${detail.deltaX}px) rotate(${
-      detail.deltaX / 20
-    }deg)`;
-    showHorizontalInd(detail, handleNegativeOpacity, handlePositiveOpacity);
-  };
 
 
   // Function that shows the vertical indicators based on states
@@ -237,7 +229,7 @@ const Card: React.FC<{
         el: card,
         gestureName: "swipe-mcq-x",
         direction: "x",
-        onMove: (detail) => HorizontalMove(detail, stuff),
+        onMove: (detail) => HorizontalMove(detail, stuff, handleNegativeOpacity, handlePositiveOpacity),
         onEnd: (detail) => HorizontalEnd(detail, stuff, handleShowNothing, timeOutFunc)
       });
 
