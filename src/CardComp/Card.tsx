@@ -5,7 +5,7 @@ import FrontIndicator from "../components/FrontIndicator";
 import BackIndicator from "../components/BackIndicator";
 import MCQ from "./MCQ";
 import QA from "./QA";
-import { HorizontalEnd, HorizontalMove, VerticalEnd, VerticalMove, showHorizontalInd, showVerticalInd } from "./Gesture";
+import { enableGesture } from "./Gesture";
 const Card: React.FC<{
   obj: flashCard;
   tupleIndex: number;
@@ -44,7 +44,19 @@ const Card: React.FC<{
 
   // Allows Gesture only after user clicks an option
   useEffect(() => {
-    enableGesture();
+    enableGesture(
+      ref.current,
+      refTuple.current,
+      isClicked,
+      handleNegativeOpacity,
+      handlePositiveOpacity,
+      handleNoMoreOpacity,
+      handleOneMoreOpacity,
+      handleShowNothing,
+      backHandler,
+      timeOutFunc,
+      oneMoreTimeOut
+    );
   });
 
   const setClickStatus = () => {
@@ -61,7 +73,7 @@ const Card: React.FC<{
   const backHandler = () => {
     setClick(false);
     setIsClicked(false);
-  }
+  };
 
   const cardComp =
     obj.type === "q" ? (
@@ -80,54 +92,26 @@ const Card: React.FC<{
       ? "card-content qa-card-content"
       : "card-content mcq-card-content";
 
-
-  const [indicatorOpacity, setOpacity] = useState({index: 0, value: 0})
+  const [indicatorOpacity, setOpacity] = useState({ index: 0, value: 0 });
 
   const handlePositiveOpacity = (detail: any) => {
-    setOpacity({index: 2, value: detail.deltaX / 100});
-  }
+    setOpacity({ index: 2, value: detail.deltaX / 100 });
+  };
 
   const handleNegativeOpacity = (detail: any) => {
-    setOpacity({index: 4, value: -detail.deltaX / 100});
-  }
+    setOpacity({ index: 4, value: -detail.deltaX / 100 });
+  };
 
-  const handleNoMoreOpacity = (detail : any) => {
-    setOpacity({index: 1, value: detail.deltaY / 100});
-  }
+  const handleNoMoreOpacity = (detail: any) => {
+    setOpacity({ index: 1, value: detail.deltaY / 100 });
+  };
 
   const handleOneMoreOpacity = (detail: any) => {
-    setOpacity({index: 3, value: -detail.deltaY / 100});
-  }
+    setOpacity({ index: 3, value: -detail.deltaY / 100 });
+  };
 
   const handleShowNothing = () => {
-    setOpacity({index: 0, value: 0});
-  }
-
-
-
-  const enableGesture = () => {
-    const card = ref.current;
-    const stuff = refTuple.current;
-    if (stuff && card) {
-      const gestureX = createGesture({
-        el: card,
-        gestureName: "swipe-mcq-x",
-        direction: "x",
-        onMove: (detail) => HorizontalMove(detail, stuff, handleNegativeOpacity, handlePositiveOpacity),
-        onEnd: (detail) => HorizontalEnd(detail, stuff, handleShowNothing, timeOutFunc)
-      });
-
-      const gestureY = createGesture({
-        el: card,
-        gestureName: "swipe-mcq-y",
-        direction: "y",
-        onMove: (detail) => VerticalMove(detail, card, stuff, isClicked, handleNoMoreOpacity, handleOneMoreOpacity, handleShowNothing),
-        onEnd: (detail) => VerticalEnd(detail, card, stuff, isClicked, handleShowNothing, backHandler, timeOutFunc, oneMoreTimeOut)
-      });
-
-      gestureY.enable(true);
-      gestureX.enable(clicked);
-    }
+    setOpacity({ index: 0, value: 0 });
   };
 
   return (
@@ -143,9 +127,7 @@ const Card: React.FC<{
 
           {cardComp}
           {/* Indicators For the Back Page */}
-          <BackIndicator
-            indicatorOpacity={indicatorOpacity}
-          />
+          <BackIndicator indicatorOpacity={indicatorOpacity} />
         </IonCardContent>
       </IonCard>
     </div>

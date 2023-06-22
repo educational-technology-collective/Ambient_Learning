@@ -1,3 +1,5 @@
+import { createGesture } from "@ionic/react";
+
 // Function that Present Horizontal Indicators through opacity change
 const showHorizontalInd = (
   detail: any,
@@ -15,7 +17,7 @@ const showHorizontalInd = (
 };
 
 // Horizontal Swiping Function
-export const HorizontalMove = (
+const HorizontalMove = (
   detail: any,
   stuff: any,
   handleNegativeOpacity: (detail: any) => void,
@@ -28,7 +30,7 @@ export const HorizontalMove = (
 };
 
 // Horizontal Swipe End Function Determination
-export const HorizontalEnd = (
+const HorizontalEnd = (
   detail: any,
   stuff: any,
   handleShowNothing: () => void,
@@ -65,7 +67,7 @@ export const HorizontalEnd = (
 };
 
 // Function that shows the vertical indicators based on states
-export const showVerticalInd = (
+const showVerticalInd = (
   detail: any,
   isClicked: boolean,
   handleNoMoreOpacity: (detail: any) => void,
@@ -97,7 +99,7 @@ export const showVerticalInd = (
 };
 
 // Vertical Swiping Function
-export const VerticalMove = (
+const VerticalMove = (
   detail: any,
   card: any,
   stuff: any,
@@ -138,7 +140,7 @@ export const VerticalMove = (
 };
 
 // Vertical Swipe End Function Determination
-export const VerticalEnd = (
+const VerticalEnd = (
   detail: any,
   card: any,
   stuff: any,
@@ -206,5 +208,66 @@ export const VerticalEnd = (
       stuff.style.transform = "";
       handleShowNothing();
     }
+  }
+};
+
+export const enableGesture = (
+  card: any,
+  stuff: any,
+  isClicked: boolean,
+  handleNegativeOpacity: (detail: any) => void,
+  handlePositiveOpacity: (detail: any) => void,
+  handleNoMoreOpacity: (detail: any) => void,
+  handleOneMoreOpacity: (detail: any) => void,
+  handleShowNothing: () => void,
+  backHandler: () => void,
+  timeOutFunc: () => void,
+  oneMoreTimeOut: () => void
+) => {
+  if (stuff && card) {
+    const gestureX = createGesture({
+      el: card,
+      gestureName: "swipe-mcq-x",
+      direction: "x",
+      onMove: (detail) =>
+        HorizontalMove(
+          detail,
+          stuff,
+          handleNegativeOpacity,
+          handlePositiveOpacity
+        ),
+      onEnd: (detail) =>
+        HorizontalEnd(detail, stuff, handleShowNothing, timeOutFunc),
+    });
+
+    const gestureY = createGesture({
+      el: card,
+      gestureName: "swipe-mcq-y",
+      direction: "y",
+      onMove: (detail) =>
+        VerticalMove(
+          detail,
+          card,
+          stuff,
+          isClicked,
+          handleNoMoreOpacity,
+          handleOneMoreOpacity,
+          handleShowNothing
+        ),
+      onEnd: (detail) =>
+        VerticalEnd(
+          detail,
+          card,
+          stuff,
+          isClicked,
+          handleShowNothing,
+          backHandler,
+          timeOutFunc,
+          oneMoreTimeOut
+        ),
+    });
+
+    gestureY.enable(true);
+    gestureX.enable(isClicked);
   }
 };
