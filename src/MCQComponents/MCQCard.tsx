@@ -124,7 +124,7 @@ const MCQCard: React.FC<{
   // Function that shows the vertical indicators based on states
   const showVerticalInd = (detail: any) => {
     // Before Clicking
-    if (!clicked) {
+    if (!isClicked) {
       // Swipe Down to Show No More Card
       if (detail.deltaY > 0) {
         setOneMoreOp(0);
@@ -154,7 +154,7 @@ const MCQCard: React.FC<{
   // Vertical Swiping Function
   const VerticalMove = (detail: any, card: any, stuff: any) => {
     // Before Flipping. Move Down the Whole Tuple
-    if (!clicked) {
+    if (!isClicked) {
       stuff.style.transform = `translateY(${detail.deltaY}px) rotate(${
         detail.deltaY / 90
       }deg)`;
@@ -185,7 +185,7 @@ const MCQCard: React.FC<{
     card.style.transition = "0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
 
     // Before clicking
-    if (!clicked) {
+    if (!isClicked) {
       // Swipe Down fast, clear the tuple
       if (detail.velocityY > 0.3) {
         stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
