@@ -1,6 +1,6 @@
 
 .toast {
-  height: 12%;
+  height: 13%;
   width: 60%;
   color: white;
   padding: 0.02rem;
@@ -9,11 +9,12 @@
   box-shadow: 0rem 2px 4px gainsboro;
   border-radius: 0.4rem;
   background-color: #f0ad4e;
-  top: 45%;
+  top: 43%;
   left: 20%;
   display: block;
   transition: transform 2s ease-in-out;
-  animation: toast-in-center 2s;
+  animation: toast-in-center 2.2s;
+  
 }
 
 
@@ -21,23 +22,26 @@
   font-weight: bold;
   font-size: 1.5rem;
   text-align: center;
-  margin-top: 0.2rem;
-  margin-bottom: 0.1rem;
+  margin-top: 0.1rem;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
+  
 }
 
 .message-text{
   text-align: center;
+  font-size: 1.2rem;
   font-weight: bold;
+  margin-top: 0.1rem;
+  margin-bottom: 0.05rem;
 }
 
 @keyframes toast-in-center {
  0%{
   opacity: 0;
  }
- 25%, 75%{
-  opacity: 0.90;
+ 25%, 85%{
+  opacity: 0.95;
  }
  100%{
   opacity: 0;

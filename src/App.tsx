@@ -63,7 +63,7 @@ const App: React.FC = () => {
   // Handler that set the card-stacker back without shaking
   const handleShake= () => {
     setShake(true);
-    setTimeout(() => setShake(false), 2000);
+    setTimeout(() => setShake(false), 2200);
   };
 
   // Logic to Move On to Next Card
