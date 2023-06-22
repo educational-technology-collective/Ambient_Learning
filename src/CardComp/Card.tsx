@@ -5,7 +5,7 @@ import FrontIndicator from "../components/FrontIndicator";
 import BackIndicator from "../components/BackIndicator";
 import MCQ from "./MCQ";
 import QA from "./QA";
-import { HorizontalEnd, HorizontalMove, showHorizontalInd } from "./Gesture";
+import { HorizontalEnd, HorizontalMove, showHorizontalInd, showVerticalInd } from "./Gesture";
 const Card: React.FC<{
   obj: flashCard;
   tupleIndex: number;
@@ -101,31 +101,7 @@ const Card: React.FC<{
   
 
 
-  // Function that shows the vertical indicators based on states
-  const showVerticalInd = (detail: any) => {
-    // Before Clicking
-    if (!isClicked) {
-      // Swipe Down to Show No More Card
-      if (detail.deltaY > 0) {
-       handleNoMoreOpacity(detail);
-      }
-      // Swipe Up will show nothing
-      else {
-        handleShowNothing();
-      }
-    }
-    // After Clicking
-    else {
-      // Swipe Up will show One More Card
-      if (detail.deltaY < 0) {
-        handleOneMoreOpacity(detail);
-      }
-      // Swipe Down will show no more card only if correct
-      else {
-        handleNoMoreOpacity(detail);
-      }
-    }
-  };
+  
 
   // Vertical Swiping Function
   const VerticalMove = (detail: any, card: any, stuff: any) => {
@@ -151,7 +127,7 @@ const Card: React.FC<{
         }deg)`;
       }
     }
-    showVerticalInd(detail);
+    showVerticalInd(detail, isClicked, handleNoMoreOpacity, handleOneMoreOpacity, handleShowNothing);
   };
 
   // Vertical Swipe End Function Determination

@@ -18,7 +18,7 @@ export const showHorizontalInd = (
 export const HorizontalMove = (
   detail: any,
   stuff: any,
-  handleNegativeOpacity: (detail : any) => void,
+  handleNegativeOpacity: (detail: any) => void,
   handlePositiveOpacity: (detail: any) => void
 ) => {
   stuff.style.transform = `translateX(${detail.deltaX}px) rotate(${
@@ -61,5 +61,37 @@ export const HorizontalEnd = (
   else {
     stuff.style.transform = "";
     handleShowNothing();
+  }
+};
+
+// Function that shows the vertical indicators based on states
+export const showVerticalInd = (
+  detail: any,
+  isClicked: boolean,
+  handleNoMoreOpacity: (detail: any) => void,
+  handleOneMoreOpacity: (detail: any) => void,
+  handleShowNothing: () => void
+) => {
+  // Before Clicking
+  if (!isClicked) {
+    // Swipe Down to Show No More Card
+    if (detail.deltaY > 0) {
+      handleNoMoreOpacity(detail);
+    }
+    // Swipe Up will show nothing
+    else {
+      handleShowNothing();
+    }
+  }
+  // After Clicking
+  else {
+    // Swipe Up will show One More Card
+    if (detail.deltaY < 0) {
+      handleOneMoreOpacity(detail);
+    }
+    // Swipe Down will show no more card only if correct
+    else {
+      handleNoMoreOpacity(detail);
+    }
   }
 };
