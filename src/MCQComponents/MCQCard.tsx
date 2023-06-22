@@ -4,6 +4,7 @@ import "./MCQCard.css";
 import Choices from "./Choices";
 import FrontIndicator from "../components/FrontIndicator";
 import BackIndicator from "../components/BackIndicator";
+import MCQ from "../FlashCardComp/MCQ";
 
 const MCQCard: React.FC<{
   obj: flashCard;
@@ -284,7 +285,7 @@ const MCQCard: React.FC<{
           <FrontIndicator nomoreOpacity={nomoreOpacity} />
 
           {/* Change text and choice front/back based on whether clicked */}
-          <IonText
+          {/* <IonText
             className={!clicked ? "mcqquestion-text" : "mcqquestion-text-back"}
           >
             {question}
@@ -294,7 +295,9 @@ const MCQCard: React.FC<{
             setClickStatus={setClickStatus}
             clicked={clicked}
             setCorrectStatus={setCorrectStatus}
-          />
+          /> */}
+
+          <MCQ obj={obj} clicked={clicked} setClickStatus={setClickStatus} setCorrectStatus={setCorrectStatus} />
 
           {/* Indicators For the Back Page */}
           <BackIndicator
