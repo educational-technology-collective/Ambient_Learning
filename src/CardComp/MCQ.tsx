@@ -11,8 +11,8 @@ const MCQ: React.FC<{
   const question = obj.content.question;
   const choice = obj.content.answer;
   const textStyle = !clicked
-    ? "card-text front-text mcqquestion"
-    : "card-text back-text mcqquestion";
+    ? "card-text front-text mcq-question"
+    : "card-text back-text mcq-question";
   return (
     <>
       <IonText className={textStyle}>{question}</IonText>

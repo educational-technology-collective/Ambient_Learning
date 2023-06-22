@@ -23,11 +23,11 @@
   height: 100%;
 }
 
-.qacard-content {
+.qa-card-content {
   transition: 0.6s;
 }
 
-.mcqcard-content {
+.mcq-card-content {
   transition: 0.3s;
 }
 
@@ -51,18 +51,18 @@
   transform: rotateY(180deg) translateZ(3px);
 }
 
-.qaquestion-back {
+.qa-question-back {
   height: 50%;
   top: 0;
   border-bottom: 1px dashed crimson;
 }
 
-.qaanswer {
+.qa-answer {
   height: 50%;
   bottom: 0;
 }
 
-.mcqquestion {
+.mcq-question {
   height: 60%;
   top: 0;
 }

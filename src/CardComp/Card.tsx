@@ -71,8 +71,8 @@ const Card: React.FC<{
 
   const cardContentStyle =
     obj.type === "q"
-      ? "card-content qacard-content"
-      : "card-content mcqcard-content";
+      ? "card-content qa-card-content"
+      : "card-content mcq-card-content";
 
 
   const [indicatorOpacity, setOpacity] = useState({index: 0, value: 0})

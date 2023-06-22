@@ -9,10 +9,10 @@ const QA: React.FC<{ obj: flashCard }> = ({ obj }) => {
       {/* Front QuestionText */}
       <IonText className="card-text front-text">{question}</IonText>
       {/* Back AnswerText */}
-      <IonText className="card-text back-text qaquestion-back">
+      <IonText className="card-text back-text qa-question-back">
         {question}
       </IonText>
-      <IonText className="card-text back-text qaanswer">{answer}</IonText>
+      <IonText className="card-text back-text qa-answer">{answer}</IonText>
     </>
   );
 };
