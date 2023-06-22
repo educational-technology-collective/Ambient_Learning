@@ -5,7 +5,7 @@ import FrontIndicator from "../components/FrontIndicator";
 import BackIndicator from "../components/BackIndicator";
 import MCQ from "./MCQ";
 import QA from "./QA";
-import { showHorizontalInd } from "./Gesture";
+import { HorizontalEnd, showHorizontalInd } from "./Gesture";
 const Card: React.FC<{
   obj: flashCard;
   tupleIndex: number;
@@ -108,37 +108,6 @@ const Card: React.FC<{
     showHorizontalInd(detail, handleNegativeOpacity, handlePositiveOpacity);
   };
 
-  // Horizontal Swipe End Function Determination
-  const HorizontalEnd = (detail: any, stuff: any) => {
-    const windowWidth = window.innerWidth;
-    stuff.style.transition = "0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
-
-    // Swiping Right Quick Enough
-    if (detail.velocityX > 0.3) {
-      stuff.style.transform = `translateX(${windowWidth * 1.5}px)`;
-      setTimeout(timeOutFunc, 100);
-    }
-    // Swiping Right more than half of window length. Move Card to Right
-    else if (detail.deltaX > windowWidth / 3) {
-      stuff.style.transform = `translateX(${windowWidth * 1.5}px)`;
-      setTimeout(timeOutFunc, 100);
-    }
-    // Swiping Left Quick Enough
-    else if (detail.velocityX < -0.3) {
-      stuff.style.transform = `translateX(${windowWidth * -1.5}px)`;
-      setTimeout(timeOutFunc, 100);
-    }
-    // Swiping Left More than half of window length. Move Card to Left
-    else if (detail.deltaX < -windowWidth / 3) {
-      stuff.style.transform = `translateX(${-windowWidth * 1.5}px)`;
-      setTimeout(timeOutFunc, 100);
-    }
-    // Not Swiping Enough. Reset the Card to its position
-    else {
-      stuff.style.transform = "";
-      handleShowNothing();
-    }
-  };
 
   // Function that shows the vertical indicators based on states
   const showVerticalInd = (detail: any) => {
@@ -269,7 +238,7 @@ const Card: React.FC<{
         gestureName: "swipe-mcq-x",
         direction: "x",
         onMove: (detail) => HorizontalMove(detail, stuff),
-        onEnd: (detail) => HorizontalEnd(detail, stuff),
+        onEnd: (detail) => HorizontalEnd(detail, stuff, handleShowNothing, timeOutFunc)
       });
 
       const gestureY = createGesture({

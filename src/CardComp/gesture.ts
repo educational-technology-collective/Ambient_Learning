@@ -14,3 +14,36 @@ export const showHorizontalInd = (
     handleNegativeOpacity(detail);
   }
 };
+
+
+// Horizontal Swipe End Function Determination
+export const HorizontalEnd = (detail: any, stuff: any, handleShowNothing: () => void, timeOutFunc : () => void) => {
+  const windowWidth = window.innerWidth;
+  stuff.style.transition = "0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+
+  // Swiping Right Quick Enough
+  if (detail.velocityX > 0.3) {
+    stuff.style.transform = `translateX(${windowWidth * 1.5}px)`;
+    setTimeout(timeOutFunc, 100);
+  }
+  // Swiping Right more than half of window length. Move Card to Right
+  else if (detail.deltaX > windowWidth / 3) {
+    stuff.style.transform = `translateX(${windowWidth * 1.5}px)`;
+    setTimeout(timeOutFunc, 100);
+  }
+  // Swiping Left Quick Enough
+  else if (detail.velocityX < -0.3) {
+    stuff.style.transform = `translateX(${windowWidth * -1.5}px)`;
+    setTimeout(timeOutFunc, 100);
+  }
+  // Swiping Left More than half of window length. Move Card to Left
+  else if (detail.deltaX < -windowWidth / 3) {
+    stuff.style.transform = `translateX(${-windowWidth * 1.5}px)`;
+    setTimeout(timeOutFunc, 100);
+  }
+  // Not Swiping Enough. Reset the Card to its position
+  else {
+    stuff.style.transform = "";
+    handleShowNothing();
+  }
+};
