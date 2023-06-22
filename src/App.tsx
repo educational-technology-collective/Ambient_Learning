@@ -64,7 +64,7 @@ const App: React.FC = () => {
   // Handler that set the card-stacker back without shaking
   const handleShake= () => {
     setShake(true);
-    setTimeout(() => setShake(false), 1600);
+    setTimeout(() => setShake(false), 2100);
   };
 
   // Logic to Move On to Next Card
@@ -141,12 +141,12 @@ const App: React.FC = () => {
             <IonTabButton tab="home" href="/home" className="icons">
               <TbHomeEdit size="3em" />
             </IonTabButton>
-            <IonTabButton className="icons">
+            {/* <IonTabButton className="icons">
               <IonIcon icon={save}></IonIcon>
             </IonTabButton>
             <IonTabButton className="icons">
               <IonIcon icon={radio}></IonIcon>
-            </IonTabButton>
+            </IonTabButton> */}
           </IonTabBar>
         </IonTabs>
       </IonReactRouter>

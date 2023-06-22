@@ -19,7 +19,7 @@
 
 .toast-animate{
   display: block;
-  animation: toast-in-center 1.5s;
+  animation: toast-in-center 2s;
 }
 
 .message-title{
