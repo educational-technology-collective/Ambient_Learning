@@ -5,7 +5,7 @@ import FrontIndicator from "../components/FrontIndicator";
 import BackIndicator from "../components/BackIndicator";
 import MCQ from "./MCQ";
 import QA from "./QA";
-import { HorizontalEnd, HorizontalMove, showHorizontalInd, showVerticalInd } from "./Gesture";
+import { HorizontalEnd, HorizontalMove, VerticalEnd, VerticalMove, showHorizontalInd, showVerticalInd } from "./Gesture";
 const Card: React.FC<{
   obj: flashCard;
   tupleIndex: number;
@@ -58,6 +58,11 @@ const Card: React.FC<{
     setCorrect(true);
   };
 
+  const backHandler = () => {
+    setClick(false);
+    setIsClicked(false);
+  }
+
   const cardComp =
     obj.type === "q" ? (
       <QA obj={obj} />
@@ -98,104 +103,7 @@ const Card: React.FC<{
     setOpacity({index: 0, value: 0});
   }
 
-  
 
-
-  
-
-  // Vertical Swiping Function
-  const VerticalMove = (detail: any, card: any, stuff: any) => {
-    // Before Flipping. Move Down the Whole Tuple
-    if (!isClicked) {
-      stuff.style.transform = `translateY(${detail.deltaY}px) rotate(${
-        detail.deltaY / 90
-      }deg)`;
-    }
-    // After Flipping
-    else {
-      // Moving Down will move the whole Tuple
-      if (detail.deltaY > 0) {
-        stuff.style.transform = `translateY(${detail.deltaY}px) rotate(${
-          detail.deltaY / 90
-        }deg)`;
-      }
-      // Moving Up will only move the top card
-      else {
-        stuff.style.transform = "";
-        card.style.transform = `translateY(${detail.deltaY}px) rotate(${
-          detail.deltaY / 90
-        }deg)`;
-      }
-    }
-    showVerticalInd(detail, isClicked, handleNoMoreOpacity, handleOneMoreOpacity, handleShowNothing);
-  };
-
-  // Vertical Swipe End Function Determination
-  const VerticalEnd = (detail: any, card: any, stuff: any) => {
-    const windowHeight = window.innerHeight;
-    stuff.style.transition = "0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
-    card.style.transition = "0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
-
-    // Before clicking
-    if (!isClicked) {
-      // Swipe Down fast, clear the tuple
-      if (detail.velocityY > 0.3) {
-        stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
-        setTimeout(timeOutFunc, 100);
-      }
-      // Swipe Down enough, clear the tuple
-      else if (detail.deltaY > windowHeight / 4) {
-        stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
-        setTimeout(timeOutFunc, 100);
-      }
-      // Reset
-      else {
-        stuff.style.transform = "";
-        handleShowNothing();
-      }
-    }
-    // After clicking
-    else {
-      // Swipe Up fast, clear the top card
-      if (detail.velocityY < -0.3) {
-        card.style.transform = `translateY(${windowHeight * -1.5}px)`;
-        setTimeout(oneMoreTimeOut, 100);
-
-        // Set all the style/className/isClicked back
-        stuff.style.transform = "";
-
-        setClick(false);
-        setIsClicked(false);
-      }
-      // Swipe Up enough, clear the top card
-      else if (detail.deltaY < -windowHeight / 4) {
-        card.style.transform = `translateY(${windowHeight * -1.5}px)`;
-        setTimeout(oneMoreTimeOut, 100);
-
-        // Set all the style/className/isClicked back
-        stuff.style.transform = "";
-
-        setClick(false);
-        setIsClicked(false);
-      }
-      //  Swipe down fast, clear the tuple
-      else if (detail.velocityY > 0.3) {
-        stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
-        setTimeout(timeOutFunc, 100);
-      }
-      // Swipe down enough, clear the tuple
-      else if (detail.deltaY > windowHeight / 4) {
-        stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
-        setTimeout(timeOutFunc, 100);
-      }
-      // Reset
-      else {
-        card.style.transform = "";
-        stuff.style.transform = "";
-        handleShowNothing();
-      }
-    }
-  };
 
   const enableGesture = () => {
     const card = ref.current;
@@ -213,8 +121,8 @@ const Card: React.FC<{
         el: card,
         gestureName: "swipe-mcq-y",
         direction: "y",
-        onMove: (detail) => VerticalMove(detail, card, stuff),
-        onEnd: (detail) => VerticalEnd(detail, card, stuff),
+        onMove: (detail) => VerticalMove(detail, card, stuff, isClicked, handleNoMoreOpacity, handleOneMoreOpacity, handleShowNothing),
+        onEnd: (detail) => VerticalEnd(detail, card, stuff, isClicked, handleShowNothing, backHandler, timeOutFunc, oneMoreTimeOut)
       });
 
       gestureY.enable(true);
