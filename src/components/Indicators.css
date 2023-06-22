@@ -15,10 +15,6 @@
   width: 50%;
 }
 
-.front-negative {
-  right: 1em;
-  rotate: 350deg;
-}
 
 .back-negative {
   left: 1em;
@@ -53,10 +49,6 @@
   rotate: 10deg;
 }
 
-.front-positive {
-  left: 1em;
-  rotate: 10deg;
-}
 
 .back-positive {
   right: 1em;
