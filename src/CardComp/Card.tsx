@@ -1,18 +1,19 @@
-import { IonCard, IonText, IonCardContent, createGesture } from "@ionic/react";
+import { IonCard, IonCardContent, createGesture } from "@ionic/react";
 import { useRef, useState, useEffect } from "react";
-import "./MCQCard.css";
-import Choices from "./Choices";
+
 import FrontIndicator from "../components/FrontIndicator";
 import BackIndicator from "../components/BackIndicator";
 import MCQ from "../FlashCardComp/MCQ";
-
-const MCQCard: React.FC<{
+import QA from "../FlashCardComp/QA";
+const Card: React.FC<{
   obj: flashCard;
   tupleIndex: number;
   moveOn: (tupleIndex: number) => void;
   oneMore: (tupleIndex: number) => void;
   refTuple: React.RefObject<HTMLInputElement>;
 }> = ({ obj, tupleIndex, moveOn, oneMore, refTuple }) => {
+
+  
 
   const ref = useRef<HTMLInputElement>(null);
 
@@ -58,6 +59,8 @@ const MCQCard: React.FC<{
   const setCorrectStatus = () => {
     setCorrect(true);
   };
+
+  const cardComp = obj.type === 'q' ? <QA obj={obj} /> :  <MCQ obj={obj} clicked={clicked} setClickStatus={setClickStatus} setCorrectStatus={setCorrectStatus} />
 
   // Opacity State Variables
   const [negativeOpacity, setNegOp] = useState(0);
@@ -282,7 +285,7 @@ const MCQCard: React.FC<{
           {/* Front Indicator */}
           <FrontIndicator nomoreOpacity={nomoreOpacity} />
 
-          <MCQ obj={obj} clicked={clicked} setClickStatus={setClickStatus} setCorrectStatus={setCorrectStatus} />
+          {cardComp}
 
           {/* Indicators For the Back Page */}
           <BackIndicator
@@ -297,4 +300,4 @@ const MCQCard: React.FC<{
   );
 };
 
-export default MCQCard;
+export default Card;

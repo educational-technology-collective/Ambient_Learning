@@ -4,6 +4,7 @@ import "./QACard.css";
 import "../components/Indicators";
 import FrontIndicator from "../components/FrontIndicator";
 import BackIndicator from "../components/BackIndicator";
+import QA from "../FlashCardComp/QA";
 
 const QACard: React.FC<{
   obj: flashCard;
@@ -255,12 +256,7 @@ const QACard: React.FC<{
           {/* Indicators For the Front Page */}
           <FrontIndicator nomoreOpacity={nomoreOpacity} />
 
-          {/* Front QuestionText */}
-          <IonText className="qaquestion-text">{question}</IonText>
-
-          {/* Back AnswerText */}
-          <IonText className="qabackquestion-text">{question}</IonText>
-          <IonText className="qaanswer-text">{answer}</IonText>
+          <QA obj={obj} />
 
           {/* Indicators For the Back Page */}
           <BackIndicator
