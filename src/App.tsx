@@ -146,24 +146,24 @@ const App: React.FC = () => {
               <TbHomeEdit size="3em" />
             </IonTabButton>
               
-            <IonTabButton tab='card' href='/cardscreen'>
-              <div className = 'hand'>
+            <IonTabButton tab='card' href='/cardscreen' className='hand spread'>
+              <>
                 <div className='tab-card suitdiamonds'>
-                  <p>{total - finished}</p>
+                 
                 </div>
 
                 <div className='tab-card suithearts'>
-                  <p>{total - finished}</p>
+                  
                 </div>
 
                 <div className='tab-card suitclubs'>
-                  <p>{total - finished}</p>
+                 
                 </div>
 
                 <div className='tab-card suitspades'>
-                  <p>{total - finished}</p>
+                <p>{total - finished}</p>
                 </div>
-              </div>
+              </>
             </IonTabButton>
             
             {/* <IonTabButton className="icons">
