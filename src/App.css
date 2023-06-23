@@ -12,7 +12,7 @@
   padding: 0;
   position: absolute;
   left: 45%;
-  top:0.05rem;
+  top: 0.05rem;
   float: left;
   width: 1.9rem;
   height: 2.8rem;
@@ -26,7 +26,7 @@
   transition: top 0.3s ease, left 0.3s ease;
 }
 
-.tab-card p{
+.tab-card p {
   color: brown;
   font-size: 160%;
   font-weight: bold;
@@ -37,51 +37,44 @@
   --color-selected: aquamarine;
 }
 
-.hand{
+.hand {
   margin: 0.2rem;
 }
 
-.hand:before, .hand::after{
-  content: '';
+.hand:before,
+.hand::after {
+  content: "";
   display: table;
 }
 
 .hand:after {
-  clear:both;
+  clear: both;
 }
 
-.card:hover {
-  cursor: pointer;
-}
-
-.spread{
+.spread {
   position: relative;
   width: 2.5rem;
   height: 3.2rem;
   transition: top 0.3s ease, left 0.3s ease;
 }
 
-.activate{
-  box-shadow: 1px 1px 7px rgba(0,0,0,0.4);
+.activate {
+  box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.4);
 }
 
-.first-activate{
-  
+.first-activate {
   left: 48%;
   top: 0.11rem;
   transform: rotate(10deg);
-  
 }
 
-.second-activate{
-  
+.second-activate {
   left: 45%;
   top: 0.05rem;
   transform: rotate(0deg);
 }
 
-.third-activate{
-  
+.third-activate {
   left: 42%;
   top: 0.03rem;
   transform: rotate(-10deg);

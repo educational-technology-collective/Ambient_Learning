@@ -14,9 +14,9 @@ import { useHistory } from "react-router-dom";
 import { cardCollection } from "../components/exampleData";
 import { diamond } from "ionicons/icons";
 
-const Home: React.FC<{ cardsLeft: number, handleCardScreen: () => void }> = ({
+const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
   cardsLeft,
-  handleCardScreen
+  handleCardScreen,
 }) => {
   const history = useHistory();
 

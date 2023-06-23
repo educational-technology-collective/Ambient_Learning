@@ -1,23 +1,20 @@
-import { Redirect, Route, useLocation } from "react-router-dom";
+import { Redirect, Route } from "react-router-dom";
 import {
   IonApp,
   IonRouterOutlet,
   IonTabs,
   IonTabBar,
-  IonCard,
-  IonCardContent,
-  IonText,
   setupIonicReact,
   IonTabButton,
-  IonFabButton,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { TbHomeEdit, TbMedal2 } from "react-icons/tb";
+import {FaMedal} from 'react-icons/fa'
 import { Haptics } from "@capacitor/haptics";
 import { useState } from "react";
 import CardScreen from "./pages/CardScreen";
 import Home from "./pages/Home";
-import './pages/Home.css'
+import "./pages/Home.css";
 import "./App.css";
 
 /* Core CSS required for Ionic components to work properly */
@@ -39,7 +36,6 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 import "./theme/variables.css";
 import { cardCollection } from "./components/exampleData";
-import { forNoAnimation } from "@react-navigation/stack/lib/typescript/src/TransitionConfigs/CardStyleInterpolators";
 setupIonicReact({
   swipeBackEnabled: false,
 });
@@ -113,37 +109,45 @@ const App: React.FC = () => {
 
   const cardsLeft = total - finished;
 
+  // State Variable used to track if the current tab is cardscreen
   const [isCardScreen, setCardScreen] = useState(false);
 
+  // Logic that determines whether to spread the cards
   let firstStyle, secondStyle, thirdStyle;
-  if(isCardScreen){
-    firstStyle = 'tab-card activate first-activate';
-    secondStyle = 'tab-card activate second-activate';
-    thirdStyle = 'tab-card activate third-activate';
-  }else{
-    firstStyle = 'tab-card';
-    secondStyle = 'tab-card';
-    thirdStyle = 'tab-card';
+  if (isCardScreen) {
+    firstStyle = "tab-card activate first-activate";
+    secondStyle = "tab-card activate second-activate";
+    thirdStyle = "tab-card activate third-activate";
+  } else {
+    firstStyle = "tab-card";
+    secondStyle = "tab-card";
+    thirdStyle = "tab-card";
   }
 
+  // Card Screen will spread the cards
   const handleCardScreen = () => {
     setCardScreen(true);
-  }
+  };
 
+  // Home Screen will fold the cards
   const handleHomeScreen = () => {
     setCardScreen(false);
-  }
+  };
 
   return (
     <IonApp>
       <IonReactRouter>
         <IonTabs>
           <IonRouterOutlet>
-            
             <Route
               exact
               path="/home"
-              render={() => <Home cardsLeft={cardsLeft} handleCardScreen={handleCardScreen}/>}
+              render={() => (
+                <Home
+                  cardsLeft={cardsLeft}
+                  handleCardScreen={handleCardScreen}
+                />
+              )}
             />
             <Route
               exact
@@ -167,36 +171,45 @@ const App: React.FC = () => {
           </IonRouterOutlet>
 
           <IonTabBar slot="bottom" className="tab-bar">
-            <IonTabButton tab="home" href="/home" className="icons" onClick={handleHomeScreen}>
+            <IonTabButton
+              tab="home"
+              href="/home"
+              className="icons"
+              onClick={handleHomeScreen}
+            >
               <TbHomeEdit size="3em" />
             </IonTabButton>
-              
-            <IonTabButton tab='card' href='/cardscreen' className='hand spread icons' onClick={handleCardScreen}>
-             {cardsLeft !== 0 ? <div className="cards">
-                {cardsLeft >= 3 ? <div className={thirdStyle}>
-               <p>{cardsLeft}</p>
-                </div> : null}
 
-                <div className={secondStyle}>
-                <p>{cardsLeft}</p> 
+            <IonTabButton
+              tab="card"
+              href="/cardscreen"
+              className="hand spread icons"
+              onClick={handleCardScreen}
+            >
+              {cardsLeft !== 0 ? (
+                <div className="cards">
+                  {cardsLeft >= 3 ? (
+                    <div className={thirdStyle}>
+                      <p>{cardsLeft}</p>
+                    </div>
+                  ) : null}
+
+                  <div className={secondStyle}>
+                    <p>{cardsLeft}</p>
+                  </div>
+
+                  {cardsLeft >= 2 ? (
+                    <div className={firstStyle}>
+                      <p> {cardsLeft}</p>
+                    </div>
+                  ) : null}
                 </div>
-
-                {cardsLeft >= 2 ? <div className={firstStyle}>
-              <p>  {cardsLeft}</p>
-                </div> : null}
-              </div> : <TbMedal2 size='3em' />}
+              ) : (
+                <FaMedal size="3em" />
+              )}
             </IonTabButton>
-            
-            {/* <IonTabButton className="icons">
-              <IonIcon icon={save}></IonIcon>
-            </IonTabButton>
-            <IonTabButton className="icons">
-              <IonIcon icon={radio}></IonIcon>
-            </IonTabButton> */}
           </IonTabBar>
-          
         </IonTabs>
-        
       </IonReactRouter>
     </IonApp>
   );
