@@ -8,14 +8,13 @@
 }
 
 .tab-card {
-  margin:0;
+  margin-top: 0.2rem;
   padding: 0;
   position: absolute;
   left: 45%;
-  
   float: left;
-  width: 2rem;
-  height: 2.9rem;
+  width: 1.9rem;
+  height: 2.8rem;
   border: 1px solid black;
   border-radius: 5px;
   background: #fff;
@@ -73,7 +72,7 @@
 .first-activate{
   
   left: 48%;
-  top: 0.15rem;
+  top: 0.1rem;
   transform: rotate(10deg);
   
 }
@@ -81,7 +80,7 @@
 .second-activate{
   
   left: 45%;
-  top: 0.12rem;
+  top: 0.05rem;
   transform: rotate(0deg);
 }
 
