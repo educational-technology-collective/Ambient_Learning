@@ -7,7 +7,80 @@
   --background: #0056d2;
 }
 
+.tab-card {
+  margin:0;
+  padding: 0;
+  position: relative;
+  float: left;
+  width: 2rem;
+  height: 2.93rem;
+  border: 1px solid black;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tab-card p{
+  
+  font-size: 160%;
+  font-weight: bold;
+}
+
 .icons {
   --color: aliceblue;
   --color-selected: aquamarine;
+}
+
+.suitdiamonds:before, .suitdiamonds:after {
+  content: "♦";
+  color: #ff0000;
+}
+ 
+.suithearts:before, .suithearts:after {
+  content: "♥";
+  color: #ff0000;
+}
+ 
+.suitclubs:before, .suitclubs:after {
+  content: "♣";
+  color: #000;
+}
+ 
+.suitspades:before, .suitspades:after {
+  content: "♠";
+  color: #000;
+}
+
+div[class*='suit']:before {
+  position: absolute;
+  font-size: 10px;
+  left: 0.01rem;
+  top: 0.01rem;
+}
+
+div[class*='suit']:after {
+  position: absolute;
+  font-size: 10px;
+  right: 0.01rem;
+  bottom: 0.01rem;
+}
+
+.hand{
+  margin: 0.2rem;
+}
+
+.hand:before, .hand::after{
+  content: '';
+  display: table;
+}
+
+.hand:after {
+  clear:both;
+}
+
+.card:hover {
+  cursor: pointer;
 }

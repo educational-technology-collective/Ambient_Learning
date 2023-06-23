@@ -4,8 +4,12 @@ import {
   IonRouterOutlet,
   IonTabs,
   IonTabBar,
+  IonCard,
+  IonCardContent,
+  IonText,
   setupIonicReact,
   IonTabButton,
+  IonFabButton,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { TbHomeEdit } from "react-icons/tb";
@@ -13,6 +17,7 @@ import { Haptics } from "@capacitor/haptics";
 import { useState } from "react";
 import CardScreen from "./pages/CardScreen";
 import Home from "./pages/Home";
+import './pages/Home.css'
 import "./App.css";
 
 /* Core CSS required for Ionic components to work properly */
@@ -140,6 +145,27 @@ const App: React.FC = () => {
             <IonTabButton tab="home" href="/home" className="icons">
               <TbHomeEdit size="3em" />
             </IonTabButton>
+              
+            <IonTabButton tab='card' href='/cardscreen'>
+              <div className = 'hand'>
+                <div className='tab-card suitdiamonds'>
+                  <p>{total - finished}</p>
+                </div>
+
+                <div className='tab-card suithearts'>
+                  <p>{total - finished}</p>
+                </div>
+
+                <div className='tab-card suitclubs'>
+                  <p>{total - finished}</p>
+                </div>
+
+                <div className='tab-card suitspades'>
+                  <p>{total - finished}</p>
+                </div>
+              </div>
+            </IonTabButton>
+            
             {/* <IonTabButton className="icons">
               <IonIcon icon={save}></IonIcon>
             </IonTabButton>
@@ -147,7 +173,9 @@ const App: React.FC = () => {
               <IonIcon icon={radio}></IonIcon>
             </IonTabButton> */}
           </IonTabBar>
+          
         </IonTabs>
+        
       </IonReactRouter>
     </IonApp>
   );
