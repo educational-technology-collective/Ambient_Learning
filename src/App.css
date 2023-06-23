@@ -8,10 +8,11 @@
 }
 
 .tab-card {
-  margin-top: 0.2rem;
+  margin-top: 0.15rem;
   padding: 0;
   position: absolute;
   left: 45%;
+  top:0.05rem;
   float: left;
   width: 1.9rem;
   height: 2.8rem;
@@ -60,11 +61,6 @@
   transition: top 0.3s ease, left 0.3s ease;
 }
 
-.spread > .tab-card {
-  
-  transition: top 0.3s ease, left 0.3s ease;
-}
-
 .activate{
   box-shadow: 1px 1px 7px rgba(0,0,0,0.4);
 }
@@ -72,7 +68,7 @@
 .first-activate{
   
   left: 48%;
-  top: 0.1rem;
+  top: 0.11rem;
   transform: rotate(10deg);
   
 }

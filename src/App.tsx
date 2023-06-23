@@ -39,6 +39,7 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 import "./theme/variables.css";
 import { cardCollection } from "./components/exampleData";
+import { forNoAnimation } from "@react-navigation/stack/lib/typescript/src/TransitionConfigs/CardStyleInterpolators";
 setupIonicReact({
   swipeBackEnabled: false,
 });
@@ -110,8 +111,10 @@ const App: React.FC = () => {
     }
   };
 
+  const cardsLeft = total - finished;
 
   const [isCardScreen, setCardScreen] = useState(false);
+
   let firstStyle, secondStyle, thirdStyle;
   if(isCardScreen){
     firstStyle = 'tab-card activate first-activate';
@@ -169,19 +172,19 @@ const App: React.FC = () => {
             </IonTabButton>
               
             <IonTabButton tab='card' href='/cardscreen' className='hand spread' onClick={handleCardScreen}>
-              <>
-                <div className={thirdStyle}>
-                  
-                </div>
+              <div className="cards">
+                {cardsLeft >= 3 ? <div className={thirdStyle}>
+               <p>{cardsLeft}</p>
+                </div> : null}
 
                 <div className={secondStyle}>
-                 
+                <p>{cardsLeft}</p> 
                 </div>
 
-                <div className={firstStyle}>
-                <p>{total - finished}</p>
-                </div>
-              </>
+                {cardsLeft >= 2 ? <div className={firstStyle}>
+              <p>  {cardsLeft}</p>
+                </div> : null}
+              </div>
             </IonTabButton>
             
             {/* <IonTabButton className="icons">
