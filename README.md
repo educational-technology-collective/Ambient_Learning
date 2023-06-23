@@ -88,7 +88,7 @@ For an **MCQ-Card**, you can tap the card without selecting any choices to flip 
 
 * ```Swipe Up```: Indicates that you want one more card of the same concept.
 
-* ```Swipe Down```: Indicates that you don't want this card to show up anymore in future reviews.
+* ```Swipe Down```: Indicates that you don't want this card to show up anymore in future reviews(because the card is poor designed or you know this fairly well).
 
 ## Contact
 Yunxuan "Haytham" Tang —— [yunxuant@umich.edu](mailto:yunxuant@umich.edu)
