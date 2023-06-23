@@ -14,14 +14,16 @@ import { useHistory } from "react-router-dom";
 import { cardCollection } from "../components/exampleData";
 import { diamond } from "ionicons/icons";
 
-const Home: React.FC<{ finished: number; total: number }> = ({
+const Home: React.FC<{ finished: number; total: number, handleCardScreen: () => void }> = ({
   finished,
   total,
+  handleCardScreen
 }) => {
   const history = useHistory();
 
   const navigateToCardScreen = () => {
     history.push("/cardscreen");
+    handleCardScreen();
   };
 
   // Determine The Box-Shadow Effect based on cards remaining

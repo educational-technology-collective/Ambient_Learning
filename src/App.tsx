@@ -1,4 +1,4 @@
-import { Redirect, Route } from "react-router-dom";
+import { Redirect, Route, useLocation } from "react-router-dom";
 import {
   IonApp,
   IonRouterOutlet,
@@ -110,15 +110,37 @@ const App: React.FC = () => {
     }
   };
 
+
+  const [isCardScreen, setCardScreen] = useState(false);
+  let firstStyle, secondStyle, thirdStyle;
+  if(isCardScreen){
+    firstStyle = 'tab-card activate first-activate';
+    secondStyle = 'tab-card activate second-activate';
+    thirdStyle = 'tab-card activate third-activate';
+  }else{
+    firstStyle = 'tab-card';
+    secondStyle = 'tab-card';
+    thirdStyle = 'tab-card';
+  }
+
+  const handleCardScreen = () => {
+    setCardScreen(true);
+  }
+
+  const handleHomeScreen = () => {
+    setCardScreen(false);
+  }
+
   return (
     <IonApp>
       <IonReactRouter>
         <IonTabs>
           <IonRouterOutlet>
+            
             <Route
               exact
               path="/home"
-              render={() => <Home finished={finished} total={total} />}
+              render={() => <Home finished={finished} total={total} handleCardScreen={handleCardScreen}/>}
             />
             <Route
               exact
@@ -142,25 +164,21 @@ const App: React.FC = () => {
           </IonRouterOutlet>
 
           <IonTabBar slot="bottom" className="tab-bar">
-            <IonTabButton tab="home" href="/home" className="icons">
+            <IonTabButton tab="home" href="/home" className="icons" onClick={handleHomeScreen}>
               <TbHomeEdit size="3em" />
             </IonTabButton>
               
-            <IonTabButton tab='card' href='/cardscreen' className='hand spread'>
+            <IonTabButton tab='card' href='/cardscreen' className='hand spread' onClick={handleCardScreen}>
               <>
-                <div className='tab-card suitdiamonds'>
-                 
-                </div>
-
-                <div className='tab-card suithearts'>
+                <div className={thirdStyle}>
                   
                 </div>
 
-                <div className='tab-card suitclubs'>
+                <div className={secondStyle}>
                  
                 </div>
 
-                <div className='tab-card suitspades'>
+                <div className={firstStyle}>
                 <p>{total - finished}</p>
                 </div>
               </>
