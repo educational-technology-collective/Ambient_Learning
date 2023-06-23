@@ -12,7 +12,7 @@ import {
   IonFabButton,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { TbHomeEdit } from "react-icons/tb";
+import { TbHomeEdit, TbMedal2 } from "react-icons/tb";
 import { Haptics } from "@capacitor/haptics";
 import { useState } from "react";
 import CardScreen from "./pages/CardScreen";
@@ -143,7 +143,7 @@ const App: React.FC = () => {
             <Route
               exact
               path="/home"
-              render={() => <Home finished={finished} total={total} handleCardScreen={handleCardScreen}/>}
+              render={() => <Home cardsLeft={cardsLeft} handleCardScreen={handleCardScreen}/>}
             />
             <Route
               exact
@@ -171,8 +171,8 @@ const App: React.FC = () => {
               <TbHomeEdit size="3em" />
             </IonTabButton>
               
-            <IonTabButton tab='card' href='/cardscreen' className='hand spread' onClick={handleCardScreen}>
-              <div className="cards">
+            <IonTabButton tab='card' href='/cardscreen' className='hand spread icons' onClick={handleCardScreen}>
+             {cardsLeft !== 0 ? <div className="cards">
                 {cardsLeft >= 3 ? <div className={thirdStyle}>
                <p>{cardsLeft}</p>
                 </div> : null}
@@ -184,7 +184,7 @@ const App: React.FC = () => {
                 {cardsLeft >= 2 ? <div className={firstStyle}>
               <p>  {cardsLeft}</p>
                 </div> : null}
-              </div>
+              </div> : <TbMedal2 size='3em' />}
             </IonTabButton>
             
             {/* <IonTabButton className="icons">

@@ -14,9 +14,8 @@ import { useHistory } from "react-router-dom";
 import { cardCollection } from "../components/exampleData";
 import { diamond } from "ionicons/icons";
 
-const Home: React.FC<{ finished: number; total: number, handleCardScreen: () => void }> = ({
-  finished,
-  total,
+const Home: React.FC<{ cardsLeft: number, handleCardScreen: () => void }> = ({
+  cardsLeft,
   handleCardScreen
 }) => {
   const history = useHistory();
@@ -29,11 +28,11 @@ const Home: React.FC<{ finished: number; total: number, handleCardScreen: () => 
   // Determine The Box-Shadow Effect based on cards remaining
   let shadow;
   //When the remaining cards are larget than or equal to 3
-  if (cardCollection.length - finished >= 3) {
+  if (cardsLeft >= 3) {
     shadow = "wrapped-card-3";
   }
   //When the remaining cards equal to 2
-  else if (cardCollection.length - finished === 2) {
+  else if (cardsLeft === 2) {
     shadow = "wrapped-card-2";
   }
   //Only one card remaining
@@ -59,10 +58,10 @@ const Home: React.FC<{ finished: number; total: number, handleCardScreen: () => 
             <IonText className="today-task">Today's Task:</IonText>
 
             {/* Determine if the cards are done */}
-            {finished !== total ? (
+            {cardsLeft !== 0 ? (
               <IonCard className={shadow} onClick={navigateToCardScreen}>
                 <IonCardContent className="wrapped-card-content">
-                  <IonText className="today-task">{total - finished}</IonText>
+                  <IonText className="today-task">{cardsLeft}</IonText>
                 </IonCardContent>
               </IonCard>
             ) : (
