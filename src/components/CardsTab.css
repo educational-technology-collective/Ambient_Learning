@@ -1,3 +1,4 @@
+/* The Main styling for the tab cards */
 .tab-card {
   margin-top: 0.15rem;
   padding: 0;
@@ -17,6 +18,7 @@
   transition: top 0.3s ease, left 0.3s ease;
 }
 
+/* Styling the number on the cards */
 .tab-card p {
   color: brown;
   font-size: 160%;
@@ -37,6 +39,7 @@
   clear: both;
 }
 
+/* Container for the 3 cards */
 .spread {
   position: relative;
   width: 2.5rem;
@@ -48,18 +51,21 @@
   box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.4);
 }
 
+/* The first one will be te rightmost card */
 .first-activate {
   left: 48%;
   top: 0.11rem;
   transform: rotate(10deg);
 }
 
+/* The second one will be the middle card */
 .second-activate {
   left: 45%;
   top: 0.05rem;
   transform: rotate(0deg);
 }
 
+/* The third on will be the leftmost card */
 .third-activate {
   left: 42%;
   top: 0.03rem;
