@@ -8,8 +8,7 @@ import {
   IonTabButton,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { TbHomeEdit, TbMedal2 } from "react-icons/tb";
-import {FaMedal} from 'react-icons/fa'
+import { TbHomeEdit } from "react-icons/tb";
 import { Haptics } from "@capacitor/haptics";
 import { useState } from "react";
 import CardScreen from "./pages/CardScreen";
@@ -36,6 +35,7 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 import "./theme/variables.css";
 import { cardCollection } from "./components/exampleData";
+import CardsTab from "./components/CardsTab";
 setupIonicReact({
   swipeBackEnabled: false,
 });
@@ -186,27 +186,7 @@ const App: React.FC = () => {
               className="hand spread icons"
               onClick={handleCardScreen}
             >
-              {cardsLeft !== 0 ? (
-                <div className="cards">
-                  {cardsLeft >= 3 ? (
-                    <div className={thirdStyle}>
-                      <p>{cardsLeft}</p>
-                    </div>
-                  ) : null}
-
-                  <div className={secondStyle}>
-                    <p>{cardsLeft}</p>
-                  </div>
-
-                  {cardsLeft >= 2 ? (
-                    <div className={firstStyle}>
-                      <p> {cardsLeft}</p>
-                    </div>
-                  ) : null}
-                </div>
-              ) : (
-                <FaMedal size="3em" />
-              )}
+              <CardsTab cardsLeft={cardsLeft} isCardScreen={isCardScreen} />
             </IonTabButton>
           </IonTabBar>
         </IonTabs>
