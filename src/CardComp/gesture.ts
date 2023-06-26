@@ -1,9 +1,9 @@
 /* *******
 
-// This file is for the swiping mechanism of the crads. Since both of the cards use
-// the same move/end logic, we have one file for them.
+This file is for the swiping mechanism of the crads. Since both of the cards use
+the same move/end logic, we have one file for them.
 
-// ******* */
+******* */
 import { createGesture } from "@ionic/react";
 
 // Function that Present Horizontal Indicators through opacity change
@@ -12,11 +12,11 @@ const showHorizontalInd = (
   handleNegativeOpacity: (detail: any) => void,
   handlePositiveOpacity: (detail: any) => void
 ) => {
-  // Swipe Right
+  // Swipe Right. Show Positive Indicators
   if (detail.deltaX > 0) {
     handlePositiveOpacity(detail);
   }
-  // Swipe Left
+  // Swipe Left. Show Negative Indicators
   else {
     handleNegativeOpacity(detail);
   }
@@ -32,6 +32,7 @@ const HorizontalMove = (
   stuff.style.transform = `translateX(${detail.deltaX}px) rotate(${
     detail.deltaX / 20
   }deg)`;
+  // Calling the function to show horizontal indicators
   showHorizontalInd(detail, handleNegativeOpacity, handlePositiveOpacity);
 };
 
@@ -93,7 +94,7 @@ const showVerticalInd = (
   }
   // After Clicking
   else {
-    // Swipe Up will show One More Card
+    // Swipe Up will show One More Card indicator
     if (detail.deltaY < 0) {
       handleOneMoreOpacity(detail);
     }
@@ -136,6 +137,7 @@ const VerticalMove = (
       }deg)`;
     }
   }
+  // Call the function to show vertical indicators
   showVerticalInd(
     detail,
     isClicked,
@@ -232,9 +234,10 @@ export const enableGesture = (
   oneMoreTimeOut: () => void
 ) => {
   if (stuff && card) {
+    // Horizontal Direction Swiping
     const gestureX = createGesture({
       el: card,
-      gestureName: "swipe-mcq-x",
+      gestureName: "swipe-x",
       direction: "x",
       onMove: (detail) =>
         HorizontalMove(
@@ -247,9 +250,10 @@ export const enableGesture = (
         HorizontalEnd(detail, stuff, handleShowNothing, timeOutFunc),
     });
 
+    // Veritical Direction Swiping
     const gestureY = createGesture({
       el: card,
-      gestureName: "swipe-mcq-y",
+      gestureName: "swipe-y",
       direction: "y",
       onMove: (detail) =>
         VerticalMove(
@@ -274,7 +278,10 @@ export const enableGesture = (
         ),
     });
 
+    // Vertical Swiping is always Enabled
     gestureY.enable(true);
+
+    // Horizontal Swiping is enabled only after tapping
     gestureX.enable(isClicked);
   }
 };

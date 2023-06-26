@@ -36,6 +36,8 @@ const CardScreen: React.FC<{
   // Screen Being Rendered
   return (
     <IonPage>
+
+      {/* Header and ToolBar */}
       <IonHeader color="tertiary">
         <IonToolbar>
           <IonTitle className="title">
