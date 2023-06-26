@@ -52,59 +52,57 @@ export const cardCollection = [
       id: 23132,
       type: "m",
       content: {
-          question: "Which of the following regex patterns will correctly match words starting with a capital letter?",
-          answer: [
-              {option: "r'[A-Za-z]+'",
-               isCorrect: false},
-              {option: "r'[A-Z][a-z]*'",
-               isCorrect: true},
-              {option: "r'[a-zA-Z]+'",
-               isCorrect: false},
-              {option: "r'[a-z][A-Z]+'",
-               isCorrect: false}
-          ]
-      }
-  },
-  {
-   id: 4,
-    type: "m",
-    content: {
-        question: "Which of the following regex patterns will correctly match names of students who received a B grade?",
+        question:
+          "Which of the following regex patterns will correctly match words starting with a capital letter?",
         answer: [
-            {option: "r'\w+\s\w+(?=: B)'",
-             isCorrect: true},
-            {option: "r'\w+\s\w+(?= B)'",
-             isCorrect: false},
-            {option: "r'\w+\s\w+'",
-             isCorrect: false},
-            {option: "r': B'",
-             isCorrect: false}
-        ]
-    }
-}],
+          { option: "r'[A-Za-z]+'", isCorrect: false },
+          { option: "r'[A-Z][a-z]*'", isCorrect: true },
+          { option: "r'[a-zA-Z]+'", isCorrect: false },
+          { option: "r'[a-z][A-Z]+'", isCorrect: false },
+        ],
+      },
+    },
+    {
+      id: 4,
+      type: "m",
+      content: {
+        question:
+          "Which of the following regex patterns will correctly match names of students who received a B grade?",
+        answer: [
+          { option: "r'w+sw+(?=: B)'", isCorrect: true },
+          { option: "r'w+sw+(?= B)'", isCorrect: false },
+          { option: "r'w+sw+'", isCorrect: false },
+          { option: "r': B'", isCorrect: false },
+        ],
+      },
+    },
+  ],
 
   [
     {
       id: 44124,
       type: "q",
       content: {
-          question: "How can you filter a DataFrame based on a specific column value in Pandas?",
-          answer: "To filter a DataFrame based on a specific column value, use the syntax `df[df['column_name'] == value]`, where 'df' is the DataFrame, 'column_name' is the name of the column, and 'value' is the desired value to filter by."
-      }
-  },
+        question:
+          "How can you filter a DataFrame based on a specific column value in Pandas?",
+        answer:
+          "To filter a DataFrame based on a specific column value, use the syntax `df[df['column_name'] == value]`, where 'df' is the DataFrame, 'column_name' is the name of the column, and 'value' is the desired value to filter by.",
+      },
+    },
     {
       id: 12313,
       type: "m",
       content: {
-          question: "Which of the following data structures is most suitable for storing proportions of children with mothers having different education levels?",
-          answer: [
-              {option: "List", isCorrect: false},
-              {option: "Dictionary", isCorrect: true},
-              {option: "Tuple", isCorrect: false},
-              {option: "Set", isCorrect: false}
-          ]
-      }
-  },
+        question:
+          "Which of the following data structures is most suitable for storing proportions of children with mothers having different education levels?",
+        answer: [
+          { option: "List", isCorrect: false },
+          { option: "Dictionary", isCorrect: true },
+          { option: "Tuple", isCorrect: false },
+          { option: "Set", isCorrect: false },
+        ],
+      },
+    },
   ],
 
   [
@@ -112,28 +110,30 @@ export const cardCollection = [
       id: 223,
       type: "m",
       content: {
-          question: "Which of the following Pandas methods can be used to count occurrences of unique values in a DataFrame column?",
-          answer: [
-              {option: ".count()", isCorrect: false},
-              {option: ".unique()", isCorrect: false},
-              {option: ".value_counts()", isCorrect: true},
-              {option: ".groupby()", isCorrect: false}
-          ]
-      }
-  },
+        question:
+          "Which of the following Pandas methods can be used to count occurrences of unique values in a DataFrame column?",
+        answer: [
+          { option: ".count()", isCorrect: false },
+          { option: ".unique()", isCorrect: false },
+          { option: ".value_counts()", isCorrect: true },
+          { option: ".groupby()", isCorrect: false },
+        ],
+      },
+    },
     {
       id: 523,
       type: "m",
       content: {
-          question: "What is the most suitable data structure for storing the ratio of children who contracted chickenpox but were vaccinated against it, separated by sex?",
-          answer: [
-              {option: "List", isCorrect: false},
-              {option: "Dictionary", isCorrect: true},
-              {option: "Tuple", isCorrect: false},
-              {option: "Set", isCorrect: false}
-          ]
-      }
-  }
+        question:
+          "What is the most suitable data structure for storing the ratio of children who contracted chickenpox but were vaccinated against it, separated by sex?",
+        answer: [
+          { option: "List", isCorrect: false },
+          { option: "Dictionary", isCorrect: true },
+          { option: "Tuple", isCorrect: false },
+          { option: "Set", isCorrect: false },
+        ],
+      },
+    },
   ],
   // ***************************
   [
