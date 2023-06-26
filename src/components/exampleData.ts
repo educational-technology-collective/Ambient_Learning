@@ -150,37 +150,6 @@ export const cardCollection = [
     },
   ],
 
-  [
-    {
-      id: 132,
-      type: "m",
-      content: {
-        question: "What is another name for a full outer join?",
-        answer: [
-          { option: "Intersection", isCorrect: false },
-          { option: "Union", isCorrect: true },
-          { option: "Combine", isCorrect: false },
-          { option: "Group", isCorrect: false },
-        ],
-      },
-    },
-    {
-      id: 478,
-      type: "m",
-      content: {
-        question: "What is another name for an inner join?",
-        answer: [
-          { option: "Union", isCorrect: false },
-          {
-            option: "Intersection",
-            isCorrect: true,
-          },
-          { option: "Combine", isCorrect: false },
-          { option: "Group", isCorrect: false },
-        ],
-      },
-    },
-  ],
 
   [
     {
@@ -232,6 +201,37 @@ export const cardCollection = [
           { option: "It joins two DataFrames horizontally", isCorrect: false },
           { option: "It joins two DataFrames vertically", isCorrect: true },
           { option: "It's just an alias of merge", isCorrect: false },
+        ],
+      },
+    },
+  ],
+  [
+    {
+      id: 132,
+      type: "m",
+      content: {
+        question: "What is another name for a full outer join?",
+        answer: [
+          { option: "Intersection", isCorrect: false },
+          { option: "Union", isCorrect: true },
+          { option: "Combine", isCorrect: false },
+          { option: "Group", isCorrect: false },
+        ],
+      },
+    },
+    {
+      id: 478,
+      type: "m",
+      content: {
+        question: "What is another name for an inner join?",
+        answer: [
+          { option: "Union", isCorrect: false },
+          {
+            option: "Intersection",
+            isCorrect: true,
+          },
+          { option: "Combine", isCorrect: false },
+          { option: "Group", isCorrect: false },
         ],
       },
     },
