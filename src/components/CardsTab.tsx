@@ -5,14 +5,14 @@ const CardsTab: React.FC<{ cardsLeft: number; isCardScreen: boolean }> = ({
   cardsLeft,
   isCardScreen,
 }) => {
-  let firstStyle, secondStyle, thirdStyle;
+  let firstStyle: string, secondStyle: string, thirdStyle: string;
 
   // If we go to cardscreen, set cards to spread
   if (isCardScreen) {
     firstStyle = "tab-card activate first-activate";
     secondStyle = "tab-card activate second-activate";
     thirdStyle = "tab-card activate third-activate";
-  } 
+  }
   // Otherwise the cards will remain as one stack
   else {
     firstStyle = "tab-card";

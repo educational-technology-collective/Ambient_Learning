@@ -8,8 +8,8 @@ const MCQ: React.FC<{
   setClickStatus: () => void;
   setCorrectStatus: () => void;
 }> = ({ obj, clicked, setClickStatus, setCorrectStatus }) => {
-  const question = obj.content.question;
-  const choice = obj.content.answer;
+  const question: string = obj.content.question;
+  const choice: individualChoice[] = obj.content.answer;
 
   // Component Being Rendered
   return (

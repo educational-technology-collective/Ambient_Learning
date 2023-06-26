@@ -1,14 +1,14 @@
 import { IncorrectChoice, CorrectChoice } from "./MCQChoice";
-import { useState, useEffect } from "react";
+import { useState, useEffect} from "react";
 import "./Choices.css";
 
 const Choices: React.FC<{
-  answer: any;
+  answer: individualChoice[] ;
   clicked: boolean;
   setClickStatus: () => void;
   setCorrectStatus: () => void;
 }> = ({ answer, clicked, setClickStatus, setCorrectStatus }) => {
-  const choices = answer;
+  const choices: individualChoice[] = answer;
 
   // Function that Shuffles the Array of Choices
   const shuffleArray = (array: any) => {
@@ -36,7 +36,7 @@ const Choices: React.FC<{
   return (
     <div className={containerStyle}>
       {/* Mapping the Choices Based on Whether they are correct or not */}
-      {randomArray.map((choice: any, index) =>
+      {randomArray.map((choice: individualChoice, index) =>
         choice.isCorrect ? (
           <CorrectChoice
             option={choice.option}

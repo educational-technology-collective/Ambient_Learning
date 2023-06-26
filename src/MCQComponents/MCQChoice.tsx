@@ -8,7 +8,7 @@ export const IncorrectChoice: React.FC<{
   clicked: boolean;
   setClickStatus: () => void;
 }> = ({ option, clicked, setClickStatus }) => {
-  const choiceText = option;
+  const choiceText: string = option;
 
   const [isChosen, setChosen] = useState(false);
 

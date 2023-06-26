@@ -25,7 +25,7 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
   };
 
   // Determine The Box-Shadow Effect based on cards remaining
-  let shadow;
+  let shadow: string;
   //When the remaining cards are larget than or equal to 3
   if (cardsLeft >= 3) {
     shadow = "wrapped-card left-3";
@@ -42,7 +42,6 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
   // Screen Being Rendered
   return (
     <IonPage>
-
       {/* Header and ToolBar */}
       <IonHeader color="tertiary">
         <IonToolbar>

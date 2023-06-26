@@ -129,7 +129,7 @@ export const cardCollection = [
       },
     },
   ],
-// ***************************
+  // ***************************
   [
     {
       id: 135,
@@ -149,7 +149,6 @@ export const cardCollection = [
       },
     },
   ],
-
 
   [
     {

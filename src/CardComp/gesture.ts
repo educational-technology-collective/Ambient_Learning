@@ -4,7 +4,7 @@ This file is for the swiping mechanism of the crads.
 Since both of the cards use the same move/end logic, we have one file for them.
 
 ******* */
-import { GestureDetail, createGesture } from "@ionic/react";
+import { Gesture, GestureDetail, createGesture } from "@ionic/react";
 
 // Function that Present Horizontal Indicators through opacity change
 const showHorizontalInd = (
@@ -46,7 +46,7 @@ const HorizontalEnd = (
   timeOutFunc: () => void
 ) => {
   if (stuff) {
-    const windowWidth = window.innerWidth;
+    const windowWidth: number = window.innerWidth;
     stuff.style.transition = "0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
 
     // Swiping Right Quick Enough
@@ -165,7 +165,7 @@ const VerticalEnd = (
   oneMoreTimeOut: () => void
 ) => {
   if (stuff && card) {
-    const windowHeight = window.innerHeight;
+    const windowHeight: number = window.innerHeight;
     stuff.style.transition = "0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
     card.style.transition = "0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
 
@@ -243,7 +243,7 @@ export const enableGesture = (
 ) => {
   if (stuff && card) {
     // Horizontal Direction Swiping
-    const gestureX = createGesture({
+    const gestureX: Gesture = createGesture({
       el: card,
       gestureName: "swipe-x",
       direction: "x",
@@ -259,7 +259,7 @@ export const enableGesture = (
     });
 
     // Veritical Direction Swiping
-    const gestureY = createGesture({
+    const gestureY: Gesture = createGesture({
       el: card,
       gestureName: "swipe-y",
       direction: "y",

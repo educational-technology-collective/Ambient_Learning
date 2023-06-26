@@ -107,22 +107,10 @@ const App: React.FC = () => {
     }
   };
 
-  const cardsLeft = total - finished;
+  const cardsLeft: number = total - finished;
 
   // State Variable used to track if the current tab is cardscreen
   const [isCardScreen, setCardScreen] = useState(false);
-
-  // Logic that determines whether to spread the cards
-  let firstStyle, secondStyle, thirdStyle;
-  if (isCardScreen) {
-    firstStyle = "tab-card activate first-activate";
-    secondStyle = "tab-card activate second-activate";
-    thirdStyle = "tab-card activate third-activate";
-  } else {
-    firstStyle = "tab-card";
-    secondStyle = "tab-card";
-    thirdStyle = "tab-card";
-  }
 
   // Card Screen will spread the cards
   const handleCardScreen = () => {

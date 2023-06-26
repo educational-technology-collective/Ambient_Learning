@@ -2,8 +2,8 @@ import { IonText } from "@ionic/react";
 import "./Card.css";
 
 const QA: React.FC<{ obj: flashCard }> = ({ obj }) => {
-  const question = obj.content.question;
-  const answer = obj.content.answer;
+  const question: string = obj.content.question;
+  const answer: string = obj.content.answer;
 
   // Coponent Being Rendered
   return (

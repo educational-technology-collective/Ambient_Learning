@@ -8,8 +8,8 @@ import {
 const BackIndicator: React.FC<{
   indicatorOpacity: indicatorOp;
 }> = ({ indicatorOpacity }) => {
-  const index = indicatorOpacity.index;
-  const value = indicatorOpacity.value;
+  const index: number = indicatorOpacity.index;
+  const value: number = indicatorOpacity.value;
 
   // If index is 1, assign value to NoMore indicator's opacity
   const nomoreOpacity = index === 1 ? value : 0;
