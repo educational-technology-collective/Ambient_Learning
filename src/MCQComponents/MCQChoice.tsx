@@ -19,10 +19,15 @@ export const IncorrectChoice: React.FC<{
     setChosen(true);
   };
 
+  // Style for the button
+  const buttonStyle: string = isChosen
+    ? "choice-button incorrect-button"
+    : "choice-button initial-button";
+
   // Component Being Rendered
   return (
     <IonButton
-      className={isChosen ? "incorrect-button" : "initial-button"}
+      className={buttonStyle}
       disabled={clicked}
       onClick={inCorrectClick}
     >
@@ -45,10 +50,15 @@ export const CorrectChoice: React.FC<{
     setCorrectStatus();
   };
 
+  // Style for the button
+  const buttonStyle: string = clicked
+    ? "chocie-button correct-button"
+    : "choice-button initial-button";
+
   // Component Being Rendered
   return (
     <IonButton
-      className={clicked ? "correct-button" : "initial-button"}
+      className={buttonStyle}
       disabled={clicked}
       onClick={correctClick}
     >
