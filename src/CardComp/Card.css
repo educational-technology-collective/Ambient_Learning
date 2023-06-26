@@ -33,7 +33,7 @@
 
 /* MCQ Card has a flipping time of 0.3s to look better */
 .mcq-card-content {
-  transition: 0.3s;
+  transition: 0.6s;
 }
 
 /* Texts for both question and answer */

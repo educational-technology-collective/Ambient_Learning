@@ -30,7 +30,7 @@ const Choices: React.FC<{
 
   // Component Being Rendered
   return (
-    <div className={!clicked ? "choice-container" : "choice-container-back"}>
+    <div className={!clicked ? "choice-container" : 'choice-container-back'}>
       {/* Mapping the Choices Based on Whether they are correct or not */}
       {randomArray.map((choice: any, index) =>
         choice.isCorrect ? (

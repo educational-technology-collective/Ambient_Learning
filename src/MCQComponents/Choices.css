@@ -1,5 +1,5 @@
 .choice-container {
-  backface-visibility: hidden;
+  backface-visibility:hidden;
   display: flex;
   flex-direction: column;
   height: 40%;
