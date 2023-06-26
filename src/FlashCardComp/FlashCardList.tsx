@@ -23,7 +23,6 @@ const FlashCardList: React.FC<{
   const component = (
     <Card
       obj={tupleBehindCard}
-      key={tupleBehindCard.id}
       tupleIndex={tupleIndex}
       moveOn={swipeNextCard}
       oneMore={swipeOneMoreCard}
@@ -37,11 +36,12 @@ const FlashCardList: React.FC<{
       {isFrontTuple
         ? array.map((card, index) => {
             // If the tuple is front, we display its top two cards
+
             if (index === tupleCounter - 1 || index === tupleCounter - 2) {
               return (
                 <Card
                   obj={card}
-                  key={card.id}
+                  key={index}
                   tupleIndex={tupleIndex}
                   moveOn={swipeNextCard}
                   oneMore={swipeOneMoreCard}

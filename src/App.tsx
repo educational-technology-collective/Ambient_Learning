@@ -10,7 +10,7 @@ import {
 import { IonReactRouter } from "@ionic/react-router";
 import { TbHomeEdit } from "react-icons/tb";
 import { Haptics } from "@capacitor/haptics";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CardScreen from "./pages/CardScreen";
 import Home from "./pages/Home";
 import "./pages/Home.css";
@@ -42,8 +42,25 @@ setupIonicReact({
 
 const App: React.FC = () => {
   // The Card Array
-  const [cardCol, setCards] = useState(cardCollection);
+  
 
+  
+
+  const [cardCol, setCards] = useState([1,2]);
+
+  const getCards = async (url: string) => {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+  };
+
+
+  useEffect(() => {
+    getCards('https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/flashcards/videoId/6499ef9395f0588d6bcfd1db').then((data) => {setCards(data); console.log(data)});
+  }, [])
+
+  console.log(cardCol.length);
+ 
   // How Many Cards Finished
   const [finished, setFinished] = useState(0);
 
@@ -73,7 +90,7 @@ const App: React.FC = () => {
   // Logic to Move On to Next Card
   const swipeNextCard = (tupleIndex: number) => {
     setFinished((prevFinished) => prevFinished + 1);
-    setCounter((prevCounter) => prevCounter - 1);
+    setCounter((prevCounter : number) => prevCounter - 1);
 
     // If the current tuple is not the last one, reset the counter of tuple
     // to the next array's length
@@ -97,13 +114,13 @@ const App: React.FC = () => {
       // Visual Vibration
       handleShake();
       setFinished((prevFinished) => prevFinished + 1);
-      setCounter((prevCounter) => prevCounter - 1);
+      setCounter((prevCounter : number) => prevCounter - 1);
     } else {
       setFinished((prevFinished) => prevFinished + 1);
-      setTotal((prevTotal) => prevTotal + 1);
+      setTotal((prevTotal : number) => prevTotal + 1);
 
       // Decrement the Counter
-      setTupleCounter((prevTupleCounter) => prevTupleCounter - 1);
+      setTupleCounter((prevTupleCounter : number) => prevTupleCounter - 1);
     }
   };
 

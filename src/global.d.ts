@@ -4,7 +4,8 @@ export {}
 
 declare global{
   interface flashCard {
-    id: string;
+    _id: string;
+    lmid: string;
     type: string;
     content: {
       question: string;
