@@ -1,7 +1,7 @@
 export const cardCollection = [
   [
     {
-      id: 100,
+      id: "100",
       type: "m",
       content: {
         question: "What is the keyword for the output of a function",
@@ -14,7 +14,7 @@ export const cardCollection = [
       },
     },
     {
-      id: 1, // Used For Key
+      id: "1", // Used For Key
       type: "q", // Identify Type of Card MCQ/QA
       content: {
         question: "How to define a function in python",
@@ -25,7 +25,7 @@ export const cardCollection = [
 
   [
     {
-      id: 467,
+      id: "467",
       type: "q",
       content: {
         question: "How to take an input in Python?",
@@ -33,7 +33,7 @@ export const cardCollection = [
       },
     },
     {
-      id: 2, //Used For Key
+      id: "2", //Used For Key
       type: "m", //Identify Type of Card MCQ/QA
       content: {
         question: "How to print a variable x in Python?",
@@ -49,7 +49,7 @@ export const cardCollection = [
 
   [
     {
-      id: 23132,
+      id: "23132",
       type: "m",
       content: {
         question:
@@ -63,7 +63,7 @@ export const cardCollection = [
       },
     },
     {
-      id: 4,
+      id: "4",
       type: "m",
       content: {
         question:
@@ -80,7 +80,7 @@ export const cardCollection = [
 
   [
     {
-      id: 135,
+      id: "135",
       type: "q",
       content: {
         question:
@@ -89,7 +89,7 @@ export const cardCollection = [
       },
     },
     {
-      id: 5,
+      id: "5",
       type: "q",
       content: {
         question: "What is a venn diagram used for?",
@@ -100,7 +100,7 @@ export const cardCollection = [
 
   [
     {
-      id: 10,
+      id: "10",
       type: "q",
       content: {
         question: "What is the function that we use for merging DataFrames?",
@@ -108,7 +108,7 @@ export const cardCollection = [
       },
     },
     {
-      id: 45,
+      id: "45",
       type: "q",
       content: {
         question: "What does left join include?",
@@ -119,7 +119,7 @@ export const cardCollection = [
 
   [
     {
-      id: 24,
+      id: "24",
       type: "q",
       content: {
         question:
@@ -128,7 +128,7 @@ export const cardCollection = [
       },
     },
     {
-      id: 99,
+      id: "99",
       type: "q",
       content: {
         question: "How does pandas preserve conflicting columns?",
@@ -136,7 +136,7 @@ export const cardCollection = [
       },
     },
     {
-      id: 31,
+      id: "31",
       type: "m",
       content: {
         question: "How does concat stitch together DataFrames?",
@@ -152,10 +152,10 @@ export const cardCollection = [
       },
     },
   ],
-  
+
   [
     {
-      id: 223,
+      id: "223",
       type: "m",
       content: {
         question:
@@ -169,7 +169,7 @@ export const cardCollection = [
       },
     },
     {
-      id: 523,
+      id: "523",
       type: "m",
       content: {
         question:
@@ -186,7 +186,7 @@ export const cardCollection = [
 
   [
     {
-      id: 132,
+      id: "132",
       type: "m",
       content: {
         question: "What is another name for a full outer join?",
@@ -199,7 +199,7 @@ export const cardCollection = [
       },
     },
     {
-      id: 478,
+      id: "478",
       type: "m",
       content: {
         question: "What is another name for an inner join?",
@@ -218,7 +218,7 @@ export const cardCollection = [
 
   [
     {
-      id: 44124,
+      id: "44124",
       type: "q",
       content: {
         question:
@@ -228,7 +228,7 @@ export const cardCollection = [
       },
     },
     {
-      id: 12313,
+      id: "12313",
       type: "m",
       content: {
         question:
@@ -245,7 +245,7 @@ export const cardCollection = [
 
   [
     {
-      id: 231,
+      id: "231",
       type: "q",
       content: {
         question: "What function do we use to concatenate two DataFrames?",
@@ -253,7 +253,7 @@ export const cardCollection = [
       },
     },
     {
-      id: 788,
+      id: "788",
       type: "q",
       content: {
         question: "How do you handle ambiguous keys during a concat. This is just for the sake of test. What a great day. You are true. My Dear Arthur. This is for you. I hope you know I am better. Much better.",
