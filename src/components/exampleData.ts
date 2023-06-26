@@ -133,29 +133,19 @@ export const cardCollection = [
   [
     {
       id: 135,
-      type: "m",
+      type: "q",
       content: {
         question:
-          "What keyword flags statement is true only if all conditions are true",
-        answer: [
-          { option: "and", isCorrect: true },
-          { option: "or", isCorrect: false },
-          { option: "not", isCorrect: false },
-          { option: "break", isCorrect: false },
-        ],
+          "Where can we learn more about merging, joining and concatenating?",
+        answer: "The Pandas Docs",
       },
     },
     {
       id: 5,
-      type: "m",
+      type: "q",
       content: {
-        question: "Negate the boolean variable isRight",
-        answer: [
-          { option: "isRight == !isRight", isCorrect: false },
-          { option: "isRight = false", isCorrect: false },
-          { option: "isRight = !isRight", isCorrect: true },
-          { option: "isRight = true", isCorrect: false },
-        ],
+        question: "What is a venn diagram used for?",
+        answer: "To show commonalities and differences of attributes",
       },
     },
   ],
@@ -165,57 +155,48 @@ export const cardCollection = [
       id: 132,
       type: "m",
       content: {
-        question:
-          "What keyword flags statement is true as long as one conditon is true",
+        question: "What is another name for a full outer join?",
         answer: [
-          { option: "and", isCorrect: false },
-          { option: "or", isCorrect: true },
-          { option: "not", isCorrect: false },
-          { option: "continue", isCorrect: false },
+          { option: "Intersection", isCorrect: false },
+          { option: "Union", isCorrect: true },
+          { option: "Combine", isCorrect: false },
+          { option: "Group", isCorrect: false },
         ],
       },
     },
     {
-      id: 12,
-      type: "q",
+      id: 478,
+      type: "m",
       content: {
-        question: "x = x + 1 is equivalent to x += 1",
-        answer: "True",
+        question: "What is another name for an inner join?",
+        answer: [
+          { option: "Union", isCorrect: false },
+          {
+            option: "Intersection",
+            isCorrect: true,
+          },
+          { option: "Combine", isCorrect: false },
+          { option: "Group", isCorrect: false },
+        ],
       },
     },
   ],
 
   [
     {
-      id: 478,
-      type: "m",
-      content: {
-        question: "What operator to negate a boolean value?",
-        answer: [
-          { option: "!==", isCorrect: false },
-          {
-            option: "!",
-            isCorrect: true,
-          },
-          { option: "===", isCorrect: false },
-          { option: "+==", isCorrect: false },
-        ],
-      },
-    },
-    {
       id: 10,
       type: "q",
       content: {
-        question: "What operator to look up a value with key",
-        answer: "[]",
+        question: "What is the function that we use for merging DataFrames?",
+        answer: "pd.merge",
       },
     },
     {
       id: 45,
       type: "q",
       content: {
-        question: "Describe what is happening:\ndef func():\n\t func()",
-        answer: "Recursion",
+        question: "What does left join include?",
+        answer: "df1's data including the intersection",
       },
     },
   ],
@@ -225,31 +206,32 @@ export const cardCollection = [
       id: 24,
       type: "q",
       content: {
-        question: "Index 0 returns the ___ element of an array",
-        answer: "First/Beginning",
+        question:
+          "Should you include index parameters if you are merging on a specific column?",
+        answer: "No",
       },
     },
     {
       id: 99,
       type: "q",
       content: {
-        question: "Index -1 returns the ___ element of an array",
-        answer: "Last/End",
+        question: "How does pandas preserve conflicting columns?",
+        answer: "It appends _x and _y",
       },
     },
     {
       id: 31,
       type: "m",
       content: {
-        question: 'What is the output of:\n print("12" + 13)',
+        question: "How does concat stitch together DataFrames?",
         answer: [
           {
-            option: "1213",
+            option: "It pushes the data",
             isCorrect: false,
           },
-          { option: "25", isCorrect: false },
-          { option: "Error", isCorrect: true },
-          { option: "12 13", isCorrect: false },
+          { option: "It joins two DataFrames horizontally", isCorrect: false },
+          { option: "It joins two DataFrames vertically", isCorrect: true },
+          { option: "It's just an alias of merge", isCorrect: false },
         ],
       },
     },
@@ -257,43 +239,19 @@ export const cardCollection = [
 
   [
     {
-      id: 4123,
+      id: 231,
       type: "q",
       content: {
-        question: "We Didn't start the Fire is by",
-        answer: "Billy Joel",
+        question: "What function do we use to concatenate two DataFrames?",
+        answer: "pd.concat",
       },
     },
     {
-      id: 341,
-      type: "m",
+      id: 788,
+      type: "q",
       content: {
-        question: "Which of the following is by OneRepublic",
-        answer: [
-          {
-            option: "Sugar",
-            isCorrect: false,
-          },
-          { option: "Viva la Vida", isCorrect: false },
-          { option: "Moves Like Jagger", isCorrect: false },
-          { option: "Apologize", isCorrect: true },
-        ],
-      },
-    },
-    {
-      id: 25,
-      type: "m",
-      content: {
-        question: "answer = [15, 28, 19, 20, 45]\nWhat is answer[-1]",
-        answer: [
-          { option: "15", isCorrect: false },
-          {
-            option: "45",
-            isCorrect: true,
-          },
-          { option: "Error", isCorrect: false },
-          { option: "28", isCorrect: false },
-        ],
+        question: "How do you handle ambiguous keys during a concat?",
+        answer: "Pass in an array of keys",
       },
     },
   ],
