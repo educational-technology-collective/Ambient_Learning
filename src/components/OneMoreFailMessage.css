@@ -1,4 +1,6 @@
-.message {
+/* Styling for the box of the Message 
+Set appearing time to be 2.2s */
+.onemore-fail-message {
   height: 13%;
   width: 60%;
   color: white;
@@ -15,7 +17,8 @@
   animation: message-in-center 2.2s;
 }
 
-.message-title {
+/* Styling for the texts on the message */
+.onemore-fail-message-text {
   font-weight: bold;
   font-size: 1.5rem;
   text-align: center;
@@ -24,7 +27,8 @@
   margin-right: 0.5rem;
 }
 
-.message-text {
+/* Styling for the emoji on the message */
+.onemore-fail-message-emoji {
   text-align: center;
   font-size: 1.2rem;
   font-weight: bold;
@@ -32,6 +36,7 @@
   margin-bottom: 0.05rem;
 }
 
+/* Growing Opacity then disappearing */
 @keyframes message-in-center {
   0% {
     opacity: 0;

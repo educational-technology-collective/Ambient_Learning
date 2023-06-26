@@ -8,7 +8,7 @@ import {
 import "./CardScreen.css";
 import React from "react";
 import FlashCardList from "../FlashCardComp/FlashCardList";
-import Message from "../components/Message";
+import Message from "../components/OneMoreFailMessage";
 
 const CardScreen: React.FC<{
   finished: number;
