@@ -39,7 +39,6 @@
 /* Texts for both question and answer */
 .card-text {
   backface-visibility: hidden;
-  font-size: 2em;
   font-weight: 900;
   margin: 0 0.75rem;
   position: absolute;
@@ -51,12 +50,25 @@
 
 /* Front Question Text with 0 degree */
 .front-text {
+  font-size: 2em;
   transform: rotateY(0deg);
 }
 
 /* All Back texts with 180 degrees and translateZ forward (for ios) */
 .back-text {
   transform: rotateY(180deg) translateZ(3px);
+}
+
+.back-text-2em{
+  font-size: 2em;
+}
+
+.back-text-1d6em{
+  font-size: 1.6em
+}
+
+.back-text-1d3em{
+  font-size: 1.3em;
 }
 
 /* QA Card Question on the back page taking 50% */
@@ -75,6 +87,7 @@
 /* 
 MCQ Card question always takes 60% */
 .mcq-question {
+  position: absolute;
   height: 60%;
   top: 0;
 }

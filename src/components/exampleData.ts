@@ -80,64 +80,6 @@ export const cardCollection = [
 
   [
     {
-      id: 44124,
-      type: "q",
-      content: {
-        question:
-          "How can you filter a DataFrame based on a specific column value in Pandas?",
-        answer:
-          "To filter a DataFrame based on a specific column value, use the syntax `df[df['column_name'] == value]`, where 'df' is the DataFrame, 'column_name' is the name of the column, and 'value' is the desired value to filter by.",
-      },
-    },
-    {
-      id: 12313,
-      type: "m",
-      content: {
-        question:
-          "Which of the following data structures is most suitable for storing proportions of children with mothers having different education levels?",
-        answer: [
-          { option: "List", isCorrect: false },
-          { option: "Dictionary", isCorrect: true },
-          { option: "Tuple", isCorrect: false },
-          { option: "Set", isCorrect: false },
-        ],
-      },
-    },
-  ],
-
-  [
-    {
-      id: 223,
-      type: "m",
-      content: {
-        question:
-          "Which of the following Pandas methods can be used to count occurrences of unique values in a DataFrame column?",
-        answer: [
-          { option: ".count()", isCorrect: false },
-          { option: ".unique()", isCorrect: false },
-          { option: ".value_counts()", isCorrect: true },
-          { option: ".groupby()", isCorrect: false },
-        ],
-      },
-    },
-    {
-      id: 523,
-      type: "m",
-      content: {
-        question:
-          "What is the most suitable data structure for storing the ratio of children who contracted chickenpox but were vaccinated against it, separated by sex?",
-        answer: [
-          { option: "List", isCorrect: false },
-          { option: "Dictionary", isCorrect: true },
-          { option: "Tuple", isCorrect: false },
-          { option: "Set", isCorrect: false },
-        ],
-      },
-    },
-  ],
-  // ***************************
-  [
-    {
       id: 135,
       type: "q",
       content: {
@@ -210,6 +152,38 @@ export const cardCollection = [
       },
     },
   ],
+  
+  [
+    {
+      id: 223,
+      type: "m",
+      content: {
+        question:
+          "Which of the following Pandas methods can be used to count occurrences of unique values in a DataFrame column?",
+        answer: [
+          { option: ".count()", isCorrect: false },
+          { option: ".unique()", isCorrect: false },
+          { option: ".value_counts()", isCorrect: true },
+          { option: ".groupby()", isCorrect: false },
+        ],
+      },
+    },
+    {
+      id: 523,
+      type: "m",
+      content: {
+        question:
+          "What is the most suitable data structure for storing the ratio of children who contracted chickenpox but were vaccinated against it, separated by sex?",
+        answer: [
+          { option: "List", isCorrect: false },
+          { option: "Dictionary", isCorrect: true },
+          { option: "Tuple", isCorrect: false },
+          { option: "Set", isCorrect: false },
+        ],
+      },
+    },
+  ],
+
   [
     {
       id: 132,
@@ -236,7 +210,34 @@ export const cardCollection = [
             isCorrect: true,
           },
           { option: "Combine", isCorrect: false },
-          { option: "Group", isCorrect: false },
+          { option: "Group. This is just to test the limit yes", isCorrect: false },
+        ],
+      },
+    },
+  ],
+
+  [
+    {
+      id: 44124,
+      type: "q",
+      content: {
+        question:
+          "How can you filter a DataFrame based on a specific column value in Pandas?",
+        answer:
+          "To filter a DataFrame based on a specific column value, use the syntax `df[df['column_name'] == value]`, where 'df' is the DataFrame, 'column_name' is the name of the column, and 'value' is the desired value to filter by.",
+      },
+    },
+    {
+      id: 12313,
+      type: "m",
+      content: {
+        question:
+          "Which of the following data structures is most suitable for storing proportions of children with mothers having different education levels?",
+        answer: [
+          { option: "List", isCorrect: false },
+          { option: "Dictionary", isCorrect: true },
+          { option: "Tuple", isCorrect: false },
+          { option: "Set", isCorrect: false },
         ],
       },
     },
@@ -255,7 +256,7 @@ export const cardCollection = [
       id: 788,
       type: "q",
       content: {
-        question: "How do you handle ambiguous keys during a concat?",
+        question: "How do you handle ambiguous keys during a concat. This is just for the sake of test. What a great day. You are true. My Dear Arthur. This is for you. I hope you know I am better. Much better.",
         answer: "Pass in an array of keys",
       },
     },
