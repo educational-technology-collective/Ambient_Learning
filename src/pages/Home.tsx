@@ -28,15 +28,15 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
   let shadow;
   //When the remaining cards are larget than or equal to 3
   if (cardsLeft >= 3) {
-    shadow = "wrapped-card-3";
+    shadow = "wrapped-card left-3";
   }
   //When the remaining cards equal to 2
   else if (cardsLeft === 2) {
-    shadow = "wrapped-card-2";
+    shadow = "wrapped-card left-2";
   }
   //Only one card remaining
   else {
-    shadow = "wrapped-card-1";
+    shadow = "wrapped-card";
   }
 
   // Screen Being Rendered

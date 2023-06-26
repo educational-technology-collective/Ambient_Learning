@@ -28,9 +28,13 @@ const Choices: React.FC<{
     setArray(shuffleArray(choices));
   }, [choices]);
 
+  const containerStyle = clicked
+    ? "choice-container back-side"
+    : "choice-container front-side";
+
   // Component Being Rendered
   return (
-    <div className={!clicked ? "choice-container" : 'choice-container-back'}>
+    <div className={containerStyle}>
       {/* Mapping the Choices Based on Whether they are correct or not */}
       {randomArray.map((choice: any, index) =>
         choice.isCorrect ? (

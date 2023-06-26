@@ -1,17 +1,21 @@
+/* Styling for the Toolbar counter */
 .title {
   font-size: 1.2em;
   font-weight: 900;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+/* Styling for the stack of card without animation */
 .card-stacker {
   height: 100%;
 }
 
+/* Styling for the stack of cards to animate */
 .card-stacker-animate {
-  animation: shake 0.55s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+  animation: shake 0.65s cubic-bezier(0.36, 0.07, 0.19, 0.97);
 }
 
+/* KeyFrames for the stack of cards shaking */
 @keyframes shake {
   10%,
   90% {
@@ -35,10 +39,13 @@
   }
 }
 
+/* Background color for the whole page */
 .page-content {
   background: rgba(215, 224, 255, 1);
 }
 
+
+/* Progress Bar, not used  */
 .bar {
   position: relative;
   height: 3%;
@@ -50,6 +57,7 @@
   --buffer-background: snow;
 }
 
+/* Home button, not used */
 .home-button {
   position: absolute;
   height: 10%;

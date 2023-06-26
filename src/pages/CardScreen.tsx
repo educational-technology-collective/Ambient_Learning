@@ -77,6 +77,7 @@ const CardScreen: React.FC<{
               );
             }
           })}
+          {/* Give alert message if it's shaking due to OneMore */}
           {isShake ? <OneMoreFailMessage /> : null}
         </div>
       </IonContent>
