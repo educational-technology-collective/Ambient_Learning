@@ -28,12 +28,12 @@
 
 /* QA Card has a flipping time of 0.6s */
 .qa-card-content {
-  transition: 0.6s;
+  transition: 0.5s;
 }
 
 /* MCQ Card has a flipping time of 0.3s to look better */
 .mcq-card-content {
-  transition: 0.6s;
+  transition: 0.5s;
 }
 
 /* Texts for both question and answer */

@@ -17,10 +17,10 @@ const FlashCardList: React.FC<{
   swipeOneMoreCard,
 }) => {
   const refTuple = useRef<HTMLInputElement>(null);
-  const tupleBehindCard = array[array.length - 1];
-  let component;
 
-  component = (
+  // TupleBehind is the card that is stacked at bottom (next card)
+  const tupleBehindCard = array[array.length - 1];
+  const component = (
     <Card
       obj={tupleBehindCard}
       key={tupleBehindCard.id}
