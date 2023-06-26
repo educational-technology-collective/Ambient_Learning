@@ -8,12 +8,13 @@ const QA: React.FC<{ obj: flashCard }> = ({ obj }) => {
   // Coponent Being Rendered
   return (
     <>
-      {/* Front QuestionText */}
+      {/* Front Question Text */}
       <IonText className="card-text front-text">{question}</IonText>
-      {/* Back AnswerText */}
+      {/* Back Question Text */}
       <IonText className="card-text back-text qa-question-back">
         {question}
       </IonText>
+      {/* Back Answer Text */}
       <IonText className="card-text back-text qa-answer">{answer}</IonText>
     </>
   );

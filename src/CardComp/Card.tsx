@@ -42,7 +42,7 @@ const Card: React.FC<{
     moveOn(tupleIndex);
   };
 
-  // Allows Gesture only after user clicks an option
+  // useEffect to enableGesture at any time
   useEffect(() => {
     enableGesture(
       ref.current,
@@ -59,6 +59,7 @@ const Card: React.FC<{
     );
   });
 
+  // This will set isClick to be true
   const setClickStatus = () => {
     setClick(true);
   };
@@ -76,6 +77,7 @@ const Card: React.FC<{
     setIsClicked(false);
   };
 
+  // Determine the component based on type of card
   const cardComp =
     obj.type === "q" ? (
       <QA obj={obj} />

@@ -1,3 +1,9 @@
+/* *******
+
+// This file is for the swiping mechanism of the crads. Since both of the cards use
+// the same move/end logic, we have one file for them.
+
+// ******* */
 import { createGesture } from "@ionic/react";
 
 // Function that Present Horizontal Indicators through opacity change

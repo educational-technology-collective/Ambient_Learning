@@ -17,7 +17,10 @@ const MCQ: React.FC<{
   // Component Being Rendered
   return (
     <>
+      {/* Question Text */}
       <IonText className={textStyle}>{question}</IonText>
+
+      {/* Component for all the choices */}
       <Choices
         answer={choice}
         setClickStatus={setClickStatus}
