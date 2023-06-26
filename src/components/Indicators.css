@@ -1,21 +1,26 @@
+/* Styling for indicators on the front page */
 .front {
   backface-visibility: hidden;
   position: absolute;
   transform: rotateY(0deg);
 }
 
+/* Styling for indicators on the back page */
 .back {
   backface-visibility: hidden;
   position: absolute;
   transform: rotateY(180deg) translateZ(3px);
 }
 
+/* Styling for the negativei indicator on the back page */
 .back-negative {
   top: 1.2em;
   width: 50%;
   left: 1em;
   rotate: 10deg;
 }
+
+/* Styling for the container of all the indicators */
 .action-container {
   border: 3px solid;
   border-radius: 10px;
@@ -24,20 +29,25 @@
   align-items: center;
   padding: 5px;
 }
+
+/* Styling for the negative indicator's container */
 .negative-container {
   border-color: #d63230;
 }
 
+/* Texts for all of the indicators inside the box */
 .action-text {
   text-align: center;
   font-size: 1.26rem;
   font-weight: 900;
 }
 
+/* Negative Indicator has crimson text color */
 .negative-text {
   color: #d63230;
 }
 
+/* Styling for the positive indicator on the back */
 .back-positive {
   top: 1.2em;
   width: 50%;
@@ -45,35 +55,44 @@
   rotate: 350deg;
 }
 
+/* Styling for the positive indicator;s container */
 .positive-container {
   border-color: #256d1b;
 }
 
+/* Positive Indicator has dark green text color */
 .positive-text {
   color: #256d1b;
 }
 
+/* Styling for the OneMore Indicator */
 .onemore {
   bottom: 41%;
   width: 50%;
 }
 
+/* Styling for the OneMore Indicator's container */
 .onemore-container {
   border-color: #7bb2d9;
 }
 
+/* OneMore Indicator has blue texts */
 .onemore-text {
   color: #7bb2d9;
 }
 
+/* Styling for the NoMore Indicator */
 .nomore {
   top: 2.5em;
   width: 50%;
 }
 
+/* Styling for the NoMore Indicator's container */
 .nomore-container {
   border-color: #e8871e;
 }
+
+/* NoMore Indicator has brown-orange texts */
 .nomore-text {
   color: #e8871e;
 }

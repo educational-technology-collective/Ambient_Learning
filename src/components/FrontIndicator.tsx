@@ -4,6 +4,8 @@ const FrontIndicator: React.FC<{
 }> = ({ indicatorOpacity }) => {
   const index = indicatorOpacity.index;
   const value = indicatorOpacity.value;
+
+  // If index is 1, assign value to NoMore Indicator's opacity
   const nomoreOpacity = index === 1 ? value : 0;
   return (
     <>

@@ -1,6 +1,7 @@
 import { IonText } from "@ionic/react";
 import "./Indicators.css";
 
+// The NoMore indicator on the front page
 export const FrontNoMoreIndicator: React.FC<{ nomoreOpacity: number }> = ({
   nomoreOpacity,
 }) => {
@@ -13,6 +14,7 @@ export const FrontNoMoreIndicator: React.FC<{ nomoreOpacity: number }> = ({
   );
 };
 
+// The Negative Indicator on the back page
 export const BackNegativeIndicator: React.FC<{ negativeOpacity: number }> = ({
   negativeOpacity,
 }) => {
@@ -28,6 +30,8 @@ export const BackNegativeIndicator: React.FC<{ negativeOpacity: number }> = ({
   );
 };
 
+
+// The Positive Indicator on the back page
 export const BackPositiveIndicator: React.FC<{ positiveOpacity: number }> = ({
   positiveOpacity,
 }) => {
@@ -43,6 +47,7 @@ export const BackPositiveIndicator: React.FC<{ positiveOpacity: number }> = ({
   );
 };
 
+// The OneMore Indicator on the back page
 export const BackOneMoreIndicator: React.FC<{ onemoreOpacity: number }> = ({
   onemoreOpacity,
 }) => {
@@ -54,6 +59,8 @@ export const BackOneMoreIndicator: React.FC<{ onemoreOpacity: number }> = ({
     </div>
   );
 };
+
+// The NoMore Indicator on the back page
 export const BackNoMoreIndicator: React.FC<{ nomoreOpacity: number }> = ({
   nomoreOpacity,
 }) => {
