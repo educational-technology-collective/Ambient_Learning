@@ -1,16 +1,16 @@
 /* *******
 
-This file is for the swiping mechanism of the crads. Since both of the cards use
-the same move/end logic, we have one file for them.
+This file is for the swiping mechanism of the crads. 
+Since both of the cards use the same move/end logic, we have one file for them.
 
 ******* */
-import { createGesture } from "@ionic/react";
+import { GestureDetail, createGesture } from "@ionic/react";
 
 // Function that Present Horizontal Indicators through opacity change
 const showHorizontalInd = (
-  detail: any,
-  handleNegativeOpacity: (detail: any) => void,
-  handlePositiveOpacity: (detail: any) => void
+  detail: GestureDetail,
+  handleNegativeOpacity: (detail: GestureDetail) => void,
+  handlePositiveOpacity: (detail: GestureDetail) => void
 ) => {
   // Swipe Right. Show Positive Indicators
   if (detail.deltaX > 0) {
@@ -24,61 +24,65 @@ const showHorizontalInd = (
 
 // Horizontal Swiping Function
 const HorizontalMove = (
-  detail: any,
-  stuff: any,
-  handleNegativeOpacity: (detail: any) => void,
-  handlePositiveOpacity: (detail: any) => void
+  detail: GestureDetail,
+  stuff: HTMLInputElement | null,
+  handleNegativeOpacity: (detail: GestureDetail) => void,
+  handlePositiveOpacity: (detail: GestureDetail) => void
 ) => {
-  stuff.style.transform = `translateX(${detail.deltaX}px) rotate(${
-    detail.deltaX / 20
-  }deg)`;
-  // Calling the function to show horizontal indicators
-  showHorizontalInd(detail, handleNegativeOpacity, handlePositiveOpacity);
+  if (stuff) {
+    stuff.style.transform = `translateX(${detail.deltaX}px) rotate(${
+      detail.deltaX / 20
+    }deg)`;
+    // Calling the function to show horizontal indicators
+    showHorizontalInd(detail, handleNegativeOpacity, handlePositiveOpacity);
+  }
 };
 
 // Horizontal Swipe End Function Determination
 const HorizontalEnd = (
-  detail: any,
-  stuff: any,
+  detail: GestureDetail,
+  stuff: HTMLInputElement | null,
   handleShowNothing: () => void,
   timeOutFunc: () => void
 ) => {
-  const windowWidth = window.innerWidth;
-  stuff.style.transition = "0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+  if (stuff) {
+    const windowWidth = window.innerWidth;
+    stuff.style.transition = "0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
 
-  // Swiping Right Quick Enough
-  if (detail.velocityX > 0.3) {
-    stuff.style.transform = `translateX(${windowWidth * 1.5}px)`;
-    setTimeout(timeOutFunc, 100);
-  }
-  // Swiping Right more than half of window length. Move Card to Right
-  else if (detail.deltaX > windowWidth / 3) {
-    stuff.style.transform = `translateX(${windowWidth * 1.5}px)`;
-    setTimeout(timeOutFunc, 100);
-  }
-  // Swiping Left Quick Enough
-  else if (detail.velocityX < -0.3) {
-    stuff.style.transform = `translateX(${windowWidth * -1.5}px)`;
-    setTimeout(timeOutFunc, 100);
-  }
-  // Swiping Left More than half of window length. Move Card to Left
-  else if (detail.deltaX < -windowWidth / 3) {
-    stuff.style.transform = `translateX(${-windowWidth * 1.5}px)`;
-    setTimeout(timeOutFunc, 100);
-  }
-  // Not Swiping Enough. Reset the Card to its position
-  else {
-    stuff.style.transform = "";
-    handleShowNothing();
+    // Swiping Right Quick Enough
+    if (detail.velocityX > 0.3) {
+      stuff.style.transform = `translateX(${windowWidth * 1.5}px)`;
+      setTimeout(timeOutFunc, 100);
+    }
+    // Swiping Right more than half of window length. Move Card to Right
+    else if (detail.deltaX > windowWidth / 3) {
+      stuff.style.transform = `translateX(${windowWidth * 1.5}px)`;
+      setTimeout(timeOutFunc, 100);
+    }
+    // Swiping Left Quick Enough
+    else if (detail.velocityX < -0.3) {
+      stuff.style.transform = `translateX(${windowWidth * -1.5}px)`;
+      setTimeout(timeOutFunc, 100);
+    }
+    // Swiping Left More than half of window length. Move Card to Left
+    else if (detail.deltaX < -windowWidth / 3) {
+      stuff.style.transform = `translateX(${-windowWidth * 1.5}px)`;
+      setTimeout(timeOutFunc, 100);
+    }
+    // Not Swiping Enough. Reset the Card to its position
+    else {
+      stuff.style.transform = "";
+      handleShowNothing();
+    }
   }
 };
 
 // Function that shows the vertical indicators based on states
 const showVerticalInd = (
-  detail: any,
+  detail: GestureDetail,
   isClicked: boolean,
-  handleNoMoreOpacity: (detail: any) => void,
-  handleOneMoreOpacity: (detail: any) => void,
+  handleNoMoreOpacity: (detail: GestureDetail) => void,
+  handleOneMoreOpacity: (detail: GestureDetail) => void,
   handleShowNothing: () => void
 ) => {
   // Before Clicking
@@ -107,127 +111,131 @@ const showVerticalInd = (
 
 // Vertical Swiping Function
 const VerticalMove = (
-  detail: any,
-  card: any,
-  stuff: any,
+  detail: GestureDetail,
+  card: HTMLInputElement | null,
+  stuff: HTMLInputElement | null,
   isClicked: boolean,
-  handleNoMoreOpacity: (detail: any) => void,
-  handleOneMoreOpacity: (detail: any) => void,
+  handleNoMoreOpacity: (detail: GestureDetail) => void,
+  handleOneMoreOpacity: (detail: GestureDetail) => void,
   handleShowNothing: () => void
 ) => {
-  // Before Flipping. Move Down the Whole Tuple
-  if (!isClicked) {
-    stuff.style.transform = `translateY(${detail.deltaY}px) rotate(${
-      detail.deltaY / 90
-    }deg)`;
-  }
-  // After Flipping
-  else {
-    // Moving Down will move the whole Tuple
-    if (detail.deltaY > 0) {
+  if (stuff && card) {
+    // Before Flipping. Move Down the Whole Tuple
+    if (!isClicked) {
       stuff.style.transform = `translateY(${detail.deltaY}px) rotate(${
         detail.deltaY / 90
       }deg)`;
     }
-    // Moving Up will only move the top card
+    // After Flipping
     else {
-      stuff.style.transform = "";
-      card.style.transform = `translateY(${detail.deltaY}px) rotate(${
-        detail.deltaY / 90
-      }deg)`;
+      // Moving Down will move the whole Tuple
+      if (detail.deltaY > 0) {
+        stuff.style.transform = `translateY(${detail.deltaY}px) rotate(${
+          detail.deltaY / 90
+        }deg)`;
+      }
+      // Moving Up will only move the top card
+      else {
+        stuff.style.transform = "";
+        card.style.transform = `translateY(${detail.deltaY}px) rotate(${
+          detail.deltaY / 90
+        }deg)`;
+      }
     }
+    // Call the function to show vertical indicators
+    showVerticalInd(
+      detail,
+      isClicked,
+      handleNoMoreOpacity,
+      handleOneMoreOpacity,
+      handleShowNothing
+    );
   }
-  // Call the function to show vertical indicators
-  showVerticalInd(
-    detail,
-    isClicked,
-    handleNoMoreOpacity,
-    handleOneMoreOpacity,
-    handleShowNothing
-  );
 };
 
 // Vertical Swipe End Function Determination
 const VerticalEnd = (
-  detail: any,
-  card: any,
-  stuff: any,
+  detail: GestureDetail,
+  card: HTMLInputElement | null,
+  stuff: HTMLInputElement | null,
   isClicked: boolean,
   handleShowNothing: () => void,
   backHandler: () => void,
   timeOutFunc: () => void,
   oneMoreTimeOut: () => void
 ) => {
-  const windowHeight = window.innerHeight;
-  stuff.style.transition = "0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
-  card.style.transition = "0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+  if (stuff && card) {
+    const windowHeight = window.innerHeight;
+    stuff.style.transition = "0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+    card.style.transition = "0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
 
-  // Before clicking
-  if (!isClicked) {
-    // Swipe Down fast, clear the tuple
-    if (detail.velocityY > 0.3) {
-      stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
-      setTimeout(timeOutFunc, 100);
+    // Before clicking
+    if (!isClicked) {
+      // Swipe Down fast, clear the tuple
+      if (detail.velocityY > 0.3) {
+        stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
+        setTimeout(timeOutFunc, 100);
+      }
+      // Swipe Down enough, clear the tuple
+      else if (detail.deltaY > windowHeight / 4) {
+        stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
+        setTimeout(timeOutFunc, 100);
+      }
+      // Reset
+      else {
+        stuff.style.transform = "";
+        handleShowNothing();
+      }
     }
-    // Swipe Down enough, clear the tuple
-    else if (detail.deltaY > windowHeight / 4) {
-      stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
-      setTimeout(timeOutFunc, 100);
-    }
-    // Reset
+    // After clicking
     else {
-      stuff.style.transform = "";
-      handleShowNothing();
-    }
-  }
-  // After clicking
-  else {
-    // Swipe Up fast, clear the top card
-    if (detail.velocityY < -0.3) {
-      card.style.transform = `translateY(${windowHeight * -1.5}px)`;
-      setTimeout(oneMoreTimeOut, 100);
+      // Swipe Up fast, clear the top card
+      if (detail.velocityY < -0.3) {
+        card.style.transform = `translateY(${windowHeight * -1.5}px)`;
+        setTimeout(oneMoreTimeOut, 100);
 
-      // Set all the style/className/isClicked back
-      stuff.style.transform = "";
-      backHandler();
-    }
-    // Swipe Up enough, clear the top card
-    else if (detail.deltaY < -windowHeight / 4) {
-      card.style.transform = `translateY(${windowHeight * -1.5}px)`;
-      setTimeout(oneMoreTimeOut, 100);
+        // Set all the style/className/isClicked back
+        stuff.style.transform = "";
+        backHandler();
+      }
+      // Swipe Up enough, clear the top card
+      else if (detail.deltaY < -windowHeight / 4) {
+        card.style.transform = `translateY(${windowHeight * -1.5}px)`;
+        setTimeout(oneMoreTimeOut, 100);
 
-      // Set all the style/className/isClicked back
-      stuff.style.transform = "";
-      backHandler();
-    }
-    //  Swipe down fast, clear the tuple
-    else if (detail.velocityY > 0.3) {
-      stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
-      setTimeout(timeOutFunc, 100);
-    }
-    // Swipe down enough, clear the tuple
-    else if (detail.deltaY > windowHeight / 4) {
-      stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
-      setTimeout(timeOutFunc, 100);
-    }
-    // Reset
-    else {
-      card.style.transform = "";
-      stuff.style.transform = "";
-      handleShowNothing();
+        // Set all the style/className/isClicked back
+        stuff.style.transform = "";
+        backHandler();
+      }
+      //  Swipe down fast, clear the tuple
+      else if (detail.velocityY > 0.3) {
+        stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
+        setTimeout(timeOutFunc, 100);
+      }
+      // Swipe down enough, clear the tuple
+      else if (detail.deltaY > windowHeight / 4) {
+        stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
+        setTimeout(timeOutFunc, 100);
+      }
+      // Reset
+      else {
+        card.style.transform = "";
+        stuff.style.transform = "";
+        handleShowNothing();
+      }
     }
   }
 };
 
 // Function that manages the gesture
 export const enableGesture = (
-  card: any,
-  stuff: any,
+  card: HTMLInputElement | null,
+  stuff: HTMLInputElement | null,
   isClicked: boolean,
-  handleNegativeOpacity: (detail: any) => void,
-  handlePositiveOpacity: (detail: any) => void,
-  handleNoMoreOpacity: (detail: any) => void,
-  handleOneMoreOpacity: (detail: any) => void,
+  handleNegativeOpacity: (detail: GestureDetail) => void,
+  handlePositiveOpacity: (detail: GestureDetail) => void,
+  handleNoMoreOpacity: (detail: GestureDetail) => void,
+  handleOneMoreOpacity: (detail: GestureDetail) => void,
   handleShowNothing: () => void,
   backHandler: () => void,
   timeOutFunc: () => void,
