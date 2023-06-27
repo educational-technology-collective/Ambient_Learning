@@ -47,7 +47,7 @@ const App: React.FC = () => {
 
   
 
-  const [cardCol, setCards] = useState([]);
+  const [cardCol, setCards] = useState([[]]);
   const [showScreen, setScreen] = useState(false);
   
 
@@ -97,7 +97,7 @@ const App: React.FC = () => {
 
   // Logic to Move On to Next Card
   const swipeNextCard = (tupleIndex: number) => {
-    setFinished((prevFinished) => prevFinished + 1);
+    setFinished((prevFinished : number) => prevFinished + 1);
     setCounter((prevCounter : number) => prevCounter - 1);
 
     // If the current tuple is not the last one, reset the counter of tuple
@@ -121,10 +121,10 @@ const App: React.FC = () => {
 
       // Visual Vibration
       handleShake();
-      setFinished((prevFinished) => prevFinished + 1);
+      setFinished((prevFinished : number) => prevFinished + 1);
       setCounter((prevCounter : number) => prevCounter - 1);
     } else {
-      setFinished((prevFinished) => prevFinished + 1);
+      setFinished((prevFinished : number) => prevFinished + 1);
       setTotal((prevTotal : number) => prevTotal + 1);
 
       // Decrement the Counter
