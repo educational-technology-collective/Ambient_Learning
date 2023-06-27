@@ -13,7 +13,6 @@ import { useHistory } from "react-router-dom";
 const LoadingPage: React.FC<{ handleCardScreen: () => void }> = ({
   handleCardScreen,
 }) => {
-
   // State Variable for Loading Bar
   const [buffer, setBuffer] = useState(0.06);
   const [progress, setProgress] = useState(0);

@@ -1,7 +1,4 @@
 import {
-  IonText,
-  IonCard,
-  IonCardContent,
   IonContent,
   IonHeader,
   IonPage,
