@@ -1,7 +1,8 @@
 export const cardCollection = [
   [
     {
-      id: "100",
+      _id: "100",
+      lmid: 'sjdiadjoa',
       type: "m",
       content: {
         question: "What is the keyword for the output of a function",
@@ -14,8 +15,9 @@ export const cardCollection = [
       },
     },
     {
-      id: "1", // Used For Key
-      type: "q", // Identify Type of Card MCQ/QA
+      _id: "1", // Used For Key
+      lmid: 'sjdiadjoa',
+      type: "q", // _identify Type of Card MCQ/QA
       content: {
         question: "How to define a function in python",
         answer: "def func()",
@@ -25,7 +27,8 @@ export const cardCollection = [
 
   [
     {
-      id: "467",
+      _id: "467",
+      lmid: 'sjdiadjoa',
       type: "q",
       content: {
         question: "How to take an input in Python?",
@@ -33,8 +36,9 @@ export const cardCollection = [
       },
     },
     {
-      id: "2", //Used For Key
-      type: "m", //Identify Type of Card MCQ/QA
+      _id: "2", //Used For Key
+      lmid: 'sjdiadjoa',
+      type: "m", //_identify Type of Card MCQ/QA
       content: {
         question: "How to print a variable x in Python?",
         answer: [
@@ -49,7 +53,8 @@ export const cardCollection = [
 
   [
     {
-      id: "23132",
+      _id: "23132",
+      lmid: 'sjdiadjoa',
       type: "m",
       content: {
         question:
@@ -63,7 +68,8 @@ export const cardCollection = [
       },
     },
     {
-      id: "4",
+      _id: "4",
+      lmid: 'sjdiadjoa',
       type: "m",
       content: {
         question:
@@ -80,7 +86,8 @@ export const cardCollection = [
 
   [
     {
-      id: "135",
+      _id: "135",
+      lmid: 'sjdiadjoa',
       type: "q",
       content: {
         question:
@@ -89,7 +96,8 @@ export const cardCollection = [
       },
     },
     {
-      id: "5",
+      _id: "5",
+      lmid: 'sjdiadjoa',
       type: "q",
       content: {
         question: "What is a venn diagram used for?",
@@ -100,7 +108,8 @@ export const cardCollection = [
 
   [
     {
-      id: "10",
+      _id: "10",
+      lmid: 'sjdiadjoa',
       type: "q",
       content: {
         question: "What is the function that we use for merging DataFrames?",
@@ -108,7 +117,8 @@ export const cardCollection = [
       },
     },
     {
-      id: "45",
+      _id: "45",
+      lmid: 'sjdiadjoa',
       type: "q",
       content: {
         question: "What does left join include?",
@@ -119,7 +129,8 @@ export const cardCollection = [
 
   [
     {
-      id: "24",
+      _id: "24",
+      lmid: 'sjdiadjoa',
       type: "q",
       content: {
         question:
@@ -128,7 +139,8 @@ export const cardCollection = [
       },
     },
     {
-      id: "99",
+      _id: "99",
+      lmid: 'sjdiadjoa',
       type: "q",
       content: {
         question: "How does pandas preserve conflicting columns?",
@@ -136,7 +148,8 @@ export const cardCollection = [
       },
     },
     {
-      id: "31",
+      _id: "31",
+      lmid: 'sjdiadjoa',
       type: "m",
       content: {
         question: "How does concat stitch together DataFrames?",
@@ -155,7 +168,8 @@ export const cardCollection = [
 
   [
     {
-      id: "223",
+      _id: "223",
+      lmid: 'sjdiadjoa',
       type: "m",
       content: {
         question:
@@ -169,7 +183,8 @@ export const cardCollection = [
       },
     },
     {
-      id: "523",
+      _id: "523",
+      lmid: 'sjdiadjoa',
       type: "m",
       content: {
         question:
@@ -186,7 +201,8 @@ export const cardCollection = [
 
   [
     {
-      id: "132",
+      _id: "132",
+      lmid: 'sjdiadjoa',
       type: "m",
       content: {
         question: "What is another name for a full outer join?",
@@ -199,7 +215,8 @@ export const cardCollection = [
       },
     },
     {
-      id: "478",
+      _id: "478",
+      lmid: 'sjdiadjoa',
       type: "m",
       content: {
         question: "What is another name for an inner join?",
@@ -218,7 +235,8 @@ export const cardCollection = [
 
   [
     {
-      id: "44124",
+      _id: "44124",
+      lmid: 'sjdiadjoa',
       type: "q",
       content: {
         question:
@@ -228,7 +246,8 @@ export const cardCollection = [
       },
     },
     {
-      id: "12313",
+      _id: "12313",
+      lmid: 'sjdiadjoa',
       type: "m",
       content: {
         question:
@@ -245,7 +264,8 @@ export const cardCollection = [
 
   [
     {
-      id: "231",
+      _id: "231",
+      lmid: 'sjdiadjoa',
       type: "q",
       content: {
         question: "What function do we use to concatenate two DataFrames?",
@@ -253,7 +273,8 @@ export const cardCollection = [
       },
     },
     {
-      id: "788",
+      _id: "788",
+      lmid: 'sjdiadjoa',
       type: "q",
       content: {
         question: "How do you handle ambiguous keys during a concat. This is just for the sake of test. What a great day. You are true. My Dear Arthur. This is for you. I hope you know I am better. Much better.",

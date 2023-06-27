@@ -12,9 +12,8 @@ const MCQ: React.FC<{
   const choice: individualChoice[] = obj.content.answer;
 
   const questionLength: number = question.length;
-
+  console.log(questionLength)
   let frontQuestionStyle: string, backQuestionStyle: string;
-
   // When there are less than or equal to 110 characters: 2em
   if (questionLength <= 110) {
     frontQuestionStyle = "card-text front-text mcq-question back-text-2em";
@@ -35,7 +34,7 @@ const MCQ: React.FC<{
   return (
     <>
       {/* Question Text Front */}
-      <IonText className={frontQuestionStyle}>{question}</IonText>
+      <IonText className={frontQuestionStyle} >{question}</IonText>
 
       {/* Question Text Back */}
       <IonText className={backQuestionStyle}>{question}</IonText>

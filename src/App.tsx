@@ -37,19 +37,15 @@ import "@ionic/react/css/display.css";
 import "./theme/variables.css";
 import { cardCollection } from "./components/exampleData";
 import CardsTab from "./components/CardsTab";
+import LoadingPage from "./pages/LoadingPage";
 setupIonicReact({
   swipeBackEnabled: false,
 });
 
 const App: React.FC = () => {
   // The Card Array
-  
-
-  
 
   const [cardCol, setCards] = useState([[]]);
-  const [showScreen, setScreen] = useState(false);
-  
 
   const getCards = async (url: string) => {
     const response = await fetch(url);
@@ -57,18 +53,16 @@ const App: React.FC = () => {
     setCards(data);
     setTotal(data.length);
     setCounter(data.length);
-    setTupleCounter(data[data.length-1].length);
-    setScreen(true);
-    
+    setTupleCounter(data[data.length - 1].length);
   };
 
-
   useEffect(() => {
-    getCards('https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/flashcards/videoId/6499ef9395f0588d6bcfd1db');
-    
+    getCards(
+      "https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/flashcards/videoId/6499ef9395f0588d6bcfd1db"
+    );
   }, []);
-    console.log(cardCol);
- 
+  console.log(cardCol);
+
   // How Many Cards Finished
   const [finished, setFinished] = useState(0);
 
@@ -79,9 +73,7 @@ const App: React.FC = () => {
   const [counter, setCounter] = useState(0);
 
   // Tuple Counter for One More Cards
-  const [tupleCounter, setTupleCounter] = useState(
-    0
-  );
+  const [tupleCounter, setTupleCounter] = useState(0);
 
   // Card-Stacker Visual Effect
   const [isShake, setShake] = useState(false);
@@ -97,8 +89,8 @@ const App: React.FC = () => {
 
   // Logic to Move On to Next Card
   const swipeNextCard = (tupleIndex: number) => {
-    setFinished((prevFinished : number) => prevFinished + 1);
-    setCounter((prevCounter : number) => prevCounter - 1);
+    setFinished((prevFinished: number) => prevFinished + 1);
+    setCounter((prevCounter: number) => prevCounter - 1);
 
     // If the current tuple is not the last one, reset the counter of tuple
     // to the next array's length
@@ -121,14 +113,14 @@ const App: React.FC = () => {
 
       // Visual Vibration
       handleShake();
-      setFinished((prevFinished : number) => prevFinished + 1);
-      setCounter((prevCounter : number) => prevCounter - 1);
+      setFinished((prevFinished: number) => prevFinished + 1);
+      setCounter((prevCounter: number) => prevCounter - 1);
     } else {
-      setFinished((prevFinished : number) => prevFinished + 1);
-      setTotal((prevTotal : number) => prevTotal + 1);
+      setFinished((prevFinished: number) => prevFinished + 1);
+      setTotal((prevTotal: number) => prevTotal + 1);
 
       // Decrement the Counter
-      setTupleCounter((prevTupleCounter : number) => prevTupleCounter - 1);
+      setTupleCounter((prevTupleCounter: number) => prevTupleCounter - 1);
     }
   };
 
@@ -147,7 +139,7 @@ const App: React.FC = () => {
     setCardScreen(false);
   };
 
-  return showScreen ? (
+  return (
     <IonApp>
       <IonReactRouter>
         <IonTabs>
@@ -158,7 +150,6 @@ const App: React.FC = () => {
               render={() => (
                 <Home
                   cardsLeft={cardsLeft}
-                  finishedLoading={showScreen}
                   handleCardScreen={handleCardScreen}
                 />
               )}
@@ -179,8 +170,15 @@ const App: React.FC = () => {
                 />
               )}
             />
+
+            <Route
+              exact
+              path="/loading"
+              render={() => <LoadingPage handleCardScreen={handleCardScreen} />}
+            />
+
             <Route exact path="/">
-              <Redirect to="/home" />
+              <Redirect to="/loading" />
             </Route>
           </IonRouterOutlet>
 
@@ -206,7 +204,7 @@ const App: React.FC = () => {
         </IonTabs>
       </IonReactRouter>
     </IonApp>
-  ): <IonLoading isOpen={!showScreen} message='Retrieving Cards' spinner='crescent'></IonLoading>;
+  );
 };
 
 export default App;

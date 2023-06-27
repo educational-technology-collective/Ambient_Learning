@@ -40,7 +40,7 @@
 .card-text {
   backface-visibility: hidden;
   font-weight: 900;
-  margin: 0 0.75rem;
+  margin: 0 1.5rem;
   position: absolute;
   text-align: center;
   justify-content: center;
@@ -59,15 +59,15 @@
   transform: rotateY(180deg) translateZ(3px);
 }
 
-.back-text-2em{
+.back-text-2em {
   font-size: 2em;
 }
 
-.back-text-1d6em{
-  font-size: 1.6em
+.back-text-1d6em {
+  font-size: 1.6em;
 }
 
-.back-text-1d3em{
+.back-text-1d3em {
   font-size: 1.3em;
 }
 

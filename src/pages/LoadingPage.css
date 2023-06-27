@@ -1,0 +1,28 @@
+.retrieving-text {
+  text-align: center;
+  font-weight: 900;
+}
+
+.bar {
+  position: relative;
+  height: 4%;
+  border-radius: 3em;
+  margin-left: 10%;
+  margin-right: 10%;
+
+  --progress-background: mediumseagreen;
+  --buffer-background: snow;
+}
+
+.loading-content {
+  background: rgba(215, 224, 255, 1);
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}

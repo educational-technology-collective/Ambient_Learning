@@ -13,3 +13,7 @@
   --color: aliceblue;
   --color-selected: aquamarine;
 }
+
+#loading {
+  background-color: aliceblue;
+}

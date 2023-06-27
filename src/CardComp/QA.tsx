@@ -7,7 +7,8 @@ const QA: React.FC<{ obj: flashCard }> = ({ obj }) => {
 
   const questionLength: number = question.length;
   const answerLength: number = answer.length;
-
+  console.log(questionLength);
+  
   // For the font-size
   let backQuestionStyle: string, answerStyle: string;
 
