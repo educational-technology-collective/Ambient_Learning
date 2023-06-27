@@ -12,6 +12,7 @@ import {
 import "./Home.css";
 import { useHistory } from "react-router-dom";
 import { diamond } from "ionicons/icons";
+import DashBoard from "../HomeComp/DashBoard";
 
 const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
   cardsLeft,
@@ -55,24 +56,11 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
             icon={diamond}
             style={{ fontSize: "3em", left: "45%", position: "relative" }}
           ></IonIcon>
-          <IonCard className="task-card">
-            <IonCardContent className="remaining-content">
-              <IonText className="today-task">Today's Task:</IonText>
-
-              {/* Determine if the cards are done */}
-              {cardsLeft !== 0 ? (
-                <IonCard className={shadow} onClick={navigateToCardScreen}>
-                  <IonCardContent className="wrapped-card-content">
-                    <IonText className="today-task">{cardsLeft}</IonText>
-                  </IonCardContent>
-                </IonCard>
-              ) : (
-                <IonText>
-                  You are done with cards. Go touch grass, bravo!
-                </IonText>
-              )}
-            </IonCardContent>
-          </IonCard>
+          <DashBoard
+            cardsLeft={cardsLeft}
+            shadow={shadow}
+            navigateToCardScreen={navigateToCardScreen}
+          />
         </div>
       </IonContent>
     </IonPage>

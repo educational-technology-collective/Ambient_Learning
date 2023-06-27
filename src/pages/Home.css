@@ -10,38 +10,3 @@
   background: rgba(215, 224, 255, 1);
 }
 
-/* The Top Component of Cards left */
-.task-card {
-  background: paleturquoise;
-}
-
-/* Styling for the text 'Today's task' */
-.today-task {
-  font-size: 1.5em;
-  font-weight: 900;
-}
-
-.remaining-content {
-  display: grid;
-  align-items: center;
-}
-
-.wrapped-card {
-  background: snow;
-  justify-self: flex-end;
-  width: 30%;
-}
-
-/* Determining How Many Box-Shadows */
-.left-3 {
-  box-shadow: 3px -3px darkkhaki, 8px -8px grey;
-}
-
-.left-2 {
-  box-shadow: 3px -3px grey;
-}
-
-.wrapped-card-content {
-  display: flex;
-  justify-content: center;
-}
