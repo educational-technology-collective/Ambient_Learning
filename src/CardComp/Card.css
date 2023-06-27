@@ -1,9 +1,11 @@
+/* The Overarching wrapper of the cards */
 .card-wrapper {
   position: absolute;
   height: 100%;
   width: 100%;
 }
 
+/* The overall container for the cards */
 .card-container {
   perspective: 1000px;
   display: flex;
@@ -14,6 +16,7 @@
   box-shadow: rgba(123, 135, 185) 0px 4px 6px;
 }
 
+/* The content styling for the cards */
 .card-content {
   transform-style: preserve-3d;
   position: relative;
@@ -23,17 +26,19 @@
   height: 100%;
 }
 
+/* QA Card has a flipping time of 0.6s */
 .qa-card-content {
-  transition: 0.6s;
+  transition: 0.5s;
 }
 
+/* MCQ Card has a flipping time of 0.3s to look better */
 .mcq-card-content {
-  transition: 0.3s;
+  transition: 0.5s;
 }
 
+/* Texts for both question and answer */
 .card-text {
   backface-visibility: hidden;
-  font-size: 2em;
   font-weight: 900;
   margin: 0 0.75rem;
   position: absolute;
@@ -43,26 +48,46 @@
   align-items: center;
 }
 
+/* Front Question Text with 0 degree */
 .front-text {
+  font-size: 2em;
   transform: rotateY(0deg);
 }
 
+/* All Back texts with 180 degrees and translateZ forward (for ios) */
 .back-text {
   transform: rotateY(180deg) translateZ(3px);
 }
 
+.back-text-2em{
+  font-size: 2em;
+}
+
+.back-text-1d6em{
+  font-size: 1.6em
+}
+
+.back-text-1d3em{
+  font-size: 1.3em;
+}
+
+/* QA Card Question on the back page taking 50% */
 .qa-question-back {
   height: 50%;
   top: 0;
   border-bottom: 1px dashed crimson;
 }
 
+/* QA Card Answer on the back page taking bottom 50% */
 .qa-answer {
   height: 50%;
   bottom: 0;
 }
 
+/* 
+MCQ Card question always takes 60% */
 .mcq-question {
+  position: absolute;
   height: 60%;
   top: 0;
 }

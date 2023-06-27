@@ -6,13 +6,15 @@ import {
   IonTabBar,
   setupIonicReact,
   IonTabButton,
+  IonLoading,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { TbHomeEdit } from "react-icons/tb";
 import { Haptics } from "@capacitor/haptics";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CardScreen from "./pages/CardScreen";
 import Home from "./pages/Home";
+import "./pages/Home.css";
 import "./App.css";
 
 /* Core CSS required for Ionic components to work properly */
@@ -34,26 +36,51 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 import "./theme/variables.css";
 import { cardCollection } from "./components/exampleData";
+import CardsTab from "./components/CardsTab";
 setupIonicReact({
   swipeBackEnabled: false,
 });
 
 const App: React.FC = () => {
   // The Card Array
-  const [cardCol, setCards] = useState(cardCollection);
+  
 
+  
+
+  const [cardCol, setCards] = useState([[]]);
+  const [showScreen, setScreen] = useState(false);
+  
+
+  const getCards = async (url: string) => {
+    const response = await fetch(url);
+    const data = await response.json();
+    setCards(data);
+    setTotal(data.length);
+    setCounter(data.length);
+    setTupleCounter(data[data.length-1].length);
+    setScreen(true);
+    
+  };
+
+
+  useEffect(() => {
+    getCards('https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/flashcards/videoId/6499ef9395f0588d6bcfd1db');
+    
+  }, []);
+    console.log(cardCol);
+ 
   // How Many Cards Finished
   const [finished, setFinished] = useState(0);
 
   // How Many Cards in total
-  const [total, setTotal] = useState(cardCol.length);
+  const [total, setTotal] = useState(0);
 
   // Counter used to display certain cards
-  const [counter, setCounter] = useState(cardCol.length);
+  const [counter, setCounter] = useState(0);
 
   // Tuple Counter for One More Cards
   const [tupleCounter, setTupleCounter] = useState(
-    cardCol[cardCol.length - 1].length
+    0
   );
 
   // Card-Stacker Visual Effect
@@ -70,8 +97,8 @@ const App: React.FC = () => {
 
   // Logic to Move On to Next Card
   const swipeNextCard = (tupleIndex: number) => {
-    setFinished((prevFinished) => prevFinished + 1);
-    setCounter((prevCounter) => prevCounter - 1);
+    setFinished((prevFinished : number) => prevFinished + 1);
+    setCounter((prevCounter : number) => prevCounter - 1);
 
     // If the current tuple is not the last one, reset the counter of tuple
     // to the next array's length
@@ -94,18 +121,33 @@ const App: React.FC = () => {
 
       // Visual Vibration
       handleShake();
-      setFinished((prevFinished) => prevFinished + 1);
-      setCounter((prevCounter) => prevCounter - 1);
+      setFinished((prevFinished : number) => prevFinished + 1);
+      setCounter((prevCounter : number) => prevCounter - 1);
     } else {
-      setFinished((prevFinished) => prevFinished + 1);
-      setTotal((prevTotal) => prevTotal + 1);
+      setFinished((prevFinished : number) => prevFinished + 1);
+      setTotal((prevTotal : number) => prevTotal + 1);
 
       // Decrement the Counter
-      setTupleCounter((prevTupleCounter) => prevTupleCounter - 1);
+      setTupleCounter((prevTupleCounter : number) => prevTupleCounter - 1);
     }
   };
 
-  return (
+  let cardsLeft: number = total - finished;
+
+  // State Variable used to track if the current tab is cardscreen
+  const [isCardScreen, setCardScreen] = useState(false);
+
+  // Card Screen will spread the cards
+  const handleCardScreen = () => {
+    setCardScreen(true);
+  };
+
+  // Home Screen will fold the cards
+  const handleHomeScreen = () => {
+    setCardScreen(false);
+  };
+
+  return showScreen ? (
     <IonApp>
       <IonReactRouter>
         <IonTabs>
@@ -113,7 +155,13 @@ const App: React.FC = () => {
             <Route
               exact
               path="/home"
-              render={() => <Home finished={finished} total={total} />}
+              render={() => (
+                <Home
+                  cardsLeft={cardsLeft}
+                  finishedLoading={showScreen}
+                  handleCardScreen={handleCardScreen}
+                />
+              )}
             />
             <Route
               exact
@@ -137,20 +185,28 @@ const App: React.FC = () => {
           </IonRouterOutlet>
 
           <IonTabBar slot="bottom" className="tab-bar">
-            <IonTabButton tab="home" href="/home" className="icons">
+            <IonTabButton
+              tab="home"
+              href="/home"
+              className="icons"
+              onClick={handleHomeScreen}
+            >
               <TbHomeEdit size="3em" />
             </IonTabButton>
-            {/* <IonTabButton className="icons">
-              <IonIcon icon={save}></IonIcon>
+
+            <IonTabButton
+              tab="card"
+              href="/cardscreen"
+              className="hand spread icons"
+              onClick={handleCardScreen}
+            >
+              <CardsTab cardsLeft={cardsLeft} isCardScreen={isCardScreen} />
             </IonTabButton>
-            <IonTabButton className="icons">
-              <IonIcon icon={radio}></IonIcon>
-            </IonTabButton> */}
           </IonTabBar>
         </IonTabs>
       </IonReactRouter>
     </IonApp>
-  );
+  ): <IonLoading isOpen={!showScreen} message='Retrieving Cards' spinner='crescent'></IonLoading>;
 };
 
 export default App;

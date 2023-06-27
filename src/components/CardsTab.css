@@ -1,0 +1,73 @@
+/* The Main styling for the tab cards */
+.tab-card {
+  margin-top: 0.15rem;
+  padding: 0;
+  position: absolute;
+  left: 45%;
+  top: 0.05rem;
+  float: left;
+  width: 1.9rem;
+  height: 2.8rem;
+  border: 1px solid black;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: top 0.3s ease, left 0.3s ease;
+}
+
+/* Styling the number on the cards */
+.tab-card p {
+  color: brown;
+  font-size: 160%;
+  font-weight: bold;
+}
+
+.hand {
+  margin: 0.2rem;
+}
+
+.hand:before,
+.hand::after {
+  content: "";
+  display: table;
+}
+
+.hand:after {
+  clear: both;
+}
+
+/* Container for the 3 cards */
+.spread {
+  position: relative;
+  width: 2.5rem;
+  height: 3.2rem;
+  transition: top 0.3s ease, left 0.3s ease;
+}
+
+.activate {
+  box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.4);
+}
+
+/* The first one will be te rightmost card */
+.first-activate {
+  left: 48%;
+  top: 0.11rem;
+  transform: rotate(10deg);
+}
+
+/* The second one will be the middle card */
+.second-activate {
+  left: 45%;
+  top: 0.05rem;
+  transform: rotate(0deg);
+}
+
+/* The third on will be the leftmost card */
+.third-activate {
+  left: 42%;
+  top: 0.03rem;
+  transform: rotate(-10deg);
+}

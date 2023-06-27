@@ -8,7 +8,7 @@ import {
 import "./CardScreen.css";
 import React from "react";
 import FlashCardList from "../FlashCardComp/FlashCardList";
-import Message from "../components/Message";
+import OneMoreFailMessage from "../components/OneMoreFailMessage";
 
 const CardScreen: React.FC<{
   finished: number;
@@ -16,7 +16,7 @@ const CardScreen: React.FC<{
   counter: number;
   tupleCounter: number;
   isShake: boolean;
-  cardCol: any[];
+  cardCol: flashCard[][];
   swipeNextCard: (tupleIndex: number) => void;
   swipeOneMoreCard: (tupleIndex: number) => void;
 }> = ({
@@ -29,13 +29,14 @@ const CardScreen: React.FC<{
   swipeNextCard,
   swipeOneMoreCard,
 }) => {
-  const stackClass = isShake
+  const stackClass: string = isShake
     ? "card-stacker card-stacker-animate"
     : "card-stacker";
 
   // Screen Being Rendered
   return (
     <IonPage>
+      {/* Header and ToolBar */}
       <IonHeader color="tertiary">
         <IonToolbar>
           <IonTitle className="title">
@@ -47,7 +48,7 @@ const CardScreen: React.FC<{
       <IonContent className="page-content" scrollY={false}>
         <div className={stackClass}>
           {/* We display two tuples at one time */}
-          {cardCol.map((array, index) => {
+          {cardCol.map((array: flashCard[], index) => {
             // If the tuple is displayed on top
             if (index === counter - 1) {
               return (
@@ -77,7 +78,8 @@ const CardScreen: React.FC<{
               );
             }
           })}
-          {isShake ? <Message /> : null}
+          {/* Give alert message if it's shaking due to OneMore */}
+          {isShake ? <OneMoreFailMessage /> : null}
         </div>
       </IonContent>
     </IonPage>

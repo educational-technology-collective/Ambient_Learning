@@ -3,10 +3,12 @@
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
+/* Background color for the tab bar */
 .tab-bar {
   --background: #0056d2;
 }
 
+/* Colors for the icons on the bar */
 .icons {
   --color: aliceblue;
   --color-selected: aquamarine;

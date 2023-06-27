@@ -2,7 +2,7 @@ import { useRef } from "react";
 import Card from "../CardComp/Card";
 import "./FlashCardList.css";
 const FlashCardList: React.FC<{
-  array: any[];
+  array: flashCard[];
   tupleIndex: number;
   tupleCounter: number;
   isFrontTuple: boolean;
@@ -17,13 +17,12 @@ const FlashCardList: React.FC<{
   swipeOneMoreCard,
 }) => {
   const refTuple = useRef<HTMLInputElement>(null);
-  const tupleBehindCard = array[array.length - 1];
-  let component;
 
-  component = (
+  // TupleBehind is the card that is stacked at bottom (next card)
+  const tupleBehindCard: flashCard = array[array.length - 1];
+  const component = (
     <Card
       obj={tupleBehindCard}
-      key={tupleBehindCard.id}
       tupleIndex={tupleIndex}
       moveOn={swipeNextCard}
       oneMore={swipeOneMoreCard}
@@ -37,11 +36,12 @@ const FlashCardList: React.FC<{
       {isFrontTuple
         ? array.map((card, index) => {
             // If the tuple is front, we display its top two cards
+
             if (index === tupleCounter - 1 || index === tupleCounter - 2) {
               return (
                 <Card
                   obj={card}
-                  key={card.id}
+                  key={index}
                   tupleIndex={tupleIndex}
                   moveOn={swipeNextCard}
                   oneMore={swipeOneMoreCard}

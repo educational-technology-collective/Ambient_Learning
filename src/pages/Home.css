@@ -1,17 +1,21 @@
+/* Text on the Toolbar header */
 .title {
   font-weight: 900;
   font-size: 1.2em;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+/* Background Color */
 .home-content {
   background: rgba(215, 224, 255, 1);
 }
 
+/* The Top Component of Cards left */
 .task-card {
   background: paleturquoise;
 }
 
+/* Styling for the text 'Today's task' */
 .today-task {
   font-size: 1.5em;
   font-weight: 900;
@@ -22,24 +26,19 @@
   align-items: center;
 }
 
-.wrapped-card-3 {
+.wrapped-card {
   background: snow;
   justify-self: flex-end;
   width: 30%;
+}
+
+/* Determining How Many Box-Shadows */
+.left-3 {
   box-shadow: 3px -3px darkkhaki, 8px -8px grey;
 }
 
-.wrapped-card-2 {
-  background: snow;
-  justify-self: flex-end;
-  width: 30%;
+.left-2 {
   box-shadow: 3px -3px grey;
-}
-
-.wrapped-card-1 {
-  background: snow;
-  justify-self: flex-end;
-  width: 30%;
 }
 
 .wrapped-card-content {

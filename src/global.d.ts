@@ -1,8 +1,11 @@
+import { ReactNode } from "react";
+
 export {}
 
 declare global{
   interface flashCard {
-    id: number;
+    _id: string;
+    lmid: string;
     type: string;
     content: {
       question: string;
@@ -13,5 +16,10 @@ declare global{
   interface indicatorOp {
     index: number,
     value: number
+  }
+
+  interface individualChoice{
+    option: string,
+    isCorrect: boolean
   }
 }
