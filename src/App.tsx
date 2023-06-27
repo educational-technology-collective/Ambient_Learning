@@ -6,6 +6,7 @@ import {
   IonTabBar,
   setupIonicReact,
   IonTabButton,
+  IonLoading,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { TbHomeEdit } from "react-icons/tb";
@@ -46,20 +47,27 @@ const App: React.FC = () => {
 
   
 
-  const [cardCol, setCards] = useState([1,2]);
+  const [cardCol, setCards] = useState([]);
+  const [showScreen, setScreen] = useState(false);
+  
 
   const getCards = async (url: string) => {
     const response = await fetch(url);
     const data = await response.json();
-    return data;
+    setCards(data);
+    setTotal(data.length);
+    setCounter(data.length);
+    setTupleCounter(data[data.length-1].length);
+    setScreen(true);
+    
   };
 
 
   useEffect(() => {
-    getCards('https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/flashcards/videoId/6499ef9395f0588d6bcfd1db').then((data) => {setCards(data); console.log(data)});
-  }, [])
-
-  console.log(cardCol.length);
+    getCards('https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/flashcards/videoId/6499ef9395f0588d6bcfd1db');
+    
+  }, []);
+    console.log(cardCol);
  
   // How Many Cards Finished
   const [finished, setFinished] = useState(0);
@@ -72,7 +80,7 @@ const App: React.FC = () => {
 
   // Tuple Counter for One More Cards
   const [tupleCounter, setTupleCounter] = useState(
-    cardCol[cardCol.length - 1].length
+    0
   );
 
   // Card-Stacker Visual Effect
@@ -124,7 +132,7 @@ const App: React.FC = () => {
     }
   };
 
-  const cardsLeft: number = total - finished;
+  let cardsLeft: number = total - finished;
 
   // State Variable used to track if the current tab is cardscreen
   const [isCardScreen, setCardScreen] = useState(false);
@@ -139,7 +147,7 @@ const App: React.FC = () => {
     setCardScreen(false);
   };
 
-  return (
+  return showScreen ? (
     <IonApp>
       <IonReactRouter>
         <IonTabs>
@@ -150,6 +158,7 @@ const App: React.FC = () => {
               render={() => (
                 <Home
                   cardsLeft={cardsLeft}
+                  finishedLoading={showScreen}
                   handleCardScreen={handleCardScreen}
                 />
               )}
@@ -197,7 +206,7 @@ const App: React.FC = () => {
         </IonTabs>
       </IonReactRouter>
     </IonApp>
-  );
+  ): <IonLoading isOpen={!showScreen} message='Retrieving Cards' spinner='crescent'></IonLoading>;
 };
 
 export default App;

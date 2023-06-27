@@ -13,8 +13,9 @@ import "./Home.css";
 import { useHistory } from "react-router-dom";
 import { diamond } from "ionicons/icons";
 
-const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
+const Home: React.FC<{ cardsLeft: number; finishedLoading: boolean; handleCardScreen: () => void }> = ({
   cardsLeft,
+  finishedLoading,
   handleCardScreen,
 }) => {
   const history = useHistory();
@@ -50,6 +51,7 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
       </IonHeader>
 
       <IonContent scrollY={false} className="home-content">
+        <div className="home-loaded-wrapper">
         <IonIcon
           icon={diamond}
           style={{ fontSize: "3em", left: "45%", position: "relative" }}
@@ -68,8 +70,10 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
             ) : (
               <IonText>You are done with cards. Go touch grass, bravo!</IonText>
             )}
+            
           </IonCardContent>
         </IonCard>
+        </div>
       </IonContent>
     </IonPage>
   );
