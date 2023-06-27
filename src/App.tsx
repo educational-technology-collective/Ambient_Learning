@@ -73,10 +73,10 @@ const App: React.FC = () => {
   const [finished, setFinished] = useState(0);
 
   // How Many Cards in total
-  const [total, setTotal] = useState(cardCol.length);
+  const [total, setTotal] = useState(0);
 
   // Counter used to display certain cards
-  const [counter, setCounter] = useState(cardCol.length);
+  const [counter, setCounter] = useState(0);
 
   // Tuple Counter for One More Cards
   const [tupleCounter, setTupleCounter] = useState(
