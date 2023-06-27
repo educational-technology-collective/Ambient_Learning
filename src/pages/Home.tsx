@@ -15,8 +15,10 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
   cardsLeft,
   handleCardScreen,
 }) => {
+
   const history = useHistory();
 
+  // Used to jump to the card screen and spread cards
   const navigateToCardScreen = () => {
     history.push("/cardscreen");
     handleCardScreen();

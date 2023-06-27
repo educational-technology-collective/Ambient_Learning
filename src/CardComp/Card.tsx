@@ -130,7 +130,7 @@ const Card: React.FC<{
         onClick={clickHandler}
         disabled={isClicked}
       >
-        <IonCardContent className={cardContentStyle} style={style}>
+        <div className={cardContentStyle} style={style}>
           {/* Front Indicator */}
           <FrontIndicator indicatorOpacity={indicatorOpacity} />
 
@@ -139,7 +139,7 @@ const Card: React.FC<{
 
           {/* Indicators For the Back Page */}
           <BackIndicator indicatorOpacity={indicatorOpacity} />
-        </IonCardContent>
+        </div>
       </IonCard>
     </div>
   );
