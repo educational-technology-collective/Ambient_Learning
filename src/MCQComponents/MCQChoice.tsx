@@ -1,6 +1,7 @@
 import { IonButton, IonText } from "@ionic/react";
 import { useState } from "react";
 import "./MCQChoice.css";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
 // Incorrect Option Component
 export const IncorrectChoice: React.FC<{
@@ -31,7 +32,7 @@ export const IncorrectChoice: React.FC<{
       disabled={clicked}
       onClick={inCorrectClick}
     >
-      <IonText className="choice-text">{choiceText}</IonText>
+      <ReactMarkdown className="choice-text">{choiceText}</ReactMarkdown>
     </IonButton>
   );
 };
@@ -62,7 +63,7 @@ export const CorrectChoice: React.FC<{
       disabled={clicked}
       onClick={correctClick}
     >
-      <IonText className="choice-text">{choiceText}</IonText>
+      <ReactMarkdown className="choice-text">{choiceText}</ReactMarkdown>
     </IonButton>
   );
 };

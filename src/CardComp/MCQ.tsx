@@ -1,6 +1,7 @@
 import { IonText } from "@ionic/react";
 import Choices from "../MCQComponents/Choices";
 import "./Card.css";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
 const MCQ: React.FC<{
   obj: flashCard;
@@ -34,10 +35,10 @@ const MCQ: React.FC<{
   return (
     <>
       {/* Question Text Front */}
-      <IonText className={frontQuestionStyle} >{question}</IonText>
+      <ReactMarkdown className={frontQuestionStyle} >{question}</ReactMarkdown>
 
       {/* Question Text Back */}
-      <IonText className={backQuestionStyle}>{question}</IonText>
+      <ReactMarkdown className={backQuestionStyle}>{question}</ReactMarkdown>
 
       {/* Component for all the choices */}
       <Choices

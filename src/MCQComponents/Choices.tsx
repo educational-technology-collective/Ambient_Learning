@@ -26,7 +26,7 @@ const Choices: React.FC<{
   // UseEffect makes sure that the choices are shuffled only once
   useEffect(() => {
     setArray(shuffleArray(choices));
-  }, [choices]);
+  }, []);
 
   const containerStyle = clicked
     ? "choice-container back-side"
