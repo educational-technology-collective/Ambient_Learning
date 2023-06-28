@@ -43,17 +43,22 @@
 /* Texts for both question and answer */
 .card-text {
   backface-visibility: hidden;
+  flex-direction: column;
   margin: 0 1.5rem;
   position: absolute;
   text-align: center;
   justify-content: center;
   display: flex;
   align-items: center;
+  margin-bottom: 0.05rem;
 }
 
 /* Front Question Text with 0 degree */
+.front-text h1{
+  font-size: 1.5em;
+}
 .front-text {
-  font-size: 2em;
+  font-size: 1.6em;
   transform: rotateY(0deg);
 }
 

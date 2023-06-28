@@ -35,10 +35,10 @@ const MCQ: React.FC<{
   return (
     <>
       {/* Question Text Front */}
-      <ReactMarkdown className={frontQuestionStyle} >{question}</ReactMarkdown>
+      <IonText className={frontQuestionStyle} >{question}</IonText>
 
       {/* Question Text Back */}
-      <ReactMarkdown className={backQuestionStyle}>{question}</ReactMarkdown>
+      <IonText className={backQuestionStyle}>{question}</IonText>
 
       {/* Component for all the choices */}
       <Choices

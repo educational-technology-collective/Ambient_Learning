@@ -32,7 +32,7 @@ export const IncorrectChoice: React.FC<{
       disabled={clicked}
       onClick={inCorrectClick}
     >
-      <ReactMarkdown className="choice-text">{choiceText}</ReactMarkdown>
+      <IonText className="choice-text">{choiceText}</IonText>
     </IonButton>
   );
 };
@@ -63,7 +63,7 @@ export const CorrectChoice: React.FC<{
       disabled={clicked}
       onClick={correctClick}
     >
-      <ReactMarkdown className="choice-text">{choiceText}</ReactMarkdown>
+      <IonText className="choice-text">{choiceText}</IonText>
     </IonButton>
   );
 };

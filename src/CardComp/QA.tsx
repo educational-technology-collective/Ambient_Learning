@@ -2,19 +2,17 @@ import { IonText } from "@ionic/react";
 import parse from 'html-react-parser'
 import "./Card.css";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import remarkGfm from "remark-gfm";
 
 const QA: React.FC<{ obj: flashCard }> = ({ obj }) => {
   
   const question = obj.content.question;
- 
-  
   
 
   const answer: string = obj.content.answer;
 
   const questionLength: number = question.length;
   const answerLength: number = answer.length;
-  console.log(questionLength);
 
   // For the font-size
   let backQuestionStyle: string, answerStyle: string;
@@ -50,14 +48,12 @@ const QA: React.FC<{ obj: flashCard }> = ({ obj }) => {
     <>
       {/* Front Question Text */}
       {/* <html className="card-text front-text">{question}</html> */}
-      <>
-      <ReactMarkdown className='card-text front-text qa-question'>{question}</ReactMarkdown>
-      </>
+      <IonText className="card-text front-text qa-question">{question}</IonText>
       
       {/* Back Question Text */}
-      <ReactMarkdown className={backQuestionStyle}>{question}</ReactMarkdown>
+      <IonText className={backQuestionStyle}>{question}</IonText>
       {/* Back Answer Text */}
-      <ReactMarkdown className={answerStyle}>{answer}</ReactMarkdown>
+      <IonText className={answerStyle}>{answer}</IonText>
     </>
   );
 };

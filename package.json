@@ -30,7 +30,8 @@
     "react-icons": "^4.9.0",
     "react-markdown": "^8.0.7",
     "react-router": "^5.3.4",
-    "react-router-dom": "^5.3.4"
+    "react-router-dom": "^5.3.4",
+    "remark-gfm": "^3.0.1"
   },
   "devDependencies": {
     "@capacitor/cli": "5.0.4",

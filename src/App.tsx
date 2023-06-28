@@ -45,7 +45,7 @@ setupIonicReact({
 const App: React.FC = () => {
   // The Card Array
 
-  const [cardCol, setCards] = useState(cardCollection);
+  const [cardCol, setCards] = useState([[]]);
 
   const getCards = async (url: string) => {
     const response = await fetch(url);
@@ -56,24 +56,24 @@ const App: React.FC = () => {
     setTupleCounter(data[data.length - 1].length);
   };
 
-  // useEffect(() => {
-  //   getCards(
-  //     "https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/flashcards/videoId/6499ef9395f0588d6bcfd1db"
-  //   );
-  // }, []);
+  useEffect(() => {
+    getCards(
+      'https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/users/srsdevteam@gmail.com/flashcards/all'
+    );
+  }, []);
   console.log(cardCol);
 
   // How Many Cards Finished
   const [finished, setFinished] = useState(0);
 
   // How Many Cards in total
-  const [total, setTotal] = useState(cardCol.length);
+  const [total, setTotal] = useState(0);
 
   // Counter used to display certain cards
-  const [counter, setCounter] = useState(cardCol.length);
+  const [counter, setCounter] = useState(0);
 
   // Tuple Counter for One More Cards
-  const [tupleCounter, setTupleCounter] = useState(cardCol[cardCol.length-1].length);
+  const [tupleCounter, setTupleCounter] = useState(0);
 
   // Card-Stacker Visual Effect
   const [isShake, setShake] = useState(false);
