@@ -48,8 +48,16 @@ const App: React.FC = () => {
 
   const [cardCol, setCards] = useState([[]]);
 
+  // Show loading initially true. Turn it off after first jump
+  const [showLoading, setLoading] = useState(true);
+
+  // Turn off loading so it won't constantly jumping to card screen
+  const handleLoading = () => {
+    setLoading(false);
+  };
+
   const getCards = async (url: string) => {
-    const response = await CapacitorHttp.get({url: url});
+    const response = await CapacitorHttp.get({ url: url });
     const data = await JSON.parse(response.data);
     setCards(data);
     setTotal(data.length);
@@ -59,7 +67,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     getCards(
-      'https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/users/srsdevteam@gmail.com/flashcards/all'
+      "https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/users/srsdevteam@gmail.com/flashcards/all"
     );
   }, []);
 
@@ -174,7 +182,13 @@ const App: React.FC = () => {
             <Route
               exact
               path="/loading"
-              render={() => <LoadingPage handleCardScreen={handleCardScreen} />}
+              render={() => (
+                <LoadingPage
+                  showLoading={showLoading}
+                  handleCardScreen={handleCardScreen}
+                  handleLoading={handleLoading}
+                />
+              )}
             />
 
             <Route exact path="/">

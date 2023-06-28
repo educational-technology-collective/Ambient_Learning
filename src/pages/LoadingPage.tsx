@@ -10,17 +10,21 @@ import {
 import "./LoadingPage.css";
 import { useHistory } from "react-router-dom";
 
-const LoadingPage: React.FC<{ handleCardScreen: () => void }> = ({
-  handleCardScreen,
-}) => {
+const LoadingPage: React.FC<{
+  showLoading: boolean;
+  handleCardScreen: () => void;
+  handleLoading: () => void;
+}> = ({ showLoading, handleCardScreen, handleLoading }) => {
   // State Variable for Loading Bar
   const [buffer, setBuffer] = useState(0.06);
   const [progress, setProgress] = useState(0);
 
   const history = useHistory();
 
+  // Turn loading down and jump to card screen
   const navigateToCardScreen = () => {
     history.push("/cardscreen");
+    handleLoading();
     handleCardScreen();
   };
 
@@ -35,10 +39,9 @@ const LoadingPage: React.FC<{ handleCardScreen: () => void }> = ({
   }, []);
 
   // Set a timeout that will jump to the cardscreen
-  if (progress > 1) {
+  if (progress > 1 && showLoading) {
     setTimeout(() => navigateToCardScreen(), 200);
   }
-  
 
   return (
     <IonPage>
