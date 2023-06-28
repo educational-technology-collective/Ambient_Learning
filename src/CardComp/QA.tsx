@@ -18,42 +18,42 @@ const QA: React.FC<{ obj: flashCard }> = ({ obj }) => {
   let backQuestionStyle: string, answerStyle: string;
 
   // When there are less than or equal to 110 characters: 2em
-  if (questionLength <= 110) {
-    backQuestionStyle = "card-text back-text qa-question-back back-text-2em";
-  } 
+  // if (questionLength <= 110) {
+    // backQuestionStyle = "card-text back-text qa-question-back back-text-2em";
+  
   // When there are less than or equak to 190 characters: 1.6em
-  else if (questionLength <= 190) {
-    backQuestionStyle = "card-text back-text qa-question-back back-text-1d6em";
-  } 
+  // else if (questionLength <= 190) {
+    backQuestionStyle = "card-text back-text qa-question-back ";
+  // } 
   // When there are more than 190 characters: 1.3em
-  else {
-    backQuestionStyle = "card-text back-text qa-question-back back-text-1d3em";
-  }
+  // else {
+    // backQuestionStyle = "card-text back-text qa-question-back back-text-1d3em";
+  // }
 
   // When there are less than or equal to 110 characters: 2em
-  if (answerLength <= 110) {
-    answerStyle = "card-text back-text qa-answer back-text-2em";
-  } 
+  // if (answerLength <= 110) {
+  //   answerStyle = "card-text back-text qa-answer back-text-2em";
+  // } 
   // When there are less than or equal to 190 characters: 1.6em
-  else if (answerLength <= 190) {
-    answerStyle = "card-text back-text qa-answer back-text-1d6em";
-  } 
+  // else if (answerLength <= 190) {
+    answerStyle = "card-text back-text qa-answer";
+  // } 
   // When there are mroe than 190 characters: 1.3em
-  else {
-    answerStyle = "card-text back-text qa-answer back-text-1d3em";
-  }
+  // else {
+  //   answerStyle = "card-text back-text qa-answer back-text-1d3em";
+  // }
 
   // Coponent Being Rendered
   return (
     <>
       {/* Front Question Text */}
       {/* <html className="card-text front-text">{question}</html> */}
-      <IonText className="card-text front-text qa-question">{question}</IonText>
+      <ReactMarkdown className="card-text front-text qa-question" children={question} remarkPlugins={[remarkGfm]}></ReactMarkdown>
       
       {/* Back Question Text */}
-      <IonText className={backQuestionStyle}>{question}</IonText>
+      <ReactMarkdown className={backQuestionStyle} children={question} remarkPlugins={[remarkGfm]}></ReactMarkdown>
       {/* Back Answer Text */}
-      <IonText className={answerStyle}>{answer}</IonText>
+      <ReactMarkdown className={answerStyle} children={answer} remarkPlugins={[remarkGfm]}></ReactMarkdown>
     </>
   );
 };

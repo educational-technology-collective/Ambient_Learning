@@ -1,4 +1,4 @@
-export const cardCollection = [
+export const markdownCollection = [
   [
     {
       _id: "100",
@@ -205,15 +205,15 @@ export const cardCollection = [
       lmid: 'sjdiadjoa',
       type: "m",
       content: {
-        question: `<p>Which of the following are valid ways to specify the string literal <code>foo'bar</code> in Python:</p>`,
+        question: "Which of the following are valid ways to specify the string literal `foo'bar` in Python:",
         answer: [
-          { option: "<code>'foo'bar'</code>", isCorrect: false },
+          { option: "`'foo'bar'`", isCorrect: false },
           {
-            option: `<code>"foo'bar"</code>`,
+            option: "`foobar`",
             isCorrect: true,
           },
-          { option: `<code>"""foo'bar"""</code>`, isCorrect: false },
-          { option: `<code>'foo"""bar'</code>`, isCorrect: false },
+          { option: "fooo", isCorrect: false },
+          { option: `fsfaf`, isCorrect: false },
         ],
       },
     },
@@ -226,9 +226,9 @@ export const cardCollection = [
       type: "q",
       content: {
         question:
-          `<p>How would you express the hexadecimal value <code>a5</code> as a base-16 integer constant in Python?<p>`,
+          "How would you express the hexadecimal value `a5` as a base-16 integer constant in Python?",
         answer:
-          "<code>0xa5</code>",
+          "`0xa5`",
       },
     },
     {
@@ -237,15 +237,12 @@ export const cardCollection = [
       type: "m",
       content: {
         question:
-          `<p>Return - none<br>
-          Args - ( index, value to insert )<br></p>
-          <hr><p>
-          inserts an element to the list at a given index.</p>`,
+          "Return - none\nArgs - ( index, value to insert )\n<hr>inserts an element to the list at a given index.",
         answer: [
-          { option: "<code>list.insert(index, element)</code>", isCorrect: true },
-          { option: "<code>list.push(index, element)</code>", isCorrect: false },
-          { option: "<code>list.insert(element)</code>", isCorrect: false },
-          { option: "<code>list.push_back(element)</code>", isCorrect: false },
+          { option: "`list.insert(index, element)`", isCorrect: true },
+          { option: "`list.push(index, element)`", isCorrect: false },
+          { option: "`list.insert(element)`", isCorrect: false },
+          { option: "`list.push_back(element)`", isCorrect: false },
         ],
       },
     },
@@ -257,10 +254,8 @@ export const cardCollection = [
       lmid: 'sjdiadjoa',
       type: "q",
       content: {
-        question: `<p>Return - none<br>
-        Args - ( some number / string / list / etc )<br></p>
-        <hr><p> adds a single item to the existing list. It doesn’t return a new list; rather it modifies the original list.</p>`,
-        answer: "<code>list.append(item)</code>",
+        question: `Return - none<br>Args - ( some number / string / list / etc )<br><hr> adds a single item to the existing list. It doesn’t return a new list; rather it modifies the original list.`,
+        answer: "`list.append(item)`",
       },
     },
     {
@@ -268,7 +263,7 @@ export const cardCollection = [
       lmid: 'sjdiadjoa',
       type: "m",
       content: {
-        question: `<p>Which of the following is not a <code>C++</code> <strong>iterator category?</strong></p>`,
+        question: "Which of the following is not a `C++` <strong>iterator category?</strong>",
         answer: [
           {option: 'Input Iteraor', isCorrect: false},
           {option: 'Virtual Iterator', isCorrect: true},
@@ -282,16 +277,14 @@ export const cardCollection = [
       lmid: 'sjdiadjoa',
       type: "m",
       content: {
-        question: "<p>Consider this statement: </p><pre><code>>>> print(r'foo\\&bsol;bar&bsol;nbaz')</code></pre><p>Which of the following is the correct REPL output</p>",
+        question: "Consider this statement:  \n```\n >>> print(r'foo\\bar\\nbaz')\n What a Day  \nWhich of the following is\n the correct REPL output. \n```\n Good",
         answer: [
-          { option: "<code>foo\\bar\nbaz</code>", isCorrect: false },
-          { option: "<p><code>foo\bar</code><br><code>baz</code></p>", isCorrect: true },
-          { option: `<p><code>foo\bar\n\baz</code></p>`, isCorrect: false },
-          { option: "<p><code>foo\\bar\nbaz</code></p>", isCorrect: false },
+          { option: "foo\\bar\nbaz", isCorrect: false },
+          { option: "`foo\bar`<br>`baz`", isCorrect: true },
+          { option: "`foo\bar\n\baz`", isCorrect: false },
+          { option: "`foo\\bar\nbaz`", isCorrect: false },
         ],
       },
     },
   ],
 ];
-
-

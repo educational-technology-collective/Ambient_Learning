@@ -37,6 +37,7 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 import "./theme/variables.css";
 import { cardCollection } from "./components/exampleData";
+import { markdownCollection } from "./components/markdownData";
 import CardsTab from "./components/CardsTab";
 import LoadingPage from "./pages/LoadingPage";
 setupIonicReact({
@@ -46,7 +47,7 @@ setupIonicReact({
 const App: React.FC = () => {
   // The Card Array
 
-  const [cardCol, setCards] = useState([[]]);
+  const [cardCol, setCards] = useState(markdownCollection);
 
   // Show loading initially true. Turn it off after first jump
   const [showLoading, setLoading] = useState(true);
@@ -65,23 +66,23 @@ const App: React.FC = () => {
     setTupleCounter(data[data.length - 1].length);
   };
 
-  useEffect(() => {
-    getCards(
-      "https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/users/srsdevteam@gmail.com/flashcards/all"
-    );
-  }, []);
+  // useEffect(() => {
+  //   getCards(
+  //     "https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/users/srsdevteam@gmail.com/flashcards/all"
+  //   );
+  // }, []);
 
   // How Many Cards Finished
   const [finished, setFinished] = useState(0);
 
   // How Many Cards in total
-  const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState(cardCol.length);
 
   // Counter used to display certain cards
-  const [counter, setCounter] = useState(0);
+  const [counter, setCounter] = useState(cardCol.length);
 
   // Tuple Counter for One More Cards
-  const [tupleCounter, setTupleCounter] = useState(0);
+  const [tupleCounter, setTupleCounter] = useState(cardCol[cardCol.length-1].length);
 
   // Card-Stacker Visual Effect
   const [isShake, setShake] = useState(false);

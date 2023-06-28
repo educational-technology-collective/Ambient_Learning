@@ -9,7 +9,8 @@ export const IncorrectChoice: React.FC<{
   clicked: boolean;
   setClickStatus: () => void;
 }> = ({ option, clicked, setClickStatus }) => {
-  const choiceText: string = option;
+  const choiceText: string = option.replace("\\", "");
+  console.log(choiceText)
 
   const [isChosen, setChosen] = useState(false);
 
@@ -32,7 +33,7 @@ export const IncorrectChoice: React.FC<{
       disabled={clicked}
       onClick={inCorrectClick}
     >
-      <IonText className="choice-text">{choiceText}</IonText>
+      <ReactMarkdown className="choice-text" children={choiceText}></ReactMarkdown>
     </IonButton>
   );
 };
@@ -63,7 +64,7 @@ export const CorrectChoice: React.FC<{
       disabled={clicked}
       onClick={correctClick}
     >
-      <IonText className="choice-text">{choiceText}</IonText>
+      <ReactMarkdown className="choice-text" children={choiceText}></ReactMarkdown>
     </IonButton>
   );
 };

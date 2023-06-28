@@ -4,6 +4,10 @@
   font-weight: bold;
 }
 
+.choice-text code{
+ background-color: mediumpurple;
+}
+
 /* Styling for the button before any clicking */
 .choice-button {
   flex-grow: 1;
