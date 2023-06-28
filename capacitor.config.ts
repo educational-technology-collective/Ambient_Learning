@@ -5,8 +5,14 @@ const config: CapacitorConfig = {
   appName: 'Space-Repetition',
   webDir: 'dist',
   server: {
-    androidScheme: 'https'
-  }
+    androidScheme: 'https',
+  },
+  plugins: {
+    CapacitorHttp: {
+      enabled: true,
+    },
+  },
+  
 };
 
 export default config;

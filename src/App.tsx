@@ -16,6 +16,7 @@ import CardScreen from "./pages/CardScreen";
 import Home from "./pages/Home";
 import "./pages/Home.css";
 import "./App.css";
+import { CapacitorHttp } from "@capacitor/core";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -48,8 +49,10 @@ const App: React.FC = () => {
   const [cardCol, setCards] = useState([[]]);
 
   const getCards = async (url: string) => {
-    const response = await fetch(url);
-    const data = await response.json();
+    const response = await CapacitorHttp.get({url: url});
+    console.log('response', response);
+    const data = await JSON.parse(response.data);
+    console.log('data', data);
     setCards(data);
     setTotal(data.length);
     setCounter(data.length);
@@ -61,7 +64,6 @@ const App: React.FC = () => {
       'https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/users/srsdevteam@gmail.com/flashcards/all'
     );
   }, []);
-  console.log(cardCol);
 
   // How Many Cards Finished
   const [finished, setFinished] = useState(0);
