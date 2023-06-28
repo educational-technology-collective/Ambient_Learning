@@ -50,9 +50,7 @@ const App: React.FC = () => {
 
   const getCards = async (url: string) => {
     const response = await CapacitorHttp.get({url: url});
-    console.log('response', response);
     const data = await JSON.parse(response.data);
-    console.log('data', data);
     setCards(data);
     setTotal(data.length);
     setCounter(data.length);

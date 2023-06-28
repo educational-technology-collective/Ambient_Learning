@@ -10,7 +10,7 @@
   perspective: 1000px;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 90%;
   position: relative;
   opacity: 1;
   box-shadow: rgba(123, 135, 185) 0px 4px 6px;
@@ -43,20 +43,16 @@
 /* Texts for both question and answer */
 .card-text {
   backface-visibility: hidden;
-  flex-direction: column;
   margin: 0 1.5rem;
   position: absolute;
   text-align: center;
   justify-content: center;
   display: flex;
   align-items: center;
-  margin-bottom: 0.05rem;
 }
 
 /* Front Question Text with 0 degree */
-.front-text h1{
-  font-size: 1.5em;
-}
+
 .front-text {
   font-size: 1.6em;
   transform: rotateY(0deg);

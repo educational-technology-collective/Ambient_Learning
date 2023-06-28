@@ -35,9 +35,9 @@ const LoadingPage: React.FC<{ handleCardScreen: () => void }> = ({
   }, []);
 
   // Set a timeout that will jump to the cardscreen
-  // if (progress > 1) {
-  //   setTimeout(() => navigateToCardScreen(), 200);
-  // }
+  if (progress > 1) {
+    setTimeout(() => navigateToCardScreen(), 200);
+  }
   
 
   return (
