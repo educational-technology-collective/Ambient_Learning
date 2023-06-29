@@ -71,27 +71,37 @@ export const logEnterCard = (
   }
 };
 
-
 // Log the Flipping/Answering Event
-export const logFlipping = (logInfo: reviewInfo, cardId: string, updateInfo : (newInfo: reviewInfo) => void) => {
-
-const event : action = {
-  event_name: "flip",
-  card_id: cardId,
-  flip_time: Date(),
-  swipe_time: null,
-  self_eval: null,
-  test_eval: null,
-  isBuffer: null
+export const logFlipping = (
+  logInfo: reviewInfo,
+  cardId: string,
+  updateInfo: (newInfo: reviewInfo) => void
+) => {
+  const event: action = {
+    event_name: "flip",
+    card_id: cardId,
+    flip_time: Date(),
+    swipe_time: null,
+    self_eval: null,
+    test_eval: null,
+    isBuffer: null,
+  };
+  let newInfo = logInfo;
+  newInfo.action_container.push(event);
+  updateInfo(newInfo);
 };
-let newInfo = logInfo;
-newInfo.action_container.push(event);
-updateInfo(newInfo);
-}
 
-// Function for one more swipe time out
-export const logOneMore = (logInfo: reviewInfo, testEvaluation: string, type: string, cardId: string, cardIndex: number, tupleLength: number, tupleIndex: number, oneMore: (tupleIndex: number, newInfo: reviewInfo) => void ) => {
-
+// Function to Log One More
+export const logOneMore = (
+  logInfo: reviewInfo,
+  testEvaluation: string,
+  type: string,
+  cardId: string,
+  cardIndex: number,
+  tupleLength: number,
+  tupleIndex: number,
+  oneMore: (tupleIndex: number, newInfo: reviewInfo) => void
+) => {
   // Check if the user answers correctly/incorrectly/skipped
   let machineEvaluation = testEvaluation;
   if (type === "m" && testEvaluation === "") {
@@ -113,9 +123,17 @@ export const logOneMore = (logInfo: reviewInfo, testEvaluation: string, type: st
   oneMore(tupleIndex, copy);
 };
 
-
-// Function for positive swipe time out
-export const logKnow = (logInfo: reviewInfo, testEvaluation: string, type: string, cardId: string, cardIndex: number, tupleLength: number, tupleIndex: number, moveOn: (tupleIndex: number, newInfo: reviewInfo) => void ) => {
+// Function to Log Know Swipe
+export const logKnow = (
+  logInfo: reviewInfo,
+  testEvaluation: string,
+  type: string,
+  cardId: string,
+  cardIndex: number,
+  tupleLength: number,
+  tupleIndex: number,
+  moveOn: (tupleIndex: number, newInfo: reviewInfo) => void
+) => {
   // Check if the user answers correctly/incorrectly/skipped
   let machineEvaluation = testEvaluation;
   if (type === "m" && testEvaluation === "") {
@@ -137,9 +155,17 @@ export const logKnow = (logInfo: reviewInfo, testEvaluation: string, type: strin
   moveOn(tupleIndex, copy);
 };
 
-// Function for negative swipe time out
-export const logDontKnow = (logInfo: reviewInfo, testEvaluation: string, type: string, cardId: string, cardIndex: number, tupleLength: number, tupleIndex: number, moveOn: (tupleIndex: number, newInfo: reviewInfo) => void ) => {
-
+// Function to Log Dontknow Swipe
+export const logDontKnow = (
+  logInfo: reviewInfo,
+  testEvaluation: string,
+  type: string,
+  cardId: string,
+  cardIndex: number,
+  tupleLength: number,
+  tupleIndex: number,
+  moveOn: (tupleIndex: number, newInfo: reviewInfo) => void
+) => {
   // Check if the user answers correctly/incorrectly/skipped
   let machineEvaluation = testEvaluation;
   if (type === "m" && testEvaluation === "") {
@@ -161,9 +187,17 @@ export const logDontKnow = (logInfo: reviewInfo, testEvaluation: string, type: s
   moveOn(tupleIndex, copy);
 };
 
-// Function for no more before answering
-export const logPoorCardSwipeBefore = (logInfo: reviewInfo, testEvaluation: string, type: string, cardId: string, cardIndex: number, tupleLength: number, tupleIndex: number, moveOn: (tupleIndex: number, newInfo: reviewInfo) => void ) => {
-
+// Function to log Poor Card before clicking
+export const logPoorCardSwipeBefore = (
+  logInfo: reviewInfo,
+  testEvaluation: string,
+  type: string,
+  cardId: string,
+  cardIndex: number,
+  tupleLength: number,
+  tupleIndex: number,
+  moveOn: (tupleIndex: number, newInfo: reviewInfo) => void
+) => {
   // Check if the user answers correctly/incorrectly/skipped
   let machineEvaluation = testEvaluation;
   if (type === "m" && testEvaluation === "") {
@@ -185,9 +219,17 @@ export const logPoorCardSwipeBefore = (logInfo: reviewInfo, testEvaluation: stri
   moveOn(tupleIndex, copy);
 };
 
-// Function for no more after answering
-export const logPoorCardSwipeAfter = (logInfo: reviewInfo, testEvaluation: string, type: string, cardId: string, cardIndex: number, tupleLength: number, tupleIndex: number, moveOn: (tupleIndex: number, newInfo: reviewInfo) => void ) => {
-
+// Function to log poor card after clicking
+export const logPoorCardSwipeAfter = (
+  logInfo: reviewInfo,
+  testEvaluation: string,
+  type: string,
+  cardId: string,
+  cardIndex: number,
+  tupleLength: number,
+  tupleIndex: number,
+  moveOn: (tupleIndex: number, newInfo: reviewInfo) => void
+) => {
   // Check if the user answers correctly/incorrectly/skipped
   let machineEvaluation = testEvaluation;
   if (type === "m" && testEvaluation === "") {
