@@ -44,7 +44,7 @@ const Card: React.FC<{
     setCorrect(true);
     const event : action = {
       event_name: "flip",
-      card_id: null,
+      card_id: obj._id,
       flip_time: Date(),
       swipe_time: null,
       self_eval: null,
