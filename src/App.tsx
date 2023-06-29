@@ -121,6 +121,9 @@ const App: React.FC = () => {
         isBuffer: null,
       };
     let newInfo = logInfo;
+    if(finished === total - 1){
+      newInfo.end_time = Date();
+    }
     newInfo.number_shake = newInfo.number_shake  + 1;
     newInfo.action_container.push(event);
     setLog(newInfo);
@@ -158,6 +161,8 @@ const App: React.FC = () => {
     setLog(newInfo);
   }
 
+  
+
   const updateInfo = (newInfo: reviewInfo) => {
     setLog(newInfo);
   }
@@ -185,6 +190,9 @@ const App: React.FC = () => {
     }
 
     // Log Info for Positive/No More/Negative
+    if(finished === total){
+      newInfo.end_time = Date();
+    }
     updateInfo(newInfo);
   };
 
@@ -212,8 +220,8 @@ const App: React.FC = () => {
       setTupleCounter((prevTupleCounter: number) => prevTupleCounter - 1);
 
       // Log One More Info
-      updateInfo(newInfo);
     }
+    updateInfo(newInfo);
   };
 
   let cardsLeft: number = total - finished;
@@ -232,6 +240,7 @@ const App: React.FC = () => {
     setCardScreen(false);
     logEnterHome();
   };
+
 
   return (
     <IonApp>
