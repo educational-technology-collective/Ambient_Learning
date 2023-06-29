@@ -105,7 +105,7 @@ export const logOneMore = (
   // Check if the user answers correctly/incorrectly/skipped
   let machineEvaluation = testEvaluation;
   if (type === "m" && testEvaluation === "") {
-    machineEvaluation = "passed";
+    machineEvaluation = "skipped";
   }
 
   // Log the event of swiping a card for one more
@@ -137,7 +137,7 @@ export const logKnow = (
   // Check if the user answers correctly/incorrectly/skipped
   let machineEvaluation = testEvaluation;
   if (type === "m" && testEvaluation === "") {
-    machineEvaluation = "passed";
+    machineEvaluation = "skipped";
   }
 
   // Log the event of swiping a card for knowing
@@ -169,7 +169,7 @@ export const logDontKnow = (
   // Check if the user answers correctly/incorrectly/skipped
   let machineEvaluation = testEvaluation;
   if (type === "m" && testEvaluation === "") {
-    machineEvaluation = "passed";
+    machineEvaluation = "skipped";
   }
 
   // Log the event of swiping a card for not knowing
@@ -201,7 +201,7 @@ export const logPoorCardSwipeBefore = (
   // Check if the user answers correctly/incorrectly/skipped
   let machineEvaluation = testEvaluation;
   if (type === "m" && testEvaluation === "") {
-    machineEvaluation = "skipped";
+    machineEvaluation = "";
   }
 
   // Log the event of swiping a card down without clicking
@@ -233,7 +233,7 @@ export const logPoorCardSwipeAfter = (
   // Check if the user answers correctly/incorrectly/skipped
   let machineEvaluation = testEvaluation;
   if (type === "m" && testEvaluation === "") {
-    machineEvaluation = "passed";
+    machineEvaluation = "skipped";
   }
 
   // Log the event of siwping a card down after answering

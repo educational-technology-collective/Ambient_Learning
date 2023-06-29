@@ -45,6 +45,34 @@ const Card: React.FC<{
     ? { transform: "rotateY(180deg)", background: "rgba(251,255,236,1)" }
     : { transform: "rotateY(0deg)" };
 
+    // Indicator Opacity Object used to set opacities
+  const [indicatorOpacity, setOpacity] = useState({ index: 0, value: 0 });
+
+  // Function that gives NoMore(Brown) Indicator
+  const handleNoMoreOpacity = (detail: any) => {
+    setOpacity({ index: 1, value: detail.deltaY / 100 });
+  };
+
+  // Function that gives Positive(Green) Indicator
+  const handlePositiveOpacity = (detail: any) => {
+    setOpacity({ index: 2, value: detail.deltaX / 100 });
+  };
+
+  // Function that gives OneMore(Blue) Indicator
+  const handleOneMoreOpacity = (detail: any) => {
+    setOpacity({ index: 3, value: -detail.deltaY / 100 });
+  };
+
+  // Function that gives Negative(Red) Indicator
+  const handleNegativeOpacity = (detail: any) => {
+    setOpacity({ index: 4, value: -detail.deltaX / 100 });
+  };
+
+  // Function that makes all indicators disappear
+  const handleShowNothing = () => {
+    setOpacity({ index: 0, value: 0 });
+  };
+
   // Callback for the tap of card
   const clickHandler = () => {
     setIsClicked(true);
@@ -54,27 +82,19 @@ const Card: React.FC<{
     logFlipping(logInfo, obj._id, updateInfo);
   };
 
+  // State Variable to track if the user gets correct/incorrect/skipped
   const [testEvaluation, setTestEvaluation] = useState("");
 
+  // Hanlder to set the evaluation to be correct/incorrect/skipped
   const handleTestEvaluation = (result: string) => {
     setTestEvaluation(result);
   };
 
   const [clicked, setClick] = useState(false);
 
-  // Function for one more swipe time out
-  const oneMoreTimeOut = () => {
-    // Log the event of OneMore
-    logOneMore(
-      logInfo,
-      testEvaluation,
-      obj.type,
-      obj._id,
-      cardIndex,
-      tupleLength,
-      tupleIndex,
-      oneMore
-    );
+  // This will set isClick to be true
+  const setClickStatus = () => {
+    setClick(true);
   };
 
   // Function for positive swipe time out
@@ -104,6 +124,21 @@ const Card: React.FC<{
       tupleLength,
       tupleIndex,
       moveOn
+    );
+  };
+
+  // Function for one more swipe time out
+  const oneMoreTimeOut = () => {
+    // Log the event of OneMore
+    logOneMore(
+      logInfo,
+      testEvaluation,
+      obj.type,
+      obj._id,
+      cardIndex,
+      tupleLength,
+      tupleIndex,
+      oneMore
     );
   };
 
@@ -156,11 +191,6 @@ const Card: React.FC<{
     );
   });
 
-  // This will set isClick to be true
-  const setClickStatus = () => {
-    setClick(true);
-  };
-
   // Determine the component and content style based on type of card
   let cardComp, cardContentStyle;
   if (obj.type === "q") {
@@ -177,34 +207,6 @@ const Card: React.FC<{
     );
     cardContentStyle = "card-content mcq-card-content";
   }
-
-  // Indicator Opacity Object used to set opacities
-  const [indicatorOpacity, setOpacity] = useState({ index: 0, value: 0 });
-
-  // Function that gives NoMore(Brown) Indicator
-  const handleNoMoreOpacity = (detail: any) => {
-    setOpacity({ index: 1, value: detail.deltaY / 100 });
-  };
-
-  // Function that gives Positive(Green) Indicator
-  const handlePositiveOpacity = (detail: any) => {
-    setOpacity({ index: 2, value: detail.deltaX / 100 });
-  };
-
-  // Function that gives OneMore(Blue) Indicator
-  const handleOneMoreOpacity = (detail: any) => {
-    setOpacity({ index: 3, value: -detail.deltaY / 100 });
-  };
-
-  // Function that gives Negative(Red) Indicator
-  const handleNegativeOpacity = (detail: any) => {
-    setOpacity({ index: 4, value: -detail.deltaX / 100 });
-  };
-
-  // Function that makes all indicators disappear
-  const handleShowNothing = () => {
-    setOpacity({ index: 0, value: 0 });
-  };
 
   // Component Being Rendered
   return (
