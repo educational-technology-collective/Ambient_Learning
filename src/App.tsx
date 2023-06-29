@@ -8,7 +8,7 @@ import {
   IonTabButton,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { TbHomeEdit} from "react-icons/tb";
+import { TbHomeEdit } from "react-icons/tb";
 import { Haptics } from "@capacitor/haptics";
 import { useEffect, useState } from "react";
 import CardScreen from "./pages/CardScreen";
@@ -44,6 +44,7 @@ setupIonicReact({
 });
 
 const App: React.FC = () => {
+  // Initialize the Logging Info as app is open
   const [logInfo, setLog] = useState<reviewInfo>({
     user_id: "bigboss",
     start_time: Date(),
@@ -63,12 +64,11 @@ const App: React.FC = () => {
   });
 
   console.log(logInfo);
-  
+
   // The Card Array
   const [cardCol, setCards] = useState([[]]);
 
- 
-
+  // GET Function for fetching cards
   const getCards = async (url: string) => {
     const response = await CapacitorHttp.get({ url: url });
     const data = await JSON.parse(response.data);
@@ -78,6 +78,7 @@ const App: React.FC = () => {
     setTupleCounter(data[data.length - 1].length);
   };
 
+  // UseEffect to fetch the cards
   useEffect(() => {
     getCards(
       "https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/users/srsdevteam@gmail.com/flashcards/all"
@@ -92,6 +93,9 @@ const App: React.FC = () => {
   // How Many Cards in total
   const [total, setTotal] = useState(0);
 
+  // Number of Cards Remaining
+  let cardsLeft: number = total - finished;
+
   // Counter used to display certain cards
   const [counter, setCounter] = useState(0);
 
@@ -101,6 +105,22 @@ const App: React.FC = () => {
   // Card-Stacker Visual Effect
   const [isShake, setShake] = useState(false);
 
+  // State Variable used to track if the current tab is cardscreen
+  const [isCardScreen, setCardScreen] = useState(false);
+
+  // Card Screen will spread the cards
+  const handleCardScreen = () => {
+    setCardScreen(true);
+    logEnterCard();
+  };
+
+  // Home Screen will fold the cards
+  const handleHomeScreen = () => {
+    setCardScreen(false);
+    logEnterHome();
+  };
+
+  // Function to Log the Event of Shaking
   const logShakePhone = () => {
     // Increase the Number of Shake
     const event: action = {
@@ -112,7 +132,11 @@ const App: React.FC = () => {
       test_eval: null,
       isBuffer: null,
     };
+
+    // Create a copy of logInfo
     let newInfo = logInfo;
+
+    // Check to see if this is the last card(remember states are updated after)
     if (finished === total - 1) {
       newInfo.end_time = Date();
     }
@@ -121,7 +145,7 @@ const App: React.FC = () => {
     setLog(newInfo);
   };
 
-  // Log Info When the user clicks home botton
+  // Function to Log the Event of Entering Home Screen
   const logEnterHome = () => {
     const event: action = {
       event_name: "EnterHomeScreen",
@@ -137,7 +161,7 @@ const App: React.FC = () => {
     setLog(newInfo);
   };
 
-  // Log Info when the user enters card screen
+  // Function to Log the Event of Entering Card Screen
   const logEnterCard = () => {
     if (
       logInfo.action_container[logInfo.action_container.length - 1]
@@ -158,6 +182,7 @@ const App: React.FC = () => {
     }
   };
 
+  // Handler used to update logInfo
   const updateInfo = (newInfo: reviewInfo) => {
     setLog(newInfo);
   };
@@ -167,6 +192,7 @@ const App: React.FC = () => {
     // Set Shake to be true. Enables visual shaking and modal
     setShake(true);
 
+    // Log Shaking Event
     logShakePhone();
 
     // Set Timeout of 2.2 seconds(consistent with animation time)
@@ -213,27 +239,9 @@ const App: React.FC = () => {
 
       // Decrement the Counter
       setTupleCounter((prevTupleCounter: number) => prevTupleCounter - 1);
-
-      // Log One More Info
     }
+    // Log One More Info
     updateInfo(newInfo);
-  };
-
-  let cardsLeft: number = total - finished;
-
-  // State Variable used to track if the current tab is cardscreen
-  const [isCardScreen, setCardScreen] = useState(false);
-
-  // Card Screen will spread the cards
-  const handleCardScreen = () => {
-    setCardScreen(true);
-    logEnterCard();
-  };
-
-  // Home Screen will fold the cards
-  const handleHomeScreen = () => {
-    setCardScreen(false);
-    logEnterHome();
   };
 
   return (

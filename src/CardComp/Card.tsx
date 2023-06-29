@@ -1,4 +1,4 @@
-import { IonCard, IonCardContent } from "@ionic/react";
+import { IonCard} from "@ionic/react";
 import { useRef, useState, useEffect } from "react";
 import "./Card.css";
 import FrontIndicator from "../components/FrontIndicator";
