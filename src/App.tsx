@@ -39,6 +39,11 @@ import { cardCollection } from "./components/exampleData";
 import { markdownCollection } from "./components/markdownData";
 import CardsTab from "./components/CardsTab";
 import LoadingPage from "./pages/LoadingPage";
+import {
+  logEnterCard,
+  logEnterHome,
+  logShakePhone,
+} from "./utilities/logfunction";
 setupIonicReact({
   swipeBackEnabled: false,
 });
@@ -111,75 +116,13 @@ const App: React.FC = () => {
   // Card Screen will spread the cards
   const handleCardScreen = () => {
     setCardScreen(true);
-    logEnterCard();
+    logEnterCard(logInfo, updateInfo);
   };
 
   // Home Screen will fold the cards
   const handleHomeScreen = () => {
     setCardScreen(false);
-    logEnterHome();
-  };
-
-  // Function to Log the Event of Shaking
-  const logShakePhone = () => {
-    // Increase the Number of Shake
-    const event: action = {
-      event_name: "shake",
-      card_id: null,
-      flip_time: null,
-      swipe_time: null,
-      self_eval: null,
-      test_eval: null,
-      isBuffer: null,
-    };
-
-    // Create a copy of logInfo
-    let newInfo = logInfo;
-
-    // Check to see if this is the last card(remember states are updated after)
-    if (finished === total - 1) {
-      newInfo.end_time = Date();
-    }
-    newInfo.number_shake = newInfo.number_shake + 1;
-    newInfo.action_container.push(event);
-    setLog(newInfo);
-  };
-
-  // Function to Log the Event of Entering Home Screen
-  const logEnterHome = () => {
-    const event: action = {
-      event_name: "EnterHomeScreen",
-      card_id: null,
-      flip_time: null,
-      swipe_time: null,
-      self_eval: null,
-      test_eval: null,
-      isBuffer: null,
-    };
-    let newInfo = logInfo;
-    newInfo.action_container.push(event);
-    setLog(newInfo);
-  };
-
-  // Function to Log the Event of Entering Card Screen
-  const logEnterCard = () => {
-    if (
-      logInfo.action_container[logInfo.action_container.length - 1]
-        .event_name !== "EnterCardScreen"
-    ) {
-      const event: action = {
-        event_name: "EnterCardScreen",
-        flip_time: null,
-        card_id: null,
-        swipe_time: null,
-        self_eval: null,
-        test_eval: null,
-        isBuffer: null,
-      };
-      let newInfo = logInfo;
-      newInfo.action_container.push(event);
-      setLog(newInfo);
-    }
+    logEnterHome(logInfo, updateInfo);
   };
 
   // Handler used to update logInfo
@@ -193,7 +136,7 @@ const App: React.FC = () => {
     setShake(true);
 
     // Log Shaking Event
-    logShakePhone();
+    logShakePhone(logInfo, finished, total, updateInfo);
 
     // Set Timeout of 2.2 seconds(consistent with animation time)
     setTimeout(() => setShake(false), 2200);
