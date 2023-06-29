@@ -164,7 +164,6 @@ const VerticalEnd = (
   stuff: HTMLInputElement | null,
   isClicked: boolean,
   handleShowNothing: () => void,
-  backHandler: () => void,
   poorCardBeforeTimeOut: () => void,
   poorCardAfterTimeOut: () => void,
   oneMoreTimeOut: () => void
@@ -242,7 +241,6 @@ export const enableGesture = (
   handleNoMoreOpacity: (detail: GestureDetail) => void,
   handleOneMoreOpacity: (detail: GestureDetail) => void,
   handleShowNothing: () => void,
-  backHandler: () => void,
   knowTimeOut: () => void,
   dontKnowTimeOut: () => void,
   poorCardBeforeTimeOut: () => void,
@@ -288,7 +286,6 @@ export const enableGesture = (
           stuff,
           isClicked,
           handleShowNothing,
-          backHandler,
           poorCardBeforeTimeOut,
           poorCardAfterTimeOut,
           oneMoreTimeOut

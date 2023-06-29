@@ -180,7 +180,6 @@ const Card: React.FC<{
       handleNoMoreOpacity,
       handleOneMoreOpacity,
       handleShowNothing,
-      backHandler,
       knowTimeOut,
       dontKnowTimeOut,
       poorCardBeforeTimeout,
