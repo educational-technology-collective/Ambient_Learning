@@ -164,10 +164,6 @@ const Card: React.FC<{
     moveOn(tupleIndex, copy);
   };
 
-  // Function that goes to next card after some time
-  const timeOutFunc = () => {
-    moveOn(tupleIndex, logInfo);
-  };
 
   // useEffect to enableGesture at any time
   useEffect(() => {
@@ -200,11 +196,6 @@ const Card: React.FC<{
     setCorrect(true);
   };
 
-  // Function that set the states back
-  const backHandler = () => {
-    setClick(false);
-    setIsClicked(false);
-  };
 
   // Determine the component and content style based on type of card
   let cardComp, cardContentStyle;
