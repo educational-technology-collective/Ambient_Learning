@@ -70,3 +70,141 @@ export const logEnterCard = (
     updateInfo(newInfo);
   }
 };
+
+
+// Log the Flipping/Answering Event
+export const logFlipping = (logInfo: reviewInfo, cardId: string, updateInfo : (newInfo: reviewInfo) => void) => {
+
+const event : action = {
+  event_name: "flip",
+  card_id: cardId,
+  flip_time: Date(),
+  swipe_time: null,
+  self_eval: null,
+  test_eval: null,
+  isBuffer: null
+};
+let newInfo = logInfo;
+newInfo.action_container.push(event);
+updateInfo(newInfo);
+}
+
+// Function for one more swipe time out
+export const logOneMore = (logInfo: reviewInfo, testEvaluation: string, type: string, cardId: string, cardIndex: number, tupleLength: number, tupleIndex: number, oneMore: (tupleIndex: number, newInfo: reviewInfo) => void ) => {
+
+  // Check if the user answers correctly/incorrectly/skipped
+  let machineEvaluation = testEvaluation;
+  if (type === "m" && testEvaluation === "") {
+    machineEvaluation = "passed";
+  }
+
+  // Log the event of swiping a card for one more
+  const event: action = {
+    event_name: "swipe",
+    card_id: cardId,
+    flip_time: null,
+    swipe_time: Date(),
+    self_eval: "OneMore",
+    test_eval: machineEvaluation,
+    isBuffer: cardIndex !== tupleLength - 1,
+  };
+  let copy = logInfo;
+  copy.action_container.push(event);
+  oneMore(tupleIndex, copy);
+};
+
+
+// Function for positive swipe time out
+export const logKnow = (logInfo: reviewInfo, testEvaluation: string, type: string, cardId: string, cardIndex: number, tupleLength: number, tupleIndex: number, moveOn: (tupleIndex: number, newInfo: reviewInfo) => void ) => {
+  // Check if the user answers correctly/incorrectly/skipped
+  let machineEvaluation = testEvaluation;
+  if (type === "m" && testEvaluation === "") {
+    machineEvaluation = "passed";
+  }
+
+  // Log the event of swiping a card for knowing
+  const event: action = {
+    event_name: "swipe",
+    card_id: cardId,
+    flip_time: null,
+    swipe_time: Date(),
+    self_eval: "know",
+    test_eval: machineEvaluation,
+    isBuffer: cardIndex !== tupleLength - 1,
+  };
+  let copy = logInfo;
+  copy.action_container.push(event);
+  moveOn(tupleIndex, copy);
+};
+
+// Function for negative swipe time out
+export const logDontKnow = (logInfo: reviewInfo, testEvaluation: string, type: string, cardId: string, cardIndex: number, tupleLength: number, tupleIndex: number, moveOn: (tupleIndex: number, newInfo: reviewInfo) => void ) => {
+
+  // Check if the user answers correctly/incorrectly/skipped
+  let machineEvaluation = testEvaluation;
+  if (type === "m" && testEvaluation === "") {
+    machineEvaluation = "passed";
+  }
+
+  // Log the event of swiping a card for not knowing
+  const event: action = {
+    event_name: "swipe",
+    card_id: cardId,
+    flip_time: null,
+    swipe_time: Date(),
+    self_eval: "DontKnow",
+    test_eval: machineEvaluation,
+    isBuffer: cardIndex !== tupleLength - 1,
+  };
+  let copy = logInfo;
+  copy.action_container.push(event);
+  moveOn(tupleIndex, copy);
+};
+
+// Function for no more before answering
+export const logPoorCardSwipeBefore = (logInfo: reviewInfo, testEvaluation: string, type: string, cardId: string, cardIndex: number, tupleLength: number, tupleIndex: number, moveOn: (tupleIndex: number, newInfo: reviewInfo) => void ) => {
+
+  // Check if the user answers correctly/incorrectly/skipped
+  let machineEvaluation = testEvaluation;
+  if (type === "m" && testEvaluation === "") {
+    machineEvaluation = "skipped";
+  }
+
+  // Log the event of swiping a card down without clicking
+  const event: action = {
+    event_name: "NoEvaluation",
+    card_id: cardId,
+    flip_time: null,
+    swipe_time: Date(),
+    self_eval: "PoorCard",
+    test_eval: machineEvaluation,
+    isBuffer: cardIndex !== tupleLength - 1,
+  };
+  let copy = logInfo;
+  copy.action_container.push(event);
+  moveOn(tupleIndex, copy);
+};
+
+// Function for no more after answering
+export const logPoorCardSwipeAfter = (logInfo: reviewInfo, testEvaluation: string, type: string, cardId: string, cardIndex: number, tupleLength: number, tupleIndex: number, moveOn: (tupleIndex: number, newInfo: reviewInfo) => void ) => {
+
+  // Check if the user answers correctly/incorrectly/skipped
+  let machineEvaluation = testEvaluation;
+  if (type === "m" && testEvaluation === "") {
+    machineEvaluation = "passed";
+  }
+
+  // Log the event of siwping a card down after answering
+  const event: action = {
+    event_name: "swipe",
+    card_id: cardId,
+    flip_time: null,
+    swipe_time: Date(),
+    self_eval: "PoorCard",
+    test_eval: machineEvaluation,
+    isBuffer: cardIndex !== tupleLength - 1,
+  };
+  let copy = logInfo;
+  copy.action_container.push(event);
+  moveOn(tupleIndex, copy);
+};

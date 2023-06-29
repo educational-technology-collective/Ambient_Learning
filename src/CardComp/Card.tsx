@@ -6,6 +6,7 @@ import BackIndicator from "../components/BackIndicator";
 import MCQ from "./MCQ";
 import QA from "./QA";
 import { enableGesture } from "./gesture";
+import { logDontKnow, logFlipping, logKnow, logOneMore, logPoorCardSwipeAfter, logPoorCardSwipeBefore } from "../utilities/logfunction";
 const Card: React.FC<{
   obj: flashCard;
   tupleLength: number;
@@ -42,19 +43,8 @@ const Card: React.FC<{
     setIsClicked(true);
     setClick(true);
 
-    // Log the Flipping/Answering Event
-    const event : action = {
-      event_name: "flip",
-      card_id: obj._id,
-      flip_time: Date(),
-      swipe_time: null,
-      self_eval: null,
-      test_eval: null,
-      isBuffer: null
-    };
-    let newInfo = logInfo;
-    newInfo.action_container.push(event);
-    updateInfo(newInfo);
+    // Log the Event of Flipping / Answering
+    logFlipping(logInfo, obj._id, updateInfo);
 
   };
 
@@ -69,120 +59,36 @@ const Card: React.FC<{
   // Function for one more swipe time out
   const oneMoreTimeOut = () => {
 
-    // Check if the user answers correctly/incorrectly/skipped
-    let machineEvaluation = testEvaluation;
-    if (obj.type === "m" && testEvaluation === "") {
-      machineEvaluation = "passed";
-    }
-
-    // Log the event of swiping a card for one more
-    const event: action = {
-      event_name: "swipe",
-      card_id: obj._id,
-      flip_time: null,
-      swipe_time: Date(),
-      self_eval: "OneMore",
-      test_eval: machineEvaluation,
-      isBuffer: cardIndex !== tupleLength - 1,
-    };
-    let copy = logInfo;
-    copy.action_container.push(event);
-    oneMore(tupleIndex, copy);
+    // Log the event of OneMore
+    logOneMore(logInfo, testEvaluation, obj.type, obj._id, cardIndex, tupleLength, tupleIndex, oneMore);
   };
 
   // Function for positive swipe time out
   const knowTimeOut = () => {
-    // Check if the user answers correctly/incorrectly/skipped
-    let machineEvaluation = testEvaluation;
-    if (obj.type === "m" && testEvaluation === "") {
-      machineEvaluation = "passed";
-    }
 
-    // Log the event of swiping a card for knowing
-    const event: action = {
-      event_name: "swipe",
-      card_id: obj._id,
-      flip_time: null,
-      swipe_time: Date(),
-      self_eval: "know",
-      test_eval: machineEvaluation,
-      isBuffer: cardIndex !== tupleLength - 1,
-    };
-    let copy = logInfo;
-    copy.action_container.push(event);
-    moveOn(tupleIndex, copy);
+    // Log the event of Know
+    logKnow(logInfo, testEvaluation, obj.type, obj._id, cardIndex, tupleLength, tupleIndex, moveOn);
   };
 
   // Function for negative swipe time out
   const dontKnowTimeOut = () => {
 
-    // Check if the user answers correctly/incorrectly/skipped
-    let machineEvaluation = testEvaluation;
-    if (obj.type === "m" && testEvaluation === "") {
-      machineEvaluation = "passed";
-    }
-
-    // Log the event of swiping a card for not knowing
-    const event: action = {
-      event_name: "swipe",
-      card_id: obj._id,
-      flip_time: null,
-      swipe_time: Date(),
-      self_eval: "DontKnow",
-      test_eval: machineEvaluation,
-      isBuffer: cardIndex !== tupleLength - 1,
-    };
-    let copy = logInfo;
-    copy.action_container.push(event);
-    moveOn(tupleIndex, copy);
+    // Log the event of dont know
+    logDontKnow(logInfo, testEvaluation, obj.type, obj._id, cardIndex, tupleLength, tupleIndex, moveOn);
   };
 
   // Function for no more before answering
   const poorCardBeforeTimeout = () => {
 
-    // Check if the user answers correctly/incorrectly/skipped
-    let machineEvaluation = testEvaluation;
-    if (obj.type === "m" && testEvaluation === "") {
-      machineEvaluation = "skipped";
-    }
-
-    // Log the event of swiping a card down without clicking
-    const event: action = {
-      event_name: "NoEvaluation",
-      card_id: obj._id,
-      flip_time: null,
-      swipe_time: Date(),
-      self_eval: "PoorCard",
-      test_eval: machineEvaluation,
-      isBuffer: cardIndex !== tupleLength - 1,
-    };
-    let copy = logInfo;
-    copy.action_container.push(event);
-    moveOn(tupleIndex, copy);
+    // Log the event of swiping down before evaluation
+    logPoorCardSwipeBefore(logInfo, testEvaluation, obj.type, obj._id, cardIndex, tupleLength, tupleIndex, moveOn);
   };
 
   // Function for no more after answering
   const poorCardAfterTimeOut = () => {
 
-    // Check if the user answers correctly/incorrectly/skipped
-    let machineEvaluation = testEvaluation;
-    if (obj.type === "m" && testEvaluation === "") {
-      machineEvaluation = "passed";
-    }
-
-    // Log the event of siwping a card down after answering
-    const event: action = {
-      event_name: "swipe",
-      card_id: obj._id,
-      flip_time: null,
-      swipe_time: Date(),
-      self_eval: "PoorCard",
-      test_eval: machineEvaluation,
-      isBuffer: cardIndex !== tupleLength - 1,
-    };
-    let copy = logInfo;
-    copy.action_container.push(event);
-    moveOn(tupleIndex, copy);
+    // Log the event of swiping down after clicking
+    logPoorCardSwipeAfter(logInfo, testEvaluation, obj.type, obj._id, cardIndex, tupleLength, tupleIndex, moveOn);
   };
 
 
