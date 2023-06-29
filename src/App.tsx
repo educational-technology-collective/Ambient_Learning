@@ -288,9 +288,7 @@ const App: React.FC = () => {
               path="/loading"
               render={() => (
                 <LoadingPage
-                  showLoading={showLoading}
                   handleCardScreen={handleCardScreen}
-                  handleLoading={handleLoading}
                 />
               )}
             />
