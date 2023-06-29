@@ -8,14 +8,23 @@ import QA from "./QA";
 import { enableGesture } from "./gesture";
 const Card: React.FC<{
   obj: flashCard;
-  tupleLength: number,
-  cardIndex: number,
+  tupleLength: number;
+  cardIndex: number;
   tupleIndex: number;
   logInfo: reviewInfo;
   moveOn: (tupleIndex: number, newInfo: reviewInfo) => void;
   oneMore: (tupleIndex: number, newInfo: reviewInfo) => void;
   refTuple: React.RefObject<HTMLInputElement>;
-}> = ({ obj, tupleLength, cardIndex, tupleIndex, moveOn, logInfo, oneMore, refTuple }) => {
+}> = ({
+  obj,
+  tupleLength,
+  cardIndex,
+  tupleIndex,
+  moveOn,
+  logInfo,
+  oneMore,
+  refTuple,
+}) => {
   const ref = useRef<HTMLInputElement>(null);
 
   // This isClicked is for the tap of the card
@@ -28,21 +37,117 @@ const Card: React.FC<{
 
   // Callback for the tap of card
   const clickHandler = () => {
-    setIsClicked(!isClicked);
+    setIsClicked(true);
     setClick(true);
     setCorrect(true);
+  };
+
+  const [testEvaluation, setTestEvaluation] = useState("");
+
+  const handleTestEvaluation = (result: string) => {
+    setTestEvaluation(result);
   };
 
   const [clicked, setClick] = useState(false);
 
   // Function for one more swipe time out
   const oneMoreTimeOut = () => {
-    oneMore(tupleIndex);
+    let machineEvaluation = testEvaluation;
+    if (obj.type === "m" && testEvaluation === "") {
+      machineEvaluation = "passed";
+    }
+    const event: action = {
+      event_name: "Review a Card",
+      card_id: obj._id,
+      card_time: Date(),
+      self_eval: "One More",
+      test_eval: machineEvaluation,
+      isBuffer: cardIndex !== tupleLength - 1,
+    };
+    let copy = logInfo;
+    copy.action_container.push(event);
+    oneMore(tupleIndex, copy);
+  };
+
+  // Function for positive swipe time out
+  const knowTimeOut = () => {
+    let machineEvaluation = testEvaluation;
+    if (obj.type === "m" && testEvaluation === "") {
+      machineEvaluation = "passed";
+    }
+    const event: action = {
+      event_name: "Review a Card",
+      card_id: obj._id,
+      card_time: Date(),
+      self_eval: "Know",
+      test_eval: machineEvaluation,
+      isBuffer: cardIndex !== tupleLength - 1,
+    };
+    let copy = logInfo;
+    copy.action_container.push(event);
+    moveOn(tupleIndex, copy);
+  };
+
+  // Function for negative swipe time out
+  const dontKnowTimeOut = () => {
+    let machineEvaluation = testEvaluation;
+    if (obj.type === "m" && testEvaluation === "") {
+      machineEvaluation = "passed";
+    }
+    const event: action = {
+      event_name: "Review a Card",
+      card_id: obj._id,
+      card_time: Date(),
+      self_eval: "Don't Know",
+      test_eval: machineEvaluation,
+      isBuffer: cardIndex !== tupleLength - 1,
+    };
+    let copy = logInfo;
+    copy.action_container.push(event);
+    moveOn(tupleIndex, copy);
+  };
+
+  // Function for no more before answering
+  const poorCardBeforeTimeout = () => {
+    let machineEvaluation = testEvaluation;
+    if (obj.type === "m" && testEvaluation === "") {
+      machineEvaluation = "passed";
+    }
+    const event: action = {
+      event_name: "No Evaluation Card",
+      card_id: obj._id,
+      card_time: Date(),
+      self_eval: "Poor Card",
+      test_eval: machineEvaluation,
+      isBuffer: cardIndex !== tupleLength - 1,
+    };
+    let copy = logInfo;
+    copy.action_container.push(event);
+    moveOn(tupleIndex, copy);
+  };
+
+  // Function for no more after answering
+  const poorCardAfterTimeOut = () => {
+    let machineEvaluation = testEvaluation;
+    if (obj.type === "m" && testEvaluation === "") {
+      machineEvaluation = "passed";
+    }
+    const event: action = {
+      event_name: "Review a Card",
+      card_id: obj._id,
+      card_time: Date(),
+      self_eval: "Poor Card",
+      test_eval: machineEvaluation,
+      isBuffer: cardIndex !== tupleLength - 1,
+    };
+    let copy = logInfo;
+    copy.action_container.push(event);
+    moveOn(tupleIndex, copy);
   };
 
   // Function that goes to next card after some time
   const timeOutFunc = () => {
-    moveOn(tupleIndex);
+    moveOn(tupleIndex, logInfo);
   };
 
   // useEffect to enableGesture at any time
@@ -57,7 +162,10 @@ const Card: React.FC<{
       handleOneMoreOpacity,
       handleShowNothing,
       backHandler,
-      timeOutFunc,
+      knowTimeOut,
+      dontKnowTimeOut,
+      poorCardBeforeTimeout,
+      poorCardAfterTimeOut,
       oneMoreTimeOut
     );
   });
@@ -92,6 +200,7 @@ const Card: React.FC<{
         clicked={clicked}
         setClickStatus={setClickStatus}
         setCorrectStatus={setCorrectStatus}
+        handleTestEvaluation={handleTestEvaluation}
       />
     );
     cardContentStyle = "card-content mcq-card-content";

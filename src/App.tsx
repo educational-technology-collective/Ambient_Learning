@@ -58,13 +58,13 @@ const App: React.FC = () => {
         card_id: null,
         card_time: null,
         self_eval: null,
-        mcq_choice: null,
+        test_eval: null,
         isBuffer: null
       }],
     }
   )
 
-
+    console.log(logInfo);
   // The Card Array
 
   const [cardCol, setCards] = useState([[]]);
@@ -117,7 +117,7 @@ const App: React.FC = () => {
       card_id: null,
         card_time: null,
         self_eval: null,
-        mcq_choice: null,
+        test_eval: null,
         isBuffer: null,
       };
     let newInfo = logInfo;
@@ -134,7 +134,7 @@ const App: React.FC = () => {
      
         card_time: null,
         self_eval: null,
-        mcq_choice: null,
+        test_eval: null,
         isBuffer: null
       
     };
@@ -150,7 +150,7 @@ const App: React.FC = () => {
       card_id: null,
      card_time: null,
         self_eval: null,
-        mcq_choice: null,
+        test_eval: null,
       isBuffer: null
     };
     let newInfo = logInfo;

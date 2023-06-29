@@ -46,7 +46,8 @@ const HorizontalEnd = (
   detail: GestureDetail,
   stuff: HTMLInputElement | null,
   handleShowNothing: () => void,
-  timeOutFunc: () => void
+  knowTimeOut: () => void,
+  dontKnowTimeOut: () => void,
 ) => {
   if (stuff) {
     const windowWidth: number = window.innerWidth;
@@ -55,22 +56,22 @@ const HorizontalEnd = (
     // Swiping Right Quick Enough
     if (detail.velocityX > 0.3) {
       stuff.style.transform = `translateX(${windowWidth * 1.5}px)`;
-      setTimeout(timeOutFunc, 100);
+      setTimeout(knowTimeOut, 100);
     }
     // Swiping Right more than half of window length. Move Card to Right
     else if (detail.deltaX > windowWidth / 3) {
       stuff.style.transform = `translateX(${windowWidth * 1.5}px)`;
-      setTimeout(timeOutFunc, 100);
+      setTimeout(knowTimeOut, 100);
     }
     // Swiping Left Quick Enough
     else if (detail.velocityX < -0.3) {
       stuff.style.transform = `translateX(${windowWidth * -1.5}px)`;
-      setTimeout(timeOutFunc, 100);
+      setTimeout(dontKnowTimeOut, 100);
     }
     // Swiping Left More than half of window length. Move Card to Left
     else if (detail.deltaX < -windowWidth / 3) {
       stuff.style.transform = `translateX(${-windowWidth * 1.5}px)`;
-      setTimeout(timeOutFunc, 100);
+      setTimeout(dontKnowTimeOut, 100);
     }
     // Not Swiping Enough. Reset the Card to its position
     else {
@@ -164,7 +165,8 @@ const VerticalEnd = (
   isClicked: boolean,
   handleShowNothing: () => void,
   backHandler: () => void,
-  timeOutFunc: () => void,
+  poorCardBeforeTimeOut: () => void,
+  poorCardAfterTimeOut: () => void,
   oneMoreTimeOut: () => void
 ) => {
   if (stuff && card) {
@@ -177,12 +179,12 @@ const VerticalEnd = (
       // Swipe Down fast, clear the tuple
       if (detail.velocityY > 0.3) {
         stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
-        setTimeout(timeOutFunc, 100);
+        setTimeout(poorCardBeforeTimeOut, 100);
       }
       // Swipe Down enough, clear the tuple
       else if (detail.deltaY > windowHeight / 4) {
         stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
-        setTimeout(timeOutFunc, 100);
+        setTimeout(poorCardBeforeTimeOut, 100);
       }
       // Reset
       else {
@@ -199,7 +201,7 @@ const VerticalEnd = (
 
         // Set all the style/className/isClicked back
         stuff.style.transform = "";
-        backHandler();
+        // backHandler();
       }
       // Swipe Up enough, clear the top card
       else if (detail.deltaY < -windowHeight / 4) {
@@ -208,17 +210,17 @@ const VerticalEnd = (
 
         // Set all the style/className/isClicked back
         stuff.style.transform = "";
-        backHandler();
+        // backHandler();
       }
       //  Swipe down fast, clear the tuple
       else if (detail.velocityY > 0.3) {
         stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
-        setTimeout(timeOutFunc, 100);
+        setTimeout(poorCardAfterTimeOut, 100);
       }
       // Swipe down enough, clear the tuple
       else if (detail.deltaY > windowHeight / 4) {
         stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
-        setTimeout(timeOutFunc, 100);
+        setTimeout(poorCardAfterTimeOut, 100);
       }
       // Reset
       else {
@@ -241,7 +243,10 @@ export const enableGesture = (
   handleOneMoreOpacity: (detail: GestureDetail) => void,
   handleShowNothing: () => void,
   backHandler: () => void,
-  timeOutFunc: () => void,
+  knowTimeOut: () => void,
+  dontKnowTimeOut: () => void,
+  poorCardBeforeTimeOut: () => void,
+  poorCardAfterTimeOut: () => void,
   oneMoreTimeOut: () => void
 ) => {
   if (stuff && card) {
@@ -258,7 +263,7 @@ export const enableGesture = (
           handlePositiveOpacity
         ),
       onEnd: (detail) =>
-        HorizontalEnd(detail, stuff, handleShowNothing, timeOutFunc),
+        HorizontalEnd(detail, stuff, handleShowNothing, knowTimeOut, dontKnowTimeOut),
     });
 
     // Veritical Direction Swiping
@@ -284,7 +289,8 @@ export const enableGesture = (
           isClicked,
           handleShowNothing,
           backHandler,
-          timeOutFunc,
+          poorCardBeforeTimeOut,
+          poorCardAfterTimeOut,
           oneMoreTimeOut
         ),
     });

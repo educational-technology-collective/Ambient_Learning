@@ -7,7 +7,8 @@ const Choices: React.FC<{
   clicked: boolean;
   setClickStatus: () => void;
   setCorrectStatus: () => void;
-}> = ({ answer, clicked, setClickStatus, setCorrectStatus }) => {
+  handleTestEvaluation: (result: string) => void;
+}> = ({ answer, clicked, setClickStatus, setCorrectStatus, handleTestEvaluation}) => {
   const choices: individualChoice[] = answer;
 
   // Function that Shuffles the Array of Choices
@@ -44,6 +45,8 @@ const Choices: React.FC<{
             setClickStatus={setClickStatus}
             setCorrectStatus={setCorrectStatus}
             key={index}
+            handleTestEvaluation={handleTestEvaluation}
+           
           />
         ) : (
           <IncorrectChoice
@@ -51,6 +54,8 @@ const Choices: React.FC<{
             clicked={clicked}
             setClickStatus={setClickStatus}
             key={index}
+            handleTestEvaluation={handleTestEvaluation}
+          
           />
         )
       )}

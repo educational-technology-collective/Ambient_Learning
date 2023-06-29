@@ -8,7 +8,8 @@ export const IncorrectChoice: React.FC<{
   option: string;
   clicked: boolean;
   setClickStatus: () => void;
-}> = ({ option, clicked, setClickStatus }) => {
+  handleTestEvaluation: (result: string) => void;
+}> = ({ option, clicked, setClickStatus, handleTestEvaluation}) => {
   const choiceText: string = option;
 
   const [isChosen, setChosen] = useState(false);
@@ -18,6 +19,8 @@ export const IncorrectChoice: React.FC<{
   const inCorrectClick = () => {
     setClickStatus();
     setChosen(true);
+    handleTestEvaluation("incorrect");
+   
   };
 
   // Style for the button
@@ -43,12 +46,15 @@ export const CorrectChoice: React.FC<{
   clicked: boolean;
   setClickStatus: () => void;
   setCorrectStatus: () => void;
-}> = ({ option, clicked, setClickStatus, setCorrectStatus }) => {
+  handleTestEvaluation:(result: string) => void;
+}> = ({ option, clicked, setClickStatus, setCorrectStatus, handleTestEvaluation}) => {
   const choiceText = option;
 
   const correctClick = () => {
     setClickStatus();
     setCorrectStatus();
+    handleTestEvaluation("correct");
+    
   };
 
   // Style for the button

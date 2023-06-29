@@ -28,7 +28,7 @@ declare global{
       card_id: string | null,
       card_time: string | null,
       self_eval: string | null,
-      mcq_choice: string | null,
+      test_eval: string | null,
       isBuffer: boolean | null,
   }
 

@@ -11,7 +11,8 @@ const MCQ: React.FC<{
   clicked: boolean;
   setClickStatus: () => void;
   setCorrectStatus: () => void;
-}> = ({ obj, clicked, setClickStatus, setCorrectStatus }) => {
+  handleTestEvaluation: (result: string) => void;
+}> = ({ obj, clicked, setClickStatus, setCorrectStatus, handleTestEvaluation }) => {
   const question: string = obj.content.question;
   const choice: individualChoice[] = obj.content.answer;
 
@@ -49,6 +50,7 @@ const MCQ: React.FC<{
         setClickStatus={setClickStatus}
         clicked={clicked}
         setCorrectStatus={setCorrectStatus}
+        handleTestEvaluation={handleTestEvaluation}
       />
     </>
   );
