@@ -47,7 +47,7 @@ const HorizontalEnd = (
   stuff: HTMLInputElement | null,
   handleShowNothing: () => void,
   knowTimeOut: () => void,
-  dontKnowTimeOut: () => void,
+  dontKnowTimeOut: () => void
 ) => {
   if (stuff) {
     const windowWidth: number = window.innerWidth;
@@ -200,7 +200,6 @@ const VerticalEnd = (
 
         // Set all the style/className/isClicked back
         stuff.style.transform = "";
-        // backHandler();
       }
       // Swipe Up enough, clear the top card
       else if (detail.deltaY < -windowHeight / 4) {
@@ -209,7 +208,6 @@ const VerticalEnd = (
 
         // Set all the style/className/isClicked back
         stuff.style.transform = "";
-        // backHandler();
       }
       //  Swipe down fast, clear the tuple
       else if (detail.velocityY > 0.3) {
@@ -261,7 +259,13 @@ export const enableGesture = (
           handlePositiveOpacity
         ),
       onEnd: (detail) =>
-        HorizontalEnd(detail, stuff, handleShowNothing, knowTimeOut, dontKnowTimeOut),
+        HorizontalEnd(
+          detail,
+          stuff,
+          handleShowNothing,
+          knowTimeOut,
+          dontKnowTimeOut
+        ),
     });
 
     // Veritical Direction Swiping

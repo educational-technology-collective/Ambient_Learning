@@ -53,31 +53,27 @@
   line-height: 1.5em;
 }
 
-.card-text p{
+.card-text p {
   margin: 0;
- 
 }
 
-.card-text hr{
+.card-text hr {
   height: 1px;
   border: 1px solid black;
   width: 100%;
 }
 
-.card-text pre{
-  
+.card-text pre {
   background-color: #f6f6f6;
 }
 
-.card-text code{
-  
+.card-text code {
   background: #f6f6f6;
 }
 
 /* Front Question Text with 0 degree */
 
 .front-text {
-  
   transform: rotateY(0deg);
 }
 
