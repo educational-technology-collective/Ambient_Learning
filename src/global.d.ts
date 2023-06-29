@@ -22,4 +22,12 @@ declare global{
     option: string,
     isCorrect: boolean
   }
+
+  interface ReviewInfo {
+    user_id: string;
+    start_time: string;
+    end_time: string;
+    review_length: number; 
+    action: any[]
+  }
 }

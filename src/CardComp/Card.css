@@ -43,18 +43,19 @@
 /* Texts for both question and answer */
 .card-text {
   backface-visibility: hidden;
+  font-size: 5.2vw;
+  font-weight: 500;
   margin: 0 1.5rem;
   position: absolute;
-  text-align: center;
   justify-content: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  line-height: 1.5em;
 }
 
 .card-text p{
   margin: 0;
-  font-size: x-large;
+ 
 }
 
 .card-text hr{
@@ -64,12 +65,12 @@
 }
 
 .card-text pre{
-  font-size: x-large;
+  
   background-color: #f6f6f6;
 }
 
 .card-text code{
-  font-size: large;
+  
   background: #f6f6f6;
 }
 
@@ -83,18 +84,6 @@
 /* All Back texts with 180 degrees and translateZ forward (for ios) */
 .back-text {
   transform: rotateY(180deg) translateZ(3px);
-}
-
-.back-text-2em {
-  font-size: 2em;
-}
-
-.back-text-1d6em {
-  font-size: 2em;
-}
-
-.back-text-1d3em {
-  font-size: 1.3em;
 }
 
 /* QA Card Question on the back page taking 50% */
