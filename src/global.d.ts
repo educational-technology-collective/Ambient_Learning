@@ -23,11 +23,26 @@ declare global{
     isCorrect: boolean
   }
 
-  interface ReviewInfo {
+  interface action{
+      event_name: string,
+      card_id: string | null,
+      review_result: {
+        card_start_time: string | null,
+        card_end_time: string | null,
+        card_review_length: number | null,
+        self_eval: string | null,
+        mcq_choice: string | null,
+      }
+  }
+
+  
+  interface reviewInfo {
     user_id: string;
     start_time: string;
     end_time: string;
     review_length: number; 
-    action: any[]
+    number_one_more: number,
+    number_shake: number,
+    action_container: action[]
   }
 }
