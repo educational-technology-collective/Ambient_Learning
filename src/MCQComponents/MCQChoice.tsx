@@ -1,4 +1,4 @@
-import { IonButton, IonText } from "@ionic/react";
+import { IonButton} from "@ionic/react";
 import { useState } from "react";
 import "./MCQChoice.css";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
