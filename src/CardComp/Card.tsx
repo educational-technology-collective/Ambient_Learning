@@ -41,7 +41,6 @@ const Card: React.FC<{
   const clickHandler = () => {
     setIsClicked(true);
     setClick(true);
-    setCorrect(true);
     const event : action = {
       event_name: "flip",
       card_id: obj._id,
@@ -189,13 +188,6 @@ const Card: React.FC<{
     setClick(true);
   };
 
-  // If the user answers correctly
-  const [correct, setCorrect] = useState(false);
-
-  const setCorrectStatus = () => {
-    setCorrect(true);
-  };
-
 
   // Determine the component and content style based on type of card
   let cardComp, cardContentStyle;
@@ -208,7 +200,6 @@ const Card: React.FC<{
         obj={obj}
         clicked={clicked}
         setClickStatus={setClickStatus}
-        setCorrectStatus={setCorrectStatus}
         handleTestEvaluation={handleTestEvaluation}
       />
     );

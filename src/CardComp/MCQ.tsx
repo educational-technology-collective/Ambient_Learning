@@ -7,13 +7,11 @@ const MCQ: React.FC<{
   obj: flashCard;
   clicked: boolean;
   setClickStatus: () => void;
-  setCorrectStatus: () => void;
   handleTestEvaluation: (result: string) => void;
 }> = ({
   obj,
   clicked,
   setClickStatus,
-  setCorrectStatus,
   handleTestEvaluation,
 }) => {
   const question: string = obj.content.question;
@@ -46,7 +44,6 @@ const MCQ: React.FC<{
         answer={choice}
         setClickStatus={setClickStatus}
         clicked={clicked}
-        setCorrectStatus={setCorrectStatus}
         handleTestEvaluation={handleTestEvaluation}
       />
     </>

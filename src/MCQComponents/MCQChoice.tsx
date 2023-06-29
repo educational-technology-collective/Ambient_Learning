@@ -49,20 +49,17 @@ export const CorrectChoice: React.FC<{
   option: string;
   clicked: boolean;
   setClickStatus: () => void;
-  setCorrectStatus: () => void;
   handleTestEvaluation: (result: string) => void;
 }> = ({
   option,
   clicked,
   setClickStatus,
-  setCorrectStatus,
   handleTestEvaluation,
 }) => {
   const choiceText = option;
 
   const correctClick = () => {
     setClickStatus();
-    setCorrectStatus();
 
     // Set machine evaluation to be correct
     handleTestEvaluation("correct");

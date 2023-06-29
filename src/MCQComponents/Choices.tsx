@@ -6,13 +6,11 @@ const Choices: React.FC<{
   answer: individualChoice[];
   clicked: boolean;
   setClickStatus: () => void;
-  setCorrectStatus: () => void;
   handleTestEvaluation: (result: string) => void;
 }> = ({
   answer,
   clicked,
   setClickStatus,
-  setCorrectStatus,
   handleTestEvaluation,
 }) => {
   const choices: individualChoice[] = answer;
@@ -49,7 +47,6 @@ const Choices: React.FC<{
             option={choice.option}
             clicked={clicked}
             setClickStatus={setClickStatus}
-            setCorrectStatus={setCorrectStatus}
             key={index}
             handleTestEvaluation={handleTestEvaluation}
           />
