@@ -57,11 +57,11 @@ const Card: React.FC<{
       machineEvaluation = "passed";
     }
     const event: action = {
-      event_name: "Review a Card",
+      event_name: "ReviewCard",
       card_id: obj._id,
       flip_time: null,
       swipe_time: Date(),
-      self_eval: "One More",
+      self_eval: "OneMore",
       test_eval: machineEvaluation,
       isBuffer: cardIndex !== tupleLength - 1,
     };
@@ -77,11 +77,11 @@ const Card: React.FC<{
       machineEvaluation = "passed";
     }
     const event: action = {
-      event_name: "Review a Card",
+      event_name: "ReviewCard",
       card_id: obj._id,
       flip_time: null,
       swipe_time: Date(),
-      self_eval: "Know",
+      self_eval: "know",
       test_eval: machineEvaluation,
       isBuffer: cardIndex !== tupleLength - 1,
     };
@@ -97,11 +97,11 @@ const Card: React.FC<{
       machineEvaluation = "passed";
     }
     const event: action = {
-      event_name: "Review a Card",
+      event_name: "ReviewCard",
       card_id: obj._id,
       flip_time: null,
       swipe_time: Date(),
-      self_eval: "Don't Know",
+      self_eval: "DontKnow",
       test_eval: machineEvaluation,
       isBuffer: cardIndex !== tupleLength - 1,
     };
@@ -114,14 +114,14 @@ const Card: React.FC<{
   const poorCardBeforeTimeout = () => {
     let machineEvaluation = testEvaluation;
     if (obj.type === "m" && testEvaluation === "") {
-      machineEvaluation = "passed";
+      machineEvaluation = "skipped";
     }
     const event: action = {
-      event_name: "No Evaluation Card",
+      event_name: "NoEvaluation",
       card_id: obj._id,
       flip_time: null,
       swipe_time: Date(),
-      self_eval: "Poor Card",
+      self_eval: "PoorCard",
       test_eval: machineEvaluation,
       isBuffer: cardIndex !== tupleLength - 1,
     };
@@ -137,11 +137,11 @@ const Card: React.FC<{
       machineEvaluation = "passed";
     }
     const event: action = {
-      event_name: "Review a Card",
+      event_name: "ReviewCard",
       card_id: obj._id,
       flip_time: null,
       swipe_time: Date(),
-      self_eval: "Poor Card",
+      self_eval: "PoorCard",
       test_eval: machineEvaluation,
       isBuffer: cardIndex !== tupleLength - 1,
     };

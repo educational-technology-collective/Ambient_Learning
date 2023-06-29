@@ -24,7 +24,6 @@ const LoadingPage: React.FC<{
   // Turn loading down and jump to card screen
   const navigateToCardScreen = () => {
     history.push("/cardscreen");
-    handleLoading();
     handleCardScreen();
   };
 
@@ -39,8 +38,11 @@ const LoadingPage: React.FC<{
   }, []);
 
   // Set a timeout that will jump to the cardscreen
-  if (progress > 1 && showLoading) {
-    setTimeout(() => navigateToCardScreen(), 150);
+  const[showLoad, setLoad] = useState(true);
+  
+  if (progress > 1 && showLoad) {
+    setLoad(false);
+    setTimeout(navigateToCardScreen, 100);
   }
 
   return (

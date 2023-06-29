@@ -114,7 +114,7 @@ const App: React.FC = () => {
   const logShakePhone = () => {
     // Increase the Number of Shake
     const event : action = {
-      event_name: 'Shake Phone',
+      event_name: 'shake',
       card_id: null,
       flip_time: null,
         swipe_time: null,
@@ -134,7 +134,7 @@ const App: React.FC = () => {
   // Log Info When the user clicks home botton
   const logEnterHome = () => {
     const event : action = {
-      event_name: 'Enter Home Screen',
+      event_name: 'EnterHomeScreen',
       card_id: null,
      flip_time: null,
         swipe_time: null,
@@ -150,8 +150,11 @@ const App: React.FC = () => {
 
   // Log Info when the user enters card screen
   const logEnterCard = () => {
+    if(logInfo.action_container[logInfo.action_container.length-1].event_name !== 'EnterCardScreen'){
+
+    
     const event : action = {
-      event_name: 'Enter Card Screen',
+      event_name: 'EnterCardScreen',
       flip_time: null,
       card_id: null,
      swipe_time: null,
@@ -162,6 +165,7 @@ const App: React.FC = () => {
     let newInfo = logInfo;
     newInfo.action_container.push(event);
     setLog(newInfo);
+  }
   }
 
   
