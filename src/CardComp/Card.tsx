@@ -1,4 +1,4 @@
-import { IonCard} from "@ionic/react";
+import { IonCard } from "@ionic/react";
 import { useRef, useState, useEffect } from "react";
 import "./Card.css";
 import FrontIndicator from "../components/FrontIndicator";
@@ -6,7 +6,14 @@ import BackIndicator from "../components/BackIndicator";
 import MCQ from "./MCQ";
 import QA from "./QA";
 import { enableGesture } from "./gesture";
-import { logDontKnow, logFlipping, logKnow, logOneMore, logPoorCardSwipeAfter, logPoorCardSwipeBefore } from "../utilities/logfunction";
+import {
+  logDontKnow,
+  logFlipping,
+  logKnow,
+  logOneMore,
+  logPoorCardSwipeAfter,
+  logPoorCardSwipeBefore,
+} from "../utilities/logfunction";
 const Card: React.FC<{
   obj: flashCard;
   tupleLength: number;
@@ -45,7 +52,6 @@ const Card: React.FC<{
 
     // Log the Event of Flipping / Answering
     logFlipping(logInfo, obj._id, updateInfo);
-
   };
 
   const [testEvaluation, setTestEvaluation] = useState("");
@@ -58,39 +64,78 @@ const Card: React.FC<{
 
   // Function for one more swipe time out
   const oneMoreTimeOut = () => {
-
     // Log the event of OneMore
-    logOneMore(logInfo, testEvaluation, obj.type, obj._id, cardIndex, tupleLength, tupleIndex, oneMore);
+    logOneMore(
+      logInfo,
+      testEvaluation,
+      obj.type,
+      obj._id,
+      cardIndex,
+      tupleLength,
+      tupleIndex,
+      oneMore
+    );
   };
 
   // Function for positive swipe time out
   const knowTimeOut = () => {
-
     // Log the event of Know
-    logKnow(logInfo, testEvaluation, obj.type, obj._id, cardIndex, tupleLength, tupleIndex, moveOn);
+    logKnow(
+      logInfo,
+      testEvaluation,
+      obj.type,
+      obj._id,
+      cardIndex,
+      tupleLength,
+      tupleIndex,
+      moveOn
+    );
   };
 
   // Function for negative swipe time out
   const dontKnowTimeOut = () => {
-
     // Log the event of dont know
-    logDontKnow(logInfo, testEvaluation, obj.type, obj._id, cardIndex, tupleLength, tupleIndex, moveOn);
+    logDontKnow(
+      logInfo,
+      testEvaluation,
+      obj.type,
+      obj._id,
+      cardIndex,
+      tupleLength,
+      tupleIndex,
+      moveOn
+    );
   };
 
   // Function for no more before answering
   const poorCardBeforeTimeout = () => {
-
     // Log the event of swiping down before evaluation
-    logPoorCardSwipeBefore(logInfo, testEvaluation, obj.type, obj._id, cardIndex, tupleLength, tupleIndex, moveOn);
+    logPoorCardSwipeBefore(
+      logInfo,
+      testEvaluation,
+      obj.type,
+      obj._id,
+      cardIndex,
+      tupleLength,
+      tupleIndex,
+      moveOn
+    );
   };
 
   // Function for no more after answering
   const poorCardAfterTimeOut = () => {
-
     // Log the event of swiping down after clicking
-    logPoorCardSwipeAfter(logInfo, testEvaluation, obj.type, obj._id, cardIndex, tupleLength, tupleIndex, moveOn);
+    logPoorCardSwipeAfter(
+      logInfo,
+      testEvaluation,
+      obj.type,
+      obj._id,
+      cardIndex,
+      tupleLength,
+      tupleIndex,
+      moveOn
+    );
   };
-
 
   // useEffect to enableGesture at any time
   useEffect(() => {
@@ -115,7 +160,6 @@ const Card: React.FC<{
   const setClickStatus = () => {
     setClick(true);
   };
-
 
   // Determine the component and content style based on type of card
   let cardComp, cardContentStyle;
