@@ -1,7 +1,4 @@
 import {
-  IonText,
-  IonCard,
-  IonCardContent,
   IonContent,
   IonHeader,
   IonPage,
@@ -12,14 +9,14 @@ import {
 import "./Home.css";
 import { useHistory } from "react-router-dom";
 import { diamond } from "ionicons/icons";
+import DashBoard from "../HomeComp/DashBoard";
 
-const Home: React.FC<{ cardsLeft: number; finishedLoading: boolean; handleCardScreen: () => void }> = ({
+const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
   cardsLeft,
-  finishedLoading,
   handleCardScreen,
 }) => {
   const history = useHistory();
-
+  // Used to jump to the card screen and spread cards
   const navigateToCardScreen = () => {
     history.push("/cardscreen");
     handleCardScreen();
@@ -52,27 +49,15 @@ const Home: React.FC<{ cardsLeft: number; finishedLoading: boolean; handleCardSc
 
       <IonContent scrollY={false} className="home-content">
         <div className="home-loaded-wrapper">
-        <IonIcon
-          icon={diamond}
-          style={{ fontSize: "3em", left: "45%", position: "relative" }}
-        ></IonIcon>
-        <IonCard className="task-card">
-          <IonCardContent className="remaining-content">
-            <IonText className="today-task">Today's Task:</IonText>
-
-            {/* Determine if the cards are done */}
-            {cardsLeft !== 0 ? (
-              <IonCard className={shadow} onClick={navigateToCardScreen}>
-                <IonCardContent className="wrapped-card-content">
-                  <IonText className="today-task">{cardsLeft}</IonText>
-                </IonCardContent>
-              </IonCard>
-            ) : (
-              <IonText>You are done with cards. Go touch grass, bravo!</IonText>
-            )}
-            
-          </IonCardContent>
-        </IonCard>
+          <IonIcon
+            icon={diamond}
+            style={{ fontSize: "3em", left: "45%", position: "relative" }}
+          ></IonIcon>
+          <DashBoard
+            cardsLeft={cardsLeft}
+            shadow={shadow}
+            navigateToCardScreen={navigateToCardScreen}
+          />
         </div>
       </IonContent>
     </IonPage>

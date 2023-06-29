@@ -1,13 +1,15 @@
-import { IonButton, IonText } from "@ionic/react";
+import { IonButton} from "@ionic/react";
 import { useState } from "react";
 import "./MCQChoice.css";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
 // Incorrect Option Component
 export const IncorrectChoice: React.FC<{
   option: string;
   clicked: boolean;
   setClickStatus: () => void;
-}> = ({ option, clicked, setClickStatus }) => {
+  handleTestEvaluation: (result: string) => void;
+}> = ({ option, clicked, setClickStatus, handleTestEvaluation }) => {
   const choiceText: string = option;
 
   const [isChosen, setChosen] = useState(false);
@@ -17,6 +19,9 @@ export const IncorrectChoice: React.FC<{
   const inCorrectClick = () => {
     setClickStatus();
     setChosen(true);
+
+    // Set the machine evaluation to be incorrect
+    handleTestEvaluation("incorrect");
   };
 
   // Style for the button
@@ -31,7 +36,10 @@ export const IncorrectChoice: React.FC<{
       disabled={clicked}
       onClick={inCorrectClick}
     >
-      <IonText className="choice-text">{choiceText}</IonText>
+      <ReactMarkdown
+        className="choice-text"
+        children={choiceText}
+      ></ReactMarkdown>
     </IonButton>
   );
 };
@@ -41,13 +49,20 @@ export const CorrectChoice: React.FC<{
   option: string;
   clicked: boolean;
   setClickStatus: () => void;
-  setCorrectStatus: () => void;
-}> = ({ option, clicked, setClickStatus, setCorrectStatus }) => {
+  handleTestEvaluation: (result: string) => void;
+}> = ({
+  option,
+  clicked,
+  setClickStatus,
+  handleTestEvaluation,
+}) => {
   const choiceText = option;
 
   const correctClick = () => {
     setClickStatus();
-    setCorrectStatus();
+
+    // Set machine evaluation to be correct
+    handleTestEvaluation("correct");
   };
 
   // Style for the button
@@ -62,7 +77,10 @@ export const CorrectChoice: React.FC<{
       disabled={clicked}
       onClick={correctClick}
     >
-      <IonText className="choice-text">{choiceText}</IonText>
+      <ReactMarkdown
+        className="choice-text"
+        children={choiceText}
+      ></ReactMarkdown>
     </IonButton>
   );
 };

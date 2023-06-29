@@ -6,7 +6,6 @@ import {
   IonTabBar,
   setupIonicReact,
   IonTabButton,
-  IonLoading,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { TbHomeEdit } from "react-icons/tb";
@@ -16,6 +15,7 @@ import CardScreen from "./pages/CardScreen";
 import Home from "./pages/Home";
 import "./pages/Home.css";
 import "./App.css";
+import { CapacitorHttp } from "@capacitor/core";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -35,80 +35,133 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
-import { cardCollection } from "./components/exampleData";
-import CardsTab from "./components/CardsTab";
+import { cardCollection } from "./utilities/exampleData";
+import { markdownCollection } from "./IndicationComp/markdownData";
+import CardsTab from "./IndicationComp/CardsTab";
+import LoadingPage from "./pages/LoadingPage";
+import {
+  logEnterCard,
+  logEnterHome,
+  logShakePhone,
+} from "./utilities/logfunction";
 setupIonicReact({
   swipeBackEnabled: false,
 });
 
 const App: React.FC = () => {
+  // Initialize the Logging Info as app is open
+  const [logInfo, setLog] = useState<reviewInfo>({
+    user_id: "bigboss",
+    start_time: Date(),
+    end_time: "",
+    number_shake: 0,
+    action_container: [
+      {
+        event_name: "Initialize",
+        card_id: null,
+        flip_time: null,
+        swipe_time: null,
+        self_eval: null,
+        test_eval: null,
+        isBuffer: null,
+      },
+    ],
+  });
+
+  console.log(logInfo);
+
   // The Card Array
-  
-
-  
-
   const [cardCol, setCards] = useState([[]]);
-  const [showScreen, setScreen] = useState(false);
-  
 
+  // GET Function for fetching cards
   const getCards = async (url: string) => {
-    const response = await fetch(url);
-    const data = await response.json();
+    const response = await CapacitorHttp.get({ url: url });
+    const data = await JSON.parse(response.data);
     setCards(data);
     setTotal(data.length);
     setCounter(data.length);
-    setTupleCounter(data[data.length-1].length);
-    setScreen(true);
-    
+    setTupleCounter(data[data.length - 1].length);
   };
 
-
+  // UseEffect to fetch the cards
   useEffect(() => {
-    getCards('https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/flashcards/videoId/6499ef9395f0588d6bcfd1db');
-    
+    getCards(
+      "https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/users/srsdevteam@gmail.com/flashcards/all"
+    );
   }, []);
-    console.log(cardCol);
- 
+
+  console.log(logInfo);
+
   // How Many Cards Finished
   const [finished, setFinished] = useState(0);
 
   // How Many Cards in total
   const [total, setTotal] = useState(0);
 
+  // Number of Cards Remaining
+  let cardsLeft: number = total - finished;
+
   // Counter used to display certain cards
   const [counter, setCounter] = useState(0);
 
   // Tuple Counter for One More Cards
-  const [tupleCounter, setTupleCounter] = useState(
-    0
-  );
+  const [tupleCounter, setTupleCounter] = useState(0);
 
   // Card-Stacker Visual Effect
   const [isShake, setShake] = useState(false);
+
+  // State Variable used to track if the current tab is cardscreen
+  const [isCardScreen, setCardScreen] = useState(false);
+
+  // Card Screen will spread the cards
+  const handleCardScreen = () => {
+    setCardScreen(true);
+    logEnterCard(logInfo, updateInfo);
+  };
+
+  // Home Screen will fold the cards
+  const handleHomeScreen = () => {
+    setCardScreen(false);
+    logEnterHome(logInfo, updateInfo);
+  };
+
+  // Handler used to update logInfo
+  const updateInfo = (newInfo: reviewInfo) => {
+    setLog(newInfo);
+  };
 
   // Handler that set the card-stacker back without shaking
   const handleShake = () => {
     // Set Shake to be true. Enables visual shaking and modal
     setShake(true);
 
+    // Log Shaking Event
+    logShakePhone(logInfo, finished, total, updateInfo);
+
     // Set Timeout of 2.2 seconds(consistent with animation time)
     setTimeout(() => setShake(false), 2200);
   };
 
   // Logic to Move On to Next Card
-  const swipeNextCard = (tupleIndex: number) => {
-    setFinished((prevFinished : number) => prevFinished + 1);
-    setCounter((prevCounter : number) => prevCounter - 1);
+  const swipeNextCard = (tupleIndex: number, newInfo: reviewInfo) => {
+    setFinished((prevFinished: number) => prevFinished + 1);
+    setCounter((prevCounter: number) => prevCounter - 1);
 
     // If the current tuple is not the last one, reset the counter of tuple
     // to the next array's length
     if (tupleIndex > 0) {
       setTupleCounter(cardCol[tupleIndex - 1].length);
     }
+
+    // Log Info for Positive/No More/Negative
+    if (finished === total - 1) {
+      newInfo.end_time = Date();
+    }
+    updateInfo(newInfo);
   };
 
   // Function that swipes for one more card
-  const swipeOneMoreCard = (tupleIndex: number) => {
+  const swipeOneMoreCard = (tupleIndex: number, newInfo: reviewInfo) => {
     // Check if there is no onemore card for this card
     if (tupleCounter === 1) {
       // If the current tuple is not the last one, reset the counter of tuple
@@ -121,33 +174,20 @@ const App: React.FC = () => {
 
       // Visual Vibration
       handleShake();
-      setFinished((prevFinished : number) => prevFinished + 1);
-      setCounter((prevCounter : number) => prevCounter - 1);
+      setFinished((prevFinished: number) => prevFinished + 1);
+      setCounter((prevCounter: number) => prevCounter - 1);
     } else {
-      setFinished((prevFinished : number) => prevFinished + 1);
-      setTotal((prevTotal : number) => prevTotal + 1);
+      setFinished((prevFinished: number) => prevFinished + 1);
+      setTotal((prevTotal: number) => prevTotal + 1);
 
       // Decrement the Counter
-      setTupleCounter((prevTupleCounter : number) => prevTupleCounter - 1);
+      setTupleCounter((prevTupleCounter: number) => prevTupleCounter - 1);
     }
+    // Log One More Info
+    updateInfo(newInfo);
   };
 
-  let cardsLeft: number = total - finished;
-
-  // State Variable used to track if the current tab is cardscreen
-  const [isCardScreen, setCardScreen] = useState(false);
-
-  // Card Screen will spread the cards
-  const handleCardScreen = () => {
-    setCardScreen(true);
-  };
-
-  // Home Screen will fold the cards
-  const handleHomeScreen = () => {
-    setCardScreen(false);
-  };
-
-  return showScreen ? (
+  return (
     <IonApp>
       <IonReactRouter>
         <IonTabs>
@@ -158,7 +198,6 @@ const App: React.FC = () => {
               render={() => (
                 <Home
                   cardsLeft={cardsLeft}
-                  finishedLoading={showScreen}
                   handleCardScreen={handleCardScreen}
                 />
               )}
@@ -174,13 +213,22 @@ const App: React.FC = () => {
                   tupleCounter={tupleCounter}
                   cardCol={cardCol}
                   isShake={isShake}
+                  logInfo={logInfo}
+                  updateInfo={updateInfo}
                   swipeNextCard={swipeNextCard}
                   swipeOneMoreCard={swipeOneMoreCard}
                 />
               )}
             />
+
+            <Route
+              exact
+              path="/loading"
+              render={() => <LoadingPage handleCardScreen={handleCardScreen} />}
+            />
+
             <Route exact path="/">
-              <Redirect to="/home" />
+              <Redirect to="/loading" />
             </Route>
           </IonRouterOutlet>
 
@@ -206,7 +254,7 @@ const App: React.FC = () => {
         </IonTabs>
       </IonReactRouter>
     </IonApp>
-  ): <IonLoading isOpen={!showScreen} message='Retrieving Cards' spinner='crescent'></IonLoading>;
+  );
 };
 
 export default App;

@@ -1,13 +1,18 @@
 import { IncorrectChoice, CorrectChoice } from "./MCQChoice";
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import "./Choices.css";
 
 const Choices: React.FC<{
-  answer: individualChoice[] ;
+  answer: individualChoice[];
   clicked: boolean;
   setClickStatus: () => void;
-  setCorrectStatus: () => void;
-}> = ({ answer, clicked, setClickStatus, setCorrectStatus }) => {
+  handleTestEvaluation: (result: string) => void;
+}> = ({
+  answer,
+  clicked,
+  setClickStatus,
+  handleTestEvaluation,
+}) => {
   const choices: individualChoice[] = answer;
 
   // Function that Shuffles the Array of Choices
@@ -26,7 +31,7 @@ const Choices: React.FC<{
   // UseEffect makes sure that the choices are shuffled only once
   useEffect(() => {
     setArray(shuffleArray(choices));
-  }, [choices]);
+  }, []);
 
   const containerStyle = clicked
     ? "choice-container back-side"
@@ -42,8 +47,8 @@ const Choices: React.FC<{
             option={choice.option}
             clicked={clicked}
             setClickStatus={setClickStatus}
-            setCorrectStatus={setCorrectStatus}
             key={index}
+            handleTestEvaluation={handleTestEvaluation}
           />
         ) : (
           <IncorrectChoice
@@ -51,6 +56,7 @@ const Choices: React.FC<{
             clicked={clicked}
             setClickStatus={setClickStatus}
             key={index}
+            handleTestEvaluation={handleTestEvaluation}
           />
         )
       )}

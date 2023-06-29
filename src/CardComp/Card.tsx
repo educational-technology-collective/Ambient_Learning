@@ -1,18 +1,40 @@
-import { IonCard, IonCardContent } from "@ionic/react";
+import { IonCard } from "@ionic/react";
 import { useRef, useState, useEffect } from "react";
 import "./Card.css";
-import FrontIndicator from "../components/FrontIndicator";
-import BackIndicator from "../components/BackIndicator";
+import FrontIndicator from "../IndicationComp/FrontIndicator";
+import BackIndicator from "../IndicationComp/BackIndicator";
 import MCQ from "./MCQ";
 import QA from "./QA";
-import { enableGesture } from "./Gesture";
+import { enableGesture } from "../utilities/gesture";
+import {
+  logDontKnow,
+  logFlipping,
+  logKnow,
+  logOneMore,
+  logPoorCardSwipeAfter,
+  logPoorCardSwipeBefore,
+} from "../utilities/logfunction";
 const Card: React.FC<{
   obj: flashCard;
+  tupleLength: number;
+  cardIndex: number;
   tupleIndex: number;
-  moveOn: (tupleIndex: number) => void;
-  oneMore: (tupleIndex: number) => void;
+  logInfo: reviewInfo;
+  updateInfo: (newInfo: reviewInfo) => void;
+  moveOn: (tupleIndex: number, newInfo: reviewInfo) => void;
+  oneMore: (tupleIndex: number, newInfo: reviewInfo) => void;
   refTuple: React.RefObject<HTMLInputElement>;
-}> = ({ obj, tupleIndex, moveOn, oneMore, refTuple }) => {
+}> = ({
+  obj,
+  tupleLength,
+  cardIndex,
+  tupleIndex,
+  moveOn,
+  logInfo,
+  updateInfo,
+  oneMore,
+  refTuple,
+}) => {
   const ref = useRef<HTMLInputElement>(null);
 
   // This isClicked is for the tap of the card
@@ -22,77 +44,6 @@ const Card: React.FC<{
   const style = isClicked
     ? { transform: "rotateY(180deg)", background: "rgba(251,255,236,1)" }
     : { transform: "rotateY(0deg)" };
-
-  // Callback for the tap of card
-  const clickHandler = () => {
-    setIsClicked(!isClicked);
-    setClick(true);
-    setCorrect(true);
-  };
-
-  const [clicked, setClick] = useState(false);
-
-  // Function for one more swipe time out
-  const oneMoreTimeOut = () => {
-    oneMore(tupleIndex);
-  };
-
-  // Function that goes to next card after some time
-  const timeOutFunc = () => {
-    moveOn(tupleIndex);
-  };
-
-  // useEffect to enableGesture at any time
-  useEffect(() => {
-    enableGesture(
-      ref.current,
-      refTuple.current,
-      isClicked,
-      handleNegativeOpacity,
-      handlePositiveOpacity,
-      handleNoMoreOpacity,
-      handleOneMoreOpacity,
-      handleShowNothing,
-      backHandler,
-      timeOutFunc,
-      oneMoreTimeOut
-    );
-  });
-
-  // This will set isClick to be true
-  const setClickStatus = () => {
-    setClick(true);
-  };
-
-  // If the user answers correctly
-  const [correct, setCorrect] = useState(false);
-
-  const setCorrectStatus = () => {
-    setCorrect(true);
-  };
-
-  // Function that set the states back
-  const backHandler = () => {
-    setClick(false);
-    setIsClicked(false);
-  };
-
-  // Determine the component and content style based on type of card
-  let cardComp, cardContentStyle;
-  if (obj.type === "q") {
-    cardComp = <QA obj={obj} />;
-    cardContentStyle = "card-content qa-card-content";
-  } else {
-    cardComp = (
-      <MCQ
-        obj={obj}
-        clicked={clicked}
-        setClickStatus={setClickStatus}
-        setCorrectStatus={setCorrectStatus}
-      />
-    );
-    cardContentStyle = "card-content mcq-card-content";
-  }
 
   // Indicator Opacity Object used to set opacities
   const [indicatorOpacity, setOpacity] = useState({ index: 0, value: 0 });
@@ -122,6 +73,141 @@ const Card: React.FC<{
     setOpacity({ index: 0, value: 0 });
   };
 
+  // Callback for the tap of card
+  const clickHandler = () => {
+    setIsClicked(true);
+    setClick(true);
+
+    // Log the Event of Flipping / Answering
+    logFlipping(logInfo, obj._id, updateInfo);
+  };
+
+  // State Variable to track if the user gets correct/incorrect/skipped
+  const [testEvaluation, setTestEvaluation] = useState("");
+
+  // Hanlder to set the evaluation to be correct/incorrect/skipped
+  const handleTestEvaluation = (result: string) => {
+    setTestEvaluation(result);
+  };
+
+  const [clicked, setClick] = useState(false);
+
+  // This will set isClick to be true
+  const setClickStatus = () => {
+    setClick(true);
+  };
+
+  // Function for positive swipe time out
+  const knowTimeOut = () => {
+    // Log the event of Know
+    logKnow(
+      logInfo,
+      testEvaluation,
+      obj.type,
+      obj._id,
+      cardIndex,
+      tupleLength,
+      tupleIndex,
+      moveOn
+    );
+  };
+
+  // Function for negative swipe time out
+  const dontKnowTimeOut = () => {
+    // Log the event of dont know
+    logDontKnow(
+      logInfo,
+      testEvaluation,
+      obj.type,
+      obj._id,
+      cardIndex,
+      tupleLength,
+      tupleIndex,
+      moveOn
+    );
+  };
+
+  // Function for one more swipe time out
+  const oneMoreTimeOut = () => {
+    // Log the event of OneMore
+    logOneMore(
+      logInfo,
+      testEvaluation,
+      obj.type,
+      obj._id,
+      cardIndex,
+      tupleLength,
+      tupleIndex,
+      oneMore
+    );
+  };
+
+  // Function for no more before answering
+  const poorCardBeforeTimeout = () => {
+    // Log the event of swiping down before evaluation
+    logPoorCardSwipeBefore(
+      logInfo,
+      testEvaluation,
+      obj.type,
+      obj._id,
+      cardIndex,
+      tupleLength,
+      tupleIndex,
+      moveOn
+    );
+  };
+
+  // Function for no more after answering
+  const poorCardAfterTimeOut = () => {
+    // Log the event of swiping down after clicking
+    logPoorCardSwipeAfter(
+      logInfo,
+      testEvaluation,
+      obj.type,
+      obj._id,
+      cardIndex,
+      tupleLength,
+      tupleIndex,
+      moveOn
+    );
+  };
+
+  // useEffect to enableGesture at any time
+  useEffect(() => {
+    enableGesture(
+      ref.current,
+      refTuple.current,
+      isClicked,
+      handleNegativeOpacity,
+      handlePositiveOpacity,
+      handleNoMoreOpacity,
+      handleOneMoreOpacity,
+      handleShowNothing,
+      knowTimeOut,
+      dontKnowTimeOut,
+      poorCardBeforeTimeout,
+      poorCardAfterTimeOut,
+      oneMoreTimeOut
+    );
+  });
+
+  // Determine the component and content style based on type of card
+  let cardComp, cardContentStyle;
+  if (obj.type === "q") {
+    cardComp = <QA obj={obj} />;
+    cardContentStyle = "card-content qa-card-content";
+  } else {
+    cardComp = (
+      <MCQ
+        obj={obj}
+        clicked={clicked}
+        setClickStatus={setClickStatus}
+        handleTestEvaluation={handleTestEvaluation}
+      />
+    );
+    cardContentStyle = "card-content mcq-card-content";
+  }
+
   // Component Being Rendered
   return (
     <div className="card-wrapper" ref={ref}>
@@ -130,7 +216,7 @@ const Card: React.FC<{
         onClick={clickHandler}
         disabled={isClicked}
       >
-        <IonCardContent className={cardContentStyle} style={style}>
+        <div className={cardContentStyle} style={style}>
           {/* Front Indicator */}
           <FrontIndicator indicatorOpacity={indicatorOpacity} />
 
@@ -139,7 +225,7 @@ const Card: React.FC<{
 
           {/* Indicators For the Back Page */}
           <BackIndicator indicatorOpacity={indicatorOpacity} />
-        </IonCardContent>
+        </div>
       </IonCard>
     </div>
   );

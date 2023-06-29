@@ -1,7 +1,8 @@
 export const cardCollection = [
   [
     {
-      id: "100",
+      _id: "100",
+      lmid: 'sjdiadjoa',
       type: "m",
       content: {
         question: "What is the keyword for the output of a function",
@@ -14,8 +15,9 @@ export const cardCollection = [
       },
     },
     {
-      id: "1", // Used For Key
-      type: "q", // Identify Type of Card MCQ/QA
+      _id: "1", // Used For Key
+      lmid: 'sjdiadjoa',
+      type: "q", // _identify Type of Card MCQ/QA
       content: {
         question: "How to define a function in python",
         answer: "def func()",
@@ -25,7 +27,8 @@ export const cardCollection = [
 
   [
     {
-      id: "467",
+      _id: "467",
+      lmid: 'sjdiadjoa',
       type: "q",
       content: {
         question: "How to take an input in Python?",
@@ -33,8 +36,9 @@ export const cardCollection = [
       },
     },
     {
-      id: "2", //Used For Key
-      type: "m", //Identify Type of Card MCQ/QA
+      _id: "2", //Used For Key
+      lmid: 'sjdiadjoa',
+      type: "m", //_identify Type of Card MCQ/QA
       content: {
         question: "How to print a variable x in Python?",
         answer: [
@@ -49,7 +53,8 @@ export const cardCollection = [
 
   [
     {
-      id: "23132",
+      _id: "23132",
+      lmid: 'sjdiadjoa',
       type: "m",
       content: {
         question:
@@ -63,7 +68,8 @@ export const cardCollection = [
       },
     },
     {
-      id: "4",
+      _id: "4",
+      lmid: 'sjdiadjoa',
       type: "m",
       content: {
         question:
@@ -80,7 +86,8 @@ export const cardCollection = [
 
   [
     {
-      id: "135",
+      _id: "135",
+      lmid: 'sjdiadjoa',
       type: "q",
       content: {
         question:
@@ -89,7 +96,8 @@ export const cardCollection = [
       },
     },
     {
-      id: "5",
+      _id: "5",
+      lmid: 'sjdiadjoa',
       type: "q",
       content: {
         question: "What is a venn diagram used for?",
@@ -100,7 +108,8 @@ export const cardCollection = [
 
   [
     {
-      id: "10",
+      _id: "10",
+      lmid: 'sjdiadjoa',
       type: "q",
       content: {
         question: "What is the function that we use for merging DataFrames?",
@@ -108,7 +117,8 @@ export const cardCollection = [
       },
     },
     {
-      id: "45",
+      _id: "45",
+      lmid: 'sjdiadjoa',
       type: "q",
       content: {
         question: "What does left join include?",
@@ -119,7 +129,8 @@ export const cardCollection = [
 
   [
     {
-      id: "24",
+      _id: "24",
+      lmid: 'sjdiadjoa',
       type: "q",
       content: {
         question:
@@ -128,7 +139,8 @@ export const cardCollection = [
       },
     },
     {
-      id: "99",
+      _id: "99",
+      lmid: 'sjdiadjoa',
       type: "q",
       content: {
         question: "How does pandas preserve conflicting columns?",
@@ -136,7 +148,8 @@ export const cardCollection = [
       },
     },
     {
-      id: "31",
+      _id: "31",
+      lmid: 'sjdiadjoa',
       type: "m",
       content: {
         question: "How does concat stitch together DataFrames?",
@@ -155,7 +168,8 @@ export const cardCollection = [
 
   [
     {
-      id: "223",
+      _id: "223",
+      lmid: 'sjdiadjoa',
       type: "m",
       content: {
         question:
@@ -169,7 +183,8 @@ export const cardCollection = [
       },
     },
     {
-      id: "523",
+      _id: "523",
+      lmid: 'sjdiadjoa',
       type: "m",
       content: {
         question:
@@ -186,31 +201,19 @@ export const cardCollection = [
 
   [
     {
-      id: "132",
+      _id: "478",
+      lmid: 'sjdiadjoa',
       type: "m",
       content: {
-        question: "What is another name for a full outer join?",
+        question: `<p>Which of the following are valid ways to specify the string literal <code>foo'bar</code> in Python:</p>`,
         answer: [
-          { option: "Intersection", isCorrect: false },
-          { option: "Union", isCorrect: true },
-          { option: "Combine", isCorrect: false },
-          { option: "Group", isCorrect: false },
-        ],
-      },
-    },
-    {
-      id: "478",
-      type: "m",
-      content: {
-        question: "What is another name for an inner join?",
-        answer: [
-          { option: "Union", isCorrect: false },
+          { option: "<code>'foo'bar'</code>", isCorrect: false },
           {
-            option: "Intersection",
+            option: `<code>"foo'bar"</code>`,
             isCorrect: true,
           },
-          { option: "Combine", isCorrect: false },
-          { option: "Group. This is just to test the limit yes", isCorrect: false },
+          { option: `<code>"""foo'bar"""</code>`, isCorrect: false },
+          { option: `<code>'foo"""bar'</code>`, isCorrect: false },
         ],
       },
     },
@@ -218,26 +221,31 @@ export const cardCollection = [
 
   [
     {
-      id: "44124",
+      _id: "44124",
+      lmid: 'sjdiadjoa',
       type: "q",
       content: {
         question:
-          "How can you filter a DataFrame based on a specific column value in Pandas?",
+          `<p>How would you express the hexadecimal value <code>a5</code> as a base-16 integer constant in Python?<p>`,
         answer:
-          "To filter a DataFrame based on a specific column value, use the syntax `df[df['column_name'] == value]`, where 'df' is the DataFrame, 'column_name' is the name of the column, and 'value' is the desired value to filter by.",
+          "<code>0xa5</code>",
       },
     },
     {
-      id: "12313",
+      _id: "12313",
+      lmid: 'sjdiadjoa',
       type: "m",
       content: {
         question:
-          "Which of the following data structures is most suitable for storing proportions of children with mothers having different education levels?",
+          `<p>Return - none<br>
+          Args - ( index, value to insert )<br></p>
+          <hr><p>
+          inserts an element to the list at a given index.</p>`,
         answer: [
-          { option: "List", isCorrect: false },
-          { option: "Dictionary", isCorrect: true },
-          { option: "Tuple", isCorrect: false },
-          { option: "Set", isCorrect: false },
+          { option: "<code>list.insert(index, element)</code>", isCorrect: true },
+          { option: "<code>list.push(index, element)</code>", isCorrect: false },
+          { option: "<code>list.insert(element)</code>", isCorrect: false },
+          { option: "<code>list.push_back(element)</code>", isCorrect: false },
         ],
       },
     },
@@ -245,20 +253,45 @@ export const cardCollection = [
 
   [
     {
-      id: "231",
+      _id: "231",
+      lmid: 'sjdiadjoa',
       type: "q",
       content: {
-        question: "What function do we use to concatenate two DataFrames?",
-        answer: "pd.concat",
+        question: `<p>Return - none<br>
+        Args - ( some number / string / list / etc )<br></p>
+        <hr><p> adds a single item to the existing list. It doesn’t return a new list; rather it modifies the original list.</p>`,
+        answer: "<code>list.append(item)</code>",
       },
     },
     {
-      id: "788",
-      type: "q",
+      _id: "788",
+      lmid: 'sjdiadjoa',
+      type: "m",
       content: {
-        question: "How do you handle ambiguous keys during a concat. This is just for the sake of test. What a great day. You are true. My Dear Arthur. This is for you. I hope you know I am better. Much better.",
-        answer: "Pass in an array of keys",
+        question: `<p>Which of the following is not a <code>C++</code> <strong>iterator category?</strong></p>`,
+        answer: [
+          {option: 'Input Iteraor', isCorrect: false},
+          {option: 'Virtual Iterator', isCorrect: true},
+          {option: 'Bidirectional Iterator', isCorrect: false},
+          {option: 'Foward Itearor', isCorrect: false}
+        ]
+      },
+    },
+    {
+      _id: "132",
+      lmid: 'sjdiadjoa',
+      type: "m",
+      content: {
+        question: "<p>Consider this statement: </p><pre><code>>>> print(r'foo\\&bsol;bar&bsol;nbaz')</code></pre><p>Which of the following is the correct REPL output</p>",
+        answer: [
+          { option: "<code>foo\\bar\nbaz</code>", isCorrect: false },
+          { option: "<p><code>foo\bar</code><br><code>baz</code></p>", isCorrect: true },
+          { option: `<p><code>foo\bar\n\baz</code></p>`, isCorrect: false },
+          { option: "<p><code>foo\\bar\nbaz</code></p>", isCorrect: false },
+        ],
       },
     },
   ],
 ];
+
+

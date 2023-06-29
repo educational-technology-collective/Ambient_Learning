@@ -1,51 +1,42 @@
-import { IonText } from "@ionic/react";
 import "./Card.css";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import remarkGfm from "remark-gfm";
 
 const QA: React.FC<{ obj: flashCard }> = ({ obj }) => {
-  const question: string = obj.content.question;
-  const answer: string = obj.content.answer;
+  const question = obj.content.question;
 
-  const questionLength: number = question.length;
-  const answerLength: number = answer.length;
+  const answer: string = obj.content.answer;
 
   // For the font-size
   let backQuestionStyle: string, answerStyle: string;
 
-  // When there are less than or equal to 110 characters: 2em
-  if (questionLength <= 110) {
-    backQuestionStyle = "card-text back-text qa-question-back back-text-2em";
-  } 
-  // When there are less than or equak to 190 characters: 1.6em
-  else if (questionLength <= 190) {
-    backQuestionStyle = "card-text back-text qa-question-back back-text-1d6em";
-  } 
-  // When there are more than 190 characters: 1.3em
-  else {
-    backQuestionStyle = "card-text back-text qa-question-back back-text-1d3em";
-  }
+  backQuestionStyle = "card-text back-text qa-question-back ";
 
-  // When there are less than or equal to 110 characters: 2em
-  if (answerLength <= 110) {
-    answerStyle = "card-text back-text qa-answer back-text-2em";
-  } 
-  // When there are less than or equal to 190 characters: 1.6em
-  else if (answerLength <= 190) {
-    answerStyle = "card-text back-text qa-answer back-text-1d6em";
-  } 
-  // When there are mroe than 190 characters: 1.3em
-  else {
-    answerStyle = "card-text back-text qa-answer back-text-1d3em";
-  }
+  answerStyle = "card-text back-text qa-answer";
 
   // Coponent Being Rendered
   return (
     <>
       {/* Front Question Text */}
-      <IonText className="card-text front-text">{question}</IonText>
+      {/* <html className="card-text front-text">{question}</html> */}
+      <ReactMarkdown
+        className="card-text front-text qa-question"
+        children={question}
+        remarkPlugins={[remarkGfm]}
+      ></ReactMarkdown>
+
       {/* Back Question Text */}
-      <IonText className={backQuestionStyle}>{question}</IonText>
+      <ReactMarkdown
+        className={backQuestionStyle}
+        children={question}
+        remarkPlugins={[remarkGfm]}
+      ></ReactMarkdown>
       {/* Back Answer Text */}
-      <IonText className={answerStyle}>{answer}</IonText>
+      <ReactMarkdown
+        className={answerStyle}
+        children={answer}
+        remarkPlugins={[remarkGfm]}
+      ></ReactMarkdown>
     </>
   );
 };

@@ -1,8 +1,9 @@
 /* Text Styling for Individual Choice */
 .choice-text {
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-weight: bold;
 }
+
 
 /* Styling for the button before any clicking */
 .choice-button {

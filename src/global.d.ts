@@ -22,4 +22,23 @@ declare global{
     option: string,
     isCorrect: boolean
   }
+
+  interface action{
+      event_name: string,
+      card_id: string | null,
+      flip_time: string | null,
+      swipe_time: string | null,
+      self_eval: string | null,
+      test_eval: string | null,
+      isBuffer: boolean | null,
+  }
+
+
+  interface reviewInfo {
+    user_id: string;
+    start_time: string;
+    end_time: string;
+    number_shake: number,
+    action_container: action[]
+  }
 }

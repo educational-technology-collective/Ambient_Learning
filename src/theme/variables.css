@@ -250,3 +250,6 @@ ion-toolbar {
 ion-button {
   text-transform: none;
 }
+.card-content-ios p {
+  font-size: none;
+}

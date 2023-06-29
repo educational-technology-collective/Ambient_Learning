@@ -1,0 +1,32 @@
+/* Styling for the text: "Retriving Cards" */
+.retrieving-text {
+  text-align: center;
+  font-weight: 900;
+}
+
+/* Styling for the Progress Bar */
+.bar {
+  position: relative;
+  height: 4%;
+  border-radius: 3em;
+  margin-left: 10%;
+  margin-right: 10%;
+
+  --progress-background: mediumseagreen;
+  --buffer-background: snow;
+}
+
+/* Background Color */
+.loading-content {
+  background: rgba(215, 224, 255, 1);
+}
+
+/* Wrapper for the text and bar */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}

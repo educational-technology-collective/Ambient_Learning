@@ -6,13 +6,17 @@ const FlashCardList: React.FC<{
   tupleIndex: number;
   tupleCounter: number;
   isFrontTuple: boolean;
-  swipeNextCard: (tupleIndex: number) => void;
-  swipeOneMoreCard: (tupleIndex: number) => void;
+  logInfo: reviewInfo;
+  updateInfo: (newInfo: reviewInfo) => void;
+  swipeNextCard: (tupleIndex: number, newInfo: reviewInfo) => void;
+  swipeOneMoreCard: (tupleIndex: number, newInfo: reviewInfo) => void;
 }> = ({
   array,
   tupleIndex,
   tupleCounter,
   isFrontTuple,
+  logInfo,
+  updateInfo,
   swipeNextCard,
   swipeOneMoreCard,
 }) => {
@@ -20,10 +24,17 @@ const FlashCardList: React.FC<{
 
   // TupleBehind is the card that is stacked at bottom (next card)
   const tupleBehindCard: flashCard = array[array.length - 1];
+
+  // Key is Necessary for not shuffling choices multiple times
   const component = (
     <Card
       obj={tupleBehindCard}
+      key={tupleBehindCard._id}
+      tupleLength={array.length}
+      cardIndex = {array.length}
       tupleIndex={tupleIndex}
+      logInfo={logInfo}
+      updateInfo={updateInfo}
       moveOn={swipeNextCard}
       oneMore={swipeOneMoreCard}
       refTuple={refTuple}
@@ -41,8 +52,12 @@ const FlashCardList: React.FC<{
               return (
                 <Card
                   obj={card}
-                  key={index}
+                  key={card._id}
+                  tupleLength={array.length}
+                  cardIndex={index}
                   tupleIndex={tupleIndex}
+                  logInfo={logInfo}
+                  updateInfo={updateInfo}
                   moveOn={swipeNextCard}
                   oneMore={swipeOneMoreCard}
                   refTuple={refTuple}

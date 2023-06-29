@@ -8,7 +8,7 @@ import {
 import "./CardScreen.css";
 import React from "react";
 import FlashCardList from "../FlashCardComp/FlashCardList";
-import OneMoreFailMessage from "../components/OneMoreFailMessage";
+import OneMoreFailMessage from "../IndicationComp/OneMoreFailMessage";
 
 const CardScreen: React.FC<{
   finished: number;
@@ -17,8 +17,10 @@ const CardScreen: React.FC<{
   tupleCounter: number;
   isShake: boolean;
   cardCol: flashCard[][];
-  swipeNextCard: (tupleIndex: number) => void;
-  swipeOneMoreCard: (tupleIndex: number) => void;
+  logInfo: reviewInfo;
+  updateInfo: (newInfo: reviewInfo) => void;
+  swipeNextCard: (tupleIndex: number, newInfo: reviewInfo) => void;
+  swipeOneMoreCard: (tupleIndex: number, newInfo: reviewInfo) => void;
 }> = ({
   finished,
   total,
@@ -26,6 +28,8 @@ const CardScreen: React.FC<{
   tupleCounter,
   isShake,
   cardCol,
+  logInfo,
+  updateInfo,
   swipeNextCard,
   swipeOneMoreCard,
 }) => {
@@ -56,6 +60,8 @@ const CardScreen: React.FC<{
                   array={array}
                   key={index}
                   isFrontTuple={true}
+                  logInfo={logInfo}
+                  updateInfo={updateInfo}
                   swipeNextCard={swipeNextCard}
                   swipeOneMoreCard={swipeOneMoreCard}
                   tupleIndex={index}
@@ -70,6 +76,8 @@ const CardScreen: React.FC<{
                   array={array}
                   key={index}
                   isFrontTuple={false}
+                  logInfo={logInfo}
+                  updateInfo={updateInfo}
                   swipeNextCard={swipeNextCard}
                   swipeOneMoreCard={swipeOneMoreCard}
                   tupleIndex={index}
