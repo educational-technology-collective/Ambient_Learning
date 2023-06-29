@@ -59,7 +59,8 @@ const Card: React.FC<{
     const event: action = {
       event_name: "Review a Card",
       card_id: obj._id,
-      card_time: Date(),
+      flip_time: null,
+      swipe_time: Date(),
       self_eval: "One More",
       test_eval: machineEvaluation,
       isBuffer: cardIndex !== tupleLength - 1,
@@ -78,7 +79,8 @@ const Card: React.FC<{
     const event: action = {
       event_name: "Review a Card",
       card_id: obj._id,
-      card_time: Date(),
+      flip_time: null,
+      swipe_time: Date(),
       self_eval: "Know",
       test_eval: machineEvaluation,
       isBuffer: cardIndex !== tupleLength - 1,
@@ -97,7 +99,8 @@ const Card: React.FC<{
     const event: action = {
       event_name: "Review a Card",
       card_id: obj._id,
-      card_time: Date(),
+      flip_time: null,
+      swipe_time: Date(),
       self_eval: "Don't Know",
       test_eval: machineEvaluation,
       isBuffer: cardIndex !== tupleLength - 1,
@@ -116,7 +119,8 @@ const Card: React.FC<{
     const event: action = {
       event_name: "No Evaluation Card",
       card_id: obj._id,
-      card_time: Date(),
+      flip_time: null,
+      swipe_time: Date(),
       self_eval: "Poor Card",
       test_eval: machineEvaluation,
       isBuffer: cardIndex !== tupleLength - 1,
@@ -135,7 +139,8 @@ const Card: React.FC<{
     const event: action = {
       event_name: "Review a Card",
       card_id: obj._id,
-      card_time: Date(),
+      flip_time: null,
+      swipe_time: Date(),
       self_eval: "Poor Card",
       test_eval: machineEvaluation,
       isBuffer: cardIndex !== tupleLength - 1,

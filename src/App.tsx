@@ -56,7 +56,8 @@ const App: React.FC = () => {
         {
         event_name: 'Initialize',
         card_id: null,
-        card_time: null,
+        flip_time: null,
+        swipe_time: null,
         self_eval: null,
         test_eval: null,
         isBuffer: null
@@ -115,7 +116,8 @@ const App: React.FC = () => {
     const event : action = {
       event_name: 'Shake Phone',
       card_id: null,
-        card_time: null,
+      flip_time: null,
+        swipe_time: null,
         self_eval: null,
         test_eval: null,
         isBuffer: null,
@@ -134,8 +136,8 @@ const App: React.FC = () => {
     const event : action = {
       event_name: 'Enter Home Screen',
       card_id: null,
-     
-        card_time: null,
+     flip_time: null,
+        swipe_time: null,
         self_eval: null,
         test_eval: null,
         isBuffer: null
@@ -150,8 +152,9 @@ const App: React.FC = () => {
   const logEnterCard = () => {
     const event : action = {
       event_name: 'Enter Card Screen',
+      flip_time: null,
       card_id: null,
-     card_time: null,
+     swipe_time: null,
         self_eval: null,
         test_eval: null,
       isBuffer: null
@@ -190,7 +193,7 @@ const App: React.FC = () => {
     }
 
     // Log Info for Positive/No More/Negative
-    if(finished === total){
+    if(finished === total - 1){
       newInfo.end_time = Date();
     }
     updateInfo(newInfo);
