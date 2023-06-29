@@ -34,6 +34,7 @@ import "@ionic/react/css/text-transformation.css";
 import "@ionic/react/css/flex-utils.css";
 import "@ionic/react/css/display.css";
 
+
 /* Theme variables */
 import "./theme/variables.css";
 import { cardCollection } from "./components/exampleData";
@@ -45,6 +46,30 @@ setupIonicReact({
 });
 
 const App: React.FC = () => {
+  const [logInfo, setLog] = useState<reviewInfo>(
+    {
+      user_id: "bigboss",
+      start_time: Date(),
+      end_time: "",
+      review_length: 0,
+      number_one_more: 0,
+      number_shake: 0,
+      number_no_more: 0,
+      action_container: [
+        {
+        event_name: 'Initialize',
+        card_id: null,
+      review_result: {
+        card_start_time:  null,
+        card_end_time: null,
+        card_review_length: null,
+        self_eval: null,
+        mcq_choice: null,
+      }}],
+    }
+  )
+
+
   // The Card Array
 
   const [cardCol, setCards] = useState(markdownCollection);
@@ -64,6 +89,18 @@ const App: React.FC = () => {
     setTotal(data.length);
     setCounter(data.length);
     setTupleCounter(data[data.length - 1].length);
+    const event : action = {
+      event_name: 'Fetching Cards',
+      card_id: null,
+      review_result: {
+        card_start_time:  null,
+        card_end_time: null,
+        card_review_length: null,
+        self_eval: null,
+        mcq_choice: null,
+      }
+    }
+    setLog((prevLog : reviewInfo) => {prevLog.action_container.push(event); return prevLog})
   };
 
   // useEffect(() => {

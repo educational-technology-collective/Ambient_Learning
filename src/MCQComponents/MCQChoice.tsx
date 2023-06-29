@@ -9,8 +9,7 @@ export const IncorrectChoice: React.FC<{
   clicked: boolean;
   setClickStatus: () => void;
 }> = ({ option, clicked, setClickStatus }) => {
-  const choiceText: string = option.replace("\\", "");
-  console.log(choiceText)
+  const choiceText: string = option;
 
   const [isChosen, setChosen] = useState(false);
 

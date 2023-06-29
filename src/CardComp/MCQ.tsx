@@ -16,7 +16,7 @@ const MCQ: React.FC<{
   const choice: individualChoice[] = obj.content.answer;
 
   const questionLength: number = question.length;
-  console.log(questionLength)
+  
   let frontQuestionStyle: string, backQuestionStyle: string;
   // When there are less than or equal to 110 characters: 2em
   // if (questionLength <= 110) {

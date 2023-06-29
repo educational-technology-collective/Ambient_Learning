@@ -35,7 +35,7 @@ declare global{
       }
   }
 
-  
+
   interface reviewInfo {
     user_id: string;
     start_time: string;
@@ -43,6 +43,7 @@ declare global{
     review_length: number; 
     number_one_more: number,
     number_shake: number,
+    number_no_more: number,
     action_container: action[]
   }
 }
