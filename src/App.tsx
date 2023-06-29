@@ -6,10 +6,9 @@ import {
   IonTabBar,
   setupIonicReact,
   IonTabButton,
-  IonLoading,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { TbHomeEdit, TbSquareRoundedChevronsRightFilled } from "react-icons/tb";
+import { TbHomeEdit} from "react-icons/tb";
 import { Haptics } from "@capacitor/haptics";
 import { useEffect, useState } from "react";
 import CardScreen from "./pages/CardScreen";
@@ -34,7 +33,6 @@ import "@ionic/react/css/text-transformation.css";
 import "@ionic/react/css/flex-utils.css";
 import "@ionic/react/css/display.css";
 
-
 /* Theme variables */
 import "./theme/variables.css";
 import { cardCollection } from "./components/exampleData";
@@ -46,37 +44,30 @@ setupIonicReact({
 });
 
 const App: React.FC = () => {
-  const [logInfo, setLog] = useState<reviewInfo>(
-    {
-      user_id: "bigboss",
-      start_time: Date(),
-      end_time: "",
-      number_shake: 0,
-      action_container: [
-        {
-        event_name: 'Initialize',
+  const [logInfo, setLog] = useState<reviewInfo>({
+    user_id: "bigboss",
+    start_time: Date(),
+    end_time: "",
+    number_shake: 0,
+    action_container: [
+      {
+        event_name: "Initialize",
         card_id: null,
         flip_time: null,
         swipe_time: null,
         self_eval: null,
         test_eval: null,
-        isBuffer: null
-      }],
-    }
-  )
+        isBuffer: null,
+      },
+    ],
+  });
 
-    console.log(logInfo);
+  console.log(logInfo);
+  
   // The Card Array
-
   const [cardCol, setCards] = useState([[]]);
 
-  // Show loading initially true. Turn it off after first jump
-  const [showLoading, setLoading] = useState(true);
-
-  // Turn off loading so it won't constantly jumping to card screen
-  const handleLoading = () => {
-    setLoading(false);
-  };
+ 
 
   const getCards = async (url: string) => {
     const response = await CapacitorHttp.get({ url: url });
@@ -85,7 +76,6 @@ const App: React.FC = () => {
     setTotal(data.length);
     setCounter(data.length);
     setTupleCounter(data[data.length - 1].length);
-
   };
 
   useEffect(() => {
@@ -113,66 +103,64 @@ const App: React.FC = () => {
 
   const logShakePhone = () => {
     // Increase the Number of Shake
-    const event : action = {
-      event_name: 'shake',
+    const event: action = {
+      event_name: "shake",
       card_id: null,
       flip_time: null,
+      swipe_time: null,
+      self_eval: null,
+      test_eval: null,
+      isBuffer: null,
+    };
+    let newInfo = logInfo;
+    if (finished === total - 1) {
+      newInfo.end_time = Date();
+    }
+    newInfo.number_shake = newInfo.number_shake + 1;
+    newInfo.action_container.push(event);
+    setLog(newInfo);
+  };
+
+  // Log Info When the user clicks home botton
+  const logEnterHome = () => {
+    const event: action = {
+      event_name: "EnterHomeScreen",
+      card_id: null,
+      flip_time: null,
+      swipe_time: null,
+      self_eval: null,
+      test_eval: null,
+      isBuffer: null,
+    };
+    let newInfo = logInfo;
+    newInfo.action_container.push(event);
+    setLog(newInfo);
+  };
+
+  // Log Info when the user enters card screen
+  const logEnterCard = () => {
+    if (
+      logInfo.action_container[logInfo.action_container.length - 1]
+        .event_name !== "EnterCardScreen"
+    ) {
+      const event: action = {
+        event_name: "EnterCardScreen",
+        flip_time: null,
+        card_id: null,
         swipe_time: null,
         self_eval: null,
         test_eval: null,
         isBuffer: null,
       };
-    let newInfo = logInfo;
-    if(finished === total - 1){
-      newInfo.end_time = Date();
+      let newInfo = logInfo;
+      newInfo.action_container.push(event);
+      setLog(newInfo);
     }
-    newInfo.number_shake = newInfo.number_shake  + 1;
-    newInfo.action_container.push(event);
-    setLog(newInfo);
-  }
-
-  // Log Info When the user clicks home botton
-  const logEnterHome = () => {
-    const event : action = {
-      event_name: 'EnterHomeScreen',
-      card_id: null,
-     flip_time: null,
-        swipe_time: null,
-        self_eval: null,
-        test_eval: null,
-        isBuffer: null
-      
-    };
-    let newInfo = logInfo;
-    newInfo.action_container.push(event);
-    setLog(newInfo);
-  }
-
-  // Log Info when the user enters card screen
-  const logEnterCard = () => {
-    if(logInfo.action_container[logInfo.action_container.length-1].event_name !== 'EnterCardScreen'){
-
-    
-    const event : action = {
-      event_name: 'EnterCardScreen',
-      flip_time: null,
-      card_id: null,
-     swipe_time: null,
-        self_eval: null,
-        test_eval: null,
-      isBuffer: null
-    };
-    let newInfo = logInfo;
-    newInfo.action_container.push(event);
-    setLog(newInfo);
-  }
-  }
-
-  
+  };
 
   const updateInfo = (newInfo: reviewInfo) => {
     setLog(newInfo);
-  }
+  };
 
   // Handler that set the card-stacker back without shaking
   const handleShake = () => {
@@ -197,7 +185,7 @@ const App: React.FC = () => {
     }
 
     // Log Info for Positive/No More/Negative
-    if(finished === total - 1){
+    if (finished === total - 1) {
       newInfo.end_time = Date();
     }
     updateInfo(newInfo);
@@ -248,7 +236,6 @@ const App: React.FC = () => {
     logEnterHome();
   };
 
-
   return (
     <IonApp>
       <IonReactRouter>
@@ -286,11 +273,7 @@ const App: React.FC = () => {
             <Route
               exact
               path="/loading"
-              render={() => (
-                <LoadingPage
-                  handleCardScreen={handleCardScreen}
-                />
-              )}
+              render={() => <LoadingPage handleCardScreen={handleCardScreen} />}
             />
 
             <Route exact path="/">
