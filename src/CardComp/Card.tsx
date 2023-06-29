@@ -12,6 +12,7 @@ const Card: React.FC<{
   cardIndex: number;
   tupleIndex: number;
   logInfo: reviewInfo;
+  updateInfo: (newInfo: reviewInfo) => void;
   moveOn: (tupleIndex: number, newInfo: reviewInfo) => void;
   oneMore: (tupleIndex: number, newInfo: reviewInfo) => void;
   refTuple: React.RefObject<HTMLInputElement>;
@@ -22,6 +23,7 @@ const Card: React.FC<{
   tupleIndex,
   moveOn,
   logInfo,
+  updateInfo,
   oneMore,
   refTuple,
 }) => {
@@ -40,6 +42,18 @@ const Card: React.FC<{
     setIsClicked(true);
     setClick(true);
     setCorrect(true);
+    const event : action = {
+      event_name: "flip",
+      card_id: null,
+      flip_time: Date(),
+      swipe_time: null,
+      self_eval: null,
+      test_eval: null,
+      isBuffer: null
+    };
+    let newInfo = logInfo;
+    newInfo.action_container.push(event);
+    updateInfo(newInfo);
   };
 
   const [testEvaluation, setTestEvaluation] = useState("");
@@ -57,7 +71,7 @@ const Card: React.FC<{
       machineEvaluation = "passed";
     }
     const event: action = {
-      event_name: "ReviewCard",
+      event_name: "swipe",
       card_id: obj._id,
       flip_time: null,
       swipe_time: Date(),
@@ -77,7 +91,7 @@ const Card: React.FC<{
       machineEvaluation = "passed";
     }
     const event: action = {
-      event_name: "ReviewCard",
+      event_name: "swipe",
       card_id: obj._id,
       flip_time: null,
       swipe_time: Date(),
@@ -97,7 +111,7 @@ const Card: React.FC<{
       machineEvaluation = "passed";
     }
     const event: action = {
-      event_name: "ReviewCard",
+      event_name: "swipe",
       card_id: obj._id,
       flip_time: null,
       swipe_time: Date(),
@@ -137,7 +151,7 @@ const Card: React.FC<{
       machineEvaluation = "passed";
     }
     const event: action = {
-      event_name: "ReviewCard",
+      event_name: "swipe",
       card_id: obj._id,
       flip_time: null,
       swipe_time: Date(),

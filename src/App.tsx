@@ -276,6 +276,7 @@ const App: React.FC = () => {
                   cardCol={cardCol}
                   isShake={isShake}
                   logInfo={logInfo}
+                  updateInfo={updateInfo}
                   swipeNextCard={swipeNextCard}
                   swipeOneMoreCard={swipeOneMoreCard}
                 />
