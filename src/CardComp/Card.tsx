@@ -5,7 +5,7 @@ import FrontIndicator from "../components/FrontIndicator";
 import BackIndicator from "../components/BackIndicator";
 import MCQ from "./MCQ";
 import QA from "./QA";
-import { enableGesture } from "./gesture";
+import { enableGesture } from "../utilities/gesture";
 import {
   logDontKnow,
   logFlipping,
