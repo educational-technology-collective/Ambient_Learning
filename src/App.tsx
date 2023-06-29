@@ -36,8 +36,8 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 import "./theme/variables.css";
 import { cardCollection } from "./utilities/exampleData";
-import { markdownCollection } from "./components/markdownData";
-import CardsTab from "./components/CardsTab";
+import { markdownCollection } from "./IndicationComp/markdownData";
+import CardsTab from "./IndicationComp/CardsTab";
 import LoadingPage from "./pages/LoadingPage";
 import {
   logEnterCard,

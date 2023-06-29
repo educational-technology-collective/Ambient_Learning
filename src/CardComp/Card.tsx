@@ -1,8 +1,8 @@
 import { IonCard } from "@ionic/react";
 import { useRef, useState, useEffect } from "react";
 import "./Card.css";
-import FrontIndicator from "../components/FrontIndicator";
-import BackIndicator from "../components/BackIndicator";
+import FrontIndicator from "../IndicationComp/FrontIndicator";
+import BackIndicator from "../IndicationComp/BackIndicator";
 import MCQ from "./MCQ";
 import QA from "./QA";
 import { enableGesture } from "../utilities/gesture";
@@ -45,7 +45,7 @@ const Card: React.FC<{
     ? { transform: "rotateY(180deg)", background: "rgba(251,255,236,1)" }
     : { transform: "rotateY(0deg)" };
 
-    // Indicator Opacity Object used to set opacities
+  // Indicator Opacity Object used to set opacities
   const [indicatorOpacity, setOpacity] = useState({ index: 0, value: 0 });
 
   // Function that gives NoMore(Brown) Indicator
