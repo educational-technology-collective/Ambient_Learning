@@ -26,6 +26,8 @@ const FlashCardList: React.FC<{
     <Card
       obj={tupleBehindCard}
       key={tupleBehindCard._id}
+      tupleLength={array.length}
+      cardIndex = {array.length}
       tupleIndex={tupleIndex}
       logInfo={logInfo}
       moveOn={swipeNextCard}
@@ -46,6 +48,8 @@ const FlashCardList: React.FC<{
                 <Card
                   obj={card}
                   key={card._id}
+                  tupleLength={array.length}
+                  cardIndex={index}
                   tupleIndex={tupleIndex}
                   logInfo={logInfo}
                   moveOn={swipeNextCard}
