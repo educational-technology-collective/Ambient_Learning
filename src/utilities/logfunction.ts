@@ -1,5 +1,10 @@
 // Function to Log the Event of Shaking
-export const logShakePhone = (oldInfo: reviewInfo, finished : number, total : number, updateInfo : (newInfo: reviewInfo) => void) => {
+export const logShakePhone = (
+  oldInfo: reviewInfo,
+  finished: number,
+  total: number,
+  updateInfo: (newInfo: reviewInfo) => void
+) => {
   // Increase the Number of Shake
   const event: action = {
     event_name: "shake",
@@ -24,7 +29,10 @@ export const logShakePhone = (oldInfo: reviewInfo, finished : number, total : nu
 };
 
 // Function to Log the Event of Entering Home Screen
-export const logEnterHome = (oldInfo: reviewInfo, updateInfo : (newInfo: reviewInfo) => void) => {
+export const logEnterHome = (
+  oldInfo: reviewInfo,
+  updateInfo: (newInfo: reviewInfo) => void
+) => {
   const event: action = {
     event_name: "EnterHomeScreen",
     card_id: null,
@@ -36,14 +44,17 @@ export const logEnterHome = (oldInfo: reviewInfo, updateInfo : (newInfo: reviewI
   };
   let newInfo = oldInfo;
   newInfo.action_container.push(event);
-  updateInfo(newInfo)
+  updateInfo(newInfo);
 };
 
 // Function to Log the Event of Entering Card Screen
-export const logEnterCard = (oldInfo: reviewInfo, updateInfo : (newInfo: reviewInfo) => void) => {
+export const logEnterCard = (
+  oldInfo: reviewInfo,
+  updateInfo: (newInfo: reviewInfo) => void
+) => {
   if (
-    oldInfo.action_container[oldInfo.action_container.length - 1]
-      .event_name !== "EnterCardScreen"
+    oldInfo.action_container[oldInfo.action_container.length - 1].event_name !==
+    "EnterCardScreen"
   ) {
     const event: action = {
       event_name: "EnterCardScreen",
