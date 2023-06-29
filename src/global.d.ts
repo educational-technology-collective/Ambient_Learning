@@ -26,13 +26,10 @@ declare global{
   interface action{
       event_name: string,
       card_id: string | null,
-      review_result: {
-        card_start_time: string | null,
-        card_end_time: string | null,
-        card_review_length: number | null,
-        self_eval: string | null,
-        mcq_choice: string | null,
-      }
+      card_time: string | null,
+      self_eval: string | null,
+      mcq_choice: string | null,
+      isBuffer: boolean | null,
   }
 
 
@@ -40,10 +37,7 @@ declare global{
     user_id: string;
     start_time: string;
     end_time: string;
-    review_length: number; 
-    number_one_more: number,
     number_shake: number,
-    number_no_more: number,
     action_container: action[]
   }
 }

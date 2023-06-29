@@ -9,7 +9,7 @@ import {
   IonLoading,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { TbHomeEdit } from "react-icons/tb";
+import { TbHomeEdit, TbSquareRoundedChevronsRightFilled } from "react-icons/tb";
 import { Haptics } from "@capacitor/haptics";
 import { useEffect, useState } from "react";
 import CardScreen from "./pages/CardScreen";
@@ -51,28 +51,23 @@ const App: React.FC = () => {
       user_id: "bigboss",
       start_time: Date(),
       end_time: "",
-      review_length: 0,
-      number_one_more: 0,
       number_shake: 0,
-      number_no_more: 0,
       action_container: [
         {
         event_name: 'Initialize',
         card_id: null,
-      review_result: {
-        card_start_time:  null,
-        card_end_time: null,
-        card_review_length: null,
+        card_time: null,
         self_eval: null,
         mcq_choice: null,
-      }}],
+        isBuffer: null
+      }],
     }
   )
 
 
   // The Card Array
 
-  const [cardCol, setCards] = useState(markdownCollection);
+  const [cardCol, setCards] = useState([[]]);
 
   // Show loading initially true. Turn it off after first jump
   const [showLoading, setLoading] = useState(true);
@@ -89,52 +84,97 @@ const App: React.FC = () => {
     setTotal(data.length);
     setCounter(data.length);
     setTupleCounter(data[data.length - 1].length);
-    const event : action = {
-      event_name: 'Fetching Cards',
-      card_id: null,
-      review_result: {
-        card_start_time:  null,
-        card_end_time: null,
-        card_review_length: null,
-        self_eval: null,
-        mcq_choice: null,
-      }
-    }
-    setLog((prevLog : reviewInfo) => {prevLog.action_container.push(event); return prevLog})
+
   };
 
-  // useEffect(() => {
-  //   getCards(
-  //     "https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/users/srsdevteam@gmail.com/flashcards/all"
-  //   );
-  // }, []);
+  useEffect(() => {
+    getCards(
+      "https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/users/srsdevteam@gmail.com/flashcards/all"
+    );
+  }, []);
+
+  console.log(logInfo);
 
   // How Many Cards Finished
   const [finished, setFinished] = useState(0);
 
   // How Many Cards in total
-  const [total, setTotal] = useState(cardCol.length);
+  const [total, setTotal] = useState(0);
 
   // Counter used to display certain cards
-  const [counter, setCounter] = useState(cardCol.length);
+  const [counter, setCounter] = useState(0);
 
   // Tuple Counter for One More Cards
-  const [tupleCounter, setTupleCounter] = useState(cardCol[cardCol.length-1].length);
+  const [tupleCounter, setTupleCounter] = useState(0);
 
   // Card-Stacker Visual Effect
   const [isShake, setShake] = useState(false);
+
+  const logShakePhone = () => {
+    // Increase the Number of Shake
+    const event : action = {
+      event_name: 'Shake Phone',
+      card_id: null,
+        card_time: null,
+        self_eval: null,
+        mcq_choice: null,
+        isBuffer: null,
+      };
+    let newInfo = logInfo;
+    newInfo.number_shake = newInfo.number_shake  + 1;
+    newInfo.action_container.push(event);
+    setLog(newInfo);
+  }
+
+  // Log Info When the user clicks home botton
+  const logEnterHome = () => {
+    const event : action = {
+      event_name: 'Enter Home Screen',
+      card_id: null,
+     
+        card_time: null,
+        self_eval: null,
+        mcq_choice: null,
+        isBuffer: null
+      
+    };
+    let newInfo = logInfo;
+    newInfo.action_container.push(event);
+    setLog(newInfo);
+  }
+
+  // Log Info when the user enters card screen
+  const logEnterCard = () => {
+    const event : action = {
+      event_name: 'Enter Card Screen',
+      card_id: null,
+     card_time: null,
+        self_eval: null,
+        mcq_choice: null,
+      isBuffer: null
+    };
+    let newInfo = logInfo;
+    newInfo.action_container.push(event);
+    setLog(newInfo);
+  }
+
+  const updateInfo = (newInfo: reviewInfo) => {
+    setLog(newInfo);
+  }
 
   // Handler that set the card-stacker back without shaking
   const handleShake = () => {
     // Set Shake to be true. Enables visual shaking and modal
     setShake(true);
 
+    logShakePhone();
+
     // Set Timeout of 2.2 seconds(consistent with animation time)
     setTimeout(() => setShake(false), 2200);
   };
 
   // Logic to Move On to Next Card
-  const swipeNextCard = (tupleIndex: number) => {
+  const swipeNextCard = (tupleIndex: number, newInfo: reviewInfo) => {
     setFinished((prevFinished: number) => prevFinished + 1);
     setCounter((prevCounter: number) => prevCounter - 1);
 
@@ -143,10 +183,13 @@ const App: React.FC = () => {
     if (tupleIndex > 0) {
       setTupleCounter(cardCol[tupleIndex - 1].length);
     }
+
+    // Log Info for Positive/No More/Negative
+    updateInfo(newInfo);
   };
 
   // Function that swipes for one more card
-  const swipeOneMoreCard = (tupleIndex: number) => {
+  const swipeOneMoreCard = (tupleIndex: number, newInfo: reviewInfo) => {
     // Check if there is no onemore card for this card
     if (tupleCounter === 1) {
       // If the current tuple is not the last one, reset the counter of tuple
@@ -167,6 +210,9 @@ const App: React.FC = () => {
 
       // Decrement the Counter
       setTupleCounter((prevTupleCounter: number) => prevTupleCounter - 1);
+
+      // Log One More Info
+      updateInfo(newInfo);
     }
   };
 
@@ -178,11 +224,13 @@ const App: React.FC = () => {
   // Card Screen will spread the cards
   const handleCardScreen = () => {
     setCardScreen(true);
+    logEnterCard();
   };
 
   // Home Screen will fold the cards
   const handleHomeScreen = () => {
     setCardScreen(false);
+    logEnterHome();
   };
 
   return (
@@ -211,6 +259,7 @@ const App: React.FC = () => {
                   tupleCounter={tupleCounter}
                   cardCol={cardCol}
                   isShake={isShake}
+                  logInfo={logInfo}
                   swipeNextCard={swipeNextCard}
                   swipeOneMoreCard={swipeOneMoreCard}
                 />

@@ -9,10 +9,11 @@ import { enableGesture } from "./gesture";
 const Card: React.FC<{
   obj: flashCard;
   tupleIndex: number;
-  moveOn: (tupleIndex: number) => void;
-  oneMore: (tupleIndex: number) => void;
+  logInfo: reviewInfo;
+  moveOn: (tupleIndex: number, newInfo: reviewInfo) => void;
+  oneMore: (tupleIndex: number, newInfo: reviewInfo) => void;
   refTuple: React.RefObject<HTMLInputElement>;
-}> = ({ obj, tupleIndex, moveOn, oneMore, refTuple }) => {
+}> = ({ obj, tupleIndex, moveOn, logInfo, oneMore, refTuple }) => {
   const ref = useRef<HTMLInputElement>(null);
 
   // This isClicked is for the tap of the card
