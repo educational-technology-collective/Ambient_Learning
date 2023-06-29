@@ -41,6 +41,8 @@ const Card: React.FC<{
   const clickHandler = () => {
     setIsClicked(true);
     setClick(true);
+
+    // Log the Flipping/Answering Event
     const event : action = {
       event_name: "flip",
       card_id: obj._id,
@@ -53,6 +55,7 @@ const Card: React.FC<{
     let newInfo = logInfo;
     newInfo.action_container.push(event);
     updateInfo(newInfo);
+
   };
 
   const [testEvaluation, setTestEvaluation] = useState("");
@@ -65,10 +68,14 @@ const Card: React.FC<{
 
   // Function for one more swipe time out
   const oneMoreTimeOut = () => {
+
+    // Check if the user answers correctly/incorrectly/skipped
     let machineEvaluation = testEvaluation;
     if (obj.type === "m" && testEvaluation === "") {
       machineEvaluation = "passed";
     }
+
+    // Log the event of swiping a card for one more
     const event: action = {
       event_name: "swipe",
       card_id: obj._id,
@@ -85,10 +92,13 @@ const Card: React.FC<{
 
   // Function for positive swipe time out
   const knowTimeOut = () => {
+    // Check if the user answers correctly/incorrectly/skipped
     let machineEvaluation = testEvaluation;
     if (obj.type === "m" && testEvaluation === "") {
       machineEvaluation = "passed";
     }
+
+    // Log the event of swiping a card for knowing
     const event: action = {
       event_name: "swipe",
       card_id: obj._id,
@@ -105,10 +115,14 @@ const Card: React.FC<{
 
   // Function for negative swipe time out
   const dontKnowTimeOut = () => {
+
+    // Check if the user answers correctly/incorrectly/skipped
     let machineEvaluation = testEvaluation;
     if (obj.type === "m" && testEvaluation === "") {
       machineEvaluation = "passed";
     }
+
+    // Log the event of swiping a card for not knowing
     const event: action = {
       event_name: "swipe",
       card_id: obj._id,
@@ -125,10 +139,14 @@ const Card: React.FC<{
 
   // Function for no more before answering
   const poorCardBeforeTimeout = () => {
+
+    // Check if the user answers correctly/incorrectly/skipped
     let machineEvaluation = testEvaluation;
     if (obj.type === "m" && testEvaluation === "") {
       machineEvaluation = "skipped";
     }
+
+    // Log the event of swiping a card down without clicking
     const event: action = {
       event_name: "NoEvaluation",
       card_id: obj._id,
@@ -145,10 +163,14 @@ const Card: React.FC<{
 
   // Function for no more after answering
   const poorCardAfterTimeOut = () => {
+
+    // Check if the user answers correctly/incorrectly/skipped
     let machineEvaluation = testEvaluation;
     if (obj.type === "m" && testEvaluation === "") {
       machineEvaluation = "passed";
     }
+
+    // Log the event of siwping a card down after answering
     const event: action = {
       event_name: "swipe",
       card_id: obj._id,
