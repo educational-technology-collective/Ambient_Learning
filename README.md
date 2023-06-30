@@ -8,14 +8,14 @@ When the user receieves a notification, he or she will tap the notification and 
 —— Haytham Tang
 
 ## Set-Up
-**Ionic**: To test the app in your local environment, first follow the [ionic set-up](https://ionicframework.com/docs/intro/environment) to make sure you have installed the packages for ionic and node.js.
+**Ionic**: To test the app in your local environment, first follow the [ionic set-up](https://ionicframework.com/docs/intro/environment) to make sure you have installed the packages for **ionic** and **node.js**.
 
 **Repo**: Clone the Repo into your local directory by running
 ```
 git clone https://github.com/educational-technology-collective/Space-Repetition-Ionic.git
 ```
 
-**Install Haptics Plugin**: Haptis Plugin Provided by Capacitor for physical feedback
+**Install Haptics Plugin**: Haptis Plugin Provided by Capacitor for physical feedback(shaking effect)
 ```
 cd Space-Repetition-Ionic
 npm install @capacitor/haptics
@@ -30,7 +30,7 @@ ionic serve
 It should automatically direct you to a local page on your default browser. You can also copy the link into a browser you like. Then use the developer tool to choose your device you can test on web(iPhone 12 Pro is used for development)
 
 ## Run on Simulators
-If you want to run the app on Ios/Android Simulators, make sure you have the emulators/devices installed in your computer.
+If you want to run the app on Ios/Android Simulators, make sure you have the emulators/devices installed on your computer.
 Then, run the following commands:
 ```
 ionic capacitor run [ios/android]
@@ -57,8 +57,8 @@ Everytime you make a change to the code. You need to run the following command f
 ionic capacitor build android
 ```
 
-## Run on Devices
-**Ios**: Connect your devices to the computer. Use Xcode to build and run. You will need a Apple ID account and enable Developer Mode on your phone.
+## Run on Physical Devices
+**Ios**: Connect your devices to the computer. Use Xcode to build and run. You will need an Apple ID account and enable Developer Mode on your phone.
 
 **Android**: After you build your app on Android Studio. Go to ```Build``` -> ```Generate Signed Bundle/APK``` -> ```APK```. Generate an APK file and install it onto your device.
 
@@ -69,9 +69,9 @@ ionic capacitor build android
 ### Think: 
 You will be presented with a card (**QA / MCQ**). 
 
-If it's a **QA-Card**, you will be given a question. 
+If it's a **QA-Card**, you will be given a question. You will self-evaluate your knowledge retention about QA-Cards. 
 
-If it's an **MCQ-Card**, you will be given a question with 4 options displayed at the bottom. 
+If it's an **MCQ-Card**, you will be given a question with 4 options displayed at the bottom. You will have a tested evaluation(by clicking a choice) and self-evaluation(by swiping).
 
 ### Tap:
 For a **QA-Card**, you can tap the QA Card itself to flip and see the question with the answer. 
