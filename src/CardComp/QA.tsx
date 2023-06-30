@@ -18,7 +18,6 @@ const QA: React.FC<{ obj: flashCard }> = ({ obj }) => {
   return (
     <>
       {/* Front Question Text */}
-      {/* <html className="card-text front-text">{question}</html> */}
       <ReactMarkdown
         className="card-text front-text qa-question"
         children={question}
