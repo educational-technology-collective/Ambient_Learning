@@ -194,7 +194,7 @@ const Card: React.FC<{
   });
 
   // Determine the component and content style based on type of card
-  let cardComp, cardContentStyle;
+  let cardComp, cardContentStyle : string;
   if (obj.type === "q") {
     cardComp = <QA obj={obj} />;
     cardContentStyle = "card-content qa-card-content";

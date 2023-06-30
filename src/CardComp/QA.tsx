@@ -3,7 +3,7 @@ import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import remarkGfm from "remark-gfm";
 
 const QA: React.FC<{ obj: flashCard }> = ({ obj }) => {
-  const question = obj.content.question;
+  const question: string = obj.content.question;
 
   const answer: string = obj.content.answer;
 
