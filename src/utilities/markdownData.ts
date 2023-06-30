@@ -2,7 +2,7 @@ export const markdownCollection = [
   [
     {
       _id: "100",
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "m",
       content: {
         question: "What is the keyword for the output of a function",
@@ -16,7 +16,7 @@ export const markdownCollection = [
     },
     {
       _id: "1", // Used For Key
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "q", // _identify Type of Card MCQ/QA
       content: {
         question: "How to define a function in python",
@@ -28,7 +28,7 @@ export const markdownCollection = [
   [
     {
       _id: "467",
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "q",
       content: {
         question: "How to take an input in Python?",
@@ -37,7 +37,7 @@ export const markdownCollection = [
     },
     {
       _id: "2", //Used For Key
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "m", //_identify Type of Card MCQ/QA
       content: {
         question: "How to print a variable x in Python?",
@@ -54,7 +54,7 @@ export const markdownCollection = [
   [
     {
       _id: "23132",
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "m",
       content: {
         question:
@@ -69,7 +69,7 @@ export const markdownCollection = [
     },
     {
       _id: "4",
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "m",
       content: {
         question:
@@ -87,7 +87,7 @@ export const markdownCollection = [
   [
     {
       _id: "135",
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "q",
       content: {
         question:
@@ -97,7 +97,7 @@ export const markdownCollection = [
     },
     {
       _id: "5",
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "q",
       content: {
         question: "What is a venn diagram used for?",
@@ -109,7 +109,7 @@ export const markdownCollection = [
   [
     {
       _id: "10",
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "q",
       content: {
         question: "What is the function that we use for merging DataFrames?",
@@ -118,7 +118,7 @@ export const markdownCollection = [
     },
     {
       _id: "45",
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "q",
       content: {
         question: "What does left join include?",
@@ -130,7 +130,7 @@ export const markdownCollection = [
   [
     {
       _id: "24",
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "q",
       content: {
         question:
@@ -140,7 +140,7 @@ export const markdownCollection = [
     },
     {
       _id: "99",
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "q",
       content: {
         question: "How does pandas preserve conflicting columns?",
@@ -149,7 +149,7 @@ export const markdownCollection = [
     },
     {
       _id: "31",
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "m",
       content: {
         question: "How does concat stitch together DataFrames?",
@@ -169,7 +169,7 @@ export const markdownCollection = [
   [
     {
       _id: "223",
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "m",
       content: {
         question:
@@ -184,7 +184,7 @@ export const markdownCollection = [
     },
     {
       _id: "523",
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "m",
       content: {
         question:
@@ -202,10 +202,11 @@ export const markdownCollection = [
   [
     {
       _id: "478",
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "m",
       content: {
-        question: "Which of the following are valid ways to specify the string literal `foo'bar` in Python:",
+        question:
+          "Which of the following are valid ways to specify the string literal `foo'bar` in Python:",
         answer: [
           { option: "`'foo'bar'`", isCorrect: false },
           {
@@ -222,18 +223,17 @@ export const markdownCollection = [
   [
     {
       _id: "44124",
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "q",
       content: {
         question:
           "How would you express the hexadecimal value `a5` as a base-16 integer constant in Python?",
-        answer:
-          "`0xa5`",
+        answer: "`0xa5`",
       },
     },
     {
       _id: "12313",
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "m",
       content: {
         question:
@@ -251,7 +251,7 @@ export const markdownCollection = [
   [
     {
       _id: "231",
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "q",
       content: {
         question: `Return - none<br>Args - ( some number / string / list / etc )<br><hr> adds a single item to the existing list. It doesn’t return a new list; rather it modifies the original list.`,
@@ -260,24 +260,26 @@ export const markdownCollection = [
     },
     {
       _id: "788",
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "m",
       content: {
-        question: "Which of the following is not a `C++` <strong>iterator category?</strong>",
+        question:
+          "Which of the following is not a `C++` <strong>iterator category?</strong>",
         answer: [
-          {option: 'Input Iteraor', isCorrect: false},
-          {option: 'Virtual Iterator', isCorrect: true},
-          {option: 'Bidirectional Iterator', isCorrect: false},
-          {option: 'Foward Itearor', isCorrect: false}
-        ]
+          { option: "Input Iteraor", isCorrect: false },
+          { option: "Virtual Iterator", isCorrect: true },
+          { option: "Bidirectional Iterator", isCorrect: false },
+          { option: "Foward Itearor", isCorrect: false },
+        ],
       },
     },
     {
       _id: "132",
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "m",
       content: {
-        question: "Consider this statement:  \n```\n >>> print(r'foo\\bar\\nbaz')\n What a Day  \nWhich of the following is\n the correct REPL output. \n```\n Good",
+        question:
+          "Consider this statement:  \n```\n >>> print(r'foo\\bar\\nbaz')\n What a Day  \nWhich of the following is\n the correct REPL output. \n```\n Good",
         answer: [
           { option: "foo\\bar\nbaz", isCorrect: false },
           { option: "`foo\bar`<br>`baz`", isCorrect: true },

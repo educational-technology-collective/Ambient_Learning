@@ -2,7 +2,7 @@ export const cardCollection = [
   [
     {
       _id: "100",
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "m",
       content: {
         question: "What is the keyword for the output of a function",
@@ -16,7 +16,7 @@ export const cardCollection = [
     },
     {
       _id: "1", // Used For Key
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "q", // _identify Type of Card MCQ/QA
       content: {
         question: "How to define a function in python",
@@ -28,7 +28,7 @@ export const cardCollection = [
   [
     {
       _id: "467",
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "q",
       content: {
         question: "How to take an input in Python?",
@@ -37,7 +37,7 @@ export const cardCollection = [
     },
     {
       _id: "2", //Used For Key
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "m", //_identify Type of Card MCQ/QA
       content: {
         question: "How to print a variable x in Python?",
@@ -54,7 +54,7 @@ export const cardCollection = [
   [
     {
       _id: "23132",
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "m",
       content: {
         question:
@@ -69,7 +69,7 @@ export const cardCollection = [
     },
     {
       _id: "4",
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "m",
       content: {
         question:
@@ -87,7 +87,7 @@ export const cardCollection = [
   [
     {
       _id: "135",
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "q",
       content: {
         question:
@@ -97,7 +97,7 @@ export const cardCollection = [
     },
     {
       _id: "5",
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "q",
       content: {
         question: "What is a venn diagram used for?",
@@ -109,7 +109,7 @@ export const cardCollection = [
   [
     {
       _id: "10",
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "q",
       content: {
         question: "What is the function that we use for merging DataFrames?",
@@ -118,7 +118,7 @@ export const cardCollection = [
     },
     {
       _id: "45",
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "q",
       content: {
         question: "What does left join include?",
@@ -130,7 +130,7 @@ export const cardCollection = [
   [
     {
       _id: "24",
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "q",
       content: {
         question:
@@ -140,7 +140,7 @@ export const cardCollection = [
     },
     {
       _id: "99",
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "q",
       content: {
         question: "How does pandas preserve conflicting columns?",
@@ -149,7 +149,7 @@ export const cardCollection = [
     },
     {
       _id: "31",
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "m",
       content: {
         question: "How does concat stitch together DataFrames?",
@@ -169,7 +169,7 @@ export const cardCollection = [
   [
     {
       _id: "223",
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "m",
       content: {
         question:
@@ -184,7 +184,7 @@ export const cardCollection = [
     },
     {
       _id: "523",
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "m",
       content: {
         question:
@@ -202,7 +202,7 @@ export const cardCollection = [
   [
     {
       _id: "478",
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "m",
       content: {
         question: `<p>Which of the following are valid ways to specify the string literal <code>foo'bar</code> in Python:</p>`,
@@ -222,28 +222,31 @@ export const cardCollection = [
   [
     {
       _id: "44124",
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "q",
       content: {
-        question:
-          `<p>How would you express the hexadecimal value <code>a5</code> as a base-16 integer constant in Python?<p>`,
-        answer:
-          "<code>0xa5</code>",
+        question: `<p>How would you express the hexadecimal value <code>a5</code> as a base-16 integer constant in Python?<p>`,
+        answer: "<code>0xa5</code>",
       },
     },
     {
       _id: "12313",
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "m",
       content: {
-        question:
-          `<p>Return - none<br>
+        question: `<p>Return - none<br>
           Args - ( index, value to insert )<br></p>
           <hr><p>
           inserts an element to the list at a given index.</p>`,
         answer: [
-          { option: "<code>list.insert(index, element)</code>", isCorrect: true },
-          { option: "<code>list.push(index, element)</code>", isCorrect: false },
+          {
+            option: "<code>list.insert(index, element)</code>",
+            isCorrect: true,
+          },
+          {
+            option: "<code>list.push(index, element)</code>",
+            isCorrect: false,
+          },
           { option: "<code>list.insert(element)</code>", isCorrect: false },
           { option: "<code>list.push_back(element)</code>", isCorrect: false },
         ],
@@ -254,7 +257,7 @@ export const cardCollection = [
   [
     {
       _id: "231",
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "q",
       content: {
         question: `<p>Return - none<br>
@@ -265,27 +268,31 @@ export const cardCollection = [
     },
     {
       _id: "788",
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "m",
       content: {
         question: `<p>Which of the following is not a <code>C++</code> <strong>iterator category?</strong></p>`,
         answer: [
-          {option: 'Input Iteraor', isCorrect: false},
-          {option: 'Virtual Iterator', isCorrect: true},
-          {option: 'Bidirectional Iterator', isCorrect: false},
-          {option: 'Foward Itearor', isCorrect: false}
-        ]
+          { option: "Input Iteraor", isCorrect: false },
+          { option: "Virtual Iterator", isCorrect: true },
+          { option: "Bidirectional Iterator", isCorrect: false },
+          { option: "Foward Itearor", isCorrect: false },
+        ],
       },
     },
     {
       _id: "132",
-      lmid: 'sjdiadjoa',
+      lmid: "sjdiadjoa",
       type: "m",
       content: {
-        question: "<p>Consider this statement: </p><pre><code>>>> print(r'foo\\&bsol;bar&bsol;nbaz')</code></pre><p>Which of the following is the correct REPL output</p>",
+        question:
+          "<p>Consider this statement: </p><pre><code>>>> print(r'foo\\&bsol;bar&bsol;nbaz')</code></pre><p>Which of the following is the correct REPL output</p>",
         answer: [
           { option: "<code>foo\\bar\nbaz</code>", isCorrect: false },
-          { option: "<p><code>foo\bar</code><br><code>baz</code></p>", isCorrect: true },
+          {
+            option: "<p><code>foo\bar</code><br><code>baz</code></p>",
+            isCorrect: true,
+          },
           { option: `<p><code>foo\bar\n\baz</code></p>`, isCorrect: false },
           { option: "<p><code>foo\\bar\nbaz</code></p>", isCorrect: false },
         ],
@@ -293,5 +300,3 @@ export const cardCollection = [
     },
   ],
 ];
-
-
