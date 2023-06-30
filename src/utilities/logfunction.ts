@@ -17,7 +17,7 @@ export const logShakePhone = (
   };
 
   // Create a copy of logInfo
-  let newInfo = oldInfo;
+  let newInfo: reviewInfo = oldInfo;
 
   // Check to see if this is the last card(remember states are updated after)
   if (finished === total - 1) {
@@ -42,7 +42,7 @@ export const logEnterHome = (
     test_eval: null,
     isBuffer: null,
   };
-  let newInfo = oldInfo;
+  let newInfo: reviewInfo = oldInfo;
   newInfo.action_container.push(event);
   updateInfo(newInfo);
 };
@@ -65,7 +65,7 @@ export const logEnterCard = (
       test_eval: null,
       isBuffer: null,
     };
-    let newInfo = oldInfo;
+    let newInfo: reviewInfo = oldInfo;
     newInfo.action_container.push(event);
     updateInfo(newInfo);
   }
@@ -86,7 +86,7 @@ export const logFlipping = (
     test_eval: null,
     isBuffer: null,
   };
-  let newInfo = logInfo;
+  let newInfo: reviewInfo = logInfo;
   newInfo.action_container.push(event);
   updateInfo(newInfo);
 };
@@ -118,9 +118,9 @@ export const logOneMore = (
     test_eval: machineEvaluation,
     isBuffer: cardIndex !== tupleLength - 1,
   };
-  let copy = logInfo;
-  copy.action_container.push(event);
-  oneMore(tupleIndex, copy);
+  let newInfo: reviewInfo = logInfo;
+  newInfo.action_container.push(event);
+  oneMore(tupleIndex, newInfo);
 };
 
 // Function to Log Know Swipe
@@ -150,9 +150,9 @@ export const logKnow = (
     test_eval: machineEvaluation,
     isBuffer: cardIndex !== tupleLength - 1,
   };
-  let copy = logInfo;
-  copy.action_container.push(event);
-  moveOn(tupleIndex, copy);
+  let newInfo: reviewInfo = logInfo;
+  newInfo.action_container.push(event);
+  moveOn(tupleIndex, newInfo);
 };
 
 // Function to Log Dontknow Swipe
@@ -182,9 +182,9 @@ export const logDontKnow = (
     test_eval: machineEvaluation,
     isBuffer: cardIndex !== tupleLength - 1,
   };
-  let copy = logInfo;
-  copy.action_container.push(event);
-  moveOn(tupleIndex, copy);
+  let newInfo: reviewInfo = logInfo;
+  newInfo.action_container.push(event);
+  moveOn(tupleIndex, newInfo);
 };
 
 // Function to log Poor Card before clicking
@@ -214,9 +214,9 @@ export const logPoorCardSwipeBefore = (
     test_eval: machineEvaluation,
     isBuffer: cardIndex !== tupleLength - 1,
   };
-  let copy = logInfo;
-  copy.action_container.push(event);
-  moveOn(tupleIndex, copy);
+  let newInfo: reviewInfo = logInfo;
+  newInfo.action_container.push(event);
+  moveOn(tupleIndex, newInfo);
 };
 
 // Function to log poor card after clicking
@@ -246,7 +246,7 @@ export const logPoorCardSwipeAfter = (
     test_eval: machineEvaluation,
     isBuffer: cardIndex !== tupleLength - 1,
   };
-  let copy = logInfo;
-  copy.action_container.push(event);
-  moveOn(tupleIndex, copy);
+  let newInfo: reviewInfo = logInfo;
+  newInfo.action_container.push(event);
+  moveOn(tupleIndex, newInfo);
 };
