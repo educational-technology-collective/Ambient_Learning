@@ -33,6 +33,7 @@ const Choices: React.FC<{
     setArray(shuffleArray(choices));
   }, []);
 
+  // Transform the Choices 180 degrees after clicking
   const containerStyle = clicked
     ? "choice-container back-side"
     : "choice-container front-side";
