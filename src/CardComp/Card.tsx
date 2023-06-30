@@ -81,7 +81,7 @@ const Card: React.FC<{
     setClick(true);
 
     // Log the Event of Flipping / Answering
-    logFlipping(logInfo, obj._id, updateInfo);
+    logFlipping(logInfo, obj._id, cardIndex, tupleLength, updateInfo);
   };
 
   // State Variable to track if the user gets correct/incorrect/skipped

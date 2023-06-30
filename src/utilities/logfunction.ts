@@ -72,6 +72,8 @@ export const logEnterCard = (
 export const logFlipping = (
   logInfo: reviewInfo,
   cardId: string,
+  cardIndex: number, 
+  tupleLength: number,
   updateInfo: (newInfo: reviewInfo) => void
 ) => {
   const event: action = {
@@ -80,7 +82,7 @@ export const logFlipping = (
     card_id: cardId,
     self_eval: null,
     test_eval: null,
-    isBuffer: null,
+    isBuffer: cardIndex !== tupleLength - 1,
   };
   let newInfo: reviewInfo = logInfo;
   newInfo.action_container.push(event);
