@@ -67,7 +67,6 @@ const App: React.FC = () => {
     ],
   });
 
-  console.log(logInfo);
 
   // The Card Array
   const [cardCol, setCards] = useState([[]]);
@@ -89,7 +88,7 @@ const App: React.FC = () => {
     );
   }, []);
 
-  console.log(logInfo);
+  
 
   // How Many Cards Finished
   const [finished, setFinished] = useState(0);
