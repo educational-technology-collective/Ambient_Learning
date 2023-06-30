@@ -20,6 +20,8 @@ const FlashCardList: React.FC<{
   swipeNextCard,
   swipeOneMoreCard,
 }) => {
+
+  // The Reference of the Whole Tuple, used for poorcard/know/dont know swipe
   const refTuple = useRef<HTMLInputElement>(null);
 
   // TupleBehind is the card that is stacked at bottom (next card)

@@ -35,6 +35,8 @@ const Card: React.FC<{
   oneMore,
   refTuple,
 }) => {
+
+  // Reference of the single card element. We transform its style only in onemore
   const ref = useRef<HTMLInputElement>(null);
 
   // This isClicked is for the tap of the card
