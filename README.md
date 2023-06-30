@@ -3,8 +3,9 @@
 ## Description
 This is a mobile-app for space-repetition learning.  
 The app is built using Ionic React. Currently, it includes two types of flash cards: QA(Question & Answer) and MCQ(Multiple Choice Question).  
-When the user receieves a notification, he or she will tap the notification and jump to the cards directly and start reviewing. 
-[Report Bug](https://github.com/educational-technology-collective/Space-Repetition-Ionic/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
+When the user receives a notification, he or she will tap the notification and jump to the cards directly and start reviewing. 
+
+**[<ins>Report Bug</ins>](https://github.com/educational-technology-collective/Space-Repetition-Ionic/issues?q=is%3Aopen+is%3Aissue+label%3Abug)**
 
 —— Haytham Tang
 
