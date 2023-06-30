@@ -58,9 +58,8 @@ const App: React.FC = () => {
     action_container: [
       {
         event_name: "Initialize",
+        event_time: Date(),
         card_id: null,
-        flip_time: null,
-        swipe_time: null,
         self_eval: null,
         test_eval: null,
         isBuffer: null,

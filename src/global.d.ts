@@ -25,9 +25,8 @@ declare global {
 
   interface action {
     event_name: string;
+    event_time: string;
     card_id: string | null;
-    flip_time: string | null;
-    swipe_time: string | null;
     self_eval: string | null;
     test_eval: string | null;
     isBuffer: boolean | null;
