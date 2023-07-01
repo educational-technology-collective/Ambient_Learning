@@ -67,6 +67,9 @@ const App: React.FC = () => {
     ],
   });
 
+  // State Variable to indicate whether data is fetched
+  const [isFetched, setFetched] = useState(false);
+
 
   // The Card Array
   const [cardCol, setCards] = useState([[]]);
@@ -75,6 +78,7 @@ const App: React.FC = () => {
   const getCards = async (url: string) => {
     const response = await CapacitorHttp.get({ url: url });
     const data = await JSON.parse(response.data);
+    setFetched(true);
     setCards(data);
     setTotal(data.length);
     setCounter(data.length);
@@ -107,6 +111,8 @@ const App: React.FC = () => {
 
   // Card-Stacker Visual Effect
   const [isShake, setShake] = useState(false);
+
+  
 
   // State Variable used to track if the current tab is cardscreen
   const [isCardScreen, setCardScreen] = useState(false);
@@ -222,7 +228,7 @@ const App: React.FC = () => {
             <Route
               exact
               path="/loading"
-              render={() => <LoadingPage handleCardScreen={handleCardScreen} />}
+              render={() => <LoadingPage isFetched={isFetched} handleCardScreen={handleCardScreen}/>}
             />
 
             <Route exact path="/">

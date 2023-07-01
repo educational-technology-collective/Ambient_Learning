@@ -65,7 +65,7 @@ export const logEnterCard = (
     let newInfo: reviewInfo = oldInfo;
     newInfo.action_container.push(event);
     updateInfo(newInfo);
-  }
+  
 };
 
 // Log the Flipping/Answering Event

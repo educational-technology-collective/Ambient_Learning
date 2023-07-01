@@ -11,8 +11,9 @@ import "./LoadingPage.css";
 import { useHistory } from "react-router-dom";
 
 const LoadingPage: React.FC<{
+  isFetched: boolean;
   handleCardScreen: () => void;
-}> = ({ handleCardScreen }) => {
+}> = ({ isFetched, handleCardScreen }) => {
   // State Variable for Loading Bar
   const [buffer, setBuffer] = useState(0.05);
   const [progress, setProgress] = useState(0);
@@ -32,13 +33,18 @@ const LoadingPage: React.FC<{
       setProgress((prevProgress: number) => prevProgress + 0.05);
     }, 100);
 
+    if (showLoad && isFetched && progress > 1) {
+      setLoad(false);
+      setTimeout(navigateToCardScreen, 100);
+    }
+
     return () => clearInterval(interval);
   }, []);
 
   // Set a timeout that will jump to the cardscreen
   const [showLoad, setLoad] = useState(true);
 
-  if (progress > 1 && showLoad) {
+  if (showLoad && isFetched && progress > 1) {
     setLoad(false);
     setTimeout(navigateToCardScreen, 100);
   }
