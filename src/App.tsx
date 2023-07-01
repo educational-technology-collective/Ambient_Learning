@@ -70,7 +70,6 @@ const App: React.FC = () => {
   // State Variable to indicate whether data is fetched
   const [isFetched, setFetched] = useState(false);
 
-
   // The Card Array
   const [cardCol, setCards] = useState([[]]);
 
@@ -111,8 +110,6 @@ const App: React.FC = () => {
 
   // Card-Stacker Visual Effect
   const [isShake, setShake] = useState(false);
-
-  
 
   // State Variable used to track if the current tab is cardscreen
   const [isCardScreen, setCardScreen] = useState(false);
@@ -228,7 +225,12 @@ const App: React.FC = () => {
             <Route
               exact
               path="/loading"
-              render={() => <LoadingPage isFetched={isFetched} handleCardScreen={handleCardScreen}/>}
+              render={() => (
+                <LoadingPage
+                  isFetched={isFetched}
+                  handleCardScreen={handleCardScreen}
+                />
+              )}
             />
 
             <Route exact path="/">
