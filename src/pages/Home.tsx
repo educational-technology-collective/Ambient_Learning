@@ -40,6 +40,7 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
   // Screen Being Rendered
   return (
     <IonPage>
+      
       {/* Header and ToolBar */}
       <IonHeader color="tertiary">
         <IonToolbar>

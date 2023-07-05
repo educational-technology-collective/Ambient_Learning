@@ -89,7 +89,7 @@ const CardScreen: React.FC<{
           })}
           {/* Give alert message if it's shaking due to OneMore */}
           {isShake ? <OneMoreFailMessage /> : null}
-          {finished === total ? <FinishedDisplay/> : null}
+          {finished === total ? <FinishedDisplay isTutorial={false}/> : null}
         </div>
        
       </IonContent>

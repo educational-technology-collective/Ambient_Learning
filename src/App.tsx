@@ -92,7 +92,7 @@ const App: React.FC = () => {
   };
 
   const { handleRedirectCallback } = useAuth0();
-  console.log(handleRedirectCallback)
+ 
   useEffect(() => {
     // Handle the 'appUrlOpen' event and call `handleRedirectCallback`
     CapApp.addListener('appUrlOpen', async ({ url }) => {

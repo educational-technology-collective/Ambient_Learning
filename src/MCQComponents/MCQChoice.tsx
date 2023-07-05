@@ -67,7 +67,7 @@ export const CorrectChoice: React.FC<{
 
   // Style for the button
   const buttonStyle: string = clicked
-    ? "chocie-button correct-button"
+    ? "choice-button correct-button"
     : "choice-button initial-button";
 
   // Component Being Rendered
