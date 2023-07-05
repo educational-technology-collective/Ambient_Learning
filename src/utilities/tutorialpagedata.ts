@@ -17,7 +17,7 @@ export const cards = [[{
   type: 'q',
   content: {
     question: 'How do I get one more card of the same concept?',
-    answer: 'Simly Swipe Up!!!'
+    answer: 'Simply Swipe Up!!!'
   }
 }],[{
   _id: 'sdj',
