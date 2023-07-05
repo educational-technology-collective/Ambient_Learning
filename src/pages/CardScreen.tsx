@@ -9,6 +9,7 @@ import "./CardScreen.css";
 import React from "react";
 import FlashCardList from "../FlashCardComp/FlashCardList";
 import OneMoreFailMessage from "../IndicationComp/OneMoreFailMessage";
+import FinishedDisplay from "../TutorialComp/FinishedDisplay";
 
 const CardScreen: React.FC<{
   finished: number;
@@ -88,7 +89,9 @@ const CardScreen: React.FC<{
           })}
           {/* Give alert message if it's shaking due to OneMore */}
           {isShake ? <OneMoreFailMessage /> : null}
+          {finished === total ? <FinishedDisplay/> : null}
         </div>
+       
       </IonContent>
     </IonPage>
   );

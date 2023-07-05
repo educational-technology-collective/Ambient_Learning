@@ -1,4 +1,4 @@
-import { IonContent, IonPage, IonicSlides } from "@ionic/react";
+import { IonContent, IonPage, IonicSlides, useIonViewWillEnter } from "@ionic/react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Keyboard, Pagination, Scrollbar, Zoom } from 'swiper/modules';
 import 'swiper/css';
@@ -9,6 +9,8 @@ import 'swiper/css/scrollbar';
 import 'swiper/css/zoom';
 import '@ionic/react/css/ionic-swiper.css';
 import Card from "../CardComp/Card";
+import tapping from '../../tapping.gif'
+import { hideBar } from "../utilities/showTabBar";
 
 const TutorialPage: React.FC = () => {
 
@@ -22,12 +24,14 @@ const TutorialPage: React.FC = () => {
     }
   }
 
+  useIonViewWillEnter(hideBar);
+
   return(
     <IonPage>
      <IonContent scrollY={false} className="home-content">
       <Swiper modules={[Autoplay, Keyboard, Pagination, Scrollbar, Zoom, IonicSlides]} effect="fade">
         <SwiperSlide>
-       
+          <img src={tapping} alt='Tapping' style={{width: '50%', height: '70%'}}/>
         </SwiperSlide>
         <SwiperSlide>Bad</SwiperSlide>
       </Swiper>

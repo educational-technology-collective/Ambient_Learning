@@ -1,4 +1,4 @@
-import { Redirect, Route } from "react-router-dom";
+import { Redirect, Route, useHistory } from "react-router-dom";
 import {
   IonApp,
   IonRouterOutlet,
@@ -210,7 +210,7 @@ const App: React.FC = () => {
 
   return (
     <IonApp>
-      <IonReactRouter>
+      <IonReactRouter>    
         <IonTabs>
         
           <IonRouterOutlet>
@@ -248,6 +248,8 @@ const App: React.FC = () => {
 
         <Route 
               exact path='/login' render={() => <LogInPage/>} />
+
+        <Route exact path='/tutorial' render={()=> <TutorialPage />} />
               <Route
               exact
               path="/loading"
@@ -259,7 +261,7 @@ const App: React.FC = () => {
               )}
             />
           <Route exact path="/">
-              <Redirect to="/cardscreen" />
+              <Redirect to="/tutorial" />
             </Route>
             
 
@@ -287,6 +289,7 @@ const App: React.FC = () => {
         </IonTabs>
       </IonReactRouter>
     </IonApp>
+    
   );
 };
 
