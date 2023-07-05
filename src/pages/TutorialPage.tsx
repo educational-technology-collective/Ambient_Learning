@@ -32,9 +32,8 @@ const TutorialPage: React.FC = () => {
 
       <IonContent scrollY={false} className="home-content">
         <div className="card-stack">
-          {/* We display two tuples at one time */}
           {cards.map((array: flashCard[], index) => {
-            // If the tuple is displayed on top
+            // Display the cards two at a time
             if (
               index === tutorialCounter - 1 ||
               index === tutorialCounter - 2
