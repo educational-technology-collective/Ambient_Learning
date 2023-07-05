@@ -89,6 +89,8 @@ const CardScreen: React.FC<{
           })}
           {/* Give alert message if it's shaking due to OneMore */}
           {isShake ? <OneMoreFailMessage /> : null}
+
+          {/* Display the "Statistics/Finished Message" When Cards are done */}
           {finished === total ? <FinishedDisplay isTutorial={false}/> : null}
         </div>
        
