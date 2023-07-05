@@ -1,4 +1,4 @@
-import { Redirect, Route, useHistory } from "react-router-dom";
+import { Redirect, Route } from "react-router-dom";
 import {
   IonApp,
   IonRouterOutlet,
@@ -46,10 +46,10 @@ import {
 } from "./utilities/logfunction";
 import LogInPage from "./pages/LogInPage";
 
-import { App as CapApp } from '@capacitor/app';
-import { Browser } from '@capacitor/browser';
+import { App as CapApp } from "@capacitor/app";
+import { Browser } from "@capacitor/browser";
 
-import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth0 } from "@auth0/auth0-react";
 import TutorialPage from "./pages/TutorialPage";
 setupIonicReact({
   swipeBackEnabled: false,
@@ -92,11 +92,14 @@ const App: React.FC = () => {
   };
 
   const { handleRedirectCallback } = useAuth0();
- 
+
   useEffect(() => {
     // Handle the 'appUrlOpen' event and call `handleRedirectCallback`
-    CapApp.addListener('appUrlOpen', async ({ url }) => {
-      if (url.includes('state') && (url.includes('code') || url.includes('error'))) {
+    CapApp.addListener("appUrlOpen", async ({ url }) => {
+      if (
+        url.includes("state") &&
+        (url.includes("code") || url.includes("error"))
+      ) {
         await handleRedirectCallback(url);
       }
       // No-op on Android
@@ -210,9 +213,8 @@ const App: React.FC = () => {
 
   return (
     <IonApp>
-      <IonReactRouter>    
+      <IonReactRouter>
         <IonTabs>
-        
           <IonRouterOutlet>
             <Route
               exact
@@ -243,14 +245,10 @@ const App: React.FC = () => {
               )}
             />
 
-            
+            <Route exact path="/login" render={() => <LogInPage />} />
 
-
-        <Route 
-              exact path='/login' render={() => <LogInPage/>} />
-
-        <Route exact path='/tutorial' render={()=> <TutorialPage />} />
-              <Route
+            <Route exact path="/tutorial" render={() => <TutorialPage />} />
+            <Route
               exact
               path="/loading"
               render={() => (
@@ -260,11 +258,9 @@ const App: React.FC = () => {
                 />
               )}
             />
-          <Route exact path="/">
+            <Route exact path="/">
               <Redirect to="/tutorial" />
             </Route>
-            
-
           </IonRouterOutlet>
 
           <IonTabBar slot="bottom" className="tab-bar" id="bottom-tab-bar">
@@ -289,7 +285,6 @@ const App: React.FC = () => {
         </IonTabs>
       </IonReactRouter>
     </IonApp>
-    
   );
 };
 
