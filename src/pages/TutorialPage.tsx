@@ -1,8 +1,7 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonicSlides, useIonViewWillEnter, useIonViewWillLeave } from "@ionic/react";
-import { useRef, useState } from "react";
+import { IonContent, IonPage, useIonViewWillEnter, useIonViewWillLeave } from "@ionic/react";
+import { useState } from "react";
 import { hideBar, showBar } from "../utilities/showTabBar";
 import '../pages/CardScreen.css'
-import Card from "../CardComp/Card";
 import FlashCardList from "../FlashCardComp/FlashCardList";
 import FinishedDisplay from "../TutorialComp/FinishedDisplay";
 import AppNameHeader from "./AppNameHeader";
