@@ -16,7 +16,7 @@ const LogInPage: React.FC = () => {
 
   return(
     <IonPage>
-      <IonContent scrollY={false} fullscreen className="home-content">
+      <IonContent scrollY={false} >
        <LogInButton />
       </IonContent>
     </IonPage>

@@ -50,6 +50,7 @@ import { App as CapApp } from '@capacitor/app';
 import { Browser } from '@capacitor/browser';
 
 import { useAuth0 } from '@auth0/auth0-react';
+import TutorialPage from "./pages/TutorialPage";
 setupIonicReact({
   swipeBackEnabled: false,
 });
@@ -244,14 +245,27 @@ const App: React.FC = () => {
 
             
 
-              
-            <Route exact path="/">
-              <Redirect to="/login" />
+
+        <Route 
+              exact path='/login' render={() => <LogInPage/>} />
+              <Route
+              exact
+              path="/loading"
+              render={() => (
+                <LoadingPage
+                  isFetched={isFetched}
+                  handleCardScreen={handleCardScreen}
+                />
+              )}
+            />
+          <Route exact path="/">
+              <Redirect to="/cardscreen" />
             </Route>
+            
 
           </IonRouterOutlet>
 
-          <IonTabBar slot="bottom" className="tab-bar" hidden={true}>
+          <IonTabBar slot="bottom" className="tab-bar" id="bottom-tab-bar">
             <IonTabButton
               tab="home"
               href="/home"
@@ -271,20 +285,6 @@ const App: React.FC = () => {
             </IonTabButton>
           </IonTabBar>
         </IonTabs>
-        <IonRouterOutlet>
-        <Route 
-              exact path='/login' render={() => <LogInPage/>} />
-              <Route
-              exact
-              path="/loading"
-              render={() => (
-                <LoadingPage
-                  isFetched={isFetched}
-                  handleCardScreen={handleCardScreen}
-                />
-              )}
-            />
-        </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>
   );
