@@ -13,7 +13,7 @@ root.render(
     useRefreshTokens={true}
     useRefreshTokensFallback={false}
     authorizationParams={{
-      redirect_uri:'ionic.srs://dev-uynheb4nra1vcpvi.us.auth0.com/capacitor/ionic.srs/callback'
+      redirect_uri:'http://localhost:8100'
     }}
     >
     <App />

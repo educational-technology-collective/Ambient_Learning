@@ -45,6 +45,11 @@ import {
   logShakePhone,
 } from "./utilities/logfunction";
 import LogInPage from "./pages/LogInPage";
+
+import { App as CapApp } from '@capacitor/app';
+import { Browser } from '@capacitor/browser';
+
+import { useAuth0 } from '@auth0/auth0-react';
 setupIonicReact({
   swipeBackEnabled: false,
 });
@@ -84,6 +89,19 @@ const App: React.FC = () => {
     setCounter(data.length);
     setTupleCounter(data[data.length - 1].length);
   };
+
+  const { handleRedirectCallback } = useAuth0();
+  console.log(handleRedirectCallback)
+  useEffect(() => {
+    // Handle the 'appUrlOpen' event and call `handleRedirectCallback`
+    CapApp.addListener('appUrlOpen', async ({ url }) => {
+      if (url.includes('state') && (url.includes('code') || url.includes('error'))) {
+        await handleRedirectCallback(url);
+      }
+      // No-op on Android
+      await Browser.close();
+    });
+  }, [handleRedirectCallback]);
 
   // UseEffect to fetch the cards
   useEffect(() => {
