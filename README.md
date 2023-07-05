@@ -23,6 +23,18 @@ cd Space-Repetition-Ionic
 npm install @capacitor/haptics
 npx cap sync
 ```
+
+**Install Auth0 SDK**: Used for authentication
+```
+cd Space-Repetition-Ionic
+npm install @auth0/auth0-react
+```
+
+**Install Capacitor Plugins**: Used for running auth0
+```
+cd Space-Repetition-Ionic
+npm install @capacitor/browser @capacitor/app
+```
 ## Run
 After you have set up the repo in your local directory. Run the following commands to try the app:
 ```
