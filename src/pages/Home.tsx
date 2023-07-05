@@ -10,6 +10,7 @@ import "./Home.css";
 import { useHistory } from "react-router-dom";
 import { diamond } from "ionicons/icons";
 import DashBoard from "../HomeComp/DashBoard";
+import AppNameHeader from "./AppNameHeader";
 
 const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
   cardsLeft,
@@ -40,13 +41,9 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
   // Screen Being Rendered
   return (
     <IonPage>
-      
+
       {/* Header and ToolBar */}
-      <IonHeader color="tertiary">
-        <IonToolbar>
-          <IonTitle className="title">StorMind</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <AppNameHeader/>
 
       <IonContent scrollY={false} className="home-content">
         <div className="home-loaded-wrapper">

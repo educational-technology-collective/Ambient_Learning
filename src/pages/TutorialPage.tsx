@@ -5,6 +5,7 @@ import '../pages/CardScreen.css'
 import Card from "../CardComp/Card";
 import FlashCardList from "../FlashCardComp/FlashCardList";
 import FinishedDisplay from "../TutorialComp/FinishedDisplay";
+import AppNameHeader from "./AppNameHeader";
 
 const TutorialPage: React.FC = () => {
 
@@ -73,11 +74,8 @@ const TutorialPage: React.FC = () => {
   return(
     <IonPage>
 
-    <IonHeader>
-      <IonToolbar>
-        <IonTitle>StorMind</IonTitle>
-      </IonToolbar>
-    </IonHeader>
+      {/* Header for the App Name */}
+      <AppNameHeader />
 
 
      <IonContent scrollY={false} className="home-content">
