@@ -35,8 +35,7 @@
     "react-router-dom": "^5.3.4",
     "rehype-highlight": "^6.0.0",
     "rehype-raw": "^6.1.1",
-    "remark-gfm": "^3.0.1",
-    "swiper": "^10.0.3"
+    "remark-gfm": "^3.0.1"
   },
   "devDependencies": {
     "@capacitor/cli": "5.0.4",
