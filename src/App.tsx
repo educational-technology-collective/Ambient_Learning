@@ -44,6 +44,7 @@ import {
   logEnterHome,
   logShakePhone,
 } from "./utilities/logfunction";
+import LogInPage from "./pages/LogInPage";
 setupIonicReact({
   swipeBackEnabled: false,
 });
@@ -192,6 +193,7 @@ const App: React.FC = () => {
     <IonApp>
       <IonReactRouter>
         <IonTabs>
+        
           <IonRouterOutlet>
             <Route
               exact
@@ -222,23 +224,16 @@ const App: React.FC = () => {
               )}
             />
 
-            <Route
-              exact
-              path="/loading"
-              render={() => (
-                <LoadingPage
-                  isFetched={isFetched}
-                  handleCardScreen={handleCardScreen}
-                />
-              )}
-            />
+            
 
+              
             <Route exact path="/">
-              <Redirect to="/loading" />
+              <Redirect to="/login" />
             </Route>
+
           </IonRouterOutlet>
 
-          <IonTabBar slot="bottom" className="tab-bar">
+          <IonTabBar slot="bottom" className="tab-bar" hidden={true}>
             <IonTabButton
               tab="home"
               href="/home"
@@ -258,6 +253,20 @@ const App: React.FC = () => {
             </IonTabButton>
           </IonTabBar>
         </IonTabs>
+        <IonRouterOutlet>
+        <Route 
+              exact path='/login' render={() => <LogInPage/>} />
+              <Route
+              exact
+              path="/loading"
+              render={() => (
+                <LoadingPage
+                  isFetched={isFetched}
+                  handleCardScreen={handleCardScreen}
+                />
+              )}
+            />
+        </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>
   );
