@@ -6,6 +6,7 @@ import {
   IonTabBar,
   setupIonicReact,
   IonTabButton,
+  IonLoading,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { TbHomeEdit } from "react-icons/tb";
@@ -56,6 +57,26 @@ setupIonicReact({
 });
 
 const App: React.FC = () => {
+
+  const {isAuthenticated, isLoading, user, getAccessTokenSilently} = useAuth0();
+
+  const { handleRedirectCallback } = useAuth0();
+
+  useEffect(() => {
+    // Handle the 'appUrlOpen' event and call `handleRedirectCallback`
+    CapApp.addListener("appUrlOpen", async ({ url }) => {
+      if (
+        url.includes("state") &&
+        (url.includes("code") || url.includes("error"))
+      ) {
+        await handleRedirectCallback(url);
+      }
+      // No-op on Android
+      await Browser.close();
+    });
+  }, [handleRedirectCallback]);
+
+
   // Initialize the Logging Info as app is open
   const [logInfo, setLog] = useState<reviewInfo>({
     user_id: "bigboss",
@@ -91,21 +112,6 @@ const App: React.FC = () => {
     setTupleCounter(data[data.length - 1].length);
   };
 
-  const { handleRedirectCallback } = useAuth0();
-
-  useEffect(() => {
-    // Handle the 'appUrlOpen' event and call `handleRedirectCallback`
-    CapApp.addListener("appUrlOpen", async ({ url }) => {
-      if (
-        url.includes("state") &&
-        (url.includes("code") || url.includes("error"))
-      ) {
-        await handleRedirectCallback(url);
-      }
-      // No-op on Android
-      await Browser.close();
-    });
-  }, [handleRedirectCallback]);
 
   // UseEffect to fetch the cards
   useEffect(() => {
@@ -211,6 +217,17 @@ const App: React.FC = () => {
     updateInfo(newInfo);
   };
 
+
+ 
+
+  // Return the Log In Page if it's not authenticated and not loading
+  console.log(user);
+  console.log('Loading', isLoading);
+  console.log('authen', isAuthenticated);
+  // if(!isAuthenticated && !isLoading){
+  //   return <LogInPage/>
+  // }
+
   return (
     <IonApp>
       <IonReactRouter>
@@ -259,8 +276,9 @@ const App: React.FC = () => {
               )}
             />
             <Route exact path="/">
-              <Redirect to="/tutorial" />
+                {isAuthenticated ? <Redirect to='/loading'/> : <Redirect to='/login'/>}
             </Route>
+
           </IonRouterOutlet>
 
           <IonTabBar slot="bottom" className="tab-bar" id="bottom-tab-bar">

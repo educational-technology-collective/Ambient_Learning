@@ -1,9 +1,11 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { Browser } from '@capacitor/browser';
-import { IonButton } from '@ionic/react';
+import { IonButton, isPlatform } from '@ionic/react';
+import { useHistory } from 'react-router';
 
 const LogInButton: React.FC = () => {
-  const {loginWithRedirect, loginWithPopup} = useAuth0();
+  const history = useHistory();
+  const {loginWithRedirect} = useAuth0();
   const login = async () => {
     await loginWithRedirect({
       async openUrl(url){
@@ -12,30 +14,12 @@ const LogInButton: React.FC = () => {
         )
       }
     })
+    history.push('/loading');
   }
-
-  const { logout } = useAuth0();
-
-  const logoutUri = 'http://localhost:8100';
-  const doLogout = async () => {
-    await logout({
-      logoutParams: {
-        returnTo: logoutUri,
-      },
-      async openUrl(url) {
-         // Redirect using Capacitor's Browser plugin
-        await Browser.open({
-          url,
-          windowName: "_self"
-        });
-      }
-    });
-  };
 
   return(
     <>
     <IonButton onClick={login}>Log In</IonButton>
-    <IonButton onClick={doLogout}>Log Out</IonButton>
     </>
   )
 };

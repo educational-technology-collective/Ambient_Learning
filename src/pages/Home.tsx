@@ -2,12 +2,16 @@ import {
   IonContent,
   IonPage,
   IonIcon,
+  IonButton,
+  isPlatform,
 } from "@ionic/react";
 import "./Home.css";
 import { useHistory } from "react-router-dom";
 import { diamond } from "ionicons/icons";
 import DashBoard from "../HomeComp/DashBoard";
 import AppNameHeader from "./AppNameHeader";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Browser } from "@capacitor/browser";
 
 const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
   cardsLeft,
@@ -35,6 +39,31 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
     shadow = "wrapped-card";
   }
 
+  const isPhone = isPlatform('hybrid')
+const logoutUri = isPhone ? 'ionic.srs://dev-cra0zttj8xlwi6sh.us.auth0.com/capacitor/ionic.srs/callback/' : 'http://localhost:8100/login'
+
+  const { logout } = useAuth0();
+
+  const doLogout = async () => {
+    await logout({
+      logoutParams: {
+        returnTo: logoutUri,
+        federated: true
+      },
+      async openUrl(url) {
+         // Redirect using Capacitor's Browser plugin
+        await Browser.open({
+          url,
+          windowName: "_self"
+        });
+      }
+    });
+    history.push('/login');
+    if(isPhone){
+      window.location.reload();
+    }
+  };
+
   // Screen Being Rendered
   return (
     <IonPage>
@@ -53,6 +82,7 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
             shadow={shadow}
             navigateToCardScreen={navigateToCardScreen}
           />
+          <IonButton onClick={doLogout}>Log Out</IonButton>
         </div>
       </IonContent>
     </IonPage>

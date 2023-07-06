@@ -1,15 +1,19 @@
 import {
+  IonButton,
   IonContent,
   IonHeader,
   IonPage,
   IonTitle,
   IonToolbar,
+  isPlatform,
 } from "@ionic/react";
 import "./CardScreen.css";
 import React from "react";
 import FlashCardList from "../FlashCardComp/FlashCardList";
 import OneMoreFailMessage from "../IndicationComp/OneMoreFailMessage";
 import FinishedDisplay from "../TutorialComp/FinishedDisplay";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Browser } from "@capacitor/browser";
 
 const CardScreen: React.FC<{
   finished: number;
