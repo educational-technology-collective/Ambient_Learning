@@ -17,13 +17,12 @@ const LoadingPage: React.FC<{
   isFetched: boolean;
   handleCardScreen: () => void;
 }> = ({ isFetched, handleCardScreen }) => {
-
   // Hide the Bottom Tabs for this Page
   useIonViewWillEnter(hideBar);
 
   // Reload the Bottom Tabs when leaving
   useIonViewWillLeave(showBar);
-  
+
   // State Variable for Loading Bar
   const [buffer, setBuffer] = useState(0.05);
   const [progress, setProgress] = useState(0);
