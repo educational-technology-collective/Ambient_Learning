@@ -224,9 +224,9 @@ const App: React.FC = () => {
   console.log(user);
   console.log('Loading', isLoading);
   console.log('authen', isAuthenticated);
-  // if(!isAuthenticated && !isLoading){
-  //   return <LogInPage/>
-  // }
+  if(!isAuthenticated && !isLoading){
+    return <LogInPage/>
+  }
 
   return (
     <IonApp>
@@ -262,7 +262,9 @@ const App: React.FC = () => {
               )}
             />
 
-            <Route exact path="/login" render={() => <LogInPage />} />
+            <Route exact path="/login">
+              {isAuthenticated ? <Redirect to='/loading' /> : <LogInPage/>}
+            </Route>
 
             <Route exact path="/tutorial" render={() => <TutorialPage />} />
             <Route
@@ -276,7 +278,7 @@ const App: React.FC = () => {
               )}
             />
             <Route exact path="/">
-                {isAuthenticated ? <Redirect to='/loading'/> : <Redirect to='/login'/>}
+               <Redirect to='/loading' />
             </Route>
 
           </IonRouterOutlet>
