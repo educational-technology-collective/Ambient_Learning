@@ -39,8 +39,10 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
     shadow = "wrapped-card";
   }
 
-  const isPhone = isPlatform('hybrid')
-const logoutUri = isPhone ? 'ionic.srs://dev-cra0zttj8xlwi6sh.us.auth0.com/capacitor/ionic.srs/callback/' : 'http://localhost:8100'
+  const isPhone = isPlatform("hybrid");
+  const logoutUri = isPhone
+    ? "ionic.srs://dev-cra0zttj8xlwi6sh.us.auth0.com/capacitor/ionic.srs/callback/"
+    : "http://localhost:8100";
 
   const { logout } = useAuth0();
 
@@ -48,18 +50,18 @@ const logoutUri = isPhone ? 'ionic.srs://dev-cra0zttj8xlwi6sh.us.auth0.com/capac
     await logout({
       logoutParams: {
         returnTo: logoutUri,
-        federated: true
+        federated: true,
       },
       async openUrl(url) {
-         // Redirect using Capacitor's Browser plugin
+        // Redirect using Capacitor's Browser plugin
         await Browser.open({
           url,
-          windowName: "_self"
+          windowName: "_self",
         });
-      }
+      },
     });
-    history.push('/login');
-    if(isPhone){
+    history.push("/login");
+    if (isPhone) {
       window.location.reload();
     }
   };
@@ -67,9 +69,8 @@ const logoutUri = isPhone ? 'ionic.srs://dev-cra0zttj8xlwi6sh.us.auth0.com/capac
   // Screen Being Rendered
   return (
     <IonPage>
-
       {/* Header and ToolBar */}
-      <AppNameHeader/>
+      <AppNameHeader />
 
       <IonContent scrollY={false} className="home-content">
         <div className="home-loaded-wrapper">

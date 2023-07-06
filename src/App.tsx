@@ -56,8 +56,7 @@ setupIonicReact({
 });
 
 const App: React.FC = () => {
-
-  const {isAuthenticated, isLoading, user, getAccessTokenSilently} = useAuth0();
+  const { isAuthenticated, isLoading, user } = useAuth0();
 
   const { handleRedirectCallback } = useAuth0();
 
@@ -74,7 +73,6 @@ const App: React.FC = () => {
       await Browser.close();
     });
   }, [handleRedirectCallback]);
-
 
   // Initialize the Logging Info as app is open
   const [logInfo, setLog] = useState<reviewInfo>({
@@ -110,7 +108,6 @@ const App: React.FC = () => {
     setCounter(data.length);
     setTupleCounter(data[data.length - 1].length);
   };
-
 
   // UseEffect to fetch the cards
   useEffect(() => {
@@ -216,15 +213,12 @@ const App: React.FC = () => {
     updateInfo(newInfo);
   };
 
-
- 
-
   // Return the Log In Page if it's not authenticated and not loading
   console.log(user);
-  console.log('Loading', isLoading);
-  console.log('authen', isAuthenticated);
-  if(!isAuthenticated && !isLoading){
-    return <LogInPage/>
+  console.log("Loading", isLoading);
+  console.log("authen", isAuthenticated);
+  if (!isAuthenticated && !isLoading) {
+    return <LogInPage />;
   }
 
   return (
@@ -262,7 +256,7 @@ const App: React.FC = () => {
             />
 
             <Route exact path="/login">
-              {isAuthenticated ? <Redirect to='/loading' /> : <LogInPage/>}
+              {isAuthenticated ? <Redirect to="/loading" /> : <LogInPage />}
             </Route>
 
             <Route exact path="/tutorial" render={() => <TutorialPage />} />
@@ -277,9 +271,8 @@ const App: React.FC = () => {
               )}
             />
             <Route exact path="/">
-               <Redirect to='/loading' />
+              <Redirect to="/loading" />
             </Route>
-
           </IonRouterOutlet>
 
           <IonTabBar slot="bottom" className="tab-bar" id="bottom-tab-bar">
