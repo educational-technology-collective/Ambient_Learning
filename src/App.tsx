@@ -6,7 +6,6 @@ import {
   IonTabBar,
   setupIonicReact,
   IonTabButton,
-  IonLoading,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { TbHomeEdit } from "react-icons/tb";
