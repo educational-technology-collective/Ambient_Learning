@@ -214,9 +214,7 @@ const App: React.FC = () => {
   };
 
   // Return the Log In Page if it's not authenticated and not loading
-  console.log(user);
-  console.log("Loading", isLoading);
-  console.log("authen", isAuthenticated);
+  // Technically "Buggy"
   if (!isAuthenticated && !isLoading) {
     return <LogInPage />;
   }
