@@ -59,9 +59,9 @@ const logoutUri = isPhone ? 'ionic.srs://dev-cra0zttj8xlwi6sh.us.auth0.com/capac
       }
     });
     history.push('/login');
-    // if(isPhone){
-    //   window.location.reload();
-    // }
+    if(isPhone){
+      window.location.reload();
+    }
   };
 
   // Screen Being Rendered
