@@ -1,10 +1,9 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { Browser } from '@capacitor/browser';
-import { IonButton, isPlatform } from '@ionic/react';
-import { useHistory } from 'react-router';
+import { IonButton} from '@ionic/react';
+
 
 const LogInButton: React.FC = () => {
-  const history = useHistory();
   const {loginWithRedirect} = useAuth0();
   const login = async () => {
     await loginWithRedirect({
@@ -14,7 +13,6 @@ const LogInButton: React.FC = () => {
         )
       }
     })
-    history.push('/loading');
   }
 
   return(

@@ -40,7 +40,7 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
   }
 
   const isPhone = isPlatform('hybrid')
-const logoutUri = isPhone ? 'ionic.srs://dev-cra0zttj8xlwi6sh.us.auth0.com/capacitor/ionic.srs/callback/' : 'http://localhost:8100/login'
+const logoutUri = isPhone ? 'ionic.srs://dev-cra0zttj8xlwi6sh.us.auth0.com/capacitor/ionic.srs/callback/' : 'http://localhost:8100'
 
   const { logout } = useAuth0();
 
