@@ -18,9 +18,11 @@ const LogInPage: React.FC = () => {
 
   return (
     <IonPage>
-      <AppNameHeader />
-      <IonContent scrollY={false}>
+      <IonContent scrollY={false} className="login-content">
+        <div className="login-page-container">
+        <h1>Hi, Welcome<span></span></h1>
         <LogInButton />
+        </div>   
       </IonContent>
     </IonPage>
   );
