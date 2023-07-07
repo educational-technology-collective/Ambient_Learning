@@ -32,7 +32,7 @@ export const cards = [
       lmid: "sdnajdn",
       type: "m",
       content: {
-        question: "What if I don't know the card?",
+        question: "This is a Multiple-Choice-Question(MCQ) card. \n\nYou can click the choice you think is correct or tap the card itself to skip answering! \n\nWhat if I don't know the card concept?",
         answer: [
           { option: "Swipe Left", isCorrect: true },
           { option: "Swipe Right", isCorrect: false },
@@ -49,7 +49,7 @@ export const cards = [
       type: "q",
       content: {
         question:
-          "Hello there! Welocome to Tutorial! Tap the card to reveal the answer. Then Swipe!",
+          "Hello there! Welocome to Tutorial! Tap this QA(Question & Answer) card to reveal the answer.\n\n Then Swipe!",
         answer: "Great Job! Swipe Right to indicate you know the card!!!",
       },
     },
