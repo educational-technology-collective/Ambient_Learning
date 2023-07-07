@@ -13,7 +13,7 @@ export const cards = [
           { option: "Swipe Down", isCorrect: true },
         ],
       },
-    }
+    },
   ],
   [
     {
@@ -24,7 +24,7 @@ export const cards = [
         question: "Nice! How do I get one more card of the same concept?",
         answer: "Simply Swipe Up!!!",
       },
-    }
+    },
   ],
   [
     {
@@ -32,7 +32,8 @@ export const cards = [
       lmid: "sdnajdn",
       type: "m",
       content: {
-        question: "This is a Multiple-Choice-Question(MCQ) card. \n\nYou can click the choice you think is correct or tap the card itself to skip answering! \n\nWhat if I don't know the card concept?",
+        question:
+          "This is a Multiple-Choice-Question(MCQ) card. \n\nYou can click the choice you think is correct or tap the card itself to skip answering! \n\nWhat if I don't know the card concept?",
         answer: [
           { option: "Swipe Left", isCorrect: true },
           { option: "Swipe Right", isCorrect: false },
@@ -40,7 +41,7 @@ export const cards = [
           { option: "Swipe Down", isCorrect: false },
         ],
       },
-    }
+    },
   ],
   [
     {
@@ -52,7 +53,7 @@ export const cards = [
           "Hello there! Welocome to Tutorial! Tap this QA(Question & Answer) card to reveal the answer.\n\n Then Swipe!",
         answer: "Great Job! Swipe Right to indicate you know the card!!!",
       },
-    }
+    },
   ],
 ];
 

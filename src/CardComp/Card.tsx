@@ -38,7 +38,6 @@ const Card: React.FC<{
   oneMore,
   refTuple,
 }) => {
-
   // Reference of the single card element. We transform its style only in onemore
   const ref = useRef<HTMLInputElement>(null);
 
@@ -197,7 +196,7 @@ const Card: React.FC<{
   });
 
   // Determine the component and content style based on type of card
-  let cardComp, cardContentStyle : string;
+  let cardComp, cardContentStyle: string;
   if (obj.type === "q") {
     cardComp = <QA obj={obj} />;
     cardContentStyle = "card-content qa-card-content";
@@ -222,9 +221,9 @@ const Card: React.FC<{
         disabled={isClicked}
       >
         <div className={cardContentStyle} style={style}>
-        
-          <NumberIndicator tupleCounter={tupleCounter}/>
-          
+          {/* Indicator of Number of Same Concept Cards */}
+          <NumberIndicator tupleCounter={tupleCounter} />
+
           {/* Front Indicator */}
           <FrontIndicator indicatorOpacity={indicatorOpacity} />
 
