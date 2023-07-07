@@ -47,7 +47,7 @@
   left: 0;
   background: mediumslateblue;
   height: 100%;
-
+  width: 0%;
   animation: reveal-welcome 1500ms ease-out;
 }
 

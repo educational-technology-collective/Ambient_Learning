@@ -5,7 +5,7 @@ import {
   useIonViewWillLeave,
 } from "@ionic/react";
 import "./LogInPage.css";
-import LogInButton from "../LogInComp/LogInButton";
+import LogInButton from "../LogComp/LogInButton";
 import { hideBar, showBar } from "../utilities/showTabBar";
 import spacecraft from "../../spacecraft.svg";
 

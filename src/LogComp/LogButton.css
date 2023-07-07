@@ -1,4 +1,4 @@
-.login-button {
+.log-button {
   position: absolute;
   --border-radius: 3px;
   bottom: 10%;
@@ -7,29 +7,36 @@
   font-size: 1.5em;
   font-weight: bold;
   color: grey;
-  opacity: 0;
   --background: ivory;
   --background-activated: aquamarine;
   --background-focused: aqua;
   --background-hover: aliceblue;
+}
+
+.login-button {
+  opacity: 0;
   animation: displayButton 1100ms ease-out forwards;
   animation-delay: 1350ms;
 }
 
+.logout-button {
+  left: 15%;
+}
+
 @keyframes displayButton {
-  10%{
+  10% {
     opacity: 0.1;
   }
-  30%{
+  30% {
     opacity: 0.3;
   }
-  50%{
+  50% {
     opacity: 0.5;
   }
-  80%{
+  80% {
     opacity: 0.8;
   }
-  100%{
+  100% {
     opacity: 1;
   }
 }
