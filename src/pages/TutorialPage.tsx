@@ -12,7 +12,7 @@ import FinishedDisplay from "../TutorialComp/FinishedDisplay";
 import AppNameHeader from "./AppNameHeader";
 import { cards, dummyInfo } from "../utilities/tutorialpagedata";
 
-const TutorialPage: React.FC = () => {
+const TutorialPage: React.FC<{handleCardScreen: () => void;}> = ({handleCardScreen}) => {
   // Hide the bottom tabs for the tutorial page
   useIonViewWillEnter(hideBar);
 
@@ -55,7 +55,7 @@ const TutorialPage: React.FC = () => {
           })}
         </div>
         {/* Display the message of tutorial finished and prompt them to jump to cards */}
-        {tutorialCounter === 0 ? <FinishedDisplay isTutorial={true} /> : null}
+        {tutorialCounter === 0 ? <FinishedDisplay isTutorial={true} enterScreen={handleCardScreen}/> : null}
       </IonContent>
     </IonPage>
   );

@@ -26,6 +26,7 @@ const CardScreen: React.FC<{
   updateInfo: (newInfo: reviewInfo) => void;
   swipeNextCard: (tupleIndex: number, newInfo: reviewInfo) => void;
   swipeOneMoreCard: (tupleIndex: number, newInfo: reviewInfo) => void;
+  handleHomeScreen: () => void
 }> = ({
   finished,
   total,
@@ -37,6 +38,7 @@ const CardScreen: React.FC<{
   updateInfo,
   swipeNextCard,
   swipeOneMoreCard,
+  handleHomeScreen
 }) => {
   const stackClass: string = isShake
     ? "card-stacker card-stacker-animate"
@@ -95,7 +97,7 @@ const CardScreen: React.FC<{
           {isShake ? <OneMoreFailMessage /> : null}
 
           {/* Display the "Statistics/Finished Message" When Cards are done */}
-          {finished === total ? <FinishedDisplay isTutorial={false}/> : null}
+          {finished === total ? <FinishedDisplay isTutorial={false} enterScreen={handleHomeScreen}/> : null}
         </div>
        
       </IonContent>

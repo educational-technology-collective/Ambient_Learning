@@ -35,6 +35,10 @@ const LoadingPage: React.FC<{
     handleCardScreen();
   };
 
+  const navigateToTutorialScreen = () => {
+    history.push('/tutorial');
+  }
+
   useEffect(() => {
     // Add 0.06 to the value every 0.1 second
     const interval = setInterval(() => {
@@ -55,7 +59,7 @@ const LoadingPage: React.FC<{
 
   if (showLoad && isFetched && progress > 1) {
     setLoad(false);
-    setTimeout(navigateToCardScreen, 100);
+    setTimeout(navigateToTutorialScreen, 100);
   }
 
   return (
