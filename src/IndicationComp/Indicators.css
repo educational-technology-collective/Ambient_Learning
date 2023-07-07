@@ -14,9 +14,9 @@
 
 /* Styling for the negativei indicator on the back page */
 .back-negative {
-  top: 1.2em;
+  top: 1.8em;
   width: 50%;
-  left: 1em;
+  left: 2em;
   rotate: 10deg;
 }
 
@@ -50,9 +50,9 @@
 
 /* Styling for the positive indicator on the back */
 .back-positive {
-  top: 1.2em;
+  top: 1.8em;
   width: 50%;
-  right: 1em;
+  right: 2em;
   rotate: 350deg;
 }
 
