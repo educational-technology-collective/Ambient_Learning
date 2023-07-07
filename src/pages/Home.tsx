@@ -1,15 +1,10 @@
-import {
-  IonContent,
-  IonHeader,
-  IonPage,
-  IonTitle,
-  IonToolbar,
-  IonIcon,
-} from "@ionic/react";
+import { IonContent, IonPage, IonIcon } from "@ionic/react";
 import "./Home.css";
 import { useHistory } from "react-router-dom";
 import { diamond } from "ionicons/icons";
 import DashBoard from "../HomeComp/DashBoard";
+import AppNameHeader from "./AppNameHeader";
+import LogOutButton from "../LogComp/LogOutButton";
 
 const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
   cardsLeft,
@@ -41,11 +36,7 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
   return (
     <IonPage>
       {/* Header and ToolBar */}
-      <IonHeader color="tertiary">
-        <IonToolbar>
-          <IonTitle className="title">StorMind</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <AppNameHeader />
 
       <IonContent scrollY={false} className="home-content">
         <div className="home-loaded-wrapper">
@@ -58,6 +49,7 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
             shadow={shadow}
             navigateToCardScreen={navigateToCardScreen}
           />
+          <LogOutButton />
         </div>
       </IonContent>
     </IonPage>

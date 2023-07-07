@@ -35,6 +35,8 @@ const Card: React.FC<{
   oneMore,
   refTuple,
 }) => {
+
+  // Reference of the single card element. We transform its style only in onemore
   const ref = useRef<HTMLInputElement>(null);
 
   // This isClicked is for the tap of the card
@@ -79,7 +81,7 @@ const Card: React.FC<{
     setClick(true);
 
     // Log the Event of Flipping / Answering
-    logFlipping(logInfo, obj._id, updateInfo);
+    logFlipping(logInfo, obj._id, cardIndex, tupleLength, updateInfo);
   };
 
   // State Variable to track if the user gets correct/incorrect/skipped
@@ -192,7 +194,7 @@ const Card: React.FC<{
   });
 
   // Determine the component and content style based on type of card
-  let cardComp, cardContentStyle;
+  let cardComp, cardContentStyle : string;
   if (obj.type === "q") {
     cardComp = <QA obj={obj} />;
     cardContentStyle = "card-content qa-card-content";

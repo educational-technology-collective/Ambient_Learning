@@ -53,22 +53,22 @@ const HorizontalEnd = (
     const windowWidth: number = window.innerWidth;
     stuff.style.transition = "0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
 
-    // Swiping Right Quick Enough
+    // Swiping Right Quick Enough (Know Card)
     if (detail.velocityX > 0.3) {
       stuff.style.transform = `translateX(${windowWidth * 1.5}px)`;
       setTimeout(knowTimeOut, 100);
     }
-    // Swiping Right more than half of window length. Move Card to Right
+    // Swiping Right more than half of window length. Move Card to Right (Know)
     else if (detail.deltaX > windowWidth / 3) {
       stuff.style.transform = `translateX(${windowWidth * 1.5}px)`;
       setTimeout(knowTimeOut, 100);
     }
-    // Swiping Left Quick Enough
+    // Swiping Left Quick Enough (Don't Know)
     else if (detail.velocityX < -0.3) {
       stuff.style.transform = `translateX(${windowWidth * -1.5}px)`;
       setTimeout(dontKnowTimeOut, 100);
     }
-    // Swiping Left More than half of window length. Move Card to Left
+    // Swiping Left More than half of window length. Move Card to Left (Don't Know)
     else if (detail.deltaX < -windowWidth / 3) {
       stuff.style.transform = `translateX(${-windowWidth * 1.5}px)`;
       setTimeout(dontKnowTimeOut, 100);
@@ -175,12 +175,12 @@ const VerticalEnd = (
 
     // Before clicking
     if (!isClicked) {
-      // Swipe Down fast, clear the tuple
+      // Swipe Down fast, clear the tuple (Poor Card)
       if (detail.velocityY > 0.3) {
         stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
         setTimeout(poorCardBeforeTimeOut, 100);
       }
-      // Swipe Down enough, clear the tuple
+      // Swipe Down enough, clear the tuple (Poor Card)
       else if (detail.deltaY > windowHeight / 4) {
         stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
         setTimeout(poorCardBeforeTimeOut, 100);
@@ -193,7 +193,7 @@ const VerticalEnd = (
     }
     // After clicking
     else {
-      // Swipe Up fast, clear the top card
+      // Swipe Up fast, clear the top card (One More)
       if (detail.velocityY < -0.3) {
         card.style.transform = `translateY(${windowHeight * -1.5}px)`;
         setTimeout(oneMoreTimeOut, 100);
@@ -201,7 +201,7 @@ const VerticalEnd = (
         // Set all the style/className/isClicked back
         stuff.style.transform = "";
       }
-      // Swipe Up enough, clear the top card
+      // Swipe Up enough, clear the top card (One More)
       else if (detail.deltaY < -windowHeight / 4) {
         card.style.transform = `translateY(${windowHeight * -1.5}px)`;
         setTimeout(oneMoreTimeOut, 100);
@@ -209,12 +209,12 @@ const VerticalEnd = (
         // Set all the style/className/isClicked back
         stuff.style.transform = "";
       }
-      //  Swipe down fast, clear the tuple
+      //  Swipe down fast, clear the tuple (Poor Card)
       else if (detail.velocityY > 0.3) {
         stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
         setTimeout(poorCardAfterTimeOut, 100);
       }
-      // Swipe down enough, clear the tuple
+      // Swipe down enough, clear the tuple (Poor Card)
       else if (detail.deltaY > windowHeight / 4) {
         stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
         setTimeout(poorCardAfterTimeOut, 100);

@@ -1,4 +1,4 @@
-import { Redirect, Route } from "react-router-dom";
+import { Redirect, Route, useHistory } from "react-router-dom";
 import {
   IonApp,
   IonRouterOutlet,
@@ -36,7 +36,7 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 import "./theme/variables.css";
 import { cardCollection } from "./utilities/exampleData";
-import { markdownCollection } from "./IndicationComp/markdownData";
+import { markdownCollection } from "./utilities/markdownData";
 import CardsTab from "./IndicationComp/CardsTab";
 import LoadingPage from "./pages/LoadingPage";
 import {
@@ -44,11 +44,36 @@ import {
   logEnterHome,
   logShakePhone,
 } from "./utilities/logfunction";
+import LogInPage from "./pages/LogInPage";
+
+import { App as CapApp } from "@capacitor/app";
+import { Browser } from "@capacitor/browser";
+
+import { useAuth0 } from "@auth0/auth0-react";
+import TutorialPage from "./pages/TutorialPage";
 setupIonicReact({
   swipeBackEnabled: false,
 });
 
 const App: React.FC = () => {
+  const { isAuthenticated, isLoading, user } = useAuth0();
+
+  const { handleRedirectCallback } = useAuth0();
+
+  useEffect(() => {
+    // Handle the 'appUrlOpen' event and call `handleRedirectCallback`
+    CapApp.addListener("appUrlOpen", async ({ url }) => {
+      if (
+        url.includes("state") &&
+        (url.includes("code") || url.includes("error"))
+      ) {
+        await handleRedirectCallback(url);
+      }
+      // No-op on Android
+      await Browser.close();
+    });
+  }, [handleRedirectCallback]);
+
   // Initialize the Logging Info as app is open
   const [logInfo, setLog] = useState<reviewInfo>({
     user_id: "bigboss",
@@ -58,9 +83,8 @@ const App: React.FC = () => {
     action_container: [
       {
         event_name: "Initialize",
+        event_time: Date(),
         card_id: null,
-        flip_time: null,
-        swipe_time: null,
         self_eval: null,
         test_eval: null,
         isBuffer: null,
@@ -68,7 +92,8 @@ const App: React.FC = () => {
     ],
   });
 
-  console.log(logInfo);
+  // State Variable to indicate whether data is fetched
+  const [isFetched, setFetched] = useState(false);
 
   // The Card Array
   const [cardCol, setCards] = useState([[]]);
@@ -77,6 +102,7 @@ const App: React.FC = () => {
   const getCards = async (url: string) => {
     const response = await CapacitorHttp.get({ url: url });
     const data = await JSON.parse(response.data);
+    setFetched(true);
     setCards(data);
     setTotal(data.length);
     setCounter(data.length);
@@ -89,8 +115,6 @@ const App: React.FC = () => {
       "https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/users/srsdevteam@gmail.com/flashcards/all"
     );
   }, []);
-
-  console.log(logInfo);
 
   // How Many Cards Finished
   const [finished, setFinished] = useState(0);
@@ -187,6 +211,12 @@ const App: React.FC = () => {
     updateInfo(newInfo);
   };
 
+  // Return the Log In Page if it's not authenticated and not loading
+  // Technically "Buggy"
+  if (!isAuthenticated && !isLoading) {
+    return <LogInPage />;
+  }
+
   return (
     <IonApp>
       <IonReactRouter>
@@ -217,22 +247,38 @@ const App: React.FC = () => {
                   updateInfo={updateInfo}
                   swipeNextCard={swipeNextCard}
                   swipeOneMoreCard={swipeOneMoreCard}
+                  handleHomeScreen={handleHomeScreen}
                 />
               )}
             />
 
+            <Route exact path="/login">
+              {isAuthenticated ? <Redirect to="/loading" /> : <LogInPage />}
+            </Route>
+
+            <Route
+              exact
+              path="/tutorial"
+              render={() => (
+                <TutorialPage handleCardScreen={handleCardScreen} />
+              )}
+            />
             <Route
               exact
               path="/loading"
-              render={() => <LoadingPage handleCardScreen={handleCardScreen} />}
+              render={() => (
+                <LoadingPage
+                  isFetched={isFetched}
+                  handleCardScreen={handleCardScreen}
+                />
+              )}
             />
-
             <Route exact path="/">
               <Redirect to="/loading" />
             </Route>
           </IonRouterOutlet>
 
-          <IonTabBar slot="bottom" className="tab-bar">
+          <IonTabBar slot="bottom" className="tab-bar" id="bottom-tab-bar">
             <IonTabButton
               tab="home"
               href="/home"

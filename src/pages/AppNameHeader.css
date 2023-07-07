@@ -1,0 +1,6 @@
+/* Text on the Toolbar header */
+.title {
+  font-weight: 900;
+  font-size: 1.2em;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}

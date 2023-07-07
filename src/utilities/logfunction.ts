@@ -8,16 +8,15 @@ export const logShakePhone = (
   // Increase the Number of Shake
   const event: action = {
     event_name: "shake",
+    event_time: Date(),
     card_id: null,
-    flip_time: null,
-    swipe_time: null,
     self_eval: null,
     test_eval: null,
     isBuffer: null,
   };
 
   // Create a copy of logInfo
-  let newInfo = oldInfo;
+  let newInfo: reviewInfo = oldInfo;
 
   // Check to see if this is the last card(remember states are updated after)
   if (finished === total - 1) {
@@ -35,14 +34,13 @@ export const logEnterHome = (
 ) => {
   const event: action = {
     event_name: "EnterHomeScreen",
+    event_time: Date(),
     card_id: null,
-    flip_time: null,
-    swipe_time: null,
     self_eval: null,
     test_eval: null,
     isBuffer: null,
   };
-  let newInfo = oldInfo;
+  let newInfo: reviewInfo = oldInfo;
   newInfo.action_container.push(event);
   updateInfo(newInfo);
 };
@@ -58,14 +56,13 @@ export const logEnterCard = (
   ) {
     const event: action = {
       event_name: "EnterCardScreen",
-      flip_time: null,
+      event_time: Date(),
       card_id: null,
-      swipe_time: null,
       self_eval: null,
       test_eval: null,
       isBuffer: null,
     };
-    let newInfo = oldInfo;
+    let newInfo: reviewInfo = oldInfo;
     newInfo.action_container.push(event);
     updateInfo(newInfo);
   }
@@ -75,18 +72,19 @@ export const logEnterCard = (
 export const logFlipping = (
   logInfo: reviewInfo,
   cardId: string,
+  cardIndex: number, 
+  tupleLength: number,
   updateInfo: (newInfo: reviewInfo) => void
 ) => {
   const event: action = {
     event_name: "flip",
+    event_time: Date(),
     card_id: cardId,
-    flip_time: Date(),
-    swipe_time: null,
     self_eval: null,
     test_eval: null,
-    isBuffer: null,
+    isBuffer: cardIndex !== tupleLength - 1,
   };
-  let newInfo = logInfo;
+  let newInfo: reviewInfo = logInfo;
   newInfo.action_container.push(event);
   updateInfo(newInfo);
 };
@@ -111,16 +109,15 @@ export const logOneMore = (
   // Log the event of swiping a card for one more
   const event: action = {
     event_name: "swipe",
+    event_time: Date(),
     card_id: cardId,
-    flip_time: null,
-    swipe_time: Date(),
     self_eval: "OneMore",
     test_eval: machineEvaluation,
     isBuffer: cardIndex !== tupleLength - 1,
   };
-  let copy = logInfo;
-  copy.action_container.push(event);
-  oneMore(tupleIndex, copy);
+  let newInfo: reviewInfo = logInfo;
+  newInfo.action_container.push(event);
+  oneMore(tupleIndex, newInfo);
 };
 
 // Function to Log Know Swipe
@@ -143,16 +140,15 @@ export const logKnow = (
   // Log the event of swiping a card for knowing
   const event: action = {
     event_name: "swipe",
+    event_time: Date(),
     card_id: cardId,
-    flip_time: null,
-    swipe_time: Date(),
     self_eval: "know",
     test_eval: machineEvaluation,
     isBuffer: cardIndex !== tupleLength - 1,
   };
-  let copy = logInfo;
-  copy.action_container.push(event);
-  moveOn(tupleIndex, copy);
+  let newInfo: reviewInfo = logInfo;
+  newInfo.action_container.push(event);
+  moveOn(tupleIndex, newInfo);
 };
 
 // Function to Log Dontknow Swipe
@@ -175,16 +171,15 @@ export const logDontKnow = (
   // Log the event of swiping a card for not knowing
   const event: action = {
     event_name: "swipe",
+    event_time: Date(),
     card_id: cardId,
-    flip_time: null,
-    swipe_time: Date(),
     self_eval: "DontKnow",
     test_eval: machineEvaluation,
     isBuffer: cardIndex !== tupleLength - 1,
   };
-  let copy = logInfo;
-  copy.action_container.push(event);
-  moveOn(tupleIndex, copy);
+  let newInfo: reviewInfo = logInfo;
+  newInfo.action_container.push(event);
+  moveOn(tupleIndex, newInfo);
 };
 
 // Function to log Poor Card before clicking
@@ -207,16 +202,15 @@ export const logPoorCardSwipeBefore = (
   // Log the event of swiping a card down without clicking
   const event: action = {
     event_name: "NoEvaluation",
+    event_time: Date(),
     card_id: cardId,
-    flip_time: null,
-    swipe_time: Date(),
     self_eval: "PoorCard",
     test_eval: machineEvaluation,
     isBuffer: cardIndex !== tupleLength - 1,
   };
-  let copy = logInfo;
-  copy.action_container.push(event);
-  moveOn(tupleIndex, copy);
+  let newInfo: reviewInfo = logInfo;
+  newInfo.action_container.push(event);
+  moveOn(tupleIndex, newInfo);
 };
 
 // Function to log poor card after clicking
@@ -239,14 +233,13 @@ export const logPoorCardSwipeAfter = (
   // Log the event of siwping a card down after answering
   const event: action = {
     event_name: "swipe",
+    event_time: Date(),
     card_id: cardId,
-    flip_time: null,
-    swipe_time: Date(),
     self_eval: "PoorCard",
     test_eval: machineEvaluation,
     isBuffer: cardIndex !== tupleLength - 1,
   };
-  let copy = logInfo;
-  copy.action_container.push(event);
-  moveOn(tupleIndex, copy);
+  let newInfo: reviewInfo = logInfo;
+  newInfo.action_container.push(event);
+  moveOn(tupleIndex, newInfo);
 };

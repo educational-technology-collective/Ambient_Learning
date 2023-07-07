@@ -9,6 +9,7 @@ import "./CardScreen.css";
 import React from "react";
 import FlashCardList from "../FlashCardComp/FlashCardList";
 import OneMoreFailMessage from "../IndicationComp/OneMoreFailMessage";
+import FinishedDisplay from "../TutorialComp/FinishedDisplay";
 
 const CardScreen: React.FC<{
   finished: number;
@@ -21,6 +22,7 @@ const CardScreen: React.FC<{
   updateInfo: (newInfo: reviewInfo) => void;
   swipeNextCard: (tupleIndex: number, newInfo: reviewInfo) => void;
   swipeOneMoreCard: (tupleIndex: number, newInfo: reviewInfo) => void;
+  handleHomeScreen: () => void;
 }> = ({
   finished,
   total,
@@ -32,6 +34,7 @@ const CardScreen: React.FC<{
   updateInfo,
   swipeNextCard,
   swipeOneMoreCard,
+  handleHomeScreen,
 }) => {
   const stackClass: string = isShake
     ? "card-stacker card-stacker-animate"
@@ -88,6 +91,14 @@ const CardScreen: React.FC<{
           })}
           {/* Give alert message if it's shaking due to OneMore */}
           {isShake ? <OneMoreFailMessage /> : null}
+
+          {/* Display the "Statistics/Finished Message" When Cards are done */}
+          {finished === total ? (
+            <FinishedDisplay
+              isTutorial={false}
+              enterScreen={handleHomeScreen}
+            />
+          ) : null}
         </div>
       </IonContent>
     </IonPage>

@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
+  appId: 'ionic.srs',
   appName: 'Space-Repetition',
   webDir: 'dist',
   server: {
