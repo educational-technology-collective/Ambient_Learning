@@ -1,7 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { Browser } from "@capacitor/browser";
 import { IonButton } from "@ionic/react";
-
+import './LogInButton.css'
 const LogInButton: React.FC = () => {
   const { loginWithRedirect } = useAuth0();
   const login = async () => {
@@ -14,7 +14,7 @@ const LogInButton: React.FC = () => {
 
   return (
     <>
-      <IonButton onClick={login}>Log In</IonButton>
+      <IonButton onClick={login} className="login-button">Sign In</IonButton>
     </>
   );
 };
