@@ -260,7 +260,7 @@ const App: React.FC = () => {
               exact
               path="/tutorial"
               render={() => (
-                <TutorialPage handleCardScreen={handleCardScreen} />
+                <TutorialPage handleCardScreen={handleCardScreen}/>
               )}
             />
             <Route
