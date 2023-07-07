@@ -23,6 +23,9 @@ const LogInPage: React.FC = () => {
           <div className='welcome-container'>
         <h1 className="welcome-text">Hi, Welcome<span className="welcome-covering"></span></h1>
         </div>
+        <div>
+        <h2 className='description-text'>Enlarge Brain Through <i>Flashcards</i></h2>
+        </div>
         <LogInButton />
         </div>   
       </IonContent>

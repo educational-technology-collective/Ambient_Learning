@@ -56,3 +56,31 @@
     color: snow;
   }
 }
+
+.description-text {
+  font-weight: bold;
+  text-align: center;
+  font-size: 2em;
+  color: azure;
+  opacity: 0;
+  animation: showDescription 1100ms forwards;
+  animation-delay: 1350ms;
+}
+
+@keyframes showDescription {
+  10%{
+    opacity: 0.1;
+  }
+  30%{
+    opacity: 0.3;
+  }
+  50%{
+    opacity: 0.5;
+  }
+  80%{
+    opacity: 0.8;
+  }
+  100%{
+    opacity: 1;
+  }
+}
