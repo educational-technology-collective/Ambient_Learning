@@ -14,6 +14,7 @@ import {
   logPoorCardSwipeAfter,
   logPoorCardSwipeBefore,
 } from "../utilities/logfunction";
+import NumberIndicator from "./NumberIndicator";
 const Card: React.FC<{
   obj: flashCard;
   tupleLength: number;
@@ -221,12 +222,9 @@ const Card: React.FC<{
         disabled={isClicked}
       >
         <div className={cardContentStyle} style={style}>
-        <div className="onemore-number front-text front-number">
-          {tupleCounter}
-        </div>
-        <div className="onemore-number back-text back-number">
-          {tupleCounter}
-        </div>
+        
+          <NumberIndicator tupleCounter={tupleCounter}/>
+          
           {/* Front Indicator */}
           <FrontIndicator indicatorOpacity={indicatorOpacity} />
 
