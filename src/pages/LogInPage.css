@@ -13,3 +13,24 @@
   justify-content: center;
   align-items: center;
 }
+
+.welcome-container{
+  margin-bottom: 2em;
+  display: grid;
+  place-items: center;
+}
+
+.welcome-text {
+  color: snow;
+  font-weight: 900;
+  font-size: 3.2em;
+  position: relative;
+}
+
+.welcome-covering{
+  position: absolute;
+  left: 0;
+  background: mediumslateblue;
+  height: 100%;
+  width: 100%;
+}

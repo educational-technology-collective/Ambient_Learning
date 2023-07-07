@@ -20,7 +20,9 @@ const LogInPage: React.FC = () => {
     <IonPage>
       <IonContent scrollY={false} className="login-content">
         <div className="login-page-container">
-        <h1>Hi, Welcome<span></span></h1>
+          <div className='welcome-container'>
+        <h1 className="welcome-text">Hi, Welcome<span className="welcome-covering"></span></h1>
+        </div>
         <LogInButton />
         </div>   
       </IonContent>
