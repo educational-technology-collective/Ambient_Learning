@@ -10,7 +10,7 @@ const LogOutButton : React.FC = () => {
   const isPhone = isPlatform("hybrid");
   const logoutUri = isPhone
     ? "ionic.srs://dev-cra0zttj8xlwi6sh.us.auth0.com/capacitor/ionic.srs/callback/"
-    : "http://localhost:8100";
+    : "http://localhost:8100/login";
 
   const { logout } = useAuth0();
 
@@ -28,8 +28,8 @@ const LogOutButton : React.FC = () => {
         });
       },
     });
-    history.push("/login");
     if (isPhone) {
+      history.push("/login");
       window.location.reload();
     }
   };
