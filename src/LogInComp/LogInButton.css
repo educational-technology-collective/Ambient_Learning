@@ -8,6 +8,9 @@
   color: grey;
   opacity: 0;
   --background: ivory;
+  --background-activated: aquamarine;
+  --background-focused: aqua;
+  --background-hover: aliceblue;
   animation: displayButton 1100ms ease-out forwards;
   animation-delay: 1350ms;
 }
