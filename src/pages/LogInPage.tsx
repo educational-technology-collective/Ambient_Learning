@@ -7,7 +7,6 @@ import {
 import "./LogInPage.css";
 import LogInButton from "../LogInComp/LogInButton";
 import { hideBar, showBar } from "../utilities/showTabBar";
-import AppNameHeader from "./AppNameHeader";
 
 const LogInPage: React.FC = () => {
   // Hide the bottom tabs when entering the login page
