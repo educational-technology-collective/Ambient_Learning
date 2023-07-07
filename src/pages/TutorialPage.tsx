@@ -13,8 +13,8 @@ import AppNameHeader from "./AppNameHeader";
 import { cards, dummyInfo } from "../utilities/tutorialpagedata";
 import OneMoreModal from "../TutorialComp/OneMoreModal";
 
-const TutorialPage: React.FC<{ handleCardScreen: () => void}> = ({
-  handleCardScreen
+const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
+  handleCardScreen,
 }) => {
   // Hide the bottom tabs for the tutorial page
   useIonViewWillEnter(hideBar);
@@ -57,11 +57,15 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void}> = ({
             }
           })}
         </div>
+        
+        {/* Display the modal of how one more card works */}
+        {tutorialCounter === 2 ? <OneMoreModal /> : null}
+
         {/* Display the message of tutorial finished and prompt them to jump to cards */}
         {tutorialCounter === 0 ? (
           <FinishedDisplay isTutorial={true} enterScreen={handleCardScreen} />
         ) : null}
-        {tutorialCounter === 2 ? <OneMoreModal/> : null}
+
       </IonContent>
     </IonPage>
   );
