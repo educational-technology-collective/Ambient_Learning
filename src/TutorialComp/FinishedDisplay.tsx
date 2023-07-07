@@ -2,7 +2,10 @@ import { useHistory } from "react-router";
 import { IonButton, IonText } from "@ionic/react";
 import "./FinishedDisplay.css";
 
-const FinishedDisplay: React.FC<{ isTutorial: boolean; enterScreen: () => void }> = ({ isTutorial, enterScreen }) => {
+const FinishedDisplay: React.FC<{
+  isTutorial: boolean;
+  enterScreen: () => void;
+}> = ({ isTutorial, enterScreen }) => {
   let screenText, buttonText, navigateScreen;
   const history = useHistory();
 
@@ -12,8 +15,8 @@ const FinishedDisplay: React.FC<{ isTutorial: boolean; enterScreen: () => void }
     buttonText = "Start Reviewing";
     navigateScreen = () => {
       enterScreen();
-      history.push('/cardscreen');
-    }
+      history.push("/cardscreen");
+    };
   }
   // If the message is after cards are done a day
   else {
@@ -21,8 +24,8 @@ const FinishedDisplay: React.FC<{ isTutorial: boolean; enterScreen: () => void }
     buttonText = "Return to Home";
     navigateScreen = () => {
       enterScreen();
-      history.push('/home');
-    }
+      history.push("/home");
+    };
   }
   return (
     <div className="finished-container">

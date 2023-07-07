@@ -10,7 +10,7 @@ Set appearing time to be 2.2s */
   box-shadow: 0rem 2px 4px gainsboro;
   border-radius: 0.4rem;
   background-color: cadetblue;
-  top: 8%
+  top: 8%;
 }
 
 /* Styling for the texts on the message */
@@ -34,13 +34,13 @@ Set appearing time to be 2.2s */
     opacity: 0.95;
     transform: translateY(0px);
   }
-  100%{
+  100% {
     opacity: 0;
     transform: translateY(-2000px);
   }
 }
 
-.arrow-image{
+.arrow-image {
   position: absolute;
   width: 15%;
   right: 2%;
@@ -49,11 +49,11 @@ Set appearing time to be 2.2s */
   transform: rotate(-30deg);
 }
 
-.show-up{
+.show-up {
   position: absolute;
   height: 13%;
   width: 80%;
-  animation: message-in-center 5s  ease-in-out forwards;
+  animation: message-in-center 5s ease-in-out forwards;
   top: 10%;
   left: 10%;
 }
