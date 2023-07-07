@@ -14,6 +14,20 @@
   align-items: center;
 }
 
+.space-craft{
+  width: 60%;
+  height: 20%;
+  margin-bottom: 10%;
+  animation: flyUp 1500ms forwards;
+  animation-delay: 1000ms;
+}
+
+@keyframes flyUp {
+  to{
+    transform: translateY(-70px);
+  }
+}
+
 .welcome-container{
   margin-bottom: 2em;
   display: grid;

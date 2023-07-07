@@ -7,6 +7,7 @@ import {
 import "./LogInPage.css";
 import LogInButton from "../LogInComp/LogInButton";
 import { hideBar, showBar } from "../utilities/showTabBar";
+import spacecraft from '../../spacecraft.svg'
 
 const LogInPage: React.FC = () => {
   // Hide the bottom tabs when entering the login page
@@ -19,7 +20,8 @@ const LogInPage: React.FC = () => {
     <IonPage>
       <IonContent scrollY={false} className="login-content">
         <div className="login-page-container">
-          <div className='welcome-container'>
+          <img src={spacecraft} alt='Spacecraft' className="space-craft"/>
+        <div className='welcome-container'>
         <h1 className="welcome-text">Hi, Welcome<span className="welcome-covering"></span></h1>
         </div>
         <div>
