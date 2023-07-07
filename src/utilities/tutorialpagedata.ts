@@ -13,7 +13,7 @@ export const cards = [
           { option: "Swipe Down", isCorrect: true },
         ],
       },
-    },
+    }
   ],
   [
     {
@@ -24,7 +24,7 @@ export const cards = [
         question: "How do I get one more card of the same concept?",
         answer: "Simply Swipe Up!!!",
       },
-    },
+    }
   ],
   [
     {
@@ -40,7 +40,7 @@ export const cards = [
           { option: "Swipe Down", isCorrect: false },
         ],
       },
-    },
+    }
   ],
   [
     {
@@ -52,7 +52,7 @@ export const cards = [
           "Hello there! Welocome to Tutorial! Tap this QA(Question & Answer) card to reveal the answer.\n\n Then Swipe!",
         answer: "Great Job! Swipe Right to indicate you know the card!!!",
       },
-    },
+    }
   ],
 ];
 

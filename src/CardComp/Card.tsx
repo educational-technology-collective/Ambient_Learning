@@ -19,6 +19,7 @@ const Card: React.FC<{
   tupleLength: number;
   cardIndex: number;
   tupleIndex: number;
+  tupleCounter: number;
   logInfo: reviewInfo;
   updateInfo: (newInfo: reviewInfo) => void;
   moveOn: (tupleIndex: number, newInfo: reviewInfo) => void;
@@ -29,6 +30,7 @@ const Card: React.FC<{
   tupleLength,
   cardIndex,
   tupleIndex,
+  tupleCounter,
   moveOn,
   logInfo,
   updateInfo,
@@ -219,6 +221,12 @@ const Card: React.FC<{
         disabled={isClicked}
       >
         <div className={cardContentStyle} style={style}>
+        <div className="onemore-number front-text front-number">
+          {tupleCounter}
+        </div>
+        <div className="onemore-number back-text back-number">
+          {tupleCounter}
+        </div>
           {/* Front Indicator */}
           <FrontIndicator indicatorOpacity={indicatorOpacity} />
 

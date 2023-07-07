@@ -40,6 +40,7 @@ const FlashCardList: React.FC<{
       moveOn={swipeNextCard}
       oneMore={swipeOneMoreCard}
       refTuple={refTuple}
+      tupleCounter={tupleCounter}
     />
   );
 
@@ -63,6 +64,7 @@ const FlashCardList: React.FC<{
                   moveOn={swipeNextCard}
                   oneMore={swipeOneMoreCard}
                   refTuple={refTuple}
+                  tupleCounter={tupleCounter}
                 />
               );
             }

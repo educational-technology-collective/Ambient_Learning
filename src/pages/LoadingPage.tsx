@@ -46,11 +46,6 @@ const LoadingPage: React.FC<{
       setProgress((prevProgress: number) => prevProgress + 0.05);
     }, 100);
 
-    if (showLoad && isFetched && progress > 1) {
-      setLoad(false);
-      setTimeout(navigateToCardScreen, 100);
-    }
-
     return () => clearInterval(interval);
   }, []);
 
