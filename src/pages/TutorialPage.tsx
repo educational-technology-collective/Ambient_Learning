@@ -11,6 +11,7 @@ import FlashCardList from "../FlashCardComp/FlashCardList";
 import FinishedDisplay from "../TutorialComp/FinishedDisplay";
 import AppNameHeader from "./AppNameHeader";
 import { cards, dummyInfo } from "../utilities/tutorialpagedata";
+import OneMoreModal from "../TutorialComp/OneMoreModal";
 
 const TutorialPage: React.FC<{ handleCardScreen: () => void}> = ({
   handleCardScreen
@@ -60,6 +61,7 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void}> = ({
         {tutorialCounter === 0 ? (
           <FinishedDisplay isTutorial={true} enterScreen={handleCardScreen} />
         ) : null}
+        {tutorialCounter === 2 ? <OneMoreModal/> : null}
       </IonContent>
     </IonPage>
   );

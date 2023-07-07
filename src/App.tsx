@@ -149,6 +149,7 @@ const App: React.FC = () => {
     logEnterHome(logInfo, updateInfo);
   };
 
+
   // Handler used to update logInfo
   const updateInfo = (newInfo: reviewInfo) => {
     setLog(newInfo);

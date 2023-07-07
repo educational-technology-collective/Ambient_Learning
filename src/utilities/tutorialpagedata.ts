@@ -21,7 +21,7 @@ export const cards = [
       lmid: "jjsjaodja",
       type: "q",
       content: {
-        question: "Nice! You may notice the number at the top-right corner.\n\n It indicates the number of cards with the same concept.\n\n How do I get one more card of the same concept?",
+        question: "Nice! How do I get one more card of the same concept?",
         answer: "Simply Swipe Up!!!",
       },
     }

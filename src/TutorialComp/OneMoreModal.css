@@ -1,0 +1,59 @@
+/* Styling for the box of the Message 
+Set appearing time to be 2.2s */
+.onemore-modal {
+  height: 90%;
+  width: 90%;
+  color: white;
+  padding: 0.02rem;
+  position: absolute;
+  border: 0.1rem solid aliceblue;
+  box-shadow: 0rem 2px 4px gainsboro;
+  border-radius: 0.4rem;
+  background-color: cadetblue;
+  top: 8%
+}
+
+/* Styling for the texts on the message */
+.onemore-modal-text {
+  font-weight: bold;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-top: 0.1rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+/* Growing Opacity then disappearing */
+@keyframes message-in-center {
+  0% {
+    opacity: 0;
+    transform: translateY(0px);
+  }
+  25%,
+  95% {
+    opacity: 0.95;
+    transform: translateY(0px);
+  }
+  100%{
+    opacity: 0;
+    transform: translateY(-2000px);
+  }
+}
+
+.arrow-image{
+  position: absolute;
+  width: 15%;
+  right: 2%;
+  bottom: 100%;
+  height: 20%;
+  transform: rotate(-30deg);
+}
+
+.show-up{
+  position: absolute;
+  height: 13%;
+  width: 80%;
+  animation: message-in-center 5s  ease-in-out forwards;
+  top: 10%;
+  left: 10%;
+}
