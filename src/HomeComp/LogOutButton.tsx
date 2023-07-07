@@ -1,10 +1,10 @@
 import { IonButton, isPlatform } from "@ionic/react";
-import './LogOutButton.css'
+import "./LogOutButton.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Browser } from "@capacitor/browser";
 import { useHistory } from "react-router";
 
-const LogOutButton : React.FC = () => {
+const LogOutButton: React.FC = () => {
   const history = useHistory();
 
   const isPhone = isPlatform("hybrid");
@@ -33,10 +33,12 @@ const LogOutButton : React.FC = () => {
       window.location.reload();
     }
   };
-  
-  return(
-    <IonButton className="logout-button" onClick={doLogout}>Log Out</IonButton>
-  )
+
+  return (
+    <IonButton className="logout-button" onClick={doLogout}>
+      Log Out
+    </IonButton>
+  );
 };
 
 export default LogOutButton;

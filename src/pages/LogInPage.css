@@ -1,11 +1,8 @@
-.login-content{
-  background:linear-gradient(
-    #2980b9,
-    #6dd5fa
-    );
+.login-content {
+  background: linear-gradient(#2980b9, #6dd5fa);
 }
 
-.login-page-container{
+.login-page-container {
   width: 100%;
   height: 100%;
   display: flex;
@@ -14,7 +11,7 @@
   align-items: center;
 }
 
-.space-craft{
+.space-craft {
   width: 60%;
   height: 20%;
   margin-bottom: 10%;
@@ -23,12 +20,12 @@
 }
 
 @keyframes flyUp {
-  to{
+  to {
     transform: translateY(-70px);
   }
 }
 
-.welcome-container{
+.welcome-container {
   margin-bottom: 2em;
   display: grid;
   place-items: center;
@@ -40,12 +37,12 @@
   font-size: 3.2em;
   font-family: "Montserra", sans-serif;
   position: relative;
-  color:transparent;
+  color: transparent;
   animation: showWelcome forwards;
   animation-delay: 1100ms;
 }
 
-.welcome-covering{
+.welcome-covering {
   position: absolute;
   left: 0;
   background: mediumslateblue;
@@ -55,18 +52,18 @@
 }
 
 @keyframes reveal-welcome {
-  70%{
+  70% {
     width: 100%;
     left: 0%;
   }
-  100%{
+  100% {
     width: 0%;
     left: 100%;
   }
 }
 
 @keyframes showWelcome {
-  to{
+  to {
     color: snow;
   }
 }
@@ -82,19 +79,19 @@
 }
 
 @keyframes showDescription {
-  10%{
+  10% {
     opacity: 0.1;
   }
-  30%{
+  30% {
     opacity: 0.3;
   }
-  50%{
+  50% {
     opacity: 0.5;
   }
-  80%{
+  80% {
     opacity: 0.8;
   }
-  100%{
+  100% {
     opacity: 1;
   }
 }
