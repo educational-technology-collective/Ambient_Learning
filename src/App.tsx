@@ -116,8 +116,6 @@ const App: React.FC = () => {
     );
   }, []);
 
-  console.log(logInfo);
-
   // How Many Cards Finished
   const [finished, setFinished] = useState(0);
 
@@ -219,7 +217,6 @@ const App: React.FC = () => {
     return <LogInPage />;
   }
 
-
   return (
     <IonApp>
       <IonReactRouter>
@@ -259,7 +256,13 @@ const App: React.FC = () => {
               {isAuthenticated ? <Redirect to="/loading" /> : <LogInPage />}
             </Route>
 
-            <Route exact path="/tutorial" render={() => <TutorialPage handleCardScreen={handleCardScreen}/>} />
+            <Route
+              exact
+              path="/tutorial"
+              render={() => (
+                <TutorialPage handleCardScreen={handleCardScreen} />
+              )}
+            />
             <Route
               exact
               path="/loading"

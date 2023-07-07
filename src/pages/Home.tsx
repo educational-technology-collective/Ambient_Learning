@@ -1,17 +1,9 @@
-import {
-  IonContent,
-  IonPage,
-  IonIcon,
-  IonButton,
-  isPlatform,
-} from "@ionic/react";
+import { IonContent, IonPage, IonIcon } from "@ionic/react";
 import "./Home.css";
 import { useHistory } from "react-router-dom";
 import { diamond } from "ionicons/icons";
 import DashBoard from "../HomeComp/DashBoard";
 import AppNameHeader from "./AppNameHeader";
-import { useAuth0 } from "@auth0/auth0-react";
-import { Browser } from "@capacitor/browser";
 import LogOutButton from "../LogComp/LogOutButton";
 
 const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({

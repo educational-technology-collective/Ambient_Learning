@@ -36,8 +36,8 @@ const LoadingPage: React.FC<{
   };
 
   const navigateToTutorialScreen = () => {
-    history.push('/tutorial');
-  }
+    history.push("/tutorial");
+  };
 
   useEffect(() => {
     // Add 0.06 to the value every 0.1 second
