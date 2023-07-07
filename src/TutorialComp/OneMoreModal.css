@@ -1,5 +1,14 @@
-/* Styling for the box of the Message 
-Set appearing time to be 2.2s */
+/* Parent Container of Arrow Image and Modal Message */
+.show-up {
+  position: absolute;
+  height: 13%;
+  width: 80%;
+  animation: message-in-center 5s ease-in-out forwards;
+  top: 10%;
+  left: 10%;
+}
+
+/* Styling for the modal */
 .onemore-modal {
   height: 90%;
   width: 90%;
@@ -13,7 +22,7 @@ Set appearing time to be 2.2s */
   top: 8%;
 }
 
-/* Styling for the texts on the message */
+/* Styling for the texts on the modal */
 .onemore-modal-text {
   font-weight: bold;
   font-size: 1.5rem;
@@ -23,7 +32,8 @@ Set appearing time to be 2.2s */
   margin-right: 0.5rem;
 }
 
-/* Growing Opacity then disappearing */
+/* Growing Opacity then disappearing 
+TranslateY so not affecting */
 @keyframes message-in-center {
   0% {
     opacity: 0;
@@ -40,6 +50,7 @@ Set appearing time to be 2.2s */
   }
 }
 
+/* Image of the Arrow */
 .arrow-image {
   position: absolute;
   width: 15%;
@@ -47,13 +58,4 @@ Set appearing time to be 2.2s */
   bottom: 100%;
   height: 20%;
   transform: rotate(-30deg);
-}
-
-.show-up {
-  position: absolute;
-  height: 13%;
-  width: 80%;
-  animation: message-in-center 5s ease-in-out forwards;
-  top: 10%;
-  left: 10%;
 }
