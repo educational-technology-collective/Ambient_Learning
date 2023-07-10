@@ -220,7 +220,24 @@ const App: React.FC = () => {
   }
 
  const backCard = {
-  nextReview: null,
+  fcId: {
+    $oid: "sjdaidjsodajidso"
+  },
+  type: 'q',
+  latestRecord: {
+    tapResult: null,
+    swipeResult: 'know',
+  },
+  prevFactor: 2,
+  prevInterval: 1,
+  nextReview: new Date('2023-07-10'),
+  _id: 'sdjaidjsoajdisdjoajid',
+  createdAt: {
+    $date: new Date('2023-06-19'),
+  },
+  updatedAt: {
+    $date: new Date('2023-07-10'),
+  }
  }
  srsAlgorithm(backCard)
 

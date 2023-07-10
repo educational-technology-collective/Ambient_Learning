@@ -45,20 +45,12 @@ declare global {
       $oid: string
     };
     type: string;
-    reviewRecord: {
-      gotCorrect: number,
-      gotWrong: number,
-      skipped: number,
-      know: number,
-      forget: number,
-      oneMore: number,
-      noMore: number
-    },
     latestRecord: {
       tapResult: number | null,
-      swipeResult: string,
+      swipeResult: string | null,
     }
-    seenTime: number,
+    prevInterval: number,
+    prevFactor: number,
     nextReview: Date | null;
     _id: string;
     createdAt: {
