@@ -60,26 +60,23 @@ export const algorithmTester = (previous: any, evaluation: any) => {
       
       if(evaluation.type === 'm'){
         if(evaluation.tapResult === 0){
-          memFactor -= 0.18;
-        }else if(evaluation.tapResult === 1){
-          memFactor += 0.1;
+          memFactor /= 1.5;
+        }
+        else if(evaluation.tapResult === 1){
+          memFactor *= 1.05;
         }else{
-          memFactor -= 0.05;
+          memFactor *= 0.98;
         }
       }
       if(evaluation.swipeResult === 'know'){
-        // memFactor += 0.02  * delay;
-        memFactor += 0.12;
-      }
-      else if(evaluation.swipeResult === 'forget'){
-        memFactor = previous.memFactor - 0.18;
-        interval = 1;
+        memFactor += 0.05;
+      }else if(evaluation.swipeResult === 'forget'){
+        memFactor -= 0.5;
         return {memFactor: memFactor, interval: interval};
       }else if(evaluation.swipeResult === 'oneMore'){
-        memFactor -= 0.1;
-      }
-      else{
-        return {memFactor: memFactor, interval: 999999999999};
+        memFactor *= 0.98;
+      }else {
+        return {memFactor: memFactor, interval: 9999999999999};
       }
       memFactor = Math.max(1.3, memFactor);
       interval = Math.ceil(previous.interval * memFactor);
