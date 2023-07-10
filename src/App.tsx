@@ -52,7 +52,7 @@ import { Browser } from "@capacitor/browser";
 import { useAuth0 } from "@auth0/auth0-react";
 import TutorialPage from "./pages/TutorialPage";
 import { algorithmTester, srsAlgorithm } from "./utilities/algorithm";
-import { evaulationSet1, evaulationSet2, evaulationSet3, evaulationSet4, evaulationSet5 } from "./utilities/algorithmData";
+import { evaulationSet1, evaulationSet10, evaulationSet11, evaulationSet12, evaulationSet2, evaulationSet3, evaulationSet4, evaulationSet5, evaulationSet6, evaulationSet7, evaulationSet8, evaulationSet9 } from "./utilities/algorithmData";
 setupIonicReact({
   swipeBackEnabled: false,
 });
@@ -254,6 +254,56 @@ const App: React.FC = () => {
      previous5 = algorithmTester(previous5, evaulationSet5[i]);
      console.log("set 5", previous5);
   }
+
+  let previous6 = null;
+  for(let i = 0; i < evaulationSet6.length; i++)
+  {
+     previous6 = algorithmTester(previous6, evaulationSet6[i]);
+     console.log("set 6", previous6);
+  }
+
+  let previous7 = null;
+  for(let i = 0; i < evaulationSet7.length; i++)
+  {
+     previous7 = algorithmTester(previous7, evaulationSet7[i]);
+     console.log("set 7", previous7);
+  }
+
+  let previous8 = null;
+  for(let i = 0; i < evaulationSet8.length; i++)
+  {
+     previous8 = algorithmTester(previous8, evaulationSet8[i]);
+     console.log("set 8", previous8);
+  }
+
+  let previous9 = null;
+  for(let i = 0; i < evaulationSet9.length; i++)
+  {
+     previous9 = algorithmTester(previous9, evaulationSet9[i]);
+     console.log("set 9", previous9);
+  }
+
+  let previous10 = null;
+  for(let i = 0; i < evaulationSet10.length; i++)
+  {
+     previous10 = algorithmTester(previous10, evaulationSet10[i]);
+     console.log("set 10", previous10);
+  }
+
+  let previous11 = null;
+  for(let i = 0; i < evaulationSet11.length; i++)
+  {
+     previous11 = algorithmTester(previous11, evaulationSet11[i]);
+     console.log("set 11", previous11);
+  }
+
+  let previous12 = null;
+  for(let i = 0; i < evaulationSet12.length; i++)
+  {
+     previous12 = algorithmTester(previous12, evaulationSet12[i]);
+     console.log("set 12", previous12);
+  }
+  
 
   return (
     <IonApp>

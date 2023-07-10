@@ -312,3 +312,383 @@ export const evaulationSet5 = [
     swipeResult: 'oneMore'
   },
 ];
+
+
+// All Answer Correct and Swipe Know
+export const evaulationSet6 = [
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+];
+
+// Not Lying but got wrong one time
+export const evaulationSet7 = [
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 0,
+    swipeResult: 'forget'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+];
+
+// Not lying but got wrong twice
+export const evaulationSet8 = [
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 0,
+    swipeResult: 'forget'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 0,
+    swipeResult: 'forget'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+];
+
+// Some Lying with no OneMore
+export const evaulationSet9 = [
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 0,
+    swipeResult: 'forget'
+  },
+  {
+    type: 'm',
+    tapResult: 0,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 2,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'forget'
+  },
+  {
+    type: 'm',
+    tapResult: 0,
+    swipeResult: 'forget'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 2,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+];
+
+// Still Some Lying without OneMore
+export const evaulationSet10 = [
+  {
+    type: 'm',
+    tapResult: 2,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 0,
+    swipeResult: 'forget'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 0,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 2,
+    swipeResult: 'forget'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'forget'
+  },
+  {
+    type: 'm',
+    tapResult: 0,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 2,
+    swipeResult: 'forget'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+];
+
+// No Lying Without OneMore
+export const evaulationSet11 = [
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 0,
+    swipeResult: 'forget'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 0,
+    swipeResult: 'oneMore'
+  },
+  {
+    type: 'm',
+    tapResult: 0,
+    swipeResult: 'forget'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'oneMore'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'oneMore'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+];
+
+
+// Lying With OneMore
+export const evaulationSet12 = [
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 0,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 0,
+    swipeResult: 'oneMore'
+  },
+  {
+    type: 'm',
+    tapResult: 2,
+    swipeResult: 'forget'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'oneMore'
+  },
+  {
+    type: 'm',
+    tapResult: 0,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+  {
+    type: 'm',
+    tapResult: 2,
+    swipeResult: 'oneMore'
+  },
+  {
+    type: 'm',
+    tapResult: 1,
+    swipeResult: 'know'
+  },
+];
