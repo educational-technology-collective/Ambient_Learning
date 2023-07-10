@@ -51,6 +51,7 @@ import { Browser } from "@capacitor/browser";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import TutorialPage from "./pages/TutorialPage";
+import { srsAlgorithm } from "./utilities/algorithm";
 setupIonicReact({
   swipeBackEnabled: false,
 });
@@ -217,6 +218,11 @@ const App: React.FC = () => {
   if (!isAuthenticated && !isLoading) {
     return <LogInPage />;
   }
+
+ const backCard = {
+  nextReview: null,
+ }
+ srsAlgorithm(backCard)
 
   return (
     <IonApp>

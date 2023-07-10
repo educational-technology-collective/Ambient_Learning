@@ -39,4 +39,33 @@ declare global {
     number_shake: number;
     action_container: action[];
   }
+
+  interface userCard {
+    fcId: {
+      $oid: string
+    };
+    type: string;
+    reviewRecord: {
+      gotCorrect: number,
+      gotWrong: number,
+      skipped: number,
+      know: number,
+      forget: number,
+      oneMore: number,
+      noMore: number
+    },
+    latestRecord: {
+      tapResult: number | null,
+      swipeResult: string,
+    }
+    seenTime: number,
+    nextReview: Date | null;
+    _id: string;
+    createdAt: {
+      $date: Date | null
+    };
+    updatedAt: {
+      $date: Date | null
+    }
+  }
 }
