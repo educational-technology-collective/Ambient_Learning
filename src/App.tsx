@@ -51,7 +51,8 @@ import { Browser } from "@capacitor/browser";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import TutorialPage from "./pages/TutorialPage";
-import { srsAlgorithm } from "./utilities/algorithm";
+import { algorithmTester, srsAlgorithm } from "./utilities/algorithm";
+import { evaulationSet1, evaulationSet2, evaulationSet3, evaulationSet4, evaulationSet5 } from "./utilities/algorithmData";
 setupIonicReact({
   swipeBackEnabled: false,
 });
@@ -219,27 +220,40 @@ const App: React.FC = () => {
     return <LogInPage />;
   }
 
- const backCard = {
-  fcId: {
-    $oid: "sjdaidjsodajidso"
-  },
-  type: 'q',
-  latestRecord: {
-    tapResult: null,
-    swipeResult: 'know',
-  },
-  prevFactor: 2,
-  prevInterval: 1,
-  nextReview: new Date('2023-07-10'),
-  _id: 'sdjaidjsoajdisdjoajid',
-  createdAt: {
-    $date: new Date('2023-06-19'),
-  },
-  updatedAt: {
-    $date: new Date('2023-07-10'),
+  let previous = null;
+  for(let i = 0; i < evaulationSet1.length; i++)
+  {
+     previous = algorithmTester(previous, evaulationSet1[i]);
+     console.log("set 1", previous);
   }
- }
- srsAlgorithm(backCard)
+
+  let previous2 = null;
+  for(let i = 0; i < evaulationSet2.length; i++)
+  {
+     previous2 = algorithmTester(previous2, evaulationSet2[i]);
+     console.log("set 2", previous2);
+  }
+
+  let previous3 = null;
+  for(let i = 0; i < evaulationSet3.length; i++)
+  {
+     previous3 = algorithmTester(previous3, evaulationSet3[i]);
+     console.log("set 3", previous3);
+  }
+
+  let previous4 = null;
+  for(let i = 0; i < evaulationSet4.length; i++)
+  {
+     previous4 = algorithmTester(previous4, evaulationSet4[i]);
+     console.log("set 4", previous4);
+  }
+
+  let previous5 = null;
+  for(let i = 0; i < evaulationSet5.length; i++)
+  {
+     previous5 = algorithmTester(previous5, evaulationSet5[i]);
+     console.log("set 5", previous5);
+  }
 
   return (
     <IonApp>

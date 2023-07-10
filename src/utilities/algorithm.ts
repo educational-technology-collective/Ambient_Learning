@@ -44,5 +44,47 @@ export const srsAlgorithm = (card : userCard) => {
     // card.nextReview = new Date().setDate()
   return interval;
     
-
 };
+
+
+
+
+
+
+export const algorithmTester = (previous: any, evaluation: any) => {
+  let memFactor = 2, interval = 1;
+    // Case When the card is not new
+    if(previous !== null){
+      
+      memFactor = previous.memFactor;
+      
+      if(evaluation.swipeResult === 'know'){
+        // memFactor += 0.02  * delay;
+        memFactor += 0.15;
+      }
+      else if(evaluation.swipeResult === 'forget'){
+        memFactor = previous.memFactor - 0.35;
+        interval = 1;
+        return {memFactor: memFactor, interval: interval};
+      }else if(evaluation.swipeResult === 'oneMore'){
+        memFactor -= 0.1;
+      }
+      else{
+        return {memFactor: memFactor, interval: 999999999999};
+      }
+      if(evaluation.type === 'm'){
+        if(evaluation.tapResult === 0){
+          memFactor -= 0.15;
+        }else if(evaluation.tapResult === 1){
+          memFactor += 0.1;
+        }else{
+          memFactor -= 0.05;
+        }
+      }
+      memFactor = Math.max(1.3, memFactor);
+      interval = Math.ceil(previous.interval * memFactor * 0.9);
+      
+    }
+    // card.nextReview = new Date().setDate()
+  return {memFactor: memFactor, interval: interval};
+}
