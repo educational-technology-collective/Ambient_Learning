@@ -221,89 +221,113 @@ const App: React.FC = () => {
   }
 
   let previous = null;
+  let data1 = [];
   for(let i = 0; i < evaulationSet1.length; i++)
   {
      previous = algorithmTester(previous, evaulationSet1[i]);
-     console.log("set 1", previous);
+     data1.push(previous.interval);
   }
+  console.log("set 1", JSON.stringify(data1));
 
   let previous2 = null;
+  let data2 = [];
   for(let i = 0; i < evaulationSet2.length; i++)
   {
      previous2 = algorithmTester(previous2, evaulationSet2[i]);
-     console.log("set 2", previous2);
+     data2.push(previous2.interval);
   }
+  console.log("set 2", JSON.stringify(data2));
 
   let previous3 = null;
+  let data3 = [];
   for(let i = 0; i < evaulationSet3.length; i++)
   {
      previous3 = algorithmTester(previous3, evaulationSet3[i]);
-     console.log("set 3", previous3);
+     data3.push(previous3.interval);
   }
+  console.log("set 3", JSON.stringify(data3));
 
   let previous4 = null;
+  let data4 = [];
   for(let i = 0; i < evaulationSet4.length; i++)
   {
      previous4 = algorithmTester(previous4, evaulationSet4[i]);
-     console.log("set 4", previous4);
+     data4.push(previous4.interval);
   }
+  console.log("set 4", JSON.stringify(data4));
 
   let previous5 = null;
+  let data5 = [];
   for(let i = 0; i < evaulationSet5.length; i++)
   {
      previous5 = algorithmTester(previous5, evaulationSet5[i]);
-     console.log("set 5", previous5);
+     data5.push(previous5.interval);
   }
+  console.log("set 5", JSON.stringify(data5));
 
   let previous6 = null;
+  let data6 = [];
   for(let i = 0; i < evaulationSet6.length; i++)
   {
      previous6 = algorithmTester(previous6, evaulationSet6[i]);
-     console.log("set 6", previous6);
+     data6.push(previous6.interval);
   }
+  console.log("set 6", JSON.stringify(data6))
 
   let previous7 = null;
+  let data7 = [];
   for(let i = 0; i < evaulationSet7.length; i++)
   {
      previous7 = algorithmTester(previous7, evaulationSet7[i]);
-     console.log("set 7", previous7);
+     data7.push(previous7.interval);
   }
+  console.log("set 7", JSON.stringify(data7));
 
   let previous8 = null;
+  let data8 = [];
   for(let i = 0; i < evaulationSet8.length; i++)
   {
      previous8 = algorithmTester(previous8, evaulationSet8[i]);
-     console.log("set 8", previous8);
+     data8.push(previous8.interval);
   }
+  console.log('set 8', JSON.stringify(data8));
 
   let previous9 = null;
+  let data9 = [];
   for(let i = 0; i < evaulationSet9.length; i++)
   {
      previous9 = algorithmTester(previous9, evaulationSet9[i]);
-     console.log("set 9", previous9);
+     data9.push(previous9.interval);
   }
+  console.log('set 9', JSON.stringify(data9));
 
   let previous10 = null;
+  let data10 = [];
   for(let i = 0; i < evaulationSet10.length; i++)
   {
      previous10 = algorithmTester(previous10, evaulationSet10[i]);
-     console.log("set 10", previous10);
+     data10.push(previous10.interval);
   }
+  console.log("Set 10", JSON.stringify(data10));
 
   let previous11 = null;
+  let data11 = [];
   for(let i = 0; i < evaulationSet11.length; i++)
   {
      previous11 = algorithmTester(previous11, evaulationSet11[i]);
-     console.log("set 11", previous11);
+     data11.push(previous11.interval);
   }
+  console.log('Set 11', JSON.stringify(data11));
 
   let previous12 = null;
+  let data12 = [];
   for(let i = 0; i < evaulationSet12.length; i++)
   {
      previous12 = algorithmTester(previous12, evaulationSet12[i]);
-     console.log("set 12", previous12);
+     data12.push(previous12.interval);
   }
-  
+  console.log('Set 12', JSON.stringify(data12));
+
 
   return (
     <IonApp>
