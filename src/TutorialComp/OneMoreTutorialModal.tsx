@@ -1,4 +1,4 @@
-import "./OneMoreModal.css";
+import "./OneMoreTutorialModal.css";
 import arrow from "../../arrow.png";
 const OneMoreTutorialModal: React.FC = () => {
   return (
