@@ -52,31 +52,57 @@ export const srsAlgorithm = (card : userCard) => {
 
 
 export const algorithmTester = (previous: any, evaluation: any) => {
-  let memFactor = 1.8, interval = 1;
+  let memFactor = 1.75, interval = 1;
     // Case When the card is not new
     if(previous !== null){
-      
+      if(evaluation.swipeResult === 'noMore'){
+        return {memFactor: memFactor, interval: 9999999999999};
+      }
       memFactor = previous.memFactor;
       
       if(evaluation.type === 'm'){
         if(evaluation.tapResult === 0){
-          memFactor /= 1.5;
+          if(evaluation.swipeResult === 'forget'){
+            memFactor -= 0.2;
+          }else if(evaluation.swipeResult === 'know'){
+            memFactor -= 0.15
+          }else{
+            memFactor -= 0.05
+          }
+          memFactor = Math.max(1.3, memFactor);
+          return {memFactor: memFactor, interval: 1};
         }
         else if(evaluation.tapResult === 1){
-          memFactor *= 1.05;
+          if(evaluation.swipeResult === 'forget'){
+            memFactor += 0.1;
+            memFactor = Math.max(1.3, memFactor);
+            return {memFactor: memFactor, interval: 1}
+          }else if(evaluation.swipeResult === 'know'){
+            memFactor += 0.15;
+          }else{
+            memFactor += 0.05;
+          }
         }else{
-          memFactor *= 0.98;
+          if(evaluation.swipeResult === 'forget'){
+            memFactor -= 0.20;
+            memFactor = Math.max(1.3, memFactor);
+            return {memFactor: memFactor, interval: 1}
+          }else if(evaluation.swipeResult === 'know'){
+            memFactor += 0.08;
+          }else{
+            memFactor -= 0.05;
+          }
         }
-      }
-      if(evaluation.swipeResult === 'know'){
-        memFactor += 0.05;
-      }else if(evaluation.swipeResult === 'forget'){
-        memFactor -= 0.5;
-        return {memFactor: memFactor, interval: interval};
-      }else if(evaluation.swipeResult === 'oneMore'){
-        memFactor *= 0.98;
-      }else {
-        return {memFactor: memFactor, interval: 9999999999999};
+      }else{
+        if(evaluation.swipeResult === 'know'){
+          memFactor += 0.15;
+        }else if(evaluation.swipeResult === 'forget'){
+          memFactor -= 0.2;
+          memFactor = Math.max(1.3, memFactor);
+          return {memFactor: memFactor, interval: 1}
+        }else{
+          memFactor -= 0.05;
+        }
       }
       memFactor = Math.max(1.3, memFactor);
       interval = Math.ceil(previous.interval * memFactor);
