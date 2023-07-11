@@ -1,6 +1,6 @@
 import "./OneMoreModal.css";
 import arrow from "../../arrow.png";
-const OneMoreModal: React.FC = () => {
+const OneMoreTutorialModal: React.FC = () => {
   return (
     <div className="show-up">
       <img src={arrow} alt="Arrow" className="arrow-image" />
@@ -13,4 +13,4 @@ const OneMoreModal: React.FC = () => {
   );
 };
 
-export default OneMoreModal;
+export default OneMoreTutorialModal;
