@@ -1,3 +1,11 @@
+/* 
+------------**********-----------
+
+This file is for the logging telementary data. 
+This also contains functions to move on the cards deck.
+
+------------**********-----------
+*/
 // Function to Log the Event of Shaking
 export const logShakePhone = (
   oldInfo: reviewInfo,
