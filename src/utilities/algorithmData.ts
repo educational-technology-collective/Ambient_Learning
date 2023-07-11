@@ -134,6 +134,33 @@ export const evaulationSet1 = [
     oneMore: 0,
     noMore: 0
   },
+  {
+    type: 'q',
+    tapResult: null,
+    swipeResult: 'forget',
+    know: 9,
+    forget: 2,
+    oneMore: 0,
+    noMore: 0
+  },
+  {
+    type: 'q',
+    tapResult: null,
+    swipeResult: 'know',
+    know: 10,
+    forget: 2,
+    oneMore: 0,
+    noMore: 0
+  },
+  {
+    type: 'q',
+    tapResult: null,
+    swipeResult: 'know',
+    know: 11,
+    forget: 2,
+    oneMore: 0,
+    noMore: 0
+  },
 ];
 
 
