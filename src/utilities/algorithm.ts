@@ -6,8 +6,6 @@ export const srsAlgorithm = (card : userCard) => {
 
 
 
-
-
 export const algorithmTester = (previous: any, evaluation: any) => {
   let memFactor = 1.95, interval = 1;
     // Case When the card is not new
