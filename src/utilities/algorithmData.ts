@@ -47,52 +47,92 @@ export const evaulationSet1 = [
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 1,
+    forget: 0,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 2,
+    forget: 0,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 3,
+    forget: 0,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 4,
+    forget: 0,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 5,
+    forget: 0,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 6,
+    forget: 0,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 7,
+    forget: 0,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 8,
+    forget: 0,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 9,
+    forget: 0,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 10,
+    forget: 0,
+    oneMore: 0,
+    noMore: 0
   },
 ];
 
