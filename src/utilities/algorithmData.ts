@@ -142,52 +142,92 @@ export const evaulationSet2 = [
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 1,
+    forget: 0,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 2,
+    forget: 0,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'forget'
+    swipeResult: 'forget',
+    know: 2,
+    forget: 1,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 3,
+    forget: 1,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 4,
+    forget: 1,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'forget'
+    swipeResult: 'forget',
+    know: 4,
+    forget: 2,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 5,
+    forget: 2,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 6,
+    forget: 2,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 7,
+    forget: 2,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 8,
+    forget: 2,
+    oneMore: 0,
+    noMore: 0
   },
 ];
 
@@ -197,52 +237,92 @@ export const evaulationSet3 = [
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 1,
+    forget: 0,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 2,
+    forget: 0,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 3,
+    forget: 0,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'forget'
+    swipeResult: 'forget',
+    know: 3,
+    forget: 1,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 4,
+    forget: 1,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 5,
+    forget: 1,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 6,
+    forget: 1,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 7,
+    forget: 1,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 8,
+    forget: 1,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 9,
+    forget: 1,
+    oneMore: 0,
+    noMore: 0
   },
 ];
 
@@ -251,52 +331,92 @@ export const evaulationSet4 = [
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'forget'
+    swipeResult: 'forget',
+    know: 0,
+    forget: 1,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 1,
+    forget: 1,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 2,
+    forget: 1,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'oneMore'
+    swipeResult: 'oneMore',
+    know: 2,
+    forget: 1,
+    oneMore: 1,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'oneMore'
+    swipeResult: 'oneMore',
+    know: 2,
+    forget: 1,
+    oneMore: 2,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'forget'
+    swipeResult: 'forget',
+    know: 2,
+    forget: 2,
+    oneMore: 2,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 3,
+    forget: 2,
+    oneMore: 2,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 4,
+    forget: 2,
+    oneMore: 2,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 5,
+    forget: 2,
+    oneMore: 2,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'oneMore'
+    swipeResult: 'oneMore',
+    know: 5,
+    forget: 2,
+    oneMore: 3,
+    noMore: 0
   },
 ];
 
@@ -304,52 +424,92 @@ export const evaulationSet5 = [
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 1,
+    forget: 0,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'forget'
+    swipeResult: 'forget',
+    know: 1,
+    forget: 1,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 2,
+    forget: 1,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'oneMore'
+    swipeResult: 'oneMore',
+    know: 2,
+    forget: 1,
+    oneMore: 1,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 3,
+    forget: 1,
+    oneMore: 1,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'forget'
+    swipeResult: 'forget',
+    know: 3,
+    forget: 2,
+    oneMore: 1,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 4,
+    forget: 2,
+    oneMore: 1,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 5,
+    forget: 2,
+    oneMore: 1,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 6,
+    forget: 2,
+    oneMore: 1,
+    noMore: 0
   },
   {
     type: 'q',
     tapResult: null,
-    swipeResult: 'oneMore'
+    swipeResult: 'oneMore',
+    know: 6,
+    forget: 2,
+    oneMore: 2,
+    noMore: 0
   },
 ];
 
@@ -359,52 +519,92 @@ export const evaulationSet6 = [
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 1,
+    forget: 0,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 2,
+    forget: 0,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 3,
+    forget: 0,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 4,
+    forget: 0,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 5,
+    forget: 0,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 6,
+    forget: 0,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 7,
+    forget: 0,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 8,
+    forget: 0,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 9,
+    forget: 0,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 10,
+    forget: 0,
+    oneMore: 0,
+    noMore: 0
   },
 ];
 
@@ -413,52 +613,92 @@ export const evaulationSet7 = [
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 1,
+    forget: 0,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 2,
+    forget: 0,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 3,
+    forget: 0,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 0,
-    swipeResult: 'forget'
+    swipeResult: 'forget',
+    know: 3,
+    forget: 1,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 4,
+    forget: 1,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 5,
+    forget: 1,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 6,
+    forget: 1,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 7,
+    forget: 1,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 8,
+    forget: 1,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 9,
+    forget: 1,
+    oneMore: 0,
+    noMore: 0
   },
 ];
 
@@ -467,52 +707,92 @@ export const evaulationSet8 = [
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 1,
+    forget: 0,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 2,
+    forget: 0,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 0,
-    swipeResult: 'forget'
+    swipeResult: 'forget',
+    know: 2,
+    forget: 1,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 3,
+    forget: 1,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 4,
+    forget: 1,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 5,
+    forget: 1,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 0,
-    swipeResult: 'forget'
+    swipeResult: 'forget',
+    know: 5,
+    forget: 2,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 6,
+    forget: 2,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 7,
+    forget: 2,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 8,
+    forget: 2,
+    oneMore: 0,
+    noMore: 0
   },
 ];
 
@@ -521,52 +801,92 @@ export const evaulationSet9 = [
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 1,
+    forget: 0,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 0,
-    swipeResult: 'forget'
+    swipeResult: 'forget',
+    know: 1,
+    forget: 1,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 0,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 2,
+    forget: 1,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 3,
+    forget: 1,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 2,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 4,
+    forget: 1,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'forget'
+    swipeResult: 'forget',
+    know: 4,
+    forget: 2,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 0,
-    swipeResult: 'forget'
+    swipeResult: 'forget',
+    know: 4,
+    forget: 3,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 5,
+    forget: 3,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 2,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 6,
+    forget: 3,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 7,
+    forget: 3,
+    oneMore: 0,
+    noMore: 0
   },
 ];
 
@@ -575,52 +895,92 @@ export const evaulationSet10 = [
   {
     type: 'm',
     tapResult: 2,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 1,
+    forget: 0,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 0,
-    swipeResult: 'forget'
+    swipeResult: 'forget',
+    know: 1,
+    forget: 1,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 2,
+    forget: 1,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 0,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 3,
+    forget: 1,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 2,
-    swipeResult: 'forget'
+    swipeResult: 'forget',
+    know: 3,
+    forget: 2,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'forget'
+    swipeResult: 'forget',
+    know: 3,
+    forget: 3,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 0,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 4,
+    forget: 3,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 5,
+    forget: 3,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 2,
-    swipeResult: 'forget'
+    swipeResult: 'forget',
+    know: 5,
+    forget: 4,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 6,
+    forget: 4,
+    oneMore: 0,
+    noMore: 0
   },
 ];
 
@@ -629,52 +989,92 @@ export const evaulationSet11 = [
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 1,
+    forget: 0,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 0,
-    swipeResult: 'forget'
+    swipeResult: 'forget',
+    know: 1,
+    forget: 1,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 2,
+    forget: 1,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 0,
-    swipeResult: 'oneMore'
+    swipeResult: 'oneMore',
+    know: 2,
+    forget: 1,
+    oneMore: 1,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 0,
-    swipeResult: 'forget'
+    swipeResult: 'forget',
+    know: 2,
+    forget: 2,
+    oneMore: 1,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'oneMore'
+    swipeResult: 'oneMore',
+    know: 2,
+    forget: 2,
+    oneMore: 2,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 3,
+    forget: 2,
+    oneMore: 2,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 4,
+    forget: 2,
+    oneMore: 2,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'oneMore'
+    swipeResult: 'oneMore',
+    know: 4,
+    forget: 2,
+    oneMore: 3,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 5,
+    forget: 2,
+    oneMore: 3,
+    noMore: 0
   },
 ];
 
@@ -684,51 +1084,91 @@ export const evaulationSet12 = [
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 1,
+    forget: 0,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 2,
+    forget: 0,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 0,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 3,
+    forget: 0,
+    oneMore: 0,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 0,
-    swipeResult: 'oneMore'
+    swipeResult: 'oneMore',
+    know: 3,
+    forget: 0,
+    oneMore: 1,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 2,
-    swipeResult: 'forget'
+    swipeResult: 'forget',
+    know: 3,
+    forget: 1,
+    oneMore: 1,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'oneMore'
+    swipeResult: 'oneMore',
+    know: 3,
+    forget: 1,
+    oneMore: 2,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 0,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 4,
+    forget: 1,
+    oneMore: 2,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 5,
+    forget: 1,
+    oneMore: 2,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 2,
-    swipeResult: 'oneMore'
+    swipeResult: 'oneMore',
+    know: 5,
+    forget: 1,
+    oneMore: 3,
+    noMore: 0
   },
   {
     type: 'm',
     tapResult: 1,
-    swipeResult: 'know'
+    swipeResult: 'know',
+    know: 6,
+    forget: 1,
+    oneMore: 3,
+    noMore: 0
   },
 ];
