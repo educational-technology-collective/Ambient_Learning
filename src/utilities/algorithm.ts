@@ -52,7 +52,7 @@ export const srsAlgorithm = (card : userCard) => {
 
 
 export const algorithmTester = (previous: any, evaluation: any) => {
-  let memFactor = 1.95, interval = 1;
+  let memFactor = 1.92, interval = 1;
     // Case When the card is not new
     if(previous !== null){
       if(evaluation.swipeResult === 'noMore'){
@@ -64,14 +64,14 @@ export const algorithmTester = (previous: any, evaluation: any) => {
       if(evaluation.swipeResult === 'know'){
         memFactor += 0.1;
         if(evaluation.know - evaluation.forget >= 3 && interval === 1){
-          interval = 3 + difference;
+          interval = 1 + difference;
           memFactor = Math.max(1.3, memFactor + difference * 0.15);
           return {memFactor: memFactor, interval: interval};
         }
       }else if(evaluation.swipeResult === 'forget'){
-        memFactor -= 0.32;
+        memFactor -= 0.30;
         if(evaluation.know - evaluation.forget >= 3){
-          memFactor += 0.15;
+          memFactor += 0.025;
         }
         return {memFactor: memFactor, interval: 1};
       }else{
