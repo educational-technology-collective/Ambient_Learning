@@ -42,31 +42,31 @@ declare global {
 
   interface userCard {
     fcId: {
-      $oid: string
+      $oid: string;
     };
     type: string;
     latestRecord: {
-      tapResult: number | null,
-      swipeResult: string | null,
+      tapResult: number | null;
+      swipeResult: string | null;
     };
     reviewRecord: {
-      gotCorrect: number,
-      gotWrong: number,
-      passed: number,
-      know: number,
-      forget: number,
-      oneMore: number,
-      noMore: number
-    }
-    prevInterval: number,
-    prevFactor: number,
+      gotCorrect: number;
+      gotWrong: number;
+      passed: number;
+      know: number;
+      forget: number;
+      oneMore: number;
+      noMore: number;
+    };
+    prevInterval: number;
+    prevFactor: number;
     nextReview: Date | null;
     _id: string;
     createdAt: {
-      $date: Date | null
+      $date: Date | null;
     };
     updatedAt: {
-      $date: Date | null
-    }
+      $date: Date | null;
+    };
   }
 }
