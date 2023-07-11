@@ -63,14 +63,14 @@ export const algorithmTester = (previous: any, evaluation: any) => {
       let difference = evaluation.know - evaluation.forget;
       if(evaluation.swipeResult === 'know'){
         memFactor += 0.1;
-        if(evaluation.know - evaluation.forget >= 3 && interval === 1){
+        if(difference >= 3 && interval === 1){
           interval = 1 + difference;
           memFactor = Math.max(1.3, memFactor + difference * 0.15);
           return {memFactor: memFactor, interval: interval};
         }
       }else if(evaluation.swipeResult === 'forget'){
         memFactor -= 0.30;
-        if(evaluation.know - evaluation.forget >= 3){
+        if(difference >= 3){
           memFactor += 0.025;
         }
         return {memFactor: memFactor, interval: 1};
