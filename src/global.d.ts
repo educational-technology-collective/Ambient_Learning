@@ -48,6 +48,15 @@ declare global {
     latestRecord: {
       tapResult: number | null,
       swipeResult: string | null,
+    };
+    reviewRecord: {
+      gotCorrect: number,
+      gotWrong: number,
+      passed: number,
+      know: number,
+      forget: number,
+      oneMore: number,
+      noMore: number
     }
     prevInterval: number,
     prevFactor: number,
