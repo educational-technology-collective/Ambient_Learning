@@ -36,7 +36,6 @@ declare global {
     user_id: string;
     start_time: Date | null;
     end_time: Date | null;
-    number_shake: number;
     action_container: action[];
   }
 

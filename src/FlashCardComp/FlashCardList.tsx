@@ -9,7 +9,7 @@ const FlashCardList: React.FC<{
   logInfo: reviewInfo;
   pushLogInfo: (event:action) => void
   swipeNextCard: (tupleIndex: number, event: action) => void;
-  swipeOneMoreCard: (tupleIndex: number, newInfo: reviewInfo) => void;
+  swipeOneMoreCard: (tupleIndex: number, event: action) => void;
 }> = ({
   array,
   tupleIndex,

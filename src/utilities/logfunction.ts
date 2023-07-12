@@ -117,26 +117,28 @@ export const logOneMore = (
   cardIndex: number,
   tupleLength: number,
   tupleIndex: number,
-  oneMore: (tupleIndex: number, newInfo: reviewInfo) => void
+  oneMore: (tupleIndex: number, event: action) => void
 ) => {
   // Check if the user answers correctly/incorrectly/skipped
   let machineEvaluation = testEvaluation;
   if (type === "m" && testEvaluation === "") {
     machineEvaluation = "skipped";
   }
+  let name = 'swipe';
+  if(cardIndex === 0){
+    name = 'swipe-shake';
+  }
 
   // Log the event of swiping a card for one more
   const event: action = {
-    event_name: "swipe",
+    event_name: name,
     event_time: new Date(),
     card_id: cardId,
     self_eval: "OneMore",
     test_eval: machineEvaluation,
     isBuffer: cardIndex !== tupleLength - 1,
   };
-  let newInfo: reviewInfo = logInfo;
-  newInfo.action_container.push(event);
-  oneMore(tupleIndex, newInfo);
+  oneMore(tupleIndex, event);
 };
 
 // Function to Log Know Swipe
@@ -254,3 +256,15 @@ export const logPoorCardSwipeAfter = (
   };
   moveOn(tupleIndex,event);
 };
+
+export const logSessionFinished = (pushSessionFinished: (event: action) => void) => {
+  const event = {
+    event_name: 'SessionFinished',
+event_time: new Date(),
+card_id: null,
+self_eval: null,
+test_eval: null,
+isBuffer: null,
+  }
+  pushSessionFinished(event);
+}

@@ -43,6 +43,7 @@ import {
   logEnterCard,
   logEnterHome,
   logInitialize,
+  logSessionFinished,
   logShakePhone,
 } from "./utilities/logfunction";
 import LogInPage from "./pages/LogInPage";
@@ -95,12 +96,15 @@ const App: React.FC = () => {
     user_id: "",
     start_time: null,
     end_time: null,
-    number_shake: 0,
     action_container: [],
   });
 
   const pushLogInfo = (event: action) => {
-      setLog({...logInfo, action_container:[...logInfo.action_container, event]});
+      setLog(logInfo => ({...logInfo, action_container:[...logInfo.action_container, event]}));
+  }
+  
+  const pushSessionFinished = (event: action) => {
+    setLog(logInfo => ({...logInfo, action_container:[...logInfo.action_container, event], end_time: new Date()}));
   }
 
   useEffect(() => {
@@ -179,7 +183,10 @@ const App: React.FC = () => {
     setShake(true);
 
     // Log Shaking Event
-    logShakePhone(logInfo, finished, total, pushLogInfo);
+    if(finished === total - 1){
+      logInfo.end_time = new Date();
+     logSessionFinished(pushSessionFinished);
+    }
 
     // Set Timeout of 2.2 seconds(consistent with animation time)
     setTimeout(() => setShake(false), 2200);
@@ -198,14 +205,18 @@ const App: React.FC = () => {
     }
 
     // Log Info for Positive/No More/Negative
-    if (finished === total - 1) {
-      logInfo.end_time = new Date();
-    }
     pushLogInfo(event);
+    
+    if (finished === total - 1) {
+      logSessionFinished(pushSessionFinished);
+    }
   };
 
   // Function that swipes for one more card
   const swipeOneMoreCard = (tupleIndex: number, event: action) => {
+    // Log One More Info
+    pushLogInfo(event);
+
     // Check if there is no onemore card for this card
     if (tupleCounter === 1) {
       // If the current tuple is not the last one, reset the counter of tuple
@@ -220,6 +231,7 @@ const App: React.FC = () => {
       handleShake();
       setFinished((prevFinished: number) => prevFinished + 1);
       setCounter((prevCounter: number) => prevCounter - 1);
+     
     } else {
       setFinished((prevFinished: number) => prevFinished + 1);
       setTotal((prevTotal: number) => prevTotal + 1);
@@ -227,8 +239,7 @@ const App: React.FC = () => {
       // Decrement the Counter
       setTupleCounter((prevTupleCounter: number) => prevTupleCounter - 1);
     }
-    // Log One More Info
-    pushLogInfo(event);
+    
   };
 
   // Return the Log In Page if it's not authenticated and not loading

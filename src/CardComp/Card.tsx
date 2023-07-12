@@ -24,7 +24,7 @@ const Card: React.FC<{
   logInfo: reviewInfo;
   pushLogInfo: (event: action) => void;
   moveOn: (tupleIndex: number, event: action) => void;
-  oneMore: (tupleIndex: number, newInfo: reviewInfo) => void;
+  oneMore: (tupleIndex: number, event: action) => void;
   refTuple: React.RefObject<HTMLInputElement>;
 }> = ({
   obj,
