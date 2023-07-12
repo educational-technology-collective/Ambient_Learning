@@ -72,7 +72,7 @@ setupIonicReact({
 });
 
 const App: React.FC = () => {
-  const { isAuthenticated, isLoading, user, getIdTokenClaims } = useAuth0();
+  const { isAuthenticated, isLoading, user } = useAuth0();
 
   const { handleRedirectCallback } = useAuth0();
 
@@ -173,11 +173,6 @@ const App: React.FC = () => {
   const handleHomeScreen = () => {
     setCardScreen(false);
     logEnterHome(pushLogInfo);
-  };
-
-  // Handler used to update logInfo
-  const updateInfo = (newInfo: reviewInfo) => {
-    setLog(newInfo);
   };
 
   // Handler that set the card-stacker back without shaking
