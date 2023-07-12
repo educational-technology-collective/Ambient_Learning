@@ -59,8 +59,8 @@ export const cards = [
 
 export const dummyInfo = {
   user_id: "",
-  start_time: "",
-  end_time: "",
+  start_time: null,
+  end_time: null,
   number_shake: 0,
   action_container: [],
 };

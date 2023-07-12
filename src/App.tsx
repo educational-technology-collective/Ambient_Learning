@@ -96,12 +96,12 @@ const App: React.FC = () => {
     start_time: null,
     end_time: null,
     number_shake: 0,
-    action_container: [
-    ],
+    action_container: [],
   });
 
   useEffect(() => {
-    if(isAuthenticated && user !== undefined && user.name !== undefined){
+    // Initialize the Log Info as the user is signed
+    if (isAuthenticated && user !== undefined && user.name !== undefined) {
       logInitialize(user.name, logInfo, updateInfo);
     }
   }, [isAuthenticated]);

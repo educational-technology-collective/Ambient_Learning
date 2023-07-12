@@ -6,23 +6,27 @@ This also contains functions to move on the cards deck.
 
 ------------**********-----------
 */
+
 // Function to Log initialize
-export const logInitialize = (userID: string, oldInfo: reviewInfo, updateInfo: (newInfo: reviewInfo) => void) => {
+export const logInitialize = (
+  userID: string,
+  oldInfo: reviewInfo,
+  updateInfo: (newInfo: reviewInfo) => void
+) => {
   const event: action = {
-    event_name: 'Initialize',
-        event_time: new Date(),
-        card_id: null,
-        self_eval: null,
-        test_eval: null,
-        isBuffer: null
-  }
+    event_name: "Initialize",
+    event_time: new Date(),
+    card_id: null,
+    self_eval: null,
+    test_eval: null,
+    isBuffer: null,
+  };
   let newInfo = oldInfo;
   newInfo.user_id = userID;
   newInfo.start_time = new Date();
   newInfo.action_container.push(event);
   updateInfo(newInfo);
-}
-
+};
 
 // Function to Log the Event of Shaking
 export const logShakePhone = (
@@ -98,7 +102,7 @@ export const logEnterCard = (
 export const logFlipping = (
   logInfo: reviewInfo,
   cardId: string,
-  cardIndex: number, 
+  cardIndex: number,
   tupleLength: number,
   updateInfo: (newInfo: reviewInfo) => void
 ) => {
