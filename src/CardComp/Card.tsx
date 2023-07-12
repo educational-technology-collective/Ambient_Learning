@@ -14,28 +14,28 @@ import {
   logPoorCardSwipeAfter,
   logPoorCardSwipeBefore,
 } from "../utilities/logfunction";
+import NumberIndicator from "./NumberIndicator";
 const Card: React.FC<{
   obj: flashCard;
   tupleLength: number;
   cardIndex: number;
   tupleIndex: number;
-  logInfo: reviewInfo;
-  updateInfo: (newInfo: reviewInfo) => void;
-  moveOn: (tupleIndex: number, newInfo: reviewInfo) => void;
-  oneMore: (tupleIndex: number, newInfo: reviewInfo) => void;
+  tupleCounter: number;
+  pushLogInfo: (event: action) => void;
+  moveOn: (tupleIndex: number, event: action) => void;
+  oneMore: (tupleIndex: number, event: action) => void;
   refTuple: React.RefObject<HTMLInputElement>;
 }> = ({
   obj,
   tupleLength,
   cardIndex,
   tupleIndex,
+  tupleCounter,
   moveOn,
-  logInfo,
-  updateInfo,
+  pushLogInfo,
   oneMore,
   refTuple,
 }) => {
-
   // Reference of the single card element. We transform its style only in onemore
   const ref = useRef<HTMLInputElement>(null);
 
@@ -81,7 +81,7 @@ const Card: React.FC<{
     setClick(true);
 
     // Log the Event of Flipping / Answering
-    logFlipping(logInfo, obj._id, cardIndex, tupleLength, updateInfo);
+    logFlipping(obj._id, cardIndex, tupleLength, pushLogInfo);
   };
 
   // State Variable to track if the user gets correct/incorrect/skipped
@@ -103,7 +103,6 @@ const Card: React.FC<{
   const knowTimeOut = () => {
     // Log the event of Know
     logKnow(
-      logInfo,
       testEvaluation,
       obj.type,
       obj._id,
@@ -118,7 +117,6 @@ const Card: React.FC<{
   const dontKnowTimeOut = () => {
     // Log the event of dont know
     logDontKnow(
-      logInfo,
       testEvaluation,
       obj.type,
       obj._id,
@@ -133,7 +131,6 @@ const Card: React.FC<{
   const oneMoreTimeOut = () => {
     // Log the event of OneMore
     logOneMore(
-      logInfo,
       testEvaluation,
       obj.type,
       obj._id,
@@ -148,7 +145,6 @@ const Card: React.FC<{
   const poorCardBeforeTimeout = () => {
     // Log the event of swiping down before evaluation
     logPoorCardSwipeBefore(
-      logInfo,
       testEvaluation,
       obj.type,
       obj._id,
@@ -163,7 +159,6 @@ const Card: React.FC<{
   const poorCardAfterTimeOut = () => {
     // Log the event of swiping down after clicking
     logPoorCardSwipeAfter(
-      logInfo,
       testEvaluation,
       obj.type,
       obj._id,
@@ -194,7 +189,7 @@ const Card: React.FC<{
   });
 
   // Determine the component and content style based on type of card
-  let cardComp, cardContentStyle : string;
+  let cardComp, cardContentStyle: string;
   if (obj.type === "q") {
     cardComp = <QA obj={obj} />;
     cardContentStyle = "card-content qa-card-content";
@@ -219,6 +214,9 @@ const Card: React.FC<{
         disabled={isClicked}
       >
         <div className={cardContentStyle} style={style}>
+          {/* Indicator of Number of Same Concept Cards */}
+          <NumberIndicator tupleCounter={tupleCounter} />
+
           {/* Front Indicator */}
           <FrontIndicator indicatorOpacity={indicatorOpacity} />
 

@@ -13,8 +13,8 @@ Set appearing time to be 2.2s */
   top: 43%;
   left: 20%;
   display: block;
-  transition: transform 2s ease-in-out;
-  animation: message-in-center 2.2s;
+  opacity: 0;
+  animation: message-in-center 2.2s ease-in-out forwards;
 }
 
 /* Styling for the texts on the message */
@@ -45,7 +45,7 @@ Set appearing time to be 2.2s */
   85% {
     opacity: 0.95;
   }
-  100% {
+  to {
     opacity: 0;
   }
 }

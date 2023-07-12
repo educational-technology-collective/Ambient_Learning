@@ -30,7 +30,6 @@ export const BackNegativeIndicator: React.FC<{ negativeOpacity: number }> = ({
   );
 };
 
-
 // The Positive Indicator on the back page
 export const BackPositiveIndicator: React.FC<{ positiveOpacity: number }> = ({
   positiveOpacity,

@@ -10,7 +10,8 @@ import "../pages/CardScreen.css";
 import FlashCardList from "../FlashCardComp/FlashCardList";
 import FinishedDisplay from "../TutorialComp/FinishedDisplay";
 import AppNameHeader from "./AppNameHeader";
-import { cards, dummyInfo } from "../utilities/tutorialpagedata";
+import { cards} from "../utilities/tutorialpagedata";
+import OneMoreTutorialModal from "../TutorialComp/OneMoreTutorialModal";
 
 const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
   handleCardScreen,
@@ -44,9 +45,8 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
                 <FlashCardList
                   array={array}
                   key={index}
-                  isFrontTuple={false}
-                  logInfo={dummyInfo}
-                  updateInfo={() => {}}
+                  isFrontTuple={true}
+                  pushLogInfo={() => {}}
                   swipeNextCard={swipeDummyNext}
                   swipeOneMoreCard={swipeDummyNext}
                   tupleIndex={index}
@@ -56,6 +56,10 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
             }
           })}
         </div>
+
+        {/* Display the modal of how one more card works */}
+        {tutorialCounter === 2 ? <OneMoreTutorialModal /> : null}
+
         {/* Display the message of tutorial finished and prompt them to jump to cards */}
         {tutorialCounter === 0 ? (
           <FinishedDisplay isTutorial={true} enterScreen={handleCardScreen} />

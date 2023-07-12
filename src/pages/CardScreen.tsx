@@ -18,10 +18,9 @@ const CardScreen: React.FC<{
   tupleCounter: number;
   isShake: boolean;
   cardCol: flashCard[][];
-  logInfo: reviewInfo;
-  updateInfo: (newInfo: reviewInfo) => void;
-  swipeNextCard: (tupleIndex: number, newInfo: reviewInfo) => void;
-  swipeOneMoreCard: (tupleIndex: number, newInfo: reviewInfo) => void;
+  pushLogInfo: (event: action) => void;
+  swipeNextCard: (tupleIndex: number, event: action) => void;
+  swipeOneMoreCard: (tupleIndex: number, event: action) => void;
   handleHomeScreen: () => void;
 }> = ({
   finished,
@@ -30,8 +29,7 @@ const CardScreen: React.FC<{
   tupleCounter,
   isShake,
   cardCol,
-  logInfo,
-  updateInfo,
+  pushLogInfo,
   swipeNextCard,
   swipeOneMoreCard,
   handleHomeScreen,
@@ -63,8 +61,7 @@ const CardScreen: React.FC<{
                   array={array}
                   key={index}
                   isFrontTuple={true}
-                  logInfo={logInfo}
-                  updateInfo={updateInfo}
+                  pushLogInfo={pushLogInfo}
                   swipeNextCard={swipeNextCard}
                   swipeOneMoreCard={swipeOneMoreCard}
                   tupleIndex={index}
@@ -79,8 +76,7 @@ const CardScreen: React.FC<{
                   array={array}
                   key={index}
                   isFrontTuple={false}
-                  logInfo={logInfo}
-                  updateInfo={updateInfo}
+                  pushLogInfo={pushLogInfo}
                   swipeNextCard={swipeNextCard}
                   swipeOneMoreCard={swipeOneMoreCard}
                   tupleIndex={index}

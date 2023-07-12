@@ -6,17 +6,15 @@ const FlashCardList: React.FC<{
   tupleIndex: number;
   tupleCounter: number;
   isFrontTuple: boolean;
-  logInfo: reviewInfo;
-  updateInfo: (newInfo: reviewInfo) => void;
-  swipeNextCard: (tupleIndex: number, newInfo: reviewInfo) => void;
-  swipeOneMoreCard: (tupleIndex: number, newInfo: reviewInfo) => void;
+  pushLogInfo: (event:action) => void
+  swipeNextCard: (tupleIndex: number, event: action) => void;
+  swipeOneMoreCard: (tupleIndex: number, event: action) => void;
 }> = ({
   array,
   tupleIndex,
   tupleCounter,
   isFrontTuple,
-  logInfo,
-  updateInfo,
+  pushLogInfo,
   swipeNextCard,
   swipeOneMoreCard,
 }) => {
@@ -35,11 +33,11 @@ const FlashCardList: React.FC<{
       tupleLength={array.length}
       cardIndex = {array.length}
       tupleIndex={tupleIndex}
-      logInfo={logInfo}
-      updateInfo={updateInfo}
+      pushLogInfo={pushLogInfo}
       moveOn={swipeNextCard}
       oneMore={swipeOneMoreCard}
       refTuple={refTuple}
+      tupleCounter={tupleCounter}
     />
   );
 
@@ -58,11 +56,11 @@ const FlashCardList: React.FC<{
                   tupleLength={array.length}
                   cardIndex={index}
                   tupleIndex={tupleIndex}
-                  logInfo={logInfo}
-                  updateInfo={updateInfo}
+                  pushLogInfo={pushLogInfo}
                   moveOn={swipeNextCard}
                   oneMore={swipeOneMoreCard}
                   refTuple={refTuple}
+                  tupleCounter={tupleCounter}
                 />
               );
             }

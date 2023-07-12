@@ -7,12 +7,7 @@ const Choices: React.FC<{
   clicked: boolean;
   setClickStatus: () => void;
   handleTestEvaluation: (result: string) => void;
-}> = ({
-  answer,
-  clicked,
-  setClickStatus,
-  handleTestEvaluation,
-}) => {
+}> = ({ answer, clicked, setClickStatus, handleTestEvaluation }) => {
   const choices: individualChoice[] = answer;
 
   // Function that Shuffles the Array of Choices

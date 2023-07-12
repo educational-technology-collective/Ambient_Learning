@@ -1,4 +1,4 @@
-import { IonButton} from "@ionic/react";
+import { IonButton } from "@ionic/react";
 import { useState } from "react";
 import "./MCQChoice.css";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
@@ -50,12 +50,7 @@ export const CorrectChoice: React.FC<{
   clicked: boolean;
   setClickStatus: () => void;
   handleTestEvaluation: (result: string) => void;
-}> = ({
-  option,
-  clicked,
-  setClickStatus,
-  handleTestEvaluation,
-}) => {
+}> = ({ option, clicked, setClickStatus, handleTestEvaluation }) => {
   const choiceText = option;
 
   const correctClick = () => {

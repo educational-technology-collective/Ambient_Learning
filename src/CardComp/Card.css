@@ -102,3 +102,26 @@ MCQ Card question always takes 60% */
   height: 60%;
   top: 0;
 }
+
+
+.onemore-number {
+  position: absolute;
+  width: 5%;
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 0;
+  color: #0056D2;
+  top: 1%;
+  text-align: center;
+  backface-visibility: hidden;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.front-number{
+  right: 2%;
+}
+
+.back-number{
+  left: 2%;
+}

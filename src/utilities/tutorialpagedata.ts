@@ -5,7 +5,7 @@ export const cards = [
       lmid: "s12najdn",
       type: "m",
       content: {
-        question: "Which direction to indicate this card is bad?",
+        question: "Great! Which direction to indicate this card is bad?",
         answer: [
           { option: "Swipe Left", isCorrect: false },
           { option: "Swipe Right", isCorrect: false },
@@ -21,7 +21,7 @@ export const cards = [
       lmid: "jjsjaodja",
       type: "q",
       content: {
-        question: "How do I get one more card of the same concept?",
+        question: "Nice! How do I get one more card of the same concept?",
         answer: "Simply Swipe Up!!!",
       },
     },
@@ -32,7 +32,8 @@ export const cards = [
       lmid: "sdnajdn",
       type: "m",
       content: {
-        question: "This is a Multiple-Choice-Question(MCQ) card. \n\nYou can click the choice you think is correct or tap the card itself to skip answering! \n\nWhat if I don't know the card concept?",
+        question:
+          "This is a Multiple-Choice-Question(MCQ) card. \n\nYou can click the choice you think is correct or tap the card itself to skip answering! \n\nWhat if I don't know the card concept?",
         answer: [
           { option: "Swipe Left", isCorrect: true },
           { option: "Swipe Right", isCorrect: false },
@@ -55,11 +56,3 @@ export const cards = [
     },
   ],
 ];
-
-export const dummyInfo = {
-  user_id: "",
-  start_time: "",
-  end_time: "",
-  number_shake: 0,
-  action_container: [],
-};

@@ -25,7 +25,7 @@ declare global {
 
   interface action {
     event_name: string;
-    event_time: string;
+    event_time: Date;
     card_id: string | null;
     self_eval: string | null;
     test_eval: string | null;
@@ -34,9 +34,38 @@ declare global {
 
   interface reviewInfo {
     user_id: string;
-    start_time: string;
-    end_time: string;
-    number_shake: number;
+    start_time: Date | null;
+    end_time: Date | null;
     action_container: action[];
+  }
+
+  interface userCard {
+    fcId: {
+      $oid: string;
+    };
+    type: string;
+    latestRecord: {
+      tapResult: number | null;
+      swipeResult: string | null;
+    };
+    reviewRecord: {
+      gotCorrect: number;
+      gotWrong: number;
+      passed: number;
+      know: number;
+      forget: number;
+      oneMore: number;
+      noMore: number;
+    };
+    prevInterval: number;
+    prevFactor: number;
+    nextReview: Date | null;
+    _id: string;
+    createdAt: {
+      $date: Date | null;
+    };
+    updatedAt: {
+      $date: Date | null;
+    };
   }
 }
