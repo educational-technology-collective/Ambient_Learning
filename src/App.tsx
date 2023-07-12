@@ -195,9 +195,8 @@ const App: React.FC = () => {
     // Set Shake to be true. Enables visual shaking and modal
     setShake(true);
 
-    // Log Shaking Event
+    // Log Session is Finished
     if (finished === total - 1) {
-      logInfo.end_time = new Date();
       logSessionFinished(pushSessionFinished);
     }
 
@@ -219,6 +218,7 @@ const App: React.FC = () => {
     // Log Info for Positive/No More/Negative
     pushLogInfo(event);
 
+    // Log Session is Finished
     if (finished === total - 1) {
       logSessionFinished(pushSessionFinished);
     }
