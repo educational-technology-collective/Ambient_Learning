@@ -4,14 +4,12 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
-  useIonViewWillEnter,
 } from "@ionic/react";
 import "./CardScreen.css";
 import React from "react";
 import FlashCardList from "../FlashCardComp/FlashCardList";
 import OneMoreFailMessage from "../IndicationComp/OneMoreFailMessage";
 import FinishedDisplay from "../TutorialComp/FinishedDisplay";
-import { logEnterCard } from "../utilities/logfunction";
 
 const CardScreen: React.FC<{
   finished: number;
@@ -20,7 +18,7 @@ const CardScreen: React.FC<{
   tupleCounter: number;
   isShake: boolean;
   cardCol: flashCard[][];
-  pushLogInfo: (event: action) => void
+  pushLogInfo: (event: action) => void;
   swipeNextCard: (tupleIndex: number, event: action) => void;
   swipeOneMoreCard: (tupleIndex: number, event: action) => void;
   handleHomeScreen: () => void;
