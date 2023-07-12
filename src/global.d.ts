@@ -25,7 +25,7 @@ declare global {
 
   interface action {
     event_name: string;
-    event_time: string;
+    event_time: Date;
     card_id: string | null;
     self_eval: string | null;
     test_eval: string | null;
@@ -34,8 +34,8 @@ declare global {
 
   interface reviewInfo {
     user_id: string;
-    start_time: string;
-    end_time: string;
+    start_time: Date | null;
+    end_time: Date | null;
     number_shake: number;
     action_container: action[];
   }

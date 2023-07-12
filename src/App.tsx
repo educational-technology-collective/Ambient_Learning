@@ -71,7 +71,7 @@ setupIonicReact({
 });
 
 const App: React.FC = () => {
-  const { isAuthenticated, isLoading } = useAuth0();
+  const { isAuthenticated, isLoading, user } = useAuth0();
 
   const { handleRedirectCallback } = useAuth0();
 
@@ -91,21 +91,32 @@ const App: React.FC = () => {
 
   // Initialize the Logging Info as app is open
   const [logInfo, setLog] = useState<reviewInfo>({
-    user_id: "bigboss",
-    start_time: Date(),
-    end_time: "",
+    user_id: "",
+    start_time: null,
+    end_time: null,
     number_shake: 0,
     action_container: [
-      {
-        event_name: "Initialize",
-        event_time: Date(),
+    ],
+  });
+
+  useEffect(() => {
+    if(isAuthenticated && user !== undefined && user.name !== undefined){
+      let userCopy = logInfo;
+      userCopy.user_id = user.name;
+      userCopy.start_time = new Date();
+      let event : action = {
+        event_name: 'Initialize',
+        event_time: new Date(),
         card_id: null,
         self_eval: null,
         test_eval: null,
-        isBuffer: null,
-      },
-    ],
-  });
+        isBuffer: null
+      }
+      userCopy.action_container.push(event);
+      setLog(userCopy);
+    }
+  }, [isAuthenticated]);
+  console.log(logInfo);
 
   // State Variable to indicate whether data is fetched
   const [isFetched, setFetched] = useState(false);
@@ -194,7 +205,7 @@ const App: React.FC = () => {
 
     // Log Info for Positive/No More/Negative
     if (finished === total - 1) {
-      newInfo.end_time = Date();
+      newInfo.end_time = new Date();
     }
     updateInfo(newInfo);
   };

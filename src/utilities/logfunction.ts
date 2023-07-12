@@ -16,7 +16,7 @@ export const logShakePhone = (
   // Increase the Number of Shake
   const event: action = {
     event_name: "shake",
-    event_time: Date(),
+    event_time: new Date(),
     card_id: null,
     self_eval: null,
     test_eval: null,
@@ -28,7 +28,7 @@ export const logShakePhone = (
 
   // Check to see if this is the last card(remember states are updated after)
   if (finished === total - 1) {
-    newInfo.end_time = Date();
+    newInfo.end_time = new Date();
   }
   newInfo.number_shake = newInfo.number_shake + 1;
   newInfo.action_container.push(event);
@@ -42,7 +42,7 @@ export const logEnterHome = (
 ) => {
   const event: action = {
     event_name: "EnterHomeScreen",
-    event_time: Date(),
+    event_time: new Date(),
     card_id: null,
     self_eval: null,
     test_eval: null,
@@ -64,7 +64,7 @@ export const logEnterCard = (
   ) {
     const event: action = {
       event_name: "EnterCardScreen",
-      event_time: Date(),
+      event_time: new Date(),
       card_id: null,
       self_eval: null,
       test_eval: null,
@@ -86,7 +86,7 @@ export const logFlipping = (
 ) => {
   const event: action = {
     event_name: "flip",
-    event_time: Date(),
+    event_time: new Date(),
     card_id: cardId,
     self_eval: null,
     test_eval: null,
@@ -117,7 +117,7 @@ export const logOneMore = (
   // Log the event of swiping a card for one more
   const event: action = {
     event_name: "swipe",
-    event_time: Date(),
+    event_time: new Date(),
     card_id: cardId,
     self_eval: "OneMore",
     test_eval: machineEvaluation,
@@ -148,7 +148,7 @@ export const logKnow = (
   // Log the event of swiping a card for knowing
   const event: action = {
     event_name: "swipe",
-    event_time: Date(),
+    event_time: new Date(),
     card_id: cardId,
     self_eval: "know",
     test_eval: machineEvaluation,
@@ -179,7 +179,7 @@ export const logDontKnow = (
   // Log the event of swiping a card for not knowing
   const event: action = {
     event_name: "swipe",
-    event_time: Date(),
+    event_time: new Date(),
     card_id: cardId,
     self_eval: "DontKnow",
     test_eval: machineEvaluation,
@@ -210,7 +210,7 @@ export const logPoorCardSwipeBefore = (
   // Log the event of swiping a card down without clicking
   const event: action = {
     event_name: "NoEvaluation",
-    event_time: Date(),
+    event_time: new Date(),
     card_id: cardId,
     self_eval: "PoorCard",
     test_eval: machineEvaluation,
@@ -241,7 +241,7 @@ export const logPoorCardSwipeAfter = (
   // Log the event of siwping a card down after answering
   const event: action = {
     event_name: "swipe",
-    event_time: Date(),
+    event_time: new Date(),
     card_id: cardId,
     self_eval: "PoorCard",
     test_eval: machineEvaluation,
