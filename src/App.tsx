@@ -42,6 +42,7 @@ import LoadingPage from "./pages/LoadingPage";
 import {
   logEnterCard,
   logEnterHome,
+  logInitialize,
   logShakePhone,
 } from "./utilities/logfunction";
 import LogInPage from "./pages/LogInPage";
@@ -101,19 +102,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     if(isAuthenticated && user !== undefined && user.name !== undefined){
-      let userCopy = logInfo;
-      userCopy.user_id = user.name;
-      userCopy.start_time = new Date();
-      let event : action = {
-        event_name: 'Initialize',
-        event_time: new Date(),
-        card_id: null,
-        self_eval: null,
-        test_eval: null,
-        isBuffer: null
-      }
-      userCopy.action_container.push(event);
-      setLog(userCopy);
+      logInitialize(user.name, logInfo, updateInfo);
     }
   }, [isAuthenticated]);
   console.log(logInfo);
