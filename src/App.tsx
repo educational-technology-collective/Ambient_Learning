@@ -100,7 +100,10 @@ const App: React.FC = () => {
 
   // This will push the event to the action container
   const pushLogInfo = (event: action) => {
-    setLog({...logInfo, action_container: [...logInfo.action_container, event]});
+    setLog({
+      ...logInfo,
+      action_container: [...logInfo.action_container, event],
+    });
   };
 
   // To initalize the session. Push the event and set user_id and start time

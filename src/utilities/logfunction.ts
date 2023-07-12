@@ -37,20 +37,16 @@ export const logEnterHome = (pushLogInfo: (event: action) => void) => {
 };
 
 // Function to Log the Event of Entering Card Screen
-export const logEnterCard = (
-  pushLogInfo: (event: action) => void
-) => {
- 
-    const event: action = {
-      event_name: "EnterCardScreen",
-      event_time: new Date(),
-      card_id: null,
-      self_eval: null,
-      test_eval: null,
-      isBuffer: null,
-    };
-    pushLogInfo(event);
-  
+export const logEnterCard = (pushLogInfo: (event: action) => void) => {
+  const event: action = {
+    event_name: "EnterCardScreen",
+    event_time: new Date(),
+    card_id: null,
+    self_eval: null,
+    test_eval: null,
+    isBuffer: null,
+  };
+  pushLogInfo(event);
 };
 
 // Log the Flipping/Answering Event
