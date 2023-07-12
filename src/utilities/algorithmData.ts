@@ -43,7 +43,7 @@ export const algorithmTestSet = [
 ];
 
 // All Know
-export const evaulationSet1 = [
+export const evaluationSet1 = [
   {
     type: "q",
     tapResult: null,
@@ -164,7 +164,7 @@ export const evaulationSet1 = [
 ];
 
 // Forget twice during
-export const evaulationSet2 = [
+export const evaluationSet2 = [
   {
     type: "q",
     tapResult: null,
@@ -258,7 +258,7 @@ export const evaulationSet2 = [
 ];
 
 // Forget once
-export const evaulationSet3 = [
+export const evaluationSet3 = [
   {
     type: "q",
     tapResult: null,
@@ -352,7 +352,7 @@ export const evaulationSet3 = [
 ];
 
 // With some OneMore and forget start forget
-export const evaulationSet4 = [
+export const evaluationSet4 = [
   {
     type: "q",
     tapResult: null,
@@ -445,7 +445,7 @@ export const evaulationSet4 = [
   },
 ];
 
-export const evaulationSet5 = [
+export const evaluationSet5 = [
   {
     type: "q",
     tapResult: null,
@@ -539,7 +539,7 @@ export const evaulationSet5 = [
 ];
 
 // All Answer Correct and Swipe Know
-export const evaulationSet6 = [
+export const evaluationSet6 = [
   {
     type: "m",
     tapResult: 1,
@@ -633,7 +633,7 @@ export const evaulationSet6 = [
 ];
 
 // Not Lying but got wrong one time
-export const evaulationSet7 = [
+export const evaluationSet7 = [
   {
     type: "m",
     tapResult: 1,
@@ -727,7 +727,7 @@ export const evaulationSet7 = [
 ];
 
 // Not lying but got wrong twice
-export const evaulationSet8 = [
+export const evaluationSet8 = [
   {
     type: "m",
     tapResult: 1,
@@ -821,7 +821,7 @@ export const evaulationSet8 = [
 ];
 
 // Some Lying with no OneMore
-export const evaulationSet9 = [
+export const evaluationSet9 = [
   {
     type: "m",
     tapResult: 1,
@@ -915,7 +915,7 @@ export const evaulationSet9 = [
 ];
 
 // Still Some Lying without OneMore
-export const evaulationSet10 = [
+export const evaluationSet10 = [
   {
     type: "m",
     tapResult: 2,
@@ -1009,7 +1009,7 @@ export const evaulationSet10 = [
 ];
 
 // No Lying Without OneMore
-export const evaulationSet11 = [
+export const evaluationSet11 = [
   {
     type: "m",
     tapResult: 1,
@@ -1103,7 +1103,7 @@ export const evaulationSet11 = [
 ];
 
 // Lying With OneMore
-export const evaulationSet12 = [
+export const evaluationSet12 = [
   {
     type: "m",
     tapResult: 1,
