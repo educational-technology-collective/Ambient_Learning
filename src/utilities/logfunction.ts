@@ -10,7 +10,6 @@ This also contains functions to move on the cards deck.
 // Function to Log initialize
 export const logInitialize = (
   userID: string,
-  oldInfo: reviewInfo,
   pushSessionInitialize: (event : action, user_id: string) => void
 ) => {
   const event: action = {
@@ -24,35 +23,8 @@ export const logInitialize = (
   pushSessionInitialize(event, userID);
 };
 
-// Function to Log the Event of Shaking
-export const logShakePhone = (
-  oldInfo: reviewInfo,
-  finished: number,
-  total: number,
-  pushLogInfo: (event: action) => void
-) => {
-  // Increase the Number of Shake
-  const event: action = {
-    event_name: "shake",
-    event_time: new Date(),
-    card_id: null,
-    self_eval: null,
-    test_eval: null,
-    isBuffer: null,
-  };
-
-  // Check to see if this is the last card(remember states are updated after)
-  if (finished === total - 1) {
-    oldInfo.end_time = new Date();
-  }
- // oldInfo.number_shake = oldInfo.number_shake + 1;
- console.log('old info', oldInfo);
-  pushLogInfo(event);
-};
-
 // Function to Log the Event of Entering Home Screen
 export const logEnterHome = (
-  oldInfo: reviewInfo,
   pushLogInfo: (event: action ) => void
 ) => {
   const event: action = {
@@ -89,7 +61,6 @@ export const logEnterCard = (
 
 // Log the Flipping/Answering Event
 export const logFlipping = (
-  logInfo: reviewInfo,
   cardId: string,
   cardIndex: number,
   tupleLength: number,
@@ -108,7 +79,6 @@ export const logFlipping = (
 
 // Function to Log One More
 export const logOneMore = (
-  logInfo: reviewInfo,
   testEvaluation: string,
   type: string,
   cardId: string,
@@ -141,7 +111,6 @@ export const logOneMore = (
 
 // Function to Log Know Swipe
 export const logKnow = (
-  logInfo: reviewInfo,
   testEvaluation: string,
   type: string,
   cardId: string,
@@ -170,7 +139,6 @@ export const logKnow = (
 
 // Function to Log Dontknow Swipe
 export const logDontKnow = (
-  logInfo: reviewInfo,
   testEvaluation: string,
   type: string,
   cardId: string,
@@ -199,7 +167,6 @@ export const logDontKnow = (
 
 // Function to log Poor Card before clicking
 export const logPoorCardSwipeBefore = (
-  logInfo: reviewInfo,
   testEvaluation: string,
   type: string,
   cardId: string,
@@ -228,7 +195,6 @@ export const logPoorCardSwipeBefore = (
 
 // Function to log poor card after clicking
 export const logPoorCardSwipeAfter = (
-  logInfo: reviewInfo,
   testEvaluation: string,
   type: string,
   cardId: string,

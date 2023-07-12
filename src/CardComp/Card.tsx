@@ -83,7 +83,7 @@ const Card: React.FC<{
     setClick(true);
 
     // Log the Event of Flipping / Answering
-    logFlipping(logInfo, obj._id, cardIndex, tupleLength, pushLogInfo);
+    logFlipping(obj._id, cardIndex, tupleLength, pushLogInfo);
   };
 
   // State Variable to track if the user gets correct/incorrect/skipped
@@ -105,7 +105,6 @@ const Card: React.FC<{
   const knowTimeOut = () => {
     // Log the event of Know
     logKnow(
-      logInfo,
       testEvaluation,
       obj.type,
       obj._id,
@@ -120,7 +119,6 @@ const Card: React.FC<{
   const dontKnowTimeOut = () => {
     // Log the event of dont know
     logDontKnow(
-      logInfo,
       testEvaluation,
       obj.type,
       obj._id,
@@ -135,7 +133,6 @@ const Card: React.FC<{
   const oneMoreTimeOut = () => {
     // Log the event of OneMore
     logOneMore(
-      logInfo,
       testEvaluation,
       obj.type,
       obj._id,
@@ -150,7 +147,6 @@ const Card: React.FC<{
   const poorCardBeforeTimeout = () => {
     // Log the event of swiping down before evaluation
     logPoorCardSwipeBefore(
-      logInfo,
       testEvaluation,
       obj.type,
       obj._id,
@@ -165,7 +161,6 @@ const Card: React.FC<{
   const poorCardAfterTimeOut = () => {
     // Log the event of swiping down after clicking
     logPoorCardSwipeAfter(
-      logInfo,
       testEvaluation,
       obj.type,
       obj._id,

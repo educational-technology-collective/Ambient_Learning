@@ -44,7 +44,6 @@ import {
   logEnterHome,
   logInitialize,
   logSessionFinished,
-  logShakePhone,
 } from "./utilities/logfunction";
 import LogInPage from "./pages/LogInPage";
 
@@ -114,7 +113,7 @@ const App: React.FC = () => {
   useEffect(() => {
     // Initialize the Log Info as the user is signed
     if (isAuthenticated && user !== undefined && user.sub !== undefined) {
-      logInitialize(user.sub, logInfo, pushSessionInitialize);
+      logInitialize(user.sub, pushSessionInitialize);
     }
   }, [isAuthenticated]);
   console.log(logInfo);
@@ -173,7 +172,7 @@ const App: React.FC = () => {
   // Home Screen will fold the cards
   const handleHomeScreen = () => {
     setCardScreen(false);
-    logEnterHome(logInfo, pushLogInfo);
+    logEnterHome(pushLogInfo);
   };
 
   // Handler used to update logInfo
