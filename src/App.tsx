@@ -72,7 +72,7 @@ setupIonicReact({
 });
 
 const App: React.FC = () => {
-  const { isAuthenticated, isLoading, user } = useAuth0();
+  const { isAuthenticated, isLoading, user, getIdTokenClaims } = useAuth0();
 
   const { handleRedirectCallback } = useAuth0();
 
@@ -101,8 +101,8 @@ const App: React.FC = () => {
 
   useEffect(() => {
     // Initialize the Log Info as the user is signed
-    if (isAuthenticated && user !== undefined && user.name !== undefined) {
-      logInitialize(user.name, logInfo, updateInfo);
+    if (isAuthenticated && user !== undefined && user.sub !== undefined) {
+      logInitialize(user.sub, logInfo, updateInfo);
     }
   }, [isAuthenticated]);
   console.log(logInfo);

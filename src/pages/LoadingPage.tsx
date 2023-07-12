@@ -54,7 +54,7 @@ const LoadingPage: React.FC<{
 
   if (showLoad && isFetched && progress > 1) {
     setLoad(false);
-    setTimeout(navigateToTutorialScreen, 100);
+    setTimeout(navigateToCardScreen, 100);
   }
 
   return (
