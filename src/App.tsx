@@ -99,10 +99,14 @@ const App: React.FC = () => {
     action_container: [],
   });
 
+  const pushLogInfo = (event: action) => {
+      setLog({...logInfo, action_container:[...logInfo.action_container, event]});
+  }
+
   useEffect(() => {
     // Initialize the Log Info as the user is signed
     if (isAuthenticated && user !== undefined && user.sub !== undefined) {
-      logInitialize(user.sub, logInfo, updateInfo);
+      logInitialize(user.sub, logInfo, pushLogInfo);
     }
   }, [isAuthenticated]);
   console.log(logInfo);
@@ -155,13 +159,13 @@ const App: React.FC = () => {
   // Card Screen will spread the cards
   const handleCardScreen = () => {
     setCardScreen(true);
-    logEnterCard(logInfo, updateInfo);
+    logEnterCard(logInfo, pushLogInfo);
   };
 
   // Home Screen will fold the cards
   const handleHomeScreen = () => {
     setCardScreen(false);
-    logEnterHome(logInfo, updateInfo);
+    logEnterHome(logInfo, pushLogInfo);
   };
 
   // Handler used to update logInfo
@@ -175,14 +179,15 @@ const App: React.FC = () => {
     setShake(true);
 
     // Log Shaking Event
-    logShakePhone(logInfo, finished, total, updateInfo);
+    logShakePhone(logInfo, finished, total, pushLogInfo);
 
     // Set Timeout of 2.2 seconds(consistent with animation time)
     setTimeout(() => setShake(false), 2200);
   };
 
+
   // Logic to Move On to Next Card
-  const swipeNextCard = (tupleIndex: number, newInfo: reviewInfo) => {
+  const swipeNextCard = (tupleIndex: number, event: action) => {
     setFinished((prevFinished: number) => prevFinished + 1);
     setCounter((prevCounter: number) => prevCounter - 1);
 
@@ -194,13 +199,13 @@ const App: React.FC = () => {
 
     // Log Info for Positive/No More/Negative
     if (finished === total - 1) {
-      newInfo.end_time = new Date();
+      logInfo.end_time = new Date();
     }
-    updateInfo(newInfo);
+    pushLogInfo(event);
   };
 
   // Function that swipes for one more card
-  const swipeOneMoreCard = (tupleIndex: number, newInfo: reviewInfo) => {
+  const swipeOneMoreCard = (tupleIndex: number, event: action) => {
     // Check if there is no onemore card for this card
     if (tupleCounter === 1) {
       // If the current tuple is not the last one, reset the counter of tuple
@@ -223,7 +228,7 @@ const App: React.FC = () => {
       setTupleCounter((prevTupleCounter: number) => prevTupleCounter - 1);
     }
     // Log One More Info
-    updateInfo(newInfo);
+    pushLogInfo(event);
   };
 
   // Return the Log In Page if it's not authenticated and not loading
@@ -355,7 +360,7 @@ const App: React.FC = () => {
                   cardCol={cardCol}
                   isShake={isShake}
                   logInfo={logInfo}
-                  updateInfo={updateInfo}
+                  pushLogInfo={pushLogInfo}
                   swipeNextCard={swipeNextCard}
                   swipeOneMoreCard={swipeOneMoreCard}
                   handleHomeScreen={handleHomeScreen}

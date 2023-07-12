@@ -22,8 +22,8 @@ const Card: React.FC<{
   tupleIndex: number;
   tupleCounter: number;
   logInfo: reviewInfo;
-  updateInfo: (newInfo: reviewInfo) => void;
-  moveOn: (tupleIndex: number, newInfo: reviewInfo) => void;
+  pushLogInfo: (event: action) => void;
+  moveOn: (tupleIndex: number, event: action) => void;
   oneMore: (tupleIndex: number, newInfo: reviewInfo) => void;
   refTuple: React.RefObject<HTMLInputElement>;
 }> = ({
@@ -34,7 +34,7 @@ const Card: React.FC<{
   tupleCounter,
   moveOn,
   logInfo,
-  updateInfo,
+  pushLogInfo,
   oneMore,
   refTuple,
 }) => {
@@ -83,7 +83,7 @@ const Card: React.FC<{
     setClick(true);
 
     // Log the Event of Flipping / Answering
-    logFlipping(logInfo, obj._id, cardIndex, tupleLength, updateInfo);
+    logFlipping(logInfo, obj._id, cardIndex, tupleLength, pushLogInfo);
   };
 
   // State Variable to track if the user gets correct/incorrect/skipped

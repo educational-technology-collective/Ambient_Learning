@@ -11,7 +11,7 @@ This also contains functions to move on the cards deck.
 export const logInitialize = (
   userID: string,
   oldInfo: reviewInfo,
-  updateInfo: (newInfo: reviewInfo) => void
+  pushLogInfo: (event : action) => void
 ) => {
   const event: action = {
     event_name: "Initialize",
@@ -21,11 +21,9 @@ export const logInitialize = (
     test_eval: null,
     isBuffer: null,
   };
-  let newInfo = oldInfo;
-  newInfo.user_id = userID;
-  newInfo.start_time = new Date();
-  newInfo.action_container.push(event);
-  updateInfo(newInfo);
+  oldInfo.user_id = userID;
+  oldInfo.start_time = new Date();
+  pushLogInfo(event);
 };
 
 // Function to Log the Event of Shaking
@@ -33,7 +31,7 @@ export const logShakePhone = (
   oldInfo: reviewInfo,
   finished: number,
   total: number,
-  updateInfo: (newInfo: reviewInfo) => void
+  pushLogInfo: (event: action) => void
 ) => {
   // Increase the Number of Shake
   const event: action = {
@@ -45,22 +43,19 @@ export const logShakePhone = (
     isBuffer: null,
   };
 
-  // Create a copy of logInfo
-  let newInfo: reviewInfo = oldInfo;
-
   // Check to see if this is the last card(remember states are updated after)
   if (finished === total - 1) {
-    newInfo.end_time = new Date();
+    oldInfo.end_time = new Date();
   }
-  newInfo.number_shake = newInfo.number_shake + 1;
-  newInfo.action_container.push(event);
-  updateInfo(newInfo);
+ // oldInfo.number_shake = oldInfo.number_shake + 1;
+ console.log('old info', oldInfo);
+  pushLogInfo(event);
 };
 
 // Function to Log the Event of Entering Home Screen
 export const logEnterHome = (
   oldInfo: reviewInfo,
-  updateInfo: (newInfo: reviewInfo) => void
+  pushLogInfo: (event: action ) => void
 ) => {
   const event: action = {
     event_name: "EnterHomeScreen",
@@ -70,15 +65,13 @@ export const logEnterHome = (
     test_eval: null,
     isBuffer: null,
   };
-  let newInfo: reviewInfo = oldInfo;
-  newInfo.action_container.push(event);
-  updateInfo(newInfo);
+  pushLogInfo(event);
 };
 
 // Function to Log the Event of Entering Card Screen
 export const logEnterCard = (
   oldInfo: reviewInfo,
-  updateInfo: (newInfo: reviewInfo) => void
+  pushLogInfo: (event: action) => void
 ) => {
   if (
     oldInfo.action_container[oldInfo.action_container.length - 1].event_name !==
@@ -92,9 +85,7 @@ export const logEnterCard = (
       test_eval: null,
       isBuffer: null,
     };
-    let newInfo: reviewInfo = oldInfo;
-    newInfo.action_container.push(event);
-    updateInfo(newInfo);
+    pushLogInfo(event);
   }
 };
 
@@ -104,7 +95,7 @@ export const logFlipping = (
   cardId: string,
   cardIndex: number,
   tupleLength: number,
-  updateInfo: (newInfo: reviewInfo) => void
+  pushLogInfo: (event: action) => void
 ) => {
   const event: action = {
     event_name: "flip",
@@ -114,9 +105,7 @@ export const logFlipping = (
     test_eval: null,
     isBuffer: cardIndex !== tupleLength - 1,
   };
-  let newInfo: reviewInfo = logInfo;
-  newInfo.action_container.push(event);
-  updateInfo(newInfo);
+  pushLogInfo(event);
 };
 
 // Function to Log One More
@@ -159,7 +148,7 @@ export const logKnow = (
   cardIndex: number,
   tupleLength: number,
   tupleIndex: number,
-  moveOn: (tupleIndex: number, newInfo: reviewInfo) => void
+  moveOn: (tupleIndex: number, event: action) => void
 ) => {
   // Check if the user answers correctly/incorrectly/skipped
   let machineEvaluation = testEvaluation;
@@ -176,9 +165,7 @@ export const logKnow = (
     test_eval: machineEvaluation,
     isBuffer: cardIndex !== tupleLength - 1,
   };
-  let newInfo: reviewInfo = logInfo;
-  newInfo.action_container.push(event);
-  moveOn(tupleIndex, newInfo);
+  moveOn(tupleIndex, event);
 };
 
 // Function to Log Dontknow Swipe
@@ -190,7 +177,7 @@ export const logDontKnow = (
   cardIndex: number,
   tupleLength: number,
   tupleIndex: number,
-  moveOn: (tupleIndex: number, newInfo: reviewInfo) => void
+  moveOn: (tupleIndex: number, event: action) => void
 ) => {
   // Check if the user answers correctly/incorrectly/skipped
   let machineEvaluation = testEvaluation;
@@ -207,9 +194,7 @@ export const logDontKnow = (
     test_eval: machineEvaluation,
     isBuffer: cardIndex !== tupleLength - 1,
   };
-  let newInfo: reviewInfo = logInfo;
-  newInfo.action_container.push(event);
-  moveOn(tupleIndex, newInfo);
+  moveOn(tupleIndex, event);
 };
 
 // Function to log Poor Card before clicking
@@ -221,7 +206,7 @@ export const logPoorCardSwipeBefore = (
   cardIndex: number,
   tupleLength: number,
   tupleIndex: number,
-  moveOn: (tupleIndex: number, newInfo: reviewInfo) => void
+  moveOn: (tupleIndex: number, event: action) => void
 ) => {
   // Check if the user answers correctly/incorrectly/skipped
   let machineEvaluation = testEvaluation;
@@ -238,9 +223,7 @@ export const logPoorCardSwipeBefore = (
     test_eval: machineEvaluation,
     isBuffer: cardIndex !== tupleLength - 1,
   };
-  let newInfo: reviewInfo = logInfo;
-  newInfo.action_container.push(event);
-  moveOn(tupleIndex, newInfo);
+  moveOn(tupleIndex, event);
 };
 
 // Function to log poor card after clicking
@@ -252,7 +235,7 @@ export const logPoorCardSwipeAfter = (
   cardIndex: number,
   tupleLength: number,
   tupleIndex: number,
-  moveOn: (tupleIndex: number, newInfo: reviewInfo) => void
+  moveOn: (tupleIndex: number, event: action) => void
 ) => {
   // Check if the user answers correctly/incorrectly/skipped
   let machineEvaluation = testEvaluation;
@@ -269,7 +252,5 @@ export const logPoorCardSwipeAfter = (
     test_eval: machineEvaluation,
     isBuffer: cardIndex !== tupleLength - 1,
   };
-  let newInfo: reviewInfo = logInfo;
-  newInfo.action_container.push(event);
-  moveOn(tupleIndex, newInfo);
+  moveOn(tupleIndex,event);
 };
