@@ -55,7 +55,6 @@ const LoadingPage: React.FC<{
   if (showLoad && isFetched && progress > 1) {
     setLoad(false);
     setTimeout(navigateToCardScreen, 100);
-    
   }
 
   return (

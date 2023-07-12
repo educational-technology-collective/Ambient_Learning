@@ -10,7 +10,7 @@ This also contains functions to move on the cards deck.
 // Function to Log initialize
 export const logInitialize = (
   userID: string,
-  pushSessionInitialize: (event : action, user_id: string) => void
+  pushSessionInitialize: (event: action, user_id: string) => void
 ) => {
   const event: action = {
     event_name: "Initialize",
@@ -24,9 +24,7 @@ export const logInitialize = (
 };
 
 // Function to Log the Event of Entering Home Screen
-export const logEnterHome = (
-  pushLogInfo: (event: action ) => void
-) => {
+export const logEnterHome = (pushLogInfo: (event: action) => void) => {
   const event: action = {
     event_name: "EnterHomeScreen",
     event_time: new Date(),
@@ -92,9 +90,9 @@ export const logOneMore = (
   if (type === "m" && testEvaluation === "") {
     machineEvaluation = "skipped";
   }
-  let name = 'swipe';
-  if(cardIndex === 0){
-    name = 'swipe-shake';
+  let name = "swipe";
+  if (cardIndex === 0) {
+    name = "swipe-shake";
   }
 
   // Log the event of swiping a card for one more
@@ -218,17 +216,19 @@ export const logPoorCardSwipeAfter = (
     test_eval: machineEvaluation,
     isBuffer: cardIndex !== tupleLength - 1,
   };
-  moveOn(tupleIndex,event);
+  moveOn(tupleIndex, event);
 };
 
-export const logSessionFinished = (pushSessionFinished: (event: action) => void) => {
+export const logSessionFinished = (
+  pushSessionFinished: (event: action) => void
+) => {
   const event = {
-    event_name: 'SessionFinished',
-event_time: new Date(),
-card_id: null,
-self_eval: null,
-test_eval: null,
-isBuffer: null,
-  }
+    event_name: "SessionFinished",
+    event_time: new Date(),
+    card_id: null,
+    self_eval: null,
+    test_eval: null,
+    isBuffer: null,
+  };
   pushSessionFinished(event);
-}
+};

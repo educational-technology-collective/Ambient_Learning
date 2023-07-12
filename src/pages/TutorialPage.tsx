@@ -10,7 +10,7 @@ import "../pages/CardScreen.css";
 import FlashCardList from "../FlashCardComp/FlashCardList";
 import FinishedDisplay from "../TutorialComp/FinishedDisplay";
 import AppNameHeader from "./AppNameHeader";
-import { cards, dummyInfo } from "../utilities/tutorialpagedata";
+import { cards} from "../utilities/tutorialpagedata";
 import OneMoreTutorialModal from "../TutorialComp/OneMoreTutorialModal";
 
 const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
