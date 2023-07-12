@@ -38,13 +38,9 @@ export const logEnterHome = (pushLogInfo: (event: action) => void) => {
 
 // Function to Log the Event of Entering Card Screen
 export const logEnterCard = (
-  oldInfo: reviewInfo,
   pushLogInfo: (event: action) => void
 ) => {
-  if (
-    oldInfo.action_container[oldInfo.action_container.length - 1].event_name !==
-    "EnterCardScreen"
-  ) {
+ 
     const event: action = {
       event_name: "EnterCardScreen",
       event_time: new Date(),
@@ -54,7 +50,7 @@ export const logEnterCard = (
       isBuffer: null,
     };
     pushLogInfo(event);
-  }
+  
 };
 
 // Log the Flipping/Answering Event
