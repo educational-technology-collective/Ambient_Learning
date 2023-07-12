@@ -8,12 +8,7 @@ const MCQ: React.FC<{
   clicked: boolean;
   setClickStatus: () => void;
   handleTestEvaluation: (result: string) => void;
-}> = ({
-  obj,
-  clicked,
-  setClickStatus,
-  handleTestEvaluation,
-}) => {
+}> = ({ obj, clicked, setClickStatus, handleTestEvaluation }) => {
   const question: string = obj.content.question;
   const choice: individualChoice[] = obj.content.answer;
 
