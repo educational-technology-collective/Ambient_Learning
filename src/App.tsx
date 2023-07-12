@@ -102,6 +102,10 @@ const App: React.FC = () => {
   const pushLogInfo = (event: action) => {
       setLog(logInfo => ({...logInfo, action_container:[...logInfo.action_container, event]}));
   }
+
+  const pushSessionInitialize = (event: action, user_id : string) => {
+    setLog(logInfo => ({...logInfo, action_container:[...logInfo.action_container, event], user_id: user_id, start_time: new Date()}))
+  }
   
   const pushSessionFinished = (event: action) => {
     setLog(logInfo => ({...logInfo, action_container:[...logInfo.action_container, event], end_time: new Date()}));
@@ -110,7 +114,7 @@ const App: React.FC = () => {
   useEffect(() => {
     // Initialize the Log Info as the user is signed
     if (isAuthenticated && user !== undefined && user.sub !== undefined) {
-      logInitialize(user.sub, logInfo, pushLogInfo);
+      logInitialize(user.sub, logInfo, pushSessionInitialize);
     }
   }, [isAuthenticated]);
   console.log(logInfo);
@@ -206,7 +210,7 @@ const App: React.FC = () => {
 
     // Log Info for Positive/No More/Negative
     pushLogInfo(event);
-    
+
     if (finished === total - 1) {
       logSessionFinished(pushSessionFinished);
     }

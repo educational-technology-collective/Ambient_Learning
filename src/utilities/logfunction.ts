@@ -11,7 +11,7 @@ This also contains functions to move on the cards deck.
 export const logInitialize = (
   userID: string,
   oldInfo: reviewInfo,
-  pushLogInfo: (event : action) => void
+  pushSessionInitialize: (event : action, user_id: string) => void
 ) => {
   const event: action = {
     event_name: "Initialize",
@@ -21,9 +21,7 @@ export const logInitialize = (
     test_eval: null,
     isBuffer: null,
   };
-  oldInfo.user_id = userID;
-  oldInfo.start_time = new Date();
-  pushLogInfo(event);
+  pushSessionInitialize(event, userID);
 };
 
 // Function to Log the Event of Shaking
