@@ -98,17 +98,32 @@ const App: React.FC = () => {
     action_container: [],
   });
 
+  // This will push the event to the action container
   const pushLogInfo = (event: action) => {
-      setLog(logInfo => ({...logInfo, action_container:[...logInfo.action_container, event]}));
-  }
+    setLog((logInfo) => ({
+      ...logInfo,
+      action_container: [...logInfo.action_container, event],
+    }));
+  };
 
-  const pushSessionInitialize = (event: action, user_id : string) => {
-    setLog(logInfo => ({...logInfo, action_container:[...logInfo.action_container, event], user_id: user_id, start_time: new Date()}))
-  }
-  
+  // To initalize the session. Push the event and set user_id and start time
+  const pushSessionInitialize = (event: action, user_id: string) => {
+    setLog((logInfo) => ({
+      ...logInfo,
+      action_container: [...logInfo.action_container, event],
+      user_id: user_id,
+      start_time: new Date(),
+    }));
+  };
+
+  // To end the session. Push the event and set the end time
   const pushSessionFinished = (event: action) => {
-    setLog(logInfo => ({...logInfo, action_container:[...logInfo.action_container, event], end_time: new Date()}));
-  }
+    setLog((logInfo) => ({
+      ...logInfo,
+      action_container: [...logInfo.action_container, event],
+      end_time: new Date(),
+    }));
+  };
 
   useEffect(() => {
     // Initialize the Log Info as the user is signed
@@ -181,15 +196,14 @@ const App: React.FC = () => {
     setShake(true);
 
     // Log Shaking Event
-    if(finished === total - 1){
+    if (finished === total - 1) {
       logInfo.end_time = new Date();
-     logSessionFinished(pushSessionFinished);
+      logSessionFinished(pushSessionFinished);
     }
 
     // Set Timeout of 2.2 seconds(consistent with animation time)
     setTimeout(() => setShake(false), 2200);
   };
-
 
   // Logic to Move On to Next Card
   const swipeNextCard = (tupleIndex: number, event: action) => {
@@ -229,7 +243,6 @@ const App: React.FC = () => {
       handleShake();
       setFinished((prevFinished: number) => prevFinished + 1);
       setCounter((prevCounter: number) => prevCounter - 1);
-     
     } else {
       setFinished((prevFinished: number) => prevFinished + 1);
       setTotal((prevTotal: number) => prevTotal + 1);
@@ -237,7 +250,6 @@ const App: React.FC = () => {
       // Decrement the Counter
       setTupleCounter((prevTupleCounter: number) => prevTupleCounter - 1);
     }
-    
   };
 
   // Return the Log In Page if it's not authenticated and not loading
