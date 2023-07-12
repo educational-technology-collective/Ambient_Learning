@@ -21,7 +21,6 @@ const Card: React.FC<{
   cardIndex: number;
   tupleIndex: number;
   tupleCounter: number;
-  logInfo: reviewInfo;
   pushLogInfo: (event: action) => void;
   moveOn: (tupleIndex: number, event: action) => void;
   oneMore: (tupleIndex: number, event: action) => void;
@@ -33,7 +32,6 @@ const Card: React.FC<{
   tupleIndex,
   tupleCounter,
   moveOn,
-  logInfo,
   pushLogInfo,
   oneMore,
   refTuple,

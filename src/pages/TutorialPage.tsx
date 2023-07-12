@@ -46,7 +46,6 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
                   array={array}
                   key={index}
                   isFrontTuple={true}
-                  logInfo={dummyInfo}
                   pushLogInfo={() => {}}
                   swipeNextCard={swipeDummyNext}
                   swipeOneMoreCard={swipeDummyNext}

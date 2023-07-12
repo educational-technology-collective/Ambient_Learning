@@ -373,7 +373,6 @@ const App: React.FC = () => {
                   tupleCounter={tupleCounter}
                   cardCol={cardCol}
                   isShake={isShake}
-                  logInfo={logInfo}
                   pushLogInfo={pushLogInfo}
                   swipeNextCard={swipeNextCard}
                   swipeOneMoreCard={swipeOneMoreCard}
