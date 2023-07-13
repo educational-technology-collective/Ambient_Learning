@@ -37,12 +37,7 @@ import "@ionic/react/css/display.css";
 import "./theme/variables.css";
 import CardsTab from "./IndicationComp/CardsTab";
 import LoadingPage from "./pages/LoadingPage";
-import {
-  logEnterCard,
-  logEnterHome,
-  logInitialize,
-  logSessionFinished,
-} from "./utilities/logfunction";
+import { putEnterCard, putSessionFinished } from "./utilities/logfunction";
 import LogInPage from "./pages/LogInPage";
 
 import { App as CapApp } from "@capacitor/app";
@@ -211,13 +206,13 @@ const App: React.FC = () => {
   // Card Screen will spread the cards
   const handleCardScreen = () => {
     setCardScreen(true);
-    logEnterCard(pushLogInfo);
+    putEnterCard(putLogInfo);
   };
 
   // Home Screen will fold the cards
   const handleHomeScreen = () => {
     setCardScreen(false);
-    logEnterHome(pushLogInfo);
+    putEnterCard(putLogInfo);
   };
 
   // Handler that set the card-stacker back without shaking
@@ -227,7 +222,7 @@ const App: React.FC = () => {
 
     // Log Session is Finished
     if (finished === total - 1) {
-      logSessionFinished(pushSessionFinished);
+      putSessionFinished(putLogInfo);
     }
 
     // Set Timeout of 2.2 seconds(consistent with animation time)
@@ -246,18 +241,18 @@ const App: React.FC = () => {
     }
 
     // Log Info for Positive/No More/Negative
-    pushLogInfo(event);
+    putLogInfo(event, null);
 
     // Log Session is Finished
     if (finished === total - 1) {
-      logSessionFinished(pushSessionFinished);
+      putSessionFinished(putLogInfo);
     }
   };
 
   // Function that swipes for one more card
   const swipeOneMoreCard = (tupleIndex: number, event: action) => {
     // Log One More Info
-    pushLogInfo(event);
+    putLogInfo(event, null);
 
     // Check if there is no onemore card for this card
     if (tupleCounter === 1) {
@@ -410,7 +405,7 @@ const App: React.FC = () => {
                   tupleCounter={tupleCounter}
                   cardCol={cardCol}
                   isShake={isShake}
-                  pushLogInfo={pushLogInfo}
+                  putLogInfo={putLogInfo}
                   swipeNextCard={swipeNextCard}
                   swipeOneMoreCard={swipeOneMoreCard}
                   handleHomeScreen={handleHomeScreen}
