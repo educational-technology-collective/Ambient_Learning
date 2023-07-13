@@ -84,8 +84,12 @@ const App: React.FC = () => {
   }, [handleRedirectCallback]);
 
 
+  // User_Id and Time State Variable used for Quary
   const [user_Id, setUser] = useState('');
   const [time, setTime] = useState('');
+
+
+  // PUT Request that push information to the action_container
   const putLogInfo = async (event: action, end_time: Date | null) => {
     const dataStream = {
       action: event,
@@ -95,10 +99,11 @@ const App: React.FC = () => {
     console.log("Put Response", response);
   }
 
-
+  // POST Request that initialize the log build
   const postInitialize = async (userId: string) => {
     setUser(userId);
     let copyTime = new Date();
+    // We use convert toISOString() for MongoDB Date Format
     setTime(copyTime.toISOString());
     const log = {
       user_id: userId,
@@ -107,6 +112,8 @@ const App: React.FC = () => {
     const response = await CapacitorHttp.post({url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/telemetry/mobile`, data: log, headers: {'content-type': 'application/json'}});
     console.log("Post Response", response);
 
+    // PUT Request for the Initialize Container at the first place. Have to be 
+    // together here 
     const event = {
       event_name: 'Initialize',
       event_time: copyTime,
