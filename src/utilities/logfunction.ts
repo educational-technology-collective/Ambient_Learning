@@ -183,8 +183,9 @@ This also contains functions to move on the cards deck.
 //   pushSessionFinished(event);
 // };
 
-
-export const putEnterHome = (putLogInfo: (event: action, end_time: Date | null) => void) => {
+export const putEnterHome = (
+  putLogInfo: (event: action, end_time: Date | null) => void
+) => {
   const event: action = {
     event_name: "EnterHomeScreen",
     event_time: new Date(),
@@ -192,11 +193,13 @@ export const putEnterHome = (putLogInfo: (event: action, end_time: Date | null) 
     self_eval: null,
     test_eval: null,
     isBuffer: null,
-  }
+  };
   putLogInfo(event, null);
-}
+};
 
-export const putEnterCard = (putLogInfo: (event: action, end_time: Date | null) => void) => {
+export const putEnterCard = (
+  putLogInfo: (event: action, end_time: Date | null) => void
+) => {
   const event: action = {
     event_name: "EnterCardScreen",
     event_time: new Date(),
@@ -207,24 +210,24 @@ export const putEnterCard = (putLogInfo: (event: action, end_time: Date | null) 
   };
   putLogInfo(event, null);
   console.log(putLogInfo);
-}
-
-export const putFlipping =  (
-cardId: string,
-cardIndex: number,
-tupleLength: number,
-putLogInfo: (event: action, end_time: Date | null) => void
-) => {
-const event: action = {
-  event_name: "flip",
-  event_time: new Date(),
-  card_id: cardId,
-  self_eval: null,
-  test_eval: null,
-  isBuffer: cardIndex !== tupleLength - 1,
 };
-putLogInfo(event, null);
-}
+
+export const putFlipping = (
+  cardId: string,
+  cardIndex: number,
+  tupleLength: number,
+  putLogInfo: (event: action, end_time: Date | null) => void
+) => {
+  const event: action = {
+    event_name: "flip",
+    event_time: new Date(),
+    card_id: cardId,
+    self_eval: null,
+    test_eval: null,
+    isBuffer: cardIndex !== tupleLength - 1,
+  };
+  putLogInfo(event, null);
+};
 
 export const putOneMore = (
   testEvaluation: string,
@@ -256,7 +259,6 @@ export const putOneMore = (
   };
   oneMore(tupleIndex, event);
 };
-
 
 // Function to Log Know Swipe
 export const putKnow = (
@@ -381,5 +383,5 @@ export const putSessionFinished = (
     test_eval: null,
     isBuffer: null,
   };
-   putLogInfo(event, new Date());
+  putLogInfo(event, new Date());
 };
