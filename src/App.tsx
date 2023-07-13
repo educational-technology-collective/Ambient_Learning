@@ -206,13 +206,17 @@ const App: React.FC = () => {
   // Card Screen will spread the cards
   const handleCardScreen = () => {
     setCardScreen(true);
-    putEnterCard(putLogInfo);
+    if(finished !== total){
+      putEnterCard(putLogInfo);
+    }
   };
 
   // Home Screen will fold the cards
   const handleHomeScreen = () => {
     setCardScreen(false);
-    putEnterHome(putLogInfo);
+    if(finished !== total){
+      putEnterHome(putLogInfo);
+    }
   };
 
   // Handler that set the card-stacker back without shaking
@@ -222,7 +226,7 @@ const App: React.FC = () => {
 
     // Log Session is Finished
     if (finished === total - 1) {
-      putSessionFinished(putLogInfo);
+      setTimeout(() => putSessionFinished(putLogInfo), 200);
     }
 
     // Set Timeout of 2.2 seconds(consistent with animation time)
@@ -245,7 +249,7 @@ const App: React.FC = () => {
 
     // Log Session is Finished
     if (finished === total - 1) {
-      putSessionFinished(putLogInfo);
+      setTimeout(() => putSessionFinished(putLogInfo), 200);
     }
   };
 

@@ -39,22 +39,24 @@ const LoadingPage: React.FC<{
     history.push("/tutorial");
   };
 
-  useEffect(() => {
-    // Add 0.06 to the value every 0.1 second
-    const interval = setInterval(() => {
-      setBuffer((prevBuffer: number) => prevBuffer + 0.05);
-      setProgress((prevProgress: number) => prevProgress + 0.05);
-    }, 100);
-
-    return () => clearInterval(interval);
-  }, []);
-
   // Set a timeout that will jump to the cardscreen
   const [showLoad, setLoad] = useState(true);
 
+  useEffect(() => {
+    // Add 0.06 to the value every 0.1 second
+    if(showLoad){
+      const interval = setInterval(() => {
+        setBuffer((prevBuffer: number) => prevBuffer + 0.05);
+        setProgress((prevProgress: number) => prevProgress + 0.05);
+      }, 100);
+      return () => clearInterval(interval);
+    }else{
+      setTimeout(navigateToCardScreen, 150);
+    }
+  }, [showLoad]);
+
   if (showLoad && isFetched && progress > 1) {
     setLoad(false);
-    setTimeout(navigateToCardScreen, 100);
   }
 
   return (
