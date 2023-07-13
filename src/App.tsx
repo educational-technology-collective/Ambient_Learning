@@ -83,40 +83,6 @@ const App: React.FC = () => {
     });
   }, [handleRedirectCallback]);
 
-  // Initialize the Logging Info as app is open
-  const [logInfo, setLog] = useState<reviewInfo>({
-    user_id: "",
-    start_time: null,
-    end_time: null,
-    action_container: [],
-  });
-
-  // This will push the event to the action container
-  const pushLogInfo = (event: action) => {
-    setLog({
-      ...logInfo,
-      action_container: [...logInfo.action_container, event],
-    });
-  };
-
-  // To initalize the session. Push the event and set user_id and start time
-  const pushSessionInitialize = (event: action, user_id: string) => {
-    setLog((logInfo) => ({
-      ...logInfo,
-      action_container: [...logInfo.action_container, event],
-      user_id: user_id,
-      start_time: new Date(),
-    }));
-  };
-
-  // To end the session. Push the event and set the end time
-  const pushSessionFinished = (event: action) => {
-    setLog((logInfo) => ({
-      ...logInfo,
-      action_container: [...logInfo.action_container, event],
-      end_time: new Date(),
-    }));
-  };
 
   const [user_Id, setUser] = useState('');
   const [time, setTime] = useState('');
