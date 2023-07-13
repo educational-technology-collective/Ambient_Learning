@@ -7,48 +7,6 @@ This also contains functions to move on the cards deck.
 ------------**********-----------
 */
 
-// Function to Log initialize
-// export const logInitialize = (
-//   userID: string,
-//   pushSessionInitialize: (event: action, user_id: string) => void
-// ) => {
-//   const event: action = {
-//     event_name: "Initialize",
-//     event_time: new Date(),
-//     card_id: null,
-//     self_eval: null,
-//     test_eval: null,
-//     isBuffer: null,
-//   };
-//   pushSessionInitialize(event, userID);
-// };
-
-// // Function to Log the Event of Entering Home Screen
-// export const logEnterHome = (pushLogInfo: (event: action) => void) => {
-//   const event: action = {
-//     event_name: "EnterHomeScreen",
-//     event_time: new Date(),
-//     card_id: null,
-//     self_eval: null,
-//     test_eval: null,
-//     isBuffer: null,
-//   };
-//   pushLogInfo(event);
-// };
-
-// // Function to Log the Event of Entering Card Screen
-// export const logEnterCard = (pushLogInfo: (event: action) => void) => {
-//   const event: action = {
-//     event_name: "EnterCardScreen",
-//     event_time: new Date(),
-//     card_id: null,
-//     self_eval: null,
-//     test_eval: null,
-//     isBuffer: null,
-//   };
-//   pushLogInfo(event);
-// };
-
 // // Log the Flipping/Answering Event
 // export const logFlipping = (
 //   cardId: string,
