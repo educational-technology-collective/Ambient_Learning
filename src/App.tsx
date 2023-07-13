@@ -37,7 +37,7 @@ import "@ionic/react/css/display.css";
 import "./theme/variables.css";
 import CardsTab from "./IndicationComp/CardsTab";
 import LoadingPage from "./pages/LoadingPage";
-import { putEnterCard, putSessionFinished } from "./utilities/logfunction";
+import { putEnterCard, putEnterHome, putSessionFinished } from "./utilities/logfunction";
 import LogInPage from "./pages/LogInPage";
 
 import { App as CapApp } from "@capacitor/app";
@@ -118,43 +118,49 @@ const App: React.FC = () => {
     }));
   };
 
+  const [user_Id, setUser] = useState('');
+  const [time, setTime] = useState('');
   const putLogInfo = async (event: action, end_time: Date | null) => {
     const dataStream = {
       action: event,
       end_time: end_time
     };
-    const response = await CapacitorHttp.put({url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/telemetry/mobile?user_id=${userId}&start_time=${start_time}`, data: dataStream});
+    const response = await CapacitorHttp.put({url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/telemetry/mobile?user_id=${user_Id}&start_time=${time}`, data: dataStream, headers: {'content-type': 'application/json'}});
     console.log("Put Response", response);
   }
 
-  const [userId, setUserId] = useState('');
-
-  const [start_time, setTime] = useState(new Date());
 
   const postInitialize = async (userId: string) => {
-    setUserId(userId);
-    setTime(new Date());
+    setUser(userId);
+    let copyTime = new Date();
+    setTime(copyTime.toISOString());
     const log = {
       user_id: userId,
-      start_time: new Date(),
+      start_time: copyTime,
     }
-    const response = await CapacitorHttp.post({url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/telemetry/mobile`, data: log});
+    const response = await CapacitorHttp.post({url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/telemetry/mobile`, data: log, headers: {'content-type': 'application/json'}});
     console.log("Post Response", response);
-    const action = {
+
+    const event = {
       event_name: 'Initialize',
-      event_time: new Date(),
+      event_time: copyTime,
       card_id: null,
       self_eval: null,
-      test_eval: null, 
-      isBuffer: null
+      test_eval: null,
+      isBuffer: null,
     }
-    putLogInfo(action, null);
+    const dataStream = {
+      action: event,
+      end_time: null
+    }
+    const responseInitialize = await CapacitorHttp.put({url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/telemetry/mobile?user_id=${userId}&start_time=${copyTime.toISOString()}`, data: dataStream, headers: {'content-type': 'application/json'}});
+    console.log('Put Initialize', responseInitialize)
   }
 
   useEffect(() => {
     // Initialize the Log Info as the user is signed
-    if (isAuthenticated && user !== undefined && user.sub !== undefined) {
-      postInitialize(user.sub);
+    if (isAuthenticated && user !== undefined && user.email !== undefined) {
+      postInitialize(user.email);
     }
   }, [isAuthenticated]);
 
@@ -212,7 +218,7 @@ const App: React.FC = () => {
   // Home Screen will fold the cards
   const handleHomeScreen = () => {
     setCardScreen(false);
-    putEnterCard(putLogInfo);
+    putEnterHome(putLogInfo);
   };
 
   // Handler that set the card-stacker back without shaking

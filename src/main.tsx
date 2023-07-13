@@ -12,7 +12,7 @@ const callBackUri = isPhone
   : "http://localhost:8100";
 
 root.render(
-  <React.StrictMode>
+  
     <Auth0Provider
       domain="dev-cra0zttj8xlwi6sh.us.auth0.com"
       clientId="FL6nEaabdViQCGWXTsfGl0DVwKfBnBNy"
@@ -25,5 +25,5 @@ root.render(
     >
       <App />
     </Auth0Provider>
- </React.StrictMode>
+ 
 );

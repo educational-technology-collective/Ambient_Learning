@@ -248,6 +248,7 @@ export const putEnterCard = (putLogInfo: (event: action, end_time: Date | null) 
     isBuffer: null,
   };
   putLogInfo(event, null);
+  console.log(putLogInfo);
 }
 
 export const putFlipping =  (
