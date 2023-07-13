@@ -139,21 +139,21 @@ const App: React.FC = () => {
   const postInitialize = async (userId: string) => {
     setUserId(userId);
     setTime(new Date());
-    const log: reviewInfo = {
+    const log = {
       user_id: userId,
       start_time: new Date(),
-      end_time: null,
-      action_container: [{
-        event_name: 'Initialize',
-        event_time: new Date(),
-        card_id: null,
-    self_eval: null,
-    test_eval: null,
-    isBuffer: null
-      }]
     }
     const response = await CapacitorHttp.post({url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/telemetry/mobile`, data: log});
     console.log("Post Response", response);
+    const action = {
+      event_name: 'Initialize',
+      event_time: new Date(),
+      card_id: null,
+      self_eval: null,
+      test_eval: null, 
+      isBuffer: null
+    }
+    putLogInfo(action, null);
   }
 
   useEffect(() => {
