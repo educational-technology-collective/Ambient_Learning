@@ -182,6 +182,50 @@ This also contains functions to move on the cards deck.
 //   };
 //   pushSessionFinished(event);
 // };
+import { CapacitorHttp } from "@capacitor/core";
+
+// POST Request that initialize the log build
+export const postInitialize = async (
+  userId: string,
+  handleUserID: (id: string) => void,
+  handleStartTime: (time: string) => void
+) => {
+  handleUserID(userId);
+  let copyTime = new Date();
+  // We use convert toISOString() for MongoDB Date Format
+  handleStartTime(copyTime.toISOString());
+  const log = {
+    user_id: userId,
+    start_time: copyTime,
+  };
+  const response = await CapacitorHttp.post({
+    url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/telemetry/mobile`,
+    data: log,
+    headers: { "content-type": "application/json" },
+  });
+  console.log("Post Response", response);
+
+  // PUT Request for the Initialize Container at the first place. Have to be
+  // together here
+  const event = {
+    event_name: "Initialize",
+    event_time: copyTime,
+    card_id: null,
+    self_eval: null,
+    test_eval: null,
+    isBuffer: null,
+  };
+  const dataStream = {
+    action: event,
+    end_time: null,
+  };
+  const responseInitialize = await CapacitorHttp.put({
+    url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/telemetry/mobile?user_id=${userId}&start_time=${copyTime.toISOString()}`,
+    data: dataStream,
+    headers: { "content-type": "application/json" },
+  });
+  console.log("Put Initialize", responseInitialize);
+};
 
 export const putEnterHome = (
   putLogInfo: (event: action, end_time: Date | null) => void

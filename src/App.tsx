@@ -38,6 +38,7 @@ import "./theme/variables.css";
 import CardsTab from "./IndicationComp/CardsTab";
 import LoadingPage from "./pages/LoadingPage";
 import {
+  postInitialize,
   putEnterCard,
   putEnterHome,
   putSessionFinished,
@@ -91,6 +92,14 @@ const App: React.FC = () => {
   const [user_Id, setUser] = useState("");
   const [time, setTime] = useState("");
 
+  const handleUserID = (userID: string) => {
+    setUser(userID);
+  };
+
+  const handleStartTime = (givenTime: string) => {
+    setTime(givenTime);
+  };
+
   // PUT Request that push information to the action_container
   const putLogInfo = async (event: action, end_time: Date | null) => {
     const dataStream = {
@@ -105,49 +114,10 @@ const App: React.FC = () => {
     console.log("Put Response", response);
   };
 
-  // POST Request that initialize the log build
-  const postInitialize = async (userId: string) => {
-    setUser(userId);
-    let copyTime = new Date();
-    // We use convert toISOString() for MongoDB Date Format
-    setTime(copyTime.toISOString());
-    const log = {
-      user_id: userId,
-      start_time: copyTime,
-    };
-    const response = await CapacitorHttp.post({
-      url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/telemetry/mobile`,
-      data: log,
-      headers: { "content-type": "application/json" },
-    });
-    console.log("Post Response", response);
-
-    // PUT Request for the Initialize Container at the first place. Have to be
-    // together here
-    const event = {
-      event_name: "Initialize",
-      event_time: copyTime,
-      card_id: null,
-      self_eval: null,
-      test_eval: null,
-      isBuffer: null,
-    };
-    const dataStream = {
-      action: event,
-      end_time: null,
-    };
-    const responseInitialize = await CapacitorHttp.put({
-      url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/telemetry/mobile?user_id=${userId}&start_time=${copyTime.toISOString()}`,
-      data: dataStream,
-      headers: { "content-type": "application/json" },
-    });
-    console.log("Put Initialize", responseInitialize);
-  };
-
   useEffect(() => {
     // Initialize the Log Info as the user is signed
     if (isAuthenticated && user !== undefined && user.email !== undefined) {
-      postInitialize(user.email);
+      postInitialize(user.email, handleUserID, handleStartTime);
     }
   }, [isAuthenticated]);
 
@@ -166,8 +136,7 @@ const App: React.FC = () => {
     setFetched(true);
 
     // If there is card available
-    if(data.length !== 0)
-    {
+    if (data.length !== 0) {
       setCards(data);
       setTotal(data.length);
       setCounter(data.length);
@@ -206,7 +175,7 @@ const App: React.FC = () => {
   // Card Screen will spread the cards
   const handleCardScreen = () => {
     setCardScreen(true);
-    if(finished !== total){
+    if (finished !== total) {
       putEnterCard(putLogInfo);
     }
   };
@@ -214,7 +183,7 @@ const App: React.FC = () => {
   // Home Screen will fold the cards
   const handleHomeScreen = () => {
     setCardScreen(false);
-    if(finished !== total){
+    if (finished !== total) {
       putEnterHome(putLogInfo);
     }
   };
