@@ -30,33 +30,33 @@ export const algorithmTester = (previous: any, evaluation: any) => {
       // by a small number
       if (evaluation.tapResult === 0) {
         memFactor -= 0.012;
-      } 
+      }
       // If it's MCQ and the user's test evaluation is skipped. We penalize this
       // by a small number
       else if (evaluation.tapResult === 2) {
         memFactor -= 0.01;
       }
-      // If the user's overall review record has 3 more 'know's than 'forget', 
-      // and the user just forgets after a certain point. We would reboost the 
+      // If the user's overall review record has 3 more 'know's than 'forget',
+      // and the user just forgets after a certain point. We would reboost the
       // interval and memFactor based on difference so the user is not reset scheduling
       if (difference >= 3 && interval === 1) {
         interval = 2 + difference;
         memFactor = Math.max(1.3, memFactor + difference * 0.12);
         return { memFactor: memFactor, interval: interval };
       }
-    } 
+    }
     // Case when the user swipes Don't Know for the latest evaluation
     else if (evaluation.swipeResult === "forget") {
       // Decrease the memFactor by 0.3
       memFactor -= 0.3;
-      // If the user forgets this time, but overall record has more 'know's, we 
+      // If the user forgets this time, but overall record has more 'know's, we
       // adjust the memFactor a tiny number to reboost
       if (difference >= 3) {
         memFactor += 0.025;
       }
       // Since the user forgets, we would set interval to be 1 for them to review
       return { memFactor: memFactor, interval: 1 };
-    } 
+    }
     // Case when the user swipes One More for the latest ealuation
     else {
       // Since the user swipes onemore, it's likely they are not very confident
