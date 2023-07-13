@@ -51,7 +51,7 @@ const LoadingPage: React.FC<{
         setProgress((prevProgress: number) => prevProgress + 0.05);
       }, 100);
       return () => clearInterval(interval);
-    } 
+    }
     // When showLoad is set to false. Jump to the cardScreen with 150ms delay
     else {
       setTimeout(navigateToCardScreen, 150);
