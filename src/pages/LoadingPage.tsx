@@ -43,14 +43,17 @@ const LoadingPage: React.FC<{
   const [showLoad, setLoad] = useState(true);
 
   useEffect(() => {
-    // Add 0.06 to the value every 0.1 second
+    // When showLoad is initially true, grow the progress bar
     if (showLoad) {
+      // Add 0.06 to the value every 0.1 second
       const interval = setInterval(() => {
         setBuffer((prevBuffer: number) => prevBuffer + 0.05);
         setProgress((prevProgress: number) => prevProgress + 0.05);
       }, 100);
       return () => clearInterval(interval);
-    } else {
+    } 
+    // When showLoad is set to false. Jump to the cardScreen with 150ms delay
+    else {
       setTimeout(navigateToCardScreen, 150);
     }
   }, [showLoad]);
