@@ -224,3 +224,6 @@ export const logSessionFinished = (
   };
   pushSessionFinished(event);
 };
+
+
+const 

@@ -123,13 +123,45 @@ const App: React.FC = () => {
     }));
   };
 
+  const putLogInfo = async (event: action, end_time: Date | null) => {
+    const dataStream = {
+      action: event,
+      end_time: end_time
+    };
+    const response = await CapacitorHttp.put({url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/telemetry/mobile?user_id=${userId}&start_time=${start_time}`, data: dataStream});
+    console.log("Put Response", response);
+  }
+
+  const [userId, setUserId] = useState('');
+
+  const [start_time, setTime] = useState(new Date());
+
+  const postInitialize = async (userId: string) => {
+    setUserId(userId);
+    setTime(new Date());
+    const log: reviewInfo = {
+      user_id: userId,
+      start_time: new Date(),
+      end_time: null,
+      action_container: [{
+        event_name: 'Initialize',
+        event_time: new Date(),
+        card_id: null,
+    self_eval: null,
+    test_eval: null,
+    isBuffer: null
+      }]
+    }
+    const response = await CapacitorHttp.post({url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/telemetry/mobile`, data: log});
+    console.log("Post Response", response);
+  }
+
   useEffect(() => {
     // Initialize the Log Info as the user is signed
     if (isAuthenticated && user !== undefined && user.sub !== undefined) {
-      logInitialize(user.sub, pushSessionInitialize);
+      postInitialize(user.sub);
     }
   }, [isAuthenticated]);
-  console.log(logInfo);
 
   // State Variable to indicate whether data is fetched
   const [isFetched, setFetched] = useState(false);
