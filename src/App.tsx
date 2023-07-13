@@ -37,7 +37,11 @@ import "@ionic/react/css/display.css";
 import "./theme/variables.css";
 import CardsTab from "./IndicationComp/CardsTab";
 import LoadingPage from "./pages/LoadingPage";
-import { putEnterCard, putEnterHome, putSessionFinished } from "./utilities/logfunction";
+import {
+  putEnterCard,
+  putEnterHome,
+  putSessionFinished,
+} from "./utilities/logfunction";
 import LogInPage from "./pages/LogInPage";
 
 import { App as CapApp } from "@capacitor/app";
@@ -83,21 +87,23 @@ const App: React.FC = () => {
     });
   }, [handleRedirectCallback]);
 
-
   // User_Id and Time State Variable used for Quary
-  const [user_Id, setUser] = useState('');
-  const [time, setTime] = useState('');
-
+  const [user_Id, setUser] = useState("");
+  const [time, setTime] = useState("");
 
   // PUT Request that push information to the action_container
   const putLogInfo = async (event: action, end_time: Date | null) => {
     const dataStream = {
       action: event,
-      end_time: end_time
+      end_time: end_time,
     };
-    const response = await CapacitorHttp.put({url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/telemetry/mobile?user_id=${user_Id}&start_time=${time}`, data: dataStream, headers: {'content-type': 'application/json'}});
+    const response = await CapacitorHttp.put({
+      url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/telemetry/mobile?user_id=${user_Id}&start_time=${time}`,
+      data: dataStream,
+      headers: { "content-type": "application/json" },
+    });
     console.log("Put Response", response);
-  }
+  };
 
   // POST Request that initialize the log build
   const postInitialize = async (userId: string) => {
@@ -108,27 +114,35 @@ const App: React.FC = () => {
     const log = {
       user_id: userId,
       start_time: copyTime,
-    }
-    const response = await CapacitorHttp.post({url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/telemetry/mobile`, data: log, headers: {'content-type': 'application/json'}});
+    };
+    const response = await CapacitorHttp.post({
+      url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/telemetry/mobile`,
+      data: log,
+      headers: { "content-type": "application/json" },
+    });
     console.log("Post Response", response);
 
-    // PUT Request for the Initialize Container at the first place. Have to be 
-    // together here 
+    // PUT Request for the Initialize Container at the first place. Have to be
+    // together here
     const event = {
-      event_name: 'Initialize',
+      event_name: "Initialize",
       event_time: copyTime,
       card_id: null,
       self_eval: null,
       test_eval: null,
       isBuffer: null,
-    }
+    };
     const dataStream = {
       action: event,
-      end_time: null
-    }
-    const responseInitialize = await CapacitorHttp.put({url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/telemetry/mobile?user_id=${userId}&start_time=${copyTime.toISOString()}`, data: dataStream, headers: {'content-type': 'application/json'}});
-    console.log('Put Initialize', responseInitialize)
-  }
+      end_time: null,
+    };
+    const responseInitialize = await CapacitorHttp.put({
+      url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/telemetry/mobile?user_id=${userId}&start_time=${copyTime.toISOString()}`,
+      data: dataStream,
+      headers: { "content-type": "application/json" },
+    });
+    console.log("Put Initialize", responseInitialize);
+  };
 
   useEffect(() => {
     // Initialize the Log Info as the user is signed
