@@ -7,12 +7,7 @@ import MCQ from "./MCQ";
 import QA from "./QA";
 import { enableGesture } from "../utilities/gesture";
 import {
-  logDontKnow,
-  logFlipping,
-  logKnow,
-  logOneMore,
-  logPoorCardSwipeAfter,
-  logPoorCardSwipeBefore,
+  
 } from "../utilities/logfunction";
 import NumberIndicator from "./NumberIndicator";
 const Card: React.FC<{
@@ -82,6 +77,7 @@ const Card: React.FC<{
 
     // Log the Event of Flipping / Answering
     logFlipping(obj._id, cardIndex, tupleLength, pushLogInfo);
+    
   };
 
   // State Variable to track if the user gets correct/incorrect/skipped

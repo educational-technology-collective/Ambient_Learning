@@ -226,7 +226,7 @@ This also contains functions to move on the cards deck.
 // };
 
 
-const putEnterHome = (putLogInfo: (event: action, end_time: Date | null) => void) => {
+export const putEnterHome = (putLogInfo: (event: action, end_time: Date | null) => void) => {
   const event: action = {
     event_name: "EnterHomeScreen",
     event_time: new Date(),
@@ -238,7 +238,7 @@ const putEnterHome = (putLogInfo: (event: action, end_time: Date | null) => void
   putLogInfo(event, null);
 }
 
-const putEnterCard = (putLogInfo: (event: action, end_time: Date | null) => void) => {
+export const putEnterCard = (putLogInfo: (event: action, end_time: Date | null) => void) => {
   const event: action = {
     event_name: "EnterCardScreen",
     event_time: new Date(),
@@ -250,7 +250,7 @@ const putEnterCard = (putLogInfo: (event: action, end_time: Date | null) => void
   putLogInfo(event, null);
 }
 
-const putFlipping =  (
+export const putFlipping =  (
 cardId: string,
 cardIndex: number,
 tupleLength: number,
@@ -267,7 +267,7 @@ const event: action = {
 putLogInfo(event, null);
 }
 
-const putOneMore = (
+export const putOneMore = (
   testEvaluation: string,
   type: string,
   cardId: string,
