@@ -25,7 +25,7 @@ declare global {
 
   interface action {
     event_name: string;
-    event_time: Date;
+    event_time: string;
     card_id: string | null;
     self_eval: string | null;
     test_eval: string | null;

@@ -15,9 +15,9 @@ export const postInitialize = async (
   handleStartTime: (time: string) => void
 ) => {
   handleUserID(userId);
-  let copyTime = new Date();
+  let copyTime = new Date().toISOString();
   // We use convert toISOString() for MongoDB Date Format
-  handleStartTime(copyTime.toISOString());
+  handleStartTime(copyTime);
   const log = {
     user_id: userId,
     start_time: copyTime,
@@ -44,7 +44,7 @@ export const postInitialize = async (
     end_time: null,
   };
   const responseInitialize = await CapacitorHttp.put({
-    url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/telemetry/mobile?user_id=${userId}&start_time=${copyTime.toISOString()}`,
+    url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/telemetry/mobile?user_id=${userId}&start_time=${copyTime}`,
     data: dataStream,
     headers: { "content-type": "application/json" },
   });
@@ -52,11 +52,11 @@ export const postInitialize = async (
 };
 
 export const putEnterHome = (
-  putLogInfo: (event: action, end_time: Date | null) => void
+  putLogInfo: (event: action, end_time: string | null) => void
 ) => {
   const event: action = {
     event_name: "EnterHomeScreen",
-    event_time: new Date(),
+    event_time: new Date().toISOString(),
     card_id: null,
     self_eval: null,
     test_eval: null,
@@ -66,11 +66,11 @@ export const putEnterHome = (
 };
 
 export const putEnterCard = (
-  putLogInfo: (event: action, end_time: Date | null) => void
+  putLogInfo: (event: action, end_time: string | null) => void
 ) => {
   const event: action = {
     event_name: "EnterCardScreen",
-    event_time: new Date(),
+    event_time: new Date().toISOString(),
     card_id: null,
     self_eval: null,
     test_eval: null,
@@ -84,11 +84,11 @@ export const putFlipping = (
   cardId: string,
   cardIndex: number,
   tupleLength: number,
-  putLogInfo: (event: action, end_time: Date | null) => void
+  putLogInfo: (event: action, end_time: string | null) => void
 ) => {
   const event: action = {
     event_name: "flip",
-    event_time: new Date(),
+    event_time: new Date().toISOString(),
     card_id: cardId,
     self_eval: null,
     test_eval: null,
@@ -119,7 +119,7 @@ export const putOneMore = (
   // Log the event of swiping a card for one more
   const event: action = {
     event_name: name,
-    event_time: new Date(),
+    event_time: new Date().toISOString(),
     card_id: cardId,
     self_eval: "OneMore",
     test_eval: machineEvaluation,
@@ -147,7 +147,7 @@ export const putKnow = (
   // Log the event of swiping a card for knowing
   const event: action = {
     event_name: "swipe",
-    event_time: new Date(),
+    event_time: new Date().toISOString(),
     card_id: cardId,
     self_eval: "know",
     test_eval: machineEvaluation,
@@ -175,7 +175,7 @@ export const putDontKnow = (
   // Log the event of swiping a card for not knowing
   const event: action = {
     event_name: "swipe",
-    event_time: new Date(),
+    event_time: new Date().toISOString(),
     card_id: cardId,
     self_eval: "DontKnow",
     test_eval: machineEvaluation,
@@ -203,7 +203,7 @@ export const putPoorCardSwipeBefore = (
   // Log the event of swiping a card down without clicking
   const event: action = {
     event_name: "NoEvaluation",
-    event_time: new Date(),
+    event_time: new Date().toISOString(),
     card_id: cardId,
     self_eval: "PoorCard",
     test_eval: machineEvaluation,
@@ -231,7 +231,7 @@ export const putPoorCardSwipeAfter = (
   // Log the event of siwping a card down after answering
   const event: action = {
     event_name: "swipe",
-    event_time: new Date(),
+    event_time: new Date().toISOString(),
     card_id: cardId,
     self_eval: "PoorCard",
     test_eval: machineEvaluation,
@@ -241,15 +241,15 @@ export const putPoorCardSwipeAfter = (
 };
 
 export const putSessionFinished = (
-  putLogInfo: (event: action, end_time: Date | null) => void
+  putLogInfo: (event: action, end_time: string | null) => void
 ) => {
   const event = {
     event_name: "SessionFinished",
-    event_time: new Date(),
+    event_time: new Date().toISOString(),
     card_id: null,
     self_eval: null,
     test_eval: null,
     isBuffer: null,
   };
-  putLogInfo(event, new Date());
+  putLogInfo(event, new Date().toISOString());
 };

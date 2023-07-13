@@ -21,7 +21,7 @@ const Card: React.FC<{
   cardIndex: number;
   tupleIndex: number;
   tupleCounter: number;
-  putLogInfo: (event: action, end_time: Date | null) => void;
+  putLogInfo: (event: action, end_time: string | null) => void;
   moveOn: (tupleIndex: number, event: action) => void;
   oneMore: (tupleIndex: number, event: action) => void;
   refTuple: React.RefObject<HTMLInputElement>;

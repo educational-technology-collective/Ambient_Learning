@@ -101,7 +101,7 @@ const App: React.FC = () => {
   };
 
   // PUT Request that push information to the action_container
-  const putLogInfo = async (event: action, end_time: Date | null) => {
+  const putLogInfo = async (event: action, end_time: string | null) => {
     const dataStream = {
       action: event,
       end_time: end_time,
