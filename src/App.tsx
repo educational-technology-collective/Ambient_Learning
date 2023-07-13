@@ -160,12 +160,19 @@ const App: React.FC = () => {
   // GET Function for fetching cards
   const getCards = async (url: string) => {
     const response = await CapacitorHttp.get({ url: url });
+    // Convert it to an array
     const data = await JSON.parse(response.data);
+    // Set Fetched Status to be True
     setFetched(true);
-    setCards(data);
-    setTotal(data.length);
-    setCounter(data.length);
-    setTupleCounter(data[data.length - 1].length);
+
+    // If there is card available
+    if(data.length !== 0)
+    {
+      setCards(data);
+      setTotal(data.length);
+      setCounter(data.length);
+      setTupleCounter(data[data.length - 1].length);
+    }
   };
 
   // UseEffect to fetch the cards
