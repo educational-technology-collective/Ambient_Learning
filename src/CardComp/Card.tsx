@@ -6,7 +6,14 @@ import BackIndicator from "../IndicationComp/BackIndicator";
 import MCQ from "./MCQ";
 import QA from "./QA";
 import { enableGesture } from "../utilities/gesture";
-import { putDontKnow, putFlipping, putKnow, putOneMore, putPoorCardSwipeAfter, putPoorCardSwipeBefore } from "../utilities/logfunction";
+import {
+  putDontKnow,
+  putFlipping,
+  putKnow,
+  putOneMore,
+  putPoorCardSwipeAfter,
+  putPoorCardSwipeBefore,
+} from "../utilities/logfunction";
 import NumberIndicator from "./NumberIndicator";
 const Card: React.FC<{
   obj: flashCard;
