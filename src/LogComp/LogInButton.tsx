@@ -2,7 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Browser } from "@capacitor/browser";
 import { IonButton } from "@ionic/react";
 import "./LogButton.css";
-const LogInButton: React.FC = () => {
+const LogInButton: React.FC<{handleFromLogIn: () => void}> = ({handleFromLogIn}) => {
   const { loginWithRedirect } = useAuth0();
   const login = async () => {
     await loginWithRedirect({
@@ -10,6 +10,7 @@ const LogInButton: React.FC = () => {
         await Browser.open({ url, windowName: "_self" });
       },
     });
+    handleFromLogIn();
   };
 
   return (

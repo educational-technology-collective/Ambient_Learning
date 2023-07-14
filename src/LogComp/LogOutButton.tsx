@@ -31,6 +31,7 @@ const LogOutButton: React.FC = () => {
       history.push("/login");
       window.location.reload();
     }
+    localStorage.clear();
   };
 
   return (

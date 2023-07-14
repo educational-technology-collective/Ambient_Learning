@@ -12,11 +12,14 @@ import {
 import "./LoadingPage.css";
 import { useHistory } from "react-router-dom";
 import { hideBar, showBar } from "../utilities/showTabBar";
+import { useAuth0 } from "@auth0/auth0-react";
+import { CapacitorHttp } from "@capacitor/core";
 
 const LoadingPage: React.FC<{
   isFetched: boolean;
+  fromLogin: boolean;
   handleCardScreen: () => void;
-}> = ({ isFetched, handleCardScreen }) => {
+}> = ({ isFetched, fromLogin, handleCardScreen }) => {
   // Hide the Bottom Tabs for this Page
   useIonViewWillEnter(hideBar);
 
@@ -28,6 +31,8 @@ const LoadingPage: React.FC<{
   const [progress, setProgress] = useState(0);
 
   const history = useHistory();
+
+  const { user } = useAuth0();
 
   // Turn loading down and jump to card screen
   const navigateToCardScreen = () => {
@@ -54,9 +59,15 @@ const LoadingPage: React.FC<{
     }
     // When showLoad is set to false. Jump to the cardScreen with 150ms delay
     else {
-      setTimeout(navigateToCardScreen, 150);
+      console.log(localStorage.getItem('Mobile_new'));
+      if (user !== undefined && user['mobile_new'] && localStorage.getItem('Mobile_new') === null) {
+        localStorage.setItem('Mobile_new', 'true');
+        setTimeout(navigateToTutorialScreen, 150);
+      } else {
+        setTimeout(navigateToCardScreen, 150);
+      }
     }
-  }, [showLoad]);
+  }, [showLoad, fromLogin]);
 
   if (showLoad && isFetched && progress > 1) {
     setLoad(false);

@@ -92,6 +92,12 @@ const App: React.FC = () => {
   const [user_Id, setUser] = useState("");
   const [time, setTime] = useState("");
 
+  const [fromLogin, setFromLogIn] = useState(false);
+
+  const handleFromLogIn = () => {
+    setFromLogIn(true);
+  }
+
   const handleUserID = (userID: string) => {
     setUser(userID);
   };
@@ -253,7 +259,7 @@ const App: React.FC = () => {
   // Return the Log In Page if it's not authenticated and not loading
   // Technically "Buggy"
   if (!isAuthenticated && !isLoading) {
-    return <LogInPage />;
+    return <LogInPage handleFromLogIn={handleFromLogIn}/>;
   }
 
 
@@ -353,7 +359,6 @@ const App: React.FC = () => {
     data12.push(previous12.interval);
   }
   console.log("Set 12", JSON.stringify(data12));
-
   return (
     <IonApp>
       <IonReactRouter>
@@ -389,7 +394,7 @@ const App: React.FC = () => {
             />
 
             <Route exact path="/login">
-              {isAuthenticated ? <Redirect to="/loading" /> : <LogInPage />}
+              {isAuthenticated ? <Redirect to="/loading" /> : <LogInPage handleFromLogIn={handleFromLogIn}/>}
             </Route>
 
             <Route
@@ -405,6 +410,7 @@ const App: React.FC = () => {
               render={() => (
                 <LoadingPage
                   isFetched={isFetched}
+                  fromLogin={fromLogin}
                   handleCardScreen={handleCardScreen}
                 />
               )}
