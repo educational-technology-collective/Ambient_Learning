@@ -8,7 +8,7 @@ const LogOutButton: React.FC = () => {
 
   const isPhone = isPlatform("hybrid");
   const logoutUri = isPhone
-    ? "ionic.srs://dev-cra0zttj8xlwi6sh.us.auth0.com/capacitor/ionic.srs/callback/"
+    ? "ionic.srs://login"
     : "http://localhost:8100/login";
 
   const { logout } = useAuth0();

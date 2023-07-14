@@ -48,7 +48,7 @@ import LogInPage from "./pages/LogInPage";
 import { App as CapApp } from "@capacitor/app";
 import { Browser } from "@capacitor/browser";
 
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import TutorialPage from "./pages/TutorialPage";
 import { algorithmTester, srsAlgorithm } from "./utilities/algorithm";
 import {
@@ -70,7 +70,7 @@ setupIonicReact({
 });
 
 const App: React.FC = () => {
-  const { isAuthenticated, isLoading, user } = useAuth0();
+  const { isAuthenticated, isLoading, user} = useAuth0();
 
   const { handleRedirectCallback } = useAuth0();
 
@@ -117,7 +117,7 @@ const App: React.FC = () => {
   useEffect(() => {
     // Initialize the Log Info as the user is signed
     if (isAuthenticated && user !== undefined && user.email !== undefined) {
-      postInitialize(user.email, handleUserID, handleStartTime);
+    //  postInitialize(user.email, handleUserID, handleStartTime);
     }
   }, [isAuthenticated]);
 
@@ -255,6 +255,8 @@ const App: React.FC = () => {
   if (!isAuthenticated && !isLoading) {
     return <LogInPage />;
   }
+
+
 
   let previous = null;
   let data1 = [];
