@@ -17,9 +17,8 @@ import { CapacitorHttp } from "@capacitor/core";
 
 const LoadingPage: React.FC<{
   isFetched: boolean;
-  fromLogin: boolean;
   handleCardScreen: () => void;
-}> = ({ isFetched, fromLogin, handleCardScreen }) => {
+}> = ({ isFetched, handleCardScreen }) => {
   // Hide the Bottom Tabs for this Page
   useIonViewWillEnter(hideBar);
 
@@ -59,15 +58,14 @@ const LoadingPage: React.FC<{
     }
     // When showLoad is set to false. Jump to the cardScreen with 150ms delay
     else {
-      console.log(localStorage.getItem('Mobile_new'));
-      if (user !== undefined && user['mobile_new'] && localStorage.getItem('Mobile_new') === null) {
-        localStorage.setItem('Mobile_new', 'true');
+      if (user !== undefined && user['mobile_first_time'] && localStorage.getItem('mobile_first_time') === null) {
+        localStorage.setItem('mobile_first_time', 'false');
         setTimeout(navigateToTutorialScreen, 150);
       } else {
         setTimeout(navigateToCardScreen, 150);
       }
     }
-  }, [showLoad, fromLogin]);
+  }, [showLoad]);
 
   if (showLoad && isFetched && progress > 1) {
     setLoad(false);

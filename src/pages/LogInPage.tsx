@@ -9,7 +9,7 @@ import LogInButton from "../LogComp/LogInButton";
 import { hideBar, showBar } from "../utilities/showTabBar";
 import spacecraft from "../../spacecraft.svg";
 
-const LogInPage: React.FC<{handleFromLogIn: () => void}> = ({handleFromLogIn}) => {
+const LogInPage: React.FC = () => {
   // Hide the bottom tabs when entering the login page
   useIonViewWillEnter(hideBar);
 
@@ -31,7 +31,7 @@ const LogInPage: React.FC<{handleFromLogIn: () => void}> = ({handleFromLogIn}) =
               Enlarge Brain Through <i>Flashcards</i>
             </h2>
           </div>
-          <LogInButton handleFromLogIn={handleFromLogIn}/>
+          <LogInButton />
         </div>
       </IonContent>
     </IonPage>
