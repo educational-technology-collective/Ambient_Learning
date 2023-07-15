@@ -19,7 +19,7 @@ const DashBoard: React.FC<{
             </IonCardContent>
           </IonCard>
         ) : (
-          <IonText>You are done with cards. Go touch grass, bravo!</IonText>
+          <IonText className='finish-task'>You are done with cards. Go touch grass, bravo!</IonText>
         )}
       </IonCardContent>
     </IonCard>
