@@ -35,6 +35,13 @@ npm install @auth0/auth0-react
 cd Space-Repetition-Ionic
 npm install @capacitor/browser @capacitor/app
 ```
+
+**Install ReactMarkdown Plugin**: Used for rendering markdown
+```
+cd Space-Repetition-Ionic
+npm install react-markdown
+```
+
 ## Run
 After you have set up the repo in your local directory. Run the following commands to try the app:
 ```
