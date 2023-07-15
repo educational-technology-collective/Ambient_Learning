@@ -13,7 +13,6 @@ import "./LoadingPage.css";
 import { useHistory } from "react-router-dom";
 import { hideBar, showBar } from "../utilities/showTabBar";
 import { useAuth0 } from "@auth0/auth0-react";
-import { CapacitorHttp } from "@capacitor/core";
 
 const LoadingPage: React.FC<{
   isFetched: boolean;
@@ -58,10 +57,18 @@ const LoadingPage: React.FC<{
     }
     // When showLoad is set to false. Jump to the cardScreen with 150ms delay
     else {
-      if (user !== undefined && user['mobile_first_time'] && localStorage.getItem('mobile_first_time') === null) {
-        localStorage.setItem('mobile_first_time', 'false');
+      // Check there is user. User is first time and there is no local storage
+      if (
+        user !== undefined &&
+        user["mobile_first_time"] &&
+        localStorage.getItem("mobile_first_time") === null
+      ) {
+        // Set Local Storage so it won't jump to tutorial screen when refreshing
+        localStorage.setItem("mobile_first_time", "false");
         setTimeout(navigateToTutorialScreen, 150);
-      } else {
+      } 
+      // If the user is not first time, navigate to card screen.
+      else {
         setTimeout(navigateToCardScreen, 150);
       }
     }
