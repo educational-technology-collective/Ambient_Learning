@@ -8,15 +8,20 @@ This also contains functions to move on the cards deck.
 */
 import { CapacitorHttp } from "@capacitor/core";
 
-export const getLatestRecord = async(user_id: string, handleStartTime: (time: string) => void) => {
-  const response = await CapacitorHttp.get({url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/telemetry/mobile?user_id=${user_id}`});
+export const getLatestRecord = async (
+  user_id: string,
+  handleStartTime: (time: string) => void
+) => {
+  const response = await CapacitorHttp.get({
+    url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/telemetry/mobile?user_id=${user_id}`,
+  });
   const data = await JSON.parse(response.data);
-  if(data.new){
-    postInitialize(user_id, handleStartTime)
-  }else{
+  if (data.new) {
+    postInitialize(user_id, handleStartTime);
+  } else {
     handleStartTime(data.start_time);
   }
-}
+};
 
 // POST Request that initialize the log build
 export const postInitialize = async (
