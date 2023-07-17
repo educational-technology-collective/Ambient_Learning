@@ -69,7 +69,7 @@ const LoadingPage: React.FC<{
       } 
       // If the user is not first time, navigate to card screen.
       else {
-        setTimeout(navigateToCardScreen, 150);
+        setTimeout(navigateToCardScreen, 300);
       }
     }
   }, [showLoad]);

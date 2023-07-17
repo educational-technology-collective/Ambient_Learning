@@ -121,20 +121,34 @@ const App: React.FC = () => {
   // The Card Array
   const [cardCol, setCards] = useState([[]]);
 
+  // How Many Cards in total
+  const [total, setTotal] = useState(0);
+
+  // How Many Cards Finished
+  const [finished, setFinished] = useState(0);
+
+  // Number of Cards Remaining
+  let cardsLeft: number = total - finished;
+
+  // Counter used to display certain cards
+  const [counter, setCounter] = useState(0);
+
+  // Tuple Counter for One More Cards
+  const [tupleCounter, setTupleCounter] = useState(0);
+
   console.log(cardCol.length);
   useEffect(() => {
     // Initialize the Log Info as the user is signed and cardcollection not empty
     if (
       isAuthenticated &&
-      isFetched &&
-      cardCol.length &&
+      total &&
       user !== undefined &&
       user.email !== undefined
     ) {
       setUser(user.email);
       getLatestRecord(user.email, handleStartTime);
     }
-  }, [isAuthenticated, isFetched]);
+  }, [isAuthenticated, total]);
 
   // GET Function for fetching cards
   const getCards = async (url: string) => {
@@ -159,21 +173,6 @@ const App: React.FC = () => {
       "https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/users/srsdevteam@gmail.com/flashcards/all"
     );
   }, []);
-
-  // How Many Cards Finished
-  const [finished, setFinished] = useState(0);
-
-  // How Many Cards in total
-  const [total, setTotal] = useState(0);
-
-  // Number of Cards Remaining
-  let cardsLeft: number = total - finished;
-
-  // Counter used to display certain cards
-  const [counter, setCounter] = useState(0);
-
-  // Tuple Counter for One More Cards
-  const [tupleCounter, setTupleCounter] = useState(0);
 
   // Card-Stacker Visual Effect
   const [isShake, setShake] = useState(false);
