@@ -108,7 +108,7 @@ const App: React.FC = () => {
       end_time: end_time,
     };
     const response = await CapacitorHttp.put({
-      url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/telemetry/mobile?user_id=${user_Id}&start_time=${time}`,
+      url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?user_id=${user_Id}&start_time=${time}`,
       data: dataStream,
       headers: { "content-type": "application/json" },
     });
@@ -170,7 +170,7 @@ const App: React.FC = () => {
   // UseEffect to fetch the cards
   useEffect(() => {
     getCards(
-      "https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/users/srsdevteam@gmail.com/flashcards/all"
+      "https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/users/srsdevteam@gmail.com/flashcards/all"
     );
   }, []);
 

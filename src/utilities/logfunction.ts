@@ -13,7 +13,7 @@ export const getLatestRecord = async (
   handleStartTime: (time: string) => void
 ) => {
   const response = await CapacitorHttp.get({
-    url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/telemetry/mobile?user_id=${user_id}`,
+    url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?user_id=${user_id}`,
   });
   const data = await JSON.parse(response.data);
   if (data.new) {
@@ -36,7 +36,7 @@ export const postInitialize = async (
     start_time: copyTime,
   };
   const response = await CapacitorHttp.post({
-    url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/telemetry/mobile`,
+    url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile`,
     data: log,
     headers: { "content-type": "application/json" },
   });
@@ -57,7 +57,7 @@ export const postInitialize = async (
     end_time: null,
   };
   const responseInitialize = await CapacitorHttp.put({
-    url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/telemetry/mobile?user_id=${userId}&start_time=${copyTime}`,
+    url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?user_id=${userId}&start_time=${copyTime}`,
     data: dataStream,
     headers: { "content-type": "application/json" },
   });
