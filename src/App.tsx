@@ -49,7 +49,7 @@ import LogInPage from "./pages/LogInPage";
 import { App as CapApp } from "@capacitor/app";
 import { Browser } from "@capacitor/browser";
 
-import { useAuth0} from "@auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 import TutorialPage from "./pages/TutorialPage";
 import { algorithmTester, srsAlgorithm } from "./utilities/algorithm";
 import {
@@ -115,7 +115,6 @@ const App: React.FC = () => {
     console.log("Put Response", response);
   };
 
-
   // State Variable to indicate whether data is fetched
   const [isFetched, setFetched] = useState(false);
 
@@ -125,12 +124,17 @@ const App: React.FC = () => {
   console.log(cardCol.length);
   useEffect(() => {
     // Initialize the Log Info as the user is signed and cardcollection not empty
-    if (isAuthenticated && isFetched && cardCol.length && user !== undefined && user.email !== undefined) {
+    if (
+      isAuthenticated &&
+      isFetched &&
+      cardCol.length &&
+      user !== undefined &&
+      user.email !== undefined
+    ) {
       setUser(user.email);
-       getLatestRecord(user.email, handleStartTime);
+      getLatestRecord(user.email, handleStartTime);
     }
   }, [isAuthenticated, isFetched]);
-
 
   // GET Function for fetching cards
   const getCards = async (url: string) => {
