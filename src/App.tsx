@@ -39,7 +39,6 @@ import CardsTab from "./IndicationComp/CardsTab";
 import LoadingPage from "./pages/LoadingPage";
 import {
   getLatestRecord,
-  postInitialize,
   putEnterCard,
   putEnterHome,
   putSessionFinished,
