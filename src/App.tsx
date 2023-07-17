@@ -114,18 +114,32 @@ const App: React.FC = () => {
     console.log("Put Response", response);
   };
 
-  useEffect(() => {
-    // Initialize the Log Info as the user is signed
-    if (isAuthenticated && user !== undefined && user.email !== undefined) {
-      //  postInitialize(user.email, handleUserID, handleStartTime);
-    }
-  }, [isAuthenticated]);
 
   // State Variable to indicate whether data is fetched
   const [isFetched, setFetched] = useState(false);
 
   // The Card Array
   const [cardCol, setCards] = useState([[]]);
+
+  console.log(cardCol.length);
+  useEffect(() => {
+    // Initialize the Log Info as the user is signed and cardcollection not empty
+    if (isAuthenticated && isFetched && cardCol.length && user !== undefined && user.email !== undefined) {
+      setUser(user.email);
+       getLatestRecord(user.email);
+    }
+  }, [isAuthenticated, isFetched]);
+
+  const getLatestRecord = async(user_id: string) => {
+    const response = await CapacitorHttp.get({url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/telemetry/mobile?user_id=${user_id}`});
+    const data = await JSON.parse(response.data);
+    console.log(data);
+    if(data.new){
+      postInitialize(user_id, handleUserID, handleStartTime)
+    }else{
+      handleStartTime(data.start_time);
+    }
+  }
 
   // GET Function for fetching cards
   const getCards = async (url: string) => {

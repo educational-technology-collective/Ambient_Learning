@@ -14,7 +14,6 @@ export const postInitialize = async (
   handleUserID: (id: string) => void,
   handleStartTime: (time: string) => void
 ) => {
-  handleUserID(userId);
   let copyTime = new Date().toISOString();
   // We use convert toISOString() for MongoDB Date Format
   handleStartTime(copyTime);
