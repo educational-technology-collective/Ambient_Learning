@@ -93,10 +93,6 @@ const App: React.FC = () => {
   const [user_Id, setUser] = useState("");
   const [time, setTime] = useState("");
 
-  const handleUserID = (userID: string) => {
-    setUser(userID);
-  };
-
   const handleStartTime = (givenTime: string) => {
     setTime(givenTime);
   };
