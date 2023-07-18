@@ -71,7 +71,14 @@ setupIonicReact({
 });
 
 const App: React.FC = () => {
-  const { isAuthenticated, isLoading, user } = useAuth0();
+  const {
+    isAuthenticated,
+    isLoading,
+    user,
+    getAccessTokenSilently,
+    getAccessTokenWithPopup,
+    loginWithRedirect,
+  } = useAuth0();
 
   const { handleRedirectCallback } = useAuth0();
 
@@ -106,7 +113,10 @@ const App: React.FC = () => {
     const response = await CapacitorHttp.put({
       url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?user_id=${user_Id}&start_time=${time}`,
       data: dataStream,
-      headers: { "content-type": "application/json" },
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${accessToken}`,
+      },
     });
     console.log("Put Response", response);
   };
@@ -132,49 +142,59 @@ const App: React.FC = () => {
   // Tuple Counter for One More Cards
   const [tupleCounter, setTupleCounter] = useState(0);
 
-  console.log(cardCol.length);
+  const [accessToken, setToken] = useState("");
+
+  const tokenHandler = async () => {
+      const token = await getAccessTokenSilently();
+      setToken(token);
+  };
+  useEffect(() => {
+    if(isAuthenticated)
+    {
+      tokenHandler()
+    }
+  },[isAuthenticated])
   useEffect(() => {
     // Initialize the Log Info as the user is signed and cardcollection not empty
     if (
       isAuthenticated &&
       total &&
+      accessToken !== '' &&
       user !== undefined &&
       user.email !== undefined
     ) {
       setUser(user.email);
-      getLatestRecord(user.email, handleStartTime);
+      getLatestRecord(user.email, accessToken, handleStartTime);
     }
-  }, [isAuthenticated, total]);
+  }, [isAuthenticated, total, accessToken]);
 
   const [isError, setError] = useState(false);
 
   // GET Function for fetching cards
   const getCards = async (url: string) => {
-    try{
+    try {
       const response = await CapacitorHttp.get({ url: url });
-      console.log('re', response);
-    // If there is 500 Erro
-    if(response.status !== 500){
-    // Convert it to an array
-    const data = await JSON.parse(response.data);
-    // Set Fetched Status to be True
-    setFetched(true);
+      // If there is 500 Erro
+      if (response.status !== 500) {
+        // Convert it to an array
+        const data = await JSON.parse(response.data);
+        // Set Fetched Status to be True
+        setFetched(true);
 
-    // If there is card available
-    if (data.length !== 0) {
-      setCards(data);
-      setTotal(data.length);
-      setCounter(data.length);
-      setTupleCounter(data[data.length - 1].length);
+        // If there is card available
+        if (data.length !== 0) {
+          setCards(data);
+          setTotal(data.length);
+          setCounter(data.length);
+          setTupleCounter(data[data.length - 1].length);
+        }
+      } else {
+        console.log("Something Bad");
+        setError(true);
+      }
+    } catch (error) {
+      console.log("There is Error");
     }
-  }else{
-    console.log('Something Bad');
-    setError(true);
-  }
-    }catch(error){
-      console.log('There is Error');
-    }
-    
   };
 
   // UseEffect to fetch the cards
@@ -193,7 +213,7 @@ const App: React.FC = () => {
   // Card Screen will spread the cards
   const handleCardScreen = () => {
     setCardScreen(true);
-    if (user_Id !== '' && finished !== total) {
+    if (time !== "" && finished !== total) {
       putEnterCard(putLogInfo);
     }
   };
@@ -201,7 +221,7 @@ const App: React.FC = () => {
   // Home Screen will fold the cards
   const handleHomeScreen = () => {
     setCardScreen(false);
-    if (user_Id !== '' && finished !== total) {
+    if (time !== "" && finished !== total) {
       putEnterHome(putLogInfo);
     }
   };
@@ -213,7 +233,7 @@ const App: React.FC = () => {
 
     // Log Session is Finished
     if (finished === total - 1) {
-      setTimeout(() => putSessionFinished(putLogInfo), 200);
+      setTimeout(() => putSessionFinished(putLogInfo), 350);
     }
 
     // Set Timeout of 2.2 seconds(consistent with animation time)
@@ -236,7 +256,7 @@ const App: React.FC = () => {
 
     // Log Session is Finished
     if (finished === total - 1) {
-      setTimeout(() => putSessionFinished(putLogInfo), 200);
+      setTimeout(() => putSessionFinished(putLogInfo), 350);
     }
   };
 
@@ -407,7 +427,7 @@ const App: React.FC = () => {
               {isAuthenticated ? <Redirect to="/loading" /> : <LogInPage />}
             </Route>
 
-            <Route exact path='/error'>
+            <Route exact path="/error">
               <ErrorPage />
             </Route>
 
@@ -418,15 +438,13 @@ const App: React.FC = () => {
                 <TutorialPage handleCardScreen={handleCardScreen} />
               )}
             />
-            <Route
-              exact
-              path="/loading">
-                <LoadingPage
-                  isFetched={isFetched}
-                  isError={isError}
-                  handleCardScreen={handleCardScreen}
-                />
-              </Route>
+            <Route exact path="/loading">
+              <LoadingPage
+                isFetched={isFetched}
+                isError={isError}
+                handleCardScreen={handleCardScreen}
+              />
+            </Route>
             <Route exact path="/">
               <Redirect to="/loading" />
             </Route>

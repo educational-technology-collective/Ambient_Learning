@@ -10,6 +10,7 @@ import { CapacitorHttp } from "@capacitor/core";
 
 export const getLatestRecord = async (
   user_id: string,
+  accessToken: string,
   handleStartTime: (time: string) => void
 ) => {
   const response = await CapacitorHttp.get({
@@ -17,7 +18,7 @@ export const getLatestRecord = async (
   });
   const data = await JSON.parse(response.data);
   if (data.new) {
-    postInitialize(user_id, handleStartTime);
+    postInitialize(user_id, accessToken, handleStartTime);
   } else {
     handleStartTime(data.start_time);
   }
@@ -26,6 +27,7 @@ export const getLatestRecord = async (
 // POST Request that initialize the log build
 export const postInitialize = async (
   userId: string,
+  accessToken: string,
   handleStartTime: (time: string) => void
 ) => {
   let copyTime = new Date().toISOString();
@@ -38,7 +40,7 @@ export const postInitialize = async (
   const response = await CapacitorHttp.post({
     url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile`,
     data: log,
-    headers: { "content-type": "application/json" },
+    headers: { "content-type": "application/json", authorization: `Bearer ${accessToken}` },
   });
   console.log("Post Response", response);
 
@@ -59,7 +61,7 @@ export const postInitialize = async (
   const responseInitialize = await CapacitorHttp.put({
     url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?user_id=${userId}&start_time=${copyTime}`,
     data: dataStream,
-    headers: { "content-type": "application/json" },
+    headers: { "content-type": "application/json", authorization: `Bearer ${accessToken}` },
   });
   console.log("Put Initialize", responseInitialize);
 };
