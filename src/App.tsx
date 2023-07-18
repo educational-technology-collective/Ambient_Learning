@@ -138,9 +138,10 @@ const App: React.FC = () => {
     const token = await getAccessTokenSilently();
     setToken(token);
   };
-  // Run useEffect as long as isAuthenticated is changed
+  // Run useEffect to get token and set user_id as long as isAuthenticated is changed
   useEffect(() => {
-    if (isAuthenticated) {
+    if (isAuthenticated && user !== undefined && user.email !== undefined) {
+      setUser(user.email);
       tokenHandler();
     }
   }, [isAuthenticated]);
@@ -152,11 +153,9 @@ const App: React.FC = () => {
       isAuthenticated &&
       total &&
       accessToken !== "" &&
-      user !== undefined &&
-      user.email !== undefined
+      user_Id !== ''
     ) {
-      setUser(user.email);
-      getLatestRecord(user.email, accessToken, handleStartTime);
+      getLatestRecord(user_Id, accessToken, handleStartTime);
     }
   }, [isAuthenticated, total, accessToken]);
 
@@ -189,12 +188,15 @@ const App: React.FC = () => {
     }
   };
 
-  // UseEffect to fetch the cards
+  // UseEffect to fetch the cards as long as user_Id is updated
   useEffect(() => {
-    getCards(
-      "https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/users/srsdevteam@gmail.com/flashcards/all"
-    );
-  }, []);
+    if(user_Id !== '')
+    {
+      getCards(
+        `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/users/${user_Id}/flashcards/all`
+      );
+    }
+  }, [user_Id]);
 
   // Card-Stacker Visual Effect
   const [isShake, setShake] = useState(false);
@@ -226,8 +228,23 @@ const App: React.FC = () => {
     setTimeout(() => setShake(false), 2200);
   };
 
+  // Function that update the card information
+  const putCardInfo = async (fcId: string, latestRecord: latestResult) => {
+    const dataStream = {
+      fcId: fcId,
+      latestRecord: latestRecord
+    }
+    const response = await CapacitorHttp.put({
+      url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/users/${user_Id}/flashcards`,
+      data: dataStream,
+      headers: {'content-type': 'application/json', authorization: `Bearer ${accessToken}`}
+    })
+
+    console.log('Update Card Response', response);
+  }
+
   // Logic to Move On to Next Card
-  const swipeNextCard = (tupleIndex: number, event: action) => {
+  const swipeNextCard = (tupleIndex: number, event: action, fcId: string, latestRecord: latestResult) => {
     setFinished((prevFinished: number) => prevFinished + 1);
     setCounter((prevCounter: number) => prevCounter - 1);
 
@@ -240,6 +257,9 @@ const App: React.FC = () => {
     // Log Info for Positive/No More/Negative
     putLogInfo(event, null);
 
+    // Log Info for Cards
+    putCardInfo(fcId, latestRecord);
+
     // Log Session is Finished
     if (finished === total - 1) {
       setTimeout(() => putSessionFinished(putLogInfo), 350);
@@ -247,9 +267,11 @@ const App: React.FC = () => {
   };
 
   // Function that swipes for one more card
-  const swipeOneMoreCard = (tupleIndex: number, event: action) => {
+  const swipeOneMoreCard = (tupleIndex: number, event: action, fcId: string, latestRecord: latestResult) => {
     // Log One More Info
     putLogInfo(event, null);
+
+    putCardInfo(fcId, latestRecord);
 
     // Check if there is no onemore card for this card
     if (tupleCounter === 1) {

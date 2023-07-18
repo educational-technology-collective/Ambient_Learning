@@ -146,7 +146,7 @@ export const putOneMore = (
   cardIndex: number,
   tupleLength: number,
   tupleIndex: number,
-  oneMore: (tupleIndex: number, event: action) => void
+  oneMore: (tupleIndex: number, event: action, fcId: string, latestRecord: latestResult) => void
 ) => {
   // Check if the user answers correctly/incorrectly/skipped
   let machineEvaluation = testEvaluation;
@@ -163,11 +163,16 @@ export const putOneMore = (
     event_name: name,
     event_time: new Date().toISOString(),
     card_id: cardId,
-    self_eval: "OneMore",
+    self_eval: "oneMore",
     test_eval: machineEvaluation,
     isBuffer: cardIndex !== tupleLength - 1,
   };
-  oneMore(tupleIndex, event);
+
+  const latestRecord: latestResult = {
+    tapResult: machineEvaluation,
+    swipeResult: 'oneMore'
+  }
+  oneMore(tupleIndex, event, cardId, latestRecord);
 };
 
 // Function to Log Know Swipe
@@ -178,7 +183,7 @@ export const putKnow = (
   cardIndex: number,
   tupleLength: number,
   tupleIndex: number,
-  moveOn: (tupleIndex: number, event: action) => void
+  moveOn: (tupleIndex: number, event: action, fcId: string, latestRecord: latestResult) => void
 ) => {
   // Check if the user answers correctly/incorrectly/skipped
   let machineEvaluation = testEvaluation;
@@ -195,7 +200,12 @@ export const putKnow = (
     test_eval: machineEvaluation,
     isBuffer: cardIndex !== tupleLength - 1,
   };
-  moveOn(tupleIndex, event);
+
+  const latestRecord: latestResult = {
+    tapResult: machineEvaluation,
+    swipeResult: 'know'
+  }
+  moveOn(tupleIndex, event, cardId, latestRecord);
 };
 
 // Function to Log Dontknow Swipe
@@ -206,7 +216,7 @@ export const putDontKnow = (
   cardIndex: number,
   tupleLength: number,
   tupleIndex: number,
-  moveOn: (tupleIndex: number, event: action) => void
+  moveOn: (tupleIndex: number, event: action, fcId: string, latestRecord: latestResult) => void
 ) => {
   // Check if the user answers correctly/incorrectly/skipped
   let machineEvaluation = testEvaluation;
@@ -219,11 +229,16 @@ export const putDontKnow = (
     event_name: "swipe",
     event_time: new Date().toISOString(),
     card_id: cardId,
-    self_eval: "DontKnow",
+    self_eval: "dontKnow",
     test_eval: machineEvaluation,
     isBuffer: cardIndex !== tupleLength - 1,
   };
-  moveOn(tupleIndex, event);
+
+  const latestRecord : latestResult = {
+    tapResult: machineEvaluation,
+    swipeResult: 'dontKnow',
+  }
+  moveOn(tupleIndex, event, cardId, latestRecord);
 };
 
 // Function to log Poor Card before clicking
@@ -234,7 +249,7 @@ export const putPoorCardSwipeBefore = (
   cardIndex: number,
   tupleLength: number,
   tupleIndex: number,
-  moveOn: (tupleIndex: number, event: action) => void
+  moveOn: (tupleIndex: number, event: action, fcId: string, latestRecord: latestResult) => void
 ) => {
   // Check if the user answers correctly/incorrectly/skipped
   let machineEvaluation = testEvaluation;
@@ -247,11 +262,16 @@ export const putPoorCardSwipeBefore = (
     event_name: "NoEvaluation",
     event_time: new Date().toISOString(),
     card_id: cardId,
-    self_eval: "PoorCard",
+    self_eval: "poorCard",
     test_eval: machineEvaluation,
     isBuffer: cardIndex !== tupleLength - 1,
   };
-  moveOn(tupleIndex, event);
+
+  const latestRecord: latestResult = {
+    tapResult: machineEvaluation,
+    swipeResult: 'poorCard'
+  }
+  moveOn(tupleIndex, event, cardId, latestRecord);
 };
 
 // Function to log poor card after clicking
@@ -262,7 +282,7 @@ export const putPoorCardSwipeAfter = (
   cardIndex: number,
   tupleLength: number,
   tupleIndex: number,
-  moveOn: (tupleIndex: number, event: action) => void
+  moveOn: (tupleIndex: number, event: action, fcId: string, latestRecord: latestResult) => void
 ) => {
   // Check if the user answers correctly/incorrectly/skipped
   let machineEvaluation = testEvaluation;
@@ -275,11 +295,16 @@ export const putPoorCardSwipeAfter = (
     event_name: "swipe",
     event_time: new Date().toISOString(),
     card_id: cardId,
-    self_eval: "PoorCard",
+    self_eval: "poorCard",
     test_eval: machineEvaluation,
     isBuffer: cardIndex !== tupleLength - 1,
   };
-  moveOn(tupleIndex, event);
+  
+  const latestRecord: latestResult = {
+    tapResult: machineEvaluation,
+    swipeResult: 'poorCard'
+  }
+  moveOn(tupleIndex, event, cardId, latestRecord);
 };
 
 export const putSessionFinished = (

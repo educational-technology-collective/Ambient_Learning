@@ -68,4 +68,9 @@ declare global {
       $date: Date | null;
     };
   }
+
+  interface latestResult{
+    tapResult: string;
+    swipeResult: string;
+  }
 }
