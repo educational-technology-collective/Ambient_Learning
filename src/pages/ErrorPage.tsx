@@ -15,7 +15,7 @@ const ErrorPage : React.FC = () => {
         <IonText className="error-message">Ooops...<br></br>An Error Occured:( </IonText>
         <div className="two-button-container">
         <button className="try-again-button">Try Again</button>
-        <a className="report-issue-button">Report Issue</a>
+        <a href='https://github.com/educational-technology-collective/Space-Repetition-Ionic/issues' className="report-issue-button">Report Issue</a>
         </div>
         <LogOutButton/>
         </div>

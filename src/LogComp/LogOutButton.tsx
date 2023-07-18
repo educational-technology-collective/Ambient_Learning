@@ -37,9 +37,9 @@ const LogOutButton: React.FC = () => {
   };
 
   return (
-    <IonButton className="log-button logout-button" onClick={doLogout}>
+    <button className="log-button logout-button" onClick={doLogout}>
       Log Out
-    </IonButton>
+    </button>
   );
 };
 
