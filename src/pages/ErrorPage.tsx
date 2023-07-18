@@ -1,14 +1,18 @@
-import { IonContent, IonPage, IonText } from "@ionic/react";
+import { IonButton, IonContent, IonPage, IonText, useIonViewWillEnter, useIonViewWillLeave } from "@ionic/react";
 import './ErrorPage.css'
 import errorPic from "../../error.png"
+import { hideBar, showBar } from "../utilities/showTabBar";
 
 const ErrorPage : React.FC = () => {
+  useIonViewWillEnter(hideBar)
+  useIonViewWillLeave(showBar)
   return(
     <IonPage>
-      <IonContent scrollY={false} className="home-content">
+      <IonContent scrollY={false} className="error-content">
         <div className="error-container">
         <img src={errorPic} className='error-image'/>
-        <IonText>Ooops... An Error Occured:( </IonText>
+        <IonText className="error-message">Ooops...<br></br>An Error Occured:( </IonText>
+        <button className="btn-grad">Try Again</button>
         </div>
       </IonContent>
     </IonPage>
