@@ -5,7 +5,7 @@
   text-transform: uppercase;
   transition: 0.5s;
   background-size: 200% auto;
-  color: white;            
+  color: white;
   box-shadow: 0 0 15px #eee;
   border-radius: 10px;
   display: block;
@@ -13,21 +13,31 @@
   font-weight: 900;
 }
 
-.grad-button:hover{
+.grad-button:hover {
   background-position: right center;
   color: #fff;
   text-decoration: none;
 }
 
-.try-again-button{
-  background-image: linear-gradient(to right, #02AAB0 0%, #00CDAC  51%, #02AAB0  100%);
+.try-again-button {
+  background-image: linear-gradient(
+    to right,
+    #02aab0 0%,
+    #00cdac 51%,
+    #02aab0 100%
+  );
   width: 45%;
   height: 100%;
   margin-left: 0.5em;
 }
 
-.report-issue-button{
-  background-image: linear-gradient(to right, #00d2ff 0%, #3a7bd5  51%, #00d2ff  100%);
+.report-issue-button {
+  background-image: linear-gradient(
+    to right,
+    #00d2ff 0%,
+    #3a7bd5 51%,
+    #00d2ff 100%
+  );
   display: flex;
   width: 45%;
   height: 100%;
@@ -37,15 +47,19 @@
   text-decoration: none;
 }
 
-.log-button{
+.log-button {
   position: absolute;
   color: darkgray;
   bottom: 10%;
   width: 70%;
   height: 10%;
-  background-image: linear-gradient(to right, #ECE9E6 0%, #FFFFFF  51%, #ECE9E6  100%);
+  background-image: linear-gradient(
+    to right,
+    #ece9e6 0%,
+    #ffffff 51%,
+    #ece9e6 100%
+  );
 }
-
 
 .login-button {
   opacity: 0;

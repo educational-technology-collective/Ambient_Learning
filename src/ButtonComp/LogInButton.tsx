@@ -1,6 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { Browser } from "@capacitor/browser";
-import './Button.css'
+import "./Button.css";
 const LogInButton: React.FC = () => {
   const { loginWithRedirect } = useAuth0();
   const login = async () => {
