@@ -2,7 +2,7 @@ import { IonButton, isPlatform } from "@ionic/react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Browser } from "@capacitor/browser";
 import { useHistory } from "react-router";
-import "./LogButton.css";
+import './Button.css'
 const LogOutButton: React.FC = () => {
   const history = useHistory();
 
@@ -37,7 +37,7 @@ const LogOutButton: React.FC = () => {
   };
 
   return (
-    <button className="log-button logout-button" onClick={doLogout}>
+    <button className="grad-button log-button logout-button" onClick={doLogout}>
       Log Out
     </button>
   );

@@ -1,6 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { Browser } from "@capacitor/browser";
-import "./LogButton.css";
+import './Button.css'
 const LogInButton: React.FC = () => {
   const { loginWithRedirect } = useAuth0();
   const login = async () => {
@@ -13,7 +13,7 @@ const LogInButton: React.FC = () => {
 
   return (
     <>
-      <button onClick={login} className="log-button login-button">
+      <button onClick={login} className="grad-button log-button login-button">
         Sign In
       </button>
     </>

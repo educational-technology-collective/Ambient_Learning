@@ -1,5 +1,5 @@
 import { useHistory } from "react-router";
-
+import './Button.css'
 
 const TryAgainButton : React.FC = () => {
   const history = useHistory();
@@ -8,7 +8,7 @@ const TryAgainButton : React.FC = () => {
     window.location.reload();
   }
   return(
-    <button className="try-again-button" onClick={buttonHandler}>Try Again</button>
+    <button className="grad-button try-again-button" onClick={buttonHandler}>Try Again</button>
   )
 };
 

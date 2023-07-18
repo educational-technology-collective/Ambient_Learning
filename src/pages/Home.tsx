@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { diamond } from "ionicons/icons";
 import DashBoard from "../HomeComp/DashBoard";
 import AppNameHeader from "./AppNameHeader";
-import LogOutButton from "../LogComp/LogOutButton";
+import LogOutButton from "../ButtonComp/LogOutButton";
 
 const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
   cardsLeft,

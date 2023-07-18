@@ -45,3 +45,32 @@
   height: 10%;
   background-image: linear-gradient(to right, #ECE9E6 0%, #FFFFFF  51%, #ECE9E6  100%);
 }
+
+
+.login-button {
+  opacity: 0;
+  animation: displayButton 1100ms ease-out forwards;
+  animation-delay: 1350ms;
+}
+
+.logout-button {
+  left: 12.5%;
+}
+
+@keyframes displayButton {
+  10% {
+    opacity: 0.1;
+  }
+  30% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+  }
+}

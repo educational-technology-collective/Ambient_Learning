@@ -26,32 +26,6 @@
   margin-bottom: 1.5em;
 }
 
-         
-.try-again-button {
-  background-image: linear-gradient(to right, #02AAB0 0%, #00CDAC  51%, #02AAB0  100%);
-  margin: 10px;
-  padding: 15px 45px;
-  text-align: center;
-  text-transform: uppercase;
-  transition: 0.5s;
-  background-size: 200% auto;
-  color: white;            
-  box-shadow: 0 0 15px #eee;
-  border-radius: 10px;
-  display: block;
-  font-size: 1.6em;
-  font-weight: 900;
-  width: 45%;
-  height: 100%;
-  margin-left: 0.5em;
-}
-
-.try-again-button:hover {
-  background-position: right center; /* change the direction of the change here */
-  color: #fff;
-  text-decoration: none;
-}
-
 .two-button-container{
   display: flex;
   flex-direction: row;
@@ -60,33 +34,5 @@
   margin-bottom: 1.5em;
 }
 
-         
-.report-issue-button {
-  background-image: linear-gradient(to right, #00d2ff 0%, #3a7bd5  51%, #00d2ff  100%);
-  margin: 10px;
-  padding: 15px 45px;
-  text-align: center;
-  text-transform: uppercase;
-  transition: 0.5s;
-  background-size: 200% auto;
-  color: white;            
-  box-shadow: 0 0 15px #eee;
-  border-radius: 10px;
-  display: flex;
-  font-size: 1.6em;
-  font-weight: 900;
-  width: 45%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-  margin-right: 0.5em;
-  text-decoration: none;
-}
-
-.report-issue-button:hover {
-  background-position: right center; /* change the direction of the change here */
-  color: #fff;
-  text-decoration: none;
-}
 
 
