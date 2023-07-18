@@ -39,8 +39,6 @@ import CardsTab from "./IndicationComp/CardsTab";
 import LoadingPage from "./pages/LoadingPage";
 import {
   getLatestRecord,
-  putEnterCard,
-  putEnterHome,
   putSessionFinished,
 } from "./utilities/logfunction";
 import LogInPage from "./pages/LogInPage";
@@ -213,17 +211,11 @@ const App: React.FC = () => {
   // Card Screen will spread the cards
   const handleCardScreen = () => {
     setCardScreen(true);
-    if (time !== "" && finished !== total) {
-      putEnterCard(putLogInfo);
-    }
   };
 
   // Home Screen will fold the cards
   const handleHomeScreen = () => {
     setCardScreen(false);
-    if (time !== "" && finished !== total) {
-      putEnterHome(putLogInfo);
-    }
   };
 
   // Handler that set the card-stacker back without shaking

@@ -21,6 +21,25 @@ export const getLatestRecord = async (
     postInitialize(user_id, accessToken, handleStartTime);
   } else {
     handleStartTime(data.start_time);
+
+    const event = {
+      event_name: "Resume",
+      event_time: data.start_time,
+      card_id: null,
+      self_eval: null,
+      test_eval: null,
+      isBuffer: null,
+    };
+    const dataStream = {
+      action: event,
+      end_time: null,
+    };
+    const responseInitialize = await CapacitorHttp.put({
+      url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?user_id=${user_id}&start_time=${data.start_time}`,
+      data: dataStream,
+      headers: { "content-type": "application/json", authorization: `Bearer ${accessToken}` },
+    });
+    console.log("Put Resume", responseInitialize);
   }
 };
 
@@ -66,35 +85,34 @@ export const postInitialize = async (
   console.log("Put Initialize", responseInitialize);
 };
 
-export const putEnterHome = (
-  putLogInfo: (event: action, end_time: string | null) => void
-) => {
-  const event: action = {
-    event_name: "EnterHomeScreen",
-    event_time: new Date().toISOString(),
-    card_id: null,
-    self_eval: null,
-    test_eval: null,
-    isBuffer: null,
-  };
-  putLogInfo(event, null);
-};
+// export const putEnterHome = (
+//   putLogInfo: (event: action, end_time: string | null) => void
+// ) => {
+//   const event: action = {
+//     event_name: "EnterHomeScreen",
+//     event_time: new Date().toISOString(),
+//     card_id: null,
+//     self_eval: null,
+//     test_eval: null,
+//     isBuffer: null,
+//   };
+//   putLogInfo(event, null);
+// };
 
-export const putEnterCard = (
-  putLogInfo: (event: action, end_time: string | null) => void
-) => {
-  const event: action = {
-    event_name: "EnterCardScreen",
-    event_time: new Date().toISOString(),
-    card_id: null,
-    self_eval: null,
-    test_eval: null,
-    isBuffer: null,
-  };
-  putLogInfo(event, null);
-  console.log(putLogInfo);
-};
-
+// export const putEnterCard = (
+//   putLogInfo: (event: action, end_time: string | null) => void
+// ) => {
+//   const event: action = {
+//     event_name: "EnterCardScreen",
+//     event_time: new Date().toISOString(),
+//     card_id: null,
+//     self_eval: null,
+//     test_eval: null,
+//     isBuffer: null,
+//   };
+//   putLogInfo(event, null);
+//   console.log(putLogInfo);
+// };
 export const putFlipping = (
   cardId: string,
   cardIndex: number,
