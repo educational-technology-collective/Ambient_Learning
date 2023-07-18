@@ -42,6 +42,12 @@ cd Space-Repetition-Ionic
 npm install react-markdown
 ```
 
+**Install React Icons**: Used for some of the icons
+```
+cd Space-Repetition-Ionic
+npm install react-icons --save
+```
+
 ## Run
 After you have set up the repo in your local directory. Run the following commands to try the app:
 ```
