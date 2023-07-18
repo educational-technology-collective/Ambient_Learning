@@ -147,7 +147,10 @@ const App: React.FC = () => {
 
   // GET Function for fetching cards
   const getCards = async (url: string) => {
-    const response = await CapacitorHttp.get({ url: url });
+    try{
+      const response = await CapacitorHttp.get({ url: url });
+      console.log('re', response);
+    if(response.status !== 500){
     // Convert it to an array
     const data = await JSON.parse(response.data);
     // Set Fetched Status to be True
@@ -160,6 +163,13 @@ const App: React.FC = () => {
       setCounter(data.length);
       setTupleCounter(data[data.length - 1].length);
     }
+  }else{
+    console.log('Something Bad');
+  }
+    }catch(error){
+      console.log('There is Error');
+    }
+    
   };
 
   // UseEffect to fetch the cards
@@ -178,7 +188,7 @@ const App: React.FC = () => {
   // Card Screen will spread the cards
   const handleCardScreen = () => {
     setCardScreen(true);
-    if (finished !== total) {
+    if (user_Id !== '' && finished !== total) {
       putEnterCard(putLogInfo);
     }
   };
@@ -186,7 +196,7 @@ const App: React.FC = () => {
   // Home Screen will fold the cards
   const handleHomeScreen = () => {
     setCardScreen(false);
-    if (finished !== total) {
+    if (user_Id !== '' && finished !== total) {
       putEnterHome(putLogInfo);
     }
   };
