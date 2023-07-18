@@ -146,15 +146,9 @@ const App: React.FC = () => {
     }
   }, [isAuthenticated]);
 
-
   useEffect(() => {
     // Initialize the Log Info as the user is signed and cardcollection not empty
-    if (
-      isAuthenticated &&
-      total &&
-      accessToken !== "" &&
-      user_Id !== ''
-    ) {
+    if (isAuthenticated && total && accessToken !== "" && user_Id !== "") {
       getLatestRecord(user_Id, accessToken, handleStartTime);
     }
   }, [isAuthenticated, total, accessToken]);
@@ -190,8 +184,7 @@ const App: React.FC = () => {
 
   // UseEffect to fetch the cards as long as user_Id is updated
   useEffect(() => {
-    if(user_Id !== '')
-    {
+    if (user_Id !== "") {
       getCards(
         `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/users/${user_Id}/flashcards/all`
       );
@@ -232,19 +225,27 @@ const App: React.FC = () => {
   const putCardInfo = async (fcId: string, latestRecord: latestResult) => {
     const dataStream = {
       fcId: fcId,
-      latestRecord: latestRecord
-    }
+      latestRecord: latestRecord,
+    };
     const response = await CapacitorHttp.put({
       url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/users/${user_Id}/flashcards`,
       data: dataStream,
-      headers: {'content-type': 'application/json', authorization: `Bearer ${accessToken}`}
-    })
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${accessToken}`,
+      },
+    });
 
-    console.log('Update Card Response', response);
-  }
+    console.log("Update Card Response", response);
+  };
 
   // Logic to Move On to Next Card
-  const swipeNextCard = (tupleIndex: number, event: action, fcId: string, latestRecord: latestResult) => {
+  const swipeNextCard = (
+    tupleIndex: number,
+    event: action,
+    fcId: string,
+    latestRecord: latestResult
+  ) => {
     setFinished((prevFinished: number) => prevFinished + 1);
     setCounter((prevCounter: number) => prevCounter - 1);
 
@@ -267,7 +268,12 @@ const App: React.FC = () => {
   };
 
   // Function that swipes for one more card
-  const swipeOneMoreCard = (tupleIndex: number, event: action, fcId: string, latestRecord: latestResult) => {
+  const swipeOneMoreCard = (
+    tupleIndex: number,
+    event: action,
+    fcId: string,
+    latestRecord: latestResult
+  ) => {
     // Log One More Info
     putLogInfo(event, null);
 
