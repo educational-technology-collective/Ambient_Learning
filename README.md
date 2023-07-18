@@ -119,3 +119,4 @@ Yunxuan "Haytham" Tang —— [yunxuant@umich.edu](mailto:yunxuant@umich.edu)
 ## Acknowledgement
 * [Prof. Christopher Brooks —— University of Michigan School of Information](https://www.si.umich.edu/people/christopher-brooks)
 * [Educational Technology Collective —— University of Michigan School of Information](https://edtech.labs.si.umich.edu/)
+* [Mann —— Designer of Error Image](https://www.inspirationde.com/image/60019/)
