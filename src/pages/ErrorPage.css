@@ -26,21 +26,6 @@
   margin-bottom: 1.5em;
 }
 
-.try-again-button{
-  width: 50%;
-  font-size: 1.5em;
-  --background: linear-gradient(to right, #02AAB0 0%, #00CDAC  51%, #02AAB0  100%); 
-  transition: 0.5s;        
-  
-  
-};
-
-.try-again-button:hover {
-  background-position: right center; /* change the direction of the change here */
-     color: #fff;
-     text-decoration: none;
-}
-
          
 .try-again-button {
   background-image: linear-gradient(to right, #02AAB0 0%, #00CDAC  51%, #02AAB0  100%);
