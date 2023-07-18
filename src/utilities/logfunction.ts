@@ -168,10 +168,12 @@ export const putOneMore = (
     isBuffer: cardIndex !== tupleLength - 1,
   };
 
+  // Update latest result of swiping a card for one more
   const latestRecord: latestResult = {
     tapResult: machineEvaluation,
     swipeResult: 'oneMore'
   }
+
   oneMore(tupleIndex, event, cardId, latestRecord);
 };
 
@@ -201,10 +203,12 @@ export const putKnow = (
     isBuffer: cardIndex !== tupleLength - 1,
   };
 
+  // Update the latest result of swiping right for know
   const latestRecord: latestResult = {
     tapResult: machineEvaluation,
     swipeResult: 'know'
   }
+
   moveOn(tupleIndex, event, cardId, latestRecord);
 };
 
@@ -234,10 +238,12 @@ export const putDontKnow = (
     isBuffer: cardIndex !== tupleLength - 1,
   };
 
+  // Update the latest result of swiping left for dontknow
   const latestRecord : latestResult = {
     tapResult: machineEvaluation,
     swipeResult: 'dontKnow',
   }
+
   moveOn(tupleIndex, event, cardId, latestRecord);
 };
 
@@ -267,6 +273,7 @@ export const putPoorCardSwipeBefore = (
     isBuffer: cardIndex !== tupleLength - 1,
   };
 
+  // Update the result of swiping down for poorCard
   const latestRecord: latestResult = {
     tapResult: machineEvaluation,
     swipeResult: 'poorCard'
@@ -300,10 +307,12 @@ export const putPoorCardSwipeAfter = (
     isBuffer: cardIndex !== tupleLength - 1,
   };
   
+  // Update the result of swiping down for poorCard
   const latestRecord: latestResult = {
     tapResult: machineEvaluation,
     swipeResult: 'poorCard'
   }
+  
   moveOn(tupleIndex, event, cardId, latestRecord);
 };
 
