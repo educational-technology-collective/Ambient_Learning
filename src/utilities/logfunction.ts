@@ -37,7 +37,10 @@ export const getLatestRecord = async (
     const responseInitialize = await CapacitorHttp.put({
       url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?user_id=${user_id}&start_time=${data.start_time}`,
       data: dataStream,
-      headers: { "content-type": "application/json", authorization: `Bearer ${accessToken}` },
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${accessToken}`,
+      },
     });
     console.log("Put Resume", responseInitialize);
   }
@@ -59,7 +62,10 @@ export const postInitialize = async (
   const response = await CapacitorHttp.post({
     url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile`,
     data: log,
-    headers: { "content-type": "application/json", authorization: `Bearer ${accessToken}` },
+    headers: {
+      "content-type": "application/json",
+      authorization: `Bearer ${accessToken}`,
+    },
   });
   console.log("Post Response", response);
 
@@ -80,7 +86,10 @@ export const postInitialize = async (
   const responseInitialize = await CapacitorHttp.put({
     url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?user_id=${userId}&start_time=${copyTime}`,
     data: dataStream,
-    headers: { "content-type": "application/json", authorization: `Bearer ${accessToken}` },
+    headers: {
+      "content-type": "application/json",
+      authorization: `Bearer ${accessToken}`,
+    },
   });
   console.log("Put Initialize", responseInitialize);
 };
