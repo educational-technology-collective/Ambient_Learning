@@ -37,10 +37,7 @@ import "@ionic/react/css/display.css";
 import "./theme/variables.css";
 import CardsTab from "./IndicationComp/CardsTab";
 import LoadingPage from "./pages/LoadingPage";
-import {
-  getLatestRecord,
-  putSessionFinished,
-} from "./utilities/logfunction";
+import { getLatestRecord, putSessionFinished } from "./utilities/logfunction";
 import LogInPage from "./pages/LogInPage";
 
 import { App as CapApp } from "@capacitor/app";
@@ -69,14 +66,8 @@ setupIonicReact({
 });
 
 const App: React.FC = () => {
-  const {
-    isAuthenticated,
-    isLoading,
-    user,
-    getAccessTokenSilently,
-    getAccessTokenWithPopup,
-    loginWithRedirect,
-  } = useAuth0();
+  const { isAuthenticated, isLoading, user, getAccessTokenSilently } =
+    useAuth0();
 
   const { handleRedirectCallback } = useAuth0();
 
@@ -142,22 +133,25 @@ const App: React.FC = () => {
 
   const [accessToken, setToken] = useState("");
 
+  // Handler Function that get accessToken
   const tokenHandler = async () => {
-      const token = await getAccessTokenSilently();
-      setToken(token);
+    const token = await getAccessTokenSilently();
+    setToken(token);
   };
+  // Run useEffect as long as isAuthenticated is changed
   useEffect(() => {
-    if(isAuthenticated)
-    {
-      tokenHandler()
+    if (isAuthenticated) {
+      tokenHandler();
     }
-  },[isAuthenticated])
+  }, [isAuthenticated]);
+
+
   useEffect(() => {
     // Initialize the Log Info as the user is signed and cardcollection not empty
     if (
       isAuthenticated &&
       total &&
-      accessToken !== '' &&
+      accessToken !== "" &&
       user !== undefined &&
       user.email !== undefined
     ) {
