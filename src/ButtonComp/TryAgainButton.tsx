@@ -2,6 +2,8 @@ import { useHistory } from "react-router";
 import "./Button.css";
 
 const TryAgainButton: React.FC = () => {
+
+  // callback that navigates to the loading page and refresh app
   const history = useHistory();
   const buttonHandler = () => {
     history.push("/loading");

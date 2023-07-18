@@ -44,8 +44,8 @@ const LoadingPage: React.FC<{
   };
 
   const navigateToErrorPage = () => {
-    history.push('/error');
-  }
+    history.push("/error");
+  };
 
   // Set a timeout that will jump to the cardscreen
   const [showLoad, setLoad] = useState(true);
@@ -62,7 +62,8 @@ const LoadingPage: React.FC<{
     }
     // When showLoad is set to false. Jump to the cardScreen with 150ms delay
     else {
-      if(isError){
+      // If there is error
+      if (isError) {
         setTimeout(navigateToErrorPage, 100);
       }
       // Check there is user. User is first time and there is no local storage
@@ -74,7 +75,7 @@ const LoadingPage: React.FC<{
         // Set Local Storage so it won't jump to tutorial screen when refreshing
         localStorage.setItem("mobile_first_time", "false");
         setTimeout(navigateToTutorialScreen, 150);
-      } 
+      }
       // If the user is not first time, navigate to card screen.
       else {
         setTimeout(navigateToCardScreen, 150);

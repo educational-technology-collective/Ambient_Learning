@@ -153,6 +153,7 @@ const App: React.FC = () => {
     try{
       const response = await CapacitorHttp.get({ url: url });
       console.log('re', response);
+    // If there is 500 Erro
     if(response.status !== 500){
     // Convert it to an array
     const data = await JSON.parse(response.data);

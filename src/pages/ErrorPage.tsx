@@ -13,7 +13,10 @@ import LogOutButton from "../ButtonComp/LogOutButton";
 import TryAgainButton from "../ButtonComp/TryAgainButton";
 
 const ErrorPage: React.FC = () => {
+  // Hide the Bottom Tabs when entering the page
   useIonViewWillEnter(hideBar);
+
+  // Show the bottom tabs when leaving the page
   useIonViewWillLeave(showBar);
   return (
     <IonPage>
@@ -23,6 +26,8 @@ const ErrorPage: React.FC = () => {
           <IonText className="error-message">
             Ooops...<br></br>An Error Occured:({" "}
           </IonText>
+
+          {/* TryAgainButton and ReportIssueButton */}
           <div className="two-button-container">
             <TryAgainButton />
             <a
@@ -32,6 +37,8 @@ const ErrorPage: React.FC = () => {
               Report Issue
             </a>
           </div>
+
+          {/* Log Out Button */}
           <LogOutButton />
         </div>
       </IonContent>
