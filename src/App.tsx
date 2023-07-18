@@ -65,6 +65,7 @@ import {
   evaluationSet8,
   evaluationSet9,
 } from "./utilities/algorithmData";
+import ErrorPage from "./pages/ErrorPage";
 setupIonicReact({
   swipeBackEnabled: false,
 });
@@ -145,6 +146,8 @@ const App: React.FC = () => {
     }
   }, [isAuthenticated, total]);
 
+  const [isError, setError] = useState(false);
+
   // GET Function for fetching cards
   const getCards = async (url: string) => {
     try{
@@ -165,6 +168,7 @@ const App: React.FC = () => {
     }
   }else{
     console.log('Something Bad');
+    setError(true);
   }
     }catch(error){
       console.log('There is Error');
@@ -402,6 +406,10 @@ const App: React.FC = () => {
               {isAuthenticated ? <Redirect to="/loading" /> : <LogInPage />}
             </Route>
 
+            <Route exact path='/error'>
+              <ErrorPage />
+            </Route>
+
             <Route
               exact
               path="/tutorial"
@@ -411,14 +419,13 @@ const App: React.FC = () => {
             />
             <Route
               exact
-              path="/loading"
-              render={() => (
+              path="/loading">
                 <LoadingPage
                   isFetched={isFetched}
+                  isError={isError}
                   handleCardScreen={handleCardScreen}
                 />
-              )}
-            />
+              </Route>
             <Route exact path="/">
               <Redirect to="/loading" />
             </Route>

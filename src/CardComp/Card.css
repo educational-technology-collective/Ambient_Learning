@@ -116,6 +116,7 @@ MCQ Card question always takes 60% */
   backface-visibility: hidden;
   border: 2px solid black;
   border-radius: 5px;
+  background-color: snow;
 }
 
 .front-number{

@@ -16,8 +16,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const LoadingPage: React.FC<{
   isFetched: boolean;
+  isError: boolean;
   handleCardScreen: () => void;
-}> = ({ isFetched, handleCardScreen }) => {
+}> = ({ isFetched, isError, handleCardScreen }) => {
   // Hide the Bottom Tabs for this Page
   useIonViewWillEnter(hideBar);
 
@@ -42,6 +43,10 @@ const LoadingPage: React.FC<{
     history.push("/tutorial");
   };
 
+  const navigateToErrorPage = () => {
+    history.push('/error');
+  }
+
   // Set a timeout that will jump to the cardscreen
   const [showLoad, setLoad] = useState(true);
 
@@ -57,8 +62,11 @@ const LoadingPage: React.FC<{
     }
     // When showLoad is set to false. Jump to the cardScreen with 150ms delay
     else {
+      if(isError){
+        setTimeout(navigateToErrorPage, 100);
+      }
       // Check there is user. User is first time and there is no local storage
-      if (
+      else if (
         user !== undefined &&
         user["mobile_first_time"] &&
         localStorage.getItem("mobile_first_time") === null
@@ -69,12 +77,12 @@ const LoadingPage: React.FC<{
       } 
       // If the user is not first time, navigate to card screen.
       else {
-        setTimeout(navigateToCardScreen, 300);
+        setTimeout(navigateToCardScreen, 150);
       }
     }
   }, [showLoad]);
 
-  if (showLoad && isFetched && progress > 1) {
+  if (showLoad && (isFetched || isError) && progress > 1) {
     setLoad(false);
   }
 

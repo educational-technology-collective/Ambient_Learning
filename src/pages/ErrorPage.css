@@ -1,0 +1,22 @@
+.error-content{
+
+}
+.error-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+.error-image{
+  width: 100%;
+
+  background: transparent;
+}
+
+.error-message{
+  font-size: 2.5em;
+  font-weight: 900;
+  color: snow;
+}
