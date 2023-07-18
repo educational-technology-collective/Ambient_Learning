@@ -146,7 +146,12 @@ export const putOneMore = (
   cardIndex: number,
   tupleLength: number,
   tupleIndex: number,
-  oneMore: (tupleIndex: number, event: action, fcId: string, latestRecord: latestResult) => void
+  oneMore: (
+    tupleIndex: number,
+    event: action,
+    fcId: string,
+    latestRecord: latestResult
+  ) => void
 ) => {
   // Check if the user answers correctly/incorrectly/skipped
   let machineEvaluation = testEvaluation;
@@ -171,8 +176,8 @@ export const putOneMore = (
   // Update latest result of swiping a card for one more
   const latestRecord: latestResult = {
     tapResult: machineEvaluation,
-    swipeResult: 'oneMore'
-  }
+    swipeResult: "oneMore",
+  };
 
   oneMore(tupleIndex, event, cardId, latestRecord);
 };
@@ -185,7 +190,12 @@ export const putKnow = (
   cardIndex: number,
   tupleLength: number,
   tupleIndex: number,
-  moveOn: (tupleIndex: number, event: action, fcId: string, latestRecord: latestResult) => void
+  moveOn: (
+    tupleIndex: number,
+    event: action,
+    fcId: string,
+    latestRecord: latestResult
+  ) => void
 ) => {
   // Check if the user answers correctly/incorrectly/skipped
   let machineEvaluation = testEvaluation;
@@ -206,8 +216,8 @@ export const putKnow = (
   // Update the latest result of swiping right for know
   const latestRecord: latestResult = {
     tapResult: machineEvaluation,
-    swipeResult: 'know'
-  }
+    swipeResult: "know",
+  };
 
   moveOn(tupleIndex, event, cardId, latestRecord);
 };
@@ -220,7 +230,12 @@ export const putDontKnow = (
   cardIndex: number,
   tupleLength: number,
   tupleIndex: number,
-  moveOn: (tupleIndex: number, event: action, fcId: string, latestRecord: latestResult) => void
+  moveOn: (
+    tupleIndex: number,
+    event: action,
+    fcId: string,
+    latestRecord: latestResult
+  ) => void
 ) => {
   // Check if the user answers correctly/incorrectly/skipped
   let machineEvaluation = testEvaluation;
@@ -239,10 +254,10 @@ export const putDontKnow = (
   };
 
   // Update the latest result of swiping left for dontknow
-  const latestRecord : latestResult = {
+  const latestRecord: latestResult = {
     tapResult: machineEvaluation,
-    swipeResult: 'dontKnow',
-  }
+    swipeResult: "dontKnow",
+  };
 
   moveOn(tupleIndex, event, cardId, latestRecord);
 };
@@ -255,7 +270,12 @@ export const putPoorCardSwipeBefore = (
   cardIndex: number,
   tupleLength: number,
   tupleIndex: number,
-  moveOn: (tupleIndex: number, event: action, fcId: string, latestRecord: latestResult) => void
+  moveOn: (
+    tupleIndex: number,
+    event: action,
+    fcId: string,
+    latestRecord: latestResult
+  ) => void
 ) => {
   // Check if the user answers correctly/incorrectly/skipped
   let machineEvaluation = testEvaluation;
@@ -276,8 +296,8 @@ export const putPoorCardSwipeBefore = (
   // Update the result of swiping down for poorCard
   const latestRecord: latestResult = {
     tapResult: machineEvaluation,
-    swipeResult: 'poorCard'
-  }
+    swipeResult: "poorCard",
+  };
   moveOn(tupleIndex, event, cardId, latestRecord);
 };
 
@@ -289,7 +309,12 @@ export const putPoorCardSwipeAfter = (
   cardIndex: number,
   tupleLength: number,
   tupleIndex: number,
-  moveOn: (tupleIndex: number, event: action, fcId: string, latestRecord: latestResult) => void
+  moveOn: (
+    tupleIndex: number,
+    event: action,
+    fcId: string,
+    latestRecord: latestResult
+  ) => void
 ) => {
   // Check if the user answers correctly/incorrectly/skipped
   let machineEvaluation = testEvaluation;
@@ -306,13 +331,13 @@ export const putPoorCardSwipeAfter = (
     test_eval: machineEvaluation,
     isBuffer: cardIndex !== tupleLength - 1,
   };
-  
+
   // Update the result of swiping down for poorCard
   const latestRecord: latestResult = {
     tapResult: machineEvaluation,
-    swipeResult: 'poorCard'
-  }
-  
+    swipeResult: "poorCard",
+  };
+
   moveOn(tupleIndex, event, cardId, latestRecord);
 };
 
