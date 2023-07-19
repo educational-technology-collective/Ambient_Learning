@@ -17,8 +17,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 const LoadingPage: React.FC<{
   isFetched: boolean;
   isError: boolean;
+  readyLog: boolean;
   handleCardScreen: () => void;
-}> = ({ isFetched, isError, handleCardScreen }) => {
+}> = ({ isFetched, isError, readyLog, handleCardScreen }) => {
   // Hide the Bottom Tabs for this Page
   useIonViewWillEnter(hideBar);
 
@@ -78,12 +79,15 @@ const LoadingPage: React.FC<{
       }
       // If the user is not first time, navigate to card screen.
       else {
-        setTimeout(navigateToCardScreen, 150);
+        setTimeout(navigateToCardScreen, 250);
       }
     }
   }, [showLoad]);
 
-  if (showLoad && (isFetched || isError) && progress > 1) {
+  let retrievalComplete = (isFetched && readyLog) || isError;
+  let finishLoading = showLoad && progress > 1 && retrievalComplete;
+
+  if (finishLoading) {
     setLoad(false);
   }
 

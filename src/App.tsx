@@ -89,6 +89,12 @@ const App: React.FC = () => {
   const [user_Id, setUser] = useState("");
   const [time, setTime] = useState("");
 
+  const [readyLog, setReadyLog] = useState(false);
+
+  const handleReadyLog = () => {
+    setReadyLog(true);
+  }
+
   const handleStartTime = (givenTime: string) => {
     setTime(givenTime);
   };
@@ -149,7 +155,7 @@ const App: React.FC = () => {
   useEffect(() => {
     // Initialize the Log Info as the user is signed and cardcollection not empty
     if (isAuthenticated && total && accessToken !== "" && user_Id !== "") {
-      getLatestRecord(user_Id, accessToken, handleStartTime);
+      getLatestRecord(user_Id, accessToken, handleStartTime, handleReadyLog);
     }
   }, [isAuthenticated, total, accessToken]);
 
@@ -456,6 +462,7 @@ const App: React.FC = () => {
               <LoadingPage
                 isFetched={isFetched}
                 isError={isError}
+                readyLog={readyLog}
                 handleCardScreen={handleCardScreen}
               />
             </Route>

@@ -12,7 +12,8 @@ import { CapacitorHttp } from "@capacitor/core";
 export const getLatestRecord = async (
   user_id: string,
   accessToken: string,
-  handleStartTime: (time: string) => void
+  handleStartTime: (time: string) => void,
+  handleReadyLog: () => void
 ) => {
   const response = await CapacitorHttp.get({
     url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?user_id=${user_id}`,
@@ -50,6 +51,7 @@ export const getLatestRecord = async (
     });
     console.log("Put Resume", responseResume);
   }
+  handleReadyLog();
 };
 
 // POST Request that initialize the log build
@@ -100,6 +102,7 @@ export const postInitialize = async (
   console.log("Put Initialize", responseInitialize);
 };
 
+// Log function to log the event of flipping
 export const putFlipping = (
   cardId: string,
   cardIndex: number,
@@ -117,6 +120,8 @@ export const putFlipping = (
   putLogInfo(event, null);
 };
 
+
+// Log function to log the event of swiping
 export const putSwipe = (
   isEvaluation: boolean,
   testEvaluation: string,
@@ -142,7 +147,7 @@ export const putSwipe = (
     name = "noEvaluation";
   } else {
     // Check if it is the last card of tuple
-    if (!cardIndex) {
+    if (selfEvaluation === 'oneMore' && !cardIndex) {
       name = "swipe-shake";
     }
     // Determine the Machine Evaluation
