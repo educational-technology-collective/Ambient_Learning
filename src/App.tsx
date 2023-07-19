@@ -89,6 +89,7 @@ const App: React.FC = () => {
   const [user_Id, setUser] = useState("");
   const [time, setTime] = useState("");
 
+  // readyLog used to determine if initialize/resume is logged so we can navigate to card screen
   const [readyLog, setReadyLog] = useState(false);
 
   const handleReadyLog = () => {
@@ -460,6 +461,7 @@ const App: React.FC = () => {
             />
             <Route exact path="/loading">
               <LoadingPage
+                total={total}
                 isFetched={isFetched}
                 isError={isError}
                 readyLog={readyLog}

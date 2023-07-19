@@ -51,6 +51,7 @@ export const getLatestRecord = async (
     });
     console.log("Put Resume", responseResume);
   }
+  // Function that sets readyLog to be true so we can leave loading page
   handleReadyLog();
 };
 
@@ -146,7 +147,7 @@ export const putSwipe = (
   if (!isEvaluation) {
     name = "noEvaluation";
   } else {
-    // Check if it is the last card of tuple
+    // Check if it is the last card of tuple and also it's oneMore
     if (selfEvaluation === 'oneMore' && !cardIndex) {
       name = "swipe-shake";
     }

@@ -15,11 +15,12 @@ import { hideBar, showBar } from "../utilities/showTabBar";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const LoadingPage: React.FC<{
+  total: number;
   isFetched: boolean;
   isError: boolean;
   readyLog: boolean;
   handleCardScreen: () => void;
-}> = ({ isFetched, isError, readyLog, handleCardScreen }) => {
+}> = ({ total, isFetched, isError, readyLog, handleCardScreen }) => {
   // Hide the Bottom Tabs for this Page
   useIonViewWillEnter(hideBar);
 
@@ -84,9 +85,17 @@ const LoadingPage: React.FC<{
     }
   }, [showLoad]);
 
-  let retrievalComplete = (isFetched && readyLog) || isError;
+  // Check to see if the retrieval is complete:
+  // (1) When fetching is succesful(isFetched is true): we then check if there
+  // is no card available or if there is card and readyLog is true(this means either POST and Iinitialize or PUT RESUME is complete)
+  // (2) When we have a fetching error
+  let retrievalComplete = (isFetched && (!total || readyLog)) || isError;
+
+  // Check to see if navigating to the card screen:
+  // First Time of Loading Page, the progress bar has reached 1, and retrieval is complete
   let finishLoading = showLoad && progress > 1 && retrievalComplete;
 
+  // Set showLoad to be false to trigger useEfect
   if (finishLoading) {
     setLoad(false);
   }
