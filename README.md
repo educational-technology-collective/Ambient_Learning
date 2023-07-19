@@ -14,7 +14,7 @@ When the user receives a notification, he or she will tap the notification and j
 
 **Repo**: Clone the Repo into your local directory by running
 ```
-git clone https://github.com/educational-technology-collective/Space-Repetition-Ionic.git
+git clone https://github.com/educational-technology-collective/srs-mobile.git
 ```
 
 **Install Haptics Plugin**: Haptis Plugin Provided by Capacitor for physical feedback(shaking effect)
