@@ -26,7 +26,7 @@ const LoadingPage: React.FC<{
   useIonViewWillLeave(showBar);
 
   // State Variable for Loading Bar
-  const [buffer, setBuffer] = useState(0.05);
+  const [buffer, setBuffer] = useState(0.04);
   const [progress, setProgress] = useState(0);
 
   const history = useHistory();
@@ -55,8 +55,8 @@ const LoadingPage: React.FC<{
     if (showLoad) {
       // Add 0.06 to the value every 0.1 second
       const interval = setInterval(() => {
-        setBuffer((prevBuffer: number) => prevBuffer + 0.05);
-        setProgress((prevProgress: number) => prevProgress + 0.05);
+        setBuffer((prevBuffer: number) => prevBuffer + 0.04);
+        setProgress((prevProgress: number) => prevProgress + 0.04);
       }, 100);
       return () => clearInterval(interval);
     }

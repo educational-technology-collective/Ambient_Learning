@@ -7,12 +7,10 @@ import MCQ from "./MCQ";
 import QA from "./QA";
 import { enableGesture } from "../utilities/gesture";
 import {
-  putDontKnow,
+  
   putFlipping,
-  putKnow,
-  putOneMore,
-  putPoorCardSwipeAfter,
-  putPoorCardSwipeBefore,
+  
+  putSwipe,
 } from "../utilities/logfunction";
 import NumberIndicator from "./NumberIndicator";
 const Card: React.FC<{
@@ -111,72 +109,27 @@ const Card: React.FC<{
 
   // Function for positive swipe time out
   const knowTimeOut = () => {
-    // Log the event of Know
-    putKnow(
-      testEvaluation,
-      obj.type,
-      obj._id,
-      cardIndex,
-      tupleLength,
-      tupleIndex,
-      moveOn
-    );
+    putSwipe(true, testEvaluation, 'know', obj.type, obj._id, cardIndex, tupleLength, tupleIndex, moveOn);
   };
 
   // Function for negative swipe time out
   const dontKnowTimeOut = () => {
-    // Log the event of dont know
-    putDontKnow(
-      testEvaluation,
-      obj.type,
-      obj._id,
-      cardIndex,
-      tupleLength,
-      tupleIndex,
-      moveOn
-    );
+    putSwipe(true, testEvaluation, 'dontKnow', obj.type, obj._id, cardIndex, tupleLength, tupleIndex, moveOn);
   };
 
   // Function for one more swipe time out
   const oneMoreTimeOut = () => {
-    // Log the event of OneMore
-    putOneMore(
-      testEvaluation,
-      obj.type,
-      obj._id,
-      cardIndex,
-      tupleLength,
-      tupleIndex,
-      oneMore
-    );
+    putSwipe(true, testEvaluation, 'oneMore', obj.type, obj._id, cardIndex, tupleLength, tupleIndex, oneMore);
   };
 
   // Function for no more before answering
   const poorCardBeforeTimeout = () => {
-    // Log the event of swiping down before evaluation
-    putPoorCardSwipeBefore(
-      testEvaluation,
-      obj.type,
-      obj._id,
-      cardIndex,
-      tupleLength,
-      tupleIndex,
-      moveOn
-    );
+    putSwipe(false, testEvaluation, 'poorCard', obj.type, obj._id, cardIndex, tupleLength, tupleIndex, moveOn);
   };
 
   // Function for no more after answering
   const poorCardAfterTimeOut = () => {
-    // Log the event of swiping down after clicking
-    putPoorCardSwipeAfter(
-      testEvaluation,
-      obj.type,
-      obj._id,
-      cardIndex,
-      tupleLength,
-      tupleIndex,
-      moveOn
-    );
+   putSwipe(true, testEvaluation, 'poorCard', obj.type, obj._id, cardIndex, tupleLength, tupleIndex, moveOn);
   };
 
   // useEffect to enableGesture at any time
