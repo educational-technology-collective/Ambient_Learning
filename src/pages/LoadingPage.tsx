@@ -2,9 +2,6 @@ import React, { useEffect, useState } from "react";
 import {
   IonPage,
   IonProgressBar,
-  IonHeader,
-  IonToolbar,
-  IonTitle,
   IonContent,
   useIonViewWillEnter,
   useIonViewWillLeave,
@@ -13,6 +10,7 @@ import "./LoadingPage.css";
 import { useHistory } from "react-router-dom";
 import { hideBar, showBar } from "../utilities/showTabBar";
 import { useAuth0 } from "@auth0/auth0-react";
+import AppNameHeader from "./AppNameHeader";
 
 const LoadingPage: React.FC<{
   total: number;
@@ -80,7 +78,7 @@ const LoadingPage: React.FC<{
       }
       // If the user is not first time, navigate to card screen.
       else {
-        setTimeout(navigateToCardScreen, 250);
+   //     setTimeout(navigateToCardScreen, 250);
       }
     }
   }, [showLoad]);
@@ -103,11 +101,7 @@ const LoadingPage: React.FC<{
   return (
     <IonPage>
       {/* Header and ToolBar */}
-      <IonHeader color="tertiary">
-        <IonToolbar>
-          <IonTitle className="title">StorMind</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <AppNameHeader />
 
       <IonContent scrollY={false} className="loading-content">
         <div className="wrapper">
