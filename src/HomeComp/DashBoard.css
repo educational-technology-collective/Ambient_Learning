@@ -1,9 +1,16 @@
 /* The Top Component of Cards left */
 .task-card {
-  background: #ed637e;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #FFEDBC, #ed637e);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #FFEDBC, #ed637e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+  background: #ed637e; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #ffedbc,
+    #ed637e
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #ffedbc,
+    #ed637e
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 /* Styling for the text 'Today's task' */
@@ -13,7 +20,7 @@ background: linear-gradient(to right, #FFEDBC, #ed637e); /* W3C, IE 10+/ Edge, F
   font-weight: 900;
 }
 
-.finish-task{
+.finish-task {
   color: black;
   font-weight: 900;
 }
