@@ -10,7 +10,7 @@ This is a mobile-app for space-repetition learning. The app is built using Ionic
 
 **Repo**: Clone the Repo into your local directory by running
 ```
-git clone https://github.com/educational-technology-collective/Space-Repetition-Ionic.git
+git clone https://github.com/educational-technology-collective/srs-mobile.git
 ```
 
 **Install Haptics Plugin**: Haptis Plugin Provided by Capacitor for physical feedback
