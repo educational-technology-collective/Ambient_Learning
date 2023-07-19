@@ -19,39 +19,39 @@ git clone https://github.com/educational-technology-collective/srs-mobile.git
 
 **Install Haptics Plugin**: Haptis Plugin Provided by Capacitor for physical feedback(shaking effect)
 ```
-cd Space-Repetition-Ionic
+cd srs-mobile
 npm install @capacitor/haptics
 npx cap sync
 ```
 
 **Install Auth0 SDK**: Used for authentication
 ```
-cd Space-Repetition-Ionic
+cd srs-mobile
 npm install @auth0/auth0-react
 ```
 
 **Install Capacitor Plugins**: Used for running auth0
 ```
-cd Space-Repetition-Ionic
+cd srs-mobile
 npm install @capacitor/browser @capacitor/app
 ```
 
 **Install ReactMarkdown Plugin**: Used for rendering markdown
 ```
-cd Space-Repetition-Ionic
+cd srs-mobile
 npm install react-markdown
 ```
 
 **Install React Icons**: Used for some of the icons
 ```
-cd Space-Repetition-Ionic
+cd srs-mobile
 npm install react-icons --save
 ```
 
 ## Run
 After you have set up the repo in your local directory. Run the following commands to try the app:
 ```
-cd Space-Repetition-Ionic
+cd srs-mobile
 ionic serve
 ```
 It should automatically direct you to a local page on your default browser. You can also copy the link into a browser you like. Then use the developer tool to choose your device you can test on web(iPhone 12 Pro is used for development)
