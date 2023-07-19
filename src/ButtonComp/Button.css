@@ -61,6 +61,10 @@
   );
 }
 
+.log-button:hover{
+  color: gray;
+}
+
 .login-button {
   opacity: 0;
   animation: displayButton 1100ms ease-out forwards;
