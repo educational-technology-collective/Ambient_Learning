@@ -78,7 +78,7 @@ export const postInitialize = async (
   // PUT Request for the Initialize Container at the first place. Have to be
   // together here
   const event = {
-    event_name: "Initialize",
+    event_name: "initialize",
     event_time: copyTime,
     card_id: null,
     self_eval: null,
@@ -174,7 +174,7 @@ export const putSessionFinished = (
   putLogInfo: (event: action, end_time: string | null) => void
 ) => {
   const event = {
-    event_name: "SessionFinished",
+    event_name: "sessionFinished",
     event_time: new Date().toISOString(),
     card_id: null,
     self_eval: null,
