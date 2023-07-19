@@ -8,6 +8,7 @@ This also contains functions to move on the cards deck.
 */
 import { CapacitorHttp } from "@capacitor/core";
 
+// Function that requests the latest available record or make a new one
 export const getLatestRecord = async (
   user_id: string,
   accessToken: string,
@@ -17,13 +18,18 @@ export const getLatestRecord = async (
     url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?user_id=${user_id}`,
   });
   const data = await JSON.parse(response.data);
+
+  // Check to see if there is a record not done yet in the database
   if (data.new) {
+    // Create a new record if there isn't
     postInitialize(user_id, accessToken, handleStartTime);
-  } else {
+  }
+  // Push a resume action to the database
+  else {
     handleStartTime(data.start_time);
 
     const event = {
-      event_name: "Resume",
+      event_name: "resume",
       event_time: new Date().toISOString(),
       card_id: null,
       self_eval: null,
@@ -34,7 +40,7 @@ export const getLatestRecord = async (
       action: event,
       end_time: null,
     };
-    const responseInitialize = await CapacitorHttp.put({
+    const responseResume = await CapacitorHttp.put({
       url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?user_id=${user_id}&start_time=${data.start_time}`,
       data: dataStream,
       headers: {
@@ -42,7 +48,7 @@ export const getLatestRecord = async (
         authorization: `Bearer ${accessToken}`,
       },
     });
-    console.log("Put Resume", responseInitialize);
+    console.log("Put Resume", responseResume);
   }
 };
 
@@ -111,37 +117,59 @@ export const putFlipping = (
   putLogInfo(event, null);
 };
 
-export const putSwipe = (isEvaluation: boolean, testEvaluation: string, selfEvaluation:string, type: string, cardId: string, cardIndex: number, tupleLength: number, tupleIndex: number, nextCardFunc: (tupleIndex: number, event: action, fcId: string, latestRecord: latestResult) => void) => {
-  let name = 'swipe';
+export const putSwipe = (
+  isEvaluation: boolean,
+  testEvaluation: string,
+  selfEvaluation: string,
+  type: string,
+  cardId: string,
+  cardIndex: number,
+  tupleLength: number,
+  tupleIndex: number,
+  nextCardFunc: (
+    tupleIndex: number,
+    event: action,
+    fcId: string,
+    latestRecord: latestResult
+  ) => void
+) => {
+  // Initialize name to be swipe and machine evaluation same as testEval
+  let name = "swipe";
   let machineEvaluation = testEvaluation;
-  if(!isEvaluation){
-    name = 'noEvaluation';
-  }else{
-    if(!cardIndex){
-      name = 'swipe-shake';
+
+  // If there is no evaluation, change the name
+  if (!isEvaluation) {
+    name = "noEvaluation";
+  } else {
+    // Check if it is the last card of tuple
+    if (!cardIndex) {
+      name = "swipe-shake";
     }
-    if(type === 'm' && testEvaluation === ''){
-      machineEvaluation = 'skipped';
+    // Determine the Machine Evaluation
+    if (type === "m" && testEvaluation === "") {
+      machineEvaluation = "skipped";
     }
   }
-  const event : action = {
+  // Create the event object
+  const event: action = {
     event_name: name,
     event_time: new Date().toISOString(),
     card_id: cardId,
     self_eval: selfEvaluation,
     test_eval: machineEvaluation,
-    isBuffer: cardIndex !== tupleLength - 1
-  }
+    isBuffer: cardIndex !== tupleLength - 1,
+  };
 
+  // Create the latest record object
   const latestRecord: latestResult = {
     tapResult: machineEvaluation,
-    swipeResult: selfEvaluation
-  }
+    swipeResult: selfEvaluation,
+  };
 
   nextCardFunc(tupleIndex, event, cardId, latestRecord);
+};
 
-}
-
+// Log Function happens after session is finished
 export const putSessionFinished = (
   putLogInfo: (event: action, end_time: string | null) => void
 ) => {
