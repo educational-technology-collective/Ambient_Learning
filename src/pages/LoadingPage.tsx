@@ -5,10 +5,15 @@ import {
   IonContent,
   useIonViewWillEnter,
   useIonViewWillLeave,
+  IonText,
 } from "@ionic/react";
 import "./LoadingPage.css";
 import { useHistory } from "react-router-dom";
 import { hideBar, showBar } from "../utilities/showTabBar";
+import {FiUser} from 'react-icons/fi'
+import {BiServer} from 'react-icons/bi'
+import {TbCards, TbPlugConnected} from 'react-icons/tb'
+import {AiOutlineCheck} from 'react-icons/ai'
 import { useAuth0 } from "@auth0/auth0-react";
 import AppNameHeader from "./AppNameHeader";
 
@@ -105,12 +110,32 @@ const LoadingPage: React.FC<{
 
       <IonContent scrollY={false} className="loading-content">
         <div className="wrapper">
-          <h1 className="retrieving-text">Retrieving Cards...</h1>
-          <IonProgressBar
-            buffer={buffer}
-            value={progress}
-            className="bar"
-          ></IonProgressBar>
+          <div className='segment-container user-container'>
+            <div className="dot-bricks user-bricks">
+            </div>
+            <AiOutlineCheck size='3em' className="check user-check"/>
+            <FiUser size='3em' className="segment-icon"/>
+            <IonText className="segment-text">Authenticating User</IonText>
+          </div>
+          <div className='segment-container server-container'>
+            <div className="server-bricks">
+            </div>
+            <AiOutlineCheck size='3em' className="check server-check"/>
+            <BiServer className="segment-icon" size='3em'/>
+            <IonText className="segment-text">Connecting to Server</IonText>
+          </div>
+          <div className='segment-container'>
+            <div className="cards-bricks">
+            </div>
+            <TbCards className="segment-icon" size='3em'/>
+            <IonText className="segment-text">Retrieving Cards</IonText>
+          </div>
+          <div className='segment-container'>
+            <div className="dot-bricks">
+            </div>
+            <TbPlugConnected className="segment-icon" size='3em'/>
+            <IonText className="segment-text">Configurating Deck</IonText>
+          </div>
         </div>
       </IonContent>
     </IonPage>

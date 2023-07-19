@@ -27,6 +27,260 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 85%;
+  height: 100%;
   width: 100%;
+}
+
+.segment-container {
+  position: relative;
+  width: 90%;
+  height: 20%;
+  display: flex;
+  left: 5%;
+  justify-content: flex-start;
+  align-items: center;
+  opacity: 0;
+}
+
+.user-container {
+  animation: showUserSegment 1.5s forwards;
+}
+
+.check{
+  color: rgba(79, 216, 6, 0.924);
+  position: absolute;
+  left: -1em;
+  opacity: 0;
+  animation-name: showCheck;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+.user-check{
+  animation-delay: 1.5s;
+}
+
+.server-check{
+  animation-delay: 3.5s;
+}
+
+@keyframes showCheck {
+  to{
+   opacity: 1;
+  }
+}
+
+@keyframes showUserSegment {
+  to{
+    opacity: 1;
+  }
+}
+
+.user-bricks {
+  animation: user-disappear 3s forwards;
+}
+
+@keyframes user-disappear {
+  100%{
+    opacity: 0;
+  }
+}
+
+.server-container{
+  animation-name: showServerSegment;
+  animation-delay: 2s;
+  animation-fill-mode: forwards;
+  animation-duration: 1.5s;
+}
+
+@keyframes showServerSegment {
+  to{
+    opacity: 1;
+  }
+}
+
+.dot-bricks {
+  position: relative;
+  top: 8px;
+  left: -9999px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: grey;
+  color: grey;
+  animation: dot-bricks 2s forwards ease;
+  box-shadow: 9991px -16px 0 0 grey, 9991px 0 0 0 grey, 10007px 0 0 0 grey;
+}
+
+
+@keyframes dot-bricks {
+  0% {
+    box-shadow: 9991px -16px 0 0 grey, 9991px 0 0 0 grey, 10007px 0 0 0 grey;
+  }
+  8.333% {
+    box-shadow: 10007px -16px 0 0 grey, 9991px 0 0 0 grey, 10007px 0 0 0 grey;
+  }
+  16.667% {
+    box-shadow: 10007px -16px 0 0 grey, 9991px -16px 0 0 grey, 10007px 0 0 0 grey;
+  }
+  25% {
+    box-shadow: 10007px -16px 0 0 grey, 9991px -16px 0 0 grey, 9991px 0 0 0 grey;
+  }
+  33.333% {
+    box-shadow: 10007px 0 0 0 grey, 9991px -16px 0 0 grey, 9991px 0 0 0 grey;
+  }
+  41.667% {
+    box-shadow: 10007px 0 0 0 grey, 10007px -16px 0 0 grey, 9991px 0 0 0 grey;
+  }
+  50% {
+    box-shadow: 10007px 0 0 0 grey, 10007px -16px 0 0 grey, 9991px -16px 0 0 grey;
+  }
+  58.333% {
+    box-shadow: 9991px 0 0 0 grey, 10007px -16px 0 0 grey, 9991px -16px 0 0 grey;
+  }
+  66.666% {
+    box-shadow: 9991px 0 0 0 grey, 10007px 0 0 0 grey, 9991px -16px 0 0 grey;
+  }
+  75% {
+    box-shadow: 9991px 0 0 0 grey, 10007px 0 0 0 grey, 10007px -16px 0 0 grey;
+  }
+  83.333% {
+    box-shadow: 9991px -16px 0 0 grey, 10007px 0 0 0 grey, 10007px -16px 0 0 grey;
+  }
+  91.667% {
+    box-shadow: 9991px -16px 0 0 grey, 9991px 0 0 0 grey, 10007px -16px 0 0 grey;
+  }
+  100% {
+    box-shadow: 9991px -16px 0 0 grey, 9991px 0 0 0 grey, 10007px 0 0 0 grey;
+    opacity: 0;
+  }
+}
+
+.server-bricks {
+  position: relative;
+  top: 8px;
+  left: -9999px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: grey;
+  color: grey;
+  animation-delay: 2s;
+  animation-name: server-bricks;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  box-shadow: 9991px -16px 0 0 grey, 9991px 0 0 0 grey, 10007px 0 0 0 grey;
+}
+
+
+@keyframes server-bricks {
+  0% {
+    box-shadow: 9991px -16px 0 0 grey, 9991px 0 0 0 grey, 10007px 0 0 0 grey;
+  }
+  8.333% {
+    box-shadow: 10007px -16px 0 0 grey, 9991px 0 0 0 grey, 10007px 0 0 0 grey;
+  }
+  16.667% {
+    box-shadow: 10007px -16px 0 0 grey, 9991px -16px 0 0 grey, 10007px 0 0 0 grey;
+  }
+  25% {
+    box-shadow: 10007px -16px 0 0 grey, 9991px -16px 0 0 grey, 9991px 0 0 0 grey;
+  }
+  33.333% {
+    box-shadow: 10007px 0 0 0 grey, 9991px -16px 0 0 grey, 9991px 0 0 0 grey;
+  }
+  41.667% {
+    box-shadow: 10007px 0 0 0 grey, 10007px -16px 0 0 grey, 9991px 0 0 0 grey;
+  }
+  50% {
+    box-shadow: 10007px 0 0 0 grey, 10007px -16px 0 0 grey, 9991px -16px 0 0 grey;
+  }
+  58.333% {
+    box-shadow: 9991px 0 0 0 grey, 10007px -16px 0 0 grey, 9991px -16px 0 0 grey;
+  }
+  66.666% {
+    box-shadow: 9991px 0 0 0 grey, 10007px 0 0 0 grey, 9991px -16px 0 0 grey;
+  }
+  75% {
+    box-shadow: 9991px 0 0 0 grey, 10007px 0 0 0 grey, 10007px -16px 0 0 grey;
+  }
+  83.333% {
+    box-shadow: 9991px -16px 0 0 grey, 10007px 0 0 0 grey, 10007px -16px 0 0 grey;
+  }
+  91.667% {
+    box-shadow: 9991px -16px 0 0 grey, 9991px 0 0 0 grey, 10007px -16px 0 0 grey;
+  }
+  100% {
+    box-shadow: 9991px -16px 0 0 grey, 9991px 0 0 0 grey, 10007px 0 0 0 grey;
+    opacity: 0;
+  }
+}
+
+.cards-bricks {
+  position: relative;
+  top: 8px;
+  left: -9999px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: grey;
+  color: grey;
+  animation: cards-bricks 2s forwards ease;
+  box-shadow: 9991px -16px 0 0 grey, 9991px 0 0 0 grey, 10007px 0 0 0 grey;
+}
+
+
+@keyframes cards-bricks {
+  0% {
+    box-shadow: 9991px -16px 0 0 grey, 9991px 0 0 0 grey, 10007px 0 0 0 grey;
+  }
+  8.333% {
+    box-shadow: 10007px -16px 0 0 grey, 9991px 0 0 0 grey, 10007px 0 0 0 grey;
+  }
+  16.667% {
+    box-shadow: 10007px -16px 0 0 grey, 9991px -16px 0 0 grey, 10007px 0 0 0 grey;
+  }
+  25% {
+    box-shadow: 10007px -16px 0 0 grey, 9991px -16px 0 0 grey, 9991px 0 0 0 grey;
+  }
+  33.333% {
+    box-shadow: 10007px 0 0 0 grey, 9991px -16px 0 0 grey, 9991px 0 0 0 grey;
+  }
+  41.667% {
+    box-shadow: 10007px 0 0 0 grey, 10007px -16px 0 0 grey, 9991px 0 0 0 grey;
+  }
+  50% {
+    box-shadow: 10007px 0 0 0 grey, 10007px -16px 0 0 grey, 9991px -16px 0 0 grey;
+  }
+  58.333% {
+    box-shadow: 9991px 0 0 0 grey, 10007px -16px 0 0 grey, 9991px -16px 0 0 grey;
+  }
+  66.666% {
+    box-shadow: 9991px 0 0 0 grey, 10007px 0 0 0 grey, 9991px -16px 0 0 grey;
+  }
+  75% {
+    box-shadow: 9991px 0 0 0 grey, 10007px 0 0 0 grey, 10007px -16px 0 0 grey;
+  }
+  83.333% {
+    box-shadow: 9991px -16px 0 0 grey, 10007px 0 0 0 grey, 10007px -16px 0 0 grey;
+  }
+  91.667% {
+    box-shadow: 9991px -16px 0 0 grey, 9991px 0 0 0 grey, 10007px -16px 0 0 grey;
+  }
+  100% {
+    box-shadow: 9991px -16px 0 0 grey, 9991px 0 0 0 grey, 10007px 0 0 0 grey;
+    opacity: 0;
+  }
+}
+
+.segment-icon{
+  position: relative;
+  left: 8%;
+}
+
+.segment-text {
+  position: relative;
+  left: 13%;
+  font-size: 1.3em;
+  font-weight: 900;
 }
