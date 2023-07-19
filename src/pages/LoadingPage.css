@@ -40,11 +40,11 @@
   justify-content: flex-start;
   align-items: center;
   opacity: 0;
+  animation-name: showSegment;
+  animation-duration: 1.5s;
+  animation-fill-mode: forwards;
 }
 
-.user-container {
-  animation: showUserSegment 1.5s forwards;
-}
 
 .check{
   color: rgba(79, 216, 6, 0.924);
@@ -57,11 +57,15 @@
 }
 
 .user-check{
-  animation-delay: 1.5s;
+  animation-delay: 1.2s;
 }
 
 .server-check{
-  animation-delay: 3.5s;
+  animation-delay: 2s;
+}
+
+.cards-check{
+  animation-delay: 3s;
 }
 
 @keyframes showCheck {
@@ -70,7 +74,7 @@
   }
 }
 
-@keyframes showUserSegment {
+@keyframes showSegment {
   to{
     opacity: 1;
   }
@@ -87,17 +91,17 @@
 }
 
 .server-container{
-  animation-name: showServerSegment;
-  animation-delay: 2s;
-  animation-fill-mode: forwards;
-  animation-duration: 1.5s;
+  animation-delay: 1.2s;
 }
 
-@keyframes showServerSegment {
-  to{
-    opacity: 1;
-  }
+.cards-container{
+  animation-delay: 2.2s;
 }
+
+.deck-container{
+  animation-delay: 3.2s;
+}
+
 
 .dot-bricks {
   position: relative;
@@ -108,10 +112,25 @@
   border-radius: 5px;
   background-color: grey;
   color: grey;
-  animation: dot-bricks 2s forwards ease;
+  animation-name: dot-bricks;
+  animation-duration: 1.5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease;
   box-shadow: 9991px -16px 0 0 grey, 9991px 0 0 0 grey, 10007px 0 0 0 grey;
+  opacity: 1;
 }
 
+.server-bricks {
+  animation-delay: 1s;
+}
+
+.cards-bricks {
+  animation-delay: 2s;
+}
+
+.deck-bricks {
+  animation-iteration-count: infinite;
+}
 
 @keyframes dot-bricks {
   0% {
@@ -156,131 +175,14 @@
   }
 }
 
-.server-bricks {
-  position: relative;
-  top: 8px;
-  left: -9999px;
-  width: 10px;
-  height: 10px;
-  border-radius: 5px;
-  background-color: grey;
-  color: grey;
-  animation-delay: 2s;
-  animation-name: server-bricks;
-  animation-duration: 2s;
-  animation-fill-mode: forwards;
-  box-shadow: 9991px -16px 0 0 grey, 9991px 0 0 0 grey, 10007px 0 0 0 grey;
-}
-
-
-@keyframes server-bricks {
-  0% {
-    box-shadow: 9991px -16px 0 0 grey, 9991px 0 0 0 grey, 10007px 0 0 0 grey;
-  }
-  8.333% {
-    box-shadow: 10007px -16px 0 0 grey, 9991px 0 0 0 grey, 10007px 0 0 0 grey;
-  }
-  16.667% {
-    box-shadow: 10007px -16px 0 0 grey, 9991px -16px 0 0 grey, 10007px 0 0 0 grey;
-  }
-  25% {
-    box-shadow: 10007px -16px 0 0 grey, 9991px -16px 0 0 grey, 9991px 0 0 0 grey;
-  }
-  33.333% {
-    box-shadow: 10007px 0 0 0 grey, 9991px -16px 0 0 grey, 9991px 0 0 0 grey;
-  }
-  41.667% {
-    box-shadow: 10007px 0 0 0 grey, 10007px -16px 0 0 grey, 9991px 0 0 0 grey;
-  }
-  50% {
-    box-shadow: 10007px 0 0 0 grey, 10007px -16px 0 0 grey, 9991px -16px 0 0 grey;
-  }
-  58.333% {
-    box-shadow: 9991px 0 0 0 grey, 10007px -16px 0 0 grey, 9991px -16px 0 0 grey;
-  }
-  66.666% {
-    box-shadow: 9991px 0 0 0 grey, 10007px 0 0 0 grey, 9991px -16px 0 0 grey;
-  }
-  75% {
-    box-shadow: 9991px 0 0 0 grey, 10007px 0 0 0 grey, 10007px -16px 0 0 grey;
-  }
-  83.333% {
-    box-shadow: 9991px -16px 0 0 grey, 10007px 0 0 0 grey, 10007px -16px 0 0 grey;
-  }
-  91.667% {
-    box-shadow: 9991px -16px 0 0 grey, 9991px 0 0 0 grey, 10007px -16px 0 0 grey;
-  }
-  100% {
-    box-shadow: 9991px -16px 0 0 grey, 9991px 0 0 0 grey, 10007px 0 0 0 grey;
-    opacity: 0;
-  }
-}
-
-.cards-bricks {
-  position: relative;
-  top: 8px;
-  left: -9999px;
-  width: 10px;
-  height: 10px;
-  border-radius: 5px;
-  background-color: grey;
-  color: grey;
-  animation: cards-bricks 2s forwards ease;
-  box-shadow: 9991px -16px 0 0 grey, 9991px 0 0 0 grey, 10007px 0 0 0 grey;
-}
-
-
-@keyframes cards-bricks {
-  0% {
-    box-shadow: 9991px -16px 0 0 grey, 9991px 0 0 0 grey, 10007px 0 0 0 grey;
-  }
-  8.333% {
-    box-shadow: 10007px -16px 0 0 grey, 9991px 0 0 0 grey, 10007px 0 0 0 grey;
-  }
-  16.667% {
-    box-shadow: 10007px -16px 0 0 grey, 9991px -16px 0 0 grey, 10007px 0 0 0 grey;
-  }
-  25% {
-    box-shadow: 10007px -16px 0 0 grey, 9991px -16px 0 0 grey, 9991px 0 0 0 grey;
-  }
-  33.333% {
-    box-shadow: 10007px 0 0 0 grey, 9991px -16px 0 0 grey, 9991px 0 0 0 grey;
-  }
-  41.667% {
-    box-shadow: 10007px 0 0 0 grey, 10007px -16px 0 0 grey, 9991px 0 0 0 grey;
-  }
-  50% {
-    box-shadow: 10007px 0 0 0 grey, 10007px -16px 0 0 grey, 9991px -16px 0 0 grey;
-  }
-  58.333% {
-    box-shadow: 9991px 0 0 0 grey, 10007px -16px 0 0 grey, 9991px -16px 0 0 grey;
-  }
-  66.666% {
-    box-shadow: 9991px 0 0 0 grey, 10007px 0 0 0 grey, 9991px -16px 0 0 grey;
-  }
-  75% {
-    box-shadow: 9991px 0 0 0 grey, 10007px 0 0 0 grey, 10007px -16px 0 0 grey;
-  }
-  83.333% {
-    box-shadow: 9991px -16px 0 0 grey, 10007px 0 0 0 grey, 10007px -16px 0 0 grey;
-  }
-  91.667% {
-    box-shadow: 9991px -16px 0 0 grey, 9991px 0 0 0 grey, 10007px -16px 0 0 grey;
-  }
-  100% {
-    box-shadow: 9991px -16px 0 0 grey, 9991px 0 0 0 grey, 10007px 0 0 0 grey;
-    opacity: 0;
-  }
-}
-
 .segment-icon{
-  position: relative;
-  left: 8%;
+  position: absolute;
+  left: 11%;
 }
 
 .segment-text {
-  position: relative;
-  left: 13%;
+  position: absolute;
+  left: 29%;
   font-size: 1.3em;
   font-weight: 900;
 }

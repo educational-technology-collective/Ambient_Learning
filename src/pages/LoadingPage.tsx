@@ -55,18 +55,19 @@ const LoadingPage: React.FC<{
   // Set a timeout that will jump to the cardscreen
   const [showLoad, setLoad] = useState(true);
 
+  const [timeElapsed, setTimeElapsed] = useState(false);
+
+  const animationTimeOut = () => {
+    setTimeElapsed(true);
+  }
+
+  console.log(timeElapsed);
+
   useEffect(() => {
-    // When showLoad is initially true, grow the progress bar
-    if (showLoad) {
-      // Add 0.06 to the value every 0.1 second
-      const interval = setInterval(() => {
-        setBuffer((prevBuffer: number) => prevBuffer + 0.04);
-        setProgress((prevProgress: number) => prevProgress + 0.04);
-      }, 100);
-      return () => clearInterval(interval);
-    }
-    // When showLoad is set to false. Jump to the cardScreen with 150ms delay
-    else {
+   if(showLoad){
+    setTimeout(animationTimeOut, 4500);
+   } 
+   else{
       // If there is error
       if (isError) {
         setTimeout(navigateToErrorPage, 100);
@@ -83,7 +84,7 @@ const LoadingPage: React.FC<{
       }
       // If the user is not first time, navigate to card screen.
       else {
-   //     setTimeout(navigateToCardScreen, 250);
+        setTimeout(navigateToCardScreen, 250);
       }
     }
   }, [showLoad]);
@@ -96,7 +97,7 @@ const LoadingPage: React.FC<{
 
   // Check to see if navigating to the card screen:
   // First Time of Loading Page, the progress bar has reached 1, and retrieval is complete
-  let finishLoading = showLoad && progress > 1 && retrievalComplete;
+  let finishLoading = showLoad && timeElapsed && retrievalComplete;
 
   // Set showLoad to be false to trigger useEfect
   if (finishLoading) {
@@ -110,7 +111,7 @@ const LoadingPage: React.FC<{
 
       <IonContent scrollY={false} className="loading-content">
         <div className="wrapper">
-          <div className='segment-container user-container'>
+          <div className='segment-container'>
             <div className="dot-bricks user-bricks">
             </div>
             <AiOutlineCheck size='3em' className="check user-check"/>
@@ -118,22 +119,25 @@ const LoadingPage: React.FC<{
             <IonText className="segment-text">Authenticating User</IonText>
           </div>
           <div className='segment-container server-container'>
-            <div className="server-bricks">
+            <div className="dot-bricks server-bricks">
             </div>
             <AiOutlineCheck size='3em' className="check server-check"/>
             <BiServer className="segment-icon" size='3em'/>
             <IonText className="segment-text">Connecting to Server</IonText>
           </div>
-          <div className='segment-container'>
-            <div className="cards-bricks">
+          <div className='segment-container cards-container'>
+            <div className="dot-bricks cards-bricks">
             </div>
+            <AiOutlineCheck size='3em' className="check cards-check"/>
             <TbCards className="segment-icon" size='3em'/>
             <IonText className="segment-text">Retrieving Cards</IonText>
           </div>
-          <div className='segment-container'>
-            <div className="dot-bricks">
-            </div>
-            <TbPlugConnected className="segment-icon" size='3em'/>
+          <div className='segment-container deck-container'>
+            {showLoad ? 
+             <div className="dot-bricks deck-bricks"></div>
+            : <AiOutlineCheck size='3em' className="check"/>
+            }
+            <TbPlugConnected className="segment-icon" size='3em' />
             <IonText className="segment-text">Configurating Deck</IonText>
           </div>
         </div>
