@@ -103,14 +103,13 @@ MCQ Card question always takes 60% */
   top: 0;
 }
 
-
 .onemore-number {
   position: absolute;
   width: 5%;
   font-size: 1em;
   font-weight: 900;
   margin-bottom: 0;
-  color: #0056D2;
+  color: #0056d2;
   top: 1%;
   text-align: center;
   backface-visibility: hidden;
@@ -119,10 +118,10 @@ MCQ Card question always takes 60% */
   background-color: snow;
 }
 
-.front-number{
+.front-number {
   right: 2%;
 }
 
-.back-number{
+.back-number {
   left: 2%;
 }

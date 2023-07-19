@@ -7,7 +7,7 @@ import {
 import { useState } from "react";
 import { hideBar, showBar } from "../utilities/showTabBar";
 import "../pages/CardScreen.css";
-import './TutorialPage.css'
+import "./TutorialPage.css";
 import FlashCardList from "../FlashCardComp/FlashCardList";
 import FinishedDisplay from "../TutorialComp/FinishedDisplay";
 import AppNameHeader from "./AppNameHeader";
