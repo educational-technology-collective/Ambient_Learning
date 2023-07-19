@@ -26,7 +26,7 @@
 }
 
 .welcome-container {
-  margin-bottom: 2em;
+  margin-bottom: 1em;
   display: grid;
   place-items: center;
 }
@@ -76,6 +76,7 @@
   opacity: 0;
   animation: showDescription 1100ms forwards;
   animation-delay: 1350ms;
+  margin-bottom: 0.5em;
 }
 
 @keyframes showDescription {
