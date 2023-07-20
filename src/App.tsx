@@ -71,6 +71,7 @@ const App: React.FC = () => {
 
   const { handleRedirectCallback } = useAuth0();
 
+  // For Auth0 login and close
   useEffect(() => {
     // Handle the 'appUrlOpen' event and call `handleRedirectCallback`
     CapApp.addListener("appUrlOpen", async ({ url }) => {
@@ -166,7 +167,7 @@ const App: React.FC = () => {
   const getCards = async (url: string) => {
     try {
       const response = await CapacitorHttp.get({ url: url });
-      // If there is 500 Erro
+      // If there is 500 Error
       if (response.status !== 500) {
         // Convert it to an array
         const data = await JSON.parse(response.data);
