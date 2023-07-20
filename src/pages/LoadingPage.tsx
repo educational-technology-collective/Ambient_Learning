@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
   IonPage,
-  IonProgressBar,
   IonContent,
   useIonViewWillEnter,
   useIonViewWillLeave,
@@ -10,10 +9,10 @@ import {
 import "./LoadingPage.css";
 import { useHistory } from "react-router-dom";
 import { hideBar, showBar } from "../utilities/showTabBar";
-import {FiUser} from 'react-icons/fi'
-import {BiServer} from 'react-icons/bi'
-import {TbCards, TbPlugConnected} from 'react-icons/tb'
-import {AiOutlineCheck} from 'react-icons/ai'
+import { FiUser } from "react-icons/fi";
+import { BiServer } from "react-icons/bi";
+import { TbCards, TbPlugConnected } from "react-icons/tb";
+import { AiOutlineCheck } from "react-icons/ai";
 import { useAuth0 } from "@auth0/auth0-react";
 import AppNameHeader from "./AppNameHeader";
 
@@ -29,7 +28,6 @@ const LoadingPage: React.FC<{
 
   // Reload the Bottom Tabs when leaving
   useIonViewWillLeave(showBar);
-
 
   const history = useHistory();
 
@@ -57,15 +55,15 @@ const LoadingPage: React.FC<{
 
   const animationTimeOut = () => {
     setTimeElapsed(true);
-  }
+  };
 
   console.log(timeElapsed);
 
   useEffect(() => {
-   if(showLoad){
-    setTimeout(animationTimeOut, 4500);
-   } 
-   else{
+    // When still showing loading component, set a timeout of 4.5s
+    if (showLoad) {
+      setTimeout(animationTimeOut, 4500);
+    } else {
       // If there is error
       if (isError) {
         setTimeout(navigateToErrorPage, 100);
@@ -82,7 +80,7 @@ const LoadingPage: React.FC<{
       }
       // If the user is not first time, navigate to card screen.
       else {
-      //  setTimeout(navigateToCardScreen, 250);
+        //  setTimeout(navigateToCardScreen, 250);
       }
     }
   }, [showLoad]);
@@ -109,33 +107,31 @@ const LoadingPage: React.FC<{
 
       <IonContent scrollY={false} className="loading-content">
         <div className="wrapper">
-          <div className='segment-container'>
-            <div className="dot-bricks user-bricks">
-            </div>
-            <AiOutlineCheck size='3em' className="check user-check"/>
-            <FiUser size='3em' className="segment-icon"/>
+          <div className="segment-container">
+            <div className="dot-bricks user-bricks"></div>
+            <AiOutlineCheck size="3em" className="check user-check" />
+            <FiUser size="3em" className="segment-icon" />
             <IonText className="segment-text">Authenticating User</IonText>
           </div>
-          <div className='segment-container server-container'>
-            <div className="dot-bricks server-bricks">
-            </div>
-            <AiOutlineCheck size='3em' className="check server-check"/>
-            <BiServer className="segment-icon" size='3em'/>
+          <div className="segment-container server-container">
+            <div className="dot-bricks server-bricks"></div>
+            <AiOutlineCheck size="3em" className="check server-check" />
+            <BiServer className="segment-icon" size="3em" />
             <IonText className="segment-text">Connecting to Server</IonText>
           </div>
-          <div className='segment-container cards-container'>
-            <div className="dot-bricks cards-bricks">
-            </div>
-            <AiOutlineCheck size='3em' className="check cards-check"/>
-            <TbCards className="segment-icon" size='3em'/>
+          <div className="segment-container cards-container">
+            <div className="dot-bricks cards-bricks"></div>
+            <AiOutlineCheck size="3em" className="check cards-check" />
+            <TbCards className="segment-icon" size="3em" />
             <IonText className="segment-text">Retrieving Cards</IonText>
           </div>
-          <div className='segment-container deck-container'>
-            {showLoad ? 
-             <div className="dot-bricks deck-bricks"></div>
-            : <AiOutlineCheck size='3em' className="check"/>
-            }
-            <TbPlugConnected className="segment-icon" size='3em' />
+          <div className="segment-container deck-container">
+            {showLoad ? (
+              <div className="dot-bricks deck-bricks"></div>
+            ) : (
+              <AiOutlineCheck size="3em" className="check" />
+            )}
+            <TbPlugConnected className="segment-icon" size="3em" />
             <IonText className="segment-text">Configurating Deck</IonText>
           </div>
         </div>
