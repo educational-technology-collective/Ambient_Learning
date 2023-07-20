@@ -192,7 +192,7 @@
 .head {
   width: 25px;
   height: 25px;
-  background-color: white;
+  background-color: snow;
   border-radius: 50%;
   position: relative;
   left: 0.3em;
@@ -203,7 +203,7 @@
 .body{
   width: 20px;
   height: 50px;
-  background-color: white;
+  background-color:snow;
   border-radius: 60px 10px 0 0;
   animation: bodyChange 1s infinite 1.6s ease-in
 }
@@ -211,7 +211,7 @@
 .firstLeg, .secondLeg{
   width: 17.5px;
   height: 5px;
-  background-color: white;
+  background-color: snow;
   border-radius: 20px 50px 50px 20px;
   position: relative;
   top: 30px;
