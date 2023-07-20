@@ -107,6 +107,13 @@ const LoadingPage: React.FC<{
 
       <IonContent scrollY={false} className="loading-content">
         <div className="wrapper">
+          <div className="walking">
+            <div className="head"></div>
+            <div className="body"></div>
+            <div className="firstLeg"></div>
+            <div className="secondLeg"></div>
+            <div className="shadow"></div>
+          </div>
           <div className="segment-container">
             <div className="dot-bricks user-bricks"></div>
             <AiOutlineCheck size="3em" className="check user-check" />
