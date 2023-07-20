@@ -23,16 +23,17 @@ The overall container of the walking person */
 }
 
 /* The body of the walking person */
-.body{
+.body {
   width: 20px;
   height: 50px;
-  background-color:snow;
+  background-color: snow;
   border-radius: 60px 10px 0 0;
-  animation: bodyChange 1s infinite 1.6s ease-in
+  animation: bodyChange 1s infinite 1.6s ease-in;
 }
 
 /* The two legs of the walking person */
-.firstLeg, .secondLeg{
+.firstLeg,
+.secondLeg {
   width: 17.5px;
   height: 5px;
   background-color: snow;
@@ -43,7 +44,7 @@ The overall container of the walking person */
   animation: walk 2s infinite linear;
 }
 
-.secondLeg{
+.secondLeg {
   top: 12.5px;
   animation-delay: 1s;
 }
@@ -54,66 +55,66 @@ The overall container of the walking person */
   height: 10px;
   background-color: rgba(192, 82, 82, 0.2);
   border-radius: 50%;
-  animation:  shadowChange 1s infinite 1.6s linear;
+  animation: shadowChange 1s infinite 1.6s linear;
 }
 
 /* Animation for the head movement */
 @keyframes headChange {
-  0%{
+  0% {
     transform: translateY(0px);
   }
-  50%{
+  50% {
     transform: translateY(7px);
   }
-  100%{
+  100% {
     transform: translateY((0px));
   }
 }
 
 /* Animation for the body movement */
 @keyframes bodyChange {
-  0%{
+  0% {
     transform: translateY(0px);
   }
-  50%{
+  50% {
     transform: translateY(3px);
   }
-  100%{
+  100% {
     transform: translateY((0px));
   }
 }
 
 /* Animation for the leg movement */
 @keyframes walk {
-  0%{
+  0% {
     transform: translateX(0px) rotate(0deg);
   }
-  20%{
+  20% {
     transform: translateX(-10px) rotate(0deg);
   }
-  40%{
+  40% {
     transform: translate(-20px, 0px) rotate(0deg);
   }
-  60%{
+  60% {
     transform: translate(-15px, -5px) rotate(17.5deg);
   }
-  90%{
+  90% {
     transform: translate(5px, -3.5px) rotate(-17.5deg);
   }
-  100%{
+  100% {
     transform: translateX(0px);
   }
 }
 
 /* Animation for the shadow movement */
 @keyframes shadowChange {
-  0%{
+  0% {
     width: 50px;
   }
-  50%{
+  50% {
     width: 70px;
   }
-  100%{
+  100% {
     width: 50px;
   }
 }
