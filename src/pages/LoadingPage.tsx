@@ -58,8 +58,6 @@ const LoadingPage: React.FC<{
     setTimeElapsed(true);
   };
 
-  console.log(timeElapsed);
-
   useEffect(() => {
     // When still showing loading component, set a timeout of 4.5s
     if (showLoad) {
@@ -81,7 +79,7 @@ const LoadingPage: React.FC<{
       }
       // If the user is not first time, navigate to card screen.
       else {
-          setTimeout(navigateToCardScreen, 250);
+        setTimeout(navigateToCardScreen, 250);
       }
     }
   }, [showLoad]);
@@ -108,26 +106,36 @@ const LoadingPage: React.FC<{
 
       <IonContent scrollY={false} className="loading-content">
         <div className="wrapper">
-        <WalkingPerson/>
+          {/* Walking Person Component */}
+          <WalkingPerson />
+
+          {/* Segment for Authenticating User */}
           <div className="segment-container">
             <div className="dot-bricks user-bricks"></div>
             <AiOutlineCheck size="3em" className="check user-check" />
             <FiUser size="3em" className="segment-icon" />
             <IonText className="segment-text">Authenticating User</IonText>
           </div>
+
+          {/* Segment for Connecting to Server */}
           <div className="segment-container server-container">
             <div className="dot-bricks server-bricks"></div>
             <AiOutlineCheck size="3em" className="check server-check" />
             <BiServer className="segment-icon" size="3em" />
             <IonText className="segment-text">Connecting to Server</IonText>
           </div>
+
+          {/* Segment for Retrieving Cards */}
           <div className="segment-container cards-container">
             <div className="dot-bricks cards-bricks"></div>
             <AiOutlineCheck size="3em" className="check cards-check" />
             <TbCards className="segment-icon" size="3em" />
             <IonText className="segment-text">Retrieving Cards</IonText>
           </div>
+
+          {/* Segment for Configurating Deck.  */}
           <div className="segment-container deck-container">
+            {/* If not ready yet, keeps loading the dots, loading the check otherwise */}
             {showLoad ? (
               <div className="dot-bricks deck-bricks"></div>
             ) : (
