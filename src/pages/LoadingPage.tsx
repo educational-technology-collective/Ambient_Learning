@@ -30,9 +30,6 @@ const LoadingPage: React.FC<{
   // Reload the Bottom Tabs when leaving
   useIonViewWillLeave(showBar);
 
-  // State Variable for Loading Bar
-  const [buffer, setBuffer] = useState(0.04);
-  const [progress, setProgress] = useState(0);
 
   const history = useHistory();
 
@@ -55,6 +52,7 @@ const LoadingPage: React.FC<{
   // Set a timeout that will jump to the cardscreen
   const [showLoad, setLoad] = useState(true);
 
+  // Used to keep track of a 4.5s of loading screen at least
   const [timeElapsed, setTimeElapsed] = useState(false);
 
   const animationTimeOut = () => {
@@ -84,7 +82,7 @@ const LoadingPage: React.FC<{
       }
       // If the user is not first time, navigate to card screen.
       else {
-        setTimeout(navigateToCardScreen, 250);
+      //  setTimeout(navigateToCardScreen, 250);
       }
     }
   }, [showLoad]);
