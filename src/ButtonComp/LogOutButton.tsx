@@ -3,6 +3,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Browser } from "@capacitor/browser";
 import { useHistory } from "react-router";
 import "./Button.css";
+
 const LogOutButton: React.FC = () => {
   const history = useHistory();
 

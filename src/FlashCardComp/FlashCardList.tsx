@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import Card from "../CardComp/Card";
 import "./FlashCardList.css";
+
 const FlashCardList: React.FC<{
   array: flashCard[];
   tupleIndex: number;

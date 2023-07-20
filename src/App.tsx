@@ -94,7 +94,7 @@ const App: React.FC = () => {
 
   const handleReadyLog = () => {
     setReadyLog(true);
-  }
+  };
 
   const handleStartTime = (givenTime: string) => {
     setTime(givenTime);

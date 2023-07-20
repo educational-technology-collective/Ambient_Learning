@@ -1,5 +1,6 @@
 import "./OneMoreTutorialModal.css";
 import arrow from "../../arrow.png";
+
 const OneMoreTutorialModal: React.FC = () => {
   return (
     <div className="show-up">

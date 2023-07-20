@@ -1,4 +1,5 @@
 import { FrontNoMoreIndicator } from "./Indicators";
+
 const FrontIndicator: React.FC<{
   indicatorOpacity: indicatorOp;
 }> = ({ indicatorOpacity }) => {

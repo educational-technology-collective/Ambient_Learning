@@ -8,6 +8,7 @@ import QA from "./QA";
 import { enableGesture } from "../utilities/gesture";
 import { putFlipping, putSwipe } from "../utilities/logfunction";
 import NumberIndicator from "./NumberIndicator";
+
 const Card: React.FC<{
   obj: flashCard;
   tupleLength: number;
