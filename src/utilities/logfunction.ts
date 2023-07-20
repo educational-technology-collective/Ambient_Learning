@@ -121,7 +121,6 @@ export const putFlipping = (
   putLogInfo(event, null);
 };
 
-
 // Log function to log the event of swiping
 export const putSwipe = (
   isEvaluation: boolean,
@@ -148,7 +147,7 @@ export const putSwipe = (
     name = "noEvaluation";
   } else {
     // Check if it is the last card of tuple and also it's oneMore
-    if (selfEvaluation === 'oneMore' && !cardIndex) {
+    if (selfEvaluation === "oneMore" && !cardIndex) {
       name = "swipe-shake";
     }
     // Determine the Machine Evaluation
