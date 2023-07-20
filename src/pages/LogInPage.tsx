@@ -13,9 +13,6 @@ const LogInPage: React.FC = () => {
   // Hide the bottom tabs when entering the login page
   useIonViewWillEnter(hideBar);
 
-  // Display the bottom tabs when leaving the login page
-  useIonViewWillLeave(showBar);
-
   return (
     <IonPage>
       <IonContent scrollY={false} className="login-content">

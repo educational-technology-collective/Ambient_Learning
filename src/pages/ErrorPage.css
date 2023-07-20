@@ -1,3 +1,4 @@
+/* Background color the error page */
 .error-content {
   background-color: #87ceeb;
 }
@@ -25,6 +26,7 @@
   margin-bottom: 1.5em;
 }
 
+/* Styling for the try again button and report issue button */
 .two-button-container {
   display: flex;
   flex-direction: row;

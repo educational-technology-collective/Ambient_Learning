@@ -51,7 +51,7 @@ export const CorrectChoice: React.FC<{
   setClickStatus: () => void;
   handleTestEvaluation: (result: string) => void;
 }> = ({ option, clicked, setClickStatus, handleTestEvaluation }) => {
-  const choiceText = option;
+  const choiceText: string = option;
 
   const correctClick = () => {
     setClickStatus();

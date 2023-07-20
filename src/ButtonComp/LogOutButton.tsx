@@ -7,7 +7,7 @@ import "./Button.css";
 const LogOutButton: React.FC = () => {
   const history = useHistory();
 
-  const isPhone = isPlatform("hybrid");
+  const isPhone: boolean = isPlatform("hybrid");
   const logoutUri = isPhone
     ? "ionic.srs://login"
     : "http://localhost:8100/login";

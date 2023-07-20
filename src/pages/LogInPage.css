@@ -19,6 +19,7 @@
   animation-delay: 1000ms;
 }
 
+/* Animation for the Space Craft to move up */
 @keyframes flyUp {
   to {
     transform: translateY(-70px);
@@ -51,6 +52,7 @@
   animation: reveal-welcome 1500ms ease-out;
 }
 
+/* Animation for 'Hi Welcome' to show up */
 @keyframes reveal-welcome {
   70% {
     width: 100%;
@@ -79,6 +81,7 @@
   margin-bottom: 0.5em;
 }
 
+/* Animation for the description text to show */
 @keyframes showDescription {
   10% {
     opacity: 0.1;

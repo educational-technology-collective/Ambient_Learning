@@ -6,7 +6,7 @@ const FinishedDisplay: React.FC<{
   isTutorial: boolean;
   enterScreen: () => void;
 }> = ({ isTutorial, enterScreen }) => {
-  let screenText, buttonText, navigateScreen;
+  let screenText: string, buttonText: string, navigateScreen: () => void;
   const history = useHistory();
 
   // If the message is after tutorial is done

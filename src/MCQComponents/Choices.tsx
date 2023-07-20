@@ -29,7 +29,7 @@ const Choices: React.FC<{
   }, []);
 
   // Transform the Choices 180 degrees after clicking
-  const containerStyle = clicked
+  const containerStyle: string = clicked
     ? "choice-container back-side"
     : "choice-container front-side";
 

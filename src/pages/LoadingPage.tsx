@@ -90,8 +90,8 @@ const LoadingPage: React.FC<{
   // (2) When we have a fetching error
   let retrievalComplete = (isFetched && (!total || readyLog)) || isError;
 
-  // Check to see if navigating to the card screen:
-  // First Time of Loading Page, the progress bar has reached 1, and retrieval is complete
+  // Check to see if ready to navigate:
+  // First Time of Loading Page, time has reached at least 4.5s, and retrieval is complete
   let finishLoading = showLoad && timeElapsed && retrievalComplete;
 
   // Set showLoad to be false to trigger useEfect

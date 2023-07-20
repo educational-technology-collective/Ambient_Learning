@@ -103,6 +103,7 @@ MCQ Card question always takes 60% */
   top: 0;
 }
 
+/* Css for the number on the top right cornor of the card */
 .onemore-number {
   position: absolute;
   width: 5%;
