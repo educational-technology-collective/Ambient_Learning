@@ -13,6 +13,7 @@
   width: 100%;
 }
 
+/* Container for each indication segment */
 .segment-container {
   position: relative;
   width: 90%;
@@ -27,18 +28,22 @@
   animation-fill-mode: forwards;
 }
 
+/* Add animation delay to sever container */
 .server-container {
   animation-delay: 1.2s;
 }
 
+/* Add animation delay to the cards container */
 .cards-container {
   animation-delay: 2.2s;
 }
 
+/* Add animation delay to the deck container */
 .deck-container {
   animation-delay: 3.2s;
 }
 
+/* Green Check that shows after dots */
 .check {
   color: rgba(79, 216, 6, 0.924);
   position: absolute;
@@ -49,17 +54,21 @@
   animation-fill-mode: forwards;
 }
 
+/* Add animation delay to the check for user segment */
 .user-check {
   animation-delay: 1.2s;
 }
 
+/* Add animation delay to the check for server segment */
 .server-check {
   animation-delay: 2s;
 }
 
+/* Add animation delay to the check for cards segment */
 .cards-check {
   animation-delay: 3s;
 }
+
 
 @keyframes showCheck {
   to {
@@ -73,6 +82,7 @@
   }
 }
 
+/* The three dots */
 .dot-bricks {
   position: relative;
   top: 8px;
@@ -90,18 +100,22 @@
   opacity: 1;
 }
 
+/* Add animation delay to the three dots of server segment */
 .server-bricks {
   animation-delay: 1s;
 }
 
+/* Add animation delay to the three dots of cards segment */
 .cards-bricks {
   animation-delay: 2s;
 }
 
+/* Add animation delay to the three dots of deck segment */
 .deck-bricks {
   animation-iteration-count: infinite;
 }
 
+/* Animation for the three dots to move around */
 @keyframes dot-bricks {
   0% {
     box-shadow: 9991px -16px 0 0 grey, 9991px 0 0 0 grey, 10007px 0 0 0 grey;
@@ -148,11 +162,13 @@
   }
 }
 
+/* Each Segment's icon */
 .segment-icon {
   position: absolute;
   left: 11%;
 }
 
+/* Each segment's text */
 .segment-text {
   position: absolute;
   left: 29%;
@@ -160,7 +176,8 @@
   font-weight: 900;
 }
 
-
+/* 
+The overall container of the walking person */
 .walking {
   width: 70%;
   height: 20%;
@@ -171,6 +188,7 @@
   position: relative;
 }
 
+/* The head of the walking person */
 .head {
   width: 25px;
   height: 25px;
@@ -182,6 +200,7 @@
   animation: headChange 1s infinite 1.6s ease-in;
 }
 
+/* The body of the walking person */
 .body{
   width: 20px;
   height: 50px;
@@ -190,6 +209,7 @@
   animation: bodyChange 1s infinite 1.6s ease-in
 }
 
+/* The two legs of the walking person */
 .firstLeg, .secondLeg{
   width: 17.5px;
   height: 5px;
@@ -206,6 +226,7 @@
   animation-delay: 1s;
 }
 
+/* The shadow of the walking body */
 .shadow {
   width: 50px;
   height: 10px;
@@ -214,6 +235,7 @@
   animation:  shadowChange 1s infinite 1.6s linear;
 }
 
+/* Animation for the head movement */
 @keyframes headChange {
   0%{
     transform: translateY(0px);
@@ -226,6 +248,7 @@
   }
 }
 
+/* Animation for the body movement */
 @keyframes bodyChange {
   0%{
     transform: translateY(0px);
@@ -238,6 +261,7 @@
   }
 }
 
+/* Animation for the leg movement */
 @keyframes walk {
   0%{
     transform: translateX(0px) rotate(0deg);
@@ -259,6 +283,7 @@
   }
 }
 
+/* Animation for the shadow movement */
 @keyframes shadowChange {
   0%{
     width: 50px;
