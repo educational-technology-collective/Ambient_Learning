@@ -25,7 +25,7 @@ export const getLatestRecord = async (
     // Create a new record if there isn't
     postInitialize(user_id, accessToken, handleStartTime);
   }
-  // Push a resume action to the database
+  // If there is available record, push a resume action to the database
   else {
     handleStartTime(data.start_time);
 
@@ -49,6 +49,7 @@ export const getLatestRecord = async (
         authorization: `Bearer ${accessToken}`,
       },
     });
+    // Keep this for debugging purpose. Will be removed for production
     console.log("Put Resume", responseResume);
   }
   // Function that sets readyLog to be true so we can leave loading page
@@ -61,12 +62,12 @@ export const postInitialize = async (
   accessToken: string,
   handleStartTime: (time: string) => void
 ) => {
-  let copyTime = new Date().toISOString();
+  let startTimeString = new Date().toISOString();
   // We use convert toISOString() for MongoDB Date Format
-  handleStartTime(copyTime);
+  handleStartTime(startTimeString);
   const log = {
     user_id: userId,
-    start_time: copyTime,
+    start_time: startTimeString,
   };
   const response = await CapacitorHttp.post({
     url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile`,
@@ -76,13 +77,14 @@ export const postInitialize = async (
       authorization: `Bearer ${accessToken}`,
     },
   });
+  // Keep this for debugging purpose. Will be removed for production
   console.log("Post Response", response);
 
-  // PUT Request for the Initialize Container at the first place. Have to be
-  // together here
+  // PUT Request for the Initialize Container at the first place. Have to do it manually
+  // here, otherwise the time is not updated and will not log the initialize event
   const event = {
     event_name: "initialize",
-    event_time: copyTime,
+    event_time: startTimeString,
     card_id: null,
     self_eval: null,
     test_eval: null,
@@ -93,13 +95,14 @@ export const postInitialize = async (
     end_time: null,
   };
   const responseInitialize = await CapacitorHttp.put({
-    url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?user_id=${userId}&start_time=${copyTime}`,
+    url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?user_id=${userId}&start_time=${startTimeString}`,
     data: dataStream,
     headers: {
       "content-type": "application/json",
       authorization: `Bearer ${accessToken}`,
     },
   });
+  // Keep this for debugging purpose. Will be removed for production
   console.log("Put Initialize", responseInitialize);
 };
 
@@ -156,6 +159,7 @@ export const putSwipe = (
     }
   }
   // Create the event object
+  // Evaluation is passed based on know/dontKnow/oneMore/noMore
   const event: action = {
     event_name: name,
     event_time: new Date().toISOString(),
