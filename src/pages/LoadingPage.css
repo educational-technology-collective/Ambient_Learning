@@ -69,6 +69,7 @@
   animation-delay: 3s;
 }
 
+/* Animation for the container and the checkmark to appear with changing opacity */
 @keyframes showPiece {
   to {
     opacity: 1;

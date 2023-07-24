@@ -34,7 +34,7 @@ const LoadingPage: React.FC<{
 
   const { user } = useAuth0();
 
-  // Turn loading down and jump to card screen
+  // Navigate to cardscreen and spread the cards icon
   const navigateToCardScreen = () => {
     history.push("/cardscreen");
     handleCardScreen();
@@ -53,9 +53,10 @@ const LoadingPage: React.FC<{
   // Set a timeout that will jump to the cardscreen
   const [showLoad, setLoad] = useState(true);
 
-  // Used to keep track of a 4.5s of loading screen at least
+  // State Variable used to keep track of a 4.5s of loading screen at least
   const [timeElapsed, setTimeElapsed] = useState(false);
 
+  // Handler that sets the timeElapsed variable to be true
   const animationTimeOut = () => {
     setTimeElapsed(true);
   };
@@ -69,13 +70,13 @@ const LoadingPage: React.FC<{
       if (isError) {
         setTimeout(navigateToErrorPage, 100);
       }
-      // Check there is user. User is first time and there is no local storage
+      // Check there is user, user is first time and there is no local storage
       else if (
         user !== undefined &&
         user["mobile_first_time"] &&
         localStorage.getItem("mobile_first_time") === null
       ) {
-        // Set Local Storage so it won't jump to tutorial screen when refreshing
+        // Set Local Storage so it won't navigate to tutorial screen when refreshing next time
         localStorage.setItem("mobile_first_time", "false");
         setTimeout(navigateToTutorialScreen, 150);
       }
