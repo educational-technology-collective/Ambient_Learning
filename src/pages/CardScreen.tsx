@@ -44,6 +44,7 @@ const CardScreen: React.FC<{
   swipeOneMoreCard,
   handleHomeScreen,
 }) => {
+  // Set the className of cardstack if it's shaking or not
   const stackClass: string = isShake
     ? "card-stacker card-stacker-animate"
     : "card-stacker";
@@ -64,7 +65,7 @@ const CardScreen: React.FC<{
         <div className={stackClass}>
           {/* We display two tuples at one time */}
           {cardCol.map((array: flashCard[], index) => {
-            // If the tuple is displayed on top
+            // If the tuple is displayed on top (isFrontTuple is true)
             if (index === counter - 1) {
               return (
                 <FlashCardList
@@ -79,7 +80,7 @@ const CardScreen: React.FC<{
                 />
               );
             }
-            // If the tuple is displayed below
+            // If the tuple is displayed below (isFrontTuple is false)
             else if (index === counter - 2) {
               return (
                 <FlashCardList

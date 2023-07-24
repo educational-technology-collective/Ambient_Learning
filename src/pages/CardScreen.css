@@ -1,3 +1,8 @@
+/* Background color for the whole page */
+.page-content {
+  background: rgba(215, 224, 255, 1);
+}
+
 /* Styling for the Toolbar counter */
 .title {
   font-size: 1.2em;
@@ -37,34 +42,4 @@
   60% {
     transform: translate3d(3px, 0, 0);
   }
-}
-
-/* Background color for the whole page */
-.page-content {
-  background: rgba(215, 224, 255, 1);
-}
-
-/* Progress Bar, not used  */
-.bar {
-  position: relative;
-  height: 3%;
-  border-radius: 3em;
-  margin-top: 1em;
-  width: 70%;
-  margin-left: 15%;
-  --progress-background: mediumseagreen;
-  --buffer-background: snow;
-}
-
-/* Home button, not used */
-.home-button {
-  position: absolute;
-  height: 10%;
-  width: 21%;
-  left: -1.2em;
-  bottom: -1.2em;
-  color: salmon;
-  --border-radius: 999px;
-  --background-activated: bisque;
-  --background: honeydew;
 }
