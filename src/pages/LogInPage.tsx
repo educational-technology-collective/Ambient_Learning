@@ -13,11 +13,15 @@ const LogInPage: React.FC = () => {
       <IonContent scrollY={false} className="login-content">
         <div className="login-page-container">
           <img src={spacecraft} alt="Spacecraft" className="space-craft" />
+
+          {/* Welcome Text and the Rectangle Span */}
           <div className="welcome-container">
             <h1 className="welcome-text">
               Hi, Welcome<span className="welcome-covering"></span>
             </h1>
           </div>
+
+          {/* Desciption Text and the Login Button appears with changing opacity */}
           <div>
             <h2 className="description-text">
               Enlarge Brain Through <i>Flashcards</i>
