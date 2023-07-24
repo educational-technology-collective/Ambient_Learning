@@ -23,8 +23,10 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
   // Display the bottom tabs after
   useIonViewWillLeave(showBar);
 
+  // Static Cards length of 4
   const [tutorialCounter, setTutorialCounter] = useState(cards.length);
 
+  // Increment the counter of card to move to next
   const swipeDummyNext = () => {
     setTutorialCounter((prevTutorialCounter) => prevTutorialCounter - 1);
   };
