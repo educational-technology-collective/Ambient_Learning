@@ -2,6 +2,8 @@
 .error-content {
   background-color: #87ceeb;
 }
+
+/* Overall Container of the error page */
 .error-container {
   display: flex;
   flex-direction: column;
@@ -10,6 +12,8 @@
   height: 100%;
   width: 100%;
 }
+
+/* Styling for the error image */
 .error-image {
   position: absolute;
   top: 3em;
@@ -17,6 +21,7 @@
   height: 35%;
 }
 
+/* Styling for the message of error */
 .error-message {
   font-size: 2.2em;
   font-weight: 900;
