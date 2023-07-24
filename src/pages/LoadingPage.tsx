@@ -40,10 +40,12 @@ const LoadingPage: React.FC<{
     handleCardScreen();
   };
 
+  // Navigate to tutorial screen if first time
   const navigateToTutorialScreen = () => {
     history.push("/tutorial");
   };
 
+  // If there is an error with fetch, navigate to error page
   const navigateToErrorPage = () => {
     history.push("/error");
   };

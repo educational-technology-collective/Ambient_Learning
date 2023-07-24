@@ -9,10 +9,8 @@ const FrontIndicator: React.FC<{
   // If index is 1, assign value to NoMore Indicator's opacity
   const nomoreOpacity: number = index === 1 ? value : 0;
   return (
-    <>
-      {/* Front Nomore */}
-      <FrontNoMoreIndicator nomoreOpacity={nomoreOpacity} />
-    </>
+    /* Front Nomore */
+    <FrontNoMoreIndicator nomoreOpacity={nomoreOpacity} />
   );
 };
 

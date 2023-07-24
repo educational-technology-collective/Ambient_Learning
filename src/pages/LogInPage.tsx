@@ -1,12 +1,7 @@
-import {
-  IonPage,
-  IonContent,
-  useIonViewWillEnter,
-  useIonViewWillLeave,
-} from "@ionic/react";
+import { IonPage, IonContent, useIonViewWillEnter } from "@ionic/react";
 import "./LogInPage.css";
 import LogInButton from "../ButtonComp/LogInButton";
-import { hideBar, showBar } from "../utilities/showTabBar";
+import { hideBar } from "../utilities/showTabBar";
 import spacecraft from "../../spacecraft.svg";
 
 const LogInPage: React.FC = () => {
