@@ -9,8 +9,6 @@
 .choice-button {
   flex-grow: 1;
   white-space: normal;
-}
-.initial-button {
   --background: slateblue;
 }
 
