@@ -1,3 +1,4 @@
+/* The Overall Container for the finished display page */
 .finished-container {
   display: flex;
   flex-direction: column;
@@ -9,11 +10,13 @@
   align-items: center;
 }
 
+/* Styling for the text */
 .compliment-text {
   font-weight: 900;
   font-size: 1.5em;
 }
 
+/* Styling for the button to navigate to homescreen or cardscreen */
 .button-for-home {
   width: 75%;
   height: 10%;

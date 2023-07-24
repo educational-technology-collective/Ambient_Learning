@@ -13,6 +13,7 @@ const FinishedDisplay: React.FC<{
   if (isTutorial) {
     screenText = "You Completed Tutorial!";
     buttonText = "Start Reviewing";
+    // Navigate to the CardScreen
     navigateScreen = () => {
       enterScreen();
       history.push("/cardscreen");
@@ -22,6 +23,7 @@ const FinishedDisplay: React.FC<{
   else {
     screenText = "You Finished Cards Today!!!";
     buttonText = "Return to Home";
+    // Navigate to the HomeScreen
     navigateScreen = () => {
       enterScreen();
       history.push("/home");
