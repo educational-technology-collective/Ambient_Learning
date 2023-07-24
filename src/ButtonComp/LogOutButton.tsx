@@ -28,12 +28,12 @@ const LogOutButton: React.FC = () => {
         });
       },
     });
-    // On Mobile, we would navigate to the login page ourself and reload the window
+    // On Mobile, we would navigate to the login page ourself and reload the window to refresh
     if (isPhone) {
       history.push("/login");
       window.location.reload();
     }
-    // Clear localstorage to allow next time user potential tutorial page loading
+    // Clear localStorage to allow next time user potential tutorial page loading
     localStorage.clear();
   };
 
