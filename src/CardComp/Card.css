@@ -53,6 +53,7 @@
   line-height: 1.5em;
 }
 
+/* Styling for some tags like p, hr, pre, code */
 .card-text p {
   margin: 0;
 }
@@ -119,6 +120,7 @@ MCQ Card question always takes 60% */
   background-color: snow;
 }
 
+/* The position for the number indicator in front and in back */
 .front-number {
   right: 2%;
 }
