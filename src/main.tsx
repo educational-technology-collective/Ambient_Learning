@@ -22,8 +22,6 @@ root.render(
       authorizationParams={{
         redirect_uri: callBackUri,
         audience: "https://auth0-jwt-authorizer",
-        // scope:'openid profile email offline_access',
-        // ignoreCache: true
       }}
     >
       <App />
