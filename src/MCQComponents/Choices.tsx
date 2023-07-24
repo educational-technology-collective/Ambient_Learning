@@ -21,6 +21,7 @@ const Choices: React.FC<{
     return array;
   };
 
+  // State Variable that used for the shuffled choices
   const [randomArray, setArray] = useState([]);
 
   // UseEffect makes sure that the choices are shuffled only once
