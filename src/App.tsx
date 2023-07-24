@@ -45,21 +45,6 @@ import { Browser } from "@capacitor/browser";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import TutorialPage from "./pages/TutorialPage";
-import { algorithmTester, srsAlgorithm } from "./utilities/algorithm";
-import {
-  evaluationSet1,
-  evaluationSet10,
-  evaluationSet11,
-  evaluationSet12,
-  evaluationSet2,
-  evaluationSet3,
-  evaluationSet4,
-  evaluationSet5,
-  evaluationSet6,
-  evaluationSet7,
-  evaluationSet8,
-  evaluationSet9,
-} from "./utilities/algorithmData";
 import ErrorPage from "./pages/ErrorPage";
 setupIonicReact({
   swipeBackEnabled: false,
@@ -93,10 +78,12 @@ const App: React.FC = () => {
   // readyLog used to determine if initialize/resume is logged so we can navigate to card screen
   const [readyLog, setReadyLog] = useState(false);
 
+  // Handler that sets readyLog variable to be true
   const handleReadyLog = () => {
     setReadyLog(true);
   };
 
+  // Handler that sets the start time
   const handleStartTime = (givenTime: string) => {
     setTime(givenTime);
   };
@@ -133,10 +120,10 @@ const App: React.FC = () => {
   // Number of Cards Remaining
   let cardsLeft: number = total - finished;
 
-  // Counter used to display certain cards
+  // Counter used to display certain cards(different tuples)
   const [counter, setCounter] = useState(0);
 
-  // Tuple Counter for One More Cards
+  // Tuple Counter for One More Cards(within one tuple)
   const [tupleCounter, setTupleCounter] = useState(0);
 
   const [accessToken, setToken] = useState("");
@@ -155,26 +142,27 @@ const App: React.FC = () => {
   }, [isAuthenticated]);
 
   useEffect(() => {
-    // Initialize the Log Info as the user is signed and cardcollection not empty
+    // Initialize the Log Info if the user is signed and cardcollection is not empty
     if (isAuthenticated && total && accessToken !== "" && user_Id !== "") {
       getLatestRecord(user_Id, accessToken, handleStartTime, handleReadyLog);
     }
   }, [isAuthenticated, total, accessToken]);
 
+  // State Variable to track if there is error fetching and flagging for redirecting to error page
   const [isError, setError] = useState(false);
 
   // GET Function for fetching cards
   const getCards = async (url: string) => {
     try {
       const response = await CapacitorHttp.get({ url: url });
-      // If there is 500 Error
+      // If fetching successfully(status not equal to 500)
       if (response.status !== 500) {
         // Convert it to an array
         const data = await JSON.parse(response.data);
         // Set Fetched Status to be True
         setFetched(true);
 
-        // If there is card available
+        // If there is card available. Update the info
         if (data.length !== 0) {
           setCards(data);
           setTotal(data.length);
@@ -199,7 +187,7 @@ const App: React.FC = () => {
     }
   }, [user_Id]);
 
-  // Card-Stacker Visual Effect
+  // Card-Stacker Visual Effect. Will shake screen when it's true
   const [isShake, setShake] = useState(false);
 
   // State Variable used to track if the current tab is cardscreen
@@ -220,7 +208,7 @@ const App: React.FC = () => {
     // Set Shake to be true. Enables visual shaking and modal
     setShake(true);
 
-    // Log Session is Finished
+    // Log Session is Finished. 350ms delay so session finished is logged last
     if (finished === total - 1) {
       setTimeout(() => putSessionFinished(putLogInfo), 350);
     }
@@ -231,6 +219,7 @@ const App: React.FC = () => {
 
   // Function that update the card information
   const putCardInfo = async (fcId: string, latestRecord: latestResult) => {
+    // Pass the card's id and the latest review result including tapResult and swipeResult
     const dataStream = {
       fcId: fcId,
       latestRecord: latestRecord,
@@ -254,6 +243,7 @@ const App: React.FC = () => {
     fcId: string,
     latestRecord: latestResult
   ) => {
+    // Increment the number of finished cards and the counter of displaying card
     setFinished((prevFinished: number) => prevFinished + 1);
     setCounter((prevCounter: number) => prevCounter - 1);
 
@@ -269,7 +259,7 @@ const App: React.FC = () => {
     // Log Info for Cards
     putCardInfo(fcId, latestRecord);
 
-    // Log Session is Finished
+    // Log Session is Finished. 350ms delay so it's logged last
     if (finished === total - 1) {
       setTimeout(() => putSessionFinished(putLogInfo), 350);
     }
@@ -285,16 +275,17 @@ const App: React.FC = () => {
     // Log One More Info
     putLogInfo(event, null);
 
+    // Update the card information
     putCardInfo(fcId, latestRecord);
 
-    // Check if there is no onemore card for this card
+    // If there is no more card available for this card
     if (tupleCounter === 1) {
       // If the current tuple is not the last one, reset the counter of tuple
       // to the next array's length
       if (tupleIndex > 0) {
         setTupleCounter(cardCol[tupleIndex - 1].length);
       }
-      // Vibration of device
+      // Physical Vibration of device
       Haptics.vibrate({ duration: 500 });
 
       // Visual Vibration
@@ -305,117 +296,124 @@ const App: React.FC = () => {
       setFinished((prevFinished: number) => prevFinished + 1);
       setTotal((prevTotal: number) => prevTotal + 1);
 
-      // Decrement the Counter
+      // Decrement the Tuple Counter to access the next card within same tuple
       setTupleCounter((prevTupleCounter: number) => prevTupleCounter - 1);
     }
   };
 
   // Return the Log In Page if it's not authenticated and not loading
-  // Technically "Buggy"
+  // Technically "Buggy", but works as intended
   if (!isAuthenticated && !isLoading) {
     return <LogInPage />;
   }
 
-  let previous = null;
-  let data1 = [];
-  for (let i = 0; i < evaluationSet1.length; i++) {
-    previous = algorithmTester(previous, evaluationSet1[i]);
-    data1.push(previous.interval);
-  }
-  console.log("set 1", JSON.stringify(data1));
+  /*
 
-  let previous2 = null;
-  let data2 = [];
-  for (let i = 0; i < evaluationSet2.length; i++) {
-    previous2 = algorithmTester(previous2, evaluationSet2[i]);
-    data2.push(previous2.interval);
-  }
-  console.log("set 2", JSON.stringify(data2));
+------ Logic used to test Algorithms --------
+------ Will delete eventually after algorithm is set -------
+  // let previous = null;
+  // let data1 = [];
+  // for (let i = 0; i < evaluationSet1.length; i++) {
+  //   previous = algorithmTester(previous, evaluationSet1[i]);
+  //   data1.push(previous.interval);
+  // }
+  // console.log("set 1", JSON.stringify(data1));
 
-  let previous3 = null;
-  let data3 = [];
-  for (let i = 0; i < evaluationSet3.length; i++) {
-    previous3 = algorithmTester(previous3, evaluationSet3[i]);
-    data3.push(previous3.interval);
-  }
-  console.log("set 3", JSON.stringify(data3));
+  // let previous2 = null;
+  // let data2 = [];
+  // for (let i = 0; i < evaluationSet2.length; i++) {
+  //   previous2 = algorithmTester(previous2, evaluationSet2[i]);
+  //   data2.push(previous2.interval);
+  // }
+  // console.log("set 2", JSON.stringify(data2));
 
-  let previous4 = null;
-  let data4 = [];
-  for (let i = 0; i < evaluationSet4.length; i++) {
-    previous4 = algorithmTester(previous4, evaluationSet4[i]);
-    data4.push(previous4.interval);
-  }
-  console.log("set 4", JSON.stringify(data4));
+  // let previous3 = null;
+  // let data3 = [];
+  // for (let i = 0; i < evaluationSet3.length; i++) {
+  //   previous3 = algorithmTester(previous3, evaluationSet3[i]);
+  //   data3.push(previous3.interval);
+  // }
+  // console.log("set 3", JSON.stringify(data3));
 
-  let previous5 = null;
-  let data5 = [];
-  for (let i = 0; i < evaluationSet5.length; i++) {
-    previous5 = algorithmTester(previous5, evaluationSet5[i]);
-    data5.push(previous5.interval);
-  }
-  console.log("set 5", JSON.stringify(data5));
+  // let previous4 = null;
+  // let data4 = [];
+  // for (let i = 0; i < evaluationSet4.length; i++) {
+  //   previous4 = algorithmTester(previous4, evaluationSet4[i]);
+  //   data4.push(previous4.interval);
+  // }
+  // console.log("set 4", JSON.stringify(data4));
 
-  let previous6 = null;
-  let data6 = [];
-  for (let i = 0; i < evaluationSet6.length; i++) {
-    previous6 = algorithmTester(previous6, evaluationSet6[i]);
-    data6.push(previous6.interval);
-  }
-  console.log("set 6", JSON.stringify(data6));
+  // let previous5 = null;
+  // let data5 = [];
+  // for (let i = 0; i < evaluationSet5.length; i++) {
+  //   previous5 = algorithmTester(previous5, evaluationSet5[i]);
+  //   data5.push(previous5.interval);
+  // }
+  // console.log("set 5", JSON.stringify(data5));
 
-  let previous7 = null;
-  let data7 = [];
-  for (let i = 0; i < evaluationSet7.length; i++) {
-    previous7 = algorithmTester(previous7, evaluationSet7[i]);
-    data7.push(previous7.interval);
-  }
-  console.log("set 7", JSON.stringify(data7));
+  // let previous6 = null;
+  // let data6 = [];
+  // for (let i = 0; i < evaluationSet6.length; i++) {
+  //   previous6 = algorithmTester(previous6, evaluationSet6[i]);
+  //   data6.push(previous6.interval);
+  // }
+  // console.log("set 6", JSON.stringify(data6));
 
-  let previous8 = null;
-  let data8 = [];
-  for (let i = 0; i < evaluationSet8.length; i++) {
-    previous8 = algorithmTester(previous8, evaluationSet8[i]);
-    data8.push(previous8.interval);
-  }
-  console.log("set 8", JSON.stringify(data8));
+  // let previous7 = null;
+  // let data7 = [];
+  // for (let i = 0; i < evaluationSet7.length; i++) {
+  //   previous7 = algorithmTester(previous7, evaluationSet7[i]);
+  //   data7.push(previous7.interval);
+  // }
+  // console.log("set 7", JSON.stringify(data7));
 
-  let previous9 = null;
-  let data9 = [];
-  for (let i = 0; i < evaluationSet9.length; i++) {
-    previous9 = algorithmTester(previous9, evaluationSet9[i]);
-    data9.push(previous9.interval);
-  }
-  console.log("set 9", JSON.stringify(data9));
+  // let previous8 = null;
+  // let data8 = [];
+  // for (let i = 0; i < evaluationSet8.length; i++) {
+  //   previous8 = algorithmTester(previous8, evaluationSet8[i]);
+  //   data8.push(previous8.interval);
+  // }
+  // console.log("set 8", JSON.stringify(data8));
 
-  let previous10 = null;
-  let data10 = [];
-  for (let i = 0; i < evaluationSet10.length; i++) {
-    previous10 = algorithmTester(previous10, evaluationSet10[i]);
-    data10.push(previous10.interval);
-  }
-  console.log("Set 10", JSON.stringify(data10));
+  // let previous9 = null;
+  // let data9 = [];
+  // for (let i = 0; i < evaluationSet9.length; i++) {
+  //   previous9 = algorithmTester(previous9, evaluationSet9[i]);
+  //   data9.push(previous9.interval);
+  // }
+  // console.log("set 9", JSON.stringify(data9));
 
-  let previous11 = null;
-  let data11 = [];
-  for (let i = 0; i < evaluationSet11.length; i++) {
-    previous11 = algorithmTester(previous11, evaluationSet11[i]);
-    data11.push(previous11.interval);
-  }
-  console.log("Set 11", JSON.stringify(data11));
+  // let previous10 = null;
+  // let data10 = [];
+  // for (let i = 0; i < evaluationSet10.length; i++) {
+  //   previous10 = algorithmTester(previous10, evaluationSet10[i]);
+  //   data10.push(previous10.interval);
+  // }
+  // console.log("Set 10", JSON.stringify(data10));
 
-  let previous12 = null;
-  let data12 = [];
-  for (let i = 0; i < evaluationSet12.length; i++) {
-    previous12 = algorithmTester(previous12, evaluationSet12[i]);
-    data12.push(previous12.interval);
-  }
-  console.log("Set 12", JSON.stringify(data12));
+  // let previous11 = null;
+  // let data11 = [];
+  // for (let i = 0; i < evaluationSet11.length; i++) {
+  //   previous11 = algorithmTester(previous11, evaluationSet11[i]);
+  //   data11.push(previous11.interval);
+  // }
+  // console.log("Set 11", JSON.stringify(data11));
+
+  // let previous12 = null;
+  // let data12 = [];
+  // for (let i = 0; i < evaluationSet12.length; i++) {
+  //   previous12 = algorithmTester(previous12, evaluationSet12[i]);
+  //   data12.push(previous12.interval);
+  // }
+  // console.log("Set 12", JSON.stringify(data12));
+
+  */
   return (
     <IonApp>
       <IonReactRouter>
         <IonTabs>
           <IonRouterOutlet>
+            {/* Home Page Path */}
             <Route
               exact
               path="/home"
@@ -426,6 +424,8 @@ const App: React.FC = () => {
                 />
               )}
             />
+
+            {/* Card Page Path */}
             <Route
               exact
               path="/cardscreen"
@@ -445,14 +445,17 @@ const App: React.FC = () => {
               )}
             />
 
+            {/* Login Page Path */}
             <Route exact path="/login">
               {isAuthenticated ? <Redirect to="/loading" /> : <LogInPage />}
             </Route>
 
+            {/* Error Page Path */}
             <Route exact path="/error">
               <ErrorPage />
             </Route>
 
+            {/* Tutorial Page Path */}
             <Route
               exact
               path="/tutorial"
@@ -460,6 +463,8 @@ const App: React.FC = () => {
                 <TutorialPage handleCardScreen={handleCardScreen} />
               )}
             />
+
+            {/* Loading Page Path */}
             <Route exact path="/loading">
               <LoadingPage
                 total={total}
@@ -469,6 +474,8 @@ const App: React.FC = () => {
                 handleCardScreen={handleCardScreen}
               />
             </Route>
+
+            {/* Root Path Redirects to Loading Page */}
             <Route exact path="/">
               <Redirect to="/loading" />
             </Route>
