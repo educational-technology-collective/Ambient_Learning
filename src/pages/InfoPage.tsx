@@ -8,8 +8,12 @@ const InfoPage: React.FC = () => {
 
   return(
     <IonPage>
-      <IonContent scrollY={false} className="info-content">
-
+      <IonContent fullscreen className="info-content">
+        <div className="info-container">
+          <h1>Hi! It looks like you are new</h1>
+          <a className="grad-button" href="https://github.com/educational-technology-collective/srs-chrome-extension" style={{color: 'black'}}>Click me for Chrome</a>
+          <a className="grad-button" href="https://github.com/educational-technology-collective/srs-jupyterlab-extension" style={{color: 'black'}}>Click me for Jupyter</a>
+        </div>
       </IonContent>
     </IonPage>
   )
