@@ -31,11 +31,11 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
     setTutorialCounter((prevTutorialCounter) => prevTutorialCounter - 1);
   };
 
+  // Leave the tutorial screen and set the counter back
   const leaveTutorialScreen = () => {
     handleCardScreen();
     setTimeout(() => setTutorialCounter(cards.length), 1000);
-  }
-
+  };
 
   return (
     <IonPage>
@@ -71,7 +71,10 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
 
         {/* Display the message of tutorial finished and prompt them to jump to cards */}
         {tutorialCounter === 0 ? (
-          <FinishedDisplay isTutorial={true} enterScreen={leaveTutorialScreen} />
+          <FinishedDisplay
+            isTutorial={true}
+            enterScreen={leaveTutorialScreen}
+          />
         ) : null}
       </IonContent>
     </IonPage>
