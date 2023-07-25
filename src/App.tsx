@@ -48,6 +48,7 @@ import TutorialPage from "./pages/TutorialPage";
 import ErrorPage from "./pages/ErrorPage";
 setupIonicReact({
   swipeBackEnabled: false,
+  
 });
 
 const App: React.FC = () => {
@@ -155,10 +156,10 @@ const App: React.FC = () => {
   const getCards = async (url: string) => {
     try {
       const response = await CapacitorHttp.get({ url: url });
+      const data = await JSON.parse(response.data);
       // If fetching successfully(status not equal to 500)
       if (response.status !== 500) {
-        // Convert it to an array
-        const data = await JSON.parse(response.data);
+        
         // Set Fetched Status to be True
         setFetched(true);
 
@@ -169,8 +170,8 @@ const App: React.FC = () => {
           setCounter(data.length);
           setTupleCounter(data[data.length - 1].length);
         }
-      } else {
-        console.log("Something Bad");
+      } else if(data === 'no user found'){
+        console.log("No User");
         setError(true);
       }
     } catch (error) {
