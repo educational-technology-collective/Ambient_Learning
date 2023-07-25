@@ -9,7 +9,8 @@ const InfoPage: React.FC = () => {
     <IonPage>
       <IonContent fullscreen className="info-content">
         <div className="info-container">
-          <h1>Hi! It looks like you are new</h1>
+          <h1>Hi! It looks like you are new!</h1>
+          <h2>Here are some ways to get cards!</h2>
           <a
             className="grad-button"
             href="https://github.com/educational-technology-collective/srs-chrome-extension"
