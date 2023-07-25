@@ -1,0 +1,96 @@
+[debug] [2023-07-24T18:14:10.248Z] ----------------------------------------------------------------------
+[debug] [2023-07-24T18:14:10.249Z] Command:       /opt/homebrew/Cellar/node/20.3.0/bin/node /opt/homebrew/bin/firebase init
+[debug] [2023-07-24T18:14:10.250Z] CLI Version:   12.4.5
+[debug] [2023-07-24T18:14:10.250Z] Platform:      darwin
+[debug] [2023-07-24T18:14:10.250Z] Node Version:  v20.3.0
+[debug] [2023-07-24T18:14:10.250Z] Time:          Mon Jul 24 2023 14:14:10 GMT-0400 (Eastern Daylight Time)
+[debug] [2023-07-24T18:14:10.250Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-07-24T18:14:10.284Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-07-24T18:14:10.284Z] > authorizing via signed-in user (yunxuant@umich.edu)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/haytham918/Space-Repetition
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2023-07-24T18:14:13.456Z] Using project from CLI flag: srs-pwa-3483e
+[debug] [2023-07-24T18:14:13.458Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/srs-pwa-3483e [none]
+[debug] [2023-07-24T18:14:13.643Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/srs-pwa-3483e 200
+[debug] [2023-07-24T18:14:13.644Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/srs-pwa-3483e {"projectId":"srs-pwa-3483e","projectNumber":"996765888734","displayName":"srs-pwa","name":"projects/srs-pwa-3483e","resources":{"hostingSite":"srs-pwa-3483e"},"state":"ACTIVE","etag":"1_46647cf1-becf-44a2-a5b6-1219b2003c67"}
+[info] i  Using project srs-pwa-3483e (srs-pwa) 
+[info] 
+=== Hosting Setup
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 
+[debug] [2023-07-24T18:14:35.851Z] >>> [apiv2][query] GET https://www.gstatic.com/firebasejs/releases.json [none]
+[debug] [2023-07-24T18:14:35.914Z] <<< [apiv2][status] GET https://www.gstatic.com/firebasejs/releases.json 200
+[debug] [2023-07-24T18:14:35.915Z] <<< [apiv2][body] GET https://www.gstatic.com/firebasejs/releases.json {"current":{"version":"10.1.0","browserURL":"https://www.gstatic.com/firebasejs/10.1.0/firebase.js","packageURL":"https://www.gstatic.com/firebasejs/10.1.0/firebase.tgz"},"live":{"version":"10.1","browserURL":"https://www.gstatic.com/firebasejs/live/10.1/firebase.js","packageURL":"https://www.gstatic.com/firebasejs/live/10.1/firebase.tgz"},"components":{"analytics":"https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js","app":"https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js","app-check":"https://www.gstatic.com/firebasejs/10.1.0/firebase-app-check.js","auth":"https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js","auth/cordova":"https://www.gstatic.com/firebasejs/10.1.0/firebase-auth/cordova.js","functions":"https://www.gstatic.com/firebasejs/10.1.0/firebase-functions.js","firestore":"https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js","firestore/lite":"https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore/lite.js","installations":"https://www.gstatic.com/firebasejs/10.1.0/firebase-installations.js","storage":"https://www.gstatic.com/firebasejs/10.1.0/firebase-storage.js","performance":"https://www.gstatic.com/firebasejs/10.1.0/firebase-performance.js","remote-config":"https://www.gstatic.com/firebasejs/10.1.0/firebase-remote-config.js","messaging":"https://www.gstatic.com/firebasejs/10.1.0/firebase-messaging.js","messaging/sw":"https://www.gstatic.com/firebasejs/10.1.0/firebase-messaging/sw.js","database":"https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js","firestore.memory":"https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.memory.js"}}
+[info] i  Skipping write of build/index.html 
+[info] 
+[info] i  Detected a .git folder at /Users/haytham918/Space-Repetition 
+[info] i  Authorizing with GitHub to upload your service account to a GitHub repository's secrets store. 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://github.com/login/oauth/authorize?client_id=89cf50f02ac6aaed3484&state=936877191&redirect_uri=http%3A%2F%2Flocalhost%3A9005&scope=read%3Auser%20repo%20public_repo
+[info] 
+[info] Waiting for authentication...
+[debug] [2023-07-24T18:14:53.534Z] >>> [apiv2][query] POST https://github.com/login/oauth/access_token [none]
+[debug] [2023-07-24T18:14:53.534Z] >>> [apiv2][body] POST https://github.com/login/oauth/access_token [stream]
+[debug] [2023-07-24T18:14:53.717Z] <<< [apiv2][status] POST https://github.com/login/oauth/access_token 200
+[debug] [2023-07-24T18:14:53.717Z] <<< [apiv2][body] POST https://github.com/login/oauth/access_token {"access_token":"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","token_type":"bearer","scope":"read:user,repo"}
+[debug] [2023-07-24T18:14:53.723Z] >>> [apiv2][query] GET https://api.github.com/user [none]
+[debug] [2023-07-24T18:14:53.924Z] <<< [apiv2][status] GET https://api.github.com/user 200
+[debug] [2023-07-24T18:14:53.924Z] <<< [apiv2][body] GET https://api.github.com/user {"login":"haytham918","id":113637109,"node_id":"U_kgDOBsX29Q","avatar_url":"https://avatars.githubusercontent.com/u/113637109?v=4","gravatar_id":"","url":"https://api.github.com/users/haytham918","html_url":"https://github.com/haytham918","followers_url":"https://api.github.com/users/haytham918/followers","following_url":"https://api.github.com/users/haytham918/following{/other_user}","gists_url":"https://api.github.com/users/haytham918/gists{/gist_id}","starred_url":"https://api.github.com/users/haytham918/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/haytham918/subscriptions","organizations_url":"https://api.github.com/users/haytham918/orgs","repos_url":"https://api.github.com/users/haytham918/repos","events_url":"https://api.github.com/users/haytham918/events{/privacy}","received_events_url":"https://api.github.com/users/haytham918/received_events","type":"User","site_admin":false,"name":"Haytham Tang","company":null,"blog":"","location":null,"email":null,"hireable":null,"bio":null,"twitter_username":null,"public_repos":4,"public_gists":0,"followers":0,"following":0,"created_at":"2022-09-15T19:28:50Z","updated_at":"2023-07-24T18:14:44Z","private_gists":0,"total_private_repos":6,"owned_private_repos":6,"disk_usage":10387,"collaborators":0,"two_factor_authentication":false,"plan":{"name":"free","space":976562499,"collaborators":0,"private_repos":10000}}
+[info] 
+[info] ✔  Success! Logged into GitHub as haytham918 
+[info] 
+[debug] [2023-07-24T18:15:47.956Z] >>> [apiv2][query] GET https://api.github.com/repos/educational-technology-collective/srs-mobile/actions/secrets/public-key type=owner
+[debug] [2023-07-24T18:15:48.140Z] <<< [apiv2][status] GET https://api.github.com/repos/educational-technology-collective/srs-mobile/actions/secrets/public-key 403
+[debug] [2023-07-24T18:15:48.140Z] <<< [apiv2][body] GET https://api.github.com/repos/educational-technology-collective/srs-mobile/actions/secrets/public-key {"message":"Must have admin rights to Repository.","documentation_url":"https://docs.github.com/rest/actions/secrets#get-a-repository-public-key"}
+[info] 
+[info] 
+[error] ⚠  The provided authorization cannot be used with this repository. If this repository is in an organization, did you remember to grant access? 
+[info] 
+[info] i  Action required: Visit this URL to ensure access has been granted to the appropriate organization(s) for the Firebase CLI GitHub OAuth App: 
+[info] https://github.com/settings/connections/applications/89cf50f02ac6aaed3484
+[info] 
+[debug] [2023-07-24T18:19:51.237Z] >>> [apiv2][query] GET https://api.github.com/repos/educational-technology-collective/srs-mobile/actions/secrets/public-key type=owner
+[debug] [2023-07-24T18:19:51.427Z] <<< [apiv2][status] GET https://api.github.com/repos/educational-technology-collective/srs-mobile/actions/secrets/public-key 403
+[debug] [2023-07-24T18:19:51.428Z] <<< [apiv2][body] GET https://api.github.com/repos/educational-technology-collective/srs-mobile/actions/secrets/public-key {"message":"Must have admin rights to Repository.","documentation_url":"https://docs.github.com/rest/actions/secrets#get-a-repository-public-key"}
+[info] 
+[info] 
+[error] ⚠  The provided authorization cannot be used with this repository. If this repository is in an organization, did you remember to grant access? 
+[info] 
+[info] i  Action required: Visit this URL to ensure access has been granted to the appropriate organization(s) for the Firebase CLI GitHub OAuth App: 
+[info] https://github.com/settings/connections/applications/89cf50f02ac6aaed3484
+[info] 
+[debug] [2023-07-24T18:32:21.225Z] >>> [apiv2][query] GET https://api.github.com/repos/educational-technology-collective/srs-mobile/actions/secrets/public-key type=owner
+[debug] [2023-07-24T18:32:21.397Z] <<< [apiv2][status] GET https://api.github.com/repos/educational-technology-collective/srs-mobile/actions/secrets/public-key 403
+[debug] [2023-07-24T18:32:21.397Z] <<< [apiv2][body] GET https://api.github.com/repos/educational-technology-collective/srs-mobile/actions/secrets/public-key {"message":"Must have admin rights to Repository.","documentation_url":"https://docs.github.com/rest/actions/secrets#get-a-repository-public-key"}
+[info] 
+[info] 
+[error] ⚠  The provided authorization cannot be used with this repository. If this repository is in an organization, did you remember to grant access? 
+[info] 
+[info] i  Action required: Visit this URL to ensure access has been granted to the appropriate organization(s) for the Firebase CLI GitHub OAuth App: 
+[info] https://github.com/settings/connections/applications/89cf50f02ac6aaed3484
+[info] 

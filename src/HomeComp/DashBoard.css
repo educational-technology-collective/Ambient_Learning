@@ -1,11 +1,27 @@
 /* The Top Component of Cards left */
 .task-card {
-  background: paleturquoise;
+  background: #ed637e; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #ffedbc,
+    #ed637e
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #ffedbc,
+    #ed637e
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 /* Styling for the text 'Today's task' */
 .today-task {
+  color: indigo;
   font-size: 1.5em;
+  font-weight: 900;
+}
+
+.finish-task {
+  color: black;
   font-weight: 900;
 }
 

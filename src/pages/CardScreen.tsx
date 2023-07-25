@@ -18,9 +18,19 @@ const CardScreen: React.FC<{
   tupleCounter: number;
   isShake: boolean;
   cardCol: flashCard[][];
-  pushLogInfo: (event: action) => void;
-  swipeNextCard: (tupleIndex: number, event: action) => void;
-  swipeOneMoreCard: (tupleIndex: number, event: action) => void;
+  putLogInfo: (event: action, end_time: string | null) => void;
+  swipeNextCard: (
+    tupleIndex: number,
+    event: action,
+    fcId: string,
+    latestRecord: latestResult
+  ) => void;
+  swipeOneMoreCard: (
+    tupleIndex: number,
+    event: action,
+    fcId: string,
+    latestRecord: latestResult
+  ) => void;
   handleHomeScreen: () => void;
 }> = ({
   finished,
@@ -29,11 +39,12 @@ const CardScreen: React.FC<{
   tupleCounter,
   isShake,
   cardCol,
-  pushLogInfo,
+  putLogInfo,
   swipeNextCard,
   swipeOneMoreCard,
   handleHomeScreen,
 }) => {
+  // Set the className of cardstack if it's shaking or not
   const stackClass: string = isShake
     ? "card-stacker card-stacker-animate"
     : "card-stacker";
@@ -54,14 +65,14 @@ const CardScreen: React.FC<{
         <div className={stackClass}>
           {/* We display two tuples at one time */}
           {cardCol.map((array: flashCard[], index) => {
-            // If the tuple is displayed on top
+            // If the tuple is displayed on top (isFrontTuple is true)
             if (index === counter - 1) {
               return (
                 <FlashCardList
                   array={array}
                   key={index}
                   isFrontTuple={true}
-                  pushLogInfo={pushLogInfo}
+                  putLogInfo={putLogInfo}
                   swipeNextCard={swipeNextCard}
                   swipeOneMoreCard={swipeOneMoreCard}
                   tupleIndex={index}
@@ -69,14 +80,14 @@ const CardScreen: React.FC<{
                 />
               );
             }
-            // If the tuple is displayed below
+            // If the tuple is displayed below (isFrontTuple is false)
             else if (index === counter - 2) {
               return (
                 <FlashCardList
                   array={array}
                   key={index}
                   isFrontTuple={false}
-                  pushLogInfo={pushLogInfo}
+                  putLogInfo={putLogInfo}
                   swipeNextCard={swipeNextCard}
                   swipeOneMoreCard={swipeOneMoreCard}
                   tupleIndex={index}

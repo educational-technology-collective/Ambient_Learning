@@ -1,8 +1,3 @@
-.body {
-  background-color: aliceblue;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-}
-
 /* Background color for the tab bar */
 .tab-bar {
   --background: #0056d2;

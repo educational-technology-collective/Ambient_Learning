@@ -35,16 +35,9 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
-import { cardCollection } from "./utilities/exampleData";
-import { markdownCollection } from "./utilities/markdownData";
 import CardsTab from "./IndicationComp/CardsTab";
 import LoadingPage from "./pages/LoadingPage";
-import {
-  logEnterCard,
-  logEnterHome,
-  logInitialize,
-  logSessionFinished,
-} from "./utilities/logfunction";
+import { getLatestRecord, putSessionFinished } from "./utilities/logfunction";
 import LogInPage from "./pages/LogInPage";
 
 import { App as CapApp } from "@capacitor/app";
@@ -52,30 +45,18 @@ import { Browser } from "@capacitor/browser";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import TutorialPage from "./pages/TutorialPage";
-import { algorithmTester, srsAlgorithm } from "./utilities/algorithm";
-import {
-  evaluationSet1,
-  evaluationSet10,
-  evaluationSet11,
-  evaluationSet12,
-  evaluationSet2,
-  evaluationSet3,
-  evaluationSet4,
-  evaluationSet5,
-  evaluationSet6,
-  evaluationSet7,
-  evaluationSet8,
-  evaluationSet9,
-} from "./utilities/algorithmData";
+import ErrorPage from "./pages/ErrorPage";
 setupIonicReact({
   swipeBackEnabled: false,
 });
 
 const App: React.FC = () => {
-  const { isAuthenticated, isLoading, user } = useAuth0();
+  const { isAuthenticated, isLoading, user, getAccessTokenSilently } =
+    useAuth0();
 
   const { handleRedirectCallback } = useAuth0();
 
+  // For Auth0 login and close
   useEffect(() => {
     // Handle the 'appUrlOpen' event and call `handleRedirectCallback`
     CapApp.addListener("appUrlOpen", async ({ url }) => {
@@ -90,48 +71,39 @@ const App: React.FC = () => {
     });
   }, [handleRedirectCallback]);
 
-  // Initialize the Logging Info as app is open
-  const [logInfo, setLog] = useState<reviewInfo>({
-    user_id: "",
-    start_time: null,
-    end_time: null,
-    action_container: [],
-  });
+  // User_Id and Time State Variable used for Quary
+  const [user_Id, setUser] = useState("");
+  const [time, setTime] = useState("");
 
-  // This will push the event to the action container
-  const pushLogInfo = (event: action) => {
-    setLog({
-      ...logInfo,
-      action_container: [...logInfo.action_container, event],
+  // readyLog used to determine if initialize/resume is logged so we can navigate to card screen
+  const [readyLog, setReadyLog] = useState(false);
+
+  // Handler that sets readyLog variable to be true
+  const handleReadyLog = () => {
+    setReadyLog(true);
+  };
+
+  // Handler that sets the start time
+  const handleStartTime = (givenTime: string) => {
+    setTime(givenTime);
+  };
+
+  // PUT Request that push information to the action_container
+  const putLogInfo = async (event: action, end_time: string | null) => {
+    const dataStream = {
+      action: event,
+      end_time: end_time,
+    };
+    const response = await CapacitorHttp.put({
+      url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?user_id=${user_Id}&start_time=${time}`,
+      data: dataStream,
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${accessToken}`,
+      },
     });
+    console.log("Put Response", response);
   };
-
-  // To initalize the session. Push the event and set user_id and start time
-  const pushSessionInitialize = (event: action, user_id: string) => {
-    setLog((logInfo) => ({
-      ...logInfo,
-      action_container: [...logInfo.action_container, event],
-      user_id: user_id,
-      start_time: new Date(),
-    }));
-  };
-
-  // To end the session. Push the event and set the end time
-  const pushSessionFinished = (event: action) => {
-    setLog((logInfo) => ({
-      ...logInfo,
-      action_container: [...logInfo.action_container, event],
-      end_time: new Date(),
-    }));
-  };
-
-  useEffect(() => {
-    // Initialize the Log Info as the user is signed
-    if (isAuthenticated && user !== undefined && user.sub !== undefined) {
-      logInitialize(user.sub, pushSessionInitialize);
-    }
-  }, [isAuthenticated]);
-  console.log(logInfo);
 
   // State Variable to indicate whether data is fetched
   const [isFetched, setFetched] = useState(false);
@@ -139,40 +111,83 @@ const App: React.FC = () => {
   // The Card Array
   const [cardCol, setCards] = useState([[]]);
 
-  // GET Function for fetching cards
-  const getCards = async (url: string) => {
-    const response = await CapacitorHttp.get({ url: url });
-    const data = await JSON.parse(response.data);
-    setFetched(true);
-    setCards(data);
-    setTotal(data.length);
-    setCounter(data.length);
-    setTupleCounter(data[data.length - 1].length);
-  };
-
-  // UseEffect to fetch the cards
-  useEffect(() => {
-    getCards(
-      "https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/users/srsdevteam@gmail.com/flashcards/all"
-    );
-  }, []);
+  // How Many Cards in total
+  const [total, setTotal] = useState(0);
 
   // How Many Cards Finished
   const [finished, setFinished] = useState(0);
 
-  // How Many Cards in total
-  const [total, setTotal] = useState(0);
-
   // Number of Cards Remaining
   let cardsLeft: number = total - finished;
 
-  // Counter used to display certain cards
+  // Counter used to display certain cards(different tuples)
   const [counter, setCounter] = useState(0);
 
-  // Tuple Counter for One More Cards
+  // Tuple Counter for One More Cards(within one tuple)
   const [tupleCounter, setTupleCounter] = useState(0);
 
-  // Card-Stacker Visual Effect
+  const [accessToken, setToken] = useState("");
+
+  // Handler Function that get accessToken
+  const tokenHandler = async () => {
+    const token = await getAccessTokenSilently();
+    setToken(token);
+  };
+  // Run useEffect to get token and set user_id as long as isAuthenticated is changed
+  useEffect(() => {
+    if (isAuthenticated && user !== undefined && user.email !== undefined) {
+      setUser(user.email);
+      tokenHandler();
+    }
+  }, [isAuthenticated]);
+
+  useEffect(() => {
+    // Initialize the Log Info if the user is signed and cardcollection is not empty
+    if (isAuthenticated && total && accessToken !== "" && user_Id !== "") {
+      getLatestRecord(user_Id, accessToken, handleStartTime, handleReadyLog);
+    }
+  }, [isAuthenticated, total, accessToken]);
+
+  // State Variable to track if there is error fetching and flagging for redirecting to error page
+  const [isError, setError] = useState(false);
+
+  // GET Function for fetching cards
+  const getCards = async (url: string) => {
+    try {
+      const response = await CapacitorHttp.get({ url: url });
+      // If fetching successfully(status not equal to 500)
+      if (response.status !== 500) {
+        // Convert it to an array
+        const data = await JSON.parse(response.data);
+        // Set Fetched Status to be True
+        setFetched(true);
+
+        // If there is card available. Update the info
+        if (data.length !== 0) {
+          setCards(data);
+          setTotal(data.length);
+          setCounter(data.length);
+          setTupleCounter(data[data.length - 1].length);
+        }
+      } else {
+        console.log("Something Bad");
+        setError(true);
+      }
+    } catch (error) {
+      console.log("There is Error");
+    }
+  };
+
+  // UseEffect to fetch the cards as long as user_Id is updated
+  useEffect(() => {
+    if (user_Id !== "") {
+      getCards(
+        `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/users/${user_Id}/flashcards/all`
+      );
+    }
+  }, [user_Id]);
+
+  // Card-Stacker Visual Effect. Will shake screen when it's true
   const [isShake, setShake] = useState(false);
 
   // State Variable used to track if the current tab is cardscreen
@@ -181,13 +196,11 @@ const App: React.FC = () => {
   // Card Screen will spread the cards
   const handleCardScreen = () => {
     setCardScreen(true);
-    logEnterCard(pushLogInfo);
   };
 
   // Home Screen will fold the cards
   const handleHomeScreen = () => {
     setCardScreen(false);
-    logEnterHome(pushLogInfo);
   };
 
   // Handler that set the card-stacker back without shaking
@@ -195,17 +208,42 @@ const App: React.FC = () => {
     // Set Shake to be true. Enables visual shaking and modal
     setShake(true);
 
-    // Log Session is Finished
+    // Log Session is Finished. 350ms delay so session finished is logged last
     if (finished === total - 1) {
-      logSessionFinished(pushSessionFinished);
+      setTimeout(() => putSessionFinished(putLogInfo), 350);
     }
 
     // Set Timeout of 2.2 seconds(consistent with animation time)
     setTimeout(() => setShake(false), 2200);
   };
 
+  // Function that update the card information
+  const putCardInfo = async (fcId: string, latestRecord: latestResult) => {
+    // Pass the card's id and the latest review result including tapResult and swipeResult
+    const dataStream = {
+      fcId: fcId,
+      latestRecord: latestRecord,
+    };
+    const response = await CapacitorHttp.put({
+      url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/users/${user_Id}/flashcards`,
+      data: dataStream,
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    console.log("Update Card Response", response);
+  };
+
   // Logic to Move On to Next Card
-  const swipeNextCard = (tupleIndex: number, event: action) => {
+  const swipeNextCard = (
+    tupleIndex: number,
+    event: action,
+    fcId: string,
+    latestRecord: latestResult
+  ) => {
+    // Increment the number of finished cards and the counter of displaying card
     setFinished((prevFinished: number) => prevFinished + 1);
     setCounter((prevCounter: number) => prevCounter - 1);
 
@@ -216,27 +254,38 @@ const App: React.FC = () => {
     }
 
     // Log Info for Positive/No More/Negative
-    pushLogInfo(event);
+    putLogInfo(event, null);
 
-    // Log Session is Finished
+    // Log Info for Cards
+    putCardInfo(fcId, latestRecord);
+
+    // Log Session is Finished. 350ms delay so it's logged last
     if (finished === total - 1) {
-      logSessionFinished(pushSessionFinished);
+      setTimeout(() => putSessionFinished(putLogInfo), 350);
     }
   };
 
   // Function that swipes for one more card
-  const swipeOneMoreCard = (tupleIndex: number, event: action) => {
+  const swipeOneMoreCard = (
+    tupleIndex: number,
+    event: action,
+    fcId: string,
+    latestRecord: latestResult
+  ) => {
     // Log One More Info
-    pushLogInfo(event);
+    putLogInfo(event, null);
 
-    // Check if there is no onemore card for this card
+    // Update the card information
+    putCardInfo(fcId, latestRecord);
+
+    // If there is no more card available for this card
     if (tupleCounter === 1) {
       // If the current tuple is not the last one, reset the counter of tuple
       // to the next array's length
       if (tupleIndex > 0) {
         setTupleCounter(cardCol[tupleIndex - 1].length);
       }
-      // Vibration of device
+      // Physical Vibration of device
       Haptics.vibrate({ duration: 500 });
 
       // Visual Vibration
@@ -247,118 +296,124 @@ const App: React.FC = () => {
       setFinished((prevFinished: number) => prevFinished + 1);
       setTotal((prevTotal: number) => prevTotal + 1);
 
-      // Decrement the Counter
+      // Decrement the Tuple Counter to access the next card within same tuple
       setTupleCounter((prevTupleCounter: number) => prevTupleCounter - 1);
     }
   };
 
   // Return the Log In Page if it's not authenticated and not loading
-  // Technically "Buggy"
+  // Technically "Buggy", but works as intended
   if (!isAuthenticated && !isLoading) {
     return <LogInPage />;
   }
 
-  let previous = null;
-  let data1 = [];
-  for (let i = 0; i < evaluationSet1.length; i++) {
-    previous = algorithmTester(previous, evaluationSet1[i]);
-    data1.push(previous.interval);
-  }
-  console.log("set 1", JSON.stringify(data1));
+  /*
 
-  let previous2 = null;
-  let data2 = [];
-  for (let i = 0; i < evaluationSet2.length; i++) {
-    previous2 = algorithmTester(previous2, evaluationSet2[i]);
-    data2.push(previous2.interval);
-  }
-  console.log("set 2", JSON.stringify(data2));
+------ Logic used to test Algorithms --------
+------ Will delete eventually after algorithm is set -------
+  // let previous = null;
+  // let data1 = [];
+  // for (let i = 0; i < evaluationSet1.length; i++) {
+  //   previous = algorithmTester(previous, evaluationSet1[i]);
+  //   data1.push(previous.interval);
+  // }
+  // console.log("set 1", JSON.stringify(data1));
 
-  let previous3 = null;
-  let data3 = [];
-  for (let i = 0; i < evaluationSet3.length; i++) {
-    previous3 = algorithmTester(previous3, evaluationSet3[i]);
-    data3.push(previous3.interval);
-  }
-  console.log("set 3", JSON.stringify(data3));
+  // let previous2 = null;
+  // let data2 = [];
+  // for (let i = 0; i < evaluationSet2.length; i++) {
+  //   previous2 = algorithmTester(previous2, evaluationSet2[i]);
+  //   data2.push(previous2.interval);
+  // }
+  // console.log("set 2", JSON.stringify(data2));
 
-  let previous4 = null;
-  let data4 = [];
-  for (let i = 0; i < evaluationSet4.length; i++) {
-    previous4 = algorithmTester(previous4, evaluationSet4[i]);
-    data4.push(previous4.interval);
-  }
-  console.log("set 4", JSON.stringify(data4));
+  // let previous3 = null;
+  // let data3 = [];
+  // for (let i = 0; i < evaluationSet3.length; i++) {
+  //   previous3 = algorithmTester(previous3, evaluationSet3[i]);
+  //   data3.push(previous3.interval);
+  // }
+  // console.log("set 3", JSON.stringify(data3));
 
-  let previous5 = null;
-  let data5 = [];
-  for (let i = 0; i < evaluationSet5.length; i++) {
-    previous5 = algorithmTester(previous5, evaluationSet5[i]);
-    data5.push(previous5.interval);
-  }
-  console.log("set 5", JSON.stringify(data5));
+  // let previous4 = null;
+  // let data4 = [];
+  // for (let i = 0; i < evaluationSet4.length; i++) {
+  //   previous4 = algorithmTester(previous4, evaluationSet4[i]);
+  //   data4.push(previous4.interval);
+  // }
+  // console.log("set 4", JSON.stringify(data4));
 
-  let previous6 = null;
-  let data6 = [];
-  for (let i = 0; i < evaluationSet6.length; i++) {
-    previous6 = algorithmTester(previous6, evaluationSet6[i]);
-    data6.push(previous6.interval);
-  }
-  console.log("set 6", JSON.stringify(data6));
+  // let previous5 = null;
+  // let data5 = [];
+  // for (let i = 0; i < evaluationSet5.length; i++) {
+  //   previous5 = algorithmTester(previous5, evaluationSet5[i]);
+  //   data5.push(previous5.interval);
+  // }
+  // console.log("set 5", JSON.stringify(data5));
 
-  let previous7 = null;
-  let data7 = [];
-  for (let i = 0; i < evaluationSet7.length; i++) {
-    previous7 = algorithmTester(previous7, evaluationSet7[i]);
-    data7.push(previous7.interval);
-  }
-  console.log("set 7", JSON.stringify(data7));
+  // let previous6 = null;
+  // let data6 = [];
+  // for (let i = 0; i < evaluationSet6.length; i++) {
+  //   previous6 = algorithmTester(previous6, evaluationSet6[i]);
+  //   data6.push(previous6.interval);
+  // }
+  // console.log("set 6", JSON.stringify(data6));
 
-  let previous8 = null;
-  let data8 = [];
-  for (let i = 0; i < evaluationSet8.length; i++) {
-    previous8 = algorithmTester(previous8, evaluationSet8[i]);
-    data8.push(previous8.interval);
-  }
-  console.log("set 8", JSON.stringify(data8));
+  // let previous7 = null;
+  // let data7 = [];
+  // for (let i = 0; i < evaluationSet7.length; i++) {
+  //   previous7 = algorithmTester(previous7, evaluationSet7[i]);
+  //   data7.push(previous7.interval);
+  // }
+  // console.log("set 7", JSON.stringify(data7));
 
-  let previous9 = null;
-  let data9 = [];
-  for (let i = 0; i < evaluationSet9.length; i++) {
-    previous9 = algorithmTester(previous9, evaluationSet9[i]);
-    data9.push(previous9.interval);
-  }
-  console.log("set 9", JSON.stringify(data9));
+  // let previous8 = null;
+  // let data8 = [];
+  // for (let i = 0; i < evaluationSet8.length; i++) {
+  //   previous8 = algorithmTester(previous8, evaluationSet8[i]);
+  //   data8.push(previous8.interval);
+  // }
+  // console.log("set 8", JSON.stringify(data8));
 
-  let previous10 = null;
-  let data10 = [];
-  for (let i = 0; i < evaluationSet10.length; i++) {
-    previous10 = algorithmTester(previous10, evaluationSet10[i]);
-    data10.push(previous10.interval);
-  }
-  console.log("Set 10", JSON.stringify(data10));
+  // let previous9 = null;
+  // let data9 = [];
+  // for (let i = 0; i < evaluationSet9.length; i++) {
+  //   previous9 = algorithmTester(previous9, evaluationSet9[i]);
+  //   data9.push(previous9.interval);
+  // }
+  // console.log("set 9", JSON.stringify(data9));
 
-  let previous11 = null;
-  let data11 = [];
-  for (let i = 0; i < evaluationSet11.length; i++) {
-    previous11 = algorithmTester(previous11, evaluationSet11[i]);
-    data11.push(previous11.interval);
-  }
-  console.log("Set 11", JSON.stringify(data11));
+  // let previous10 = null;
+  // let data10 = [];
+  // for (let i = 0; i < evaluationSet10.length; i++) {
+  //   previous10 = algorithmTester(previous10, evaluationSet10[i]);
+  //   data10.push(previous10.interval);
+  // }
+  // console.log("Set 10", JSON.stringify(data10));
 
-  let previous12 = null;
-  let data12 = [];
-  for (let i = 0; i < evaluationSet12.length; i++) {
-    previous12 = algorithmTester(previous12, evaluationSet12[i]);
-    data12.push(previous12.interval);
-  }
-  console.log("Set 12", JSON.stringify(data12));
+  // let previous11 = null;
+  // let data11 = [];
+  // for (let i = 0; i < evaluationSet11.length; i++) {
+  //   previous11 = algorithmTester(previous11, evaluationSet11[i]);
+  //   data11.push(previous11.interval);
+  // }
+  // console.log("Set 11", JSON.stringify(data11));
 
+  // let previous12 = null;
+  // let data12 = [];
+  // for (let i = 0; i < evaluationSet12.length; i++) {
+  //   previous12 = algorithmTester(previous12, evaluationSet12[i]);
+  //   data12.push(previous12.interval);
+  // }
+  // console.log("Set 12", JSON.stringify(data12));
+
+  */
   return (
     <IonApp>
       <IonReactRouter>
         <IonTabs>
           <IonRouterOutlet>
+            {/* Home Page Path */}
             <Route
               exact
               path="/home"
@@ -369,6 +424,8 @@ const App: React.FC = () => {
                 />
               )}
             />
+
+            {/* Card Page Path */}
             <Route
               exact
               path="/cardscreen"
@@ -380,7 +437,7 @@ const App: React.FC = () => {
                   tupleCounter={tupleCounter}
                   cardCol={cardCol}
                   isShake={isShake}
-                  pushLogInfo={pushLogInfo}
+                  putLogInfo={putLogInfo}
                   swipeNextCard={swipeNextCard}
                   swipeOneMoreCard={swipeOneMoreCard}
                   handleHomeScreen={handleHomeScreen}
@@ -388,10 +445,17 @@ const App: React.FC = () => {
               )}
             />
 
+            {/* Login Page Path */}
             <Route exact path="/login">
               {isAuthenticated ? <Redirect to="/loading" /> : <LogInPage />}
             </Route>
 
+            {/* Error Page Path */}
+            <Route exact path="/error">
+              <ErrorPage />
+            </Route>
+
+            {/* Tutorial Page Path */}
             <Route
               exact
               path="/tutorial"
@@ -399,16 +463,19 @@ const App: React.FC = () => {
                 <TutorialPage handleCardScreen={handleCardScreen} />
               )}
             />
-            <Route
-              exact
-              path="/loading"
-              render={() => (
-                <LoadingPage
-                  isFetched={isFetched}
-                  handleCardScreen={handleCardScreen}
-                />
-              )}
-            />
+
+            {/* Loading Page Path */}
+            <Route exact path="/loading">
+              <LoadingPage
+                total={total}
+                isFetched={isFetched}
+                isError={isError}
+                readyLog={readyLog}
+                handleCardScreen={handleCardScreen}
+              />
+            </Route>
+
+            {/* Root Path Redirects to Loading Page */}
             <Route exact path="/">
               <Redirect to="/loading" />
             </Route>

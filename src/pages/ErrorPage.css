@@ -1,0 +1,41 @@
+/* Background color the error page */
+.error-content {
+  background-color: #87ceeb;
+}
+
+/* Overall Container of the error page */
+.error-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+/* Styling for the error image */
+.error-image {
+  position: absolute;
+  top: 3em;
+  width: 100%;
+  height: 35%;
+}
+
+/* Styling for the message of error */
+.error-message {
+  font-size: 2.2em;
+  font-weight: 900;
+  text-align: center;
+  color: snow;
+  margin-top: 5em;
+  margin-bottom: 1.5em;
+}
+
+/* Styling for the try again button and report issue button */
+.two-button-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 10%;
+  margin-bottom: 1.5em;
+}

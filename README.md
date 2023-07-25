@@ -14,31 +14,44 @@ When the user receives a notification, he or she will tap the notification and j
 
 **Repo**: Clone the Repo into your local directory by running
 ```
-git clone https://github.com/educational-technology-collective/Space-Repetition-Ionic.git
+git clone https://github.com/educational-technology-collective/srs-mobile.git
 ```
 
 **Install Haptics Plugin**: Haptis Plugin Provided by Capacitor for physical feedback(shaking effect)
 ```
-cd Space-Repetition-Ionic
+cd srs-mobile
 npm install @capacitor/haptics
 npx cap sync
 ```
 
 **Install Auth0 SDK**: Used for authentication
 ```
-cd Space-Repetition-Ionic
+cd srs-mobile
 npm install @auth0/auth0-react
 ```
 
 **Install Capacitor Plugins**: Used for running auth0
 ```
-cd Space-Repetition-Ionic
+cd srs-mobile
 npm install @capacitor/browser @capacitor/app
 ```
+
+**Install ReactMarkdown Plugin**: Used for rendering markdown
+```
+cd srs-mobile
+npm install react-markdown
+```
+
+**Install React Icons**: Used for some of the icons
+```
+cd srs-mobile
+npm install react-icons --save
+```
+
 ## Run
 After you have set up the repo in your local directory. Run the following commands to try the app:
 ```
-cd Space-Repetition-Ionic
+cd srs-mobile
 ionic serve
 ```
 It should automatically direct you to a local page on your default browser. You can also copy the link into a browser you like. Then use the developer tool to choose your device you can test on web(iPhone 12 Pro is used for development)
@@ -112,3 +125,4 @@ Yunxuan "Haytham" Tang —— [yunxuant@umich.edu](mailto:yunxuant@umich.edu)
 ## Acknowledgement
 * [Prof. Christopher Brooks —— University of Michigan School of Information](https://www.si.umich.edu/people/christopher-brooks)
 * [Educational Technology Collective —— University of Michigan School of Information](https://edtech.labs.si.umich.edu/)
+* [Mann —— Designer of Error Image](https://www.inspirationde.com/image/60019/)

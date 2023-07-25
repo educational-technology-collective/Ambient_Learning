@@ -6,13 +6,14 @@ const FinishedDisplay: React.FC<{
   isTutorial: boolean;
   enterScreen: () => void;
 }> = ({ isTutorial, enterScreen }) => {
-  let screenText, buttonText, navigateScreen;
+  let screenText: string, buttonText: string, navigateScreen: () => void;
   const history = useHistory();
 
   // If the message is after tutorial is done
   if (isTutorial) {
     screenText = "You Completed Tutorial!";
     buttonText = "Start Reviewing";
+    // Navigate to the CardScreen
     navigateScreen = () => {
       enterScreen();
       history.push("/cardscreen");
@@ -22,6 +23,7 @@ const FinishedDisplay: React.FC<{
   else {
     screenText = "You Finished Cards Today!!!";
     buttonText = "Return to Home";
+    // Navigate to the HomeScreen
     navigateScreen = () => {
       enterScreen();
       history.push("/home");

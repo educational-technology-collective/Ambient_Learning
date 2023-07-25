@@ -53,6 +53,7 @@
   line-height: 1.5em;
 }
 
+/* Styling for some tags like p, hr, pre, code */
 .card-text p {
   margin: 0;
 }
@@ -103,25 +104,27 @@ MCQ Card question always takes 60% */
   top: 0;
 }
 
-
+/* Css for the number on the top right cornor of the card */
 .onemore-number {
   position: absolute;
   width: 5%;
   font-size: 1em;
-  font-weight: bold;
+  font-weight: 900;
   margin-bottom: 0;
-  color: #0056D2;
+  color: #0056d2;
   top: 1%;
   text-align: center;
   backface-visibility: hidden;
   border: 2px solid black;
   border-radius: 5px;
+  background-color: snow;
 }
 
-.front-number{
+/* The position for the number indicator in front and in back */
+.front-number {
   right: 2%;
 }
 
-.back-number{
+.back-number {
   left: 2%;
 }

@@ -76,6 +76,8 @@ const HorizontalEnd = (
     // Not Swiping Enough. Reset the Card to its position
     else {
       stuff.style.transform = "";
+
+      // Reset all indicators to have opacity 0
       handleShowNothing();
     }
   }
@@ -185,7 +187,7 @@ const VerticalEnd = (
         stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
         setTimeout(poorCardBeforeTimeOut, 100);
       }
-      // Reset
+      // Reset the tuple
       else {
         stuff.style.transform = "";
         handleShowNothing();
@@ -198,7 +200,7 @@ const VerticalEnd = (
         card.style.transform = `translateY(${windowHeight * -1.5}px)`;
         setTimeout(oneMoreTimeOut, 100);
 
-        // Set all the style/className/isClicked back
+        // Set the position of the card back
         stuff.style.transform = "";
       }
       // Swipe Up enough, clear the top card (One More)
@@ -206,7 +208,7 @@ const VerticalEnd = (
         card.style.transform = `translateY(${windowHeight * -1.5}px)`;
         setTimeout(oneMoreTimeOut, 100);
 
-        // Set all the style/className/isClicked back
+        // Set position of the card back
         stuff.style.transform = "";
       }
       //  Swipe down fast, clear the tuple (Poor Card)
@@ -299,7 +301,7 @@ export const enableGesture = (
     // Vertical Swiping is always Enabled
     gestureY.enable(true);
 
-    // Horizontal Swiping is enabled only after tapping
+    // Horizontal Swiping is enabled only after tapping/clicking a choice
     gestureX.enable(isClicked);
   }
 };

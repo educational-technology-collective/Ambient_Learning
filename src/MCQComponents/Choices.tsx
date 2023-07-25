@@ -21,6 +21,7 @@ const Choices: React.FC<{
     return array;
   };
 
+  // State Variable that used for the shuffled choices
   const [randomArray, setArray] = useState([]);
 
   // UseEffect makes sure that the choices are shuffled only once
@@ -29,7 +30,7 @@ const Choices: React.FC<{
   }, []);
 
   // Transform the Choices 180 degrees after clicking
-  const containerStyle = clicked
+  const containerStyle: string = clicked
     ? "choice-container back-side"
     : "choice-container front-side";
 

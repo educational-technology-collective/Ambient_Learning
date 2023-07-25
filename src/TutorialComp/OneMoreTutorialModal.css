@@ -33,7 +33,7 @@
 }
 
 /* Growing Opacity then disappearing 
-TranslateY so not affecting */
+TranslateY for the 95% time so it is not moving for that duration */
 @keyframes message-in-center {
   0% {
     opacity: 0;
@@ -46,6 +46,7 @@ TranslateY so not affecting */
   }
   100% {
     opacity: 0;
+    /* TranslateY negative pixels so it is moving up */
     transform: translateY(-2000px);
   }
 }

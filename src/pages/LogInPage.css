@@ -1,7 +1,9 @@
+/* Background color for the login page */
 .login-content {
   background: linear-gradient(#2980b9, #6dd5fa);
 }
 
+/* Overall Container for the login page */
 .login-page-container {
   width: 100%;
   height: 100%;
@@ -11,6 +13,7 @@
   align-items: center;
 }
 
+/* Styling for the spacecraft image */
 .space-craft {
   width: 60%;
   height: 20%;
@@ -19,18 +22,21 @@
   animation-delay: 1000ms;
 }
 
+/* Animation for the Space Craft to move up */
 @keyframes flyUp {
   to {
     transform: translateY(-70px);
   }
 }
 
+/* Container for the welcome text and rectangular span */
 .welcome-container {
-  margin-bottom: 2em;
+  margin-bottom: 1em;
   display: grid;
   place-items: center;
 }
 
+/* Styling for the welcome text */
 .welcome-text {
   color: snow;
   font-weight: 900;
@@ -42,6 +48,7 @@
   animation-delay: 1100ms;
 }
 
+/* Styling for the rectangular covering of welcome text */
 .welcome-covering {
   position: absolute;
   left: 0;
@@ -51,6 +58,7 @@
   animation: reveal-welcome 1500ms ease-out;
 }
 
+/* Animation for 'Hi Welcome' to show up */
 @keyframes reveal-welcome {
   70% {
     width: 100%;
@@ -68,6 +76,7 @@
   }
 }
 
+/* Styling for the description text */
 .description-text {
   font-weight: bold;
   text-align: center;
@@ -76,8 +85,10 @@
   opacity: 0;
   animation: showDescription 1100ms forwards;
   animation-delay: 1350ms;
+  margin-bottom: 0.5em;
 }
 
+/* Animation for the description text to show */
 @keyframes showDescription {
   10% {
     opacity: 0.1;

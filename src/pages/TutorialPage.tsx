@@ -7,10 +7,11 @@ import {
 import { useState } from "react";
 import { hideBar, showBar } from "../utilities/showTabBar";
 import "../pages/CardScreen.css";
+import "./TutorialPage.css";
 import FlashCardList from "../FlashCardComp/FlashCardList";
 import FinishedDisplay from "../TutorialComp/FinishedDisplay";
 import AppNameHeader from "./AppNameHeader";
-import { cards} from "../utilities/tutorialpagedata";
+import { cards } from "../utilities/tutorialpagedata";
 import OneMoreTutorialModal from "../TutorialComp/OneMoreTutorialModal";
 
 const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
@@ -22,8 +23,10 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
   // Display the bottom tabs after
   useIonViewWillLeave(showBar);
 
+  // Static Cards length of 4
   const [tutorialCounter, setTutorialCounter] = useState(cards.length);
 
+  // Increment the counter of card to move to next
   const swipeDummyNext = () => {
     setTutorialCounter((prevTutorialCounter) => prevTutorialCounter - 1);
   };
@@ -33,7 +36,7 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
       {/* Header for the App Name */}
       <AppNameHeader />
 
-      <IonContent scrollY={false} className="home-content">
+      <IonContent scrollY={false} className="tutorialpage-content">
         <div className="card-stack">
           {cards.map((array: flashCard[], index) => {
             // Display the cards two at a time
@@ -46,7 +49,7 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
                   array={array}
                   key={index}
                   isFrontTuple={true}
-                  pushLogInfo={() => {}}
+                  putLogInfo={() => {}}
                   swipeNextCard={swipeDummyNext}
                   swipeOneMoreCard={swipeDummyNext}
                   tupleIndex={index}

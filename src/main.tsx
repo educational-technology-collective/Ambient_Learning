@@ -21,9 +21,10 @@ root.render(
       cacheLocation="localstorage"
       authorizationParams={{
         redirect_uri: callBackUri,
+        audience: "https://auth0-jwt-authorizer",
       }}
     >
       <App />
     </Auth0Provider>
- </React.StrictMode>
+  </React.StrictMode>
 );

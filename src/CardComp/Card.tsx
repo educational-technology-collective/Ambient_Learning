@@ -6,24 +6,28 @@ import BackIndicator from "../IndicationComp/BackIndicator";
 import MCQ from "./MCQ";
 import QA from "./QA";
 import { enableGesture } from "../utilities/gesture";
-import {
-  logDontKnow,
-  logFlipping,
-  logKnow,
-  logOneMore,
-  logPoorCardSwipeAfter,
-  logPoorCardSwipeBefore,
-} from "../utilities/logfunction";
+import { putFlipping, putSwipe } from "../utilities/logfunction";
 import NumberIndicator from "./NumberIndicator";
+
 const Card: React.FC<{
   obj: flashCard;
   tupleLength: number;
   cardIndex: number;
   tupleIndex: number;
   tupleCounter: number;
-  pushLogInfo: (event: action) => void;
-  moveOn: (tupleIndex: number, event: action) => void;
-  oneMore: (tupleIndex: number, event: action) => void;
+  putLogInfo: (event: action, end_time: string | null) => void;
+  moveOn: (
+    tupleIndex: number,
+    event: action,
+    fcId: string,
+    latestRecord: latestResult
+  ) => void;
+  oneMore: (
+    tupleIndex: number,
+    event: action,
+    fcId: string,
+    latestRecord: latestResult
+  ) => void;
   refTuple: React.RefObject<HTMLInputElement>;
 }> = ({
   obj,
@@ -32,7 +36,7 @@ const Card: React.FC<{
   tupleIndex,
   tupleCounter,
   moveOn,
-  pushLogInfo,
+  putLogInfo,
   oneMore,
   refTuple,
 }) => {
@@ -81,7 +85,7 @@ const Card: React.FC<{
     setClick(true);
 
     // Log the Event of Flipping / Answering
-    logFlipping(obj._id, cardIndex, tupleLength, pushLogInfo);
+    putFlipping(obj._id, cardIndex, tupleLength, putLogInfo);
   };
 
   // State Variable to track if the user gets correct/incorrect/skipped
@@ -101,9 +105,10 @@ const Card: React.FC<{
 
   // Function for positive swipe time out
   const knowTimeOut = () => {
-    // Log the event of Know
-    logKnow(
+    putSwipe(
+      true,
       testEvaluation,
+      "know",
       obj.type,
       obj._id,
       cardIndex,
@@ -115,9 +120,10 @@ const Card: React.FC<{
 
   // Function for negative swipe time out
   const dontKnowTimeOut = () => {
-    // Log the event of dont know
-    logDontKnow(
+    putSwipe(
+      true,
       testEvaluation,
+      "dontKnow",
       obj.type,
       obj._id,
       cardIndex,
@@ -129,9 +135,10 @@ const Card: React.FC<{
 
   // Function for one more swipe time out
   const oneMoreTimeOut = () => {
-    // Log the event of OneMore
-    logOneMore(
+    putSwipe(
+      true,
       testEvaluation,
+      "oneMore",
       obj.type,
       obj._id,
       cardIndex,
@@ -143,9 +150,10 @@ const Card: React.FC<{
 
   // Function for no more before answering
   const poorCardBeforeTimeout = () => {
-    // Log the event of swiping down before evaluation
-    logPoorCardSwipeBefore(
+    putSwipe(
+      false,
       testEvaluation,
+      "poorCard",
       obj.type,
       obj._id,
       cardIndex,
@@ -157,9 +165,10 @@ const Card: React.FC<{
 
   // Function for no more after answering
   const poorCardAfterTimeOut = () => {
-    // Log the event of swiping down after clicking
-    logPoorCardSwipeAfter(
+    putSwipe(
+      true,
       testEvaluation,
+      "poorCard",
       obj.type,
       obj._id,
       cardIndex,

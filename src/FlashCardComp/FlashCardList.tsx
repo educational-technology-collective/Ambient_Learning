@@ -1,24 +1,34 @@
 import { useRef } from "react";
 import Card from "../CardComp/Card";
 import "./FlashCardList.css";
+
 const FlashCardList: React.FC<{
   array: flashCard[];
   tupleIndex: number;
   tupleCounter: number;
   isFrontTuple: boolean;
-  pushLogInfo: (event:action) => void
-  swipeNextCard: (tupleIndex: number, event: action) => void;
-  swipeOneMoreCard: (tupleIndex: number, event: action) => void;
+  putLogInfo: (event: action, end_time: string | null) => void;
+  swipeNextCard: (
+    tupleIndex: number,
+    event: action,
+    fcId: string,
+    latestRecord: latestResult
+  ) => void;
+  swipeOneMoreCard: (
+    tupleIndex: number,
+    event: action,
+    fcId: string,
+    latestRecord: latestResult
+  ) => void;
 }> = ({
   array,
   tupleIndex,
   tupleCounter,
   isFrontTuple,
-  pushLogInfo,
+  putLogInfo,
   swipeNextCard,
   swipeOneMoreCard,
 }) => {
-
   // The Reference of the Whole Tuple, used for poorcard/know/dont know swipe
   const refTuple = useRef<HTMLInputElement>(null);
 
@@ -31,9 +41,9 @@ const FlashCardList: React.FC<{
       obj={tupleBehindCard}
       key={tupleBehindCard._id}
       tupleLength={array.length}
-      cardIndex = {array.length}
+      cardIndex={array.length}
       tupleIndex={tupleIndex}
-      pushLogInfo={pushLogInfo}
+      putLogInfo={putLogInfo}
       moveOn={swipeNextCard}
       oneMore={swipeOneMoreCard}
       refTuple={refTuple}
@@ -56,7 +66,7 @@ const FlashCardList: React.FC<{
                   tupleLength={array.length}
                   cardIndex={index}
                   tupleIndex={tupleIndex}
-                  pushLogInfo={pushLogInfo}
+                  putLogInfo={putLogInfo}
                   moveOn={swipeNextCard}
                   oneMore={swipeOneMoreCard}
                   refTuple={refTuple}
