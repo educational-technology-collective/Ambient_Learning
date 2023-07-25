@@ -155,26 +155,37 @@ const App: React.FC = () => {
 
   const [noUser, setNoUser] = useState(false);
 
+  const [noCardsInDb, setNoCardsInDb] = useState(false);
+
   // GET Function for fetching cards
   const getCards = async (url: string) => {
     try {
       const response = await CapacitorHttp.get({ url: url });
+      console.log(response);
       const data = await JSON.parse(response.data);
       // Set Fetched Status to be True
       setFetched(true);
       // If fetching successfully(status not equal to 500)
       if (response.status !== 500) {
-        
+
+        const lengthCards = data.numCardsInDb;
+        if(!lengthCards){
+          setNoCardsInDb(true);
+        }
         // If there is card available. Update the info
-        if (data.length !== 0) {
-          setCards(data);
-          setTotal(data.length);
-          setCounter(data.length);
-          setTupleCounter(data[data.length - 1].length);
+        const cards = data.cards;
+        if (cards.length !== 0) {
+          setCards(cards);
+          setTotal(cards.length);
+          setCounter(cards.length);
+          setTupleCounter(cards[cards.length - 1].length);
         }
       } else if(data === 'no user found'){
         console.log("No User");
         setNoUser(true);
+      }else{
+        console.log('There is Error')
+        setError(true);
       }
     } catch (error) {
       console.log("There is Error");
@@ -480,6 +491,7 @@ const App: React.FC = () => {
                 isFetched={isFetched}
                 isError={isError}
                 noUser={noUser}
+                noCardsInDb={noCardsInDb}
                 readyLog={readyLog}
                 accessToken={accessToken}
                 handleCardScreen={handleCardScreen}

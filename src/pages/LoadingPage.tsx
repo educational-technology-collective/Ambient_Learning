@@ -23,10 +23,11 @@ const LoadingPage: React.FC<{
   isFetched: boolean;
   isError: boolean;
   noUser: boolean;
+  noCardsInDb: boolean;
   readyLog: boolean;
   accessToken: string;
   handleCardScreen: () => void;
-}> = ({ total, isFetched, isError, noUser, readyLog, accessToken, handleCardScreen }) => {
+}> = ({ total, isFetched, isError, noUser, noCardsInDb, readyLog, accessToken, handleCardScreen }) => {
   // Hide the Bottom Tabs for this Page
   useIonViewWillEnter(hideBar);
 
@@ -86,7 +87,9 @@ const LoadingPage: React.FC<{
       else if(noUser){
         postUser();
       }
-
+      else if(noCardsInDb){
+        setTimeout(navigateToInfoScreen, 100);
+      }
       // Check there is user, user is first time and there is no local storage
       else if (
         user !== undefined &&
