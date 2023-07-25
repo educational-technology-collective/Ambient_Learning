@@ -4,7 +4,7 @@ import {
   useIonViewWillEnter,
   useIonViewWillLeave,
 } from "@ionic/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { hideBar, showBar } from "../utilities/showTabBar";
 import "../pages/CardScreen.css";
 import "./TutorialPage.css";
@@ -30,6 +30,12 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
   const swipeDummyNext = () => {
     setTutorialCounter((prevTutorialCounter) => prevTutorialCounter - 1);
   };
+
+  const leaveTutorialScreen = () => {
+    handleCardScreen();
+    setTimeout(() => setTutorialCounter(cards.length), 1000);
+  }
+
 
   return (
     <IonPage>
@@ -65,7 +71,7 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
 
         {/* Display the message of tutorial finished and prompt them to jump to cards */}
         {tutorialCounter === 0 ? (
-          <FinishedDisplay isTutorial={true} enterScreen={handleCardScreen} />
+          <FinishedDisplay isTutorial={true} enterScreen={leaveTutorialScreen} />
         ) : null}
       </IonContent>
     </IonPage>

@@ -1,10 +1,11 @@
-import { IonContent, IonPage, IonIcon } from "@ionic/react";
+import { IonContent, IonPage, IonIcon, IonCard, IonCardContent, IonText } from "@ionic/react";
 import "./Home.css";
 import { useHistory } from "react-router-dom";
 import { diamond } from "ionicons/icons";
 import DashBoard from "../HomeComp/DashBoard";
 import AppNameHeader from "./AppNameHeader";
 import LogOutButton from "../ButtonComp/LogOutButton";
+import {BiBookBookmark} from 'react-icons/bi'
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
@@ -20,6 +21,10 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
     history.push("/cardscreen");
     handleCardScreen();
   };
+
+  const navigateToTutorialScreen = () => {
+    history.push("/tutorial");
+  }
 
   // Determine The Box-Shadow Effect based on cards remaining
   let shadow: string;
@@ -44,16 +49,26 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
 
       <IonContent scrollY={false} className="home-content">
         <div className="home-loaded-wrapper">
+          <div className="top-container">
           <IonIcon
             icon={diamond}
-            style={{ fontSize: "3em", left: "45%", position: "relative" }}
+            style={{ fontSize: "3.5em"}}
           ></IonIcon>
+           <IonCard className="tutorial-card" onClick={navigateToTutorialScreen}>
+      <IonCardContent className="tutorial-card-content">
+        <BiBookBookmark size='2em' />
+        <IonText className="tutorial-text">Tutorial</IonText>
+      </IonCardContent>
+    </IonCard>
+          </div>
           <h1 className="user-name">Hey, {user?.name}</h1>
           <DashBoard
             cardsLeft={cardsLeft}
             shadow={shadow}
             navigateToCardScreen={navigateToCardScreen}
           />
+
+
           <LogOutButton />
         </div>
       </IonContent>
