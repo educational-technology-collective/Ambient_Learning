@@ -49,7 +49,6 @@ import ErrorPage from "./pages/ErrorPage";
 import InfoPage from "./pages/InfoPage";
 setupIonicReact({
   swipeBackEnabled: false,
-  
 });
 
 const App: React.FC = () => {
@@ -172,10 +171,9 @@ const App: React.FC = () => {
 
       // If fetching successfully(status not equal to 500)
       if (response.status !== 500) {
-
         // See how many cards in total the user has in the database
         const lengthCards = data.numCardsInDb;
-        if(!lengthCards){
+        if (!lengthCards) {
           setNoCardsInDb(true);
         }
 
@@ -187,13 +185,13 @@ const App: React.FC = () => {
           setCounter(cards.length);
           setTupleCounter(cards[cards.length - 1].length);
         }
-      } 
+      }
       // If ther is no this user in the database
-      else if(data === 'no user found'){
+      else if (data === "no user found") {
         console.log("No User");
         setNoUser(true);
-      }else{
-        console.log('There is Error')
+      } else {
+        console.log("There is Error");
         setError(true);
       }
     } catch (error) {
@@ -489,7 +487,7 @@ const App: React.FC = () => {
             />
 
             {/* Info Page Path */}
-            <Route exact path='/info'>
+            <Route exact path="/info">
               <InfoPage />
             </Route>
 
