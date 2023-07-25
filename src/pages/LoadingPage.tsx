@@ -27,7 +27,16 @@ const LoadingPage: React.FC<{
   readyLog: boolean;
   accessToken: string;
   handleCardScreen: () => void;
-}> = ({ total, isFetched, isError, noUser, noCardsInDb, readyLog, accessToken, handleCardScreen }) => {
+}> = ({
+  total,
+  isFetched,
+  isError,
+  noUser,
+  noCardsInDb,
+  readyLog,
+  accessToken,
+  handleCardScreen,
+}) => {
   // Hide the Bottom Tabs for this Page
   useIonViewWillEnter(hideBar);
 
@@ -49,9 +58,10 @@ const LoadingPage: React.FC<{
     history.push("/tutorial");
   };
 
+  // Navigate to Info Screen if there is no card ever
   const navigateToInfoScreen = () => {
-    history.push('/info');
-  }
+    history.push("/info");
+  };
 
   // If there is an error with fetch, navigate to error page
   const navigateToErrorPage = () => {
@@ -69,11 +79,15 @@ const LoadingPage: React.FC<{
     setTimeElapsed(true);
   };
 
+  // Function that create the document of the user in the database and navigate to info page
   const postUser = async () => {
-    const response = await CapacitorHttp.post({url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/users/${user?.email}`, headers:{authorization: `Bearer ${accessToken}`}});
-    console.log('Post User Response', response);
+    const response = await CapacitorHttp.post({
+      url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/users/${user?.email}`,
+      headers: { authorization: `Bearer ${accessToken}` },
+    });
+    console.log("Post User Response", response);
     setTimeout(navigateToInfoScreen, 100);
-  }
+  };
 
   useEffect(() => {
     // When still showing loading component, set a timeout of 4.5s
@@ -84,10 +98,12 @@ const LoadingPage: React.FC<{
       if (isError) {
         setTimeout(navigateToErrorPage, 100);
       }
-      else if(noUser){
+      // If there is no this user in the database
+      else if (noUser) {
         postUser();
       }
-      else if(noCardsInDb){
+      // If there is user, but the user never has any cards
+      else if (noCardsInDb) {
         setTimeout(navigateToInfoScreen, 100);
       }
       // Check there is user, user is first time and there is no local storage

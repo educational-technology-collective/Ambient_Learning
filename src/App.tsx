@@ -128,6 +128,7 @@ const App: React.FC = () => {
   // Tuple Counter for One More Cards(within one tuple)
   const [tupleCounter, setTupleCounter] = useState(0);
 
+  // AccessToken used for authorization requests
   const [accessToken, setToken] = useState("");
 
   // Handler Function that get accessToken
@@ -150,11 +151,13 @@ const App: React.FC = () => {
     }
   }, [isAuthenticated, total, accessToken]);
 
-  // State Variable to track if there is error fetching and flagging for redirecting to error page
+  // State Variable to check if there is error fetching and flagging for redirecting to error page
   const [isError, setError] = useState(false);
 
+  // State Variabke to check if there is no this user in the DataBase
   const [noUser, setNoUser] = useState(false);
 
+  // State Variable to check if the user never has any cards in the DataBase
   const [noCardsInDb, setNoCardsInDb] = useState(false);
 
   // GET Function for fetching cards
@@ -163,15 +166,19 @@ const App: React.FC = () => {
       const response = await CapacitorHttp.get({ url: url });
       console.log(response);
       const data = await JSON.parse(response.data);
+
       // Set Fetched Status to be True
       setFetched(true);
+
       // If fetching successfully(status not equal to 500)
       if (response.status !== 500) {
 
+        // See how many cards in total the user has in the database
         const lengthCards = data.numCardsInDb;
         if(!lengthCards){
           setNoCardsInDb(true);
         }
+
         // If there is card available. Update the info
         const cards = data.cards;
         if (cards.length !== 0) {
@@ -180,7 +187,9 @@ const App: React.FC = () => {
           setCounter(cards.length);
           setTupleCounter(cards[cards.length - 1].length);
         }
-      } else if(data === 'no user found'){
+      } 
+      // If ther is no this user in the database
+      else if(data === 'no user found'){
         console.log("No User");
         setNoUser(true);
       }else{
