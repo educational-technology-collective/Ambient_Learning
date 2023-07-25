@@ -7,3 +7,9 @@
     rgba(92, 202, 238, 0.41) 93.6%
   );
 }
+
+.user-name{
+  text-align: center;
+  font-weight: bold;
+  color: rgb(88, 19, 72);
+}

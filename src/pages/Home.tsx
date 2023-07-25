@@ -5,12 +5,16 @@ import { diamond } from "ionicons/icons";
 import DashBoard from "../HomeComp/DashBoard";
 import AppNameHeader from "./AppNameHeader";
 import LogOutButton from "../ButtonComp/LogOutButton";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
   cardsLeft,
   handleCardScreen,
 }) => {
   const history = useHistory();
+
+  const {user} = useAuth0();
+
   // Used to jump to the card screen and spread cards
   const navigateToCardScreen = () => {
     history.push("/cardscreen");
@@ -44,6 +48,7 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
             icon={diamond}
             style={{ fontSize: "3em", left: "45%", position: "relative" }}
           ></IonIcon>
+          <h1 className="user-name">Hey, {user?.name}</h1>
           <DashBoard
             cardsLeft={cardsLeft}
             shadow={shadow}
