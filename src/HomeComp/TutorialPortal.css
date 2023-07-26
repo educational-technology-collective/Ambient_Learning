@@ -10,8 +10,8 @@
 /* Styling for the portal, which is IonCard */
 .tutorial-card {
   position: absolute;
-  top: -3.5%;
-  right: -4.8%;
+  top: -3%;
+  right: -4.5%;
 }
 /* Styling for the portal card content */
 .tutorial-card-content {
