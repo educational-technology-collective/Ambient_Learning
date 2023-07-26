@@ -11,13 +11,13 @@ const FlashCardList: React.FC<{
   swipeNextCard: (
     tupleIndex: number,
     event: action,
-    fcId: string,
+    fc_id: string,
     latestRecord: latestResult
   ) => void;
   swipeOneMoreCard: (
     tupleIndex: number,
     event: action,
-    fcId: string,
+    fc_id: string,
     latestRecord: latestResult
   ) => void;
 }> = ({

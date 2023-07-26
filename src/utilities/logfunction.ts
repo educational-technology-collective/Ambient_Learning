@@ -10,39 +10,39 @@ import { CapacitorHttp } from "@capacitor/core";
 
 // Function that requests the latest available record or make a new one
 export const getLatestRecord = async (
-  user_id: string,
+  userId: string,
   accessToken: string,
   handleStartTime: (time: string) => void,
   handleReadyLog: () => void
 ) => {
   const response = await CapacitorHttp.get({
-    url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?user_id=${user_id}`,
+    url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?user_id=${userId}`,
   });
   const data = await JSON.parse(response.data);
 
   // Check to see if there is a record not done yet in the database
   if (data.new) {
     // Create a new record if there isn't
-    postInitialize(user_id, accessToken, handleStartTime);
+    postInitialize(userId, accessToken, handleStartTime);
   }
   // If there is available record, push a resume action to the database
   else {
     handleStartTime(data.start_time);
 
     const event = {
-      event_name: "resume",
-      event_time: new Date().toISOString(),
-      card_id: null,
-      self_eval: null,
-      test_eval: null,
+      eventName: "resume",
+      eventTime: new Date().toISOString(),
+      fc_id: null,
+      selfEval: null,
+      testEval: null,
       isBuffer: null,
     };
     const dataStream = {
       action: event,
-      end_time: null,
+      endTime: null,
     };
     const responseResume = await CapacitorHttp.put({
-      url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?user_id=${user_id}&start_time=${data.start_time}`,
+      url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?user_id=${userId}&start_time=${data.start_time}`,
       data: dataStream,
       headers: {
         "content-type": "application/json",
@@ -83,16 +83,16 @@ export const postInitialize = async (
   // PUT Request for the Initialize Container at the first place. Have to do it manually
   // here, otherwise the time is not updated and will not log the initialize event
   const event = {
-    event_name: "initialize",
-    event_time: startTimeString,
-    card_id: null,
-    self_eval: null,
-    test_eval: null,
+    eventName: "initialize",
+    eventTime: startTimeString,
+    fc_id: null,
+    selfEval: null,
+    testEval: null,
     isBuffer: null,
   };
   const dataStream = {
     action: event,
-    end_time: null,
+    endTime: null,
   };
   const responseInitialize = await CapacitorHttp.put({
     url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?user_id=${userId}&start_time=${startTimeString}`,
@@ -111,14 +111,14 @@ export const putFlipping = (
   cardId: string,
   cardIndex: number,
   tupleLength: number,
-  putLogInfo: (event: action, end_time: string | null) => void
+  putLogInfo: (event: action, endTime: string | null) => void
 ) => {
   const event: action = {
-    event_name: "flip",
-    event_time: new Date().toISOString(),
-    card_id: cardId,
-    self_eval: null,
-    test_eval: null,
+    eventName: "flip",
+    eventTime: new Date().toISOString(),
+    fc_id: cardId,
+    selfEval: null,
+    testEval: null,
     isBuffer: cardIndex !== tupleLength - 1,
   };
   putLogInfo(event, null);
@@ -137,7 +137,7 @@ export const putSwipe = (
   nextCardFunc: (
     tupleIndex: number,
     event: action,
-    fcId: string,
+    fc_id: string,
     latestRecord: latestResult
   ) => void
 ) => {
@@ -161,11 +161,11 @@ export const putSwipe = (
   // Create the event object
   // Evaluation is passed based on know/dontKnow/oneMore/noMore
   const event: action = {
-    event_name: name,
-    event_time: new Date().toISOString(),
-    card_id: cardId,
-    self_eval: selfEvaluation,
-    test_eval: machineEvaluation,
+    eventName: name,
+    eventTime: new Date().toISOString(),
+    fc_id: cardId,
+    selfEval: selfEvaluation,
+    testEval: machineEvaluation,
     isBuffer: cardIndex !== tupleLength - 1,
   };
 
@@ -180,14 +180,14 @@ export const putSwipe = (
 
 // Log Function happens after session is finished
 export const putSessionFinished = (
-  putLogInfo: (event: action, end_time: string | null) => void
+  putLogInfo: (event: action, endTime: string | null) => void
 ) => {
   const event = {
-    event_name: "sessionFinished",
-    event_time: new Date().toISOString(),
-    card_id: null,
-    self_eval: null,
-    test_eval: null,
+    eventName: "sessionFinished",
+    eventTime: new Date().toISOString(),
+    fc_id: null,
+    selfEval: null,
+    testEval: null,
     isBuffer: null,
   };
   putLogInfo(event, new Date().toISOString());

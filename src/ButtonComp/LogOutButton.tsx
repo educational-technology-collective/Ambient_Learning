@@ -5,7 +5,6 @@ import { useHistory } from "react-router";
 import "./Button.css";
 
 const LogOutButton: React.FC = () => {
-  const history = useHistory();
 
   const isPhone: boolean = isPlatform("hybrid");
   const logoutUri = isPhone

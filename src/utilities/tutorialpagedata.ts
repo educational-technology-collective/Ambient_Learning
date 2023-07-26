@@ -2,7 +2,7 @@ export const cards = [
   [
     {
       _id: "sdjdiaj",
-      lmid: "s12najdn",
+      lm_id: "s12najdn",
       type: "m",
       content: {
         question: "Great! Which direction to indicate this card is bad?",
@@ -18,7 +18,7 @@ export const cards = [
   [
     {
       _id: "ssdajsiodusda",
-      lmid: "jjsjaodja",
+      lm_id: "jjsjaodja",
       type: "q",
       content: {
         question: "Nice! How do I get one more card of the same concept?",
@@ -29,7 +29,7 @@ export const cards = [
   [
     {
       _id: "sdj",
-      lmid: "sdnajdn",
+      lm_id: "sdnajdn",
       type: "m",
       content: {
         question:
@@ -46,7 +46,7 @@ export const cards = [
   [
     {
       _id: "sdaddusda",
-      lmid: "jjiajsid",
+      lm_id: "jjiajsid",
       type: "q",
       content: {
         question:

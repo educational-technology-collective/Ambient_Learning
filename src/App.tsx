@@ -93,7 +93,7 @@ const App: React.FC = () => {
   const putLogInfo = async (event: action, end_time: string | null) => {
     const dataStream = {
       action: event,
-      end_time: end_time,
+      endTime: end_time,
     };
     const response = await CapacitorHttp.put({
       url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?user_id=${user_Id}&start_time=${time}`,
@@ -240,10 +240,10 @@ const App: React.FC = () => {
   };
 
   // Function that update the card information
-  const putCardInfo = async (fcId: string, latestRecord: latestResult) => {
+  const putCardInfo = async (fc_id: string, latestRecord: latestResult) => {
     // Pass the card's id and the latest review result including tapResult and swipeResult
     const dataStream = {
-      fcId: fcId,
+      fc_id: fc_id,
       latestRecord: latestRecord,
     };
     const response = await CapacitorHttp.put({
@@ -262,7 +262,7 @@ const App: React.FC = () => {
   const swipeNextCard = (
     tupleIndex: number,
     event: action,
-    fcId: string,
+    fc_id: string,
     latestRecord: latestResult
   ) => {
     // Increment the number of finished cards and the counter of displaying card
@@ -279,7 +279,7 @@ const App: React.FC = () => {
     putLogInfo(event, null);
 
     // Log Info for Cards
-    putCardInfo(fcId, latestRecord);
+    putCardInfo(fc_id, latestRecord);
 
     // Log Session is Finished. 350ms delay so it's logged last
     if (finished === total - 1) {
@@ -291,14 +291,14 @@ const App: React.FC = () => {
   const swipeOneMoreCard = (
     tupleIndex: number,
     event: action,
-    fcId: string,
+    fc_id: string,
     latestRecord: latestResult
   ) => {
     // Log One More Info
     putLogInfo(event, null);
 
     // Update the card information
-    putCardInfo(fcId, latestRecord);
+    putCardInfo(fc_id, latestRecord);
 
     // If there is no more card available for this card
     if (tupleCounter === 1) {

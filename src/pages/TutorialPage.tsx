@@ -4,7 +4,7 @@ import {
   useIonViewWillEnter,
   useIonViewWillLeave,
 } from "@ionic/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { hideBar, showBar } from "../utilities/showTabBar";
 import "../pages/CardScreen.css";
 import "./TutorialPage.css";
