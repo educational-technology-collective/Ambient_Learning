@@ -14,6 +14,7 @@ import AppNameHeader from "./AppNameHeader";
 import LogOutButton from "../ButtonComp/LogOutButton";
 import { BiBookBookmark } from "react-icons/bi";
 import { useAuth0 } from "@auth0/auth0-react";
+import TutorialPortal from "../HomeComp/TutorialPortal";
 
 const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
   cardsLeft,
@@ -29,9 +30,6 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
     handleCardScreen();
   };
 
-  const navigateToTutorialScreen = () => {
-    history.push("/tutorial");
-  };
 
   // Determine The Box-Shadow Effect based on cards remaining
   let shadow: string;
@@ -56,19 +54,15 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
 
       <IonContent scrollY={false} className="home-content">
         <div className="home-loaded-wrapper">
-          <div className="top-container">
-            <IonIcon icon={diamond} style={{ fontSize: "3.5em" }}></IonIcon>
-            <IonCard
-              className="tutorial-card"
-              onClick={navigateToTutorialScreen}
-            >
-              <IonCardContent className="tutorial-card-content">
-                <BiBookBookmark size="2em" />
-                <IonText className="tutorial-text">Tutorial</IonText>
-              </IonCardContent>
-            </IonCard>
-          </div>
+
+        {/* Icon and Tutorial Portal */}
+         <TutorialPortal />
+
+          {/* Welcome User */}
           <h1 className="user-name">Hey, {user?.name}</h1>
+
+
+          {/* Dashbord of today's task */}
           <DashBoard
             cardsLeft={cardsLeft}
             shadow={shadow}
