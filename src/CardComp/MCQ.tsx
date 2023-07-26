@@ -9,7 +9,6 @@ const MCQ: React.FC<{
   setClickStatus: () => void;
   handleTestEvaluation: (result: string) => void;
 }> = ({ obj, clicked, setClickStatus, handleTestEvaluation }) => {
-
   // Get the question and choice from obj.content and pass it down
   const question: string = obj.content.question;
   const choice: individualChoice[] = obj.content.answer;
