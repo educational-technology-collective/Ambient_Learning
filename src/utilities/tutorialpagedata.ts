@@ -3,7 +3,7 @@ export const cards = [
     {
       _id: "sdjdiaj",
       lm_id: "s12najdn",
-      type: "m",
+      type: "mcq",
       content: {
         question: "Great! Which direction to indicate this card is bad?",
         answer: [
@@ -19,7 +19,7 @@ export const cards = [
     {
       _id: "ssdajsiodusda",
       lm_id: "jjsjaodja",
-      type: "q",
+      type: "qa",
       content: {
         question: "Nice! How do I get one more card of the same concept?",
         answer: "Simply Swipe Up!!!",
@@ -30,7 +30,7 @@ export const cards = [
     {
       _id: "sdj",
       lm_id: "sdnajdn",
-      type: "m",
+      type: "mcq",
       content: {
         question:
           "This is a Multiple-Choice-Question(MCQ) card. \n\nYou can click the choice you think is correct or tap the card itself to skip answering! \n\nWhat if I don't know the card concept?",
@@ -47,7 +47,7 @@ export const cards = [
     {
       _id: "sdaddusda",
       lm_id: "jjiajsid",
-      type: "q",
+      type: "qa",
       content: {
         question:
           "Hello there! Welocome to Tutorial! Tap this QA(Question & Answer) card to reveal the answer.\n\n Then Swipe!",

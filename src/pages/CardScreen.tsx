@@ -18,7 +18,7 @@ const CardScreen: React.FC<{
   tupleCounter: number;
   isShake: boolean;
   cardCol: flashCard[][];
-  putLogInfo: (event: action, end_time: string | null) => void;
+  putLogInfo: (event: action, endTime: string | null) => void;
   swipeNextCard: (
     tupleIndex: number,
     event: action,
@@ -28,7 +28,7 @@ const CardScreen: React.FC<{
   swipeOneMoreCard: (
     tupleIndex: number,
     event: action,
-    fcId: string,
+    fc_id: string,
     latestRecord: latestResult
   ) => void;
   handleHomeScreen: () => void;

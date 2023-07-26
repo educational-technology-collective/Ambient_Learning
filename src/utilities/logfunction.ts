@@ -154,7 +154,7 @@ export const putSwipe = (
       name = "swipe-shake";
     }
     // Determine the Machine Evaluation
-    if (type === "m" && testEvaluation === "") {
+    if (type === "mcq" && testEvaluation === "") {
       machineEvaluation = "skipped";
     }
   }
