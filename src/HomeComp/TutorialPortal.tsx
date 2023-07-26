@@ -1,7 +1,7 @@
-import { IonCard, IonCardContent, IonIcon, IonText } from "@ionic/react";
+import { IonCard, IonCardContent, IonIcon} from "@ionic/react";
 import "./TutorialPortal.css";
 import { diamond } from "ionicons/icons";
-import { BiBookBookmark } from "react-icons/bi";
+import {MdQuestionMark} from 'react-icons/md'
 import { useHistory } from "react-router";
 
 const TutorialPortal: React.FC = () => {
@@ -15,8 +15,7 @@ const TutorialPortal: React.FC = () => {
       <IonIcon icon={diamond} style={{ fontSize: "3.5em" }}></IonIcon>
       <IonCard className="tutorial-card" onClick={navigateToTutorialScreen}>
         <IonCardContent className="tutorial-card-content">
-          <BiBookBookmark size="2em" />
-          <IonText className="tutorial-text">Tutorial</IonText>
+          <MdQuestionMark size='1.5em' />
         </IonCardContent>
       </IonCard>
     </div>

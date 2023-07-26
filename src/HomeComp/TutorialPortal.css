@@ -10,21 +10,10 @@
 /* Styling for the portal, which is IonCard */
 .tutorial-card {
   position: absolute;
-  width: 39%;
   top: -3.5%;
   right: -4.8%;
 }
 /* Styling for the portal card content */
 .tutorial-card-content {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 5%;
-}
-/* Styling for the text of tutorial */
-.tutorial-text {
-  font-size: 1.3em;
-  font-weight: 900;
-  text-align: center;
+  padding: 5px;
 }
