@@ -73,7 +73,7 @@ const App: React.FC = () => {
   }, [handleRedirectCallback]);
 
   // User_Id and Time State Variable used for Quary
-  const [user_Id, setUser] = useState("");
+  const [userId, setUser] = useState("");
   const [time, setTime] = useState("");
 
   // readyLog used to determine if initialize/resume is logged so we can navigate to card screen
@@ -96,7 +96,7 @@ const App: React.FC = () => {
       endTime: end_time,
     };
     const response = await CapacitorHttp.put({
-      url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?user_id=${user_Id}&start_time=${time}`,
+      url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?user_id=${userId}&start_time=${time}`,
       data: dataStream,
       headers: {
         "content-type": "application/json",
@@ -145,8 +145,8 @@ const App: React.FC = () => {
 
   useEffect(() => {
     // Initialize the Log Info if the user is signed and cardcollection is not empty
-    if (isAuthenticated && total && accessToken !== "" && user_Id !== "") {
-      getLatestRecord(user_Id, accessToken, handleStartTime, handleReadyLog);
+    if (isAuthenticated && total && accessToken !== "" && userId !== "") {
+      getLatestRecord(userId, accessToken, handleStartTime, handleReadyLog);
     }
   }, [isAuthenticated, total, accessToken]);
 
@@ -202,12 +202,12 @@ const App: React.FC = () => {
 
   // UseEffect to fetch the cards as long as user_Id is updated
   useEffect(() => {
-    if (user_Id !== "") {
+    if (userId !== "") {
       getCards(
-        `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/users/${user_Id}/flashcards/all`
+        `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/users/${userId}/flashcards/all`
       );
     }
-  }, [user_Id]);
+  }, [userId]);
 
   // Card-Stacker Visual Effect. Will shake screen when it's true
   const [isShake, setShake] = useState(false);
@@ -247,7 +247,7 @@ const App: React.FC = () => {
       latestRecord: latestRecord,
     };
     const response = await CapacitorHttp.put({
-      url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/users/${user_Id}/flashcards`,
+      url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/users/${userId}/flashcards`,
       data: dataStream,
       headers: {
         "content-type": "application/json",
