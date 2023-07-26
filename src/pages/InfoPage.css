@@ -1,8 +1,9 @@
-Styling 
+/* Background color for the info page */
 .info-content {
   background: white;
 }
 
+/* Overall Container for the info page */
 .info-container {
   display: flex;
   flex-direction: column;
