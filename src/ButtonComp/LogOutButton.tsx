@@ -4,7 +4,6 @@ import { Browser } from "@capacitor/browser";
 import "./Button.css";
 
 const LogOutButton: React.FC = () => {
-
   const isPhone: boolean = isPlatform("hybrid");
   const logoutUri = isPhone
     ? "ionic.srs://login"
