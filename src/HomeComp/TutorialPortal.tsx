@@ -4,6 +4,7 @@ import { diamond } from "ionicons/icons";
 import { MdQuestionMark } from "react-icons/md";
 import { useHistory } from "react-router";
 
+// Tutorial Portal Question Mark
 const TutorialPortal: React.FC = () => {
   const history = useHistory();
 

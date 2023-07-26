@@ -3,6 +3,7 @@ import "./Card.css";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import remarkGfm from "remark-gfm";
 
+// Component for a MCQ Card
 const MCQ: React.FC<{
   obj: flashCard;
   clicked: boolean;

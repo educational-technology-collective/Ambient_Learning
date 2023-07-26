@@ -2,6 +2,7 @@ import { useRef } from "react";
 import Card from "../CardComp/Card";
 import "./FlashCardList.css";
 
+// Tuple of Cards Component
 const FlashCardList: React.FC<{
   array: flashCard[];
   tupleIndex: number;

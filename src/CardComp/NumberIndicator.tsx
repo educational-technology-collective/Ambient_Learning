@@ -1,5 +1,6 @@
 import "./Card.css";
 
+// Component for the indicator of number of same concept cards
 const NumberIndicator: React.FC<{ tupleCounter: number }> = ({
   tupleCounter,
 }) => {
