@@ -31,10 +31,15 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
     setTutorialCounter((prevTutorialCounter) => prevTutorialCounter - 1);
   };
 
+  // Reset the counter back for next time tutorial
+  const leaveTimeOut = () => {
+    setTutorialCounter(cards.length);
+  }
+
   // Leave the tutorial screen and set the counter back
   const leaveTutorialScreen = () => {
     handleCardScreen();
-    setTimeout(() => setTutorialCounter(cards.length), 1000);
+    setTimeout(leaveTimeOut, 1000);
   };
 
   return (

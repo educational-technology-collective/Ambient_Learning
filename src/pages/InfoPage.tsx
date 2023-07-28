@@ -14,14 +14,14 @@ const InfoPage: React.FC = () => {
           <a
             className="grad-button"
             href="https://github.com/educational-technology-collective/srs-chrome-extension"
-            style={{ color: "black" }}
+            style={{ color: "black", textDecoration: 'none' }}
           >
             Click me for Chrome
           </a>
           <a
             className="grad-button"
             href="https://github.com/educational-technology-collective/srs-jupyterlab-extension"
-            style={{ color: "black" }}
+            style={{ color: "black", textDecoration: 'none' }}
           >
             Click me for Jupyter
           </a>
