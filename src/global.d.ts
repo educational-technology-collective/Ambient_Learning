@@ -49,8 +49,8 @@ declare global {
       swipeResult: string | null;
     };
     reviewRecord: {
-      gotCorrect: number;
-      gotWrong: number;
+      correct: number;
+      incorrect: number;
       skipped: number;
       know: number;
       dontKnow: number;

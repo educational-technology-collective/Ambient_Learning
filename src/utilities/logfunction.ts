@@ -179,9 +179,9 @@ export const putSwipe = (
   let stringArray = localStorage.getItem("stats");
   if (stringArray) {
     let array = JSON.parse(stringArray);
-    if (machineEvaluation === "gotCorrect") {
+    if (machineEvaluation === "correct") {
       array[0]++;
-    } else if (machineEvaluation === "gotWrong") {
+    } else if (machineEvaluation === "incorrect") {
       array[1]++;
     } else if (machineEvaluation === "skipped") {
       array[2]++;
