@@ -90,10 +90,10 @@ const App: React.FC = () => {
   };
 
   // PUT Request that push information to the action_container
-  const putLogInfo = async (event: action, end_time: string | null) => {
+  const putLogInfo = async (event: action, endTime: string | null) => {
     const dataStream = {
       action: event,
-      endTime: end_time,
+      endTime: endTime,
     };
     const response = await CapacitorHttp.put({
       url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?user_id=${userId}&start_time=${time}`,
@@ -143,8 +143,8 @@ const App: React.FC = () => {
     }
   }, [isAuthenticated]);
 
+  // Initialize the Log Info if the user is signed and cardcollection is not empty
   useEffect(() => {
-    // Initialize the Log Info if the user is signed and cardcollection is not empty
     if (isAuthenticated && total && accessToken !== "" && userId !== "") {
       getLatestRecord(userId, accessToken, handleStartTime, handleReadyLog);
     }
