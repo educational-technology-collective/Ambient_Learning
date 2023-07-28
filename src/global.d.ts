@@ -55,7 +55,7 @@ declare global {
       know: number;
       dontKnow: number;
       oneMore: number;
-      noMore: number;
+      poorCard: number;
     };
     prevInterval: number;
     prevFactor: number;
