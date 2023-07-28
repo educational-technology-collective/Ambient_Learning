@@ -51,9 +51,9 @@ declare global {
     reviewRecord: {
       gotCorrect: number;
       gotWrong: number;
-      passed: number;
+      skipped: number;
       know: number;
-      forget: number;
+      dontKnow: number;
       oneMore: number;
       noMore: number;
     };

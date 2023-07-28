@@ -16,18 +16,19 @@ export const getLatestRecord = async (
   handleReadyLog: () => void
 ) => {
   const response = await CapacitorHttp.get({
-    url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?user_id=${userId}`,
+    url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?userId=${userId}`,
   });
   const data = await JSON.parse(response.data);
 
   // Check to see if there is a record not done yet in the database
   if (data.new) {
+    localStorage.setItem("stats", JSON.stringify([0, 0, 0, 0, 0, 0, 0]));
     // Create a new record if there isn't
     postInitialize(userId, accessToken, handleStartTime);
   }
   // If there is available record, push a resume action to the database
   else {
-    handleStartTime(data.start_time);
+    handleStartTime(data.startTime);
 
     const event = {
       eventName: "resume",
@@ -42,7 +43,7 @@ export const getLatestRecord = async (
       endTime: null,
     };
     const responseResume = await CapacitorHttp.put({
-      url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?user_id=${userId}&start_time=${data.start_time}`,
+      url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?userId=${userId}&startTime=${data.startTime}`,
       data: dataStream,
       headers: {
         "content-type": "application/json",
@@ -66,8 +67,8 @@ export const postInitialize = async (
   // We use convert toISOString() for MongoDB Date Format
   handleStartTime(startTimeString);
   const log = {
-    user_id: userId,
-    start_time: startTimeString,
+    userId: userId,
+    startTime: startTimeString,
   };
   const response = await CapacitorHttp.post({
     url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile`,
@@ -95,7 +96,7 @@ export const postInitialize = async (
     endTime: null,
   };
   const responseInitialize = await CapacitorHttp.put({
-    url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?user_id=${userId}&start_time=${startTimeString}`,
+    url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?userId=${userId}&startTime=${startTimeString}`,
     data: dataStream,
     headers: {
       "content-type": "application/json",
@@ -175,6 +176,28 @@ export const putSwipe = (
     swipeResult: selfEvaluation,
   };
 
+  let stringArray = localStorage.getItem("stats");
+  if (stringArray) {
+    let array = JSON.parse(stringArray);
+    if (machineEvaluation === "gotCorrect") {
+      array[0]++;
+    } else if (machineEvaluation === "gotWrong") {
+      array[1]++;
+    } else if (machineEvaluation === "skipped") {
+      array[2]++;
+    }
+
+    if (selfEvaluation === "know") {
+      array[3]++;
+    } else if (selfEvaluation === "dontKnow") {
+      array[4]++;
+    } else if (selfEvaluation === "oneMore") {
+      array[5]++;
+    } else {
+      array[6]++;
+    }
+    localStorage.setItem("stats", JSON.stringify(array));
+  }
   nextCardFunc(tupleIndex, event, cardId, latestRecord);
 };
 

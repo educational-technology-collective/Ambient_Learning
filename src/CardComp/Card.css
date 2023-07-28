@@ -101,7 +101,7 @@
 MCQ Card question always takes 60% */
 .mcq-question {
   position: absolute;
-  height: 60%;
+  height: 50%;
   top: 0;
 }
 

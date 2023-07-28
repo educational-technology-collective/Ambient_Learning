@@ -96,7 +96,7 @@ const App: React.FC = () => {
       endTime: endTime,
     };
     const response = await CapacitorHttp.put({
-      url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?user_id=${userId}&start_time=${time}`,
+      url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?userId=${userId}&startTime=${time}`,
       data: dataStream,
       headers: {
         "content-type": "application/json",
@@ -328,6 +328,8 @@ const App: React.FC = () => {
   if (!isAuthenticated && !isLoading) {
     return <LogInPage />;
   }
+
+  console.log(localStorage.getItem("stats"));
 
   return (
     <IonApp>
