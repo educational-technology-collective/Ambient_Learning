@@ -10,7 +10,6 @@
 
 .statistics-container{
   display: grid;
- 
 }
 
 .statistics-card{
@@ -73,7 +72,7 @@
 
 .card-icon{
   position: absolute;
-  left: 45%;
+  left: 50%;
 }
 
 .card-values{

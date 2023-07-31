@@ -23,7 +23,7 @@ const Statistics: React.FC<{total: number, duration: number}> = ({total, duratio
  
   return(
     <IonPage>
-    <IonContent scrollY={false} className='statistics-content'>
+    <IonContent scrollY={true} className='statistics-content'>
       <h2 className='statistics-title'>Session Overview</h2>
       <div className='statistics-container'>
         <IonCard className='statistics-card'>
@@ -53,7 +53,7 @@ const Statistics: React.FC<{total: number, duration: number}> = ({total, duratio
         <IonCard className='statistics-card incorrect-delay'>
           <IonCardContent>
             <IonCardTitle className='card-title'>
-             Inorrect MCQ <MdOutlineClose size='1.2rem' className='card-icon'/> <span className='card-values'>{incorrectNum}</span>
+             Incorrect MCQ <MdOutlineClose size='1.2rem' className='card-icon'/> <span className='card-values'>{incorrectNum}</span>
             </IonCardTitle>
           </IonCardContent>
         </IonCard>
