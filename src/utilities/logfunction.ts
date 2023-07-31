@@ -185,6 +185,8 @@ export const putSwipe = (
 
 // Log Function happens after session is finished
 export const putSessionFinished = (
+  startTime: string,
+  handleDuration: (minutes: number) => void,
   putLogInfo: (event: action, endTime: string | null) => void
 ) => {
   const event = {
@@ -195,5 +197,9 @@ export const putSessionFinished = (
     testEval: null,
     isBuffer: null,
   };
+  const startTimeObj = new Date(startTime);
+  const diff = new Date().getTime() - startTimeObj.getTime();
+  const minutes = Math.floor(diff / 60000);
+  handleDuration(minutes);
   putLogInfo(event, new Date().toISOString());
 };

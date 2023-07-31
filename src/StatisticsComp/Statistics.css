@@ -1,0 +1,39 @@
+.statistics-content{
+  background: rgba(215, 224, 255, 1);
+}
+
+.statistics-title{
+  text-align: center;
+  font-weight: 800;
+  color: green;
+}
+
+.statistics-container{
+  display: grid;
+ 
+}
+
+.statistics-card{
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.card-title{
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.blank-space{
+  width: 1rem;
+}
+
+.card-icon{
+  position: absolute;
+  left: 45%;
+}
+
+.card-values{
+  position: absolute;
+  right: 5%;
+}

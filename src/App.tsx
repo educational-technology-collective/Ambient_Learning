@@ -47,6 +47,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import TutorialPage from "./pages/TutorialPage";
 import ErrorPage from "./pages/ErrorPage";
 import InfoPage from "./pages/InfoPage";
+import Statistics from "./StatisticsComp/Statistics";
 setupIonicReact({
   swipeBackEnabled: false,
 });
@@ -74,7 +75,13 @@ const App: React.FC = () => {
 
   // User_Id and Time State Variable used for Quary
   const [userId, setUser] = useState("");
-  const [time, setTime] = useState("");
+  const [startTime, setTime] = useState("");
+
+  const [duration, setDuration] = useState(0);
+
+  const handleDuration = (minutes: number) => {
+    setDuration(minutes)
+  }
 
   // readyLog used to determine if initialize/resume is logged so we can navigate to card screen
   const [readyLog, setReadyLog] = useState(false);
@@ -96,7 +103,7 @@ const App: React.FC = () => {
       endTime: endTime,
     };
     const response = await CapacitorHttp.put({
-      url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?userId=${userId}&startTime=${time}`,
+      url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?userId=${userId}&startTime=${startTime}`,
       data: dataStream,
       headers: {
         "content-type": "application/json",
@@ -232,7 +239,7 @@ const App: React.FC = () => {
 
     // Log Session is Finished. 350ms delay so session finished is logged last
     if (finished === total - 1) {
-      setTimeout(() => putSessionFinished(putLogInfo), 350);
+      setTimeout(() => putSessionFinished(startTime, handleDuration, putLogInfo), 350);
     }
 
     // Set Timeout of 2.2 seconds(consistent with animation time)
@@ -278,7 +285,7 @@ const App: React.FC = () => {
 
     // Log Session is Finished. 350ms delay so it's logged last
     if (finished === total - 1) {
-      setTimeout(() => putSessionFinished(putLogInfo), 350);
+      setTimeout(() => putSessionFinished(startTime, handleDuration, putLogInfo), 350);
     }
   };
 
@@ -350,6 +357,7 @@ const App: React.FC = () => {
                   tupleCounter={tupleCounter}
                   cardCol={cardCol}
                   isShake={isShake}
+                  duration={duration}
                   putLogInfo={putLogInfo}
                   swipeNextCard={swipeNextCard}
                   swipeOneMoreCard={swipeOneMoreCard}
@@ -400,6 +408,10 @@ const App: React.FC = () => {
             <Route exact path="/">
               <Redirect to="/loading" />
             </Route>
+
+            {/* <Route exact path='/stats'>
+              <Statistics total={total} startTime={time}/>
+            </Route> */}
           </IonRouterOutlet>
 
           <IonTabBar slot="bottom" className="tab-bar" id="bottom-tab-bar">
