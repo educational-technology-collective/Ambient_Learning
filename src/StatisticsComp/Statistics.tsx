@@ -22,7 +22,6 @@ const Statistics: React.FC<{total: number, duration: number}> = ({total, duratio
 
  
   return(
-    <IonPage>
     <IonContent scrollY={true} className='statistics-content'>
       <h2 className='statistics-title'>Session Overview</h2>
       <div className='statistics-container'>
@@ -100,7 +99,6 @@ const Statistics: React.FC<{total: number, duration: number}> = ({total, duratio
 
       </div>
     </IonContent>
-    </IonPage>
   );
 };
 

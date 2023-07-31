@@ -1,5 +1,5 @@
 .statistics-content{
-  background: rgba(215, 224, 255, 1);
+  background: #F1F2EB;
 }
 
 .statistics-title{
@@ -29,35 +29,35 @@
 }
 
 .session-delay{
-  animation-delay: 0.5s;
+  animation-delay: 0.2s;
 }
 
 .correct-delay{
-  animation-delay: 1s;
+  animation-delay: 0.4s;
 }
 
 .incorrect-delay{
-  animation-delay: 1.5s;
+  animation-delay: 0.6s;
 }
 
 .skip-delay{
-  animation-delay: 2s;
+  animation-delay: 0.8s;
 }
 
 .know-delay{
-  animation-delay: 2.5s;
+  animation-delay: 1.0s;
 }
 
 .dontKnow-delay{
-  animation-delay: 3s;
+  animation-delay: 1.2s;
 }
 
 .oneMore-delay{
-  animation-delay: 3.5s;
+  animation-delay: 1.4s;
 }
 
 .poorCard-delay{
-  animation-delay: 4s;
+  animation-delay: 1.6s;
 }
 
 .card-title{

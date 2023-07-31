@@ -9,7 +9,8 @@
 .choice-button {
   flex-grow: 1;
   white-space: normal;
-  --background: slateblue;
+  --background: #8D8998;
+  --background-activated: #AD9B9A;
 }
 
 /* Styling for the correct button after clicking */
