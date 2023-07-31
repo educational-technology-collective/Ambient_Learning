@@ -262,8 +262,6 @@ const App: React.FC = () => {
   const swipeNextCard = (
     tupleIndex: number,
     event: action,
-    lm_id: string,
-    latestRecord: latestResult
   ) => {
     // Increment the number of finished cards and the counter of displaying card
     setFinished((prevFinished: number) => prevFinished + 1);
@@ -278,9 +276,6 @@ const App: React.FC = () => {
     // Log Info for Positive/No More/Negative
     putLogInfo(event, null);
 
-    // Log Info for Cards
-    putCardInfo(lm_id, latestRecord);
-
     // Log Session is Finished. 350ms delay so it's logged last
     if (finished === total - 1) {
       setTimeout(() => putSessionFinished(putLogInfo), 350);
@@ -291,14 +286,9 @@ const App: React.FC = () => {
   const swipeOneMoreCard = (
     tupleIndex: number,
     event: action,
-    lm_id: string,
-    latestRecord: latestResult
   ) => {
     // Log One More Info
     putLogInfo(event, null);
-
-    // Update the card information
-    putCardInfo(lm_id, latestRecord);
 
     // If there is no more card available for this card
     if (tupleCounter === 1) {

@@ -22,14 +22,10 @@ const CardScreen: React.FC<{
   swipeNextCard: (
     tupleIndex: number,
     event: action,
-    fc_id: string,
-    latestRecord: latestResult
   ) => void;
   swipeOneMoreCard: (
     tupleIndex: number,
     event: action,
-    fc_id: string,
-    latestRecord: latestResult
   ) => void;
   handleHomeScreen: () => void;
 }> = ({

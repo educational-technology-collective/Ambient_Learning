@@ -15,19 +15,8 @@ const Card: React.FC<{
   cardIndex: number;
   tupleIndex: number;
   tupleCounter: number;
-  putLogInfo: (event: action, endTime: string | null) => void;
-  moveOn: (
-    tupleIndex: number,
-    event: action,
-    fc_id: string,
-    latestRecord: latestResult
-  ) => void;
-  oneMore: (
-    tupleIndex: number,
-    event: action,
-    fc_id: string,
-    latestRecord: latestResult
-  ) => void;
+  moveOn: (tupleIndex: number, event: action) => void;
+  oneMore: (tupleIndex: number, event: action) => void;
   refTuple: React.RefObject<HTMLInputElement>;
 }> = ({
   obj,
@@ -36,7 +25,6 @@ const Card: React.FC<{
   tupleIndex,
   tupleCounter,
   moveOn,
-  putLogInfo,
   oneMore,
   refTuple,
 }) => {
@@ -83,7 +71,6 @@ const Card: React.FC<{
   const clickHandler = () => {
     setIsClicked(true);
     setClick(true);
-
   };
 
   // State Variable to track if the user gets correct/incorrect/skipped
