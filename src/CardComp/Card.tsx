@@ -6,7 +6,7 @@ import BackIndicator from "../IndicationComp/BackIndicator";
 import MCQ from "./MCQ";
 import QA from "./QA";
 import { enableGesture } from "../utilities/gesture";
-import { putFlipping, putSwipe } from "../utilities/logfunction";
+import { putSwipe } from "../utilities/logfunction";
 import NumberIndicator from "./NumberIndicator";
 
 const Card: React.FC<{
@@ -84,8 +84,6 @@ const Card: React.FC<{
     setIsClicked(true);
     setClick(true);
 
-    // Log the Event of Flipping / Answering
-    putFlipping(obj._id, cardIndex, tupleLength, putLogInfo);
   };
 
   // State Variable to track if the user gets correct/incorrect/skipped
@@ -110,7 +108,7 @@ const Card: React.FC<{
       testEvaluation,
       "know",
       obj.type,
-      obj._id,
+      obj.lm_id,
       cardIndex,
       tupleLength,
       tupleIndex,
@@ -125,7 +123,7 @@ const Card: React.FC<{
       testEvaluation,
       "dontKnow",
       obj.type,
-      obj._id,
+      obj.lm_id,
       cardIndex,
       tupleLength,
       tupleIndex,
@@ -140,7 +138,7 @@ const Card: React.FC<{
       testEvaluation,
       "oneMore",
       obj.type,
-      obj._id,
+      obj.lm_id,
       cardIndex,
       tupleLength,
       tupleIndex,
@@ -155,7 +153,7 @@ const Card: React.FC<{
       testEvaluation,
       "poorCard",
       obj.type,
-      obj._id,
+      obj.lm_id,
       cardIndex,
       tupleLength,
       tupleIndex,
@@ -170,7 +168,7 @@ const Card: React.FC<{
       testEvaluation,
       "poorCard",
       obj.type,
-      obj._id,
+      obj.lm_id,
       cardIndex,
       tupleLength,
       tupleIndex,

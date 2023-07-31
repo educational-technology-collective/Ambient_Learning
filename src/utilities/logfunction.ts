@@ -33,7 +33,7 @@ export const getLatestRecord = async (
     const event = {
       eventName: "resume",
       eventTime: new Date().toISOString(),
-      fc_id: null,
+      lm_id: null,
       selfEval: null,
       testEval: null,
       isBuffer: null,
@@ -86,7 +86,7 @@ export const postInitialize = async (
   const event = {
     eventName: "initialize",
     eventTime: startTimeString,
-    fc_id: null,
+    lm_id: null,
     selfEval: null,
     testEval: null,
     isBuffer: null,
@@ -107,38 +107,20 @@ export const postInitialize = async (
   console.log("Put Initialize", responseInitialize);
 };
 
-// Log function to log the event of flipping
-export const putFlipping = (
-  cardId: string,
-  cardIndex: number,
-  tupleLength: number,
-  putLogInfo: (event: action, endTime: string | null) => void
-) => {
-  const event: action = {
-    eventName: "flip",
-    eventTime: new Date().toISOString(),
-    fc_id: cardId,
-    selfEval: null,
-    testEval: null,
-    isBuffer: cardIndex !== tupleLength - 1,
-  };
-  putLogInfo(event, null);
-};
-
 // Log function to log the event of swiping
 export const putSwipe = (
   isEvaluation: boolean,
   testEvaluation: string,
   selfEvaluation: string,
   type: string,
-  cardId: string,
+  lmId: string,
   cardIndex: number,
   tupleLength: number,
   tupleIndex: number,
   nextCardFunc: (
     tupleIndex: number,
     event: action,
-    fc_id: string,
+    lm_id: string,
     latestRecord: latestResult
   ) => void
 ) => {
@@ -164,7 +146,7 @@ export const putSwipe = (
   const event: action = {
     eventName: name,
     eventTime: new Date().toISOString(),
-    fc_id: cardId,
+    lm_id: lmId,
     selfEval: selfEvaluation,
     testEval: machineEvaluation,
     isBuffer: cardIndex !== tupleLength - 1,
@@ -198,7 +180,7 @@ export const putSwipe = (
     }
     localStorage.setItem("stats", JSON.stringify(array));
   }
-  nextCardFunc(tupleIndex, event, cardId, latestRecord);
+  nextCardFunc(tupleIndex, event, lmId, latestRecord);
 };
 
 // Log Function happens after session is finished
@@ -208,7 +190,7 @@ export const putSessionFinished = (
   const event = {
     eventName: "sessionFinished",
     eventTime: new Date().toISOString(),
-    fc_id: null,
+    lm_id: null,
     selfEval: null,
     testEval: null,
     isBuffer: null,

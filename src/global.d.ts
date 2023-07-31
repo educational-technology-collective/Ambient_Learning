@@ -26,7 +26,7 @@ declare global {
   interface action {
     eventName: string;
     eventTime: string;
-    fc_id: string | null;
+    lm_id: string | null;
     selfEval: string | null;
     testEval: string | null;
     isBuffer: boolean | null;
