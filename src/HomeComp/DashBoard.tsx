@@ -1,6 +1,7 @@
 import { IonCard, IonCardContent, IonText } from "@ionic/react";
 import "./DashBoard.css";
 
+// Today's Task Dashboard
 const DashBoard: React.FC<{
   cardsLeft: number;
   shadow: string;

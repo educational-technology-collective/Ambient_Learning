@@ -3,13 +3,13 @@ import "./Card.css";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import remarkGfm from "remark-gfm";
 
+// Component for a MCQ Card
 const MCQ: React.FC<{
   obj: flashCard;
   clicked: boolean;
   setClickStatus: () => void;
   handleTestEvaluation: (result: string) => void;
 }> = ({ obj, clicked, setClickStatus, handleTestEvaluation }) => {
-
   // Get the question and choice from obj.content and pass it down
   const question: string = obj.content.question;
   const choice: individualChoice[] = obj.content.answer;

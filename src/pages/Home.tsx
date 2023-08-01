@@ -1,16 +1,20 @@
-import { IonContent, IonPage, IonIcon } from "@ionic/react";
+import { IonContent, IonPage } from "@ionic/react";
 import "./Home.css";
 import { useHistory } from "react-router-dom";
-import { diamond } from "ionicons/icons";
 import DashBoard from "../HomeComp/DashBoard";
 import AppNameHeader from "./AppNameHeader";
 import LogOutButton from "../ButtonComp/LogOutButton";
+import { useAuth0 } from "@auth0/auth0-react";
+import TutorialPortal from "../HomeComp/TutorialPortal";
 
 const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
   cardsLeft,
   handleCardScreen,
 }) => {
   const history = useHistory();
+
+  const { user } = useAuth0();
+
   // Used to jump to the card screen and spread cards
   const navigateToCardScreen = () => {
     history.push("/cardscreen");
@@ -40,15 +44,19 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
 
       <IonContent scrollY={false} className="home-content">
         <div className="home-loaded-wrapper">
-          <IonIcon
-            icon={diamond}
-            style={{ fontSize: "3em", left: "45%", position: "relative" }}
-          ></IonIcon>
+          {/* Icon and Tutorial Portal */}
+          <TutorialPortal />
+
+          {/* Welcome User */}
+          <h1 className="user-name">Hey, {user?.name}</h1>
+
+          {/* Dashbord of today's task */}
           <DashBoard
             cardsLeft={cardsLeft}
             shadow={shadow}
             navigateToCardScreen={navigateToCardScreen}
           />
+
           <LogOutButton />
         </div>
       </IonContent>

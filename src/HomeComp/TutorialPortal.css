@@ -1,0 +1,19 @@
+/* Styling for the container of icon and tutorial portal */
+.top-container {
+  height: 10%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+/* Styling for the portal, which is IonCard */
+.tutorial-card {
+  position: absolute;
+  top: -3%;
+  right: -4.5%;
+}
+/* Styling for the portal card content */
+.tutorial-card-content {
+  padding: 5px;
+}

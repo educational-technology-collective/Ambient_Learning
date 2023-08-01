@@ -6,7 +6,7 @@ import BackIndicator from "../IndicationComp/BackIndicator";
 import MCQ from "./MCQ";
 import QA from "./QA";
 import { enableGesture } from "../utilities/gesture";
-import { putFlipping, putSwipe } from "../utilities/logfunction";
+import { putSwipe } from "../utilities/logfunction";
 import NumberIndicator from "./NumberIndicator";
 
 const Card: React.FC<{
@@ -15,19 +15,8 @@ const Card: React.FC<{
   cardIndex: number;
   tupleIndex: number;
   tupleCounter: number;
-  putLogInfo: (event: action, end_time: string | null) => void;
-  moveOn: (
-    tupleIndex: number,
-    event: action,
-    fcId: string,
-    latestRecord: latestResult
-  ) => void;
-  oneMore: (
-    tupleIndex: number,
-    event: action,
-    fcId: string,
-    latestRecord: latestResult
-  ) => void;
+  moveOn: (tupleIndex: number, event: action) => void;
+  oneMore: (tupleIndex: number, event: action) => void;
   refTuple: React.RefObject<HTMLInputElement>;
 }> = ({
   obj,
@@ -36,7 +25,6 @@ const Card: React.FC<{
   tupleIndex,
   tupleCounter,
   moveOn,
-  putLogInfo,
   oneMore,
   refTuple,
 }) => {
@@ -83,9 +71,6 @@ const Card: React.FC<{
   const clickHandler = () => {
     setIsClicked(true);
     setClick(true);
-
-    // Log the Event of Flipping / Answering
-    putFlipping(obj._id, cardIndex, tupleLength, putLogInfo);
   };
 
   // State Variable to track if the user gets correct/incorrect/skipped
@@ -110,7 +95,7 @@ const Card: React.FC<{
       testEvaluation,
       "know",
       obj.type,
-      obj._id,
+      obj.lm_id,
       cardIndex,
       tupleLength,
       tupleIndex,
@@ -125,7 +110,7 @@ const Card: React.FC<{
       testEvaluation,
       "dontKnow",
       obj.type,
-      obj._id,
+      obj.lm_id,
       cardIndex,
       tupleLength,
       tupleIndex,
@@ -140,7 +125,7 @@ const Card: React.FC<{
       testEvaluation,
       "oneMore",
       obj.type,
-      obj._id,
+      obj.lm_id,
       cardIndex,
       tupleLength,
       tupleIndex,
@@ -155,7 +140,7 @@ const Card: React.FC<{
       testEvaluation,
       "poorCard",
       obj.type,
-      obj._id,
+      obj.lm_id,
       cardIndex,
       tupleLength,
       tupleIndex,
@@ -170,7 +155,7 @@ const Card: React.FC<{
       testEvaluation,
       "poorCard",
       obj.type,
-      obj._id,
+      obj.lm_id,
       cardIndex,
       tupleLength,
       tupleIndex,
@@ -199,7 +184,7 @@ const Card: React.FC<{
 
   // Determine the component and content style based on type of card
   let cardComp, cardContentStyle: string;
-  if (obj.type === "q") {
+  if (obj.type === "qa") {
     cardComp = <QA obj={obj} />;
     cardContentStyle = "card-content qa-card-content";
   } else {

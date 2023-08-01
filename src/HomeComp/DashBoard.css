@@ -1,5 +1,6 @@
 /* The Top Component of Cards left */
 .task-card {
+  width: 85%;
   background: #ed637e; /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to right,

@@ -5,7 +5,7 @@ export {};
 declare global {
   interface flashCard {
     _id: string;
-    lmid: string;
+    lm_id: string;
     type: string;
     content: {
       question: string;
@@ -24,23 +24,23 @@ declare global {
   }
 
   interface action {
-    event_name: string;
-    event_time: string;
-    card_id: string | null;
-    self_eval: string | null;
-    test_eval: string | null;
+    eventName: string;
+    eventTime: string;
+    lm_id: string | null;
+    selfEval: string | null;
+    testEval: string | null;
     isBuffer: boolean | null;
   }
 
   interface reviewInfo {
-    user_id: string;
-    start_time: Date | null;
-    end_time: Date | null;
-    action_container: action[];
+    userId: string;
+    startTime: Date | null;
+    endTime: Date | null;
+    actionContainer: action[];
   }
 
   interface userCard {
-    fcId: {
+    fc_id: {
       $oid: string;
     };
     type: string;
@@ -49,13 +49,13 @@ declare global {
       swipeResult: string | null;
     };
     reviewRecord: {
-      gotCorrect: number;
-      gotWrong: number;
-      passed: number;
+      correct: number;
+      incorrect: number;
+      skipped: number;
       know: number;
-      forget: number;
+      dontKnow: number;
       oneMore: number;
-      noMore: number;
+      poorCard: number;
     };
     prevInterval: number;
     prevFactor: number;

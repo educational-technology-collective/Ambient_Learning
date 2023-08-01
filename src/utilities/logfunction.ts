@@ -10,39 +10,40 @@ import { CapacitorHttp } from "@capacitor/core";
 
 // Function that requests the latest available record or make a new one
 export const getLatestRecord = async (
-  user_id: string,
+  userId: string,
   accessToken: string,
   handleStartTime: (time: string) => void,
   handleReadyLog: () => void
 ) => {
   const response = await CapacitorHttp.get({
-    url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?user_id=${user_id}`,
+    url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?userId=${userId}`,
   });
   const data = await JSON.parse(response.data);
 
   // Check to see if there is a record not done yet in the database
   if (data.new) {
+    localStorage.setItem("stats", JSON.stringify([0, 0, 0, 0, 0, 0, 0]));
     // Create a new record if there isn't
-    postInitialize(user_id, accessToken, handleStartTime);
+    postInitialize(userId, accessToken, handleStartTime);
   }
   // If there is available record, push a resume action to the database
   else {
-    handleStartTime(data.start_time);
+    handleStartTime(data.startTime);
 
     const event = {
-      event_name: "resume",
-      event_time: new Date().toISOString(),
-      card_id: null,
-      self_eval: null,
-      test_eval: null,
+      eventName: "resume",
+      eventTime: new Date().toISOString(),
+      lm_id: null,
+      selfEval: null,
+      testEval: null,
       isBuffer: null,
     };
     const dataStream = {
       action: event,
-      end_time: null,
+      endTime: null,
     };
     const responseResume = await CapacitorHttp.put({
-      url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?user_id=${user_id}&start_time=${data.start_time}`,
+      url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?userId=${userId}&startTime=${data.startTime}`,
       data: dataStream,
       headers: {
         "content-type": "application/json",
@@ -66,8 +67,8 @@ export const postInitialize = async (
   // We use convert toISOString() for MongoDB Date Format
   handleStartTime(startTimeString);
   const log = {
-    user_id: userId,
-    start_time: startTimeString,
+    userId: userId,
+    startTime: startTimeString,
   };
   const response = await CapacitorHttp.post({
     url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile`,
@@ -83,19 +84,19 @@ export const postInitialize = async (
   // PUT Request for the Initialize Container at the first place. Have to do it manually
   // here, otherwise the time is not updated and will not log the initialize event
   const event = {
-    event_name: "initialize",
-    event_time: startTimeString,
-    card_id: null,
-    self_eval: null,
-    test_eval: null,
+    eventName: "initialize",
+    eventTime: startTimeString,
+    lm_id: null,
+    selfEval: null,
+    testEval: null,
     isBuffer: null,
   };
   const dataStream = {
     action: event,
-    end_time: null,
+    endTime: null,
   };
   const responseInitialize = await CapacitorHttp.put({
-    url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?user_id=${userId}&start_time=${startTimeString}`,
+    url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?userId=${userId}&startTime=${startTimeString}`,
     data: dataStream,
     headers: {
       "content-type": "application/json",
@@ -106,38 +107,20 @@ export const postInitialize = async (
   console.log("Put Initialize", responseInitialize);
 };
 
-// Log function to log the event of flipping
-export const putFlipping = (
-  cardId: string,
-  cardIndex: number,
-  tupleLength: number,
-  putLogInfo: (event: action, end_time: string | null) => void
-) => {
-  const event: action = {
-    event_name: "flip",
-    event_time: new Date().toISOString(),
-    card_id: cardId,
-    self_eval: null,
-    test_eval: null,
-    isBuffer: cardIndex !== tupleLength - 1,
-  };
-  putLogInfo(event, null);
-};
-
 // Log function to log the event of swiping
 export const putSwipe = (
   isEvaluation: boolean,
   testEvaluation: string,
   selfEvaluation: string,
   type: string,
-  cardId: string,
+  lmId: string,
   cardIndex: number,
   tupleLength: number,
   tupleIndex: number,
   nextCardFunc: (
     tupleIndex: number,
     event: action,
-    fcId: string,
+    lm_id: string,
     latestRecord: latestResult
   ) => void
 ) => {
@@ -154,18 +137,18 @@ export const putSwipe = (
       name = "swipe-shake";
     }
     // Determine the Machine Evaluation
-    if (type === "m" && testEvaluation === "") {
+    if (type === "mcq" && testEvaluation === "") {
       machineEvaluation = "skipped";
     }
   }
   // Create the event object
   // Evaluation is passed based on know/dontKnow/oneMore/noMore
   const event: action = {
-    event_name: name,
-    event_time: new Date().toISOString(),
-    card_id: cardId,
-    self_eval: selfEvaluation,
-    test_eval: machineEvaluation,
+    eventName: name,
+    eventTime: new Date().toISOString(),
+    lm_id: lmId,
+    selfEval: selfEvaluation,
+    testEval: machineEvaluation,
     isBuffer: cardIndex !== tupleLength - 1,
   };
 
@@ -175,20 +158,48 @@ export const putSwipe = (
     swipeResult: selfEvaluation,
   };
 
-  nextCardFunc(tupleIndex, event, cardId, latestRecord);
+  let stringArray = localStorage.getItem("stats");
+  if (stringArray) {
+    let array = JSON.parse(stringArray);
+    if (machineEvaluation === "correct") {
+      array[0]++;
+    } else if (machineEvaluation === "incorrect") {
+      array[1]++;
+    } else if (machineEvaluation === "skipped") {
+      array[2]++;
+    }
+
+    if (selfEvaluation === "know") {
+      array[3]++;
+    } else if (selfEvaluation === "dontKnow") {
+      array[4]++;
+    } else if (selfEvaluation === "oneMore") {
+      array[5]++;
+    } else {
+      array[6]++;
+    }
+    localStorage.setItem("stats", JSON.stringify(array));
+  }
+  nextCardFunc(tupleIndex, event, lmId, latestRecord);
 };
 
 // Log Function happens after session is finished
 export const putSessionFinished = (
-  putLogInfo: (event: action, end_time: string | null) => void
+  startTime: string,
+  handleDuration: (minutes: number) => void,
+  putLogInfo: (event: action, endTime: string | null) => void
 ) => {
   const event = {
-    event_name: "sessionFinished",
-    event_time: new Date().toISOString(),
-    card_id: null,
-    self_eval: null,
-    test_eval: null,
+    eventName: "sessionFinished",
+    eventTime: new Date().toISOString(),
+    lm_id: null,
+    selfEval: null,
+    testEval: null,
     isBuffer: null,
   };
+  const startTimeObj = new Date(startTime);
+  const diff = new Date().getTime() - startTimeObj.getTime();
+  const minutes = Math.floor(diff / 60000);
+  handleDuration(minutes);
   putLogInfo(event, new Date().toISOString());
 };

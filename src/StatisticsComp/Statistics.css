@@ -1,0 +1,82 @@
+.statistics-content {
+  background: #f1f2eb;
+}
+
+.statistics-title {
+  text-align: center;
+  font-weight: 800;
+  color: green;
+  margin-top: 3.2rem;
+}
+
+.statistics-container {
+  display: grid;
+}
+
+.statistics-card {
+  left: 100%;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  animation-name: showCard;
+  animation-duration: 0.5s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
+@keyframes showCard {
+  to {
+    left: 0;
+  }
+}
+
+.session-delay {
+  animation-delay: 0.2s;
+}
+
+.correct-delay {
+  animation-delay: 0.4s;
+}
+
+.incorrect-delay {
+  animation-delay: 0.6s;
+}
+
+.skip-delay {
+  animation-delay: 0.8s;
+}
+
+.know-delay {
+  animation-delay: 1s;
+}
+
+.dontKnow-delay {
+  animation-delay: 1.2s;
+}
+
+.oneMore-delay {
+  animation-delay: 1.4s;
+}
+
+.poorCard-delay {
+  animation-delay: 1.6s;
+}
+
+.card-title {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.blank-space {
+  width: 1rem;
+}
+
+.card-icon {
+  position: absolute;
+  left: 50%;
+}
+
+.card-values {
+  position: absolute;
+  right: 5%;
+}

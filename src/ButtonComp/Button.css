@@ -1,7 +1,7 @@
 /* Linear Gradient Button Used for Log In / Log Out / Try Again / Report Issue */
 .grad-button {
   margin: 10px;
-  padding: 15px 45px;
+  padding: 10px 25px;
   text-align: center;
   text-transform: uppercase;
   transition: 0.5s;
@@ -10,7 +10,7 @@
   box-shadow: 0 0 15px #eee;
   border-radius: 10px;
   display: block;
-  font-size: 1.6em;
+  font-size: 1.45em;
   font-weight: 900;
 }
 

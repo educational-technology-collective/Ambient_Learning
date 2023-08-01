@@ -2,8 +2,8 @@ import "./Card.css";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import remarkGfm from "remark-gfm";
 
+// Component for a QA Card
 const QA: React.FC<{ obj: flashCard }> = ({ obj }) => {
-
   // Get the question and answer based on obj.content
   const question: string = obj.content.question;
 

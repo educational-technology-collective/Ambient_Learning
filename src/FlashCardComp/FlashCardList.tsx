@@ -2,6 +2,7 @@ import { useRef } from "react";
 import Card from "../CardComp/Card";
 import "./FlashCardList.css";
 
+// Tuple of Cards Component
 const FlashCardList: React.FC<{
   array: flashCard[];
   tupleIndex: number;
@@ -11,14 +12,10 @@ const FlashCardList: React.FC<{
   swipeNextCard: (
     tupleIndex: number,
     event: action,
-    fcId: string,
-    latestRecord: latestResult
   ) => void;
   swipeOneMoreCard: (
     tupleIndex: number,
     event: action,
-    fcId: string,
-    latestRecord: latestResult
   ) => void;
 }> = ({
   array,
@@ -43,7 +40,6 @@ const FlashCardList: React.FC<{
       tupleLength={array.length}
       cardIndex={array.length}
       tupleIndex={tupleIndex}
-      putLogInfo={putLogInfo}
       moveOn={swipeNextCard}
       oneMore={swipeOneMoreCard}
       refTuple={refTuple}
@@ -66,7 +62,6 @@ const FlashCardList: React.FC<{
                   tupleLength={array.length}
                   cardIndex={index}
                   tupleIndex={tupleIndex}
-                  putLogInfo={putLogInfo}
                   moveOn={swipeNextCard}
                   oneMore={swipeOneMoreCard}
                   refTuple={refTuple}

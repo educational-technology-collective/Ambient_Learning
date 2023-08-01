@@ -10,6 +10,7 @@ import React from "react";
 import FlashCardList from "../FlashCardComp/FlashCardList";
 import OneMoreFailMessage from "../IndicationComp/OneMoreFailMessage";
 import FinishedDisplay from "../TutorialComp/FinishedDisplay";
+import Statistics from "../StatisticsComp/Statistics";
 
 const CardScreen: React.FC<{
   finished: number;
@@ -17,19 +18,16 @@ const CardScreen: React.FC<{
   counter: number;
   tupleCounter: number;
   isShake: boolean;
+  duration: number;
   cardCol: flashCard[][];
-  putLogInfo: (event: action, end_time: string | null) => void;
+  putLogInfo: (event: action, endTime: string | null) => void;
   swipeNextCard: (
     tupleIndex: number,
     event: action,
-    fcId: string,
-    latestRecord: latestResult
   ) => void;
   swipeOneMoreCard: (
     tupleIndex: number,
     event: action,
-    fcId: string,
-    latestRecord: latestResult
   ) => void;
   handleHomeScreen: () => void;
 }> = ({
@@ -38,6 +36,7 @@ const CardScreen: React.FC<{
   counter,
   tupleCounter,
   isShake,
+  duration,
   cardCol,
   putLogInfo,
   swipeNextCard,
@@ -52,6 +51,7 @@ const CardScreen: React.FC<{
   // Screen Being Rendered
   return (
     <IonPage>
+      {finished !== total ? (<>
       {/* Header and ToolBar */}
       <IonHeader color="tertiary">
         <IonToolbar>
@@ -99,15 +99,8 @@ const CardScreen: React.FC<{
           {/* Give alert message if it's shaking due to OneMore */}
           {isShake ? <OneMoreFailMessage /> : null}
 
-          {/* Display the "Statistics/Finished Message" When Cards are done */}
-          {finished === total ? (
-            <FinishedDisplay
-              isTutorial={false}
-              enterScreen={handleHomeScreen}
-            />
-          ) : null}
         </div>
-      </IonContent>
+      </IonContent> </> ) : <Statistics total={total} duration={duration}/>}
     </IonPage>
   );
 };

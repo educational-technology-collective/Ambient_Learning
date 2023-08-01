@@ -1,12 +1,9 @@
 import { isPlatform } from "@ionic/react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Browser } from "@capacitor/browser";
-import { useHistory } from "react-router";
 import "./Button.css";
 
 const LogOutButton: React.FC = () => {
-  const history = useHistory();
-
   const isPhone: boolean = isPlatform("hybrid");
   const logoutUri = isPhone
     ? "ionic.srs://login"
@@ -30,7 +27,7 @@ const LogOutButton: React.FC = () => {
     });
     // On Mobile, we would navigate to the login page ourself and reload the window to refresh
     if (isPhone) {
-      history.push("/login");
+      // history.push("/login");
       window.location.reload();
     }
     // Clear localStorage to allow next time user potential tutorial page loading
