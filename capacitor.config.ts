@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'ionic.srs',
+  appId: 'com.etc.ambientlearning',
   appName: 'Space-Repetition',
   webDir: 'dist',
   server: {
