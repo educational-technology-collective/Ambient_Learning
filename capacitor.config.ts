@@ -2,7 +2,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'Flashcard learning aid using spaced-repetition (com.etc.ambientlearning)',
-  appName: 'Ambient',
+  appName: 'Flashcard learning aid using spaced-repetition (com.etc.ambientlearning)',
   webDir: 'dist',
   server: {
     androidScheme: 'https',
