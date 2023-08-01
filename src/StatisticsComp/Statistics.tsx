@@ -16,10 +16,7 @@ import { MdDoneOutline, MdOutlineClose } from "react-icons/md";
 import { FaPoop } from "react-icons/fa";
 import "./Statistics.css";
 
-const Statistics: React.FC<{ stats: statistics }> = ({
-  stats
-}) => {
-
+const Statistics: React.FC<{ stats: statistics }> = ({ stats }) => {
   return (
     <IonContent scrollY={true} className="statistics-content">
       <h2 className="statistics-title">Session Overview</h2>
