@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.etc.ambientlearning',
+  appId: 'CHYT229TBS.com.etc.ambientlearning',
   appName: 'Ambient Learning',
   webDir: 'dist',
   server: {
