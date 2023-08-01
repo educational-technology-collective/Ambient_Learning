@@ -55,9 +55,12 @@ export const getLatestRecord = async (
     console.log("Put Resume", responseResume);
     const actionContainer = data.actionContainer;
     actionContainer.forEach((event: action) => {
-      if((event.eventName[0] === 's' || event.eventName[0] === 'n') && event.testEval !== null && event.selfEval){
-        
-          handleStatisticsUpdate(event.testEval, event.selfEval);
+      if (
+        (event.eventName[0] === "s" || event.eventName[0] === "n") &&
+        event.testEval !== null &&
+        event.selfEval
+      ) {
+        handleStatisticsUpdate(event.testEval, event.selfEval);
       }
     });
   }
