@@ -9,15 +9,9 @@ const FlashCardList: React.FC<{
   tupleCounter: number;
   isFrontTuple: boolean;
   putLogInfo: (event: action, end_time: string | null) => void;
-  swipeNextCard: (
-    tupleIndex: number,
-    event: action,
-  ) => void;
-  swipeOneMoreCard: (
-    tupleIndex: number,
-    event: action,
-  ) => void;
-  handleStatisticsUpdate:(testEval: string, selfEval: string) => void
+  swipeNextCard: (tupleIndex: number, event: action) => void;
+  swipeOneMoreCard: (tupleIndex: number, event: action) => void;
+  handleStatisticsUpdate: (testEval: string, selfEval: string) => void;
 }> = ({
   array,
   tupleIndex,
@@ -25,7 +19,7 @@ const FlashCardList: React.FC<{
   isFrontTuple,
   swipeNextCard,
   swipeOneMoreCard,
-  handleStatisticsUpdate
+  handleStatisticsUpdate,
 }) => {
   // The Reference of the Whole Tuple, used for poorcard/know/dont know swipe
   const refTuple = useRef<HTMLInputElement>(null);

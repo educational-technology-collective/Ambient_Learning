@@ -34,7 +34,7 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
   // Reset the counter back for next time tutorial
   const leaveTimeOut = () => {
     setTutorialCounter(cards.length);
-  }
+  };
 
   // Leave the tutorial screen and set the counter back
   const leaveTutorialScreen = () => {

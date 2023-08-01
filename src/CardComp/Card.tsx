@@ -15,7 +15,7 @@ const Card: React.FC<{
   cardIndex: number;
   tupleIndex: number;
   tupleCounter: number;
-  handleStatisticsUpdate: (testEval: string, selfEval: string) => void,
+  handleStatisticsUpdate: (testEval: string, selfEval: string) => void;
   moveOn: (tupleIndex: number, event: action) => void;
   oneMore: (tupleIndex: number, event: action) => void;
   refTuple: React.RefObject<HTMLInputElement>;
