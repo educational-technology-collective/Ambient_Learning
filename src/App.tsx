@@ -78,10 +78,30 @@ const App: React.FC = () => {
   const [userId, setUser] = useState("");
   const [startTime, setTime] = useState("");
 
-  const [duration, setDuration] = useState(0);
+  const [stats, setStatistics] = useState({
+    total: 0,
+    duration: 0,
+    correct: 0,
+    incorrect: 0,
+    skipped: 0,
+    know: 0,
+    dontKnow: 0,
+    oneMore: 0,
+    poorCard: 0 
+  });
+
+  const handleStatisticsUpdate = (testEval: string, selfEval: string) => {
+    if(testEval === 'correct' || testEval === 'incorrect' || testEval === 'skipped'){
+      if(selfEval === 'know' || selfEval === 'dontKnow' || selfEval === 'oneMore' || selfEval === 'poorCard')
+        setStatistics(stats => ({...stats, total: stats.total + 1, [testEval]: stats[testEval] + 1, [selfEval]: stats[selfEval] + 1}));
+    }else{
+      if(selfEval === 'know' || selfEval === 'dontKnow' || selfEval === 'oneMore' || selfEval === 'poorCard')
+        setStatistics(stats =>  ({...stats, total: stats.total + 1, [selfEval]: stats[selfEval] + 1}));
+    }
+  }
 
   const handleDuration = (minutes: number) => {
-    setDuration(minutes)
+    setStatistics(stats => ({...stats, duration: minutes}));
   }
 
   // readyLog used to determine if initialize/resume is logged so we can navigate to card screen
@@ -154,9 +174,9 @@ const App: React.FC = () => {
   // Initialize the Log Info if the user is signed and cardcollection is not empty
   useEffect(() => {
     if (isAuthenticated && total && accessToken !== "" && userId !== "") {
-      getLatestRecord(userId, accessToken, handleStartTime, handleReadyLog);
+      getLatestRecord(userId, accessToken, handleStartTime, handleReadyLog, handleStatisticsUpdate);
     }
-  }, [isAuthenticated, total, accessToken]);
+  }, [isAuthenticated, isFetched, accessToken]);
 
   // State Variable to check if there is error fetching and flagging for redirecting to error page
   const [isError, setError] = useState(false);
@@ -327,7 +347,7 @@ const App: React.FC = () => {
     return <LogInPage />;
   }
 
-  console.log(localStorage.getItem("stats"));
+  console.log(stats);
 
   return (
     <IonApp>
@@ -357,12 +377,12 @@ const App: React.FC = () => {
                   counter={counter}
                   tupleCounter={tupleCounter}
                   cardCol={cardCol}
+                  stats={stats}
                   isShake={isShake}
-                  duration={duration}
                   putLogInfo={putLogInfo}
                   swipeNextCard={swipeNextCard}
                   swipeOneMoreCard={swipeOneMoreCard}
-                  handleHomeScreen={handleHomeScreen}
+                  handleStatisticsUpdate={handleStatisticsUpdate}
                 />
               )}
             />

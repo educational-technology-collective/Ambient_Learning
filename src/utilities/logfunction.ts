@@ -13,7 +13,8 @@ export const getLatestRecord = async (
   userId: string,
   accessToken: string,
   handleStartTime: (time: string) => void,
-  handleReadyLog: () => void
+  handleReadyLog: () => void,
+  handleStatisticsUpdate: (testEval: string, selfEval: string) => void
 ) => {
   const response = await CapacitorHttp.get({
     url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?userId=${userId}`,
@@ -52,6 +53,13 @@ export const getLatestRecord = async (
     });
     // Keep this for debugging purpose. Will be removed for production
     console.log("Put Resume", responseResume);
+    const actionContainer = data.actionContainer;
+    actionContainer.forEach((event: action) => {
+      if((event.eventName[0] === 's' || event.eventName[0] === 'n') && event.testEval !== null && event.selfEval){
+        
+          handleStatisticsUpdate(event.testEval, event.selfEval);
+      }
+    });
   }
   // Function that sets readyLog to be true so we can leave loading page
   handleReadyLog();
@@ -117,6 +125,7 @@ export const putSwipe = (
   cardIndex: number,
   tupleLength: number,
   tupleIndex: number,
+  handleStatisticsUpdate: (testEval: string, selfEval: string) => void,
   nextCardFunc: (
     tupleIndex: number,
     event: action,
@@ -157,29 +166,7 @@ export const putSwipe = (
     tapResult: machineEvaluation,
     swipeResult: selfEvaluation,
   };
-
-  let stringArray = localStorage.getItem("stats");
-  if (stringArray) {
-    let array = JSON.parse(stringArray);
-    if (machineEvaluation === "correct") {
-      array[0]++;
-    } else if (machineEvaluation === "incorrect") {
-      array[1]++;
-    } else if (machineEvaluation === "skipped") {
-      array[2]++;
-    }
-
-    if (selfEvaluation === "know") {
-      array[3]++;
-    } else if (selfEvaluation === "dontKnow") {
-      array[4]++;
-    } else if (selfEvaluation === "oneMore") {
-      array[5]++;
-    } else {
-      array[6]++;
-    }
-    localStorage.setItem("stats", JSON.stringify(array));
-  }
+  handleStatisticsUpdate(machineEvaluation, selfEvaluation);
   nextCardFunc(tupleIndex, event, lmId, latestRecord);
 };
 
@@ -199,7 +186,7 @@ export const putSessionFinished = (
   };
   const startTimeObj = new Date(startTime);
   const diff = new Date().getTime() - startTimeObj.getTime();
-  const minutes = Math.floor(diff / 60000);
+  const minutes = Math.ceil(diff / 60000);
   handleDuration(minutes);
   putLogInfo(event, new Date().toISOString());
 };

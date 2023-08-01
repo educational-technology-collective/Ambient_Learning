@@ -65,6 +65,7 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
                   swipeOneMoreCard={swipeDummyNext}
                   tupleIndex={index}
                   tupleCounter={1}
+                  handleStatisticsUpdate={() => {}}
                 />
               );
             }

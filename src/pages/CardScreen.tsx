@@ -18,7 +18,7 @@ const CardScreen: React.FC<{
   counter: number;
   tupleCounter: number;
   isShake: boolean;
-  duration: number;
+  stats: statistics;
   cardCol: flashCard[][];
   putLogInfo: (event: action, endTime: string | null) => void;
   swipeNextCard: (
@@ -29,19 +29,19 @@ const CardScreen: React.FC<{
     tupleIndex: number,
     event: action,
   ) => void;
-  handleHomeScreen: () => void;
+  handleStatisticsUpdate: (testEval:string, selfEval: string) => void
 }> = ({
   finished,
   total,
   counter,
   tupleCounter,
   isShake,
-  duration,
+  stats,
   cardCol,
   putLogInfo,
   swipeNextCard,
   swipeOneMoreCard,
-  handleHomeScreen,
+  handleStatisticsUpdate
 }) => {
   // Set the className of cardstack if it's shaking or not
   const stackClass: string = isShake
@@ -77,6 +77,7 @@ const CardScreen: React.FC<{
                   swipeOneMoreCard={swipeOneMoreCard}
                   tupleIndex={index}
                   tupleCounter={tupleCounter}
+                  handleStatisticsUpdate={handleStatisticsUpdate}
                 />
               );
             }
@@ -92,6 +93,7 @@ const CardScreen: React.FC<{
                   swipeOneMoreCard={swipeOneMoreCard}
                   tupleIndex={index}
                   tupleCounter={tupleCounter}
+                  handleStatisticsUpdate={handleStatisticsUpdate}
                 />
               );
             }
@@ -100,7 +102,7 @@ const CardScreen: React.FC<{
           {isShake ? <OneMoreFailMessage /> : null}
 
         </div>
-      </IonContent> </> ) : <Statistics total={total} duration={duration}/>}
+      </IonContent> </> ) : <Statistics stats={stats}/>}
     </IonPage>
   );
 };

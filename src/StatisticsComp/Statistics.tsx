@@ -16,28 +16,9 @@ import { MdDoneOutline, MdOutlineClose } from "react-icons/md";
 import { FaPoop } from "react-icons/fa";
 import "./Statistics.css";
 
-const Statistics: React.FC<{ total: number; duration: number }> = ({
-  total,
-  duration,
+const Statistics: React.FC<{ stats: statistics }> = ({
+  stats
 }) => {
-  let correctNum,
-    incorrectNum,
-    skipNum,
-    knowNum,
-    dontKnowNum,
-    oneMoreNum,
-    poorCardNum;
-  let stats = localStorage.getItem("stats");
-  if (stats) {
-    let statsObj = JSON.parse(stats);
-    correctNum = statsObj[0];
-    incorrectNum = statsObj[1];
-    skipNum = statsObj[2];
-    knowNum = statsObj[3];
-    dontKnowNum = statsObj[4];
-    oneMoreNum = statsObj[5];
-    poorCardNum = statsObj[6];
-  }
 
   return (
     <IonContent scrollY={true} className="statistics-content">
@@ -47,7 +28,7 @@ const Statistics: React.FC<{ total: number; duration: number }> = ({
           <IonCardContent>
             <IonCardTitle className="card-title">
               Cards Complete <BiTask size="1.2rem" className="card-icon" />{" "}
-              <span className="card-values">{total}</span>
+              <span className="card-values">{stats.total}</span>
             </IonCardTitle>
           </IonCardContent>
         </IonCard>
@@ -57,7 +38,7 @@ const Statistics: React.FC<{ total: number; duration: number }> = ({
             <IonCardTitle className="card-title">
               Session Length <FiClock size="1.2rem" className="card-icon" />{" "}
               <span className="card-values" style={{ right: "1%" }}>
-                {duration} mins
+                {stats.duration} mins
               </span>
             </IonCardTitle>
           </IonCardContent>
@@ -67,7 +48,7 @@ const Statistics: React.FC<{ total: number; duration: number }> = ({
           <IonCardContent>
             <IonCardTitle className="card-title">
               Correct MCQ <MdDoneOutline size="1.2rem" className="card-icon" />{" "}
-              <span className="card-values">{correctNum}</span>
+              <span className="card-values">{stats.correct}</span>
             </IonCardTitle>
           </IonCardContent>
         </IonCard>
@@ -77,7 +58,7 @@ const Statistics: React.FC<{ total: number; duration: number }> = ({
             <IonCardTitle className="card-title">
               Incorrect MCQ{" "}
               <MdOutlineClose size="1.2rem" className="card-icon" />{" "}
-              <span className="card-values">{incorrectNum}</span>
+              <span className="card-values">{stats.incorrect}</span>
             </IonCardTitle>
           </IonCardContent>
         </IonCard>
@@ -86,7 +67,7 @@ const Statistics: React.FC<{ total: number; duration: number }> = ({
           <IonCardContent>
             <IonCardTitle className="card-title">
               Skipped MCQ <BiSkipNext size="1.2rem" className="card-icon" />{" "}
-              <span className="card-values">{skipNum}</span>
+              <span className="card-values">{stats.skipped}</span>
             </IonCardTitle>
           </IonCardContent>
         </IonCard>
@@ -95,7 +76,7 @@ const Statistics: React.FC<{ total: number; duration: number }> = ({
           <IonCardContent>
             <IonCardTitle className="card-title">
               Know Cards <BiWinkSmile size="1.2rem" className="card-icon" />{" "}
-              <span className="card-values">{knowNum}</span>
+              <span className="card-values">{stats.know}</span>
             </IonCardTitle>
           </IonCardContent>
         </IonCard>
@@ -105,7 +86,7 @@ const Statistics: React.FC<{ total: number; duration: number }> = ({
             <IonCardTitle className="card-title">
               Don't Know Cards{" "}
               <BiConfused size="1.2rem" className="card-icon" />{" "}
-              <span className="card-values">{dontKnowNum}</span>
+              <span className="card-values">{stats.dontKnow}</span>
             </IonCardTitle>
           </IonCardContent>
         </IonCard>
@@ -114,7 +95,7 @@ const Statistics: React.FC<{ total: number; duration: number }> = ({
           <IonCardContent>
             <IonCardTitle className="card-title">
               OneMore Cards <BiCard size="1.2rem" className="card-icon" />{" "}
-              <span className="card-values">{oneMoreNum}</span>
+              <span className="card-values">{stats.oneMore}</span>
             </IonCardTitle>
           </IonCardContent>
         </IonCard>
@@ -123,7 +104,7 @@ const Statistics: React.FC<{ total: number; duration: number }> = ({
           <IonCardContent>
             <IonCardTitle className="card-title">
               Poor Cards <FaPoop size="1.2rem" className="card-icon" />{" "}
-              <span className="card-values">{poorCardNum}</span>
+              <span className="card-values">{stats.poorCard}</span>
             </IonCardTitle>
           </IonCardContent>
         </IonCard>

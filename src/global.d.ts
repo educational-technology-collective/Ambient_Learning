@@ -73,4 +73,16 @@ declare global {
     tapResult: string;
     swipeResult: string;
   }
+
+  interface statistics {
+    total: number;
+    duration: number;
+    correct: number;
+    incorrect: number;
+    skipped: number;
+    know: number;
+    dontKnow: number;
+    oneMore: number;
+    poorCard: number
+  }
 }
