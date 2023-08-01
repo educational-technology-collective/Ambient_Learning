@@ -6,7 +6,7 @@ import "./Button.css";
 const LogOutButton: React.FC = () => {
   const isPhone: boolean = isPlatform("hybrid");
   const logoutUri = isPhone
-    ? "ionic.srs://login"
+    ? "com.etc.ambientlearning://login"
     : "http://localhost:8100/login";
 
   const { logout } = useAuth0();

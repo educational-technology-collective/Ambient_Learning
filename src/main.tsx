@@ -8,7 +8,7 @@ const container = document.getElementById("root");
 const root = createRoot(container!);
 const isPhone = isPlatform("hybrid");
 const callBackUri = isPhone
-  ? "ionic.srs://dev-cra0zttj8xlwi6sh.us.auth0.com/capacitor/ionic.srs/callback/"
+  ? "com.etc.ambientlearning://dev-cra0zttj8xlwi6sh.us.auth0.com/capacitor/com.etc.ambientlearning/callback/"
   : "http://localhost:8100";
 
 root.render(
