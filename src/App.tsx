@@ -16,6 +16,7 @@ import Home from "./pages/Home";
 import "./pages/Home.css";
 import "./App.css";
 import { CapacitorHttp } from "@capacitor/core";
+import { PushNotificationSchema, PushNotifications, Token, ActionPerformed } from '@capacitor/push-notifications';
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
