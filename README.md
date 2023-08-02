@@ -1,4 +1,4 @@
-# StorMind (Space-Repeition-App)
+# Ambient Learning Mobile App
 
 ## Description
 This is a mobile-app for space-repetition learning.  
