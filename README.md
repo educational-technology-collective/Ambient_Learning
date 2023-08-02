@@ -48,6 +48,12 @@ cd srs-mobile
 npm install react-icons --save
 ```
 
+**Install Capacitor Assets**: Used for app icon
+```
+cd srs-mobile
+npm install --save-dev @capacitor/assets
+```
+
 ## Run
 After you have set up the repo in your local directory. Run the following commands to try the app:
 ```
