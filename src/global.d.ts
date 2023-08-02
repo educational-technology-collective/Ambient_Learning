@@ -83,6 +83,6 @@ declare global {
     know: number;
     dontKnow: number;
     oneMore: number;
-    poorCard: number
+    poorCard: number;
   }
 }
