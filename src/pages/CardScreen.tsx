@@ -20,8 +20,8 @@ const CardScreen: React.FC<{
   stats: statistics;
   cardCol: flashCard[][];
   putLogInfo: (event: action, endTime: string | null) => void;
-  swipeNextCard: (tupleIndex: number, event: action) => void;
-  swipeOneMoreCard: (tupleIndex: number, event: action) => void;
+  swipeNextCard: (tupleIndex: number, event: action, lm_id: string, latestRecord: latestResult) => void;
+  swipeOneMoreCard: (tupleIndex: number, event: action, lm_id: string, latestRecord: latestResult) => void;
   handleStatisticsUpdate: (testEval: string, selfEval: string) => void;
 }> = ({
   finished,

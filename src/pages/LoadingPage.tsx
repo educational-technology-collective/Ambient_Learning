@@ -80,14 +80,14 @@ const LoadingPage: React.FC<{
   };
 
   // Function that create the document of the user in the database and navigate to info page
-  const postUser = async () => {
-    const response = await CapacitorHttp.post({
-      url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/users/${user?.email}`,
-      headers: { authorization: `Bearer ${accessToken}` },
-    });
-    console.log("Post User Response", response);
-    setTimeout(navigateToInfoScreen, 100);
-  };
+  // const postUser = async () => {
+  //   const response = await CapacitorHttp.post({
+  //     url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/users/${user?.email}`,
+  //     headers: { authorization: `Bearer ${accessToken}` },
+  //   });
+  //   console.log("Post User Response", response);
+  //   setTimeout(navigateToInfoScreen, 100);
+  // };
 
   useEffect(() => {
     // When still showing loading component, set a timeout of 4.5s
@@ -100,7 +100,7 @@ const LoadingPage: React.FC<{
       }
       // If there is no this user in the database
       else if (noUser) {
-        postUser();
+        setTimeout(navigateToInfoScreen, 100);
       }
       // If there is user, but the user never has any cards
       else if (noCardsInDb) {

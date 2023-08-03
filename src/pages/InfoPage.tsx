@@ -3,6 +3,7 @@ import "./InfoPage.css";
 import { hideBar } from "../utilities/showTabBar";
 import logo from '../../assets/logo.png'
 import {SiJupyter, SiGooglechrome} from 'react-icons/si'
+import LogOutButton from "../ButtonComp/LogOutButton";
 const InfoPage: React.FC = () => {
   // Hide the bottom tabs whene entering the page
   useIonViewWillEnter(hideBar);
@@ -30,6 +31,7 @@ const InfoPage: React.FC = () => {
           >
             Click me for Jupyter
           </a>
+          <LogOutButton />
         </div>
       </IonContent>
     </IonPage>

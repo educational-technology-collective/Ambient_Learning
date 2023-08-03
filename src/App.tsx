@@ -236,13 +236,8 @@ const App: React.FC = () => {
       // If fetching successfully(status not equal to 500)
       if (response.status !== 500) {
         // See how many cards in total the user has in the database
-        const lengthCards = data.numCardsInDb;
-        if (!lengthCards) {
-          setNoCardsInDb(true);
-        }
-
         // If there is card available. Update the info
-        const cards = data.cards;
+        const cards = data;
         if (cards.length !== 0) {
           setCards(cards);
           setTotal(cards.length);
@@ -254,7 +249,10 @@ const App: React.FC = () => {
       else if (data === "no user found") {
         console.log("No User");
         setNoUser(true);
-      } else {
+      } else if(data === 'user has no lms'){
+        setNoCardsInDb(true);
+      }
+      else {
         console.log("There is Error");
         setError(true);
       }
@@ -268,7 +266,7 @@ const App: React.FC = () => {
   useEffect(() => {
     if (userId !== "") {
       getCards(
-        `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/users/${userId}/flashcards/all`
+        `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/${userId}/flashcards/now`
       );
     }
   }, [userId]);
@@ -307,14 +305,14 @@ const App: React.FC = () => {
   };
 
   // Function that update the card information
-  const putCardInfo = async (fc_id: string, latestRecord: latestResult) => {
+  const putCardInfo = async (lm_id: string, latestRecord: latestResult) => {
     // Pass the card's id and the latest review result including tapResult and swipeResult
     const dataStream = {
-      fc_id: fc_id,
+      lm_id: lm_id,
       latestRecord: latestRecord,
     };
     const response = await CapacitorHttp.put({
-      url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/users/${userId}/flashcards`,
+      url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/${userId}/${lm_id}`,
       data: dataStream,
       headers: {
         "content-type": "application/json",
@@ -326,7 +324,7 @@ const App: React.FC = () => {
   };
 
   // Logic to Move On to Next Card
-  const swipeNextCard = (tupleIndex: number, event: action) => {
+  const swipeNextCard = (tupleIndex: number, event: action, lm_id: string, latestRecord: latestResult) => {
     // Increment the number of finished cards and the counter of displaying card
     setFinished((prevFinished: number) => prevFinished + 1);
     setCounter((prevCounter: number) => prevCounter - 1);
@@ -340,6 +338,9 @@ const App: React.FC = () => {
     // Log Info for Positive/No More/Negative
     putLogInfo(event, null);
 
+    // Log Info for swiping cards
+    putCardInfo(lm_id, latestRecord);
+
     // Log Session is Finished. 350ms delay so it's logged last
     if (finished === total - 1) {
       setTimeout(
@@ -350,9 +351,11 @@ const App: React.FC = () => {
   };
 
   // Function that swipes for one more card
-  const swipeOneMoreCard = (tupleIndex: number, event: action) => {
+  const swipeOneMoreCard = (tupleIndex: number, event: action, lm_id: string, latestRecord: latestResult) => {
     // Log One More Info
     putLogInfo(event, null);
+
+    putCardInfo(lm_id, latestRecord);
 
     // If there is no more card available for this card
     if (tupleCounter === 1) {

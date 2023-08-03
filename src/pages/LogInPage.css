@@ -87,7 +87,7 @@
   color: azure;
   opacity: 0;
   animation: showDescription 1100ms forwards;
-  animation-delay: 1350ms;
+  animation-delay: 200ms;
   margin-bottom: 0.5em;
 }
 

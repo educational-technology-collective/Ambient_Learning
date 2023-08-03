@@ -71,7 +71,7 @@
   opacity: 0;
   bottom: 20%;
   animation: displayButton 1100ms ease-out forwards;
-  animation-delay: 1350ms;
+  animation-delay: 500ms;
 }
 
 .logout-button {
