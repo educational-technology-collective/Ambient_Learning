@@ -129,3 +129,29 @@ MCQ Card question always takes 60% */
 .back-number {
   right: 2%;
 }
+
+
+.front-mark{
+  right: 22px;
+}
+
+
+.onemore-mark{
+  position: absolute;
+  width: 4.5%;
+  font-size: 1em;
+  font-weight: 900;
+  margin-bottom: 0;
+  color: gray;
+  top: 30px;
+  text-align: center;
+  backface-visibility: hidden;
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: snow;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

@@ -5,7 +5,11 @@ import DashBoard from "../HomeComp/DashBoard";
 import AppNameHeader from "./AppNameHeader";
 import LogOutButton from "../ButtonComp/LogOutButton";
 import { useAuth0 } from "@auth0/auth0-react";
-import TutorialPortal from "../HomeComp/TutorialPortal";
+import { useState } from "react";
+import FeedbackModal from "./FeedbackModal";
+import logo from '../../assets/logo.png'
+import { MdQuestionMark } from "react-icons/md";
+import '../HomeComp/TutorialPortal.css'
 
 const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
   cardsLeft,
@@ -23,6 +27,16 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
 
   const navigateToTutorialScreen = () => {
     history.push('/tutorial');
+  }
+
+  const [showFeedBack, setFeedBack] = useState(false);
+  console.log(showFeedBack);
+  const openQuestion = () => {
+    setFeedBack(true)
+  }
+
+  const closeQuestion = () => {
+    setFeedBack(false);
   }
 
   // Determine The Box-Shadow Effect based on cards remaining
@@ -49,7 +63,14 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
       <IonContent scrollY={false} className="home-content">
         <div className="home-loaded-wrapper">
           {/* Icon and Tutorial Portal */}
-          <TutorialPortal />
+          <div className="top-container">
+      <img src={logo} alt="logo" className="logo-img"/>
+      <IonCard className="tutorial-card" onClick={openQuestion}>
+        <IonCardContent className="tutorial-card-content">
+          <MdQuestionMark size="1.5em" />
+        </IonCardContent>
+      </IonCard>
+    </div>
 
           {/* Welcome User */}
           <h1 className="user-name">Hey, {user?.name}</h1>
@@ -68,7 +89,9 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
           </IonCard>
           <LogOutButton />
         </div>
+        
       </IonContent>
+      {showFeedBack? <FeedbackModal fc_id={undefined} closeQuestion={closeQuestion}/> : null}
     </IonPage>
   );
 };
