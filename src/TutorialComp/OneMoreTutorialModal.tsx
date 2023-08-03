@@ -8,7 +8,7 @@ const OneMoreTutorialModal: React.FC = () => {
       {/* Modal including the description text */}
       <div className="onemore-modal">
         <div className="onemore-modal-text">
-          Number At Top-Right Indicates Number of Same Concept Cards
+          Number At Top-Left Indicates Number of Same Concept Cards
         </div>
       </div>
     </div>

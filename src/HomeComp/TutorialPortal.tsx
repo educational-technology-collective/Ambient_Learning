@@ -1,6 +1,5 @@
 import { IonCard, IonCardContent, IonIcon } from "@ionic/react";
 import "./TutorialPortal.css";
-import { diamond } from "ionicons/icons";
 import { MdQuestionMark } from "react-icons/md";
 import { useHistory } from "react-router";
 import logo from '../../assets/logo.png'

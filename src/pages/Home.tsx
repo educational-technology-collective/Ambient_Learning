@@ -1,4 +1,4 @@
-import { IonContent, IonPage } from "@ionic/react";
+import { IonCard, IonCardContent, IonContent, IonPage, IonTitle } from "@ionic/react";
 import "./Home.css";
 import { useHistory } from "react-router-dom";
 import DashBoard from "../HomeComp/DashBoard";
@@ -20,6 +20,10 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
     history.push("/cardscreen");
     handleCardScreen();
   };
+
+  const navigateToTutorialScreen = () => {
+    history.push('/tutorial');
+  }
 
   // Determine The Box-Shadow Effect based on cards remaining
   let shadow: string;
@@ -57,6 +61,11 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
             navigateToCardScreen={navigateToCardScreen}
           />
 
+          <IonCard className="tutorial-button" onClick={navigateToTutorialScreen}>
+            <IonCardContent>
+              <IonTitle>Tutorial</IonTitle>
+            </IonCardContent>
+          </IonCard>
           <LogOutButton />
         </div>
       </IonContent>

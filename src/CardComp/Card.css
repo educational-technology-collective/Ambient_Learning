@@ -123,9 +123,9 @@ MCQ Card question always takes 60% */
 
 /* The position for the number indicator in front and in back */
 .front-number {
-  right: 2%;
+  left: 2%;
 }
 
 .back-number {
-  left: 2%;
+  right: 2%;
 }
