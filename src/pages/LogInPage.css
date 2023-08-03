@@ -113,3 +113,9 @@
 .login-logo{
   margin-top: 4rem;
 }
+
+.acknowledgement {
+  font-size: 0.2rem;
+  position: absolute;
+  bottom: 1rem;
+}
