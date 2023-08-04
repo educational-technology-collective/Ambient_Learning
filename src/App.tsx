@@ -53,6 +53,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import TutorialPage from "./pages/TutorialPage";
 import ErrorPage from "./pages/ErrorPage";
 import InfoPage from "./pages/InfoPage";
+import { collectionCard } from "./utilities/initialCardsAmbientDev";
 setupIonicReact({
   swipeBackEnabled: false,
 });
@@ -246,13 +247,37 @@ const App: React.FC = () => {
           setCounter(cards.length);
           setTupleCounter(cards[cards.length - 1].length);
         }
+        else{
+          // *** DEVELOPMENT:
+        const cards : any = collectionCard;
+        setCards(cards);
+          setTotal(cards.length);
+          setCounter(cards.length);
+          setTupleCounter(cards[cards.length - 1].length);
+        }
       }
       // If ther is no this user in the database
       else if (data === "no user found") {
         console.log("No User");
         setNoUser(true);
+
+        // *** DEVELOPMENT:
+        const cards : any = collectionCard;
+        setCards(cards);
+          setTotal(cards.length);
+          setCounter(cards.length);
+          setTupleCounter(cards[cards.length - 1].length);
+
       } else if(data === 'user has no lms'){
         setNoCardsInDb(true);
+
+        // *** DEVELOPMENT:
+        const cards : any = collectionCard;
+        setCards(cards);
+          setTotal(cards.length);
+          setCounter(cards.length);
+          setTupleCounter(cards[cards.length - 1].length);
+
       }
       else {
         console.log("There is Error");
