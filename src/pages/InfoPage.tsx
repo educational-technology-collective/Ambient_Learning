@@ -1,13 +1,20 @@
-import { IonContent, IonPage, useIonViewWillEnter } from "@ionic/react";
+import { IonContent, IonPage, useIonViewWillEnter, useIonViewWillLeave } from "@ionic/react";
 import "./InfoPage.css";
-import { hideBar } from "../utilities/showTabBar";
+import { hideBar, showBar } from "../utilities/showTabBar";
 import logo from '../../assets/logo.png'
 import {SiJupyter, SiGooglechrome} from 'react-icons/si'
 import LogOutButton from "../ButtonComp/LogOutButton";
+import { useHistory } from "react-router";
 const InfoPage: React.FC = () => {
   // Hide the bottom tabs whene entering the page
   useIonViewWillEnter(hideBar);
 
+  useIonViewWillLeave(showBar)
+
+  const history = useHistory();
+  const buttonHandler = () => {
+    history.push('/home');
+  }
   return (
     <IonPage>
       <IonContent fullscreen className="info-content">
@@ -31,7 +38,9 @@ const InfoPage: React.FC = () => {
           >
             Click me for Jupyter
           </a>
-          <LogOutButton />
+          <button className="grad-button home-button" onClick={buttonHandler}>
+      Return to Home
+    </button>
         </div>
       </IonContent>
     </IonPage>

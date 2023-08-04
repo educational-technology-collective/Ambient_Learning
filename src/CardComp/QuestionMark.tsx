@@ -20,7 +20,7 @@ const QuestionMark: React.FC<{openQuestion: () => void}> = ({
   return (
     <>
       {/* Front Side Indicator */}
-      <a onClick={(e) => {console.log('clicking'); openQuestion(); e.stopPropagation(); }} className="onemore-mark front-text front-mark" id="frontMark">
+      <a onClick={(e) => {openQuestion(); e.stopPropagation(); }} className="onemore-mark front-text front-mark" id="frontMark">
         <MdQuestionMark className="question-mark"/>
       </a>
       {/* Back Side Indicator

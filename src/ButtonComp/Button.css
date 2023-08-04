@@ -98,3 +98,17 @@
     opacity: 1;
   }
 }
+
+.home-button{
+  background-image: linear-gradient(
+    to right,
+    #02aab0 0%,
+    #00cdac 51%,
+    #02aab0 100%
+  );
+  width: 65%;
+  height: 10%;
+  margin-left: 0.5em;
+  margin-top: 2rem;
+  padding: 4px 8px;
+}

@@ -151,7 +151,9 @@
 
 .close-icon{
   position: absolute;
-  top: 2%;
-  right: 5%;
+  margin-top: 13%;
+  margin-right: 5%;
+  top: 0;
+  right: 0;
   color: white;
 }
