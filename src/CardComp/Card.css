@@ -14,6 +14,9 @@
   position: relative;
   opacity: 1;
   box-shadow: rgba(0, 0, 0,0.1) 0px 4px 6px;
+  margin-inline: 16px;
+  margin-top: 24px;
+  margin-bottom: 24px;
 }
 
 /* The content styling for the cards */
@@ -132,7 +135,7 @@ MCQ Card question always takes 60% */
 
 
 .front-mark{
-  right: 22px;
+  right: 24px;
 }
 
 
@@ -143,13 +146,12 @@ MCQ Card question always takes 60% */
   font-weight: 900;
   margin-bottom: 0;
   color: gray;
-  top: 30px;
+  top: 32px;
   text-align: center;
   backface-visibility: hidden;
   border: 2px solid black;
   border-radius: 5px;
   background-color: snow;
-  z-index: 10;
   display: flex;
   justify-content: center;
   align-items: center;

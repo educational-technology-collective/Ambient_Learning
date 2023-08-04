@@ -15,11 +15,27 @@ import {
 import { MdDoneOutline, MdOutlineClose } from "react-icons/md";
 import { FaPoop } from "react-icons/fa";
 import "./Statistics.css";
+import { MdQuestionMark } from "react-icons/md";
+import { useState } from "react";
+import FeedbackModal from "../pages/FeedbackModal";
+const Statistics: React.FC<{ stats: statistics}> = ({ stats}) => {
+  const [showFeedBack, setFeedBack] = useState(false);
+  const openQuestion = () => {
+    setFeedBack(true);
+  }
 
-const Statistics: React.FC<{ stats: statistics }> = ({ stats }) => {
+  const closeQuestion = () => {
+    setFeedBack(false);
+  }
   return (
+    <>
     <IonContent scrollY={true} className="statistics-content">
       <h2 className="statistics-title">Session Overview</h2>
+      <IonCard className="tutorial-card" onClick={openQuestion}>
+        <IonCardContent className="tutorial-card-content">
+          <MdQuestionMark size="1.5em" />
+        </IonCardContent>
+      </IonCard>
       <div className="statistics-container">
         <IonCard className="statistics-card">
           <IonCardContent>
@@ -105,8 +121,10 @@ const Statistics: React.FC<{ stats: statistics }> = ({ stats }) => {
             </IonCardTitle>
           </IonCardContent>
         </IonCard>
-      </div>
+      </div>   
     </IonContent>
+    {showFeedBack? <FeedbackModal fc_id={undefined} closeQuestion={closeQuestion} /> : null}
+    </>
   );
 };
 

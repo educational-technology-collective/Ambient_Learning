@@ -1,17 +1,32 @@
-import { IonPage, IonContent, useIonViewWillEnter } from "@ionic/react";
+import { IonPage, IonContent, useIonViewWillEnter, IonCard, IonCardContent } from "@ionic/react";
 import "./LogInPage.css";
 import LogInButton from "../ButtonComp/LogInButton";
 import { hideBar } from "../utilities/showTabBar";
 import spacecraft from "../../spacecraft.svg";
 import logo from '../../assets/logo.png'
+import { MdQuestionMark } from "react-icons/md";
+import { useState } from "react";
+import FeedbackModal from "./FeedbackModal";
 
 const LogInPage: React.FC = () => {
   // Hide the bottom tabs when entering the login page
   useIonViewWillEnter(hideBar);
 
-  return (
+  const [showFeedBack, setFeedBack] = useState(false);
+  const openQuestion = () => {
+    setFeedBack(true);
+  }
+  const closeQuestion = () => {
+    setFeedBack(false);
+  }
+    return (
     <IonPage>
       <IonContent scrollY={false} className="login-content">
+      <IonCard className="tutorial-card" onClick={openQuestion}>
+        <IonCardContent className="tutorial-card-content">
+          <MdQuestionMark size="1.5em" />
+        </IonCardContent>
+      </IonCard>
         <div className="login-page-container">
           <img src={logo} alt="logo" className="login-logo" />
 
@@ -36,6 +51,7 @@ const LogInPage: React.FC = () => {
 
         </div>
       </IonContent>
+      {showFeedBack ? <FeedbackModal fc_id={undefined} closeQuestion={closeQuestion} />: null}
     </IonPage>
   );
 };
