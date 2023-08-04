@@ -203,13 +203,15 @@ const App: React.FC = () => {
 
   // Initialize the Log Info if the user is signed and cardcollection is not empty
   useEffect(() => {
-    if (isAuthenticated && total && accessToken !== "" && userId !== "") {
+    if (isAuthenticated && accessToken !== "" && userId !== "") {
       getLatestRecord(
         userId,
         accessToken,
+        total,
         handleStartTime,
         handleReadyLog,
-        handleStatisticsUpdate
+        handleDuration,
+        handleStatisticsUpdate,
       );
     }
   }, [isAuthenticated, isFetched, accessToken]);
