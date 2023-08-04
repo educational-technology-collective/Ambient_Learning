@@ -52,7 +52,7 @@ const InfoPage: React.FC = () => {
             Click me for Jupyter
           </a>
           <button className="grad-button home-button" onClick={buttonHandler}>
-            Return to Home
+            Go to Home
           </button>
         </div>
       </IonContent>
