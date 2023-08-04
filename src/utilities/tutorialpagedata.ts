@@ -50,7 +50,7 @@ export const cards = [
       type: "qa",
       content: {
         question:
-          "Hello there! Welocome to Tutorial! Tap this QA(Question & Answer) card to reveal the answer.\n\n Then Swipe!",
+          "Hello there! Welcome to Tutorial! Tap this QA(Question & Answer) card to reveal the answer.\n\n Then Swipe!",
         answer: "Great Job! Swipe Right to indicate you know the card!!!",
       },
     },

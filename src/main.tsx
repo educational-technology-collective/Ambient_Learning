@@ -8,20 +8,20 @@ const container = document.getElementById("root");
 const root = createRoot(container!);
 const isPhone = isPlatform("hybrid");
 const callBackUri = isPhone
-  ? "ionic.srs://dev-cra0zttj8xlwi6sh.us.auth0.com/capacitor/ionic.srs/callback/"
+  ? "com.etc.ambientlearning://ambient-learning.us.auth0.com/capacitor/com.etc.ambientlearning/callback/"
   : "http://localhost:8100";
 
 root.render(
   <React.StrictMode>
     <Auth0Provider
-      domain="dev-cra0zttj8xlwi6sh.us.auth0.com"
-      clientId="FL6nEaabdViQCGWXTsfGl0DVwKfBnBNy"
+      domain="ambient-learning.us.auth0.com"
+      clientId="ZjoTnJ5njIZk4iSTq3DpGHVuVUTQKiTF"
       useRefreshTokens={true}
       useRefreshTokensFallback={false}
       cacheLocation="localstorage"
       authorizationParams={{
         redirect_uri: callBackUri,
-        audience: "https://auth0-jwt-authorizer",
+        audience: "https://ambient-aws-api-paladin",
       }}
     >
       <App />

@@ -1,11 +1,11 @@
 /* Background color for the tab bar */
 .tab-bar {
   /* --background: #0056d2; */
-  --background: #A4C2A5;
+  --background: #f4f4f4;
 }
 
 /* Colors for the icons on the bar */
 .icons {
-  --color: aliceblue;
-  --color-selected: aquamarine;
+  --color: darkgray;
+  --color-selected: gray;
 }

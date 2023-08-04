@@ -5,7 +5,7 @@ const AppNameHeader: React.FC = () => {
   return (
     <IonHeader color="tertiary">
       <IonToolbar>
-        <IonTitle className="title">StorMind</IonTitle>
+        <IonTitle className="title">Ambient</IonTitle>
       </IonToolbar>
     </IonHeader>
   );

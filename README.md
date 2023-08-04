@@ -1,4 +1,4 @@
-# StorMind (Space-Repeition-App)
+# Ambient Learning Mobile App
 
 ## Description
 This is a mobile-app for space-repetition learning.  
@@ -46,6 +46,12 @@ npm install react-markdown
 ```
 cd srs-mobile
 npm install react-icons --save
+```
+
+**Install Capacitor Assets**: Used for app icon
+```
+cd srs-mobile
+npm install --save-dev @capacitor/assets
 ```
 
 ## Run
@@ -126,3 +132,4 @@ Yunxuan "Haytham" Tang —— [yunxuant@umich.edu](mailto:yunxuant@umich.edu)
 * [Prof. Christopher Brooks —— University of Michigan School of Information](https://www.si.umich.edu/people/christopher-brooks)
 * [Educational Technology Collective —— University of Michigan School of Information](https://edtech.labs.si.umich.edu/)
 * [Mann —— Designer of Error Image](https://www.inspirationde.com/image/60019/)
+* [588ku —— Designer of App Icon](https://pngtree.com/freepng/red-maple-tree_4742154.html?share=3)

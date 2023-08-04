@@ -8,6 +8,8 @@ import QA from "./QA";
 import { enableGesture } from "../utilities/gesture";
 import { putSwipe } from "../utilities/logfunction";
 import NumberIndicator from "./NumberIndicator";
+import FeedbackModal from "../pages/FeedbackModal";
+import QuestionMark from "./QuestionMark";
 
 const Card: React.FC<{
   obj: flashCard;
@@ -15,8 +17,9 @@ const Card: React.FC<{
   cardIndex: number;
   tupleIndex: number;
   tupleCounter: number;
-  moveOn: (tupleIndex: number, event: action) => void;
-  oneMore: (tupleIndex: number, event: action) => void;
+  handleStatisticsUpdate: (testEval: string, selfEval: string) => void;
+  moveOn: (tupleIndex: number, event: action, lm_id: string, latestRecord: latestResult) => void;
+  oneMore: (tupleIndex: number, event: action, lm_id: string, latestRecord: latestResult) => void;
   refTuple: React.RefObject<HTMLInputElement>;
 }> = ({
   obj,
@@ -24,6 +27,7 @@ const Card: React.FC<{
   cardIndex,
   tupleIndex,
   tupleCounter,
+  handleStatisticsUpdate,
   moveOn,
   oneMore,
   refTuple,
@@ -34,6 +38,19 @@ const Card: React.FC<{
   // This isClicked is for the tap of the card
   const [isClicked, setIsClicked] = useState(false);
 
+
+  const [showFeedBack, setShowFeedback] = useState(false);
+  const openQuestion = () => {
+    console.log('Openquestion')
+    setShowFeedback(true);
+  }
+  console.log(showFeedBack);
+
+  const closeQuestion = () => {
+    setShowFeedback(false);
+  }
+
+  
   // Transform with 180 degree flipping
   const style = isClicked
     ? { transform: "rotateY(180deg)", background: "rgba(251,255,236,1)" }
@@ -99,6 +116,7 @@ const Card: React.FC<{
       cardIndex,
       tupleLength,
       tupleIndex,
+      handleStatisticsUpdate,
       moveOn
     );
   };
@@ -114,6 +132,7 @@ const Card: React.FC<{
       cardIndex,
       tupleLength,
       tupleIndex,
+      handleStatisticsUpdate,
       moveOn
     );
   };
@@ -129,6 +148,7 @@ const Card: React.FC<{
       cardIndex,
       tupleLength,
       tupleIndex,
+      handleStatisticsUpdate,
       oneMore
     );
   };
@@ -144,6 +164,7 @@ const Card: React.FC<{
       cardIndex,
       tupleLength,
       tupleIndex,
+      handleStatisticsUpdate,
       moveOn
     );
   };
@@ -159,6 +180,7 @@ const Card: React.FC<{
       cardIndex,
       tupleLength,
       tupleIndex,
+      handleStatisticsUpdate,
       moveOn
     );
   };
@@ -201,6 +223,7 @@ const Card: React.FC<{
 
   // Component Being Rendered
   return (
+    <>
     <div className="card-wrapper" ref={ref}>
       <IonCard
         className="card-container"
@@ -221,7 +244,11 @@ const Card: React.FC<{
           <BackIndicator indicatorOpacity={indicatorOpacity} />
         </div>
       </IonCard>
+      <QuestionMark openQuestion={openQuestion}/>
+      
     </div>
+    {showFeedBack? <FeedbackModal fc_id={obj._id} closeQuestion={closeQuestion} />: null }
+    </>
   );
 };
 

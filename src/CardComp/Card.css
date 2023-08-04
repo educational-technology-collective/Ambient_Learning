@@ -14,6 +14,9 @@
   position: relative;
   opacity: 1;
   box-shadow: rgba(0, 0, 0,0.1) 0px 4px 6px;
+  margin-inline: 16px;
+  margin-top: 24px;
+  margin-bottom: 24px;
 }
 
 /* The content styling for the cards */
@@ -123,9 +126,34 @@ MCQ Card question always takes 60% */
 
 /* The position for the number indicator in front and in back */
 .front-number {
-  right: 2%;
+  left: 2%;
 }
 
 .back-number {
-  left: 2%;
+  right: 2%;
 }
+
+
+.front-mark{
+  right: 24px;
+}
+
+
+.onemore-mark{
+  position: absolute;
+  width: 4.5%;
+  font-size: 1em;
+  font-weight: 900;
+  margin-bottom: 0;
+  color: gray;
+  top: 32px;
+  text-align: center;
+  backface-visibility: hidden;
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: snow;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

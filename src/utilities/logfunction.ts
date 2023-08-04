@@ -12,46 +12,68 @@ import { CapacitorHttp } from "@capacitor/core";
 export const getLatestRecord = async (
   userId: string,
   accessToken: string,
+  total: number,
   handleStartTime: (time: string) => void,
-  handleReadyLog: () => void
+  handleReadyLog: () => void,
+  handleDuration: (minutes: number ) => void,
+  handleStatisticsUpdate: (testEval: string, selfEval: string) => void
 ) => {
   const response = await CapacitorHttp.get({
     url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?userId=${userId}`,
   });
+  console.log('Response', response);
   const data = await JSON.parse(response.data);
-
+console.log('data', data)
   // Check to see if there is a record not done yet in the database
-  if (data.new) {
-    localStorage.setItem("stats", JSON.stringify([0, 0, 0, 0, 0, 0, 0]));
+  if (data.new && total) {
     // Create a new record if there isn't
     postInitialize(userId, accessToken, handleStartTime);
   }
   // If there is available record, push a resume action to the database
   else {
-    handleStartTime(data.startTime);
+    const session = data.session;
+    handleStartTime(session.startTime);
 
-    const event = {
-      eventName: "resume",
-      eventTime: new Date().toISOString(),
-      lm_id: null,
-      selfEval: null,
-      testEval: null,
-      isBuffer: null,
-    };
-    const dataStream = {
-      action: event,
-      endTime: null,
-    };
-    const responseResume = await CapacitorHttp.put({
-      url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?userId=${userId}&startTime=${data.startTime}`,
-      data: dataStream,
-      headers: {
-        "content-type": "application/json",
-        authorization: `Bearer ${accessToken}`,
-      },
+    if(total)
+    {
+      const event = {
+        eventName: "resume",
+        eventTime: new Date().toISOString(),
+        lm_id: null,
+        selfEval: null,
+        testEval: null,
+        isBuffer: null,
+      };
+      const dataStream = {
+        action: event,
+        endTime: null,
+      };
+      const responseResume = await CapacitorHttp.put({
+        url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?userId=${userId}&startTime=${data.startTime}`,
+        data: dataStream,
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${accessToken}`,
+        },
+      });
+      // Keep this for debugging purpose. Will be removed for production
+      console.log("Put Resume", responseResume);
+    }
+    if(session.endTime){
+      const time = new Date(session.endTime).getTime() - new Date(session.startTime).getTime();
+      const diff = Math.ceil(time / 60000);
+      handleDuration(diff);
+    }
+    const actionContainer = session.actionContainer;
+    actionContainer.forEach((event: action) => {
+      if (
+        (event.eventName[0] === "s" || event.eventName[0] === "n") &&
+        event.testEval !== null &&
+        event.selfEval
+      ) {
+        handleStatisticsUpdate(event.testEval, event.selfEval);
+      }
     });
-    // Keep this for debugging purpose. Will be removed for production
-    console.log("Put Resume", responseResume);
   }
   // Function that sets readyLog to be true so we can leave loading page
   handleReadyLog();
@@ -117,6 +139,7 @@ export const putSwipe = (
   cardIndex: number,
   tupleLength: number,
   tupleIndex: number,
+  handleStatisticsUpdate: (testEval: string, selfEval: string) => void,
   nextCardFunc: (
     tupleIndex: number,
     event: action,
@@ -157,29 +180,7 @@ export const putSwipe = (
     tapResult: machineEvaluation,
     swipeResult: selfEvaluation,
   };
-
-  let stringArray = localStorage.getItem("stats");
-  if (stringArray) {
-    let array = JSON.parse(stringArray);
-    if (machineEvaluation === "correct") {
-      array[0]++;
-    } else if (machineEvaluation === "incorrect") {
-      array[1]++;
-    } else if (machineEvaluation === "skipped") {
-      array[2]++;
-    }
-
-    if (selfEvaluation === "know") {
-      array[3]++;
-    } else if (selfEvaluation === "dontKnow") {
-      array[4]++;
-    } else if (selfEvaluation === "oneMore") {
-      array[5]++;
-    } else {
-      array[6]++;
-    }
-    localStorage.setItem("stats", JSON.stringify(array));
-  }
+  handleStatisticsUpdate(machineEvaluation, selfEvaluation);
   nextCardFunc(tupleIndex, event, lmId, latestRecord);
 };
 
@@ -199,7 +200,7 @@ export const putSessionFinished = (
   };
   const startTimeObj = new Date(startTime);
   const diff = new Date().getTime() - startTimeObj.getTime();
-  const minutes = Math.floor(diff / 60000);
+  const minutes = Math.ceil(diff / 60000);
   handleDuration(minutes);
   putLogInfo(event, new Date().toISOString());
 };

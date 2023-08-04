@@ -16,6 +16,12 @@ import Home from "./pages/Home";
 import "./pages/Home.css";
 import "./App.css";
 import { CapacitorHttp } from "@capacitor/core";
+import {
+  PushNotificationSchema,
+  PushNotifications,
+  Token,
+  ActionPerformed,
+} from "@capacitor/push-notifications";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -47,7 +53,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import TutorialPage from "./pages/TutorialPage";
 import ErrorPage from "./pages/ErrorPage";
 import InfoPage from "./pages/InfoPage";
-import Statistics from "./StatisticsComp/Statistics";
+import { collectionCard } from "./utilities/initialCardsAmbientDev";
 setupIonicReact({
   swipeBackEnabled: false,
 });
@@ -77,11 +83,57 @@ const App: React.FC = () => {
   const [userId, setUser] = useState("");
   const [startTime, setTime] = useState("");
 
-  const [duration, setDuration] = useState(0);
+  // State Variable used for session stats
+  const [stats, setStatistics] = useState({
+    total: 0,
+    duration: 0,
+    correct: 0,
+    incorrect: 0,
+    skipped: 0,
+    know: 0,
+    dontKnow: 0,
+    oneMore: 0,
+    poorCard: 0,
+  });
 
+  // Update the stats variable if user swipes
+  const handleStatisticsUpdate = (testEval: string, selfEval: string) => {
+    if (
+      testEval === "correct" ||
+      testEval === "incorrect" ||
+      testEval === "skipped"
+    ) {
+      if (
+        selfEval === "know" ||
+        selfEval === "dontKnow" ||
+        selfEval === "oneMore" ||
+        selfEval === "poorCard"
+      )
+        setStatistics((stats) => ({
+          ...stats,
+          total: stats.total + 1,
+          [testEval]: stats[testEval] + 1,
+          [selfEval]: stats[selfEval] + 1,
+        }));
+    } else {
+      if (
+        selfEval === "know" ||
+        selfEval === "dontKnow" ||
+        selfEval === "oneMore" ||
+        selfEval === "poorCard"
+      )
+        setStatistics((stats) => ({
+          ...stats,
+          total: stats.total + 1,
+          [selfEval]: stats[selfEval] + 1,
+        }));
+    }
+  };
+
+  // Update the session duration when it finishes
   const handleDuration = (minutes: number) => {
-    setDuration(minutes)
-  }
+    setStatistics((stats) => ({ ...stats, duration: minutes }));
+  };
 
   // readyLog used to determine if initialize/resume is logged so we can navigate to card screen
   const [readyLog, setReadyLog] = useState(false);
@@ -152,10 +204,18 @@ const App: React.FC = () => {
 
   // Initialize the Log Info if the user is signed and cardcollection is not empty
   useEffect(() => {
-    if (isAuthenticated && total && accessToken !== "" && userId !== "") {
-      getLatestRecord(userId, accessToken, handleStartTime, handleReadyLog);
+    if (isAuthenticated && accessToken !== "" && userId !== "") {
+      getLatestRecord(
+        userId,
+        accessToken,
+        total,
+        handleStartTime,
+        handleReadyLog,
+        handleDuration,
+        handleStatisticsUpdate,
+      );
     }
-  }, [isAuthenticated, total, accessToken]);
+  }, [isAuthenticated, isFetched, accessToken]);
 
   // State Variable to check if there is error fetching and flagging for redirecting to error page
   const [isError, setError] = useState(false);
@@ -179,15 +239,18 @@ const App: React.FC = () => {
       // If fetching successfully(status not equal to 500)
       if (response.status !== 500) {
         // See how many cards in total the user has in the database
-        const lengthCards = data.numCardsInDb;
-        if (!lengthCards) {
-          setNoCardsInDb(true);
-        }
-
         // If there is card available. Update the info
-        const cards = data.cards;
+        const cards = data;
         if (cards.length !== 0) {
           setCards(cards);
+          setTotal(cards.length);
+          setCounter(cards.length);
+          setTupleCounter(cards[cards.length - 1].length);
+        }
+        else{
+          // *** DEVELOPMENT:
+        const cards : any = collectionCard;
+        setCards(cards);
           setTotal(cards.length);
           setCounter(cards.length);
           setTupleCounter(cards[cards.length - 1].length);
@@ -197,7 +260,26 @@ const App: React.FC = () => {
       else if (data === "no user found") {
         console.log("No User");
         setNoUser(true);
-      } else {
+
+        // *** DEVELOPMENT:
+        const cards : any = collectionCard;
+        setCards(cards);
+          setTotal(cards.length);
+          setCounter(cards.length);
+          setTupleCounter(cards[cards.length - 1].length);
+
+      } else if(data === 'user has no lms'){
+        setNoCardsInDb(true);
+
+        // *** DEVELOPMENT:
+        const cards : any = collectionCard;
+        setCards(cards);
+          setTotal(cards.length);
+          setCounter(cards.length);
+          setTupleCounter(cards[cards.length - 1].length);
+
+      }
+      else {
         console.log("There is Error");
         setError(true);
       }
@@ -211,7 +293,7 @@ const App: React.FC = () => {
   useEffect(() => {
     if (userId !== "") {
       getCards(
-        `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/users/${userId}/flashcards/all`
+        `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/${userId}/flashcards/now`
       );
     }
   }, [userId]);
@@ -239,7 +321,10 @@ const App: React.FC = () => {
 
     // Log Session is Finished. 350ms delay so session finished is logged last
     if (finished === total - 1) {
-      setTimeout(() => putSessionFinished(startTime, handleDuration, putLogInfo), 350);
+      setTimeout(
+        () => putSessionFinished(startTime, handleDuration, putLogInfo),
+        350
+      );
     }
 
     // Set Timeout of 2.2 seconds(consistent with animation time)
@@ -247,14 +332,14 @@ const App: React.FC = () => {
   };
 
   // Function that update the card information
-  const putCardInfo = async (fc_id: string, latestRecord: latestResult) => {
+  const putCardInfo = async (lm_id: string, latestRecord: latestResult) => {
     // Pass the card's id and the latest review result including tapResult and swipeResult
     const dataStream = {
-      fc_id: fc_id,
+      lm_id: lm_id,
       latestRecord: latestRecord,
     };
     const response = await CapacitorHttp.put({
-      url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/users/${userId}/flashcards`,
+      url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/${userId}/${lm_id}`,
       data: dataStream,
       headers: {
         "content-type": "application/json",
@@ -266,10 +351,7 @@ const App: React.FC = () => {
   };
 
   // Logic to Move On to Next Card
-  const swipeNextCard = (
-    tupleIndex: number,
-    event: action,
-  ) => {
+  const swipeNextCard = (tupleIndex: number, event: action, lm_id: string, latestRecord: latestResult) => {
     // Increment the number of finished cards and the counter of displaying card
     setFinished((prevFinished: number) => prevFinished + 1);
     setCounter((prevCounter: number) => prevCounter - 1);
@@ -283,19 +365,24 @@ const App: React.FC = () => {
     // Log Info for Positive/No More/Negative
     putLogInfo(event, null);
 
+    // Log Info for swiping cards
+    putCardInfo(lm_id, latestRecord);
+
     // Log Session is Finished. 350ms delay so it's logged last
     if (finished === total - 1) {
-      setTimeout(() => putSessionFinished(startTime, handleDuration, putLogInfo), 350);
+      setTimeout(
+        () => putSessionFinished(startTime, handleDuration, putLogInfo),
+        350
+      );
     }
   };
 
   // Function that swipes for one more card
-  const swipeOneMoreCard = (
-    tupleIndex: number,
-    event: action,
-  ) => {
+  const swipeOneMoreCard = (tupleIndex: number, event: action, lm_id: string, latestRecord: latestResult) => {
     // Log One More Info
     putLogInfo(event, null);
+
+    putCardInfo(lm_id, latestRecord);
 
     // If there is no more card available for this card
     if (tupleCounter === 1) {
@@ -326,7 +413,7 @@ const App: React.FC = () => {
     return <LogInPage />;
   }
 
-  console.log(localStorage.getItem("stats"));
+  console.log(stats);
 
   return (
     <IonApp>
@@ -356,12 +443,12 @@ const App: React.FC = () => {
                   counter={counter}
                   tupleCounter={tupleCounter}
                   cardCol={cardCol}
+                  stats={stats}
                   isShake={isShake}
-                  duration={duration}
                   putLogInfo={putLogInfo}
                   swipeNextCard={swipeNextCard}
                   swipeOneMoreCard={swipeOneMoreCard}
-                  handleHomeScreen={handleHomeScreen}
+                  handleStatisticsUpdate={handleStatisticsUpdate}
                 />
               )}
             />
@@ -408,10 +495,6 @@ const App: React.FC = () => {
             <Route exact path="/">
               <Redirect to="/loading" />
             </Route>
-
-            {/* <Route exact path='/stats'>
-              <Statistics total={total} startTime={time}/>
-            </Route> */}
           </IonRouterOutlet>
 
           <IonTabBar slot="bottom" className="tab-bar" id="bottom-tab-bar">
