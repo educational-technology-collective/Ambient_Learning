@@ -3,27 +3,24 @@ import './FeedbackModal.css'
 import emailjs from '@emailjs/browser'
 import {ImCross} from 'react-icons/im'
 
-const FeedbackModal: React.FC<{fc_id: string | undefined, closeQuestion: () => void}> = ({fc_id, closeQuestion}) => {
+const FeedbackModal: React.FC<{identifier: string, closeQuestion: () => void}> = ({identifier, closeQuestion}) => {
 
   const form = useRef(null);
 
-  const sendEmail = (e : any) => {
+  const sendFeedback = (e : any) => {
     e.preventDefault();
-    if(form.current)
-      emailjs.sendForm('service_sqrqiwq', 'template_sbqomgm', form.current, 'uIXRdmH3kUyJh3oXm');
-    e.target.reset();
+    console.log(e.target[0].value);
+    closeQuestion();
   }
  console.log('Feedbakcform')
   return(
     <div className="contact contact__container container grid">
         <a onClick={closeQuestion} className="close-icon"><ImCross size='2.5rem'/></a>
-        <form ref={form} onSubmit={sendEmail} className="content__form">
+        <form ref={form} onSubmit={sendFeedback} className="content__form">
             <div className="contact__form-div">
-              <label className="contact__form-tag">Name</label>
-              <input type="text" name='name' className="contact__form-input" placeholder="Insert your name"/>
+              <label className="contact__form-tag">Title</label>
+              <input type="text" name='name' className="contact__form-input" placeholder="What's it about"/>
             </div>
-
-            <input name='fc_id' style={{display: 'none'}} value={fc_id} onChange={() => {}}></input>
 
             <div className="contact__form-div contact__form-area">
               <label className="contact__form-tag">Content</label>

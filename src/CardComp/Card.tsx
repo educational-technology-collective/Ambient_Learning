@@ -247,7 +247,7 @@ const Card: React.FC<{
       <QuestionMark openQuestion={openQuestion}/>
       
     </div>
-    {showFeedBack? <FeedbackModal fc_id={obj._id} closeQuestion={closeQuestion} />: null }
+    {showFeedBack? <FeedbackModal identifier={obj._id} closeQuestion={closeQuestion} />: null }
     </>
   );
 };

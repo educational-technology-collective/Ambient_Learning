@@ -51,7 +51,7 @@ const LogInPage: React.FC = () => {
 
         </div>
       </IonContent>
-      {showFeedBack ? <FeedbackModal fc_id={undefined} closeQuestion={closeQuestion} />: null}
+      {showFeedBack ? <FeedbackModal identifier="Log In" closeQuestion={closeQuestion} />: null}
     </IonPage>
   );
 };
