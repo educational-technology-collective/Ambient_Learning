@@ -1,6 +1,5 @@
 import { useRef } from "react";
 import './FeedbackModal.css'
-import emailjs from '@emailjs/browser'
 import {ImCross} from 'react-icons/im'
 
 const FeedbackModal: React.FC<{identifier: string, closeQuestion: () => void}> = ({identifier, closeQuestion}) => {
