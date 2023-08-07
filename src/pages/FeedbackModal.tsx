@@ -26,12 +26,12 @@ const FeedbackModal: React.FC<{identifier: string, closeQuestion: () => void}> =
 
   const sendFeedback = (e : any) => {
     e.preventDefault();
-    if(e.target[0] && e.target[1]){
+    if(e.target[0].value !== '' && e.target[1].value !== ''){
        postFeedback(e.target[0].value, e.target[1].value);
+       closeQuestion();
     }else{
       alert('Make sure you fill both fields');
     }
-    closeQuestion();
   }
  console.log('Feedbakcform')
   return(
