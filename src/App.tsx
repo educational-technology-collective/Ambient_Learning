@@ -59,7 +59,7 @@ setupIonicReact({
 });
 
 const App: React.FC = () => {
-  const { isAuthenticated, isLoading, user, getAccessTokenSilently } =
+  const { isAuthenticated, isLoading, user, getAccessTokenSilently, getAccessTokenWithPopup } =
     useAuth0();
 
   const { handleRedirectCallback } = useAuth0();
@@ -191,8 +191,14 @@ const App: React.FC = () => {
 
   // Handler Function that get accessToken
   const tokenHandler = async () => {
-    const token = await getAccessTokenSilently();
-    setToken(token);
+    let token;
+    try{
+       token = await getAccessTokenSilently();
+    }catch(e){
+       token = await getAccessTokenWithPopup();
+    }
+    if(token !== undefined)
+      setToken(token);
   };
   // Run useEffect to get token and set user_id as long as isAuthenticated is changed
   useEffect(() => {
@@ -204,7 +210,7 @@ const App: React.FC = () => {
 
   // Initialize the Log Info if the user is signed and cardcollection is not empty
   useEffect(() => {
-    if (isAuthenticated && accessToken !== "" && userId !== "") {
+    if (isAuthenticated && isFetched && accessToken !== "" && userId !== "") {
       getLatestRecord(
         userId,
         accessToken,

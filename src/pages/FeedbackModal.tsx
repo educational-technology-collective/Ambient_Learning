@@ -1,14 +1,36 @@
 import { useRef } from "react";
 import './FeedbackModal.css'
 import {ImCross} from 'react-icons/im'
+import { CapacitorHttp } from "@capacitor/core";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const FeedbackModal: React.FC<{identifier: string, closeQuestion: () => void}> = ({identifier, closeQuestion}) => {
 
   const form = useRef(null);
 
+  const {getAccessTokenSilently} = useAuth0();
+
+  const postFeedback = async (title: string, content: string) => {
+     const accessToken = await getAccessTokenSilently();
+    const body = {
+     title: title,
+     identifier: identifier,
+     content: content
+    }
+    const response = await CapacitorHttp.post({url: 'https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/spaced-rep-dev-feedback-POST', data: body, headers: {
+      "content-type": "application/json",
+      authorization: `Bearer ${accessToken}`,
+    }});
+    console.log('Post Feedback', response);
+  }
+
   const sendFeedback = (e : any) => {
     e.preventDefault();
-    console.log(e.target[0].value);
+    if(e.target[0] && e.target[1]){
+       postFeedback(e.target[0].value, e.target[1].value);
+    }else{
+      alert('Make sure you fill both fields');
+    }
     closeQuestion();
   }
  console.log('Feedbakcform')

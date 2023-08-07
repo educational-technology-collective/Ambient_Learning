@@ -11,7 +11,7 @@
   border: 1px solid black;
   border-radius: 5px;
   background: #fff;
-  box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -49,7 +49,7 @@
 }
 
 .activate {
-  box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.4);
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 /* The first one will be te rightmost card */
