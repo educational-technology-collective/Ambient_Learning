@@ -69,11 +69,16 @@
 }
 
 .card-text pre {
-  background-color: #f6f6f6;
+  background-color: #f2f1f1;
+  font-size: 0.95rem;
+  white-space: pre-wrap;
 }
 
 .card-text code {
-  background: #f6f6f6;
+  white-space: pre-wrap;
+  color: #1b1b1b;
+  background-color: #f2f1f1;
+  font-size: 0.95rem;
 }
 
 /* Front Question Text with 0 degree */

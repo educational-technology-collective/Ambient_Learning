@@ -44,7 +44,6 @@ const Card: React.FC<{
     console.log('Openquestion')
     setShowFeedback(true);
   }
-  console.log(showFeedBack);
 
   const closeQuestion = () => {
     setShowFeedback(false);
