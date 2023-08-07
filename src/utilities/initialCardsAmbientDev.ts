@@ -4,7 +4,7 @@ export const collectionCard = [[{
   "lm_id": "64cc1b076cb44db464e25bcb",
   "visibility": "Development",
   "content": {
-    "question": "What value is printed when the following statement executes?\n   \n   `python\n   \n      print(18 / 4)`",
+    "question": "What value is printed when the following statement executes?\n   \n   `python\n   \n      print(18 / 4)",
     "answer": [
       {
         "option": "4.5",
@@ -35,7 +35,7 @@ export const collectionCard = [[{
   "lm_id": "64cc1b076cb44db464e25bcb",
   "visibility": "Development",
   "content": {
-    "question": "What is printed when the following statements execute?\n   \n   `python\n   \n     x = 12\n     x = x - 1\n     print(x)`",
+    "question": "What is printed when the following statements execute?\n   \n   `python\n   \n     x = 12\n     x = x - 1\n     print(x)",
     "answer": [
       {
         "option": "12",
@@ -62,7 +62,7 @@ export const collectionCard = [[{
   "lm_id": "64cc1b076cb44db464e25bcb",
   "visibility": "Development",
   "content": {
-    "question": "After the following statements, what are the values of `x` and `y`?\n   \n   `python\n   \n     x = 15\n     y = x\n     x = 22`",
+    "question": "After the following statements, what are the values of `x` and `y`?\n   \n   `python\n   \n     x = 15\n     y = x\n     x = 22",
     "answer": [
       {
         "option": "x is 15 and y is 15",
@@ -89,7 +89,7 @@ export const collectionCard = [[{
   "lm_id": "64cc1b076cb44db464e25bcb",
   "visibility": "Development",
   "content": {
-    "question": "What value is printed when the following statement executes?\n   \n   `python\n   \n      print(int(53.785))`",
+    "question": "What value is printed when the following statement executes?\n   \n   python\n   \n      print(int(53.785))",
     "answer": [
       {
         "option": "Nothing is printed. It generates a runtime error.",
@@ -173,7 +173,7 @@ export const collectionCard = [[{
   "lm_id": "64cc1b076cb44db464e25bcb",
   "visibility": "Development",
   "content": {
-    "question": "What is printed by the following statements?\n   \n   `mydict = {\"cat\":12, \"dog\":6, \"elephant\":23, \"bear\":20}\n     yourdict = mydict\n     yourdict[\"elephant\"] = 999\n     print(mydict[\"elephant\"])`",
+    "question": "What is printed by the following statements?\n   \n    mydict = {\"cat\":12, \"dog\":6, \"elephant\":23, \"bear\":20}\n     yourdict = mydict\n     yourdict[\"elephant\"] = 999\n     print(mydict[\"elephant\"])",
     "answer": [
       {
         "option": "23",
@@ -200,7 +200,7 @@ export const collectionCard = [[{
   "lm_id": "64cc1b076cb44db464e25bcb",
   "visibility": "Development",
   "content": {
-    "question": "What does the following code print? \n   \n      `s = \"Pease porridge hot, Pease porridge cold, Pease porridge in the pot nine days old.\"\n      word_list = s.split()\n      print(word_list.count(\"porridge\"))`",
+    "question": "What does the following code print? \n   \n    s = \"Pease porridge hot, Pease porridge cold, Pease porridge in the pot nine days old.\"\n      word_list = s.split()\n      print(word_list.count(\"porridge\"))",
     "answer": [
       {
         "option": "3",

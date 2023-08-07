@@ -30,7 +30,6 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
   }
 
   const [showFeedBack, setFeedBack] = useState(false);
-  console.log(showFeedBack);
   const openQuestion = () => {
     setFeedBack(true)
   }
