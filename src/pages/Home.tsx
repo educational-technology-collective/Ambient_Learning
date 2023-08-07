@@ -91,7 +91,7 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
         </div>
         
       </IonContent>
-      {showFeedBack? <FeedbackModal fc_id={undefined} closeQuestion={closeQuestion}/> : null}
+      {showFeedBack? <FeedbackModal identifier="Home Screen" closeQuestion={closeQuestion}/> : null}
     </IonPage>
   );
 };

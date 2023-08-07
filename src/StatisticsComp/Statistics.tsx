@@ -123,7 +123,7 @@ const Statistics: React.FC<{ stats: statistics}> = ({ stats}) => {
         </IonCard>
       </div>   
     </IonContent>
-    {showFeedBack? <FeedbackModal fc_id={undefined} closeQuestion={closeQuestion} /> : null}
+    {showFeedBack? <FeedbackModal identifier="Statistics Page" closeQuestion={closeQuestion} /> : null}
     </>
   );
 };

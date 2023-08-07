@@ -49,7 +49,7 @@ console.log('data', data)
         endTime: null,
       };
       const responseResume = await CapacitorHttp.put({
-        url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?userId=${userId}&startTime=${data.startTime}`,
+        url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?userId=${userId}&startTime=${session.startTime}`,
         data: dataStream,
         headers: {
           "content-type": "application/json",
