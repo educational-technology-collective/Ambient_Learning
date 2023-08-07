@@ -191,19 +191,24 @@ const App: React.FC = () => {
 
   // Handler Function that get accessToken
   const tokenHandler = async () => {
-    let token;
     try{
-       token = await getAccessTokenSilently();
+       const token = await getAccessTokenSilently();
+       if(token !== undefined)
+        setToken(token);
     }catch(e){
-       token = await getAccessTokenWithPopup();
+       const token = await getAccessTokenWithPopup();
+       if(token !== undefined)
+        setToken(token);
+       else{
+        localStorage.clear();
+       }
     }
-    if(token !== undefined)
-      setToken(token);
   };
   // Run useEffect to get token and set user_id as long as isAuthenticated is changed
   useEffect(() => {
     if (isAuthenticated && user !== undefined && user.email !== undefined) {
       setUser(user.email);
+      console.log('User', user)
       tokenHandler();
     }
   }, [isAuthenticated]);
