@@ -330,7 +330,7 @@ const App: React.FC = () => {
   useEffect(() => {
     if (userId !== "") {
       getCards(
-        `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/${userId}/flashcards/now`
+        `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/${userId}/fcs/now`
       );
     }
   }, [userId]);
