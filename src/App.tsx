@@ -6,6 +6,7 @@ import {
   IonTabBar,
   setupIonicReact,
   IonTabButton,
+  isPlatform,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { TbHomeEdit } from "react-icons/tb";
@@ -59,7 +60,7 @@ setupIonicReact({
 });
 
 const App: React.FC = () => {
-  const { isAuthenticated, isLoading, user, getAccessTokenSilently, getAccessTokenWithPopup } =
+  const { isAuthenticated, isLoading, user, getAccessTokenSilently, logout} =
     useAuth0();
 
   const { handleRedirectCallback } = useAuth0();
@@ -189,26 +190,51 @@ const App: React.FC = () => {
   // AccessToken used for authorization requests
   const [accessToken, setToken] = useState("");
 
+  const isPhone: boolean = isPlatform("hybrid");
+  const logoutUri = isPhone
+    ? "com.etc.ambientlearning://login"
+    : "http://localhost:8100/login";
+
+  const doLogout = async () => {
+    await logout({
+      logoutParams: {
+        returnTo: logoutUri,
+        federated: true,
+      },
+      async openUrl(url) {
+        // Redirect using Capacitor's Browser plugin
+        await Browser.open({
+          url,
+          windowName: "_self",
+        });
+      },
+    });
+    // On Mobile, we would navigate to the login page ourself and reload the window to refresh
+    if (isPhone) {
+      // history.push("/login");
+      window.location.reload();
+    }
+    // Clear localStorage to allow next time user potential tutorial page loading
+    localStorage.clear();
+  };
+
   // Handler Function that get accessToken
   const tokenHandler = async () => {
     try{
        const token = await getAccessTokenSilently();
-       if(token !== undefined)
+       if(token !== '' && token !== undefined)
         setToken(token);
-    }catch(e){
-       const token = await getAccessTokenWithPopup();
-       if(token !== undefined)
-        setToken(token);
-       else{
-        localStorage.clear();
-       }
+      else{
+        doLogout();
+      }
+    }catch(e: any){
+      doLogout();
     }
   };
   // Run useEffect to get token and set user_id as long as isAuthenticated is changed
   useEffect(() => {
     if (isAuthenticated && user !== undefined && user.email !== undefined) {
       setUser(user.email);
-      console.log('User', user)
       tokenHandler();
     }
   }, [isAuthenticated]);
