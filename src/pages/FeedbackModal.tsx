@@ -39,7 +39,7 @@ const FeedbackModal: React.FC<{
       alert("Make sure you fill both fields");
     }
   };
-  console.log("Feedbakcform");
+
   return (
     <div className="contact contact__container container grid">
       <a onClick={closeQuestion} className="close-icon">
