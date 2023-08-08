@@ -1,7 +1,7 @@
 export const cards = [
   [
     {
-      _id: "sdjdiaj",
+      _id: "tutorial4",
       lm_id: "s12najdn",
       type: "mcq",
       content: {
@@ -17,7 +17,7 @@ export const cards = [
   ],
   [
     {
-      _id: "ssdajsiodusda",
+      _id: "tutorial3",
       lm_id: "jjsjaodja",
       type: "qa",
       content: {
@@ -28,7 +28,7 @@ export const cards = [
   ],
   [
     {
-      _id: "sdj",
+      _id: "tutorial2",
       lm_id: "sdnajdn",
       type: "mcq",
       content: {
@@ -45,7 +45,7 @@ export const cards = [
   ],
   [
     {
-      _id: "sdaddusda",
+      _id: "tutorial1",
       lm_id: "jjiajsid",
       type: "qa",
       content: {

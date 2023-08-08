@@ -11,8 +11,19 @@ import errorPic from "../../error.png";
 import { hideBar, showBar } from "../utilities/showTabBar";
 import LogOutButton from "../ButtonComp/LogOutButton";
 import TryAgainButton from "../ButtonComp/TryAgainButton";
+import { useState } from "react";
+import FeedbackModal from "./FeedbackModal";
 
 const ErrorPage: React.FC = () => {
+
+  const [showFeedBack, setFeedBack] = useState(false);
+
+  const openComponent = () => {
+    setFeedBack(true);
+  }
+  const closeComponent = () => {
+    setFeedBack(false);
+  }
   // Hide the Bottom Tabs when entering the page
   useIonViewWillEnter(hideBar);
 
@@ -30,18 +41,23 @@ const ErrorPage: React.FC = () => {
           {/* TryAgainButton and ReportIssueButton */}
           <div className="two-button-container">
             <TryAgainButton />
-            <a
-              href="https://github.com/educational-technology-collective/Space-Repetition-Ionic/issues"
+
+            
+            <button
               className="grad-button report-issue-button"
+              onClick={openComponent}
             >
               Report Issue
-            </a>
+            </button>
+
+
           </div>
 
           {/* Log Out Button */}
           <LogOutButton />
         </div>
       </IonContent>
+      {showFeedBack? <FeedbackModal identifier="Error Page" closeQuestion={closeComponent} /> : null}
     </IonPage>
   );
 };
