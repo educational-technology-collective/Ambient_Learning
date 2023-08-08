@@ -18,7 +18,7 @@ const InfoPage: React.FC = () => {
 
   const history = useHistory();
   const buttonHandler = () => {
-    history.push("/home");
+    history.push("/tutorial");
   };
   return (
     <IonPage>
@@ -52,7 +52,7 @@ const InfoPage: React.FC = () => {
             Click me for Jupyter
           </a>
           <button className="grad-button home-button" onClick={buttonHandler}>
-            Go to Home
+            Start
           </button>
         </div>
       </IonContent>
