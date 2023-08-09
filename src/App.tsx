@@ -23,6 +23,7 @@ import {
   Token,
   ActionPerformed,
 } from "@capacitor/push-notifications";
+import {Toast} from "@capacitor/toast"
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -444,14 +445,53 @@ const App: React.FC = () => {
     }
   };
 
+  useEffect(()=>{
+    if(isAuthenticated){
+      PushNotifications.checkPermissions().then((res) => {
+        if (res.receive !== 'granted') {
+          PushNotifications.requestPermissions().then((res) => {
+            if (res.receive === 'denied') {
+              alert('Push Notification permission denied');
+             
+            } else {
+              alert('Push Notification permission granted');
+              register();
+            
+            }
+          });
+        } else {
+          register();
+        }
+      });
+    }  
+  },[isAuthenticated])
+
   // Return the Log In Page if it's not authenticated and not loading
   // Technically "Buggy", but works as intended
   if (!isAuthenticated && !isLoading) {
     return <LogInPage />;
   }
+    
+    const register = () => {
+        console.log('Initializing HomePage');
 
-  console.log(stats);
+        // Register with Apple / Google to receive push via APNS/FCM
+        PushNotifications.register();
 
+        // On success, we should be able to receive notifications
+        PushNotifications.addListener('registration',
+            (token: Token) => {
+                console.log(token);
+            }
+        );
+
+        // Some issue with our setup and push will not work
+        PushNotifications.addListener('registrationError',
+            (error: any) => {
+                alert('Error on registration: ' + JSON.stringify(error));
+            }
+        );
+    }
   return (
     <IonApp>
       <IonReactRouter>
