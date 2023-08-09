@@ -181,7 +181,7 @@ const LoadingPage: React.FC<{
               <AiOutlineCheck size="3em" className="check" />
             )}
             <TbPlugConnected className="segment-icon" size="3em" />
-            <IonText className="segment-text">Configurating Deck</IonText>
+            <IonText className="segment-text">Shuffling Deck</IonText>
           </div>
         </div>
       </IonContent>
