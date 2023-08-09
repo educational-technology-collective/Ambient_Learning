@@ -5,7 +5,7 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
         applicationId "com.etc.ambientlearning"
-        minSdk minSdkVersion
+        minSdk 22
         targetSdk 31
         versionCode 11
         versionName "1.4.7"
