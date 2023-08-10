@@ -1,10 +1,10 @@
 /* Background Color */
 .home-content {
-  background: #F1F2EB;
+  background: #f1f2eb;
 }
 
 /* Overall Container of the home page */
-.home-loaded-wrapper{
+.home-loaded-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,7 +13,7 @@
 }
 
 /* Hey UserName */
-.user-name{
+.user-name {
   text-align: center;
   font-weight: bold;
   color: rgb(88, 19, 72);
@@ -21,6 +21,6 @@
   margin-bottom: 1rem;
 }
 
-.tutorial-button{
+.tutorial-button {
   width: 70%;
 }
