@@ -272,20 +272,25 @@ const App: React.FC = () => {
       if (response.status !== 500) {
         // See how many cards in total the user has in the database
         // If there is card available. Update the info
-        const cards = data;
-        if (cards.length !== 0) {
-          setCards(cards);
-          setTotal(cards.length);
-          setCounter(cards.length);
-          setTupleCounter(cards[cards.length - 1].length);
-        } else {
-          // *** DEVELOPMENT:
-          const cards: any = collectionCard;
-          setCards(cards);
-          setTotal(cards.length);
-          setCounter(cards.length);
-          setTupleCounter(cards[cards.length - 1].length);
+        let cards: any = data;
+        if (cards.length === 0) {
+          // ** Development
+          cards = collectionCard;
         }
+        // Randomize cards within each LM
+        for (let i = cards.length - 1; i > 0; i--) {
+          for (let j = cards[i].length - 1; i > 0; i--) {
+            let k = Math.floor(Math.random() * (j + 1));
+            let temp = cards[i][j];
+            cards[i][j] = cards[i][k];
+            cards[i][k] = temp;
+          }
+        }
+
+        setCards(cards);
+        setTotal(cards.length);
+        setCounter(cards.length);
+        setTupleCounter(cards[cards.length - 1].length);
       }
       // If ther is no this user in the database
       else if (data === "no user found") {
@@ -293,7 +298,15 @@ const App: React.FC = () => {
         setNoUser(true);
 
         // *** DEVELOPMENT:
-        const cards: any = collectionCard;
+        let cards: any = collectionCard;
+        for (let i = cards.length - 1; i > 0; i--) {
+          for (let j = cards[i].length - 1; i > 0; i--) {
+            let k = Math.floor(Math.random() * (j + 1));
+            let temp = cards[i][j];
+            cards[i][j] = cards[i][k];
+            cards[i][k] = temp;
+          }
+        }
         setCards(cards);
         setTotal(cards.length);
         setCounter(cards.length);
@@ -302,7 +315,15 @@ const App: React.FC = () => {
         setNoCardsInDb(true);
 
         // *** DEVELOPMENT:
-        const cards: any = collectionCard;
+        let cards: any = collectionCard;
+        for (let i = cards.length - 1; i > 0; i--) {
+          for (let j = cards[i].length - 1; i > 0; i--) {
+            let k = Math.floor(Math.random() * (j + 1));
+            let temp = cards[i][j];
+            cards[i][j] = cards[i][k];
+            cards[i][k] = temp;
+          }
+        }
         setCards(cards);
         setTotal(cards.length);
         setCounter(cards.length);
