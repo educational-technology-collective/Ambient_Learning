@@ -1,5 +1,6 @@
 /* Styling for the container of icon and tutorial portal */
 .top-container {
+  margin-top: 5%;
   height: 15%;
   width: 100%;
   display: flex;
