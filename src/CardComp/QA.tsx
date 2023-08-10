@@ -16,7 +16,6 @@ const QA: React.FC<{ obj: flashCard }> = ({ obj }) => {
 
   answerStyle = "card-text back-text qa-answer";
 
-
   // Coponent Being Rendered
   return (
     <>

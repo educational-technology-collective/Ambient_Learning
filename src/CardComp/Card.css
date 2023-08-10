@@ -13,7 +13,7 @@
   height: 90%;
   position: relative;
   opacity: 1;
-  box-shadow: rgba(0, 0, 0,0.1) 0px 4px 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;
   margin-inline: 16px;
   margin-top: 24px;
   margin-bottom: 24px;
@@ -138,13 +138,11 @@ MCQ Card question always takes 60% */
   right: 2%;
 }
 
-
-.front-mark{
+.front-mark {
   right: 24px;
 }
 
-
-.onemore-mark{
+.onemore-mark {
   position: absolute;
   width: 4.5%;
   font-size: 1em;
@@ -161,4 +159,3 @@ MCQ Card question always takes 60% */
   justify-content: center;
   align-items: center;
 }
-

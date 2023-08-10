@@ -58,8 +58,9 @@
     to right,
     /* #ece9e6 0%,
     #ffffff 51%,
-    #ece9e6 100% */
-    #6dd5fa 0%, #2980b9 51%, #6dd5fa 100%
+    #ece9e6 100% */ #6dd5fa 0%,
+    #2980b9 51%,
+    #6dd5fa 100%
   );
 }
 
@@ -77,7 +78,6 @@
 .logout-button {
   left: 12.5%;
   bottom: 3%;
-  
 }
 
 /* Animation for the login button to appear */
@@ -99,7 +99,7 @@
   }
 }
 
-.home-button{
+.home-button {
   background-image: linear-gradient(
     to right,
     #02aab0 0%,
