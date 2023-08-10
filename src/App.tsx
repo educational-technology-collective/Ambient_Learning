@@ -17,13 +17,8 @@ import Home from "./pages/Home";
 import "./pages/Home.css";
 import "./App.css";
 import { CapacitorHttp } from "@capacitor/core";
-import {
-  PushNotificationSchema,
-  PushNotifications,
-  Token,
-  ActionPerformed,
-} from "@capacitor/push-notifications";
-import {Toast} from "@capacitor/toast"
+import { PushNotifications, Token } from "@capacitor/push-notifications";
+import { Toast } from "@capacitor/toast";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -61,7 +56,7 @@ setupIonicReact({
 });
 
 const App: React.FC = () => {
-  const { isAuthenticated, isLoading, user, getAccessTokenSilently, logout} =
+  const { isAuthenticated, isLoading, user, getAccessTokenSilently, logout } =
     useAuth0();
 
   const { handleRedirectCallback } = useAuth0();
@@ -221,14 +216,13 @@ const App: React.FC = () => {
 
   // Handler Function that get accessToken
   const tokenHandler = async () => {
-    try{
-       const token = await getAccessTokenSilently();
-       if(token !== '' && token !== undefined)
-        setToken(token);
-      else{
+    try {
+      const token = await getAccessTokenSilently();
+      if (token !== "" && token !== undefined) setToken(token);
+      else {
         doLogout();
       }
-    }catch(e: any){
+    } catch (e: any) {
       doLogout();
     }
   };
@@ -250,7 +244,7 @@ const App: React.FC = () => {
         handleStartTime,
         handleReadyLog,
         handleDuration,
-        handleStatisticsUpdate,
+        handleStatisticsUpdate
       );
     }
   }, [isAuthenticated, isFetched, accessToken]);
@@ -284,11 +278,10 @@ const App: React.FC = () => {
           setTotal(cards.length);
           setCounter(cards.length);
           setTupleCounter(cards[cards.length - 1].length);
-        }
-        else{
+        } else {
           // *** DEVELOPMENT:
-        const cards : any = collectionCard;
-        setCards(cards);
+          const cards: any = collectionCard;
+          setCards(cards);
           setTotal(cards.length);
           setCounter(cards.length);
           setTupleCounter(cards[cards.length - 1].length);
@@ -300,24 +293,21 @@ const App: React.FC = () => {
         setNoUser(true);
 
         // *** DEVELOPMENT:
-        const cards : any = collectionCard;
+        const cards: any = collectionCard;
         setCards(cards);
-          setTotal(cards.length);
-          setCounter(cards.length);
-          setTupleCounter(cards[cards.length - 1].length);
-
-      } else if(data === 'user has no lms'){
+        setTotal(cards.length);
+        setCounter(cards.length);
+        setTupleCounter(cards[cards.length - 1].length);
+      } else if (data === "user has no lms") {
         setNoCardsInDb(true);
 
         // *** DEVELOPMENT:
-        const cards : any = collectionCard;
+        const cards: any = collectionCard;
         setCards(cards);
-          setTotal(cards.length);
-          setCounter(cards.length);
-          setTupleCounter(cards[cards.length - 1].length);
-
-      }
-      else {
+        setTotal(cards.length);
+        setCounter(cards.length);
+        setTupleCounter(cards[cards.length - 1].length);
+      } else {
         console.log("There is Error");
         setError(true);
       }
@@ -389,7 +379,12 @@ const App: React.FC = () => {
   };
 
   // Logic to Move On to Next Card
-  const swipeNextCard = (tupleIndex: number, event: action, lm_id: string, latestRecord: latestResult) => {
+  const swipeNextCard = (
+    tupleIndex: number,
+    event: action,
+    lm_id: string,
+    latestRecord: latestResult
+  ) => {
     // Increment the number of finished cards and the counter of displaying card
     setFinished((prevFinished: number) => prevFinished + 1);
     setCounter((prevCounter: number) => prevCounter - 1);
@@ -416,7 +411,12 @@ const App: React.FC = () => {
   };
 
   // Function that swipes for one more card
-  const swipeOneMoreCard = (tupleIndex: number, event: action, lm_id: string, latestRecord: latestResult) => {
+  const swipeOneMoreCard = (
+    tupleIndex: number,
+    event: action,
+    lm_id: string,
+    latestRecord: latestResult
+  ) => {
     // Log One More Info
     putLogInfo(event, null);
 
@@ -445,53 +445,49 @@ const App: React.FC = () => {
     }
   };
 
-  useEffect(()=>{
-    if(isAuthenticated){
+  useEffect(() => {
+    if (isAuthenticated) {
       PushNotifications.checkPermissions().then((res) => {
-        if (res.receive !== 'granted') {
+        if (res.receive !== "granted") {
           PushNotifications.requestPermissions().then((res) => {
-            if (res.receive === 'denied') {
-              alert('Push Notification permission denied');
-             
+            if (res.receive === "denied") {
+              showToast("Notification Disabled");
             } else {
-              alert('Push Notification permission granted');
+              showToast("Notification Enabled");
               register();
-            
             }
           });
         } else {
           register();
         }
       });
-    }  
-  },[isAuthenticated])
+    }
+  }, [isAuthenticated]);
 
   // Return the Log In Page if it's not authenticated and not loading
   // Technically "Buggy", but works as intended
   if (!isAuthenticated && !isLoading) {
     return <LogInPage />;
   }
-    
-    const register = () => {
-        console.log('Initializing HomePage');
 
-        // Register with Apple / Google to receive push via APNS/FCM
-        PushNotifications.register();
+  const register = () => {
+    // Register with Apple / Google to receive push via APNS/FCM
+    PushNotifications.register();
 
-        // On success, we should be able to receive notifications
-        PushNotifications.addListener('registration',
-            (token: Token) => {
-                console.log(token);
-            }
-        );
+    // On success, we should be able to receive notifications
+    PushNotifications.addListener("registration", (token: Token) => {
+      console.log(token);
+    });
 
-        // Some issue with our setup and push will not work
-        PushNotifications.addListener('registrationError',
-            (error: any) => {
-                alert('Error on registration: ' + JSON.stringify(error));
-            }
-        );
-    }
+    // Some issue with our setup and push will not work
+    PushNotifications.addListener("registrationError", (error: any) => {
+      showToast("Error on registration: " + JSON.stringify(error));
+    });
+  };
+
+  const showToast = async (message: string) => {
+    await Toast.show({ text: message, position: "center" });
+  };
   return (
     <IonApp>
       <IonReactRouter>
@@ -563,7 +559,6 @@ const App: React.FC = () => {
                 noUser={noUser}
                 noCardsInDb={noCardsInDb}
                 readyLog={readyLog}
-                accessToken={accessToken}
                 handleCardScreen={handleCardScreen}
               />
             </Route>

@@ -16,7 +16,6 @@ import { AiOutlineCheck } from "react-icons/ai";
 import { useAuth0 } from "@auth0/auth0-react";
 import AppNameHeader from "./AppNameHeader";
 import WalkingPerson from "../LoadingComp/WalkingPerson";
-import { CapacitorHttp } from "@capacitor/core";
 
 const LoadingPage: React.FC<{
   total: number;
@@ -25,7 +24,6 @@ const LoadingPage: React.FC<{
   noUser: boolean;
   noCardsInDb: boolean;
   readyLog: boolean;
-  accessToken: string;
   handleCardScreen: () => void;
 }> = ({
   total,
@@ -34,7 +32,6 @@ const LoadingPage: React.FC<{
   noUser,
   noCardsInDb,
   readyLog,
-  accessToken,
   handleCardScreen,
 }) => {
   // Hide the Bottom Tabs for this Page
@@ -78,16 +75,6 @@ const LoadingPage: React.FC<{
   const animationTimeOut = () => {
     setTimeElapsed(true);
   };
-
-  // Function that create the document of the user in the database and navigate to info page
-  // const postUser = async () => {
-  //   const response = await CapacitorHttp.post({
-  //     url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/users/${user?.email}`,
-  //     headers: { authorization: `Bearer ${accessToken}` },
-  //   });
-  //   console.log("Post User Response", response);
-  //   setTimeout(navigateToInfoScreen, 100);
-  // };
 
   useEffect(() => {
     // When still showing loading component, set a timeout of 4.5s
