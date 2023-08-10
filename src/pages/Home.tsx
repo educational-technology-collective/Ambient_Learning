@@ -1,4 +1,10 @@
-import { IonCard, IonCardContent, IonContent, IonPage, IonTitle } from "@ionic/react";
+import {
+  IonCard,
+  IonCardContent,
+  IonContent,
+  IonPage,
+  IonTitle,
+} from "@ionic/react";
 import "./Home.css";
 import { useHistory } from "react-router-dom";
 import DashBoard from "../HomeComp/DashBoard";
@@ -7,9 +13,9 @@ import LogOutButton from "../ButtonComp/LogOutButton";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useState } from "react";
 import FeedbackModal from "./FeedbackModal";
-import logo from '../../assets/logo.png'
+import logo from "../../assets/logo.png";
 import { MdQuestionMark } from "react-icons/md";
-import '../HomeComp/TutorialPortal.css'
+import "../HomeComp/TutorialPortal.css";
 
 const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
   cardsLeft,
@@ -26,17 +32,17 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
   };
 
   const navigateToTutorialScreen = () => {
-    history.push('/tutorial');
-  }
+    history.push("/tutorial");
+  };
 
   const [showFeedBack, setFeedBack] = useState(false);
   const openQuestion = () => {
-    setFeedBack(true)
-  }
+    setFeedBack(true);
+  };
 
   const closeQuestion = () => {
     setFeedBack(false);
-  }
+  };
 
   // Determine The Box-Shadow Effect based on cards remaining
   let shadow: string;
@@ -63,13 +69,13 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
         <div className="home-loaded-wrapper">
           {/* Icon and Tutorial Portal */}
           <div className="top-container">
-      <img src={logo} alt="logo" className="logo-img"/>
-      <IonCard className="tutorial-card" onClick={openQuestion}>
-        <IonCardContent className="tutorial-card-content">
-          <MdQuestionMark size="1.5em" />
-        </IonCardContent>
-      </IonCard>
-    </div>
+            <img src={logo} alt="logo" className="logo-img" />
+            <IonCard className="tutorial-card" onClick={openQuestion}>
+              <IonCardContent className="tutorial-card-content">
+                <MdQuestionMark size="1.5em" />
+              </IonCardContent>
+            </IonCard>
+          </div>
 
           {/* Welcome User */}
           <h1 className="user-name">Hey, {user?.name}</h1>
@@ -81,16 +87,20 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
             navigateToCardScreen={navigateToCardScreen}
           />
 
-          <IonCard className="tutorial-button" onClick={navigateToTutorialScreen}>
+          <IonCard
+            className="tutorial-button"
+            onClick={navigateToTutorialScreen}
+          >
             <IonCardContent>
               <IonTitle>Tutorial</IonTitle>
             </IonCardContent>
           </IonCard>
           <LogOutButton />
         </div>
-        
       </IonContent>
-      {showFeedBack? <FeedbackModal identifier="Home Screen" closeQuestion={closeQuestion}/> : null}
+      {showFeedBack ? (
+        <FeedbackModal identifier="Home Screen" closeQuestion={closeQuestion} />
+      ) : null}
     </IonPage>
   );
 };

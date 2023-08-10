@@ -8,7 +8,6 @@ import "./InfoPage.css";
 import { hideBar, showBar } from "../utilities/showTabBar";
 import logo from "../../assets/logo.png";
 import { SiJupyter, SiGooglechrome } from "react-icons/si";
-import LogOutButton from "../ButtonComp/LogOutButton";
 import { useHistory } from "react-router";
 const InfoPage: React.FC = () => {
   // Hide the bottom tabs whene entering the page
