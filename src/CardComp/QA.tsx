@@ -21,7 +21,7 @@ const QA: React.FC<{ obj: flashCard }> = ({ obj }) => {
     <>
       {/* Front Question Text */}
       <ReactMarkdown
-        className="card-text front-text qa-question"
+        className="card-text front-text qa-question-back"
         children={question}
         remarkPlugins={[remarkGfm]}
       ></ReactMarkdown>

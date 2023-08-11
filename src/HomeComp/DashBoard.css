@@ -35,6 +35,7 @@
   background: snow;
   justify-self: flex-end;
   width: 30%;
+  height: 85%;
 }
 
 /* Determining How Many Box-Shadows */
@@ -49,4 +50,14 @@
 .wrapped-card-content {
   display: flex;
   justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.cards-remaining{
+  position: absolute;
+  color: slateblue;
+  font-size: 1.2rem;
+  font-weight: 600;
+  left: 6%;
 }
