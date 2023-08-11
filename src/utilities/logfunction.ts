@@ -144,6 +144,7 @@ export const putSwipe = (
     tupleIndex: number,
     event: action,
     lm_id: string,
+    isBuffer: boolean,
     latestRecord: latestResult
   ) => void
 ) => {
@@ -181,7 +182,7 @@ export const putSwipe = (
     swipeResult: selfEvaluation,
   };
   handleStatisticsUpdate(machineEvaluation, selfEvaluation);
-  nextCardFunc(tupleIndex, event, lmId, latestRecord);
+  nextCardFunc(tupleIndex, event, lmId, cardIndex !== tupleLength - 1, latestRecord);
 };
 
 // Log Function happens after session is finished

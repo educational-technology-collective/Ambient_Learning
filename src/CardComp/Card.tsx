@@ -22,12 +22,14 @@ const Card: React.FC<{
     tupleIndex: number,
     event: action,
     lm_id: string,
+    isBuffer: boolean,
     latestRecord: latestResult
   ) => void;
   oneMore: (
     tupleIndex: number,
     event: action,
     lm_id: string,
+    isBuffer: boolean,
     latestRecord: latestResult
   ) => void;
   refTuple: React.RefObject<HTMLInputElement>;

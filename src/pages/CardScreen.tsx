@@ -24,12 +24,14 @@ const CardScreen: React.FC<{
     tupleIndex: number,
     event: action,
     lm_id: string,
+    isBuffer: boolean,
     latestRecord: latestResult
   ) => void;
   swipeOneMoreCard: (
     tupleIndex: number,
     event: action,
     lm_id: string,
+    isBuffer: boolean,
     latestRecord: latestResult
   ) => void;
   handleStatisticsUpdate: (testEval: string, selfEval: string) => void;
