@@ -3,6 +3,7 @@ import {
   IonCardContent,
   IonContent,
   IonPage,
+  IonText,
   IonTitle,
 } from "@ionic/react";
 import "./Home.css";
@@ -15,6 +16,7 @@ import { useState } from "react";
 import FeedbackModal from "./FeedbackModal";
 import logo from "../../assets/logo.png";
 import { MdQuestionMark } from "react-icons/md";
+import {IoMdWarning} from 'react-icons/io'
 import "../HomeComp/TutorialPortal.css";
 
 const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
@@ -63,18 +65,13 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
   return (
     <IonPage>
       {/* Header and ToolBar */}
-      <AppNameHeader />
+      <AppNameHeader isHome={true}/>
 
       <IonContent scrollY={false} className="home-content">
         <div className="home-loaded-wrapper">
           {/* Icon and Tutorial Portal */}
           <div className="top-container">
             <img src={logo} alt="logo" className="logo-img" />
-            <IonCard className="tutorial-card" onClick={openQuestion}>
-              <IonCardContent className="tutorial-card-content">
-                <MdQuestionMark size="1.5em" />
-              </IonCardContent>
-            </IonCard>
           </div>
 
           {/* Welcome User */}
