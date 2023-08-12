@@ -1,17 +1,21 @@
 export const cards = [
   [
     {
+      _id: 'tutorial5',
+      lm_id: 'sdjaidj21',
+      type: 'qa',
+      content: {
+        question: `We are almost done, hang in there! Sometimes the card you are reviewing isn't interesting to you anymore, or you think the answer which was given was wrong. To tell the app you don't want to see this card just swipe down.  👇\n\n(don't forget to tap first!)`,
+        answer: `Great job, the tutorial is done! Now it's time to just think, tap, swipe your way to learning!\n\n \n\nYou can give us feedback at any time by pressing the settings menu in the home page or the ? button on the card to help us improve.`
+      }
+    },
+    {
       _id: "tutorial4",
       lm_id: "s12najdn",
-      type: "mcq",
+      type: "qa",
       content: {
-        question: "Great! Which direction to indicate this card is bad?",
-        answer: [
-          { option: "Swipe Left", isCorrect: false },
-          { option: "Swipe Right", isCorrect: false },
-          { option: "Swipe Up", isCorrect: false },
-          { option: "Swipe Down", isCorrect: true },
-        ],
+        question: "The Ambient Learning App is all about helping you learn - there are no grades or points! It's okay if you don't know the answer to a question.\n\n(tap to continue)",
+        answer: "If you want the full power of spaced repetition practice, tell the app you didn't know the answer by swiping to the left. You'll get a card on the same topic to review faster this way.  👈"
       },
     },
   ],
