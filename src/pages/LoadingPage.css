@@ -3,6 +3,10 @@
   background: #f1f2eb;
 }
 
+.logo-pic{
+  height: 25%;
+}
+
 /* Wrapper for the text and bar */
 .wrapper {
   display: flex;
