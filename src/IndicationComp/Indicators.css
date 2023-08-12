@@ -23,7 +23,7 @@
 /* Styling for the container of all the indicators */
 .action-container {
   border: 3px solid;
-  border-radius: 8px;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
