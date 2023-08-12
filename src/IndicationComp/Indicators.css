@@ -2,7 +2,7 @@
 .front {
   backface-visibility: hidden;
   position: absolute;
-  transform: rotateY(0deg);
+  transform: rotateY(0deg) translateZ(3px);
 }
 
 /* Styling for indicators on the back page */
@@ -23,11 +23,14 @@
 /* Styling for the container of all the indicators */
 .action-container {
   border: 3px solid;
-  border-radius: 10px;
+  border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 5px;
+  flex-direction: column;
+  width: 11rem;
+  height: 9rem;
+  padding: 2px;
   background-color: snow;
 }
 
@@ -39,7 +42,7 @@
 /* Texts for all of the indicators inside the box */
 .action-text {
   text-align: center;
-  font-size: 1.26rem;
+  font-size: 1.5rem;
   font-weight: 900;
 }
 
@@ -51,7 +54,6 @@
 /* Styling for the positive indicator on the back */
 .back-positive {
   top: 1.8em;
-  width: 50%;
   right: 2em;
   rotate: 350deg;
 }
