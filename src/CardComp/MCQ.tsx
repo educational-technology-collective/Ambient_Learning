@@ -19,6 +19,10 @@ const MCQ: React.FC<{
   frontQuestionStyle = "front-text mcq-question card-text";
   backQuestionStyle = "card-text  back-text mcq-question";
 
+  const tutorial2BackText = `The correct option will be highlighted with **green** color. If you select an incorrect option, it will be highlighted with **red** color. Swipe right to get another card.👉`
+
+  const backQuestion = obj._id !== 'tutorial2' ? question : tutorial2BackText;
+
   // Component Being Rendered
   return (
     <>
@@ -32,7 +36,7 @@ const MCQ: React.FC<{
       {/* Question Text Back */}
       <ReactMarkdown
         className={backQuestionStyle}
-        children={question}
+        children={backQuestion}
         remarkPlugins={[remarkGfm]}
       ></ReactMarkdown>
 

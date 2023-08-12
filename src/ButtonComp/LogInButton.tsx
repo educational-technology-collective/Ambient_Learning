@@ -13,7 +13,7 @@ const LogInButton: React.FC = () => {
   };
 
   return (
-    <button onClick={login} className="grad-button log-button login-button">
+    <button onClick={login} className="login-button">
       Sign In
     </button>
   );

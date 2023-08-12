@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1012644293976-i6428g3mrr291kfgd7m1mu5l6h1nqlv8.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1012644293976-i6428g3mrr291kfgd7m1mu5l6h1nqlv8</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC5J03F8f130p5lB2wFsCkZaH0qX0Q01go</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1012644293976</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.etc.ambientlearning</string>
+	<key>PROJECT_ID</key>
+	<string>ambient-learning-etc</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ambient-learning-etc.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1012644293976:ios:8d3114efd349be6589092d</string>
+</dict>
+</plist>

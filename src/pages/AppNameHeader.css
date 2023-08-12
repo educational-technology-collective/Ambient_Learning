@@ -4,3 +4,36 @@
   font-size: 1.2em;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+.settings-icon {
+  position: absolute;
+  right: 0;
+  align-self: center;
+  margin-right: 1rem;
+  top: 25%;
+  font-size: 1.5rem;
+}
+
+.dropdown-settings{
+  position: absolute;
+  background-color: #f4f4f4;
+  right: 0;
+  border-radius: 0 0 0.8rem 0.8rem;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.1);
+  transition: 1s;
+}
+
+.column-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+
+.texts{
+  margin-left: 1rem;
+  color: darkgray;
+ 
+  font-size: 1rem;
+}

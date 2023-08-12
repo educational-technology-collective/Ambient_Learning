@@ -13,7 +13,7 @@
   height: 90%;
   position: relative;
   opacity: 1;
-  box-shadow: rgba(0, 0, 0,0.1) 0px 4px 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;
   margin-inline: 16px;
   margin-top: 24px;
   margin-bottom: 24px;
@@ -116,49 +116,39 @@ MCQ Card question always takes 60% */
 /* Css for the number on the top right cornor of the card */
 .onemore-number {
   position: absolute;
-  width: 5%;
-  font-size: 1em;
+  font-size: 1.3em;
   font-weight: 900;
   margin-bottom: 0;
   color: #0056d2;
-  top: 1%;
+  top: 5px;
   text-align: center;
   backface-visibility: hidden;
-  border: 2px solid black;
-  border-radius: 5px;
-  background-color: snow;
+  background-color: transparent;
 }
 
 /* The position for the number indicator in front and in back */
 .front-number {
-  left: 2%;
+  left: 10px;
 }
 
 .back-number {
-  right: 2%;
+  right: 10px;
 }
 
-
-.front-mark{
-  right: 24px;
+.front-mark {
+  right: 20px;
 }
 
-
-.onemore-mark{
+.onemore-mark {
   position: absolute;
-  width: 4.5%;
-  font-size: 1em;
+
+  font-size: 1.3em;
   font-weight: 900;
   margin-bottom: 0;
   color: gray;
-  top: 32px;
+  top: 28px;
   text-align: center;
-  backface-visibility: hidden;
-  border: 2px solid black;
-  border-radius: 5px;
-  background-color: snow;
-  display: flex;
+  background-color: transparent;
   justify-content: center;
   align-items: center;
 }
-

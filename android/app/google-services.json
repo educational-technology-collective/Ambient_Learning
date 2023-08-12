@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1012644293976",
+    "project_id": "ambient-learning-etc",
+    "storage_bucket": "ambient-learning-etc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1012644293976:android:f7b23a0e9bcbe97a89092d",
+        "android_client_info": {
+          "package_name": "com.etc.ambientlearning"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1012644293976-4bagm9g8eq969anp9b712ub110lmguli.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7sgW5XuPyo7QW7wIi3Icr60rfgFFpoeM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1012644293976-4bagm9g8eq969anp9b712ub110lmguli.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1012644293976-i6428g3mrr291kfgd7m1mu5l6h1nqlv8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.etc.ambientlearning"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

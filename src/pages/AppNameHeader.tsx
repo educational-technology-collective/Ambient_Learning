@@ -1,11 +1,19 @@
 import { IonHeader, IonToolbar, IonTitle } from "@ionic/react";
+import { TbSettings } from "react-icons/tb";
+import "./AppNameHeader.css";
 
 // The ToolBar header with App Name
-const AppNameHeader: React.FC = () => {
+const AppNameHeader: React.FC<{
+  isHome?: boolean;
+  switchSettings?: () => void;
+}> = ({ isHome = false, switchSettings }) => {
   return (
     <IonHeader color="tertiary">
-      <IonToolbar>
-        <IonTitle className="title">Ambient</IonTitle>
+      <IonToolbar className="header-container" id="header">
+        <IonTitle className="title">Ambient Learning</IonTitle>
+        {isHome ? (
+          <TbSettings className="settings-icon" onClick={switchSettings} />
+        ) : null}
       </IonToolbar>
     </IonHeader>
   );

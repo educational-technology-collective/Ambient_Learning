@@ -1,22 +1,12 @@
 /* The Top Component of Cards left */
 .task-card {
   width: 85%;
-  background: #ed637e; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #ffedbc,
-    #ed637e
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #ffedbc,
-    #ed637e
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-color: #f2f1f1;
 }
 
 /* Styling for the text 'Today's task' */
 .today-task {
-  color: indigo;
+  color: #5a5555;
   font-size: 1.5em;
   font-weight: 900;
 }
@@ -32,21 +22,32 @@
 }
 
 .wrapped-card {
-  background: snow;
+  background: white;
   justify-self: flex-end;
   width: 30%;
+  height: 85%;
 }
 
 /* Determining How Many Box-Shadows */
 .left-3 {
-  box-shadow: 3px -3px darkkhaki, 8px -8px grey;
+  box-shadow: 2px -2px gray, 3px -3px darkgrey;
 }
 
 .left-2 {
-  box-shadow: 3px -3px grey;
+  box-shadow: 3px -3px darkgray;
 }
 
 .wrapped-card-content {
   display: flex;
   justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.cards-remaining{
+  position: absolute;
+  color: gray;
+  font-size: 1.2rem;
+  font-weight: 600;
+  left: 6%;
 }

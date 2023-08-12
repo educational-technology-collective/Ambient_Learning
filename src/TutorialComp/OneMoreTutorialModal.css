@@ -1,7 +1,7 @@
 /* Parent Container of Arrow Image and Modal Message */
 .show-up {
   position: absolute;
-  height: 13%;
+  height: 16%;
   width: 80%;
   animation: message-in-center 5s ease-in-out forwards;
   top: 10%;
@@ -10,7 +10,7 @@
 
 /* Styling for the modal */
 .onemore-modal {
-  height: 90%;
+  height: 96%;
   width: 90%;
   color: white;
   padding: 0.02rem;

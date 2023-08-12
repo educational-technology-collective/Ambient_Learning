@@ -1,9 +1,14 @@
-import { IonPage, IonContent, useIonViewWillEnter, IonCard, IonCardContent } from "@ionic/react";
+import {
+  IonPage,
+  IonContent,
+  useIonViewWillEnter,
+  IonCard,
+  IonCardContent,
+} from "@ionic/react";
 import "./LogInPage.css";
 import LogInButton from "../ButtonComp/LogInButton";
 import { hideBar } from "../utilities/showTabBar";
-import spacecraft from "../../spacecraft.svg";
-import logo from '../../assets/logo.png'
+import logo from "../../assets/logo.png";
 import { MdQuestionMark } from "react-icons/md";
 import { useState } from "react";
 import FeedbackModal from "./FeedbackModal";
@@ -15,18 +20,18 @@ const LogInPage: React.FC = () => {
   const [showFeedBack, setFeedBack] = useState(false);
   const openQuestion = () => {
     setFeedBack(true);
-  }
+  };
   const closeQuestion = () => {
     setFeedBack(false);
-  }
-    return (
+  };
+  return (
     <IonPage>
       <IonContent scrollY={false} className="login-content">
-      <IonCard className="tutorial-card" onClick={openQuestion}>
-        <IonCardContent className="tutorial-card-content">
-          <MdQuestionMark size="1.5em" />
-        </IonCardContent>
-      </IonCard>
+        <IonCard className="tutorial-card" onClick={openQuestion}>
+          <IonCardContent className="tutorial-card-content">
+            <MdQuestionMark size="1.5em" />
+          </IonCardContent>
+        </IonCard>
         <div className="login-page-container">
           <img src={logo} alt="logo" className="login-logo" />
 
@@ -45,13 +50,18 @@ const LogInPage: React.FC = () => {
           </div> */}
           <LogInButton />
 
-          <a href="https://pngtree.com/freepng/red-maple-tree_4742154.html?share=3?sol=downref&id=bef" className="acknowledgement">
-          Maple PNG Designed By 588ku from https://pngtree.com/freepng/red-maple-tree_4742154.html?share=3?sol=downref&id=bef
+          <a
+            href="https://pngtree.com/freepng/red-maple-tree_4742154.html?share=3?sol=downref&id=bef"
+            className="acknowledgement"
+          >
+            Maple PNG Designed By 588ku from
+            https://pngtree.com/freepng/red-maple-tree_4742154.html?share=3?sol=downref&id=bef
           </a>
-
         </div>
       </IonContent>
-      {showFeedBack ? <FeedbackModal identifier="Log In" closeQuestion={closeQuestion} />: null}
+      {showFeedBack ? (
+        <FeedbackModal identifier="Log In" closeQuestion={closeQuestion} />
+      ) : null}
     </IonPage>
   );
 };

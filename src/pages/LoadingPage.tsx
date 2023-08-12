@@ -15,8 +15,8 @@ import { TbCards, TbPlugConnected } from "react-icons/tb";
 import { AiOutlineCheck } from "react-icons/ai";
 import { useAuth0 } from "@auth0/auth0-react";
 import AppNameHeader from "./AppNameHeader";
+import logo from '../../assets/logo.png'
 import WalkingPerson from "../LoadingComp/WalkingPerson";
-import { CapacitorHttp } from "@capacitor/core";
 
 const LoadingPage: React.FC<{
   total: number;
@@ -25,7 +25,6 @@ const LoadingPage: React.FC<{
   noUser: boolean;
   noCardsInDb: boolean;
   readyLog: boolean;
-  accessToken: string;
   handleCardScreen: () => void;
 }> = ({
   total,
@@ -34,7 +33,6 @@ const LoadingPage: React.FC<{
   noUser,
   noCardsInDb,
   readyLog,
-  accessToken,
   handleCardScreen,
 }) => {
   // Hide the Bottom Tabs for this Page
@@ -79,16 +77,6 @@ const LoadingPage: React.FC<{
     setTimeElapsed(true);
   };
 
-  // Function that create the document of the user in the database and navigate to info page
-  // const postUser = async () => {
-  //   const response = await CapacitorHttp.post({
-  //     url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/users/${user?.email}`,
-  //     headers: { authorization: `Bearer ${accessToken}` },
-  //   });
-  //   console.log("Post User Response", response);
-  //   setTimeout(navigateToInfoScreen, 100);
-  // };
-
   useEffect(() => {
     // When still showing loading component, set a timeout of 4.5s
     if (showLoad) {
@@ -100,11 +88,11 @@ const LoadingPage: React.FC<{
       }
       // If there is no this user in the database
       else if (noUser) {
-        setTimeout(navigateToInfoScreen, 100);
+        setTimeout(navigateToTutorialScreen, 100);
       }
       // If there is user, but the user never has any cards
       else if (noCardsInDb) {
-        setTimeout(navigateToInfoScreen, 100);
+        setTimeout(navigateToTutorialScreen, 100);
       }
       // Check there is user, user is first time and there is no local storage
       else if (
@@ -146,7 +134,8 @@ const LoadingPage: React.FC<{
       <IonContent scrollY={false} className="loading-content">
         <div className="wrapper">
           {/* Walking Person Component */}
-          <WalkingPerson />
+          {/* <WalkingPerson /> */}
+          <img src={logo} alt='logo-pic' className="logo-pic"/>
 
           {/* Segment for Authenticating User */}
           <div className="segment-container">
@@ -181,7 +170,7 @@ const LoadingPage: React.FC<{
               <AiOutlineCheck size="3em" className="check" />
             )}
             <TbPlugConnected className="segment-icon" size="3em" />
-            <IonText className="segment-text">Configurating Deck</IonText>
+            <IonText className="segment-text">Shuffling Deck</IonText>
           </div>
         </div>
       </IonContent>

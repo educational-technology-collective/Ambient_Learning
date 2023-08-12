@@ -1,4 +1,4 @@
-import { IonCard, IonCardContent, IonText } from "@ionic/react";
+import { IonCard, IonCardContent, IonCardTitle, IonText, IonTitle } from "@ionic/react";
 import "./DashBoard.css";
 
 // Today's Task Dashboard
@@ -14,11 +14,16 @@ const DashBoard: React.FC<{
 
         {/* Determine if the cards are done */}
         {cardsLeft !== 0 ? (
+          <>
+          <IonCardTitle className="cards-remaining">
+          Cards Remaning: 
+          </IonCardTitle>
           <IonCard className={shadow} onClick={navigateToCardScreen}>
             <IonCardContent className="wrapped-card-content">
               <IonText className="today-task">{cardsLeft}</IonText>
             </IonCardContent>
           </IonCard>
+          </>
         ) : (
           <IonText className="finish-task">
             You are done with cards. Go touch grass, bravo!
