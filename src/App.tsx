@@ -421,7 +421,7 @@ const App: React.FC = () => {
     putLogInfo(event, null);
 
     // Log Info for swiping cards
-    if(!isBuffer){
+    if (!isBuffer) {
       putCardInfo(lm_id, latestRecord);
     }
 
@@ -445,7 +445,7 @@ const App: React.FC = () => {
     // Log One More Info
     putLogInfo(event, null);
 
-    if(!isBuffer){
+    if (!isBuffer) {
       putCardInfo(lm_id, latestRecord);
     }
     // If there is no more card available for this card
