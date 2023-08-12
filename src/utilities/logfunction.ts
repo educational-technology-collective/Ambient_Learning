@@ -15,15 +15,15 @@ export const getLatestRecord = async (
   total: number,
   handleStartTime: (time: string) => void,
   handleReadyLog: () => void,
-  handleDuration: (minutes: number ) => void,
+  handleDuration: (minutes: number) => void,
   handleStatisticsUpdate: (testEval: string, selfEval: string) => void
 ) => {
   const response = await CapacitorHttp.get({
     url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?userId=${userId}`,
   });
-  console.log('Response', response);
+  console.log("Response", response);
   const data = await JSON.parse(response.data);
-console.log('data', data)
+  console.log("data", data);
   // Check to see if there is a record not done yet in the database
   if (data.new && total) {
     // Create a new record if there isn't
@@ -34,8 +34,7 @@ console.log('data', data)
     const session = data.session;
     handleStartTime(session.startTime);
 
-    if(total)
-    {
+    if (total) {
       const event = {
         eventName: "resume",
         eventTime: new Date().toISOString(),
@@ -59,8 +58,10 @@ console.log('data', data)
       // Keep this for debugging purpose. Will be removed for production
       console.log("Put Resume", responseResume);
     }
-    if(session.endTime){
-      const time = new Date(session.endTime).getTime() - new Date(session.startTime).getTime();
+    if (session.endTime) {
+      const time =
+        new Date(session.endTime).getTime() -
+        new Date(session.startTime).getTime();
       const diff = Math.ceil(time / 60000);
       handleDuration(diff);
     }
@@ -182,7 +183,13 @@ export const putSwipe = (
     swipeResult: selfEvaluation,
   };
   handleStatisticsUpdate(machineEvaluation, selfEvaluation);
-  nextCardFunc(tupleIndex, event, lmId, cardIndex !== tupleLength - 1, latestRecord);
+  nextCardFunc(
+    tupleIndex,
+    event,
+    lmId,
+    cardIndex !== tupleLength - 1,
+    latestRecord
+  );
 };
 
 // Log Function happens after session is finished
