@@ -9,8 +9,8 @@ const FlashCardList: React.FC<{
   tupleCounter: number;
   isFrontTuple: boolean;
   putLogInfo: (event: action, end_time: string | null) => void;
-  swipeNextCard: (tupleIndex: number, event: action, lm_id: string, latestRecord: latestResult) => void;
-  swipeOneMoreCard: (tupleIndex: number, event: action, lm_id: string, latestRecord: latestResult) => void;
+  swipeNextCard: (tupleIndex: number, event: action, lm_id: string, isBuffer:boolean, latestRecord: latestResult) => void;
+  swipeOneMoreCard: (tupleIndex: number, event: action, lm_id: string, isBuffer: boolean, latestRecord: latestResult) => void;
   handleStatisticsUpdate: (testEval: string, selfEval: string) => void;
 }> = ({
   array,

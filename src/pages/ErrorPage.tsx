@@ -15,15 +15,14 @@ import { useState } from "react";
 import FeedbackModal from "./FeedbackModal";
 
 const ErrorPage: React.FC = () => {
-
   const [showFeedBack, setFeedBack] = useState(false);
 
   const openComponent = () => {
     setFeedBack(true);
-  }
+  };
   const closeComponent = () => {
     setFeedBack(false);
-  }
+  };
   // Hide the Bottom Tabs when entering the page
   useIonViewWillEnter(hideBar);
 
@@ -42,22 +41,21 @@ const ErrorPage: React.FC = () => {
           <div className="two-button-container">
             <TryAgainButton />
 
-            
             <button
               className="grad-button report-issue-button"
               onClick={openComponent}
             >
               Report Issue
             </button>
-
-
           </div>
 
           {/* Log Out Button */}
           <LogOutButton />
         </div>
       </IonContent>
-      {showFeedBack? <FeedbackModal identifier="Error Page" closeQuestion={closeComponent} /> : null}
+      {showFeedBack ? (
+        <FeedbackModal identifier="Error Page" closeQuestion={closeComponent} />
+      ) : null}
     </IonPage>
   );
 };

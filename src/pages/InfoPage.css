@@ -1,6 +1,6 @@
 /* Background color for the info page */
 .info-content {
-  background: #F1F2EB;
+  background: #f1f2eb;
 }
 
 /* Overall Container for the info page */
@@ -12,19 +12,17 @@
   align-items: center;
 }
 
-
-
-.maple-img{
+.maple-img {
   width: 200px;
   height: 200px;
- 
+  margin-top: 4%;
 }
 
-.h2-text{
+.h2-text {
   box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.15);
 }
 
-.extension-icon{
+.extension-icon {
   font-size: 2.5rem;
   margin-top: 1rem;
   margin-bottom: 1rem;

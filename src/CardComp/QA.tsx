@@ -16,13 +16,12 @@ const QA: React.FC<{ obj: flashCard }> = ({ obj }) => {
 
   answerStyle = "card-text back-text qa-answer";
 
-
   // Coponent Being Rendered
   return (
     <>
       {/* Front Question Text */}
       <ReactMarkdown
-        className="card-text front-text qa-question"
+        className="card-text front-text qa-question-back"
         children={question}
         remarkPlugins={[remarkGfm]}
       ></ReactMarkdown>
