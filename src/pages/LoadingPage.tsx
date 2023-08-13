@@ -15,7 +15,7 @@ import { TbCards, TbPlugConnected } from "react-icons/tb";
 import { AiOutlineCheck } from "react-icons/ai";
 import { useAuth0 } from "@auth0/auth0-react";
 import AppNameHeader from "./AppNameHeader";
-import logo from '../../assets/logo.png'
+import logo from "../../assets/logo.png";
 import WalkingPerson from "../LoadingComp/WalkingPerson";
 
 const LoadingPage: React.FC<{
@@ -135,7 +135,7 @@ const LoadingPage: React.FC<{
         <div className="wrapper">
           {/* Walking Person Component */}
           {/* <WalkingPerson /> */}
-          <img src={logo} alt='logo-pic' className="logo-pic"/>
+          <img src={logo} alt="logo-pic" className="logo-pic" />
 
           {/* Segment for Authenticating User */}
           <div className="segment-container">

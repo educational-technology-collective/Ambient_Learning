@@ -73,7 +73,7 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
         </div>
 
         {/* Display the modal of how one more card works */}
-        {tutorialCounter === 2 ? <OneMoreTutorialModal /> : null}
+        {tutorialCounter === 3 ? <OneMoreTutorialModal /> : null}
 
         {/* Display the message of tutorial finished and prompt them to jump to cards */}
         {tutorialCounter === 0 ? (
