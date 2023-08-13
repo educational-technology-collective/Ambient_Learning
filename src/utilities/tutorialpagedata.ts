@@ -9,6 +9,8 @@ export const cards = [
         answer: `Great job, the tutorial is done! Now it's time to just think, tap, swipe your way to learning!\n\n \n\nYou can give us feedback at any time by pressing the settings menu in the home page or the ? button on the card to help us improve.`,
       },
     },
+  ],
+  [
     {
       _id: "tutorial4",
       lm_id: "s12najdn",
