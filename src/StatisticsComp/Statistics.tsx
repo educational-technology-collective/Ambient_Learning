@@ -31,11 +31,11 @@ const Statistics: React.FC<{ stats: statistics }> = ({ stats }) => {
     <>
       <IonContent scrollY={true} className="statistics-content">
         <h2 className="statistics-title">Session Overview</h2>
-        <IonCard className="tutorial-card" onClick={openQuestion}>
+        {/* <IonCard className="tutorial-card" onClick={openQuestion}>
           <IonCardContent className="tutorial-card-content">
             <MdQuestionMark size="1.5em" />
           </IonCardContent>
-        </IonCard>
+        </IonCard> */}
         <div className="statistics-container">
           <IonCard className="statistics-card">
             <IonCardContent>

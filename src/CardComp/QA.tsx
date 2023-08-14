@@ -12,7 +12,7 @@ const QA: React.FC<{ obj: flashCard }> = ({ obj }) => {
   // For the font-size
   let backQuestionStyle: string, answerStyle: string;
 
-  backQuestionStyle = "card-text back-text qa-question-back ";
+  backQuestionStyle = "card-text back-text qa-question";
 
   answerStyle = "card-text back-text qa-answer";
 
@@ -21,7 +21,7 @@ const QA: React.FC<{ obj: flashCard }> = ({ obj }) => {
     <>
       {/* Front Question Text */}
       <ReactMarkdown
-        className="card-text front-text qa-question-back"
+        className="card-text front-text qa-question"
         children={question}
         remarkPlugins={[remarkGfm]}
       ></ReactMarkdown>
