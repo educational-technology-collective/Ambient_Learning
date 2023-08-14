@@ -93,7 +93,7 @@
 }
 
 /* QA Card Question on the back page taking 50% */
-.qa-question-back {
+.qa-question{
   height: 50%;
   top: 0;
   border-bottom: 1px dashed crimson;

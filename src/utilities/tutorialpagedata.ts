@@ -42,12 +42,7 @@ export const cards = [
       lm_id: "sdnajdn",
       type: "mcq",
       content: {
-        question: `Sometimes you will be given a multiple choice question
-          instead of an open-ended question.  In this case you
-          can either tap the card to reveal the answer, or choose
-          from one of the options given. Here's your first chance
-          to show some knowledge -- how do you flip over a card
-          to see the answer?`,
+        question: `Sometimes you will be given a multiple choice question instead of an open-ended question. In this case you can either tap the card to reveal the answer, or choose from one of the options. Here's your first question -- how do you flip over a card to see the answer?`,
         answer: [
           {
             option: "Tap or choose from a multiple choice option",

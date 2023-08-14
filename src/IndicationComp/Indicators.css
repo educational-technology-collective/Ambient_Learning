@@ -15,7 +15,6 @@
 /* Styling for the negativei indicator on the back page */
 .back-negative {
   top: 1.8em;
-  width: 50%;
   left: 2em;
   rotate: 10deg;
 }
@@ -71,7 +70,6 @@
 /* Styling for the OneMore Indicator */
 .onemore {
   bottom: 5.5em;
-  width: 50%;
 }
 
 /* Styling for the OneMore Indicator's container */
@@ -87,7 +85,6 @@
 /* Styling for the NoMore Indicator */
 .nomore {
   top: 1.5em;
-  width: 50%;
 }
 
 /* Styling for the NoMore Indicator's container */

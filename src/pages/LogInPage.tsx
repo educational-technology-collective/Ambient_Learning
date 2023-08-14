@@ -27,11 +27,11 @@ const LogInPage: React.FC = () => {
   return (
     <IonPage>
       <IonContent scrollY={false} className="login-content">
-        <IonCard className="tutorial-card" onClick={openQuestion}>
+        {/* <IonCard className="tutorial-card" onClick={openQuestion}>
           <IonCardContent className="tutorial-card-content">
             <MdQuestionMark size="1.5em" />
           </IonCardContent>
-        </IonCard>
+        </IonCard> */}
         <div className="login-page-container">
           <img src={logo} alt="logo" className="login-logo" />
 
