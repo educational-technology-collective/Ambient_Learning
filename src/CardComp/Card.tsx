@@ -197,6 +197,7 @@ const Card: React.FC<{
   // useEffect to enableGesture at any time
   useEffect(() => {
     enableGesture(
+      obj._id,
       ref.current,
       refTuple.current,
       isClicked,

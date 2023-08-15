@@ -26,10 +26,18 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
   // Static Cards length of 4
   const [tutorialCounter, setTutorialCounter] = useState(cards.length);
 
-  // Increment the counter of card to move to next
-  const swipeDummyNext = () => {
+  const [tutorialTupleCounter, setTutorialTupleCounter] = useState(cards[cards.length-1].length);
+
+  const swipeNextTutorial = (tupleIndex: number) => {
     setTutorialCounter((prevTutorialCounter) => prevTutorialCounter - 1);
-  };
+    if(tupleIndex > 0){
+      setTutorialTupleCounter(cards[tupleIndex - 1].length);
+    }
+  }
+
+  const swipeOneMoreTutorial = () => {
+    setTutorialTupleCounter((prevTutorialTupleCounter) => prevTutorialTupleCounter - 1);
+  }
 
   // Reset the counter back for next time tutorial
   const leaveTimeOut = () => {
@@ -52,8 +60,7 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
           {cards.map((array: flashCard[], index) => {
             // Display the cards two at a time
             if (
-              index === tutorialCounter - 1 ||
-              index === tutorialCounter - 2
+              index === tutorialCounter - 1
             ) {
               return (
                 <FlashCardList
@@ -61,19 +68,33 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
                   key={index}
                   isFrontTuple={true}
                   putLogInfo={() => {}}
-                  swipeNextCard={swipeDummyNext}
-                  swipeOneMoreCard={swipeDummyNext}
+                  swipeNextCard={swipeNextTutorial}
+                  swipeOneMoreCard={swipeOneMoreTutorial}
                   tupleIndex={index}
-                  tupleCounter={1}
+                  tupleCounter={tutorialTupleCounter}
                   handleStatisticsUpdate={() => {}}
                 />
               );
+            }else if(index === tutorialCounter - 2){
+              return (
+                <FlashCardList 
+                  array={array}
+                  key={index}
+                  isFrontTuple={false}
+                  putLogInfo={() => {}}
+                  swipeNextCard={swipeNextTutorial}
+                  swipeOneMoreCard={swipeOneMoreTutorial}
+                  tupleIndex={index}
+                  tupleCounter={tutorialTupleCounter}
+                  handleStatisticsUpdate={() => {}}
+                />
+              )
             }
           })}
         </div>
 
         {/* Display the modal of how one more card works */}
-        {tutorialCounter === 3 ? <OneMoreTutorialModal /> : null}
+        {tutorialCounter === 2 ? <OneMoreTutorialModal /> : null}
 
         {/* Display the message of tutorial finished and prompt them to jump to cards */}
         {tutorialCounter === 0 ? (
