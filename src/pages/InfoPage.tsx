@@ -17,7 +17,7 @@ const InfoPage: React.FC = () => {
 
   const history = useHistory();
   const buttonHandler = () => {
-    history.push("/tutorial");
+    history.push("/tutorial", {from: 'info'});
   };
   return (
     <IonPage>

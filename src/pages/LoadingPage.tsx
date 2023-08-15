@@ -47,23 +47,23 @@ const LoadingPage: React.FC<{
 
   // Navigate to cardscreen and spread the cards icon
   const navigateToCardScreen = () => {
-    history.push("/cardscreen");
+    history.push("/cardscreen", {from: 'loading'});
     handleCardScreen();
   };
 
   // Navigate to tutorial screen if first time
   const navigateToTutorialScreen = () => {
-    history.push("/tutorial");
+    history.push("/tutorial", {from: 'loading'});
   };
 
   // Navigate to Info Screen if there is no card ever
   const navigateToInfoScreen = () => {
-    history.push("/info");
+    history.push("/info", {from: 'loading'});
   };
 
   // If there is an error with fetch, navigate to error page
   const navigateToErrorPage = () => {
-    history.push("/error");
+    history.push("/error", {from: 'loading'});
   };
 
   // Set a timeout that will jump to the cardscreen

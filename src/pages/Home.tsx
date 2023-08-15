@@ -12,8 +12,10 @@ import {
   TbBook,
   TbQuestionMark,
   TbWalk,
+  TbInfoSquareRoundedFilled
 } from "react-icons/tb";
 import { Browser } from "@capacitor/browser";
+import { Capacitor } from "@capacitor/core";
 
 const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
   cardsLeft,
@@ -26,8 +28,8 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
 
   // Used to jump to the card screen and spread cards
   const navigateToCardScreen = () => {
-    history.push("/cardscreen");
     handleCardScreen();
+    history.push("/cardscreen", {from: 'home'});
   };
 
   const [showFeedBack, setFeedBack] = useState(false);
@@ -91,7 +93,7 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
       : setToggle("translateY(-120%)");
   };
   const navigateToTutroial = () => {
-    history.push("/tutorial");
+    history.push("/tutorial", {from: 'home'});
   };
 
   const feedbackClick = () => {
@@ -116,6 +118,7 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
     }
   })
 
+  const link = Capacitor.getPlatform() === 'ios' ? `https://apps.apple.com/us/app/ambient-learning/id6456572536` : `https://play.google.com/store/apps/details?id=com.etc.ambientlearning&pcampaignid=APPU_1_ZdnbZNTTL4mfptQPq-ef6A0&pli=1`;
   // Screen Being Rendered
   return (
     <IonPage>
@@ -128,6 +131,11 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
           style={{ transform: toggle }}
           id='settings-box'
         >
+          <a className="column-container" href={link} style={{textDecoration: 'none'}}>
+            <TbInfoSquareRoundedFilled size='1.5rem' color="darkgrey"/>
+            <h4 className="texts">Version: 1.5.6</h4>
+          </a>
+
           <div className="column-container" onClick={navigateToTutroial}>
             <TbBook size="1.5rem" color="darkgrey" />
             <h4 className="texts">Tutorial</h4>

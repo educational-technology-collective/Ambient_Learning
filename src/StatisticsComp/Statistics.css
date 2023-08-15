@@ -10,13 +10,16 @@
 }
 
 .statistics-container {
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .statistics-card {
+  height: 130%;
   left: 100%;
-  margin-top: 8px;
-  margin-bottom: 8px;
+  margin-top: 20px;
+  margin-bottom: 5px;
   animation-name: showCard;
   animation-duration: 0.3s;
   animation-timing-function: ease;

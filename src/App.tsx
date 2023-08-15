@@ -548,6 +548,7 @@ const App: React.FC = () => {
                   swipeNextCard={swipeNextCard}
                   swipeOneMoreCard={swipeOneMoreCard}
                   handleStatisticsUpdate={handleStatisticsUpdate}
+                  handleHomeScreen={handleHomeScreen}
                 />
               )}
             />

@@ -4,12 +4,18 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
+  useIonViewWillEnter,
+  useIonViewWillLeave,
 } from "@ionic/react";
 import "./CardScreen.css";
 import React from "react";
 import FlashCardList from "../FlashCardComp/FlashCardList";
 import OneMoreFailMessage from "../IndicationComp/OneMoreFailMessage";
 import Statistics from "../StatisticsComp/Statistics";
+import { TbHomeEdit } from "react-icons/tb";
+import { useHistory } from "react-router";
+import { hideBar, showBar } from "../utilities/showTabBar";
+import CardsTab from "../IndicationComp/CardsTab";
 
 const CardScreen: React.FC<{
   finished: number;
@@ -35,6 +41,7 @@ const CardScreen: React.FC<{
     latestRecord: latestResult
   ) => void;
   handleStatisticsUpdate: (testEval: string, selfEval: string) => void;
+  handleHomeScreen: () => void
 }> = ({
   finished,
   total,
@@ -47,25 +54,39 @@ const CardScreen: React.FC<{
   swipeNextCard,
   swipeOneMoreCard,
   handleStatisticsUpdate,
+  handleHomeScreen
 }) => {
+
+  useIonViewWillEnter(hideBar)
+
+  useIonViewWillLeave(showBar)
+
   // Set the className of cardstack if it's shaking or not
   const stackClass: string = isShake
     ? "card-stacker card-stacker-animate"
     : "card-stacker";
 
+
+  const history = useHistory();
+  const navigateToHome = () => {
+    history.push('/home')
+    handleHomeScreen();
+  }
+  
   // Screen Being Rendered
   return (
     <IonPage>
+       <IonHeader color="tertiary">
+            <IonToolbar>
+              
+               {finished === total ? <IonTitle className="stats-title">Session Overview</IonTitle>: <IonTitle className="title">{finished} / {total}</IonTitle>}
+            
+              <TbHomeEdit className="home-icon" onClick={navigateToHome}/>
+            </IonToolbar>
+          </IonHeader>
       {finished !== total ? (
         <>
           {/* Header and ToolBar */}
-          <IonHeader color="tertiary">
-            <IonToolbar>
-              <IonTitle className="title">
-                {finished} / {total}
-              </IonTitle>
-            </IonToolbar>
-          </IonHeader>
           <IonContent className="page-content" scrollY={false}>
             <div className={stackClass}>
               {/* We display two tuples at one time */}
