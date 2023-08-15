@@ -61,7 +61,7 @@ export const cards = [
       lm_id: "jjiajsid",
       type: "qa",
       content: {
-        question: `Hello there! Welcome to Tutorial!\n\nThis is a flashcard where you would normally be asked about a topic in the course.\n\nOnce you have thought about the question, **tap** on the card to reveal the answer.`,
+        question: `Hello there! Welcome to Tutorial!\n\nThis is a flashcard where you would normally be asked about a topic in the course.\n\nOnce you have thought about the question, ***tap*** on the card to reveal the answer.`,
         answer:
           "Great Job! Now you are seeing the back of the card which has the answer. If you knew the answer then just swipe right to get the next card.  👉",
       },

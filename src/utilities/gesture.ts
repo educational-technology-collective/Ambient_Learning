@@ -128,6 +128,7 @@ const VerticalMove = (
   if (stuff && card) {
     // Before Flipping. Move Down the Whole Tuple
     if (!isClicked) {
+      if(detail.deltaY > 0)
       stuff.style.transform = `translateY(${detail.deltaY}px) rotate(${
         detail.deltaY / 90
       }deg)`;
