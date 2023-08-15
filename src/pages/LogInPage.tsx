@@ -50,13 +50,7 @@ const LogInPage: React.FC = () => {
           </div> */}
           <LogInButton />
 
-          <a
-            href="https://pngtree.com/freepng/red-maple-tree_4742154.html?share=3?sol=downref&id=bef"
-            className="acknowledgement"
-          >
-            Maple PNG Designed By 588ku from
-            https://pngtree.com/freepng/red-maple-tree_4742154.html?share=3?sol=downref&id=bef
-          </a>
+          <h3 className="version">V.1.5.6</h3>
         </div>
       </IonContent>
       {showFeedBack ? (

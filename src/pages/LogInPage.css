@@ -18,9 +18,9 @@
   margin-top: 4rem;
 }
 
-.acknowledgement {
-  font-size: 0.2rem;
+.version {
+  font-size: 1rem;
   position: absolute;
-  bottom: 1rem;
-  opacity: 0.05;
+  bottom: 2.5rem;
+
 }
