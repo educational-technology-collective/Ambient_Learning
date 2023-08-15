@@ -19,6 +19,7 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
   cardsLeft,
   handleCardScreen,
 }) => {
+
   const history = useHistory();
 
   const { user } = useAuth0();
@@ -83,7 +84,8 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
     localStorage.clear();
   };
   const [toggle, setToggle] = useState("translateY(-120%)");
-  const switchToggle = () => {
+  const switchToggle = (event: any) => {
+    event.stopPropagation();
     toggle === "translateY(-120%)"
       ? setToggle("translateY(0)")
       : setToggle("translateY(-120%)");
@@ -93,7 +95,6 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
   };
 
   const feedbackClick = () => {
-    switchToggle();
     if (openQuestion) {
       openQuestion();
     }
@@ -108,6 +109,13 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
     }
   };
 
+  // Close the settings icon when clicking outside
+  document.addEventListener('click', (event) => {
+    if(toggle === 'translateY(0)'){
+      setToggle('translateY(-120%)')
+    }
+  })
+
   // Screen Being Rendered
   return (
     <IonPage>
@@ -116,8 +124,9 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
 
       <IonContent scrollY={false} className="home-content">
         <div
-          className={toggle ? "dropdown-settings" : "dropdown-settings"}
+          className='dropdown-settings'
           style={{ transform: toggle }}
+          id='settings-box'
         >
           <div className="column-container" onClick={navigateToTutroial}>
             <TbBook size="1.5rem" color="darkgrey" />
