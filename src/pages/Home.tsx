@@ -133,7 +133,7 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
         >
           <a className="column-container" href={link} style={{textDecoration: 'none'}}>
             <TbInfoSquareRoundedFilled size='1.5rem' color="darkgrey"/>
-            <h4 className="texts">Version: 1.5.6</h4>
+            <h4 className="texts">Version: 1.6.0</h4>
           </a>
 
           <div className="column-container" onClick={navigateToTutroial}>

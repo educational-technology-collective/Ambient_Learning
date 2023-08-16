@@ -50,7 +50,7 @@ const LogInPage: React.FC = () => {
           </div> */}
           <LogInButton />
 
-          <h3 className="version">V.1.5.6</h3>
+          <h3 className="version">V.1.6.0</h3>
         </div>
       </IonContent>
       {showFeedBack ? (
