@@ -8,7 +8,7 @@ import {
 } from "@ionic/react";
 import "./LoadingPage.css";
 import { useHistory } from "react-router-dom";
-import { hideBar, showBar } from "../utilities/showTabBar";
+import { hideBar, showBar } from "../utilities/showTabBarAndButtons";
 import { FiUser } from "react-icons/fi";
 import { BiServer } from "react-icons/bi";
 import { TbCards, TbPlugConnected } from "react-icons/tb";
@@ -47,23 +47,23 @@ const LoadingPage: React.FC<{
 
   // Navigate to cardscreen and spread the cards icon
   const navigateToCardScreen = () => {
-    history.push("/cardscreen", {from: 'loading'});
+    history.push("/cardscreen", { from: "loading" });
     handleCardScreen();
   };
 
   // Navigate to tutorial screen if first time
   const navigateToTutorialScreen = () => {
-    history.push("/tutorial", {from: 'loading'});
+    history.push("/tutorial", { from: "loading" });
   };
 
   // Navigate to Info Screen if there is no card ever
   const navigateToInfoScreen = () => {
-    history.push("/info", {from: 'loading'});
+    history.push("/info", { from: "loading" });
   };
 
   // If there is an error with fetch, navigate to error page
   const navigateToErrorPage = () => {
-    history.push("/error", {from: 'loading'});
+    history.push("/error", { from: "loading" });
   };
 
   // Set a timeout that will jump to the cardscreen

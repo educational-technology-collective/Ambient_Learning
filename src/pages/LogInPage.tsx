@@ -7,7 +7,7 @@ import {
 } from "@ionic/react";
 import "./LogInPage.css";
 import LogInButton from "../ButtonComp/LogInButton";
-import { hideBar } from "../utilities/showTabBar";
+import { hideBar } from "../utilities/showTabBarAndButtons";
 import logo from "../../assets/logo.png";
 import { MdQuestionMark } from "react-icons/md";
 import { useState } from "react";

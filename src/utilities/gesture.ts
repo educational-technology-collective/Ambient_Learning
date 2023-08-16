@@ -13,25 +13,31 @@ import { Gesture, GestureDetail, createGesture } from "@ionic/react";
 const showHorizontalInd = (
   detail: GestureDetail,
   handleNegativeOpacity: (detail: GestureDetail) => void,
-  handlePositiveOpacity: (detail: GestureDetail) => void
+  handlePositiveOpacity: (detail: GestureDetail) => void,
+  handleAnimateKnow: () => void,
+  handleAnimateDontKnow: () => void,
 ) => {
   // Swipe Right. Show Positive Indicators
   if (detail.deltaX > 0) {
     handlePositiveOpacity(detail);
+    handleAnimateKnow();
   }
   // Swipe Left. Show Negative Indicators
   else {
     handleNegativeOpacity(detail);
+    handleAnimateDontKnow();
   }
 };
 
 // Horizontal Swiping Function
-const HorizontalMove = (
+export const HorizontalMove = (
   cardId: string,
   detail: GestureDetail,
   stuff: HTMLInputElement | null,
   handleNegativeOpacity: (detail: GestureDetail) => void,
-  handlePositiveOpacity: (detail: GestureDetail) => void
+  handlePositiveOpacity: (detail: GestureDetail) => void,
+  handleAnimateKnow: () => void,
+  handleAnimateDontKnow: () => void
 ) => {
   // If it's tutorial 3 or tutorial 5, we don't allow swiping horizontally
   if (cardId === "tutorial3" || cardId === "tutorial5") return;
@@ -43,7 +49,7 @@ const HorizontalMove = (
           detail.deltaX / 20
         }deg)`;
         // Calling the function to show horizontal indicators
-        showHorizontalInd(detail, handleNegativeOpacity, handlePositiveOpacity);
+        showHorizontalInd(detail, handleNegativeOpacity, handlePositiveOpacity, handleAnimateKnow, handleAnimateDontKnow);
       }
     } else if (cardId === "tutorial4") {
       // if it's tutorial 4, only moving left
@@ -52,7 +58,7 @@ const HorizontalMove = (
           detail.deltaX / 20
         }deg)`;
         // Calling the function to show horizontal indicators
-        showHorizontalInd(detail, handleNegativeOpacity, handlePositiveOpacity);
+        showHorizontalInd(detail, handleNegativeOpacity, handlePositiveOpacity, handleAnimateKnow, handleAnimateDontKnow);
       }
     } else {
       // Regular card swiping left right
@@ -60,7 +66,7 @@ const HorizontalMove = (
         detail.deltaX / 20
       }deg)`;
       // Calling the function to show horizontal indicators
-      showHorizontalInd(detail, handleNegativeOpacity, handlePositiveOpacity);
+      showHorizontalInd(detail, handleNegativeOpacity, handlePositiveOpacity, handleAnimateKnow, handleAnimateDontKnow);
     }
   }
 };
@@ -72,7 +78,8 @@ const HorizontalEnd = (
   stuff: HTMLInputElement | null,
   handleShowNothing: () => void,
   knowTimeOut: () => void,
-  dontKnowTimeOut: () => void
+  dontKnowTimeOut: () => void,
+  handleNoAnimation: () => void,
 ) => {
   // If it's tutorial 3 or 5, we return
   if (cardId === "tutorial3" || cardId === "tutorial5") return;
@@ -114,7 +121,10 @@ const HorizontalEnd = (
 
       // Reset all indicators to have opacity 0
       handleShowNothing();
+      
     }
+    // Reset all animation boolean
+    handleNoAnimation();
   }
 };
 
@@ -122,15 +132,19 @@ const HorizontalEnd = (
 const showVerticalInd = (
   detail: GestureDetail,
   handleNoMoreOpacity: (detail: GestureDetail) => void,
-  handleOneMoreOpacity: (detail: GestureDetail) => void
+  handleOneMoreOpacity: (detail: GestureDetail) => void,
+  handleAnimatePoorCard: () => void,
+  handleAnimateOneMore: () => void,
 ) => {
   // Swiping Down for no more indicator
   if (detail.deltaY > 0) {
     handleNoMoreOpacity(detail);
+    handleAnimatePoorCard();
   }
   // Swiping up for one more indicator
   else {
     handleOneMoreOpacity(detail);
+    handleAnimateOneMore();
   }
 };
 
@@ -143,7 +157,8 @@ const VerticalMove = (
   isClicked: boolean,
   handleNoMoreOpacity: (detail: GestureDetail) => void,
   handleOneMoreOpacity: (detail: GestureDetail) => void,
-  handleShowNothing: () => void
+  handleAnimatePoorCard: () => void,
+  handleAnimateOneMore: () => void
 ) => {
   // If it's tutorial 1, 2, 4, we return
   if (
@@ -163,7 +178,7 @@ const VerticalMove = (
         stuff.style.transform = `translateY(${detail.deltaY}px) rotate(${
           detail.deltaY / 90
         }deg)`;
-        showVerticalInd(detail, handleNoMoreOpacity, handleOneMoreOpacity);
+        showVerticalInd(detail, handleNoMoreOpacity, handleOneMoreOpacity, handleAnimatePoorCard, handleAnimateOneMore);
       }
     }
     // After Flipping
@@ -173,7 +188,7 @@ const VerticalMove = (
         stuff.style.transform = `translateY(${detail.deltaY}px) rotate(${
           detail.deltaY / 90
         }deg)`;
-        showVerticalInd(detail, handleNoMoreOpacity, handleOneMoreOpacity);
+        showVerticalInd(detail, handleNoMoreOpacity, handleOneMoreOpacity, handleAnimatePoorCard, handleAnimateOneMore);
       }
       // Moving Up will only move the top card
       else if (detail.deltaY < 0 && cardId !== "tutorial5") {
@@ -181,7 +196,7 @@ const VerticalMove = (
         card.style.transform = `translateY(${detail.deltaY}px) rotate(${
           detail.deltaY / 90
         }deg)`;
-        showVerticalInd(detail, handleNoMoreOpacity, handleOneMoreOpacity);
+        showVerticalInd(detail, handleNoMoreOpacity, handleOneMoreOpacity, handleAnimatePoorCard, handleAnimateOneMore);
       }
     }
   }
@@ -197,7 +212,8 @@ const VerticalEnd = (
   handleShowNothing: () => void,
   poorCardBeforeTimeOut: () => void,
   poorCardAfterTimeOut: () => void,
-  oneMoreTimeOut: () => void
+  oneMoreTimeOut: () => void,
+  handleNoAnimation: () => void
 ) => {
   // If it's tutorial 1, 2, 4, we return
   if (
@@ -270,8 +286,10 @@ const VerticalEnd = (
         card.style.transform = "";
         stuff.style.transform = "";
         handleShowNothing();
+
       }
     }
+    handleNoAnimation();
   }
 };
 
@@ -290,7 +308,12 @@ export const enableGesture = (
   dontKnowTimeOut: () => void,
   poorCardBeforeTimeOut: () => void,
   poorCardAfterTimeOut: () => void,
-  oneMoreTimeOut: () => void
+  oneMoreTimeOut: () => void,
+  handleAnimateKnow: () => void,
+  handleAniamteDontKnow: () => void,
+  handleAnimatePoorCard: () => void,
+  handleAnimateOneMore: () => void,
+  handleNoAnimation: () => void
 ) => {
   if (stuff && card) {
     // Horizontal Direction Swiping
@@ -304,7 +327,9 @@ export const enableGesture = (
           detail,
           stuff,
           handleNegativeOpacity,
-          handlePositiveOpacity
+          handlePositiveOpacity,
+          handleAnimateKnow,
+          handleAniamteDontKnow
         ),
       onEnd: (detail) =>
         HorizontalEnd(
@@ -313,7 +338,8 @@ export const enableGesture = (
           stuff,
           handleShowNothing,
           knowTimeOut,
-          dontKnowTimeOut
+          dontKnowTimeOut,
+          handleNoAnimation
         ),
     });
 
@@ -331,7 +357,8 @@ export const enableGesture = (
           isClicked,
           handleNoMoreOpacity,
           handleOneMoreOpacity,
-          handleShowNothing
+          handleAnimatePoorCard,
+          handleAnimateOneMore
         ),
       onEnd: (detail) =>
         VerticalEnd(
@@ -343,7 +370,8 @@ export const enableGesture = (
           handleShowNothing,
           poorCardBeforeTimeOut,
           poorCardAfterTimeOut,
-          oneMoreTimeOut
+          oneMoreTimeOut,
+          handleNoAnimation
         ),
     });
 

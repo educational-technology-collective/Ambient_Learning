@@ -5,7 +5,7 @@ import {
   useIonViewWillLeave,
 } from "@ionic/react";
 import { useState } from "react";
-import { hideBar, showBar } from "../utilities/showTabBar";
+import { hideBar, showBar } from "../utilities/showTabBarAndButtons";
 import "../pages/CardScreen.css";
 import "./TutorialPage.css";
 import FlashCardList from "../FlashCardComp/FlashCardList";
@@ -13,6 +13,7 @@ import FinishedDisplay from "../TutorialComp/FinishedDisplay";
 import AppNameHeader from "./AppNameHeader";
 import { cards } from "../utilities/tutorialpagedata";
 import OneMoreTutorialModal from "../TutorialComp/OneMoreTutorialModal";
+import ActionButtons from "../IndicationComp/ActionButtons";
 
 const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
   handleCardScreen,
@@ -26,18 +27,22 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
   // Static Cards length of 4
   const [tutorialCounter, setTutorialCounter] = useState(cards.length);
 
-  const [tutorialTupleCounter, setTutorialTupleCounter] = useState(cards[cards.length-1].length);
+  const [tutorialTupleCounter, setTutorialTupleCounter] = useState(
+    cards[cards.length - 1].length
+  );
 
   const swipeNextTutorial = (tupleIndex: number) => {
     setTutorialCounter((prevTutorialCounter) => prevTutorialCounter - 1);
-    if(tupleIndex > 0){
+    if (tupleIndex > 0) {
       setTutorialTupleCounter(cards[tupleIndex - 1].length);
     }
-  }
+  };
 
   const swipeOneMoreTutorial = () => {
-    setTutorialTupleCounter((prevTutorialTupleCounter) => prevTutorialTupleCounter - 1);
-  }
+    setTutorialTupleCounter(
+      (prevTutorialTupleCounter) => prevTutorialTupleCounter - 1
+    );
+  };
 
   // Reset the counter back for next time tutorial
   const leaveTimeOut = () => {
@@ -59,9 +64,7 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
         <div className="card-stack">
           {cards.map((array: flashCard[], index) => {
             // Display the cards two at a time
-            if (
-              index === tutorialCounter - 1
-            ) {
+            if (index === tutorialCounter - 1) {
               return (
                 <FlashCardList
                   array={array}
@@ -75,9 +78,9 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
                   handleStatisticsUpdate={() => {}}
                 />
               );
-            }else if(index === tutorialCounter - 2){
+            } else if (index === tutorialCounter - 2) {
               return (
-                <FlashCardList 
+                <FlashCardList
                   array={array}
                   key={index}
                   isFrontTuple={false}
@@ -88,7 +91,7 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
                   tupleCounter={tutorialTupleCounter}
                   handleStatisticsUpdate={() => {}}
                 />
-              )
+              );
             }
           })}
         </div>

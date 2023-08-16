@@ -14,8 +14,9 @@ import OneMoreFailMessage from "../IndicationComp/OneMoreFailMessage";
 import Statistics from "../StatisticsComp/Statistics";
 import { TbHomeEdit } from "react-icons/tb";
 import { useHistory } from "react-router";
-import { hideBar, showBar } from "../utilities/showTabBar";
+import { hideBar, showBar } from "../utilities/showTabBarAndButtons";
 import CardsTab from "../IndicationComp/CardsTab";
+import ActionButtons from "../IndicationComp/ActionButtons";
 
 const CardScreen: React.FC<{
   finished: number;
@@ -41,7 +42,7 @@ const CardScreen: React.FC<{
     latestRecord: latestResult
   ) => void;
   handleStatisticsUpdate: (testEval: string, selfEval: string) => void;
-  handleHomeScreen: () => void
+  handleHomeScreen: () => void;
 }> = ({
   finished,
   total,
@@ -54,36 +55,39 @@ const CardScreen: React.FC<{
   swipeNextCard,
   swipeOneMoreCard,
   handleStatisticsUpdate,
-  handleHomeScreen
+  handleHomeScreen,
 }) => {
+  useIonViewWillEnter(hideBar);
 
-  useIonViewWillEnter(hideBar)
-
-  useIonViewWillLeave(showBar)
+  useIonViewWillLeave(showBar);
 
   // Set the className of cardstack if it's shaking or not
   const stackClass: string = isShake
     ? "card-stacker card-stacker-animate"
     : "card-stacker";
 
-
   const history = useHistory();
   const navigateToHome = () => {
-    history.push('/home')
+    history.push("/home");
     handleHomeScreen();
-  }
-  
+  };
+
   // Screen Being Rendered
   return (
     <IonPage>
-       <IonHeader color="tertiary">
-            <IonToolbar>
-              
-               {finished === total ? <IonTitle className="stats-title">Session Overview</IonTitle>: <IonTitle className="title">{finished} / {total}</IonTitle>}
-            
-              <TbHomeEdit className="home-icon" onClick={navigateToHome}/>
-            </IonToolbar>
-          </IonHeader>
+      <IonHeader color="tertiary">
+        <IonToolbar>
+          {finished === total ? (
+            <IonTitle className="stats-title">Session Overview</IonTitle>
+          ) : (
+            <IonTitle className="title">
+              {finished} / {total}
+            </IonTitle>
+          )}
+
+          <TbHomeEdit className="home-icon" onClick={navigateToHome} />
+        </IonToolbar>
+      </IonHeader>
       {finished !== total ? (
         <>
           {/* Header and ToolBar */}
@@ -127,6 +131,7 @@ const CardScreen: React.FC<{
               {/* Give alert message if it's shaking due to OneMore */}
               {isShake ? <OneMoreFailMessage /> : null}
             </div>
+            {/* <ActionButtons animateDontKnow={true} animateKnow={true} animateOneMore={true} animatePoorCard={true} /> */}
           </IonContent>{" "}
         </>
       ) : (

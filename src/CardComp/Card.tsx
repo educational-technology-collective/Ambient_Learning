@@ -5,11 +5,13 @@ import FrontIndicator from "../IndicationComp/FrontIndicator";
 import BackIndicator from "../IndicationComp/BackIndicator";
 import MCQ from "./MCQ";
 import QA from "./QA";
-import { enableGesture } from "../utilities/gesture";
+import { HorizontalMove, enableGesture } from "../utilities/gesture";
 import { putSwipe } from "../utilities/logfunction";
 import NumberIndicator from "./NumberIndicator";
 import FeedbackModal from "../pages/FeedbackModal";
 import QuestionMark from "./QuestionMark";
+import ActionButtons from "../IndicationComp/ActionButtons";
+import { showDontKnow, showKnow, showOneMore, showPoorCard } from "../utilities/showTabBarAndButtons";
 
 const Card: React.FC<{
   obj: flashCard;
@@ -17,6 +19,7 @@ const Card: React.FC<{
   cardIndex: number;
   tupleIndex: number;
   tupleCounter: number;
+  direction: number;
   handleStatisticsUpdate: (testEval: string, selfEval: string) => void;
   moveOn: (
     tupleIndex: number,
@@ -33,16 +36,33 @@ const Card: React.FC<{
     latestRecord: latestResult
   ) => void;
   refTuple: React.RefObject<HTMLInputElement>;
+  directionHandler: (direction: number) => void;
+  openButton: () => void;
+  closeButton: () => void;
+  handleAnimateKnow: () => void,
+  handleAniamteDontKnow: () => void,
+  handleAnimatePoorCard: () => void,
+  handleAnimateOneMore: () => void,
+  handleNoAnimation: () => void,
 }> = ({
   obj,
   tupleLength,
   cardIndex,
   tupleIndex,
   tupleCounter,
+  direction,
   handleStatisticsUpdate,
   moveOn,
   oneMore,
   refTuple,
+  directionHandler,
+  openButton,
+  closeButton,
+  handleAnimateKnow,
+  handleAniamteDontKnow,
+  handleAnimatePoorCard,
+  handleAnimateOneMore,
+  handleNoAnimation
 }) => {
   // Reference of the single card element. We transform its style only in onemore
   const ref = useRef<HTMLInputElement>(null);
@@ -95,6 +115,7 @@ const Card: React.FC<{
 
   // Callback for the tap of card
   const clickHandler = () => {
+    openButton();
     setIsClicked(true);
     setClick(true);
   };
@@ -116,6 +137,7 @@ const Card: React.FC<{
 
   // Function for positive swipe time out
   const knowTimeOut = () => {
+    closeButton();
     putSwipe(
       true,
       testEvaluation,
@@ -132,6 +154,7 @@ const Card: React.FC<{
 
   // Function for negative swipe time out
   const dontKnowTimeOut = () => {
+    closeButton();
     putSwipe(
       true,
       testEvaluation,
@@ -148,6 +171,7 @@ const Card: React.FC<{
 
   // Function for one more swipe time out
   const oneMoreTimeOut = () => {
+    closeButton();
     putSwipe(
       true,
       testEvaluation,
@@ -164,6 +188,7 @@ const Card: React.FC<{
 
   // Function for no more before answering
   const poorCardBeforeTimeout = () => {
+    closeButton();
     putSwipe(
       false,
       testEvaluation,
@@ -180,6 +205,7 @@ const Card: React.FC<{
 
   // Function for no more after answering
   const poorCardAfterTimeOut = () => {
+    closeButton();
     putSwipe(
       true,
       testEvaluation,
@@ -210,8 +236,56 @@ const Card: React.FC<{
       dontKnowTimeOut,
       poorCardBeforeTimeout,
       poorCardAfterTimeOut,
-      oneMoreTimeOut
+      oneMoreTimeOut,
+      handleAnimateKnow,
+  handleAniamteDontKnow,
+  handleAnimatePoorCard,
+  handleAnimateOneMore,
+  handleNoAnimation,
     );
+  });
+
+  useEffect(() => {
+      if (isClicked && refTuple.current) {
+        const windowWidth: number = window.innerWidth;
+        const windowHeight: number = window.innerHeight;
+        refTuple.current.style.transition =
+            "0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+        
+        // If user clicks Poor Card Button
+        if (direction === 1) {
+          refTuple.current.style.transform = `translateY(${
+            windowHeight * 1.5
+          }px)`;
+          setTimeout(poorCardAfterTimeOut, 100);
+        }
+        // If user clicks Know Button
+        else if (direction === 2) {
+          
+          refTuple.current.style.transform = `translateX(${
+            windowWidth * 1.5
+          }px)`;
+          setTimeout(knowTimeOut, 100);
+        }
+
+        // If user clicks oneMore button
+        else if(direction === 3 && ref.current){
+          ref.current.style.transition =
+            "0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+          ref.current.style.transform = `translateY(${
+            windowHeight * -1.5
+          }px)`;
+          directionHandler(0);
+          setTimeout(oneMoreTimeOut, 100);
+        }
+        // If user clicks dontKnow button
+        else if(direction === 4){
+          refTuple.current.style.transform = `translateX(${
+            windowWidth * -1.5
+          }px)`;
+          setTimeout(dontKnowTimeOut, 100);
+        }
+      }
   });
 
   // Determine the component and content style based on type of card
@@ -230,6 +304,19 @@ const Card: React.FC<{
     );
     cardContentStyle = "card-content mcq-card-content";
   }
+
+  useEffect(() => {
+    if(obj._id === 'tutorial1' || obj._id === 'tutorial2'){
+      showKnow();
+    }else if(obj._id === 'tutorial3'){
+      showOneMore();
+    }else if(obj._id === 'tutorial4'){
+      showDontKnow();
+    }else if(obj._id === 'tutorial5'){
+      showPoorCard();
+    }
+  }, [isClicked])
+  
 
   // Component Being Rendered
   return (
