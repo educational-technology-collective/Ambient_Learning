@@ -16,6 +16,7 @@ import { TbHomeEdit } from "react-icons/tb";
 import { useHistory } from "react-router";
 import { hideBar, showBar } from "../utilities/showTabBarAndButtons";
 import {App as CapApp} from '@capacitor/app'
+import CardsTab from "../IndicationComp/CardsTab";
 
 const CardScreen: React.FC<{
   finished: number;
@@ -82,11 +83,8 @@ const CardScreen: React.FC<{
           {finished === total ? (
             <IonTitle className="stats-title">Session Overview</IonTitle>
           ) : (
-            <IonTitle className="title">
-              {finished} / {total}
-            </IonTitle>
+            <CardsTab cardsLeft={total - finished} isCardScreen={true}/>
           )}
-
           <TbHomeEdit className="home-icon" onClick={navigateToHome} />
         </IonToolbar>
       </IonHeader>
