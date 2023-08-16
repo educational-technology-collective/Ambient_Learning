@@ -30,7 +30,6 @@ const Statistics: React.FC<{ stats: statistics }> = ({ stats }) => {
   return (
     <>
       <IonContent scrollY={true} className="statistics-content">
-        <h2 className="statistics-title">Session Overview</h2>
         {/* <IonCard className="tutorial-card" onClick={openQuestion}>
           <IonCardContent className="tutorial-card-content">
             <MdQuestionMark size="1.5em" />

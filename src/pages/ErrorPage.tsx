@@ -8,7 +8,7 @@ import {
 import "./ErrorPage.css";
 import "../ButtonComp/Button.css";
 import errorPic from "../../error.png";
-import { hideBar, showBar } from "../utilities/showTabBar";
+import { hideBar, showBar } from "../utilities/showTabBarAndButtons";
 import LogOutButton from "../ButtonComp/LogOutButton";
 import TryAgainButton from "../ButtonComp/TryAgainButton";
 import { useState } from "react";

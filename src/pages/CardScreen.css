@@ -4,10 +4,11 @@
 }
 
 /* Styling for the Toolbar counter */
-.title {
+.stats-title {
   font-size: 1.2em;
   font-weight: 900;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: green;
 }
 
 /* Styling for the stack of card without animation */
@@ -42,4 +43,13 @@
   60% {
     transform: translate3d(3px, 0, 0);
   }
+}
+
+.home-icon{
+  position: absolute;
+  align-self: center;
+  margin-right: 1rem;
+  top: 25%;
+  right: 0;
+  font-size: 1.5rem;
 }

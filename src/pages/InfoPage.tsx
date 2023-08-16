@@ -5,7 +5,7 @@ import {
   useIonViewWillLeave,
 } from "@ionic/react";
 import "./InfoPage.css";
-import { hideBar, showBar } from "../utilities/showTabBar";
+import { hideBar, showBar } from "../utilities/showTabBarAndButtons";
 import logo from "../../assets/logo.png";
 import { SiJupyter, SiGooglechrome } from "react-icons/si";
 import { useHistory } from "react-router";
@@ -17,7 +17,7 @@ const InfoPage: React.FC = () => {
 
   const history = useHistory();
   const buttonHandler = () => {
-    history.push("/tutorial");
+    history.push("/tutorial", { from: "info" });
   };
   return (
     <IonPage>

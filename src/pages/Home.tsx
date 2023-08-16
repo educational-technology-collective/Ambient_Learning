@@ -12,8 +12,10 @@ import {
   TbBook,
   TbQuestionMark,
   TbWalk,
+  TbInfoSquareRoundedFilled,
 } from "react-icons/tb";
 import { Browser } from "@capacitor/browser";
+import { Capacitor } from "@capacitor/core";
 
 const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
   cardsLeft,
@@ -25,8 +27,8 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
 
   // Used to jump to the card screen and spread cards
   const navigateToCardScreen = () => {
-    history.push("/cardscreen");
-    handleCardScreen();
+    setTimeout(handleCardScreen, 300);
+    history.push("/cardscreen", { from: "home" });
   };
 
   const [showFeedBack, setFeedBack] = useState(false);
@@ -83,17 +85,17 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
     localStorage.clear();
   };
   const [toggle, setToggle] = useState("translateY(-120%)");
-  const switchToggle = () => {
+  const switchToggle = (event: any) => {
+    event.stopPropagation();
     toggle === "translateY(-120%)"
       ? setToggle("translateY(0)")
       : setToggle("translateY(-120%)");
   };
   const navigateToTutroial = () => {
-    history.push("/tutorial");
+    history.push("/tutorial", { from: "home" });
   };
 
   const feedbackClick = () => {
-    switchToggle();
     if (openQuestion) {
       openQuestion();
     }
@@ -108,6 +110,17 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
     }
   };
 
+  // Close the settings icon when clicking outside
+  document.addEventListener("click", (event) => {
+    if (toggle === "translateY(0)") {
+      setToggle("translateY(-120%)");
+    }
+  });
+
+  const link =
+    Capacitor.getPlatform() === "ios"
+      ? `https://apps.apple.com/us/app/ambient-learning/id6456572536`
+      : `https://play.google.com/store/apps/details?id=com.etc.ambientlearning&pcampaignid=APPU_1_ZdnbZNTTL4mfptQPq-ef6A0&pli=1`;
   // Screen Being Rendered
   return (
     <IonPage>
@@ -116,9 +129,19 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
 
       <IonContent scrollY={false} className="home-content">
         <div
-          className={toggle ? "dropdown-settings" : "dropdown-settings"}
+          className="dropdown-settings"
           style={{ transform: toggle }}
+          id="settings-box"
         >
+          <a
+            className="column-container"
+            href={link}
+            style={{ textDecoration: "none" }}
+          >
+            <TbInfoSquareRoundedFilled size="1.5rem" color="darkgrey" />
+            <h4 className="texts">Version: 1.6.1</h4>
+          </a>
+
           <div className="column-container" onClick={navigateToTutroial}>
             <TbBook size="1.5rem" color="darkgrey" />
             <h4 className="texts">Tutorial</h4>

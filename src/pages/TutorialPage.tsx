@@ -5,7 +5,7 @@ import {
   useIonViewWillLeave,
 } from "@ionic/react";
 import { useState } from "react";
-import { hideBar, showBar } from "../utilities/showTabBar";
+import { hideBar, showBar } from "../utilities/showTabBarAndButtons";
 import "../pages/CardScreen.css";
 import "./TutorialPage.css";
 import FlashCardList from "../FlashCardComp/FlashCardList";
@@ -13,10 +13,17 @@ import FinishedDisplay from "../TutorialComp/FinishedDisplay";
 import AppNameHeader from "./AppNameHeader";
 import { cards } from "../utilities/tutorialpagedata";
 import OneMoreTutorialModal from "../TutorialComp/OneMoreTutorialModal";
+import { App as CapApp } from "@capacitor/app";
+import { useHistory } from "react-router";
 
 const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
   handleCardScreen,
 }) => {
+  const history = useHistory();
+  CapApp.addListener("backButton", () => {
+    history.push("/home");
+  });
+
   // Hide the bottom tabs for the tutorial page
   useIonViewWillEnter(hideBar);
 
@@ -26,9 +33,21 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
   // Static Cards length of 4
   const [tutorialCounter, setTutorialCounter] = useState(cards.length);
 
-  // Increment the counter of card to move to next
-  const swipeDummyNext = () => {
+  const [tutorialTupleCounter, setTutorialTupleCounter] = useState(
+    cards[cards.length - 1].length
+  );
+
+  const swipeNextTutorial = (tupleIndex: number) => {
     setTutorialCounter((prevTutorialCounter) => prevTutorialCounter - 1);
+    if (tupleIndex > 0) {
+      setTutorialTupleCounter(cards[tupleIndex - 1].length);
+    }
+  };
+
+  const swipeOneMoreTutorial = () => {
+    setTutorialTupleCounter(
+      (prevTutorialTupleCounter) => prevTutorialTupleCounter - 1
+    );
   };
 
   // Reset the counter back for next time tutorial
@@ -51,20 +70,31 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
         <div className="card-stack">
           {cards.map((array: flashCard[], index) => {
             // Display the cards two at a time
-            if (
-              index === tutorialCounter - 1 ||
-              index === tutorialCounter - 2
-            ) {
+            if (index === tutorialCounter - 1) {
               return (
                 <FlashCardList
                   array={array}
                   key={index}
                   isFrontTuple={true}
                   putLogInfo={() => {}}
-                  swipeNextCard={swipeDummyNext}
-                  swipeOneMoreCard={swipeDummyNext}
+                  swipeNextCard={swipeNextTutorial}
+                  swipeOneMoreCard={swipeOneMoreTutorial}
                   tupleIndex={index}
-                  tupleCounter={1}
+                  tupleCounter={tutorialTupleCounter}
+                  handleStatisticsUpdate={() => {}}
+                />
+              );
+            } else if (index === tutorialCounter - 2) {
+              return (
+                <FlashCardList
+                  array={array}
+                  key={index}
+                  isFrontTuple={false}
+                  putLogInfo={() => {}}
+                  swipeNextCard={swipeNextTutorial}
+                  swipeOneMoreCard={swipeOneMoreTutorial}
+                  tupleIndex={index}
+                  tupleCounter={tutorialTupleCounter}
                   handleStatisticsUpdate={() => {}}
                 />
               );
@@ -73,7 +103,7 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
         </div>
 
         {/* Display the modal of how one more card works */}
-        {tutorialCounter === 3 ? <OneMoreTutorialModal /> : null}
+        {tutorialCounter === 2 ? <OneMoreTutorialModal /> : null}
 
         {/* Display the message of tutorial finished and prompt them to jump to cards */}
         {tutorialCounter === 0 ? (

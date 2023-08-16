@@ -4,7 +4,7 @@ export const collectionCard = [[{
   "lm_id": "64cc1b076cb44db464e25bcb",
   "visibility": "Development",
   "content": {
-    "question": "What value is printed when the following statement executes?\n   \n   `python\n   \n      print(18 / 4)",
+    "question": "What value is printed when the following statement executes?\n   \n   \n   \n      print(18 / 4)",
     "answer": [
       {
         "option": "4.5",
@@ -35,7 +35,7 @@ export const collectionCard = [[{
   "lm_id": "64cc1b076cb44db464e25bcb",
   "visibility": "Development",
   "content": {
-    "question": "What is printed when the following statements execute?\n   \n   `python\n   \n     x = 12\n     x = x - 1\n     print(x)",
+    "question": "What is printed when the following statements execute?\n   \n   \n   \n     x = 12\n     x = x - 1\n     print(x)",
     "answer": [
       {
         "option": "12",

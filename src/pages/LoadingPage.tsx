@@ -8,7 +8,7 @@ import {
 } from "@ionic/react";
 import "./LoadingPage.css";
 import { useHistory } from "react-router-dom";
-import { hideBar, showBar } from "../utilities/showTabBar";
+import { hideBar, showBar } from "../utilities/showTabBarAndButtons";
 import { FiUser } from "react-icons/fi";
 import { BiServer } from "react-icons/bi";
 import { TbCards, TbPlugConnected } from "react-icons/tb";
@@ -16,7 +16,6 @@ import { AiOutlineCheck } from "react-icons/ai";
 import { useAuth0 } from "@auth0/auth0-react";
 import AppNameHeader from "./AppNameHeader";
 import logo from "../../assets/logo.png";
-import WalkingPerson from "../LoadingComp/WalkingPerson";
 
 const LoadingPage: React.FC<{
   total: number;
@@ -47,23 +46,23 @@ const LoadingPage: React.FC<{
 
   // Navigate to cardscreen and spread the cards icon
   const navigateToCardScreen = () => {
-    history.push("/cardscreen");
-    handleCardScreen();
+    history.push("/cardscreen", { from: "loading" });
+    setTimeout(handleCardScreen, 300);
   };
 
   // Navigate to tutorial screen if first time
   const navigateToTutorialScreen = () => {
-    history.push("/tutorial");
+    history.push("/tutorial", { from: "loading" });
   };
 
   // Navigate to Info Screen if there is no card ever
   const navigateToInfoScreen = () => {
-    history.push("/info");
+    history.push("/info", { from: "loading" });
   };
 
   // If there is an error with fetch, navigate to error page
   const navigateToErrorPage = () => {
-    history.push("/error");
+    history.push("/error", { from: "loading" });
   };
 
   // Set a timeout that will jump to the cardscreen

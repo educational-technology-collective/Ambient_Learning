@@ -5,14 +5,14 @@ import "./AppNameHeader.css";
 // The ToolBar header with App Name
 const AppNameHeader: React.FC<{
   isHome?: boolean;
-  switchSettings?: () => void;
+  switchSettings?: (event: any) => void;
 }> = ({ isHome = false, switchSettings }) => {
   return (
     <IonHeader color="tertiary">
       <IonToolbar className="header-container" id="header">
         <IonTitle className="title">Ambient Learning</IonTitle>
         {isHome ? (
-          <TbSettings className="settings-icon" onClick={switchSettings} />
+          <TbSettings className="settings-icon" onClick={switchSettings} id="settings-icon"/>
         ) : null}
       </IonToolbar>
     </IonHeader>

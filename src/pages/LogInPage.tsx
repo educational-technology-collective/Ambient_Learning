@@ -1,15 +1,8 @@
-import {
-  IonPage,
-  IonContent,
-  useIonViewWillEnter,
-  IonCard,
-  IonCardContent,
-} from "@ionic/react";
+import { IonPage, IonContent, useIonViewWillEnter } from "@ionic/react";
 import "./LogInPage.css";
 import LogInButton from "../ButtonComp/LogInButton";
-import { hideBar } from "../utilities/showTabBar";
+import { hideBar } from "../utilities/showTabBarAndButtons";
 import logo from "../../assets/logo.png";
-import { MdQuestionMark } from "react-icons/md";
 import { useState } from "react";
 import FeedbackModal from "./FeedbackModal";
 
@@ -50,13 +43,7 @@ const LogInPage: React.FC = () => {
           </div> */}
           <LogInButton />
 
-          <a
-            href="https://pngtree.com/freepng/red-maple-tree_4742154.html?share=3?sol=downref&id=bef"
-            className="acknowledgement"
-          >
-            Maple PNG Designed By 588ku from
-            https://pngtree.com/freepng/red-maple-tree_4742154.html?share=3?sol=downref&id=bef
-          </a>
+          <h3 className="version">V.1.6.1</h3>
         </div>
       </IonContent>
       {showFeedBack ? (

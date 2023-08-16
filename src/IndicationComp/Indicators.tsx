@@ -26,7 +26,7 @@ export const BackNegativeIndicator: React.FC<{ negativeOpacity: number }> = ({
     >
       <div className="action-container negative-container">
         <IonText className="action-text negative-text">DON'T KNOW</IonText>
-        <IonText className="action-text negative-text">😐</IonText>
+        <IonText className="action-text negative-text">🤔</IonText>
       </div>
     </div>
   );
@@ -57,7 +57,7 @@ export const BackOneMoreIndicator: React.FC<{ onemoreOpacity: number }> = ({
     <div className="back onemore" style={{ opacity: onemoreOpacity }}>
       <div className="action-container onemore-container">
         <IonText className="action-text onemore-text">ONE MORE</IonText>
-        <IonText className="action-text onemore-text">🤔</IonText>
+        <IonText className="action-text onemore-text">🎯</IonText>
       </div>
     </div>
   );
