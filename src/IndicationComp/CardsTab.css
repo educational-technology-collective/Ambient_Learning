@@ -1,6 +1,5 @@
 /* The Main styling for the tab cards */
 .tab-card {
-  margin-top: 0.15rem;
   padding: 0;
   position: absolute;
   left: 45%;
@@ -15,7 +14,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: top 0.3s ease, left 0.3s ease;
+  transition: top 0.3s ease, left 0.3s ease, rotate 0.3s ease;
   margin-top: 0.25rem;
 }
 
@@ -26,29 +25,6 @@
   font-weight: bold;
 }
 
-/* Styling for the hand of cards container */
-.hand {
-  margin: 0.2rem;
-}
-
-.hand:before,
-.hand::after {
-  content: "";
-  display: table;
-}
-
-.hand:after {
-  clear: both;
-}
-
-/* Container for the 3 cards */
-.spread {
-  position: relative;
-  width: 2.5rem;
-  height: 3.2rem;
-  transition: top 0.3s ease, left 0.3s ease;
-}
-
 .activate {
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
 }
@@ -57,19 +33,19 @@
 .first-activate {
   left: 47%;
   top: 0.11rem;
-  transform: rotate(10deg);
+  rotate: 10deg;
 }
 
 /* The second one will be the middle card */
 .second-activate {
   left: 45%;
   top: 0.05rem;
-  transform: rotate(0deg);
+  rotate: 0%;
 }
 
 /* The third on will be the leftmost card */
 .third-activate {
   left: 43%;
   top: 0.03rem;
-  transform: rotate(-10deg);
+  rotate: -10deg;
 }

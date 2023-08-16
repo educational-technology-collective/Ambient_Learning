@@ -15,7 +15,7 @@ const FinishedDisplay: React.FC<{
     buttonText = "Start Reviewing";
     // Navigate to the CardScreen
     navigateScreen = () => {
-      enterScreen();
+      setTimeout(enterScreen, 300);
       history.push("/cardscreen", {from: 'tutorial'});
     };
   }

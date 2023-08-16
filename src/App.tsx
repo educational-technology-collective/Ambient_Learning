@@ -549,6 +549,7 @@ const App: React.FC = () => {
                   swipeOneMoreCard={swipeOneMoreCard}
                   handleStatisticsUpdate={handleStatisticsUpdate}
                   handleHomeScreen={handleHomeScreen}
+                  isCardScreen={isCardScreen}
                 />
               )}
             />

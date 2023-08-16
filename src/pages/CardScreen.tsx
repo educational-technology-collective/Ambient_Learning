@@ -15,7 +15,7 @@ import Statistics from "../StatisticsComp/Statistics";
 import { TbHomeEdit } from "react-icons/tb";
 import { useHistory } from "react-router";
 import { hideBar, showBar } from "../utilities/showTabBarAndButtons";
-import {App as CapApp} from '@capacitor/app'
+import { App as CapApp } from "@capacitor/app";
 import CardsTab from "../IndicationComp/CardsTab";
 
 const CardScreen: React.FC<{
@@ -43,6 +43,7 @@ const CardScreen: React.FC<{
   ) => void;
   handleStatisticsUpdate: (testEval: string, selfEval: string) => void;
   handleHomeScreen: () => void;
+  isCardScreen: boolean;
 }> = ({
   finished,
   total,
@@ -56,9 +57,14 @@ const CardScreen: React.FC<{
   swipeOneMoreCard,
   handleStatisticsUpdate,
   handleHomeScreen,
+  isCardScreen,
 }) => {
-  useIonViewWillEnter(hideBar);
+  // Hide the tabs and spread the cards when entering
+  useIonViewWillEnter(() => {
+    hideBar();
+  });
 
+  // Display the tabs when leaving
   useIonViewWillLeave(showBar);
 
   // Set the className of cardstack if it's shaking or not
@@ -72,19 +78,23 @@ const CardScreen: React.FC<{
     handleHomeScreen();
   };
 
-  CapApp.addListener('backButton', () => {
-    history.push('/home');
-  })
+  CapApp.addListener("backButton", () => {
+    history.push("/home");
+    handleHomeScreen();
+  });
+
+  let toolBar =
+    finished !== total ? (
+      <CardsTab cardsLeft={total - finished} isCardScreen={isCardScreen} />
+    ) : (
+      <IonTitle className="stats-title">Session Overview</IonTitle>
+    );
   // Screen Being Rendered
   return (
     <IonPage>
       <IonHeader color="tertiary">
         <IonToolbar>
-          {finished === total ? (
-            <IonTitle className="stats-title">Session Overview</IonTitle>
-          ) : (
-            <CardsTab cardsLeft={total - finished} isCardScreen={true}/>
-          )}
+          {toolBar}
           <TbHomeEdit className="home-icon" onClick={navigateToHome} />
         </IonToolbar>
       </IonHeader>

@@ -21,7 +21,7 @@ const CardsTab: React.FC<{ cardsLeft: number; isCardScreen: boolean }> = ({
   }
   return cardsLeft !== 0 ? (
     // When there are at least 3
-    <div className="cards">
+    <>
       {cardsLeft >= 3 ? (
         <div className={thirdStyle}>
           <p>{cardsLeft}</p>
@@ -39,7 +39,7 @@ const CardsTab: React.FC<{ cardsLeft: number; isCardScreen: boolean }> = ({
           <p> {cardsLeft}</p>
         </div>
       ) : null}
-    </div>
+    </>
   ) : (
     // A Medal to take up place when there is no more card
     <FaMedal size="3em" />

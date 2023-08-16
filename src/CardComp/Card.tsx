@@ -5,13 +5,17 @@ import FrontIndicator from "../IndicationComp/FrontIndicator";
 import BackIndicator from "../IndicationComp/BackIndicator";
 import MCQ from "./MCQ";
 import QA from "./QA";
-import { HorizontalMove, enableGesture } from "../utilities/gesture";
+import { enableGesture } from "../utilities/gesture";
 import { putSwipe } from "../utilities/logfunction";
 import NumberIndicator from "./NumberIndicator";
 import FeedbackModal from "../pages/FeedbackModal";
 import QuestionMark from "./QuestionMark";
-import ActionButtons from "../IndicationComp/ActionButtons";
-import { showDontKnow, showKnow, showOneMore, showPoorCard } from "../utilities/showTabBarAndButtons";
+import {
+  showDontKnow,
+  showKnow,
+  showOneMore,
+  showPoorCard,
+} from "../utilities/showTabBarAndButtons";
 
 const Card: React.FC<{
   obj: flashCard;
@@ -39,11 +43,11 @@ const Card: React.FC<{
   directionHandler: (direction: number) => void;
   openButton: () => void;
   closeButton: () => void;
-  handleAnimateKnow: () => void,
-  handleAniamteDontKnow: () => void,
-  handleAnimatePoorCard: () => void,
-  handleAnimateOneMore: () => void,
-  handleNoAnimation: () => void,
+  handleAnimateKnow: () => void;
+  handleAniamteDontKnow: () => void;
+  handleAnimatePoorCard: () => void;
+  handleAnimateOneMore: () => void;
+  handleNoAnimation: () => void;
 }> = ({
   obj,
   tupleLength,
@@ -62,7 +66,7 @@ const Card: React.FC<{
   handleAniamteDontKnow,
   handleAnimatePoorCard,
   handleAnimateOneMore,
-  handleNoAnimation
+  handleNoAnimation,
 }) => {
   // Reference of the single card element. We transform its style only in onemore
   const ref = useRef<HTMLInputElement>(null);
@@ -238,54 +242,52 @@ const Card: React.FC<{
       poorCardAfterTimeOut,
       oneMoreTimeOut,
       handleAnimateKnow,
-  handleAniamteDontKnow,
-  handleAnimatePoorCard,
-  handleAnimateOneMore,
-  handleNoAnimation,
+      handleAniamteDontKnow,
+      handleAnimatePoorCard,
+      handleAnimateOneMore,
+      handleNoAnimation
     );
   });
 
+  // useEffect that will trigger the swiping/loging if user presses the action button
   useEffect(() => {
-      if (isClicked && refTuple.current) {
-        const windowWidth: number = window.innerWidth;
-        const windowHeight: number = window.innerHeight;
-        refTuple.current.style.transition =
-            "0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
-        
-        // If user clicks Poor Card Button
-        if (direction === 1) {
-          refTuple.current.style.transform = `translateY(${
-            windowHeight * 1.5
-          }px)`;
-          setTimeout(poorCardAfterTimeOut, 100);
-        }
-        // If user clicks Know Button
-        else if (direction === 2) {
-          
-          refTuple.current.style.transform = `translateX(${
-            windowWidth * 1.5
-          }px)`;
-          setTimeout(knowTimeOut, 100);
-        }
+    if (isClicked && refTuple.current) {
+      const windowWidth: number = window.innerWidth;
+      const windowHeight: number = window.innerHeight;
+      refTuple.current.style.transition =
+        "0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
 
-        // If user clicks oneMore button
-        else if(direction === 3 && ref.current){
-          ref.current.style.transition =
-            "0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
-          ref.current.style.transform = `translateY(${
-            windowHeight * -1.5
-          }px)`;
-          directionHandler(0);
-          setTimeout(oneMoreTimeOut, 100);
-        }
-        // If user clicks dontKnow button
-        else if(direction === 4){
-          refTuple.current.style.transform = `translateX(${
-            windowWidth * -1.5
-          }px)`;
-          setTimeout(dontKnowTimeOut, 100);
-        }
+      // If user clicks Poor Card Button
+      if (direction === 1) {
+        refTuple.current.style.transform = `translateY(${
+          windowHeight * 1.5
+        }px)`;
+        setTimeout(poorCardAfterTimeOut, 100);
       }
+      // If user clicks Know Button
+      else if (direction === 2) {
+        refTuple.current.style.transform = `translateX(${windowWidth * 1.5}px)`;
+        setTimeout(knowTimeOut, 100);
+      }
+
+      // If user clicks oneMore button
+      else if (direction === 3 && ref.current) {
+        // We move the card instead of the tuple
+        ref.current.style.transition =
+          "0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+        ref.current.style.transform = `translateY(${windowHeight * -1.5}px)`;
+        // Reset direction handler to 0 for next clicking
+        directionHandler(0);
+        setTimeout(oneMoreTimeOut, 100);
+      }
+      // If user clicks dontKnow button
+      else if (direction === 4) {
+        refTuple.current.style.transform = `translateX(${
+          windowWidth * -1.5
+        }px)`;
+        setTimeout(dontKnowTimeOut, 100);
+      }
+    }
   });
 
   // Determine the component and content style based on type of card
@@ -305,18 +307,25 @@ const Card: React.FC<{
     cardContentStyle = "card-content mcq-card-content";
   }
 
+  // Use Effect that will hide certain buttons for tutorial
   useEffect(() => {
-    if(obj._id === 'tutorial1' || obj._id === 'tutorial2'){
+    // If it's tutorial 1 or 2, we only display know button
+    if (obj._id === "tutorial1" || obj._id === "tutorial2") {
       showKnow();
-    }else if(obj._id === 'tutorial3'){
+    }
+    // If it's tutorial 3, we only display one more button
+    else if (obj._id === "tutorial3") {
       showOneMore();
-    }else if(obj._id === 'tutorial4'){
+    }
+    // If it's tutorial 4, we only display dont know button
+    else if (obj._id === "tutorial4") {
       showDontKnow();
-    }else if(obj._id === 'tutorial5'){
+    }
+    // If it's tutorial 5, we only display poor card button
+    else if (obj._id === "tutorial5") {
       showPoorCard();
     }
-  }, [isClicked])
-  
+  }, [isClicked]);
 
   // Component Being Rendered
   return (

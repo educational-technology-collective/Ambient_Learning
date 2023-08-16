@@ -15,14 +15,14 @@ const showHorizontalInd = (
   handleNegativeOpacity: (detail: GestureDetail) => void,
   handlePositiveOpacity: (detail: GestureDetail) => void,
   handleAnimateKnow: () => void,
-  handleAnimateDontKnow: () => void,
+  handleAnimateDontKnow: () => void
 ) => {
-  // Swipe Right. Show Positive Indicators
+  // Swipe Right. Show Positive Indicators and animate know button
   if (detail.deltaX > 0) {
     handlePositiveOpacity(detail);
     handleAnimateKnow();
   }
-  // Swipe Left. Show Negative Indicators
+  // Swipe Left. Show Negative Indicators and animate dont know button
   else {
     handleNegativeOpacity(detail);
     handleAnimateDontKnow();
@@ -49,7 +49,13 @@ export const HorizontalMove = (
           detail.deltaX / 20
         }deg)`;
         // Calling the function to show horizontal indicators
-        showHorizontalInd(detail, handleNegativeOpacity, handlePositiveOpacity, handleAnimateKnow, handleAnimateDontKnow);
+        showHorizontalInd(
+          detail,
+          handleNegativeOpacity,
+          handlePositiveOpacity,
+          handleAnimateKnow,
+          handleAnimateDontKnow
+        );
       }
     } else if (cardId === "tutorial4") {
       // if it's tutorial 4, only moving left
@@ -58,7 +64,13 @@ export const HorizontalMove = (
           detail.deltaX / 20
         }deg)`;
         // Calling the function to show horizontal indicators
-        showHorizontalInd(detail, handleNegativeOpacity, handlePositiveOpacity, handleAnimateKnow, handleAnimateDontKnow);
+        showHorizontalInd(
+          detail,
+          handleNegativeOpacity,
+          handlePositiveOpacity,
+          handleAnimateKnow,
+          handleAnimateDontKnow
+        );
       }
     } else {
       // Regular card swiping left right
@@ -66,7 +78,13 @@ export const HorizontalMove = (
         detail.deltaX / 20
       }deg)`;
       // Calling the function to show horizontal indicators
-      showHorizontalInd(detail, handleNegativeOpacity, handlePositiveOpacity, handleAnimateKnow, handleAnimateDontKnow);
+      showHorizontalInd(
+        detail,
+        handleNegativeOpacity,
+        handlePositiveOpacity,
+        handleAnimateKnow,
+        handleAnimateDontKnow
+      );
     }
   }
 };
@@ -79,7 +97,7 @@ const HorizontalEnd = (
   handleShowNothing: () => void,
   knowTimeOut: () => void,
   dontKnowTimeOut: () => void,
-  handleNoAnimation: () => void,
+  handleNoAnimation: () => void
 ) => {
   // If it's tutorial 3 or 5, we return
   if (cardId === "tutorial3" || cardId === "tutorial5") return;
@@ -121,7 +139,6 @@ const HorizontalEnd = (
 
       // Reset all indicators to have opacity 0
       handleShowNothing();
-      
     }
     // Reset all animation boolean
     handleNoAnimation();
@@ -134,14 +151,14 @@ const showVerticalInd = (
   handleNoMoreOpacity: (detail: GestureDetail) => void,
   handleOneMoreOpacity: (detail: GestureDetail) => void,
   handleAnimatePoorCard: () => void,
-  handleAnimateOneMore: () => void,
+  handleAnimateOneMore: () => void
 ) => {
-  // Swiping Down for no more indicator
+  // Swiping Down for no more indicator and poor card button
   if (detail.deltaY > 0) {
     handleNoMoreOpacity(detail);
     handleAnimatePoorCard();
   }
-  // Swiping up for one more indicator
+  // Swiping up for one more indicator and one more button
   else {
     handleOneMoreOpacity(detail);
     handleAnimateOneMore();
@@ -178,7 +195,13 @@ const VerticalMove = (
         stuff.style.transform = `translateY(${detail.deltaY}px) rotate(${
           detail.deltaY / 90
         }deg)`;
-        showVerticalInd(detail, handleNoMoreOpacity, handleOneMoreOpacity, handleAnimatePoorCard, handleAnimateOneMore);
+        showVerticalInd(
+          detail,
+          handleNoMoreOpacity,
+          handleOneMoreOpacity,
+          handleAnimatePoorCard,
+          handleAnimateOneMore
+        );
       }
     }
     // After Flipping
@@ -188,7 +211,13 @@ const VerticalMove = (
         stuff.style.transform = `translateY(${detail.deltaY}px) rotate(${
           detail.deltaY / 90
         }deg)`;
-        showVerticalInd(detail, handleNoMoreOpacity, handleOneMoreOpacity, handleAnimatePoorCard, handleAnimateOneMore);
+        showVerticalInd(
+          detail,
+          handleNoMoreOpacity,
+          handleOneMoreOpacity,
+          handleAnimatePoorCard,
+          handleAnimateOneMore
+        );
       }
       // Moving Up will only move the top card
       else if (detail.deltaY < 0 && cardId !== "tutorial5") {
@@ -196,7 +225,13 @@ const VerticalMove = (
         card.style.transform = `translateY(${detail.deltaY}px) rotate(${
           detail.deltaY / 90
         }deg)`;
-        showVerticalInd(detail, handleNoMoreOpacity, handleOneMoreOpacity, handleAnimatePoorCard, handleAnimateOneMore);
+        showVerticalInd(
+          detail,
+          handleNoMoreOpacity,
+          handleOneMoreOpacity,
+          handleAnimatePoorCard,
+          handleAnimateOneMore
+        );
       }
     }
   }
@@ -286,9 +321,9 @@ const VerticalEnd = (
         card.style.transform = "";
         stuff.style.transform = "";
         handleShowNothing();
-
       }
     }
+    // Always reset animation no matter what
     handleNoAnimation();
   }
 };

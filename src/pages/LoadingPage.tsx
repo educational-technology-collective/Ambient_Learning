@@ -16,7 +16,6 @@ import { AiOutlineCheck } from "react-icons/ai";
 import { useAuth0 } from "@auth0/auth0-react";
 import AppNameHeader from "./AppNameHeader";
 import logo from "../../assets/logo.png";
-import WalkingPerson from "../LoadingComp/WalkingPerson";
 
 const LoadingPage: React.FC<{
   total: number;
@@ -48,7 +47,7 @@ const LoadingPage: React.FC<{
   // Navigate to cardscreen and spread the cards icon
   const navigateToCardScreen = () => {
     history.push("/cardscreen", { from: "loading" });
-    handleCardScreen();
+    setTimeout(handleCardScreen, 300);
   };
 
   // Navigate to tutorial screen if first time

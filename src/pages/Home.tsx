@@ -12,7 +12,7 @@ import {
   TbBook,
   TbQuestionMark,
   TbWalk,
-  TbInfoSquareRoundedFilled
+  TbInfoSquareRoundedFilled,
 } from "react-icons/tb";
 import { Browser } from "@capacitor/browser";
 import { Capacitor } from "@capacitor/core";
@@ -21,15 +21,14 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
   cardsLeft,
   handleCardScreen,
 }) => {
-
   const history = useHistory();
 
   const { user } = useAuth0();
 
   // Used to jump to the card screen and spread cards
   const navigateToCardScreen = () => {
-    handleCardScreen();
-    history.push("/cardscreen", {from: 'home'});
+    setTimeout(handleCardScreen, 300);
+    history.push("/cardscreen", { from: "home" });
   };
 
   const [showFeedBack, setFeedBack] = useState(false);
@@ -93,7 +92,7 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
       : setToggle("translateY(-120%)");
   };
   const navigateToTutroial = () => {
-    history.push("/tutorial", {from: 'home'});
+    history.push("/tutorial", { from: "home" });
   };
 
   const feedbackClick = () => {
@@ -112,13 +111,16 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
   };
 
   // Close the settings icon when clicking outside
-  document.addEventListener('click', (event) => {
-    if(toggle === 'translateY(0)'){
-      setToggle('translateY(-120%)')
+  document.addEventListener("click", (event) => {
+    if (toggle === "translateY(0)") {
+      setToggle("translateY(-120%)");
     }
-  })
+  });
 
-  const link = Capacitor.getPlatform() === 'ios' ? `https://apps.apple.com/us/app/ambient-learning/id6456572536` : `https://play.google.com/store/apps/details?id=com.etc.ambientlearning&pcampaignid=APPU_1_ZdnbZNTTL4mfptQPq-ef6A0&pli=1`;
+  const link =
+    Capacitor.getPlatform() === "ios"
+      ? `https://apps.apple.com/us/app/ambient-learning/id6456572536`
+      : `https://play.google.com/store/apps/details?id=com.etc.ambientlearning&pcampaignid=APPU_1_ZdnbZNTTL4mfptQPq-ef6A0&pli=1`;
   // Screen Being Rendered
   return (
     <IonPage>
@@ -127,12 +129,16 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
 
       <IonContent scrollY={false} className="home-content">
         <div
-          className='dropdown-settings'
+          className="dropdown-settings"
           style={{ transform: toggle }}
-          id='settings-box'
+          id="settings-box"
         >
-          <a className="column-container" href={link} style={{textDecoration: 'none'}}>
-            <TbInfoSquareRoundedFilled size='1.5rem' color="darkgrey"/>
+          <a
+            className="column-container"
+            href={link}
+            style={{ textDecoration: "none" }}
+          >
+            <TbInfoSquareRoundedFilled size="1.5rem" color="darkgrey" />
             <h4 className="texts">Version: 1.6.0</h4>
           </a>
 
