@@ -1,15 +1,8 @@
-import {
-  IonPage,
-  IonContent,
-  useIonViewWillEnter,
-  IonCard,
-  IonCardContent,
-} from "@ionic/react";
+import { IonPage, IonContent, useIonViewWillEnter } from "@ionic/react";
 import "./LogInPage.css";
 import LogInButton from "../ButtonComp/LogInButton";
 import { hideBar } from "../utilities/showTabBarAndButtons";
 import logo from "../../assets/logo.png";
-import { MdQuestionMark } from "react-icons/md";
 import { useState } from "react";
 import FeedbackModal from "./FeedbackModal";
 
