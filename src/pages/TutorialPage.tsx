@@ -13,11 +13,18 @@ import FinishedDisplay from "../TutorialComp/FinishedDisplay";
 import AppNameHeader from "./AppNameHeader";
 import { cards } from "../utilities/tutorialpagedata";
 import OneMoreTutorialModal from "../TutorialComp/OneMoreTutorialModal";
-import ActionButtons from "../IndicationComp/ActionButtons";
+import {App as CapApp} from '@capacitor/app'
+import { useHistory } from "react-router";
 
 const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
   handleCardScreen,
 }) => {
+
+  const history = useHistory();
+  CapApp.addListener('backButton', () => {
+    history.push('/home')
+  })
+  
   // Hide the bottom tabs for the tutorial page
   useIonViewWillEnter(hideBar);
 

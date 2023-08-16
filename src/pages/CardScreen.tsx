@@ -15,8 +15,7 @@ import Statistics from "../StatisticsComp/Statistics";
 import { TbHomeEdit } from "react-icons/tb";
 import { useHistory } from "react-router";
 import { hideBar, showBar } from "../utilities/showTabBarAndButtons";
-import CardsTab from "../IndicationComp/CardsTab";
-import ActionButtons from "../IndicationComp/ActionButtons";
+import {App as CapApp} from '@capacitor/app'
 
 const CardScreen: React.FC<{
   finished: number;
@@ -72,6 +71,9 @@ const CardScreen: React.FC<{
     handleHomeScreen();
   };
 
+  CapApp.addListener('backButton', () => {
+    history.push('/home');
+  })
   // Screen Being Rendered
   return (
     <IonPage>
