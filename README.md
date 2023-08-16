@@ -3,7 +3,8 @@
 ## Description
 This is a mobile-app for space-repetition learning.  
 The app is built using Ionic React. Currently, it includes two types of flash cards: QA(Question & Answer) and MCQ(Multiple Choice Question).  
-When the user receives a notification, he or she will tap the notification and jump to the cards directly and start reviewing. 
+[**Apple Store**](https://apps.apple.com/us/app/ambient-learning/id6456572536)  
+[**Google Play Store**](https://play.google.com/store/apps/details?id=com.etc.ambientlearning)
 
 **[<ins>Report Bug</ins>](https://github.com/educational-technology-collective/Space-Repetition-Ionic/issues?q=is%3Aopen+is%3Aissue+label%3Abug)**  |  **[<ins>Feedback for Features</ins>](https://github.com/educational-technology-collective/Space-Repetition-Ionic/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement)**
 
