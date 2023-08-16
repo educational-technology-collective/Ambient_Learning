@@ -66,7 +66,7 @@ const ActionButtons: React.FC<{
          
         >
           <button onClick={dontKnowAnimation} className="action-button"  id="dontKnow-button">
-            😐
+           🤔
           </button>
         </CreateAnimation>
 
@@ -94,7 +94,7 @@ const ActionButtons: React.FC<{
           
         >
           <button onClick={oneMoreAnimation} className="action-button" id='oneMore-button'>
-            🤔
+           🎯
           </button>
         </CreateAnimation>
 
