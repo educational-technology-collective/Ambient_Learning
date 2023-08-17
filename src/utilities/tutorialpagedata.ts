@@ -5,8 +5,8 @@ export const cards = [
       lm_id: "sdjaidj21",
       type: "qa",
       content: {
-        question: `We are almost done, hang in there! Sometimes the card you are reviewing isn't interesting to you anymore, or you think the answer which was given was wrong. To tell the app you don't want to see this card just swipe down.  👇\n\n(don't forget to tap first!)`,
-        answer: `Great job, the tutorial is done! Now it's time to just think, tap, swipe your way to learning!\n\n \n\nYou can give us feedback at any time by pressing the settings menu in the home page or the ? button on the card to help us improve.`,
+        question: `We are almost done, hang in there! Sometimes the card you are reviewing isn't interesting to you anymore, or you think the answer which was given was wrong. In this case you need to tell us...<br></br>(tap to continue)`,
+        answer: `You can do this by clicking the 'poop' button, or swiping down👇! Then you won't see this card for review anymore.\n\nYou can give us feedback at anytime by pressing the settings menu in the home page or the ? button on the card to help us improve. Happy learning!`,
       },
     },
   ],
@@ -17,9 +17,9 @@ export const cards = [
       type: "qa",
       content: {
         question:
-          "The Ambient Learning App is all about helping you learn - there are no grades or points! It's okay if you don't know the answer to a question.\n\n(tap to continue)",
+          `The Ambient Learning App is all about helping you learn - there are no grades or points! It's okay if you don't know the answer to a question.<br></br>(tap to continue)`,
         answer:
-          "If you want the full power of spaced repetition practice, tell the app you didn't know the answer by swiping to the left. You'll get a card on the same topic to review faster this way.  👈",
+          "If you want the full power of spaced repetition practice, tell the app you didn't know the answer by swiping to the left or clicking on the puzzled face button (emoji) at the bottom of the screen. You'll get a card on the same topic to review faster this way👈.",
       },
     },
     {
@@ -28,9 +28,9 @@ export const cards = [
       type: "qa",
       content: {
         question:
-          "You might be wondering what the number in the upper left indicates! This shows you how many alternative flashcards on this same topic are available.\n\n(tap to continue)",
+          `You might be wondering what the number in the upper left indicates! This shows you how many alternative flashcards on this same topic are available.<br></br>(tap to continue)`,
         answer:
-          "To see the additional cards available for this topic just swipe up.  👆",
+          "To see the additional cards for this topic just swipe up or click the target button at the bottom of the screen👆.",
       },
     },
   ],
