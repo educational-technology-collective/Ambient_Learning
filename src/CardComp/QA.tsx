@@ -1,6 +1,7 @@
 import "./Card.css";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw"
 
 // Component for a QA Card
 const QA: React.FC<{ obj: flashCard }> = ({ obj }) => {
@@ -24,6 +25,7 @@ const QA: React.FC<{ obj: flashCard }> = ({ obj }) => {
         className="card-text front-text qa-question"
         children={question}
         remarkPlugins={[remarkGfm]}
+        rehypePlugins={[rehypeRaw]}
       ></ReactMarkdown>
 
       {/* Back Question Text */}
@@ -31,12 +33,14 @@ const QA: React.FC<{ obj: flashCard }> = ({ obj }) => {
         className={backQuestionStyle}
         children={question}
         remarkPlugins={[remarkGfm]}
+        rehypePlugins={[rehypeRaw]}
       ></ReactMarkdown>
       {/* Back Answer Text */}
       <ReactMarkdown
         className={answerStyle}
         children={answer}
         remarkPlugins={[remarkGfm]}
+        rehypePlugins={[rehypeRaw]}
       ></ReactMarkdown>
     </>
   );

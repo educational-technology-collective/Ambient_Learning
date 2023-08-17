@@ -1,3 +1,4 @@
+import rehypeRaw from "rehype-raw";
 import Choices from "../MCQComponents/Choices";
 import "./Card.css";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
@@ -31,6 +32,7 @@ const MCQ: React.FC<{
         className={frontQuestionStyle}
         children={question}
         remarkPlugins={[remarkGfm]}
+        rehypePlugins={[rehypeRaw]}
       ></ReactMarkdown>
 
       {/* Question Text Back */}
@@ -38,6 +40,7 @@ const MCQ: React.FC<{
         className={backQuestionStyle}
         children={backQuestion}
         remarkPlugins={[remarkGfm]}
+        rehypePlugins={[rehypeRaw]}
       ></ReactMarkdown>
 
       {/* Component for all the choices */}
