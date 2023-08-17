@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import Card from "../CardComp/Card";
 import "./FlashCardList.css";
 import ActionButtons from "../IndicationComp/ActionButtons";
+import { FakeButton } from "../IndicationComp/FakeButton";
 
 // Tuple of Cards Component
 const FlashCardList: React.FC<{
@@ -173,16 +174,15 @@ const FlashCardList: React.FC<{
             component}
       </div>
       {/* Display the buttons if it is front tuple and button boolean is true */}
-      {isFrontTuple ? (
+        {isFrontTuple && toOpenButton?
         <ActionButtons
-          toOpenButton={toOpenButton}
           animateDontKnow={animateDontKnow}
           animateKnow={animateKnow}
           animateOneMore={animateOneMore}
           animatePoorCard={animatePoorCard}
           directionHandler={directionHandler}
-        />
-      ) : null}
+        /> : null
+}
     </>
   );
 };

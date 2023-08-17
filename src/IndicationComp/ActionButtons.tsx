@@ -4,14 +4,12 @@ import { CreateAnimation } from "@ionic/react";
 import { BsArrowRight } from "react-icons/bs";
 
 const ActionButtons: React.FC<{
-  toOpenButton: boolean;
   animatePoorCard: boolean;
   animateKnow: boolean;
   animateDontKnow: boolean;
   animateOneMore: boolean;
   directionHandler: (direction: number) => void;
 }> = ({
-  toOpenButton,
   animatePoorCard,
   animateKnow,
   animateDontKnow,
@@ -91,7 +89,7 @@ const ActionButtons: React.FC<{
             onClick={dontKnowAnimation}
             className="action-button"
             id="dontKnow-button"
-            disabled={!toOpenButton}
+            
           >
             🤔
           </button>
@@ -108,7 +106,7 @@ const ActionButtons: React.FC<{
             onClick={poorCardAnimation}
             className="action-button"
             id="poorCard-button"
-            disabled={!toOpenButton}
+           
           >
             💩
           </button>
@@ -126,7 +124,7 @@ const ActionButtons: React.FC<{
             onClick={oneMoreAnimation}
             className="action-button"
             id="oneMore-button"
-            disabled={!toOpenButton}
+          
           >
             🎯
           </button>
@@ -144,7 +142,7 @@ const ActionButtons: React.FC<{
             onClick={knowAnimation}
             className="action-button"
             id="know-button"
-            disabled={!toOpenButton}
+          
           >
             😉
           </button>
