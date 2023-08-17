@@ -19,13 +19,12 @@ export const showKnow = () => {
   const dontKnow: any = document.getElementById("dontKnow-button");
   const oneMore: any = document.getElementById("oneMore-button");
   const poorCard: any = document.getElementById("poorCard-button");
-  if (dontKnow && oneMore && poorCard) {
-    dontKnow.style.opacity = "0.2";
-    oneMore.style.opacity = "0.2";
-    poorCard.style.opacity = "0.2";
+  const know: any = document.getElementById("know-button");
+  if (!know.disabled) {
     dontKnow.disabled = true;
     oneMore.disabled = true;
     poorCard.disabled = true;
+    know.disabled = false;
   }
 };
 
@@ -34,10 +33,8 @@ export const showDontKnow = () => {
   const know: any = document.getElementById("know-button");
   const oneMore: any = document.getElementById("oneMore-button");
   const poorCard: any = document.getElementById("poorCard-button");
-  if (know && oneMore && poorCard) {
-    know.style.opacity = "0.2";
-    oneMore.style.opacity = "0.2";
-    poorCard.style.opacity = "0.2";
+  const dontKnow: any = document.getElementById("dontKnow-button");
+  if (!dontKnow.disabled) {
     know.disabled = true;
     oneMore.disabled = true;
     poorCard.disabled = true;
@@ -49,10 +46,8 @@ export const showOneMore = () => {
   const dontKnow: any = document.getElementById("dontKnow-button");
   const know: any = document.getElementById("know-button");
   const poorCard: any = document.getElementById("poorCard-button");
-  if (dontKnow && know && poorCard) {
-    dontKnow.style.opacity = "0.2";
-    know.style.opacity = "0.2";
-    poorCard.style.opacity = "0.2";
+  const oneMore: any = document.getElementById("oneMore-button");
+  if (!oneMore.disabled) {
     dontKnow.disabled = true;
     know.disabled = true;
     poorCard.disabled = true;
@@ -64,12 +59,10 @@ export const showPoorCard = () => {
   const dontKnow: any = document.getElementById("dontKnow-button");
   const oneMore: any = document.getElementById("oneMore-button");
   const know: any = document.getElementById("know-button");
-  if (dontKnow && oneMore && know) {
-    dontKnow.style.opacity = "0.2";
-    oneMore.style.opacity = "0.2";
-    know.style.opacity = "0.2";
+  const poorCard: any = document.getElementById("poorCard-button");
+  if (!poorCard.disabled) {
     dontKnow.disabled = true;
-    oneMore.disabled = true;
     know.disabled = true;
+    oneMore.disabled = true;
   }
 };

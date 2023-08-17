@@ -262,12 +262,12 @@ const Card: React.FC<{
         refTuple.current.style.transform = `translateY(${
           windowHeight * 1.5
         }px)`;
-        setTimeout(poorCardAfterTimeOut, 100);
+        setTimeout(poorCardAfterTimeOut, 300);
       }
       // If user clicks Know Button
       else if (direction === 2) {
         refTuple.current.style.transform = `translateX(${windowWidth * 1.5}px)`;
-        setTimeout(knowTimeOut, 100);
+        setTimeout(knowTimeOut, 300);
       }
 
       // If user clicks oneMore button
@@ -278,14 +278,15 @@ const Card: React.FC<{
         ref.current.style.transform = `translateY(${windowHeight * -1.5}px)`;
         // Reset direction handler to 0 for next clicking
         directionHandler(0);
-        setTimeout(oneMoreTimeOut, 100);
+
+        setTimeout(oneMoreTimeOut, 300);
       }
       // If user clicks dontKnow button
       else if (direction === 4) {
         refTuple.current.style.transform = `translateX(${
           windowWidth * -1.5
         }px)`;
-        setTimeout(dontKnowTimeOut, 100);
+        setTimeout(dontKnowTimeOut, 300);
       }
     }
   });
@@ -309,21 +310,23 @@ const Card: React.FC<{
 
   // Use Effect that will hide certain buttons for tutorial
   useEffect(() => {
-    // If it's tutorial 1 or 2, we only display know button
-    if (obj._id === "tutorial1" || obj._id === "tutorial2") {
-      showKnow();
-    }
-    // If it's tutorial 3, we only display one more button
-    else if (obj._id === "tutorial3") {
-      showOneMore();
-    }
-    // If it's tutorial 4, we only display dont know button
-    else if (obj._id === "tutorial4") {
-      showDontKnow();
-    }
-    // If it's tutorial 5, we only display poor card button
-    else if (obj._id === "tutorial5") {
-      showPoorCard();
+    if (isClicked) {
+      // If it's tutorial 1 or 2, we only display know button
+      if (obj._id === "tutorial1" || obj._id === "tutorial2") {
+        showKnow();
+      }
+      // If it's tutorial 3, we only display one more button
+      else if (obj._id === "tutorial3") {
+        showOneMore();
+      }
+      // If it's tutorial 4, we only display dont know button
+      else if (obj._id === "tutorial4") {
+        showDontKnow();
+      }
+      // If it's tutorial 5, we only display poor card button
+      else if (obj._id === "tutorial5") {
+        showPoorCard();
+      }
     }
   }, [isClicked]);
 

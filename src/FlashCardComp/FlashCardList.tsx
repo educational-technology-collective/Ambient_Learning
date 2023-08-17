@@ -173,8 +173,9 @@ const FlashCardList: React.FC<{
             component}
       </div>
       {/* Display the buttons if it is front tuple and button boolean is true */}
-      {isFrontTuple && toOpenButton ? (
+      {isFrontTuple ? (
         <ActionButtons
+          toOpenButton={toOpenButton}
           animateDontKnow={animateDontKnow}
           animateKnow={animateKnow}
           animateOneMore={animateOneMore}
