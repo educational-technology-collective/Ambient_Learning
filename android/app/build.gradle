@@ -6,7 +6,7 @@ android {
     defaultConfig {
         applicationId "com.etc.ambientlearning"
         minSdk 22
-        targetSdk 31
+        targetSdk 33
         versionCode 21
         versionName "1.6.3"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
