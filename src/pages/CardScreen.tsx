@@ -90,7 +90,7 @@ const CardScreen: React.FC<{
     ) : (
       <IonTitle className="stats-title">Session Overview</IonTitle>
     );
-    const [direction, setDirection] = useState(0);
+  const [direction, setDirection] = useState(0);
 
   // Set directions that will trigger swiping/loging of each direction
   // 1 - Poor Card
@@ -124,38 +124,34 @@ const CardScreen: React.FC<{
     setAnimateOneMore(false);
     setAnimatePoorCard(false);
     setAnimateKnow(true);
-  }
+  };
   const handleAnimateDontKnow = () => {
-    
     setAnimateOneMore(false);
     setAnimatePoorCard(false);
     setAnimateKnow(false);
     setAnimateDontKnow(true);
-  }
+  };
 
   const handleAnimateOneMore = () => {
-    
     setAnimateDontKnow(false);
     setAnimateKnow(false);
     setAnimatePoorCard(false);
     setAnimateOneMore(true);
-  }
+  };
 
   const handleAnimatePoorCard = () => {
-    
     setAnimateDontKnow(false);
     setAnimateOneMore(false);
     setAnimateKnow(false);
     setAnimatePoorCard(true);
-  }
+  };
 
   const handleNoAnimation = () => {
     setAnimatePoorCard(false);
     setAnimateDontKnow(false);
     setAnimateOneMore(false);
     setAnimateKnow(false);
-  }
- 
+  };
 
   // Screen Being Rendered
   return (
@@ -227,7 +223,14 @@ const CardScreen: React.FC<{
               {/* Give alert message if it's shaking due to OneMore */}
               {isShake ? <OneMoreFailMessage /> : null}
             </div>
-           <ActionButtons directionHandler={directionHandler} toOpenButton={toOpenButton} animateKnow={animateKnow} animateOneMore={animateOneMore} animatePoorCard={animatePoorCard} aniamteDontKnow={animateDontKnow}/>
+            <ActionButtons
+              directionHandler={directionHandler}
+              toOpenButton={toOpenButton}
+              animateKnow={animateKnow}
+              animateOneMore={animateOneMore}
+              animatePoorCard={animatePoorCard}
+              aniamteDontKnow={animateDontKnow}
+            />
           </IonContent>
         </>
       ) : (

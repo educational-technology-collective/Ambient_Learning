@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import Card from "../CardComp/Card";
 import "./FlashCardList.css";
 
@@ -49,7 +49,7 @@ const FlashCardList: React.FC<{
   handleAnimateDontKnow,
   handleAnimatePoorCard,
   handleAnimateOneMore,
-  handleNoAnimation
+  handleNoAnimation,
 }) => {
   // The Reference of the Whole Tuple, used for poorcard/know/dont know swipe
   const refTuple = useRef<HTMLInputElement>(null);
@@ -57,7 +57,6 @@ const FlashCardList: React.FC<{
   // TupleBehind is the card that is stacked at bottom (next card)
   const tupleBehindCard: flashCard = array[array.length - 1];
 
-  
   // Key is Necessary for not shuffling choices multiple times
   const component = (
     <Card
@@ -121,7 +120,6 @@ const FlashCardList: React.FC<{
             component}
       </div>
       {/* Display the buttons if it is front tuple and button boolean is true */}
-  
     </>
   );
 };

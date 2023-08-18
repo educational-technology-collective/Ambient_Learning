@@ -12,7 +12,11 @@ const AppNameHeader: React.FC<{
       <IonToolbar className="header-container" id="header">
         <IonTitle className="title">Ambient Learning</IonTitle>
         {isHome ? (
-          <TbSettings className="settings-icon" onClick={switchSettings} id="settings-icon"/>
+          <TbSettings
+            className="settings-icon"
+            onClick={switchSettings}
+            id="settings-icon"
+          />
         ) : null}
       </IonToolbar>
     </IonHeader>

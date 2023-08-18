@@ -139,7 +139,7 @@ const ActionButtons: React.FC<{
           <button
             onClick={knowAnimation}
             className="action-button"
-           disabled={!toOpenButton}
+            disabled={!toOpenButton}
           >
             😉
           </button>

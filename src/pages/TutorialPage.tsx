@@ -15,7 +15,6 @@ import { cards } from "../utilities/tutorialpagedata";
 import OneMoreTutorialModal from "../TutorialComp/OneMoreTutorialModal";
 import { App as CapApp } from "@capacitor/app";
 import { useHistory } from "react-router";
-import ActionButtons from "../IndicationComp/ActionButtons";
 import TutorialButton from "../IndicationComp/TutorialButton";
 
 const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
@@ -97,34 +96,34 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
     setAnimateDontKnow(false);
     setAnimateOneMore(false);
     setAnimatePoorCard(false);
-  }
+  };
   const handleAnimateDontKnow = () => {
     setAnimateDontKnow(true);
     setAnimateOneMore(false);
     setAnimatePoorCard(false);
     setAnimateKnow(false);
-  }
+  };
 
   const handleAnimateOneMore = () => {
     setAnimateOneMore(true);
     setAnimateDontKnow(false);
     setAnimateKnow(false);
     setAnimatePoorCard(false);
-  }
+  };
 
   const handleAnimatePoorCard = () => {
     setAnimatePoorCard(true);
     setAnimateDontKnow(false);
     setAnimateOneMore(false);
     setAnimateKnow(false);
-  }
+  };
 
   const handleNoAnimation = () => {
     setAnimatePoorCard(false);
     setAnimateDontKnow(false);
     setAnimateOneMore(false);
     setAnimateKnow(false);
-  }
+  };
 
   return (
     <IonPage>
@@ -184,7 +183,14 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
             }
           })}
         </div>
-        <TutorialButton toOpenButton={toOpenButton}animateKnow={animateKnow} animateOneMore={animateOneMore} animatePoorCard={animatePoorCard} aniamteDontKnow={animateDontKnow} directionHandler={directionHandler}/>
+        <TutorialButton
+          toOpenButton={toOpenButton}
+          animateKnow={animateKnow}
+          animateOneMore={animateOneMore}
+          animatePoorCard={animatePoorCard}
+          aniamteDontKnow={animateDontKnow}
+          directionHandler={directionHandler}
+        />
         {/* Display the modal of how one more card works */}
         {tutorialCounter === 2 ? <OneMoreTutorialModal /> : null}
 

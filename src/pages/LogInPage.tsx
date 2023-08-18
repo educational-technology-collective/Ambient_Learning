@@ -10,13 +10,6 @@ const LogInPage: React.FC = () => {
   // Hide the bottom tabs when entering the login page
   useIonViewWillEnter(hideBar);
 
-  const [showFeedBack, setFeedBack] = useState(false);
-  const openQuestion = () => {
-    setFeedBack(true);
-  };
-  const closeQuestion = () => {
-    setFeedBack(false);
-  };
   return (
     <IonPage>
       <IonContent scrollY={false} className="login-content">
@@ -46,9 +39,6 @@ const LogInPage: React.FC = () => {
           <h3 className="version">V.1.6.3</h3>
         </div>
       </IonContent>
-      {showFeedBack ? (
-        <FeedbackModal identifier="Log In" closeQuestion={closeQuestion} />
-      ) : null}
     </IonPage>
   );
 };

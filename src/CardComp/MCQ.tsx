@@ -1,9 +1,7 @@
-
-import rehypeRaw from 'rehype-raw'
+import rehypeRaw from "rehype-raw";
 import Choices from "../MCQComponents/Choices";
 import "./Card.css";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
-
 
 // Component for a MCQ Card
 const MCQ: React.FC<{

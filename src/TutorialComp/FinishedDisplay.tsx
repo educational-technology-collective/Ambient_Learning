@@ -16,7 +16,7 @@ const FinishedDisplay: React.FC<{
     // Navigate to the CardScreen
     navigateScreen = () => {
       setTimeout(enterScreen, 300);
-      history.push("/cardscreen", {from: 'tutorial'});
+      history.push("/cardscreen", { from: "tutorial" });
     };
   }
   // If the message is after cards are done a day
@@ -26,7 +26,7 @@ const FinishedDisplay: React.FC<{
     // Navigate to the HomeScreen
     navigateScreen = () => {
       enterScreen();
-      history.push("/home", {from: 'tutorial'});
+      history.push("/home", { from: "tutorial" });
     };
   }
   return (
