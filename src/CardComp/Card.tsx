@@ -120,6 +120,7 @@ const Card: React.FC<{
   // Callback for the tap of card
   const clickHandler = () => {
     openButton();
+    handleNoAnimation();
     setIsClicked(true);
     setClick(true);
   };
@@ -262,11 +263,13 @@ const Card: React.FC<{
         refTuple.current.style.transform = `translateY(${
           windowHeight * 1.5
         }px)`;
+        directionHandler(0);
         setTimeout(poorCardAfterTimeOut, 300);
       }
       // If user clicks Know Button
       else if (direction === 2) {
         refTuple.current.style.transform = `translateX(${windowWidth * 1.5}px)`;
+        directionHandler(0);
         setTimeout(knowTimeOut, 300);
       }
 
@@ -286,6 +289,7 @@ const Card: React.FC<{
         refTuple.current.style.transform = `translateX(${
           windowWidth * -1.5
         }px)`;
+        directionHandler(0);
         setTimeout(dontKnowTimeOut, 300);
       }
     }

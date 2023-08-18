@@ -1,19 +1,20 @@
 import { useRef } from "react";
 import "./ActionButtons.css";
 import { CreateAnimation } from "@ionic/react";
-import { BsArrowRight } from "react-icons/bs";
 
 const ActionButtons: React.FC<{
-  animatePoorCard: boolean;
+  toOpenButton: boolean;
   animateKnow: boolean;
-  animateDontKnow: boolean;
+  aniamteDontKnow: boolean;
   animateOneMore: boolean;
+  animatePoorCard: boolean;
   directionHandler: (direction: number) => void;
 }> = ({
-  animatePoorCard,
+  toOpenButton,
   animateKnow,
-  animateDontKnow,
   animateOneMore,
+  aniamteDontKnow,
+  animatePoorCard,
   directionHandler,
 }) => {
   const pulseKeyFrames = [
@@ -82,14 +83,13 @@ const ActionButtons: React.FC<{
           duration={1200}
           iterations={1}
           keyframes={pulseKeyFrames}
-          play={animateDontKnow}
-          stop={!animateDontKnow}
+          play={aniamteDontKnow}
+          stop={!aniamteDontKnow}
         >
           <button
             onClick={dontKnowAnimation}
             className="action-button"
-            id="dontKnow-button"
-            
+            disabled={!toOpenButton}
           >
             🤔
           </button>
@@ -105,8 +105,7 @@ const ActionButtons: React.FC<{
           <button
             onClick={poorCardAnimation}
             className="action-button"
-            id="poorCard-button"
-           
+            disabled={!toOpenButton}
           >
             💩
           </button>
@@ -123,8 +122,7 @@ const ActionButtons: React.FC<{
           <button
             onClick={oneMoreAnimation}
             className="action-button"
-            id="oneMore-button"
-          
+            disabled={!toOpenButton}
           >
             🎯
           </button>
@@ -141,8 +139,7 @@ const ActionButtons: React.FC<{
           <button
             onClick={knowAnimation}
             className="action-button"
-            id="know-button"
-          
+           disabled={!toOpenButton}
           >
             😉
           </button>
