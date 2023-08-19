@@ -183,6 +183,7 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
             }
           })}
         </div>
+        {tutorialCounter !== 0 ?
         <TutorialButton
           toOpenButton={toOpenButton}
           animateKnow={animateKnow}
@@ -190,7 +191,7 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
           animatePoorCard={animatePoorCard}
           aniamteDontKnow={animateDontKnow}
           directionHandler={directionHandler}
-        />
+        /> : null}
         {/* Display the modal of how one more card works */}
         {tutorialCounter === 2 ? <OneMoreTutorialModal /> : null}
 
