@@ -25,6 +25,7 @@ const QA: React.FC<{ obj: flashCard }> = ({ obj }) => {
         className="card-text front-text qa-question"
         children={question}
         rehypePlugins={[rehypeRaw]}
+        remarkPlugins={[remarkGfm]}
       ></ReactMarkdown>
 
       {/* Back Question Text */}
@@ -32,12 +33,14 @@ const QA: React.FC<{ obj: flashCard }> = ({ obj }) => {
         className={backQuestionStyle}
         children={question}
         rehypePlugins={[rehypeRaw]}
+        remarkPlugins={[remarkGfm]}
       ></ReactMarkdown>
       {/* Back Answer Text */}
       <ReactMarkdown
         className={answerStyle}
         children={answer}
         rehypePlugins={[rehypeRaw]}
+        remarkPlugins={[remarkGfm]}
       ></ReactMarkdown>
     </>
   );

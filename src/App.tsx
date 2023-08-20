@@ -50,7 +50,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import TutorialPage from "./pages/TutorialPage";
 import ErrorPage from "./pages/ErrorPage";
 import InfoPage from "./pages/InfoPage";
-import { collectionCard } from "./utilities/initialCardsAmbientDev";
+import { cardWrite, collectionCard } from "./utilities/initialCardsAmbientDev";
 setupIonicReact({
   swipeBackEnabled: false,
 });
@@ -315,7 +315,7 @@ const App: React.FC = () => {
         setNoCardsInDb(true);
 
         // *** DEVELOPMENT:
-        let cards: any = collectionCard;
+        let cards: any = cardWrite;
         for (let i = cards.length - 1; i > 0; i--) {
           for (let j = cards[i].length - 1; i > 0; i--) {
             let k = Math.floor(Math.random() * (j + 1));
