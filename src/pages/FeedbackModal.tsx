@@ -3,11 +3,14 @@ import "./FeedbackModal.css";
 import { ImCross } from "react-icons/im";
 import { CapacitorHttp } from "@capacitor/core";
 import { useAuth0 } from "@auth0/auth0-react";
+import { IonTextarea } from "@ionic/react";
+import { Keyboard } from "@capacitor/keyboard";
 
 const FeedbackModal: React.FC<{
   identifier: string;
   closeQuestion: () => void;
 }> = ({ identifier, closeQuestion }) => {
+  Keyboard.setAccessoryBarVisible({isVisible: true});
   const form = useRef(null);
 
   const { getAccessTokenSilently } = useAuth0();
@@ -46,7 +49,7 @@ const FeedbackModal: React.FC<{
         <ImCross size="2.5rem" />
       </a>
       <form ref={form} onSubmit={sendFeedback} className="content__form">
-        <div className="contact__form-div">
+        {/* <div className="contact__form-div">
           <label className="contact__form-tag">Title</label>
           <input
             type="text"
@@ -54,17 +57,18 @@ const FeedbackModal: React.FC<{
             className="contact__form-input"
             placeholder="What's it about"
           />
-        </div>
+        </div> */}
 
         <div className="contact__form-div contact__form-area">
           <label className="contact__form-tag">Content</label>
-          <textarea
+          {/* <textarea
             name="message"
             cols={30}
             rows={10}
             className="contact__form-input"
             placeholder="Leave Message"
-          ></textarea>
+          ></textarea> */}
+          <IonTextarea name="message" cols={30} rows={10} className="contact__form-input" placeholder="What's it about?" inputmode="text"></IonTextarea>
         </div>
 
         <button className="button-message button--flex">Send Message</button>

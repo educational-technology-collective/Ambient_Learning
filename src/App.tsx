@@ -273,11 +273,9 @@ const App: React.FC = () => {
         // See how many cards in total the user has in the database
         // If there is card available. Update the info
         let cards: any = data;
-        if (cards.length === 0) {
-          // ** Development
-          cards = collectionCard;
-        }
         // Randomize cards within each LM
+        if(cards.length !== 0){
+
         for (let i = cards.length - 1; i > 0; i--) {
           for (let j = cards[i].length - 1; i > 0; i--) {
             let k = Math.floor(Math.random() * (j + 1));
@@ -291,6 +289,7 @@ const App: React.FC = () => {
         setTotal(cards.length);
         setCounter(cards.length);
         setTupleCounter(cards[cards.length - 1].length);
+      }
       }
       // If ther is no this user in the database
       else if (data === "no user found") {

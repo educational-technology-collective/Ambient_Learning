@@ -89,7 +89,9 @@
   border-radius: 0.75rem;
   padding: 1.5rem;
   z-index: 1;
-  margin-left: 5%;
+  color: beige;
+  padding: 0;
+  margin: 0;
 }
 
 .contact__form-tag {
