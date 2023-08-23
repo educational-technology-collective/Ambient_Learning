@@ -90,7 +90,7 @@ const Settings: React.FC<{
         style={{ textDecoration: "none" }}
       >
         <TbInfoSquareRoundedFilled size="1.5rem" color="darkgrey" />
-        <h4 className="texts">Version: 1.6.3</h4>
+        <h4 className="texts">Version: 1.6.4</h4>
       </a>
 
       {isHome ? (
