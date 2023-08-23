@@ -12,12 +12,14 @@ import React, { useState } from "react";
 import FlashCardList from "../FlashCardComp/FlashCardList";
 import OneMoreFailMessage from "../IndicationComp/OneMoreFailMessage";
 import Statistics from "../StatisticsComp/Statistics";
-import { TbHomeEdit } from "react-icons/tb";
+import { TbHomeEdit, TbSettings } from "react-icons/tb";
 import { useHistory } from "react-router";
 import { hideBar, showBar } from "../utilities/showTabBarAndButtons";
 import { App as CapApp } from "@capacitor/app";
 import CardsTab from "../IndicationComp/CardsTab";
 import ActionButtons from "../IndicationComp/ActionButtons";
+import Settings from "../PageComp/Settings";
+import FeedbackModal from "./FeedbackModal";
 
 const CardScreen: React.FC<{
   finished: number;
@@ -72,14 +74,33 @@ const CardScreen: React.FC<{
     : "card-stacker";
 
   const history = useHistory();
-  const navigateToHome = () => {
-    history.push("/home");
-    handleHomeScreen();
-  };
 
   CapApp.addListener("backButton", () => {
     history.push("/home");
     handleHomeScreen();
+  });
+  const [showFeedBack, setFeedBack] = useState(false);
+  const openQuestion = () => {
+    setFeedBack(true);
+  };
+
+  const closeQuestion = () => {
+    setFeedBack(false);
+  };
+
+  const [toggle, setToggle] = useState("translateY(-120%)");
+  const switchToggle = (event: any) => {
+    event.stopPropagation();
+    toggle === "translateY(-120%)"
+      ? setToggle("translateY(0)")
+      : setToggle("translateY(-120%)");
+  };
+
+  // Close the settings icon when clicking outside
+  document.addEventListener("click", (event) => {
+    if (toggle === "translateY(0)") {
+      setToggle("translateY(-120%)");
+    }
   });
 
   let toolBar =
@@ -151,19 +172,25 @@ const CardScreen: React.FC<{
     setAnimateKnow(false);
   };
 
+
   // Screen Being Rendered
   return (
     <IonPage>
       <IonHeader color="tertiary">
         <IonToolbar>
           {toolBar}
-          <TbHomeEdit className="home-icon" onClick={navigateToHome} />
+          <TbSettings
+            className="settings-icon"
+            onClick={switchToggle}
+            id="settings-icon"
+          />
         </IonToolbar>
       </IonHeader>
+      <IonContent className="page-content" scrollY={false}>
+      <Settings isHome={false} openQuestion={openQuestion} handleHome={handleHomeScreen} toggle={toggle} />
       {finished !== total ? (
         <>
           {/* Header and ToolBar */}
-          <IonContent className="page-content" scrollY={false}>
             <div className={stackClass}>
               {/* We display two tuples at one time */}
               {cardCol.map((array: flashCard[], index) => {
@@ -229,11 +256,12 @@ const CardScreen: React.FC<{
               animatePoorCard={animatePoorCard}
               aniamteDontKnow={animateDontKnow}
             />
-          </IonContent>
         </>
       ) : (
         <Statistics stats={stats} />
       )}
+       </IonContent>
+       {showFeedBack? <FeedbackModal identifier={finished !== total? cardCol[counter-1][tupleCounter-1]._id : 'Statistics'} closeQuestion={closeQuestion}/> : null}
     </IonPage>
   );
 };

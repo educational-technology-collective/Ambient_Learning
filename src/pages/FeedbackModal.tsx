@@ -10,7 +10,7 @@ const FeedbackModal: React.FC<{
   identifier: string;
   closeQuestion: () => void;
 }> = ({ identifier, closeQuestion }) => {
-  Keyboard.setAccessoryBarVisible({isVisible: true});
+  Keyboard.setAccessoryBarVisible({ isVisible: true });
   const form = useRef(null);
 
   const { getAccessTokenSilently } = useAuth0();
@@ -49,7 +49,7 @@ const FeedbackModal: React.FC<{
         <ImCross size="2.5rem" />
       </a>
       <form ref={form} onSubmit={sendFeedback} className="content__form">
-        {/* <div className="contact__form-div">
+        <div className="contact__form-div">
           <label className="contact__form-tag">Title</label>
           <input
             type="text"
@@ -57,18 +57,18 @@ const FeedbackModal: React.FC<{
             className="contact__form-input"
             placeholder="What's it about"
           />
-        </div> */}
+        </div>
 
         <div className="contact__form-div contact__form-area">
           <label className="contact__form-tag">Content</label>
-          {/* <textarea
+          <IonTextarea
             name="message"
             cols={30}
             rows={10}
             className="contact__form-input"
-            placeholder="Leave Message"
-          ></textarea> */}
-          <IonTextarea name="message" cols={30} rows={10} className="contact__form-input" placeholder="What's it about?" inputmode="text"></IonTextarea>
+            placeholder="What's it about?"
+            inputmode="text"
+          ></IonTextarea>
         </div>
 
         <button className="button-message button--flex">Send Message</button>

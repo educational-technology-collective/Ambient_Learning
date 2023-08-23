@@ -8,8 +8,6 @@ import QA from "./QA";
 import { enableGesture } from "../utilities/gesture";
 import { putSwipe } from "../utilities/logfunction";
 import NumberIndicator from "./NumberIndicator";
-import FeedbackModal from "../pages/FeedbackModal";
-import QuestionMark from "./QuestionMark";
 import {
   showDontKnow,
   showKnow,
@@ -298,7 +296,7 @@ const Card: React.FC<{
   // Determine the component and content style based on type of card
   let cardComp, cardContentStyle: string;
   if (obj.type === "qa") {
-    cardComp = <QA obj={obj} isClicked={isClicked}/>;
+    cardComp = <QA obj={obj} isClicked={isClicked} />;
     cardContentStyle = "card-content qa-card-content";
   } else {
     cardComp = (
@@ -357,11 +355,7 @@ const Card: React.FC<{
             <BackIndicator indicatorOpacity={indicatorOpacity} />
           </div>
         </IonCard>
-        <QuestionMark openQuestion={openQuestion} />
       </div>
-      {showFeedBack ? (
-        <FeedbackModal identifier={obj._id} closeQuestion={closeQuestion} />
-      ) : null}
     </>
   );
 };
