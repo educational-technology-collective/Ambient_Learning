@@ -1,0 +1,24 @@
+.dropdown-settings {
+  position: absolute;
+  background-color: #f4f4f4;
+  right: 0;
+  border-radius: 0 0 0.8rem 0.8rem;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.1);
+  transition: 0.5s;
+  z-index: 1;
+}
+
+.column-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+
+.texts {
+  margin-left: 1rem;
+  color: darkgray;
+
+  font-size: 1rem;
+}
