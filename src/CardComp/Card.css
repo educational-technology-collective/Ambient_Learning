@@ -90,7 +90,8 @@
 
 /* All Back texts with 180 degrees and translateZ forward (for ios) */
 .back-text {
-  transform: rotateY(180deg) translateZ(3px);
+  transform: rotateY(180deg);
+  z-index: 1;
 }
 
 /* QA Card Question on the back page taking 50% */

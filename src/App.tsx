@@ -296,38 +296,8 @@ const App: React.FC = () => {
       else if (data === "no user found") {
         console.log("No User");
         setNoUser(true);
-
-        // *** DEVELOPMENT:
-        let cards: any = collectionCard;
-        for (let i = cards.length - 1; i > 0; i--) {
-          for (let j = cards[i].length - 1; i > 0; i--) {
-            let k = Math.floor(Math.random() * (j + 1));
-            let temp = cards[i][j];
-            cards[i][j] = cards[i][k];
-            cards[i][k] = temp;
-          }
-        }
-        setCards(cards);
-        setTotal(cards.length);
-        setCounter(cards.length);
-        setTupleCounter(cards[cards.length - 1].length);
       } else if (data === "user has no lms") {
         setNoCardsInDb(true);
-
-        // *** DEVELOPMENT:
-        let cards: any = cardWrite;
-        for (let i = cards.length - 1; i > 0; i--) {
-          for (let j = cards[i].length - 1; i > 0; i--) {
-            let k = Math.floor(Math.random() * (j + 1));
-            let temp = cards[i][j];
-            cards[i][j] = cards[i][k];
-            cards[i][k] = temp;
-          }
-        }
-        setCards(cards);
-        setTotal(cards.length);
-        setCounter(cards.length);
-        setTupleCounter(cards[cards.length - 1].length);
       } else {
         console.log("There is Error");
         setError(true);
@@ -593,7 +563,7 @@ const App: React.FC = () => {
 
             {/* Root Path Redirects to Loading Page */}
             <Route exact path="/">
-              <Redirect to="/loading" />
+             <Redirect to='/loading' />
             </Route>
           </IonRouterOutlet>
 

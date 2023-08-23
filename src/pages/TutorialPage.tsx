@@ -4,7 +4,7 @@ import {
   useIonViewWillEnter,
   useIonViewWillLeave,
 } from "@ionic/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { hideBar, showBar } from "../utilities/showTabBarAndButtons";
 import "../pages/CardScreen.css";
 import "./TutorialPage.css";
@@ -14,16 +14,13 @@ import AppNameHeader from "./AppNameHeader";
 import { cards } from "../utilities/tutorialpagedata";
 import OneMoreTutorialModal from "../TutorialComp/OneMoreTutorialModal";
 import { App as CapApp } from "@capacitor/app";
-import { useHistory } from "react-router";
+import { useHistory} from "react-router";
 import TutorialButton from "../IndicationComp/TutorialButton";
 
 const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
   handleCardScreen,
 }) => {
   const history = useHistory();
-  CapApp.addListener("backButton", () => {
-    history.push("/home");
-  });
 
   // Hide the bottom tabs for the tutorial page
   useIonViewWillEnter(hideBar);
@@ -125,6 +122,9 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
     setAnimateKnow(false);
   };
 
+  CapApp.addListener('backButton', () => {
+    history.push('/home');
+  })
   return (
     <IonPage>
       {/* Header for the App Name */}

@@ -298,7 +298,7 @@ const Card: React.FC<{
   // Determine the component and content style based on type of card
   let cardComp, cardContentStyle: string;
   if (obj.type === "qa") {
-    cardComp = <QA obj={obj} />;
+    cardComp = <QA obj={obj} isClicked={isClicked}/>;
     cardContentStyle = "card-content qa-card-content";
   } else {
     cardComp = (

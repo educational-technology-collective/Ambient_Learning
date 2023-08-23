@@ -61,9 +61,7 @@ const CardScreen: React.FC<{
   isCardScreen,
 }) => {
   // Hide the tabs and spread the cards when entering
-  useIonViewWillEnter(() => {
-    hideBar();
-  });
+  useIonViewWillEnter(hideBar);
 
   // Display the tabs when leaving
   useIonViewWillLeave(showBar);
