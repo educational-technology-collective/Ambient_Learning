@@ -4,7 +4,7 @@ import {
   useIonViewWillEnter,
   useIonViewWillLeave,
 } from "@ionic/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { hideBar, showBar } from "../utilities/showTabBarAndButtons";
 import "../pages/CardScreen.css";
 import "./TutorialPage.css";
@@ -14,15 +14,13 @@ import AppNameHeader from "./AppNameHeader";
 import { cards } from "../utilities/tutorialpagedata";
 import OneMoreTutorialModal from "../TutorialComp/OneMoreTutorialModal";
 import { App as CapApp } from "@capacitor/app";
-import { useHistory } from "react-router";
+import { useHistory} from "react-router";
+import TutorialButton from "../IndicationComp/TutorialButton";
 
 const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
   handleCardScreen,
 }) => {
   const history = useHistory();
-  CapApp.addListener("backButton", () => {
-    history.push("/home");
-  });
 
   // Hide the bottom tabs for the tutorial page
   useIonViewWillEnter(hideBar);
@@ -61,6 +59,72 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
     setTimeout(leaveTimeOut, 1000);
   };
 
+  const [direction, setDirection] = useState(0);
+
+  // Set directions that will trigger swiping/loging of each direction
+  // 1 - Poor Card
+  // 2 - Know
+  // 3 - One More
+  // 4 - Dont Know
+  const directionHandler = (direction: number) => {
+    setDirection(direction);
+  };
+
+  // State Variable used to check if to open the buttons
+  const [toOpenButton, setOpenButton] = useState(false);
+
+  // Handler that will show the buttons as user taps the card
+  const openButton = () => {
+    setOpenButton(true);
+  };
+
+  // Handler that will hide the buttons as user swipes a card
+  const closeButton = () => {
+    setOpenButton(false);
+  };
+
+  const [animateKnow, setAnimateKnow] = useState(true);
+  const [animateDontKnow, setAnimateDontKnow] = useState(true);
+  const [animateOneMore, setAnimateOneMore] = useState(true);
+  const [animatePoorCard, setAnimatePoorCard] = useState(true);
+
+  const handleAnimateKnow = () => {
+    setAnimateKnow(true);
+    setAnimateDontKnow(false);
+    setAnimateOneMore(false);
+    setAnimatePoorCard(false);
+  };
+  const handleAnimateDontKnow = () => {
+    setAnimateDontKnow(true);
+    setAnimateOneMore(false);
+    setAnimatePoorCard(false);
+    setAnimateKnow(false);
+  };
+
+  const handleAnimateOneMore = () => {
+    setAnimateOneMore(true);
+    setAnimateDontKnow(false);
+    setAnimateKnow(false);
+    setAnimatePoorCard(false);
+  };
+
+  const handleAnimatePoorCard = () => {
+    setAnimatePoorCard(true);
+    setAnimateDontKnow(false);
+    setAnimateOneMore(false);
+    setAnimateKnow(false);
+  };
+
+  const handleNoAnimation = () => {
+    setAnimatePoorCard(false);
+    setAnimateDontKnow(false);
+    setAnimateOneMore(false);
+    setAnimateKnow(false);
+  };
+
+  CapApp.addListener('backButton', () => {
+    history.push('/home');
+  })
   return (
     <IonPage>
       {/* Header for the App Name */}
@@ -82,6 +146,15 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
                   tupleIndex={index}
                   tupleCounter={tutorialTupleCounter}
                   handleStatisticsUpdate={() => {}}
+                  direction={direction}
+                  directionHandler={directionHandler}
+                  closeButton={closeButton}
+                  openButton={openButton}
+                  handleAnimateDontKnow={handleAnimateDontKnow}
+                  handleAnimateKnow={handleAnimateKnow}
+                  handleAnimateOneMore={handleAnimateOneMore}
+                  handleAnimatePoorCard={handleAnimatePoorCard}
+                  handleNoAnimation={handleNoAnimation}
                 />
               );
             } else if (index === tutorialCounter - 2) {
@@ -96,12 +169,29 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
                   tupleIndex={index}
                   tupleCounter={tutorialTupleCounter}
                   handleStatisticsUpdate={() => {}}
+                  direction={direction}
+                  directionHandler={directionHandler}
+                  closeButton={closeButton}
+                  openButton={openButton}
+                  handleAnimateDontKnow={handleAnimateDontKnow}
+                  handleAnimateKnow={handleAnimateKnow}
+                  handleAnimateOneMore={handleAnimateOneMore}
+                  handleAnimatePoorCard={handleAnimatePoorCard}
+                  handleNoAnimation={handleNoAnimation}
                 />
               );
             }
           })}
         </div>
-
+        {tutorialCounter !== 0 ?
+        <TutorialButton
+          toOpenButton={toOpenButton}
+          animateKnow={animateKnow}
+          animateOneMore={animateOneMore}
+          animatePoorCard={animatePoorCard}
+          aniamteDontKnow={animateDontKnow}
+          directionHandler={directionHandler}
+        /> : null}
         {/* Display the modal of how one more card works */}
         {tutorialCounter === 2 ? <OneMoreTutorialModal /> : null}
 

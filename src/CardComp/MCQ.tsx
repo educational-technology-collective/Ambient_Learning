@@ -12,7 +12,7 @@ const MCQ: React.FC<{
   handleTestEvaluation: (result: string) => void;
 }> = ({ obj, clicked, setClickStatus, handleTestEvaluation }) => {
   // Get the question and choice from obj.content and pass it down
-  const question: string = obj.content.question;
+ 
   const choice: individualChoice[] = obj.content.answer;
 
   let frontQuestionStyle: string, backQuestionStyle: string;
@@ -21,27 +21,22 @@ const MCQ: React.FC<{
   backQuestionStyle = "card-text  back-text mcq-question";
 
   const tutorial2BackText = `The correct option will be highlighted with ***green*** color. If you select an incorrect option, it will be highlighted with ***red*** color. Swipe right to get another card.👉`;
-
-  const backQuestion = obj._id !== "tutorial2" ? question : tutorial2BackText;
+  let question: string = obj.content.question;
+  if(obj._id === 'tutorial2' && clicked){
+    question = tutorial2BackText;
+  }
 
   // Component Being Rendered
   return (
     <>
       {/* Question Text Front */}
+      <div className={!clicked? frontQuestionStyle : backQuestionStyle} >
       <ReactMarkdown
-        className={frontQuestionStyle}
         children={question}
-        remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypeRaw]}
-      ></ReactMarkdown>
-
-      {/* Question Text Back */}
-      <ReactMarkdown
-        className={backQuestionStyle}
-        children={backQuestion}
         remarkPlugins={[remarkGfm]}
-        rehypePlugins={[rehypeRaw]}
       ></ReactMarkdown>
+      </div>
 
       {/* Component for all the choices */}
       <Choices

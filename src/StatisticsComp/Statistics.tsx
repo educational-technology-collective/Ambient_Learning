@@ -15,18 +15,7 @@ import {
 import { MdDoneOutline, MdOutlineClose } from "react-icons/md";
 import { FaPoop } from "react-icons/fa";
 import "./Statistics.css";
-import { MdQuestionMark } from "react-icons/md";
-import { useState } from "react";
-import FeedbackModal from "../pages/FeedbackModal";
 const Statistics: React.FC<{ stats: statistics }> = ({ stats }) => {
-  const [showFeedBack, setFeedBack] = useState(false);
-  const openQuestion = () => {
-    setFeedBack(true);
-  };
-
-  const closeQuestion = () => {
-    setFeedBack(false);
-  };
   return (
     <>
       <IonContent scrollY={true} className="statistics-content">
@@ -123,12 +112,6 @@ const Statistics: React.FC<{ stats: statistics }> = ({ stats }) => {
           </IonCard>
         </div>
       </IonContent>
-      {showFeedBack ? (
-        <FeedbackModal
-          identifier="Statistics Page"
-          closeQuestion={closeQuestion}
-        />
-      ) : null}
     </>
   );
 };

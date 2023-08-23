@@ -1,12 +1,12 @@
 PODS:
   - Capacitor (5.0.4):
     - CapacitorCordova
-  - CapacitorApp (5.0.2):
+  - CapacitorApp (5.0.6):
     - Capacitor
   - CapacitorBrowser (5.0.5):
     - Capacitor
   - CapacitorCordova (5.0.4)
-  - CapacitorHaptics (5.0.2):
+  - CapacitorHaptics (5.0.6):
     - Capacitor
   - CapacitorKeyboard (5.0.2):
     - Capacitor
@@ -115,10 +115,10 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Capacitor: d3d4463573438b9fa65326d1f3549da6f4c21634
-  CapacitorApp: 28fef1fd75b2b3686e875216806fb8416d421097
+  CapacitorApp: 024e1b1bea5f883d79f6330d309bc441c88ad04a
   CapacitorBrowser: c08582e15086d4195f8e7808a6738b0499b6d52a
   CapacitorCordova: b1fe6bf1f36974a8e4a9044b342d22d49c0996d6
-  CapacitorHaptics: 864585542a435bd41eaabf7f30d9ff5ec03024d3
+  CapacitorHaptics: 1fffc1217c7e64a472d7845be50fb0c2f7d4204c
   CapacitorKeyboard: e628d4e66d621c69e449945ebabded17c5b9c2e8
   CapacitorPushNotifications: 7eb70469f1fcc3dec07126336d4896520e4991db
   CapacitorStatusBar: 48f2899f6846cc7d8431b251ebfc58e1c10e3d58

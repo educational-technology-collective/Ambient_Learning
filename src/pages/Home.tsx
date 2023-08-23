@@ -139,7 +139,7 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
             style={{ textDecoration: "none" }}
           >
             <TbInfoSquareRoundedFilled size="1.5rem" color="darkgrey" />
-            <h4 className="texts">Version: 1.6.2</h4>
+            <h4 className="texts">Version: 1.6.3</h4>
           </a>
 
           <div className="column-container" onClick={navigateToTutroial}>

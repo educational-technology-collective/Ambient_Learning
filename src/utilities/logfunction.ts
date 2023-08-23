@@ -32,6 +32,8 @@ export const getLatestRecord = async (
   // If there is available record, push a resume action to the database
   else {
     const session = data.session;
+    if(session !== undefined){
+
     handleStartTime(session.startTime);
 
     if (total) {
@@ -76,6 +78,7 @@ export const getLatestRecord = async (
       }
     });
   }
+}
   // Function that sets readyLog to be true so we can leave loading page
   handleReadyLog();
 };

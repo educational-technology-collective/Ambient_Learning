@@ -16,8 +16,7 @@ export const cards = [
       lm_id: "s12najdn",
       type: "qa",
       content: {
-        question:
-          `The Ambient Learning App is all about helping you learn - there are no grades or points! It's okay if you don't know the answer to a question.<br></br>(tap to continue)`,
+        question: `The Ambient Learning App is all about helping you learn - there are no grades or points! It's okay if you don't know the answer to a question.<br></br>(tap to continue)`,
         answer:
           "If you want the full power of spaced repetition practice, tell the app you didn't know the answer by swiping to the left or clicking on the puzzled face button (emoji) at the bottom of the screen. You'll get a card on the same topic to review faster this way👈.",
       },
@@ -27,8 +26,7 @@ export const cards = [
       lm_id: "jjsjaodja",
       type: "qa",
       content: {
-        question:
-          `You might be wondering what the number in the upper left indicates! This shows you how many alternative flashcards on this same topic are available.<br></br>(tap to continue)`,
+        question: `You might be wondering what the number in the upper left indicates! This shows you how many alternative flashcards on this same topic are available.<br></br>(tap to continue)`,
         answer:
           "To see the additional cards for this topic just swipe up or click the target button at the bottom of the screen👆.",
       },

@@ -1,8 +1,7 @@
-import { useRef } from "react";
-import "./ActionButtons.css";
 import { CreateAnimation } from "@ionic/react";
+import React, { useRef } from "react";
 
-const ActionButtons: React.FC<{
+const TutorialButton: React.FC<{
   toOpenButton: boolean;
   animateKnow: boolean;
   aniamteDontKnow: boolean;
@@ -74,7 +73,6 @@ const ActionButtons: React.FC<{
       oneMoreRef.current.animation.play();
     }
   };
-
   return (
     <div className="higher-container">
       <div className="action-buttons-container">
@@ -89,6 +87,7 @@ const ActionButtons: React.FC<{
           <button
             onClick={dontKnowAnimation}
             className="action-button"
+            id="dontKnow-button"
             disabled={!toOpenButton}
           >
             🤔
@@ -105,6 +104,7 @@ const ActionButtons: React.FC<{
           <button
             onClick={poorCardAnimation}
             className="action-button"
+            id="poorCard-button"
             disabled={!toOpenButton}
           >
             💩
@@ -122,6 +122,7 @@ const ActionButtons: React.FC<{
           <button
             onClick={oneMoreAnimation}
             className="action-button"
+            id="oneMore-button"
             disabled={!toOpenButton}
           >
             🎯
@@ -139,6 +140,7 @@ const ActionButtons: React.FC<{
           <button
             onClick={knowAnimation}
             className="action-button"
+            id="know-button"
             disabled={!toOpenButton}
           >
             😉
@@ -148,5 +150,4 @@ const ActionButtons: React.FC<{
     </div>
   );
 };
-
-export default ActionButtons;
+export default TutorialButton;

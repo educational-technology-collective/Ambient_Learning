@@ -3,6 +3,7 @@
   font-size: 1em;
   line-height: 1.5em;
   font-weight: bold;
+  white-space: pre-wrap;
 }
 
 /* Styling for the button before any clicking */

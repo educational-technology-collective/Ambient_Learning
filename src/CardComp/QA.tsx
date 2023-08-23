@@ -1,10 +1,10 @@
 import "./Card.css";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
-import rehypeRaw from "rehype-raw"
 
 // Component for a QA Card
-const QA: React.FC<{ obj: flashCard }> = ({ obj }) => {
+const QA: React.FC<{ obj: flashCard, isClicked: boolean }> = ({ obj, isClicked }) => {
   // Get the question and answer based on obj.content
   const question: string = obj.content.question;
 
@@ -12,6 +12,8 @@ const QA: React.FC<{ obj: flashCard }> = ({ obj }) => {
 
   // For the font-size
   let backQuestionStyle: string, answerStyle: string;
+
+  let frontQuestionStyle: string = "card-text front-text qa-question"
 
   backQuestionStyle = "card-text back-text qa-question";
 
@@ -21,26 +23,27 @@ const QA: React.FC<{ obj: flashCard }> = ({ obj }) => {
   return (
     <>
       {/* Front Question Text */}
+      <div className={isClicked? backQuestionStyle: frontQuestionStyle}>
       <ReactMarkdown
-        className="card-text front-text qa-question"
         children={question}
-        remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypeRaw]}
+        remarkPlugins={[remarkGfm]}
       ></ReactMarkdown>
+      </div>
 
-      {/* Back Question Text */}
+      {/* Back Question Text
       <ReactMarkdown
         className={backQuestionStyle}
         children={question}
-        remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypeRaw]}
-      ></ReactMarkdown>
+        remarkPlugins={[remarkGfm]}
+      ></ReactMarkdown> */}
       {/* Back Answer Text */}
       <ReactMarkdown
         className={answerStyle}
         children={answer}
-        remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypeRaw]}
+        remarkPlugins={[remarkGfm]}
       ></ReactMarkdown>
     </>
   );

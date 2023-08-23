@@ -3,6 +3,7 @@ import { useState } from "react";
 import "./MCQChoice.css";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import rehypeRaw from "rehype-raw";
+import remarkGfm from "remark-gfm";
 
 // Incorrect Option Component
 export const IncorrectChoice: React.FC<{
@@ -41,7 +42,7 @@ export const IncorrectChoice: React.FC<{
       <ReactMarkdown
         className="choice-text"
         children={choiceText}
-        rehypePlugins={[rehypeRaw]}
+        remarkPlugins={[remarkGfm]}
       ></ReactMarkdown>
     </IonButton>
   );
@@ -79,6 +80,7 @@ export const CorrectChoice: React.FC<{
         className="choice-text"
         children={choiceText}
         rehypePlugins={[rehypeRaw]}
+        remarkPlugins={[remarkGfm]}
       ></ReactMarkdown>
     </IonButton>
   );

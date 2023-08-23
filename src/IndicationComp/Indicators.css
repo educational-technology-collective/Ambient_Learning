@@ -3,6 +3,7 @@
   backface-visibility: hidden;
   position: absolute;
   transform: rotateY(0deg) translateZ(3px);
+  z-index: 20;
 }
 
 /* Styling for indicators on the back page */
@@ -10,6 +11,7 @@
   backface-visibility: hidden;
   position: absolute;
   transform: rotateY(180deg) translateZ(3px);
+  z-index: 20;
 }
 
 /* Styling for the negativei indicator on the back page */

@@ -1,7 +1,6 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import Card from "../CardComp/Card";
 import "./FlashCardList.css";
-import ActionButtons from "../IndicationComp/ActionButtons";
 
 // Tuple of Cards Component
 const FlashCardList: React.FC<{
@@ -25,6 +24,15 @@ const FlashCardList: React.FC<{
     latestRecord: latestResult
   ) => void;
   handleStatisticsUpdate: (testEval: string, selfEval: string) => void;
+  direction: number;
+  directionHandler: (direction: number) => void;
+  closeButton: () => void;
+  openButton: () => void;
+  handleAnimateKnow: () => void;
+  handleAnimateDontKnow: () => void;
+  handleAnimatePoorCard: () => void;
+  handleAnimateOneMore: () => void;
+  handleNoAnimation: () => void;
 }> = ({
   array,
   tupleIndex,
@@ -33,82 +41,21 @@ const FlashCardList: React.FC<{
   swipeNextCard,
   swipeOneMoreCard,
   handleStatisticsUpdate,
+  direction,
+  directionHandler,
+  closeButton,
+  openButton,
+  handleAnimateKnow,
+  handleAnimateDontKnow,
+  handleAnimatePoorCard,
+  handleAnimateOneMore,
+  handleNoAnimation,
 }) => {
   // The Reference of the Whole Tuple, used for poorcard/know/dont know swipe
   const refTuple = useRef<HTMLInputElement>(null);
 
   // TupleBehind is the card that is stacked at bottom (next card)
   const tupleBehindCard: flashCard = array[array.length - 1];
-
-  const [direction, setDirection] = useState(0);
-
-  // Set directions that will trigger swiping/loging of each direction
-  // 1 - Poor Card
-  // 2 - Know
-  // 3 - One More
-  // 4 - Dont Know
-  const directionHandler = (direction: number) => {
-    setDirection(direction);
-  };
-
-  // State Variable used to check if to open the buttons
-  const [toOpenButton, setOpenButton] = useState(false);
-
-  // Handler that will show the buttons as user taps the card
-  const openButton = () => {
-    setOpenButton(true);
-  };
-
-  // Handler that will hide the buttons as user swipes a card
-  const closeButton = () => {
-    setOpenButton(false);
-  };
-
-  // 4 boolean variables for each animation
-  const [animateDontKnow, setAnimateDontKnow] = useState(false);
-  const [animateKnow, setAnimateKnow] = useState(false);
-  const [animateOneMore, setAnimateOneMore] = useState(false);
-  const [animatePoorCard, setAnimatePoorCard] = useState(false);
-
-  // Animate Don't Know Button
-  const handleAnimateDontKnow = () => {
-    setAnimateDontKnow(true);
-    setAnimateKnow(false);
-    setAnimateOneMore(false);
-    setAnimatePoorCard(false);
-  };
-
-  // Animate Know Button
-  const handleAnimateKnow = () => {
-    setAnimateKnow(true);
-    setAnimateDontKnow(false);
-    setAnimateOneMore(false);
-    setAnimatePoorCard(false);
-  };
-
-  // Animate One More Button
-  const handleAnimateOneMore = () => {
-    setAnimateOneMore(true);
-    setAnimateKnow(false);
-    setAnimateDontKnow(false);
-    setAnimatePoorCard(false);
-  };
-
-  // Animate Poor Card Button
-  const handleAnimatePoorCard = () => {
-    setAnimatePoorCard(true);
-    setAnimateKnow(false);
-    setAnimateOneMore(false);
-    setAnimateDontKnow(false);
-  };
-
-  // Stop all animation
-  const handleNoAnimation = () => {
-    setAnimatePoorCard(false);
-    setAnimateKnow(false);
-    setAnimateOneMore(false);
-    setAnimateDontKnow(false);
-  };
 
   // Key is Necessary for not shuffling choices multiple times
   const component = (
@@ -173,16 +120,6 @@ const FlashCardList: React.FC<{
             component}
       </div>
       {/* Display the buttons if it is front tuple and button boolean is true */}
-      {isFrontTuple ? (
-        <ActionButtons
-          toOpenButton={toOpenButton}
-          animateDontKnow={animateDontKnow}
-          animateKnow={animateKnow}
-          animateOneMore={animateOneMore}
-          animatePoorCard={animatePoorCard}
-          directionHandler={directionHandler}
-        />
-      ) : null}
     </>
   );
 };
