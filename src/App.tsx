@@ -531,7 +531,7 @@ const App: React.FC = () => {
 
             {/* Error Page Path */}
             <Route exact path="/error">
-              <ErrorPage />
+              <ErrorPage accessToken={accessToken}/>
             </Route>
 
             {/* Tutorial Page Path */}

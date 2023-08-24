@@ -776,5 +776,37 @@ const regexCard = [
       question: "What is the output of the following program?\n```\ntext = 'a9A'\nprint(re.findall('[a-z][1-9][a-Z]', text))",
       answer: "Error"
     }
+  },
+  {
+    type: 'mcq',
+    content: {
+      question: "What is the output of the following program?\n```\ntext = 'Amcbhde89'\nprint(re.findall('Am|mc|8[9]', text))",
+      answer: [
+        {option: "['Am', '89']", isCorrect: true},
+        {option: "['Am', 'mc', '89']", isCorrect: false},
+        {option: "['Am', 'mc', '8', '9']", isCorrect: false},
+        {option: "['Am', '8', '9']", isCorrect: false}
+      ]
+    }
+  },
+  {
+    type: 'mcq',
+    content: {
+      question: "For `text = 'AMCdhj'`, `re.findall('A|MC|d|hj', text)` has the same output as `re.findall('AMC|dhj', text)`",
+      answer: [
+        {option: "True", isCorrect: false},
+        {option: "False", isCorrect: true}
+      ]
+    }
+  },
+  {
+    type: 'mcq',
+    content: {
+      question: "For `text = 'AMCdhj'`, `re.findall('A|M|C|d|h|j', text)` has the same output as `re.findall('[A-z]', text)`",
+      answer: [
+        {option: "True", isCorrect: true},
+        {option: "False", isCorrect: false}
+      ]
+    }
   }
 ]
