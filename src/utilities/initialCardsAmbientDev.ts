@@ -808,5 +808,76 @@ const regexCard = [
         {option: "False", isCorrect: false}
       ]
     }
+  },
+  {
+    type: 'qa',
+    content: {
+      question: "What is the output of the following program\n```\ntext = 'Jackpot'\nif(re.match('^[^a-z]', text)):\n  print('Good')\nelse:\n  print('Bad')",
+      answer: 'Good',
+    }
+  },
+  {
+    type: 'qa',
+    content: {
+      question: "What is the output of the following program\n```\ntext = 'Jackpot'\nif(re.match('^[^a-z][^A-Z][1-9]', text)):\n  print('Good')\nelse:\n  print('Bad')",
+      answer: 'Bad',
+    }
+  },
+  {
+    type: 'mcq',
+    content: {
+      question: "Can you have extra space in between the braces for regex quantifier?",
+      answer: [
+        {option: 'Yes', isCorrect: false},
+        {option: 'No', isCorrect: true}
+      ]
+    }
+  },
+  {
+    type: 'mcq',
+    content: "For `text = 'MMohhMMoh'`, `re.findall('[M][M]', text)`, `re.findall('M{2,2}', text)`, and `re.findall('M{2}', text)` all have same output",
+    answer: [
+      {option: 'True', isCorrect: true},
+      {option: 'False', isCorrect: false}
+    ]
+  },
+  {
+    type: 'qa',
+    content: {
+     question: 'Asterix * is to match how many times in regex?',
+      answer: "Zero or more times"
+    }
+  },
+  {
+    type: 'qa',
+    content: {
+      question: 'Question Mark ? is to match how many times in regex?',
+      answer: 'One or more times'
+    }
+  },
+  {
+    type: 'qa',
+    content: {
+      question: "Plus sign + is to match how mnay times in regex?",
+      answer: "One or more times"
+    }
+  },
+  {
+    type: 'mcq',
+    content: {
+      question: "What characters does `\\w` match?",
+      answer: [
+        {option: 'Letters', isCorrect: false},
+        {option: 'Digits', isCorrect: false},
+        {option: 'Letters and Digits', isCorrect: true},
+        {option: 'Special Characters', isCorrect: false}
+      ]
+    }
+  },
+  {
+    type: 'qa',
+    content: {
+      question: ""
+    }
   }
 ]

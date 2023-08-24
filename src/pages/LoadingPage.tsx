@@ -34,11 +34,7 @@ const LoadingPage: React.FC<{
   readyLog,
   handleCardScreen,
 }) => {
-  // Hide the Bottom Tabs for this Page
-  useIonViewWillEnter(hideBar);
-
-  // Reload the Bottom Tabs when leaving
-  useIonViewWillLeave(showBar);
+ 
 
   const history = useHistory();
 

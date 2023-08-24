@@ -65,14 +65,6 @@ const CardScreen: React.FC<{
   accessToken,
 }) => {
 
-  // Display the tabs when leaving if cards not finished
-  const toShowBar = () => {
-    if(finished !== total){
-      showBar();
-    }
-  }
-  useIonViewWillLeave(toShowBar);
-
   // Set the className of cardstack if it's shaking or not
   const stackClass: string = isShake
     ? "card-stacker card-stacker-animate"
@@ -188,8 +180,6 @@ const CardScreen: React.FC<{
   useEffect(()=> {
     if(finished === total){
       showBar();
-    }else{
-      hideBar();
     }
   })
 

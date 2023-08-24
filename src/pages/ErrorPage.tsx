@@ -23,11 +23,7 @@ const ErrorPage: React.FC<{accessToken: string}> = ({accessToken}) => {
       ? setFeedback("translateY(0)")
       : setFeedback("translateY(-120%)");
   };
-  // Hide the Bottom Tabs when entering the page
-  useIonViewWillEnter(hideBar);
-
-  // Show the bottom tabs when leaving the page
-  useIonViewWillLeave(showBar);
+  
   return (
     <IonPage>
       <IonContent scrollY={false} className="error-content">

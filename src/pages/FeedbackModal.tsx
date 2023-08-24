@@ -48,13 +48,13 @@ const FeedbackModal: React.FC<{
     <div className='feedback-wrapper' style={{transform: showFeedback}}>
     <div className="feedback-container" onClick={(event) => event.stopPropagation()}>
       <button onClick={closeQuestion} className="close-icon">
-        <ImCross size="2rem" />
+        <ImCross size="1.8rem" />
       </button>
       <form ref={form} onSubmit={sendFeedback} className="feedback-form">
           <textarea
             name="message"
             cols={30}
-            rows={10}
+            rows={9}
             className="feedback-textarea"
             placeholder="Leave Feedback"
             inputMode="text"

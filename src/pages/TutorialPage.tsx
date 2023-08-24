@@ -25,8 +25,6 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
   // Hide the bottom tabs for the tutorial page
   useIonViewWillEnter(hideBar);
 
-  // Display the bottom tabs after
-  useIonViewWillLeave(showBar);
 
   // Static Cards length of 4
   const [tutorialCounter, setTutorialCounter] = useState(cards.length);

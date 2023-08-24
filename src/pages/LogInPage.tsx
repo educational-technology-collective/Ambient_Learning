@@ -3,13 +3,9 @@ import "./LogInPage.css";
 import LogInButton from "../ButtonComp/LogInButton";
 import { hideBar } from "../utilities/showTabBarAndButtons";
 import logo from "../../assets/logo.png";
-import { useState } from "react";
-import FeedbackModal from "./FeedbackModal";
 
 const LogInPage: React.FC = () => {
-  // Hide the bottom tabs when entering the login page
-  useIonViewWillEnter(hideBar);
-
+  
   return (
     <IonPage>
       <IonContent scrollY={false} className="login-content">
