@@ -495,6 +495,7 @@ const App: React.FC = () => {
                 <Home
                   cardsLeft={cardsLeft}
                   handleCardScreen={handleCardScreen}
+                  accessToken={accessToken}
                 />
               )}
             />
@@ -518,6 +519,7 @@ const App: React.FC = () => {
                   handleStatisticsUpdate={handleStatisticsUpdate}
                   handleHomeScreen={handleHomeScreen}
                   isCardScreen={isCardScreen}
+                  accessToken={accessToken}
                 />
               )}
             />

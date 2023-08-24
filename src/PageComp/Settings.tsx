@@ -6,7 +6,6 @@ import "./Settings.css";
 import {
   TbAlertTriangle,
   TbBook,
-  TbHomeEdit,
   TbInfoSquareRoundedFilled,
   TbQuestionMark,
   TbWalk,
@@ -16,9 +15,10 @@ import { useHistory } from "react-router";
 const Settings: React.FC<{
   toggle: string;
   isHome: boolean;
-  openQuestion: () => void;
+  openQuestion: (event: any) => void;
   handleHome?: () => void;
-}> = ({ toggle, isHome, openQuestion, handleHome }) => {
+  switchToggle: (event: any) => void;
+}> = ({ toggle, isHome, openQuestion, handleHome, switchToggle }) => {
   const history = useHistory();
   const isPhone: boolean = isPlatform("hybrid");
   const logoutUri = isPhone
@@ -54,15 +54,10 @@ const Settings: React.FC<{
     history.push("/tutorial", { from: "home" });
   };
 
-  const navigateToHome = () => {
-    history.push("/home", { from: "card" });
-    if (handleHome) handleHome();
-  };
 
-  const feedbackClick = () => {
-    if (openQuestion) {
-      openQuestion();
-    }
+  const feedbackClick = (event: any) => {
+    openQuestion(event);
+    switchToggle(event);
   };
 
   const deleteAccountClick = async () => {
@@ -98,12 +93,7 @@ const Settings: React.FC<{
           <TbBook size="1.5rem" color="darkgrey" />
           <h4 className="texts">Tutorial</h4>
         </div>
-      ) : (
-        <div className="column-container" onClick={navigateToHome}>
-          <TbHomeEdit size="1.5rem" color="darkgrey" />
-          <h4 className="texts">Home</h4>
-        </div>
-      )}
+      ): null}
       <div className="column-container" onClick={feedbackClick}>
         <TbQuestionMark size="1.5rem" color="darkgrey" />{" "}
         <h4 className="texts">Feedback</h4>

@@ -18,10 +18,11 @@ import { Browser } from "@capacitor/browser";
 import { Capacitor } from "@capacitor/core";
 import Settings from "../PageComp/Settings";
 
-const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
-  cardsLeft,
-  handleCardScreen,
-}) => {
+const Home: React.FC<{
+  cardsLeft: number;
+  handleCardScreen: () => void;
+  accessToken: string;
+}> = ({ cardsLeft, handleCardScreen, accessToken }) => {
   const history = useHistory();
 
   const { user } = useAuth0();
@@ -32,13 +33,13 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
     history.push("/cardscreen", { from: "home" });
   };
 
-  const [showFeedBack, setFeedBack] = useState(false);
-  const openQuestion = () => {
-    setFeedBack(true);
-  };
+  const [showFeedback, setFeedback] = useState("translateY(-120%)");
 
-  const closeQuestion = () => {
-    setFeedBack(false);
+  const switchFeedback = (event: any) => {
+    event.stopPropagation();
+    showFeedback === "translateY(-120%)"
+      ? setFeedback("translateY(0)")
+      : setFeedback("translateY(-120%)");
   };
 
   const [toggle, setToggle] = useState("translateY(-120%)");
@@ -53,6 +54,9 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
   document.addEventListener("click", (event) => {
     if (toggle === "translateY(0)") {
       setToggle("translateY(-120%)");
+    }
+    if (showFeedback === "translateY(0)") {
+      setFeedback("translateY(-120%)");
     }
   });
 
@@ -78,7 +82,12 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
       <AppNameHeader isHome={true} switchSettings={switchToggle} />
 
       <IonContent scrollY={false} className="home-content">
-        <Settings openQuestion={openQuestion} toggle={toggle} isHome={true} />
+        <Settings
+          openQuestion={switchFeedback}
+          toggle={toggle}
+          isHome={true}
+          switchToggle={switchToggle}
+        />
 
         <div className="home-loaded-wrapper">
           {/* Icon and Tutorial Portal */}
@@ -96,10 +105,13 @@ const Home: React.FC<{ cardsLeft: number; handleCardScreen: () => void }> = ({
             navigateToCardScreen={navigateToCardScreen}
           />
         </div>
+        <FeedbackModal
+          identifier="Home Screen"
+          closeQuestion={switchFeedback}
+          accessToken={accessToken}
+          showFeedback={showFeedback}
+        />
       </IonContent>
-      {showFeedBack ? (
-        <FeedbackModal identifier="Home Screen" closeQuestion={closeQuestion} />
-      ) : null}
     </IonPage>
   );
 };
