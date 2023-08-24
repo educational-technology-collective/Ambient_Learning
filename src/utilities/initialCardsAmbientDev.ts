@@ -869,15 +869,58 @@ const regexCard = [
       answer: [
         {option: 'Letters', isCorrect: false},
         {option: 'Digits', isCorrect: false},
-        {option: 'Letters and Digits', isCorrect: true},
-        {option: 'Special Characters', isCorrect: false}
+        {option: 'Letters and Digits', isCorrect: false},
+        {option: 'Letters, digits, underscore', isCorrect: true}
       ]
     }
   },
   {
     type: 'qa',
     content: {
-      question: ""
+      question: "In `re.finditer()`, what does `re.group(0)` return?",
+      answer: 'It returns the whole match',
+    }
+  },{
+    type: 'qa',
+    content: {
+      question: "In `re.finditer()`, if I want to get only the first part of a match group, what number should I pass to `re.group()`?",
+      answer: '1'
+    }
+  },
+  {
+    type: 'qa',
+    content: {
+      question: 'What is the syntax for labling groups in regex?',
+      answer: '(?<name>)'
+    }
+  },
+  {
+    type: 'mcq',
+    content: {
+      question: "Which of the following do you use to access the group`(?P<title>)` of `item`?",
+      answer: [
+        {option: "item.groupdict()['title']", isCorrect: true},
+        {option: "item.group(0)", isCorrect: false},
+        {option: "item.groups()['title']", isCorrect: false},
+        {option: "item.group('title')", isCorrect: false}
+      ]
+    }
+  },
+  {
+    type: 'qa',
+    content: {
+      qustion: 'What is \\d used for?',
+      answer: 'Any digit'
+    }
+  },
+  {
+    type: 'mcq',
+    content: {
+      question: 'The stuff after `?=` will not bu put in our match objects',
+      answer: [
+        {option: 'True', isCorrect: true},
+        {option: 'False', isCorrect: false}
+      ]
     }
   }
 ]

@@ -1,0 +1,307 @@
+[
+  {
+    "type": "qa",
+    "content": {
+      "question": "What is the first argument of `re.match()` used for",
+      "answer": "The pattern we are identifying if it exists at the beginning of the string."
+    }
+  },
+  {
+    "type": "mcq",
+    "content": {
+      "question": "What is the output of the following program?\n```\ntext = 'This equation equally evaluates the equality of electric potential'\nprint(len(re.findall('eq', text)))",
+      "answer": [
+        { "option": "3", "isCorrect": true },
+        { "option": "[eq, eq, eq]", "isCorrect": false },
+        { "option": "4", "isCorrect": false },
+        { "option": "2", "isCorrect": false }
+      ]
+    }
+  },
+  {
+    "type": "qa",
+    "content": {
+      "question": "What is the output of the following program?\n```\ntext = 'Amy Emex'\nif(re.match('Em',text)):\n  print('Good')\nelse:\n  print('Bad')",
+      "answer": "Bad"
+    }
+  },
+  {
+    "type": "qa",
+    "content": {
+      "question": "What is the output of the following program?\n```\ntext = 'Amy Emex'\nif(re.search('Em',text)):\n  print('Good')\nelse:\n  print('Bad')",
+      "answer": "Good"
+    }
+  },
+  {
+    "type": "mcq",
+    "content": {
+      "question": "What is the output of the following program?\n```\ntext = 'Amy Emex'\nif(re.search('$ex', text)):\n  print('Good')\nelse: \n print('Bad')",
+      "answer": [
+        { "option": "Good", "isCorrect": false },
+        { "option": "Bad", "isCorrect": true }
+      ]
+    }
+  },
+  {
+    "type": "mcq",
+    "content": {
+      "question": "What is the output of the following program?\n```\ntext = 'Amy Emex'\nif(re.search('ex$', text)):\n  print('Good')\nelse: \n print('Bad')",
+      "answer": [
+        { "option": "Good", "isCorrect": true },
+        { "option": "Bad", "isCorrect": false }
+      ]
+    }
+  },
+  {
+    "type": "mcq",
+    "content": {
+      "question": "What is the output of the following program?\n```\ntext = 'Amy Emex'\nif(re.search('$ex$', text)):\n  print('Good')\nelse: \n print('Bad')",
+      "answer": [
+        { "option": "Good", "isCorrect": false },
+        { "option": "Bad", "isCorrect": true }
+      ]
+    }
+  },
+  {
+    "type": "mcq",
+    "content": {
+      "question": "What is the output of the following program?\n```\ntext = 'Amy Emex'\nif(re.search('^Amy$', text)):\n  print('Good')\nelse: \n print('Bad')",
+      "answer": [
+        { "option": "Good", "isCorrect": false },
+        { "option": "Bad", "isCorrect": true }
+      ]
+    }
+  },
+  {
+    "type": "mcq",
+    "content": {
+      "question": "What is the output of the following program?\n```\ntext = 'Amy Emex'\nif(re.search('^Amy^', text)):\n  print('Good')\nelse: \n print('Bad')",
+      "answer": [
+        { "option": "Good", "isCorrect": false },
+        { "option": "Bad", "isCorrect": true }
+      ]
+    }
+  },
+  {
+    "type": "mcq",
+    "content": {
+      "question": "What is the output of the following program?\n```\ntext = 'Amy Emex'\nif(re.search('^Amy Emex$', text)):\n  print('Good')\nelse: \n print('Bad')",
+      "answer": [
+        { "option": "Good", "isCorrect": true },
+        { "option": "Bad", "isCorrect": false }
+      ]
+    }
+  },
+  {
+    "type": "qa",
+    "content": {
+      "question": "What is the sign/symbol for the set operator in regex?",
+      "answer": "[ ]"
+    }
+  },
+  {
+    "type": "qa",
+    "content": {
+      "question": "What is the sign/symbol for the pipe operator in regex?",
+      "answer": "|"
+    }
+  },
+  {
+    "type": "mcq",
+    "content": {
+      "question": "What is the output of the following program?\n```\ntext = '7890'\nprint(re.findall('[1-90]', text))",
+      "answer": [
+        { "option": "['7', '8', '9', '0']", "isCorrect": true },
+        { "option": "['7', '8', '90']", "isCorrect": false },
+        { "option": "['78', '90']", "isCorrect": false },
+        { "option": "['9', '0']", "isCorrect": false }
+      ]
+    }
+  },
+  {
+    "type": "mcq",
+    "content": {
+      "question": "What is the output of the following program?\n```\ntext = '-23-82-10'\nprint(re.findall('[-10-7]',text))",
+      "answer": [
+        {
+          "option": "['-', '2', '3', '-', '2', '-', '1', '0']",
+          "isCorrect": true
+        },
+        { "option": "['-10']", "isCorrect": false },
+        { "option": "['-2', '3', '-8', '2', '-10']", "isCorrect": false },
+        {
+          "option": "['-', '2', '3', '-', '8', '2', '-', '-', '1', '0']",
+          "isCorrect": false
+        }
+      ]
+    }
+  },
+  {
+    "type": "qa",
+    "content": {
+      "question": "What is the output of the following program?\n```\ntext = 'a9A'\nprint(re.findall('[a-z][8][A-Z]', text))",
+      "answer": "[ ]"
+    }
+  },
+  {
+    "type": "qa",
+    "content": {
+      "question": "What is the output of the following program?\n```\ntext = 'a9A'\nprint(re.findall('[A-z][1-9][A-Z]', text))",
+      "answer": "['a9A']"
+    }
+  },
+  {
+    "type": "qa",
+    "content": {
+      "question": "What is the output of the following program?\n```\ntext = 'a9A'\nprint(re.findall('[a-z][1-9][a-Z]', text))",
+      "answer": "Error"
+    }
+  },
+  {
+    "type": "mcq",
+    "content": {
+      "question": "What is the output of the following program?\n```\ntext = 'Amcbhde89'\nprint(re.findall('Am|mc|8[9]', text))",
+      "answer": [
+        { "option": "['Am', '89']", "isCorrect": true },
+        { "option": "['Am', 'mc', '89']", "isCorrect": false },
+        { "option": "['Am', 'mc', '8', '9']", "isCorrect": false },
+        { "option": "['Am', '8', '9']", "isCorrect": false }
+      ]
+    }
+  },
+  {
+    "type": "mcq",
+    "content": {
+      "question": "For `text = 'AMCdhj'`, `re.findall('A|MC|d|hj', text)` has the same output as `re.findall('AMC|dhj', text)`",
+      "answer": [
+        { "option": "True", "isCorrect": false },
+        { "option": "False", "isCorrect": true }
+      ]
+    }
+  },
+  {
+    "type": "mcq",
+    "content": {
+      "question": "For `text = 'AMCdhj'`, `re.findall('A|M|C|d|h|j', text)` has the same output as `re.findall('[A-z]', text)`",
+      "answer": [
+        { "option": "True", "isCorrect": true },
+        { "option": "False", "isCorrect": false }
+      ]
+    }
+  },
+  {
+    "type": "qa",
+    "content": {
+      "question": "What is the output of the following program\n```\ntext = 'Jackpot'\nif(re.match('^[^a-z]', text)):\n  print('Good')\nelse:\n  print('Bad')",
+      "answer": "Good"
+    }
+  },
+  {
+    "type": "qa",
+    "content": {
+      "question": "What is the output of the following program\n```\ntext = 'Jackpot'\nif(re.match('^[^a-z][^A-Z][1-9]', text)):\n  print('Good')\nelse:\n  print('Bad')",
+      "answer": "Bad"
+    }
+  },
+  {
+    "type": "mcq",
+    "content": {
+      "question": "Can you have extra space in between the braces for regex quantifier?",
+      "answer": [
+        { "option": "Yes", "isCorrect": false },
+        { "option": "No", "isCorrect": true }
+      ]
+    }
+  },
+  {
+    "type": "mcq",
+    "content": "For `text = 'MMohhMMoh'`, `re.findall('[M][M]', text)`, `re.findall('M{2,2}', text)`, and `re.findall('M{2}', text)` all have same output",
+    "answer": [
+      { "option": "True", "isCorrect": true },
+      { "option": "False", "isCorrect": false }
+    ]
+  },
+  {
+    "type": "qa",
+    "content": {
+      "question": "Asterix * is to match how many times in regex?",
+      "answer": "Zero or more times"
+    }
+  },
+  {
+    "type": "qa",
+    "content": {
+      "question": "Question Mark ? is to match how many times in regex?",
+      "answer": "One or more times"
+    }
+  },
+  {
+    "type": "qa",
+    "content": {
+      "question": "Plus sign + is to match how mnay times in regex?",
+      "answer": "One or more times"
+    }
+  },
+  {
+    "type": "mcq",
+    "content": {
+      "question": "What characters does `\\w` match?",
+      "answer": [
+        { "option": "Letters", "isCorrect": false },
+        { "option": "Digits", "isCorrect": false },
+        { "option": "Letters and Digits", "isCorrect": false },
+        { "option": "Letters, digits, underscore", "isCorrect": true }
+      ]
+    }
+  },
+  {
+    "type": "qa",
+    "content": {
+      "question": "In `re.finditer()`, what does `re.group(0)` return?",
+      "answer": "It returns the whole match"
+    }
+  },
+  {
+    "type": "qa",
+    "content": {
+      "question": "In `re.finditer()`, if I want to get only the first part of a match group, what number should I pass to `re.group()`?",
+      "answer": "1"
+    }
+  },
+  {
+    "type": "qa",
+    "content": {
+      "question": "What is the syntax for labling groups in regex?",
+      "answer": "(?<name>)"
+    }
+  },
+  {
+    "type": "mcq",
+    "content": {
+      "question": "Which of the following do you use to access the group`(?P<title>)` of `item`?",
+      "answer": [
+        { "option": "item.groupdict()['title']", "isCorrect": true },
+        { "option": "item.group(0)", "isCorrect": false },
+        { "option": "item.groups()['title']", "isCorrect": false },
+        { "option": "item.group('title')", "isCorrect": false }
+      ]
+    }
+  },
+  {
+    "type": "qa",
+    "content": {
+      "qustion": "What is \\d used for?",
+      "answer": "Any digit"
+    }
+  },
+  {
+    "type": "mcq",
+    "content": {
+      "question": "The stuff after `?=` will not bu put in our match objects",
+      "answer": [
+        { "option": "True", "isCorrect": true },
+        { "option": "False", "isCorrect": false }
+      ]
+    }
+  }
+]
