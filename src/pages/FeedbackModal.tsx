@@ -7,18 +7,16 @@ import { IonTextarea } from "@ionic/react";
 import { Keyboard } from "@capacitor/keyboard";
 
 const FeedbackModal: React.FC<{
+  accessToken: string;
+  showFeedback: string;
   identifier: string;
-  closeQuestion: () => void;
-}> = ({ identifier, closeQuestion }) => {
+  closeQuestion: (event: any) => void;
+}> = ({ accessToken, showFeedback, identifier, closeQuestion }) => {
   Keyboard.setAccessoryBarVisible({ isVisible: true });
   const form = useRef(null);
 
-  const { getAccessTokenSilently } = useAuth0();
-
-  const postFeedback = async (title: string, content: string) => {
-    const accessToken = await getAccessTokenSilently();
+  const postFeedback = async (content: string) => {
     const body = {
-      title: title,
       identifier: identifier,
       content: content,
     };
@@ -35,44 +33,36 @@ const FeedbackModal: React.FC<{
 
   const sendFeedback = (e: any) => {
     e.preventDefault();
-    if (e.target[0].value !== "" && e.target[1].value !== "") {
-      postFeedback(e.target[0].value, e.target[1].value);
-      closeQuestion();
+    if (e.target[0].value !== "" ) {
+      postFeedback(e.target[0].value);
+      console.log(e.target)
+      e.target.reset();
+      closeQuestion(event);
+      alert('Thank you for your feedback!')
     } else {
-      alert("Make sure you fill both fields");
+      alert("Make sure you fill the information!");
     }
   };
 
   return (
-    <div className="contact contact__container container grid">
-      <a onClick={closeQuestion} className="close-icon">
-        <ImCross size="2.5rem" />
-      </a>
-      <form ref={form} onSubmit={sendFeedback} className="content__form">
-        <div className="contact__form-div">
-          <label className="contact__form-tag">Title</label>
-          <input
-            type="text"
-            name="name"
-            className="contact__form-input"
-            placeholder="What's it about"
-          />
-        </div>
-
-        <div className="contact__form-div contact__form-area">
-          <label className="contact__form-tag">Content</label>
-          <IonTextarea
+    <div className='feedback-wrapper' style={{transform: showFeedback}}>
+    <div className="feedback-container" onClick={(event) => event.stopPropagation()}>
+      <button onClick={closeQuestion} className="close-icon">
+        <ImCross size="2rem" />
+      </button>
+      <form ref={form} onSubmit={sendFeedback} className="feedback-form">
+          <textarea
             name="message"
             cols={30}
             rows={10}
-            className="contact__form-input"
-            placeholder="What's it about?"
-            inputmode="text"
-          ></IonTextarea>
-        </div>
+            className="feedback-textarea"
+            placeholder="Leave Feedback"
+            inputMode="text"
+          ></textarea>
 
-        <button className="button-message button--flex">Send Message</button>
+        <button className="feedback-button">Send Message</button>
       </form>
+    </div>
     </div>
   );
 };

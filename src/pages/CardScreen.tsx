@@ -8,7 +8,7 @@ import {
   useIonViewWillLeave,
 } from "@ionic/react";
 import "./CardScreen.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FlashCardList from "../FlashCardComp/FlashCardList";
 import OneMoreFailMessage from "../IndicationComp/OneMoreFailMessage";
 import Statistics from "../StatisticsComp/Statistics";
@@ -47,6 +47,7 @@ const CardScreen: React.FC<{
   handleStatisticsUpdate: (testEval: string, selfEval: string) => void;
   handleHomeScreen: () => void;
   isCardScreen: boolean;
+  accessToken: string;
 }> = ({
   finished,
   total,
@@ -61,12 +62,16 @@ const CardScreen: React.FC<{
   handleStatisticsUpdate,
   handleHomeScreen,
   isCardScreen,
+  accessToken,
 }) => {
-  // Hide the tabs and spread the cards when entering
-  useIonViewWillEnter(hideBar);
 
-  // Display the tabs when leaving
-  useIonViewWillLeave(showBar);
+  // Display the tabs when leaving if cards not finished
+  const toShowBar = () => {
+    if(finished !== total){
+      showBar();
+    }
+  }
+  useIonViewWillLeave(toShowBar);
 
   // Set the className of cardstack if it's shaking or not
   const stackClass: string = isShake
@@ -75,17 +80,21 @@ const CardScreen: React.FC<{
 
   const history = useHistory();
 
+  const navigateToHome = () => {
+    history.push('/home');
+    handleHomeScreen();
+  }
+
   CapApp.addListener("backButton", () => {
     history.push("/home");
     handleHomeScreen();
   });
-  const [showFeedBack, setFeedBack] = useState(false);
-  const openQuestion = () => {
-    setFeedBack(true);
-  };
-
-  const closeQuestion = () => {
-    setFeedBack(false);
+  const [showFeedback, setFeedback] = useState("translateY(-120%)");
+  const switchFeedback = (event: any) => {
+    event.stopPropagation();
+    showFeedback === "translateY(-120%)"
+      ? setFeedback("translateY(0)")
+      : setFeedback("translateY(-120%)");
   };
 
   const [toggle, setToggle] = useState("translateY(-120%)");
@@ -100,6 +109,9 @@ const CardScreen: React.FC<{
   document.addEventListener("click", (event) => {
     if (toggle === "translateY(0)") {
       setToggle("translateY(-120%)");
+    }
+    if (showFeedback === "translateY(0)") {
+      setFeedback("translateY(-120%)");
     }
   });
 
@@ -172,12 +184,21 @@ const CardScreen: React.FC<{
     setAnimateKnow(false);
   };
 
+  // Show the tabs for statistics page
+  useEffect(()=> {
+    if(finished === total){
+      showBar();
+    }else{
+      hideBar();
+    }
+  })
 
   // Screen Being Rendered
   return (
     <IonPage>
       <IonHeader color="tertiary">
         <IonToolbar>
+          <TbHomeEdit className="home-icon" onClick={navigateToHome} />
           {toolBar}
           <TbSettings
             className="settings-icon"
@@ -187,10 +208,16 @@ const CardScreen: React.FC<{
         </IonToolbar>
       </IonHeader>
       <IonContent className="page-content" scrollY={false}>
-      <Settings isHome={false} openQuestion={openQuestion} handleHome={handleHomeScreen} toggle={toggle} />
-      {finished !== total ? (
-        <>
-          {/* Header and ToolBar */}
+        <Settings
+          isHome={false}
+          openQuestion={switchFeedback}
+          handleHome={handleHomeScreen}
+          toggle={toggle}
+          switchToggle={switchToggle}
+        />
+        {finished !== total ? (
+          <>
+            {/* Header and ToolBar */}
             <div className={stackClass}>
               {/* We display two tuples at one time */}
               {cardCol.map((array: flashCard[], index) => {
@@ -256,12 +283,21 @@ const CardScreen: React.FC<{
               animatePoorCard={animatePoorCard}
               aniamteDontKnow={animateDontKnow}
             />
-        </>
-      ) : (
-        <Statistics stats={stats} />
-      )}
-       </IonContent>
-       {showFeedBack? <FeedbackModal identifier={finished !== total? cardCol[counter-1][tupleCounter-1]._id : 'Statistics'} closeQuestion={closeQuestion}/> : null}
+          </>
+        ) : (
+          <Statistics stats={stats} />
+        )}
+        <FeedbackModal
+          identifier={
+            finished !== total
+              ? cardCol[counter - 1][tupleCounter - 1]._id
+              : "Statistics"
+          }
+          closeQuestion={switchFeedback}
+          showFeedback={showFeedback}
+          accessToken={accessToken}
+        />
+      </IonContent>
     </IonPage>
   );
 };
