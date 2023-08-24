@@ -738,7 +738,43 @@ const regexCard = [
       question: "What is the output of the following program?\n```\ntext = '7890'\nprint(re.findall('[1-90]', text))",
       answer: [
         {option: "['7', '8', '9', '0']", isCorrect: true},
+        {option: "['7', '8', '90']", isCorrect: false},
+        {option: "['78', '90']", isCorrect: false},
+        {option: "['9', '0']", isCorrect: false}
       ]
+    }
+  },
+  {
+    type: 'mcq',
+    content: {
+      question: "What is the output of the following program?\n```\ntext = '-23-82-10'\nprint(re.findall('[-10-7]',text))",
+      answer: [
+        {option: "['-', '2', '3', '-', '2', '-', '1', '0']", isCorrect: true},
+        {option: "['-10']", isCorrect: false},
+        {option: "['-2', '3', '-8', '2', '-10']", isCorrect: false},
+        {option: "['-', '2', '3', '-', '8', '2', '-', '-', '1', '0']", isCorrect: false}
+      ]
+    }
+  },
+  {
+    type: 'qa',
+    content: {
+      question: "What is the output of the following program?\n```\ntext = 'a9A'\nprint(re.findall('[a-z][8][A-Z]', text))",
+      answer: '[ ]'
+    }
+  },
+  {
+    type: 'qa',
+    content: {
+      question: "What is the output of the following program?\n```\ntext = 'a9A'\nprint(re.findall('[A-z][1-9][A-Z]', text))",
+      answer: "['a9A']"
+    }
+  },
+  {
+    type: 'qa',
+    content: {
+      question: "What is the output of the following program?\n```\ntext = 'a9A'\nprint(re.findall('[a-z][1-9][a-Z]', text))",
+      answer: "Error"
     }
   }
 ]
