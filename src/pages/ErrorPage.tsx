@@ -14,20 +14,16 @@ import TryAgainButton from "../ButtonComp/TryAgainButton";
 import { useState } from "react";
 import FeedbackModal from "./FeedbackModal";
 
-const ErrorPage: React.FC = () => {
-  const [showFeedBack, setFeedBack] = useState(false);
+const ErrorPage: React.FC<{accessToken: string}> = ({accessToken}) => {
+  const [showFeedback, setFeedback] = useState("translateY(-120%)");
 
-  const openComponent = () => {
-    setFeedBack(true);
+  const switchFeedback = (event: any) => {
+    event.stopPropagation();
+    showFeedback === "translateY(-120%)"
+      ? setFeedback("translateY(0)")
+      : setFeedback("translateY(-120%)");
   };
-  const closeComponent = () => {
-    setFeedBack(false);
-  };
-  // Hide the Bottom Tabs when entering the page
-  useIonViewWillEnter(hideBar);
-
-  // Show the bottom tabs when leaving the page
-  useIonViewWillLeave(showBar);
+  
   return (
     <IonPage>
       <IonContent scrollY={false} className="error-content">
@@ -43,7 +39,7 @@ const ErrorPage: React.FC = () => {
 
             <button
               className="grad-button report-issue-button"
-              onClick={openComponent}
+              onClick={switchFeedback}
             >
               Report Issue
             </button>
@@ -52,10 +48,9 @@ const ErrorPage: React.FC = () => {
           {/* Log Out Button */}
           <LogOutButton />
         </div>
+        <FeedbackModal showFeedback={showFeedback} closeQuestion={switchFeedback} accessToken={accessToken} identifier="Error Page"/>
       </IonContent>
-      {showFeedBack ? (
-        <FeedbackModal identifier="Error Page" closeQuestion={closeComponent} />
-      ) : null}
+     
     </IonPage>
   );
 };

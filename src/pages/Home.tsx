@@ -1,4 +1,4 @@
-import { IonContent, IonPage, isPlatform } from "@ionic/react";
+import { IonContent, IonPage, isPlatform, useIonViewWillEnter, useIonViewWillLeave } from "@ionic/react";
 import "./Home.css";
 import { useHistory } from "react-router-dom";
 import DashBoard from "../HomeComp/DashBoard";
@@ -17,12 +17,19 @@ import {
 import { Browser } from "@capacitor/browser";
 import { Capacitor } from "@capacitor/core";
 import Settings from "../PageComp/Settings";
+import { hideBar, showBar } from "../utilities/showTabBarAndButtons";
 
 const Home: React.FC<{
   cardsLeft: number;
   handleCardScreen: () => void;
   accessToken: string;
 }> = ({ cardsLeft, handleCardScreen, accessToken }) => {
+  // Show the bottom tabs when entering home screen
+  useIonViewWillEnter(showBar)
+
+  // Hide the bottom tabs when leaving home screen
+  useIonViewWillLeave(hideBar)
+  
   const history = useHistory();
 
   const { user } = useAuth0();

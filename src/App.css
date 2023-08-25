@@ -2,6 +2,7 @@
 .tab-bar {
   /* --background: #0056d2; */
   --background: #f4f4f4;
+  display: none;
 }
 
 /* Colors for the icons on the bar */
