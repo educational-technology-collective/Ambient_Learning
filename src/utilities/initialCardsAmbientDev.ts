@@ -1087,5 +1087,147 @@ const pandas = [
       question: 'What operator does `del` use to drop a column?',
       answer: 'Indexing operator'
     }
+  },
+  {
+    type: 'mcq',
+    content: {
+      question: 'What function do you use to read a CSV file in pandas?',
+      answer: [
+        {option: '.read()', isCorrect: false},
+        {option: '.read_file()', isCorrect: false},
+        {option: '.read_csv()', isCorrect: true},
+        {option: '.read_CSV()', isCorrect: false}
+      ]
+    }
+  },
+  {
+    type: 'qa',
+    content: {
+      question: "How can you change the column name of a pandas dataframe?",
+      answer: "Use the `rename(columns={'old': 'new'})` function"
+    }
+  },
+  {
+    type: 'qa',
+    content: {
+      question: "What is the function you can apply to a dataframe after boolean masking to drop the nan rows?",
+      answer: "`dropna()`"
+    }
+  },
+  {
+    type: 'qa',
+    content: {
+      question: 'What operator can you use that serves to combine `.where()` and `.dropna()` functions?',
+      answer: 'Indexing Operator'
+    }
+  },
+  {
+    type: 'mcq',
+    content: {
+      question: 'Pandas support `and` and `or` keywords for dataframe boolean masking.',
+      answer: [
+        {option: 'True', isCorrect: false},
+        {option: 'False', isCorrect: true}
+      ]
+    }
+  },
+  {
+    type: 'mcq',
+    content: {
+      question: 'What symbol does pandas use for an `and` conjunction?',
+      answer: [
+        {option: '&&', isCorrect: false},
+        {option: '&', isCorrect: true},
+        {option: '||', isCorrect: false},
+        {option: '|', isCorrect: false}
+      ]
+    }
+  },
+  {
+    type: 'mcq',
+    content: {
+      question: 'What symbol does pandas use for an `or` conjunction?',
+      answer: [
+        {option: '&&', isCorrect: false},
+        {option: '&', isCorrect: false},
+        {option: '||', isCorrect: false},
+        {option: '|', isCorrect: true}
+      ]
+    }
+  },
+  {
+    type: 'mcq',
+    content: {
+      question: 'Which of the following is the correct function to change missing values in pandas?',
+      answer: [
+        {option: 'fillna()', isCorrect: true},
+        {option: 'fill()', isCorrect: false},
+        {option: 'dropna()', isCorrect: false},
+        {option: 'isnull()', isCorrect: false}
+      ]
+    }
+  },
+  {
+    type: 'qa',
+    content: {
+      question: 'What is `ffill` used for and what value is it taking from?',
+      answer: '`ffill` is for forward filling and it updates an na value with the value from previous row'
+    }
+  },
+  {
+    type: 'qa',
+    content: {
+      question: "What is `bfill` used for and what value is it taking from?",
+      answer: "`bfill` is for bacward filling and it updates an na vallue with the next valid value"
+    }
+  },
+  {
+    type: 'mcq',
+    content: {
+      question: "To use `ffill` and `bfill` properly, we will want the data to be sorted.",
+      answer: [
+        {option: 'True', isCorrect: true},
+        {option: 'False', isCorrect: false}
+      ]
+    }
+  },
+  {
+    type: 'mcq',
+    content: {
+      question: 'We can use regex expression in pandas `replace()` function.',
+      answer: [
+        {option: 'True', isCorrect: true},
+        {option: 'False', isCorrect: false}
+      ]
+    }
+  },
+  {
+    type: 'mcq',
+    content: {
+      question: "Pandas `apply()` function only works for pandas dataframes and does not work for pandas series",
+      answer: [
+        {option: 'True', isCorrect: false},
+        {option: 'False', isCorrect: true}
+      ]
+    }
+  },
+  {
+    type: 'mcq',
+    content: {
+      question: "When merging dataframes, if we want to find the intersection, we use how=_____, and if we want to find the union, we use how=_____",
+      answer: [
+        {option: "'inner'; 'outer'", isCorrect: true},
+        {option: "'outer'; 'inner'", isCorrect: false},
+        {option: "'outer': 'outer'", isCorrect: false},
+        {option: "'inner': 'inner'", isCorrect: false}
+      ]
+    }
+  },
+  {
+    type: 'qa',
+    content: {
+      question: "What parameter can you pass to `pd.merge()` in replace of index?",
+      answer: 'on='
+    }
   }
 ]
