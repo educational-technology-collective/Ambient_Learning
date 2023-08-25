@@ -924,3 +924,168 @@ const regexCard = [
     }
   }
 ]
+
+const pandas = [
+  {
+    type: 'mcq',
+    content: {
+      question: 'Can you use equality sign to check if it is NAN?',
+      answer:[
+        {option: 'Yes', isCorrect: false},
+        {option: 'No', isCorrect: true}
+      ]
+    }
+  },
+  {
+    type: 'qa',
+    content:{
+      question: 'What is the numpy function that you can use to check if it is NAN?',
+      answer: 'np.isnan()'
+    }
+  },
+  {
+    type: 'mcq',
+    content: {
+      question: "What is the output of the following program?\n```\ndi = {'Egg': 'Boil', 'Beef': 'Fry', 'Water' : 'Drink'}\ns = pd.Series(di)\nprint(list(s.index))",
+      answer: [
+        {option: "['Egg', 'Beef', 'Water']", isCorrect: true},
+        {option: "['Boil', 'Fry', 'Drink']", isCorrect: false},
+        {option: "[0, 1, 2]", isCorrect: false},
+        {option: "['Egg', 'Beef', 'Drink']", isCorrect: false}
+      ]
+    }
+  },
+  {
+    type: 'mcq',
+    content: {
+      question: "What is the output of the following program?\n```\ndi = {'Egg': 'Boil', 'Beef': 'Fry', 'Water' : 'Drink'}\ns = pd.Series(di, index=['A', 'B' , 'C'])\nprint(list(s.index))",
+      answer: [
+        {option: "['Egg', 'Beef', 'Water']", isCorrect: false},
+        {option: "['Boil', 'Fry', 'Drink']", isCorrect: false},
+        {option: "[0, 1, 2]", isCorrect: false},
+        {option: "['A', 'B', 'C']", isCorrect: true}
+      ]
+    }
+  },
+  {
+    type: 'mcq',
+    content: {
+      question: "What is the output of the following program?\n```\ndi = {'Egg': 'Boil', 'Beef': 'Fry', 'Water' : 'Drink'}\ns = pd.Series(di, index=['A', 'B' , 'C'])\nprint(s.values)",
+      answer: [
+        {option: "['Egg', 'Beef', 'Water']", isCorrect: false},
+        {option: "['Boil', 'Fry', 'Drink']", isCorrect: false},
+        {option: "[nan, nan, nan]", isCorrect: true},
+        {option: "['A', 'B', 'C']", isCorrect: false}
+      ]
+    }
+  },
+  {
+    type: 'mcq',
+    content: {
+      question: '`iloc` is a function while `loc` is an attribute.',
+      answer: [
+        {option: 'True', isCorrect: false},
+        {option: 'False', isCorrect: true}
+      ]
+    }
+  },
+  {
+    type: 'mcq',
+    content: {
+      question: "Given `Jack` is an index of pandas series `ser`, which of the following is the correct way to query the value associated with `Jack`?",
+      answer: [
+        {option: "ser.iloc['Jack']", isCorrect: false},
+        {option: "ser.iloc('Jack')", isCorrect: false},
+        {option: "ser.loc('Jack')", isCorrect: false},
+        {option: "ser.loc['Jack']", isCorrect: true}
+      ]
+    }
+  },
+  {
+    type: 'qa',
+    content: {
+      question: "Is this statement true? : Using indexing operator directly on pandas series will not work if the series'indices are numbers",
+      answer: 'True'
+    }
+  },
+  {
+    type: 'mcq',
+    content: {
+      question: 'Typically, vectorization in pandas series executes faster than iterating through items',
+      answer: [
+        {option: 'True', isCorrect: true},
+        {option: 'False', isCorrect: false}
+      ]
+    }
+  },
+  {
+    type: 'mcq',
+    content: {
+      question: 'Is this statement true? : Mixed types of data is not allowed for pandas series.',
+      answer: [
+        {option: 'True', isCorrect: false},
+        {option: 'False', isCorrect: true}
+      ]
+    }
+  },
+  {
+    type: 'mcq',
+    content: {
+      question: 'If a pandas series has multiple values with same index. Query that index will return what?',
+      answer: [
+        {option: "The first value associated with the index", isCorrect: false},
+        {option: "The last value associated with the index", isCorrect: false},
+        {option: "A pandas series with all index/value of the same index", isCorrect: true},
+        {option: "A list of all the values assocaited with the same index", isCorrect: false}
+      ]
+    }
+  },
+  {
+    type: 'mcq',
+    content: {
+      question: "Given dataframe `df`, `df.loc['A', 'Check']` gives the same output as `df.loc['A'].loc['Check']`",
+      answer:[
+        {option: 'True', isCorrect: true},
+        {option: 'False', isCorrect: false}
+      ]
+    }
+  },
+  {
+    type: 'qa',
+    content: {
+      question: "Can you use `loc` on a column name of a pandas dataframe?",
+      answer: 'No'
+    }
+  },
+  {
+    type: 'mcq',
+    content: {
+      question: "What rows and columns are selected for `df.loc[['Mars'], ['Killer', 'Robber']]`",
+      answer:[
+        {option: "'Mars'; 'Killer', 'Robber'", isCorrect: true},
+        {option: "'Mars'; 'Killer'", isCorrect: false},
+        {option: "All Rows; 'Killer', 'Robber'", isCorrect: false},
+        {option: "'Mars', 'Killer'; 'Robber'", isCorrect: false}
+      ]
+    }
+  },
+  {
+    type: 'mcq',
+    content: {
+      question: "What does the `drop('row')` funtion do in pandas dataframe?",
+      answer: [
+        {option: 'It deletes the rows with same index as the passed', isCorrect: false},
+        {option: 'It deletes the rows that have different index as the passed', isCorrect: false},
+        {option: 'It creates a copy of the dataframe removing rows with same index as the passed', isCorrect: true},
+        {option: 'It creates a copy of the dataframe removing rows with different index as the passed', isCorrect: false}
+      ]
+    }
+  },
+  {
+    type: 'qa',
+    content: {
+      question: 'What operator does `del` use to drop a column?',
+      answer: 'Indexing operator'
+    }
+  }
+]
