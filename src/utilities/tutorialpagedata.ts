@@ -6,7 +6,7 @@ export const cards = [
       type: "qa",
       content: {
         question: `We are almost done, hang in there! Sometimes the card you are reviewing isn't interesting to you anymore, or you think the answer which was given was wrong. In this case you need to tell us...<br></br>(tap to continue)`,
-        answer: `You can do this by clicking the 'poop' button, or swiping down👇! Then you won't see this card for review anymore.\n\nYou can give us feedback at anytime by pressing the settings menu in the home page or the ? button on the card to help us improve. Happy learning!`,
+        answer: `You can do this by clicking the 'poop' button, or swiping down👇! Then you won't see this card for review anymore.\n\nYou can give us feedback at anytime by pressing the feedback button in the settings menu on the top right corner to help us improve. Happy learning!`,
       },
     },
   ],

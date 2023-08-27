@@ -32,7 +32,7 @@ const LogInPage: React.FC = () => {
           </div> */}
           <LogInButton />
 
-          <h3 className="version">V.1.6.6</h3>
+          <h3 className="version">V.1.6.7</h3>
         </div>
       </IonContent>
     </IonPage>
