@@ -1,7 +1,6 @@
-import { IonPage, IonContent, useIonViewWillEnter } from "@ionic/react";
+import { IonPage, IonContent} from "@ionic/react";
 import "./LogInPage.css";
 import LogInButton from "../ButtonComp/LogInButton";
-import { hideBar } from "../utilities/showTabBarAndButtons";
 import logo from "../../assets/logo.png";
 
 const LogInPage: React.FC = () => {
@@ -9,11 +8,6 @@ const LogInPage: React.FC = () => {
   return (
     <IonPage>
       <IonContent scrollY={false} className="login-content">
-        {/* <IonCard className="tutorial-card" onClick={openQuestion}>
-          <IonCardContent className="tutorial-card-content">
-            <MdQuestionMark size="1.5em" />
-          </IonCardContent>
-        </IonCard> */}
         <div className="login-page-container">
           <img src={logo} alt="logo" className="login-logo" />
 
