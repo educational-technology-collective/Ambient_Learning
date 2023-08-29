@@ -66,7 +66,7 @@ export const algorithmTester = (previous: any, evaluation: any) => {
     }
     // The new memFactor will always be at least 1.3
     memFactor = Math.max(1.3, memFactor);
-    // The new interval will be old interval times the memFactor
+    // The new interval will be the ceiling of old interval times the memFactor
     interval = Math.ceil(previous.interval * memFactor);
   }
   // card.nextReview = new Date().setDate()
