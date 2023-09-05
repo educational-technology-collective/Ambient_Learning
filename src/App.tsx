@@ -276,7 +276,7 @@ const App: React.FC = () => {
         // Randomize cards within each LM
         if (cards.length !== 0) {
           for (let i = cards.length - 1; i > 0; i--) {
-            for (let j = cards[i].length - 1; i > 0; i--) {
+            for (let j = cards[i].length - 1; j > 0; j--) {
               let k = Math.floor(Math.random() * (j + 1));
               let temp = cards[i][j];
               cards[i][j] = cards[i][k];
