@@ -273,6 +273,8 @@ const App: React.FC = () => {
         // See how many cards in total the user has in the database
         // If there is card available. Update the info
         let cards: any = data;
+        if(cards.length === 0)
+          cards = cardWrite;
         // Randomize cards within each LM
         if (cards.length !== 0) {
           for (let i = cards.length - 1; i > 0; i--) {

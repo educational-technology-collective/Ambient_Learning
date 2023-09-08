@@ -21,7 +21,7 @@
 /* Styling the number on the cards */
 .tab-card p {
   color: black;
-  font-size: 1.15rem;
+  font-size: 0.9rem;
   font-weight: bold;
 }
 
@@ -31,7 +31,7 @@
 
 /* The first one will be te rightmost card */
 .first-activate {
-  left: 47%;
+  left: 46.5%;
   top: 0.11rem;
   rotate: 10deg;
 }
@@ -45,7 +45,7 @@
 
 /* The third on will be the leftmost card */
 .third-activate {
-  left: 43%;
+  left: 43.5%;
   top: 0.03rem;
   rotate: -10deg;
 }

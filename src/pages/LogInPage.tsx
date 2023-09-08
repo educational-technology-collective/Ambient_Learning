@@ -26,7 +26,7 @@ const LogInPage: React.FC = () => {
           </div> */}
           <LogInButton />
 
-          <h3 className="version">V.1.6.8</h3>
+          <h3 className="version">V.1.7.0</h3>
         </div>
       </IonContent>
     </IonPage>
