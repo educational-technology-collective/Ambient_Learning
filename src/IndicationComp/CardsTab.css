@@ -20,8 +20,8 @@
 
 /* Styling the number on the cards */
 .tab-card p {
-  color: black;
-  font-size: 1rem;
+  color: green;
+  font-size: 0.95rem;
   font-weight: bold;
 }
 
