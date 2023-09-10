@@ -10,6 +10,9 @@ The app is built using Ionic React. Currently, it includes two types of flash ca
 
 —— Haytham Tang
 
+## Algorithm
+Description of the [algorithm](https://github.com/haytham918/Ambiorithm)
+
 ## Set-Up
 **Ionic**: To test the app in your local environment, first follow the [ionic set-up](https://ionicframework.com/docs/intro/environment) to make sure you have installed the packages for **ionic** and **node.js**.
 
