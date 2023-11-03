@@ -140,6 +140,7 @@ export const putSwipe = (
   selfEvaluation: string,
   type: string,
   lmId: string,
+  fcId: string,
   cardIndex: number,
   tupleLength: number,
   tupleIndex: number,
@@ -156,6 +157,16 @@ export const putSwipe = (
   let name = "swipe";
   let machineEvaluation = testEvaluation;
 
+  // If the selfEvaluation is poorCard, log that fcId to poorFcs collection in the database
+  if (selfEvaluation === "poorCard") {
+    // send fcId to the server
+    CapacitorHttp.post({
+      url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/poorFC/${fcId}`,
+      headers: {
+        "content-type": "application/json",
+      },
+    });
+  }
   // If there is no evaluation, change the name
   if (!isEvaluation) {
     name = "noEvaluation";

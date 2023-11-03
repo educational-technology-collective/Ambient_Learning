@@ -147,6 +147,7 @@ const Card: React.FC<{
       "know",
       obj.type,
       obj.lm_id,
+      obj._id,
       cardIndex,
       tupleLength,
       tupleIndex,
@@ -164,6 +165,7 @@ const Card: React.FC<{
       "dontKnow",
       obj.type,
       obj.lm_id,
+      obj._id,
       cardIndex,
       tupleLength,
       tupleIndex,
@@ -174,9 +176,6 @@ const Card: React.FC<{
 
   // Function for one more swipe time out
   const oneMoreTimeOut = () => {
-    console.log('tupleIndex', tupleIndex);
-    console.log('tupleLength', tupleLength);
-    console.log('cardIndex', cardIndex);
     closeButton();
     putSwipe(
       true,
@@ -184,6 +183,7 @@ const Card: React.FC<{
       "oneMore",
       obj.type,
       obj.lm_id,
+      obj._id,
       cardIndex,
       tupleLength,
       tupleIndex,
@@ -194,9 +194,6 @@ const Card: React.FC<{
 
   // Function for no more before answering
   const poorCardBeforeTimeout = () => {
-    console.log('tupleIndex', tupleIndex);
-    console.log('tupleLength', tupleLength);
-    console.log('cardIndex', cardIndex);
     closeButton();
     putSwipe(
       false,
@@ -204,6 +201,7 @@ const Card: React.FC<{
       "poorCard",
       obj.type,
       obj.lm_id,
+      obj._id,
       cardIndex,
       tupleLength,
       tupleIndex,
@@ -214,9 +212,6 @@ const Card: React.FC<{
 
   // Function for no more after answering
   const poorCardAfterTimeOut = () => {
-    console.log('tupleIndex', tupleIndex);
-    console.log('tupleLength', tupleLength);
-    console.log('cardIndex', cardIndex);
     closeButton();
     putSwipe(
       true,
@@ -224,6 +219,7 @@ const Card: React.FC<{
       "poorCard",
       obj.type,
       obj.lm_id,
+      obj._id,
       cardIndex,
       tupleLength,
       tupleIndex,
