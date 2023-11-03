@@ -403,7 +403,6 @@ const App: React.FC = () => {
     // Increment the number of finished cards and the counter of displaying card
     setFinished((prevFinished: number) => prevFinished + 1);
     setCounter((prevCounter: number) => prevCounter - 1);
-
     // If the current tuple is not the last one, reset the counter of tuple
     // to the next array's length
     if (tupleIndex > 0) {
@@ -453,7 +452,7 @@ const App: React.FC = () => {
 
       // Visual Vibration
       handleShake();
-      setFinished((prevFinished: number) => prevFinished + 1);
+      setFinished((prevFinished: number) => prevFinished + 1)
       setCounter((prevCounter: number) => prevCounter - 1);
     } else {
       setFinished((prevFinished: number) => prevFinished + 1);

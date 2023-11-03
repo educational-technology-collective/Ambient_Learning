@@ -174,6 +174,9 @@ const Card: React.FC<{
 
   // Function for one more swipe time out
   const oneMoreTimeOut = () => {
+    console.log('tupleIndex', tupleIndex);
+    console.log('tupleLength', tupleLength);
+    console.log('cardIndex', cardIndex);
     closeButton();
     putSwipe(
       true,
@@ -191,6 +194,9 @@ const Card: React.FC<{
 
   // Function for no more before answering
   const poorCardBeforeTimeout = () => {
+    console.log('tupleIndex', tupleIndex);
+    console.log('tupleLength', tupleLength);
+    console.log('cardIndex', cardIndex);
     closeButton();
     putSwipe(
       false,
@@ -202,12 +208,15 @@ const Card: React.FC<{
       tupleLength,
       tupleIndex,
       handleStatisticsUpdate,
-      moveOn
+      oneMore
     );
   };
 
   // Function for no more after answering
   const poorCardAfterTimeOut = () => {
+    console.log('tupleIndex', tupleIndex);
+    console.log('tupleLength', tupleLength);
+    console.log('cardIndex', cardIndex);
     closeButton();
     putSwipe(
       true,
@@ -219,7 +228,7 @@ const Card: React.FC<{
       tupleLength,
       tupleIndex,
       handleStatisticsUpdate,
-      moveOn
+      oneMore
     );
   };
 
