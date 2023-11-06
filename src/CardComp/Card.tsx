@@ -147,6 +147,7 @@ const Card: React.FC<{
       "know",
       obj.type,
       obj.lm_id,
+      obj._id,
       cardIndex,
       tupleLength,
       tupleIndex,
@@ -164,6 +165,7 @@ const Card: React.FC<{
       "dontKnow",
       obj.type,
       obj.lm_id,
+      obj._id,
       cardIndex,
       tupleLength,
       tupleIndex,
@@ -181,6 +183,7 @@ const Card: React.FC<{
       "oneMore",
       obj.type,
       obj.lm_id,
+      obj._id,
       cardIndex,
       tupleLength,
       tupleIndex,
@@ -198,11 +201,12 @@ const Card: React.FC<{
       "poorCard",
       obj.type,
       obj.lm_id,
+      obj._id,
       cardIndex,
       tupleLength,
       tupleIndex,
       handleStatisticsUpdate,
-      moveOn
+      oneMore
     );
   };
 
@@ -215,11 +219,12 @@ const Card: React.FC<{
       "poorCard",
       obj.type,
       obj.lm_id,
+      obj._id,
       cardIndex,
       tupleLength,
       tupleIndex,
       handleStatisticsUpdate,
-      moveOn
+      oneMore
     );
   };
 

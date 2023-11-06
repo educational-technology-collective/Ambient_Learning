@@ -2,13 +2,10 @@ import React, { useEffect, useState } from "react";
 import {
   IonPage,
   IonContent,
-  useIonViewWillEnter,
-  useIonViewWillLeave,
   IonText,
 } from "@ionic/react";
 import "./LoadingPage.css";
 import { useHistory } from "react-router-dom";
-import { hideBar, showBar } from "../utilities/showTabBarAndButtons";
 import { FiUser } from "react-icons/fi";
 import { BiServer } from "react-icons/bi";
 import { TbCards, TbPlugConnected } from "react-icons/tb";
@@ -21,15 +18,13 @@ const LoadingPage: React.FC<{
   total: number;
   isFetched: boolean;
   isError: boolean;
-  noUser: boolean;
   noCardsInDb: boolean;
   readyLog: boolean;
   handleCardScreen: () => void;
 }> = ({
   total,
   isFetched,
-  isError,
-  noUser,
+  isError, 
   noCardsInDb,
   readyLog,
   handleCardScreen,
@@ -82,9 +77,9 @@ const LoadingPage: React.FC<{
         setTimeout(navigateToErrorPage, 100);
       }
       // If there is no this user in the database
-      else if (noUser) {
-        setTimeout(navigateToTutorialScreen, 100);
-      }
+      // else if (noUser) {
+      //   setTimeout(navigateToTutorialScreen, 100);
+      // }
       // If there is user, but the user never has any cards
       else if (noCardsInDb) {
         setTimeout(navigateToTutorialScreen, 100);

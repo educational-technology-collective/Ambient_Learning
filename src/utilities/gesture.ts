@@ -33,7 +33,7 @@ const showHorizontalInd = (
 export const HorizontalMove = (
   cardId: string,
   detail: GestureDetail,
-  stuff: HTMLInputElement | null,
+  tupleRef: HTMLInputElement | null,
   handleNegativeOpacity: (detail: GestureDetail) => void,
   handlePositiveOpacity: (detail: GestureDetail) => void,
   handleAnimateKnow: () => void,
@@ -41,11 +41,11 @@ export const HorizontalMove = (
 ) => {
   // If it's tutorial 3 or tutorial 5, we don't allow swiping horizontally
   if (cardId === "tutorial3" || cardId === "tutorial5") return;
-  if (stuff) {
+  if (tupleRef) {
     if (cardId === "tutorial1" || cardId === "tutorial2") {
       // If it's tutorial 1 or tutorial 2, only moving right
       if (detail.deltaX > 0) {
-        stuff.style.transform = `translateX(${detail.deltaX}px) rotate(${
+        tupleRef.style.transform = `translateX(${detail.deltaX}px) rotate(${
           detail.deltaX / 20
         }deg)`;
         // Calling the function to show horizontal indicators
@@ -60,7 +60,7 @@ export const HorizontalMove = (
     } else if (cardId === "tutorial4") {
       // if it's tutorial 4, only moving left
       if (detail.deltaX < 0) {
-        stuff.style.transform = `translateX(${detail.deltaX}px) rotate(${
+        tupleRef.style.transform = `translateX(${detail.deltaX}px) rotate(${
           detail.deltaX / 20
         }deg)`;
         // Calling the function to show horizontal indicators
@@ -74,7 +74,7 @@ export const HorizontalMove = (
       }
     } else {
       // Regular card swiping left right
-      stuff.style.transform = `translateX(${detail.deltaX}px) rotate(${
+      tupleRef.style.transform = `translateX(${detail.deltaX}px) rotate(${
         detail.deltaX / 20
       }deg)`;
       // Calling the function to show horizontal indicators
@@ -93,7 +93,7 @@ export const HorizontalMove = (
 const HorizontalEnd = (
   cardId: string,
   detail: GestureDetail,
-  stuff: HTMLInputElement | null,
+  tupleRef: HTMLInputElement | null,
   handleShowNothing: () => void,
   knowTimeOut: () => void,
   dontKnowTimeOut: () => void,
@@ -101,18 +101,18 @@ const HorizontalEnd = (
 ) => {
   // If it's tutorial 3 or 5, we return
   if (cardId === "tutorial3" || cardId === "tutorial5") return;
-  if (stuff) {
+  if (tupleRef) {
     const windowWidth: number = window.innerWidth;
-    stuff.style.transition = "0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+    tupleRef.style.transition = "0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
 
     // Swiping Right Quick Enough (Know Card)
     if (detail.velocityX > 0.3 && cardId !== "tutorial4") {
-      stuff.style.transform = `translateX(${windowWidth * 1.5}px)`;
+      tupleRef.style.transform = `translateX(${windowWidth * 1.5}px)`;
       setTimeout(knowTimeOut, 300);
     }
     // Swiping Right more than half of window length. Move Card to Right (Know)
     else if (detail.deltaX > windowWidth / 3 && cardId !== "tutorial4") {
-      stuff.style.transform = `translateX(${windowWidth * 1.5}px)`;
+      tupleRef.style.transform = `translateX(${windowWidth * 1.5}px)`;
       setTimeout(knowTimeOut, 300);
     }
     // Swiping Left Quick Enough (Don't Know)
@@ -121,7 +121,7 @@ const HorizontalEnd = (
       cardId !== "tutorial1" &&
       cardId !== "tutorial2"
     ) {
-      stuff.style.transform = `translateX(${windowWidth * -1.5}px)`;
+      tupleRef.style.transform = `translateX(${windowWidth * -1.5}px)`;
       setTimeout(dontKnowTimeOut, 300);
     }
     // Swiping Left More than half of window length. Move Card to Left (Don't Know)
@@ -130,12 +130,12 @@ const HorizontalEnd = (
       cardId !== "tutorial1" &&
       cardId !== "tutorial2"
     ) {
-      stuff.style.transform = `translateX(${-windowWidth * 1.5}px)`;
+      tupleRef.style.transform = `translateX(${-windowWidth * 1.5}px)`;
       setTimeout(dontKnowTimeOut, 300);
     }
     // Not Swiping Enough. Reset the Card to its position
     else {
-      stuff.style.transform = "";
+      tupleRef.style.transform = "";
 
       // Reset all indicators to have opacity 0
       handleShowNothing();
@@ -170,7 +170,7 @@ const VerticalMove = (
   cardId: string,
   detail: GestureDetail,
   card: HTMLInputElement | null,
-  stuff: HTMLInputElement | null,
+  tupleRef: HTMLInputElement | null,
   isClicked: boolean,
   handleNoMoreOpacity: (detail: GestureDetail) => void,
   handleOneMoreOpacity: (detail: GestureDetail) => void,
@@ -184,7 +184,7 @@ const VerticalMove = (
     cardId === "tutorial4"
   )
     return;
-  if (stuff && card) {
+  if (tupleRef && card) {
     // Before Flipping. Move Down the Whole Tuple
     if (!isClicked) {
       if (
@@ -192,7 +192,7 @@ const VerticalMove = (
         cardId !== "tutorial3" &&
         cardId !== "tutorial5"
       ) {
-        stuff.style.transform = `translateY(${detail.deltaY}px) rotate(${
+        card.style.transform = `translateY(${detail.deltaY}px) rotate(${
           detail.deltaY / 90
         }deg)`;
         showVerticalInd(
@@ -208,7 +208,7 @@ const VerticalMove = (
     else {
       // Moving Down will move the whole Tuple
       if (detail.deltaY > 0 && cardId !== "tutorial3") {
-        stuff.style.transform = `translateY(${detail.deltaY}px) rotate(${
+        card.style.transform = `translateY(${detail.deltaY}px) rotate(${
           detail.deltaY / 90
         }deg)`;
         showVerticalInd(
@@ -221,7 +221,7 @@ const VerticalMove = (
       }
       // Moving Up will only move the top card
       else if (detail.deltaY < 0 && cardId !== "tutorial5") {
-        stuff.style.transform = "";
+        card.style.transform = "";
         card.style.transform = `translateY(${detail.deltaY}px) rotate(${
           detail.deltaY / 90
         }deg)`;
@@ -242,7 +242,7 @@ const VerticalEnd = (
   cardId: string,
   detail: GestureDetail,
   card: HTMLInputElement | null,
-  stuff: HTMLInputElement | null,
+  tupleRef: HTMLInputElement | null,
   isClicked: boolean,
   handleShowNothing: () => void,
   poorCardBeforeTimeOut: () => void,
@@ -257,9 +257,9 @@ const VerticalEnd = (
     cardId === "tutorial4"
   )
     return;
-  if (stuff && card) {
+  if (tupleRef && card) {
     const windowHeight: number = window.innerHeight;
-    stuff.style.transition = "0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+    card.style.transition = "0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
     card.style.transition = "0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
 
     // Before clicking
@@ -270,7 +270,7 @@ const VerticalEnd = (
         cardId !== "tutorial3" &&
         cardId !== "tutorial5"
       ) {
-        stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
+        card.style.transform = `translateY(${windowHeight * 1.5}px)`;
         setTimeout(poorCardBeforeTimeOut, 300);
       }
       // Swipe Down enough, clear the tuple (Poor Card)
@@ -279,12 +279,12 @@ const VerticalEnd = (
         cardId !== "tutorial3" &&
         cardId !== "tutorial5"
       ) {
-        stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
+        card.style.transform = `translateY(${windowHeight * 1.5}px)`;
         setTimeout(poorCardBeforeTimeOut, 300);
       }
       // Reset the tuple
       else {
-        stuff.style.transform = "";
+        tupleRef.style.transform = "";
         handleShowNothing();
       }
     }
@@ -296,7 +296,7 @@ const VerticalEnd = (
         setTimeout(oneMoreTimeOut, 300);
 
         // Set the position of the card back
-        stuff.style.transform = "";
+        tupleRef.style.transform = "";
       }
       // Swipe Up enough, clear the top card (One More)
       else if (detail.deltaY < -windowHeight / 4 && cardId !== "tutorial5") {
@@ -304,22 +304,22 @@ const VerticalEnd = (
         setTimeout(oneMoreTimeOut, 300);
 
         // Set position of the card back
-        stuff.style.transform = "";
+        tupleRef.style.transform = "";
       }
       //  Swipe down fast, clear the tuple (Poor Card)
       else if (detail.velocityY > 0.3 && cardId !== "tutorial3") {
-        stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
+        card.style.transform = `translateY(${windowHeight * 1.5}px)`;
         setTimeout(poorCardAfterTimeOut, 300);
       }
       // Swipe down enough, clear the tuple (Poor Card)
       else if (detail.deltaY > windowHeight / 4 && cardId !== "tutorial3") {
-        stuff.style.transform = `translateY(${windowHeight * 1.5}px)`;
+        card.style.transform = `translateY(${windowHeight * 1.5}px)`;
         setTimeout(poorCardAfterTimeOut, 300);
       }
       // Reset
       else {
         card.style.transform = "";
-        stuff.style.transform = "";
+        tupleRef.style.transform = "";
         handleShowNothing();
       }
     }
@@ -332,7 +332,7 @@ const VerticalEnd = (
 export const enableGesture = (
   cardId: string,
   card: HTMLInputElement | null,
-  stuff: HTMLInputElement | null,
+  tupleRef: HTMLInputElement | null,
   isClicked: boolean,
   handleNegativeOpacity: (detail: GestureDetail) => void,
   handlePositiveOpacity: (detail: GestureDetail) => void,
@@ -350,7 +350,7 @@ export const enableGesture = (
   handleAnimateOneMore: () => void,
   handleNoAnimation: () => void
 ) => {
-  if (stuff && card) {
+  if (tupleRef && card) {
     // Horizontal Direction Swiping
     const gestureX: Gesture = createGesture({
       el: card,
@@ -360,7 +360,7 @@ export const enableGesture = (
         HorizontalMove(
           cardId,
           detail,
-          stuff,
+          tupleRef,
           handleNegativeOpacity,
           handlePositiveOpacity,
           handleAnimateKnow,
@@ -370,7 +370,7 @@ export const enableGesture = (
         HorizontalEnd(
           cardId,
           detail,
-          stuff,
+          tupleRef,
           handleShowNothing,
           knowTimeOut,
           dontKnowTimeOut,
@@ -388,7 +388,7 @@ export const enableGesture = (
           cardId,
           detail,
           card,
-          stuff,
+          tupleRef,
           isClicked,
           handleNoMoreOpacity,
           handleOneMoreOpacity,
@@ -400,7 +400,7 @@ export const enableGesture = (
           cardId,
           detail,
           card,
-          stuff,
+          tupleRef,
           isClicked,
           handleShowNothing,
           poorCardBeforeTimeOut,

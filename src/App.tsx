@@ -253,7 +253,7 @@ const App: React.FC = () => {
   const [isError, setError] = useState(false);
 
   // State Variabke to check if there is no this user in the DataBase
-  const [noUser, setNoUser] = useState(false);
+  // const [noUser, setNoUser] = useState(false);
 
   // State Variable to check if the user never has any cards in the DataBase
   const [noCardsInDb, setNoCardsInDb] = useState(false);
@@ -261,9 +261,9 @@ const App: React.FC = () => {
   // GET Function for fetching cards
   const getCards = async (url: string) => {
     try {
-      const response = await CapacitorHttp.get({ url: url });
+      let response = await CapacitorHttp.get({ url: url });
       console.log(response);
-      const data = await JSON.parse(response.data);
+      let data = await JSON.parse(response.data);
 
       // Set Fetched Status to be True
       setFetched(true);
@@ -273,8 +273,6 @@ const App: React.FC = () => {
         // See how many cards in total the user has in the database
         // If there is card available. Update the info
         let cards: any = data;
-        if(cards.length === 0)
-          cards = cardWrite;
         // Randomize cards within each LM
         if (cards.length !== 0) {
           for (let i = cards.length - 1; i > 0; i--) {
@@ -294,8 +292,33 @@ const App: React.FC = () => {
       }
       // If ther is no this user in the database
       else if (data === "no user found") {
-        console.log("No User");
-        setNoUser(true);
+        const postResponse = await CapacitorHttp.post({
+          url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/${userId}`,
+          headers: {
+            "content-type": "application/json",
+            authorization: `Bearer ${accessToken}`,
+          },
+        });
+        console.log(postResponse)
+        response = await CapacitorHttp.get({url: url})
+        console.log(response)
+        let cards = await JSON.parse(response.data)
+        if (cards.length !== 0) {
+          for (let i = cards.length - 1; i > 0; i--) {
+            for (let j = cards[i].length - 1; j > 0; j--) {
+              let k = Math.floor(Math.random() * (j + 1));
+              let temp = cards[i][j];
+              cards[i][j] = cards[i][k];
+              cards[i][k] = temp;
+            }
+          }
+
+          setCards(cards);
+          setTotal(cards.length);
+          setCounter(cards.length);
+          setTupleCounter(cards[cards.length - 1].length);
+        }
+
       } else if (data === "user has no lms") {
         setNoCardsInDb(true);
       } else {
@@ -380,7 +403,6 @@ const App: React.FC = () => {
     // Increment the number of finished cards and the counter of displaying card
     setFinished((prevFinished: number) => prevFinished + 1);
     setCounter((prevCounter: number) => prevCounter - 1);
-
     // If the current tuple is not the last one, reset the counter of tuple
     // to the next array's length
     if (tupleIndex > 0) {
@@ -430,7 +452,7 @@ const App: React.FC = () => {
 
       // Visual Vibration
       handleShake();
-      setFinished((prevFinished: number) => prevFinished + 1);
+      setFinished((prevFinished: number) => prevFinished + 1)
       setCounter((prevCounter: number) => prevCounter - 1);
     } else {
       setFinished((prevFinished: number) => prevFinished + 1);
@@ -533,7 +555,7 @@ const App: React.FC = () => {
 
             {/* Error Page Path */}
             <Route exact path="/error">
-              <ErrorPage accessToken={accessToken}/>
+              <ErrorPage accessToken={accessToken} />
             </Route>
 
             {/* Tutorial Page Path */}
@@ -556,7 +578,6 @@ const App: React.FC = () => {
                 total={total}
                 isFetched={isFetched}
                 isError={isError}
-                noUser={noUser}
                 noCardsInDb={noCardsInDb}
                 readyLog={readyLog}
                 handleCardScreen={handleCardScreen}
