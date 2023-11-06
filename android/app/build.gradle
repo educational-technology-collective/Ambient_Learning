@@ -7,7 +7,7 @@ android {
         applicationId "com.etc.ambientlearning"
         minSdk 22
         targetSdk 33
-        versionCode 27
+        versionCode 28
         versionName "1.8.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
