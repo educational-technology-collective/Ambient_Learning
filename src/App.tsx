@@ -58,7 +58,6 @@ setupIonicReact({
 const App: React.FC = () => {
   const { isAuthenticated, isLoading, user, getAccessTokenSilently, logout } =
     useAuth0();
-
   const { handleRedirectCallback } = useAuth0();
 
   // For Auth0 login and close
@@ -229,6 +228,8 @@ const App: React.FC = () => {
   // Run useEffect to get token and set user_id as long as isAuthenticated is changed
   useEffect(() => {
     if (isAuthenticated && user !== undefined && user.email !== undefined) {
+      console.log('AUTH0 USER OBJECT:', user)
+
       setUser(user.email);
       tokenHandler();
     }
