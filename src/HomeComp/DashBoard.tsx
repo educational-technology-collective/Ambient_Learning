@@ -16,7 +16,7 @@ const DashBoard: React.FC<{
         {cardsLeft !== 0 ? (
           <>
             <IonCardTitle className="cards-remaining">
-              Cards Remaning:
+              Cards Remaining:
             </IonCardTitle>
             <IonCard className={shadow} onClick={navigateToCardScreen}>
               <IonCardContent className="wrapped-card-content">
