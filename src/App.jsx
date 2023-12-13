@@ -11,13 +11,13 @@ import {
 import { IonReactRouter } from "@ionic/react-router";
 import { TbHomeEdit } from "react-icons/tb";
 import { Haptics } from "@capacitor/haptics";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import CardScreen from "./pages/CardScreen";
 import Home from "./pages/Home";
 import "./pages/Home.css";
 import "./App.css";
 import { CapacitorHttp } from "@capacitor/core";
-import { PushNotifications, Token } from "@capacitor/push-notifications";
+import { PushNotifications } from "@capacitor/push-notifications";
 import { Toast } from "@capacitor/toast";
 
 /* Core CSS required for Ionic components to work properly */
@@ -55,7 +55,10 @@ setupIonicReact({
   swipeBackEnabled: false,
 });
 
-const App: React.FC = () => {
+import { AuthStore } from "./state"
+
+const App = () => {
+  console.log('RENDERING APP')
   const { isAuthenticated, isLoading, user, getAccessTokenSilently, logout } =
     useAuth0();
   const { handleRedirectCallback } = useAuth0();
@@ -76,7 +79,8 @@ const App: React.FC = () => {
   }, [handleRedirectCallback]);
 
   // User_Id and Time State Variable used for Quary
-  const [userId, setUser] = useState("");
+  // const [userId, setUser] = useState("");
+  const userId = AuthStore.userId.value;
   const [startTime, setTime] = useState("");
 
   // State Variable used for session stats
@@ -93,7 +97,7 @@ const App: React.FC = () => {
   });
 
   // Update the stats variable if user swipes
-  const handleStatisticsUpdate = (testEval: string, selfEval: string) => {
+  const handleStatisticsUpdate = (testEval, selfEval) => {
     if (
       testEval === "correct" ||
       testEval === "incorrect" ||
@@ -127,7 +131,7 @@ const App: React.FC = () => {
   };
 
   // Update the session duration when it finishes
-  const handleDuration = (minutes: number) => {
+  const handleDuration = (minutes) => {
     setStatistics((stats) => ({ ...stats, duration: minutes }));
   };
 
@@ -140,12 +144,12 @@ const App: React.FC = () => {
   };
 
   // Handler that sets the start time
-  const handleStartTime = (givenTime: string) => {
+  const handleStartTime = (givenTime) => {
     setTime(givenTime);
   };
 
   // PUT Request that push information to the action_container
-  const putLogInfo = async (event: action, endTime: string | null) => {
+  const putLogInfo = async (event, endTime ) => {
     const dataStream = {
       action: event,
       endTime: endTime,
@@ -174,7 +178,7 @@ const App: React.FC = () => {
   const [finished, setFinished] = useState(0);
 
   // Number of Cards Remaining
-  let cardsLeft: number = total - finished;
+  let cardsLeft = total - finished;
 
   // Counter used to display certain cards(different tuples)
   const [counter, setCounter] = useState(0);
@@ -183,9 +187,10 @@ const App: React.FC = () => {
   const [tupleCounter, setTupleCounter] = useState(0);
 
   // AccessToken used for authorization requests
-  const [accessToken, setToken] = useState("");
+  // const [accessToken, setToken] = useState("");
+  const accessToken = AuthStore.accessToken.value;
 
-  const isPhone: boolean = isPlatform("hybrid");
+  const isPhone = isPlatform("hybrid");
   const logoutUri = isPhone
     ? "com.etc.ambientlearning://login"
     : "http://localhost:8100/login";
@@ -217,11 +222,12 @@ const App: React.FC = () => {
   const tokenHandler = async () => {
     try {
       const token = await getAccessTokenSilently();
-      if (token !== "" && token !== undefined) setToken(token);
+      // if (token !== "" && token !== undefined) setToken(token);
+      if (token !== "" && token !== undefined) AuthStore.updateAccessToken(token);
       else {
         doLogout();
       }
-    } catch (e: any) {
+    } catch (e) {
       doLogout();
     }
   };
@@ -230,7 +236,8 @@ const App: React.FC = () => {
     if (isAuthenticated && user !== undefined && user.email !== undefined) {
       console.log('AUTH0 USER OBJECT:', user)
 
-      setUser(user.email);
+      // setUser(user.email);
+      AuthStore.updateUser(user.email)
       tokenHandler();
     }
   }, [isAuthenticated]);
@@ -260,7 +267,7 @@ const App: React.FC = () => {
   const [noCardsInDb, setNoCardsInDb] = useState(false);
 
   // GET Function for fetching cards
-  const getCards = async (url: string) => {
+  const getCards = async (url) => {
     try {
       let response = await CapacitorHttp.get({ url: url });
       console.log(response);
@@ -273,7 +280,7 @@ const App: React.FC = () => {
       if (response.status !== 500) {
         // See how many cards in total the user has in the database
         // If there is card available. Update the info
-        let cards: any = data;
+        let cards = data;
         // Randomize cards within each LM
         if (cards.length !== 0) {
           for (let i = cards.length - 1; i > 0; i--) {
@@ -375,7 +382,7 @@ const App: React.FC = () => {
   };
 
   // Function that update the card information
-  const putCardInfo = async (lm_id: string, latestRecord: latestResult) => {
+  const putCardInfo = async (lm_id, latestRecord) => {
     // Pass the card's id and the latest review result including tapResult and swipeResult
     const dataStream = {
       lm_id: lm_id,
@@ -395,15 +402,15 @@ const App: React.FC = () => {
 
   // Logic to Move On to Next Card
   const swipeNextCard = (
-    tupleIndex: number,
-    event: action,
-    lm_id: string,
-    isBuffer: boolean,
-    latestRecord: latestResult
+    tupleIndex,
+    event,
+    lm_id,
+    isBuffer,
+    latestRecord
   ) => {
     // Increment the number of finished cards and the counter of displaying card
-    setFinished((prevFinished: number) => prevFinished + 1);
-    setCounter((prevCounter: number) => prevCounter - 1);
+    setFinished((prevFinished) => prevFinished + 1);
+    setCounter((prevCounter) => prevCounter - 1);
     // If the current tuple is not the last one, reset the counter of tuple
     // to the next array's length
     if (tupleIndex > 0) {
@@ -429,11 +436,11 @@ const App: React.FC = () => {
 
   // Function that swipes for one more card
   const swipeOneMoreCard = (
-    tupleIndex: number,
-    event: action,
-    lm_id: string,
-    isBuffer: boolean,
-    latestRecord: latestResult
+    tupleIndex,
+    event,
+    lm_id,
+    isBuffer,
+    latestRecord
   ) => {
     // Log One More Info
     putLogInfo(event, null);
@@ -453,14 +460,14 @@ const App: React.FC = () => {
 
       // Visual Vibration
       handleShake();
-      setFinished((prevFinished: number) => prevFinished + 1)
-      setCounter((prevCounter: number) => prevCounter - 1);
+      setFinished((prevFinished) => prevFinished + 1)
+      setCounter((prevCounter) => prevCounter - 1);
     } else {
-      setFinished((prevFinished: number) => prevFinished + 1);
-      setTotal((prevTotal: number) => prevTotal + 1);
+      setFinished((prevFinished) => prevFinished + 1);
+      setTotal((prevTotal) => prevTotal + 1);
 
       // Decrement the Tuple Counter to access the next card within same tuple
-      setTupleCounter((prevTupleCounter: number) => prevTupleCounter - 1);
+      setTupleCounter((prevTupleCounter) => prevTupleCounter - 1);
     }
   };
 
@@ -494,17 +501,17 @@ const App: React.FC = () => {
     PushNotifications.register();
 
     // On success, we should be able to receive notifications
-    PushNotifications.addListener("registration", (token: Token) => {
+    PushNotifications.addListener("registration", (token) => {
       console.log(token);
     });
 
     // Some issue with our setup and push will not work
-    PushNotifications.addListener("registrationError", (error: any) => {
+    PushNotifications.addListener("registrationError", (error) => {
       showToast("Error on registration: " + JSON.stringify(error));
     });
   };
 
-  const showToast = async (message: string) => {
+  const showToast = async (message) => {
     await Toast.show({ text: message, position: "center" });
   };
   return (

@@ -7,6 +7,7 @@ const AppNameHeader: React.FC<{
   isHome?: boolean;
   switchSettings?: (event: any) => void;
 }> = ({ isHome = false, switchSettings }) => {
+  console.log('RENDERING APP NAME HEADER')
   return (
     <IonHeader color="tertiary">
       <IonToolbar className="header-container" id="header">

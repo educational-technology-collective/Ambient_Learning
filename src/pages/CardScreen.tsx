@@ -64,7 +64,7 @@ const CardScreen: React.FC<{
   isCardScreen,
   accessToken,
 }) => {
-
+  console.log('RENDERING CARD SCREEN')
   // Set the className of cardstack if it's shaking or not
   const stackClass: string = isShake
     ? "card-stacker card-stacker-animate"
@@ -277,7 +277,7 @@ const CardScreen: React.FC<{
         ) : (
           <Statistics stats={stats} />
         )}
-        <FeedbackModal
+        {/* <FeedbackModal
           identifier={
             finished !== total
               ? cardCol[counter - 1][tupleCounter - 1]._id
@@ -286,7 +286,7 @@ const CardScreen: React.FC<{
           closeQuestion={switchFeedback}
           showFeedback={showFeedback}
           accessToken={accessToken}
-        />
+        /> */}
       </IonContent>
     </IonPage>
   );

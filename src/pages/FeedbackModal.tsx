@@ -12,7 +12,10 @@ const FeedbackModal: React.FC<{
   identifier: string;
   closeQuestion: (event: any) => void;
 }> = ({ accessToken, showFeedback, identifier, closeQuestion }) => {
-  Keyboard.setAccessoryBarVisible({ isVisible: true });
+  console.log("FeedbackModal")
+  Keyboard ?
+  Keyboard.setAccessoryBarVisible({ isVisible: true }) :
+  console.log("Keyboard plugin not available");
   const form = useRef(null);
 
   const postFeedback = async (content: string) => {
