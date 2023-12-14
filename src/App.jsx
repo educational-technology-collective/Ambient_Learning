@@ -55,7 +55,7 @@ setupIonicReact({
   swipeBackEnabled: false,
 });
 
-import { AuthStore } from "./state"
+import { AuthStore, StatsStore } from "./state"
 
 const App = () => {
   console.log('RENDERING APP')
@@ -79,7 +79,7 @@ const App = () => {
   }, [handleRedirectCallback]);
 
   // Time State Variable used for Quary
-  const [startTime, setTime] = useState("");
+  const startTime = StatsStore.startTime.value;
 
   // readyLog used to determine if initialize/resume is logged so we can navigate to card screen
   const [readyLog, setReadyLog] = useState(false);
@@ -88,12 +88,7 @@ const App = () => {
   const handleReadyLog = () => {
     setReadyLog(true);
   };
-
-  // Handler that sets the start time
-  const handleStartTime = (givenTime) => {
-    setTime(givenTime);
-  };
-
+  
   // PUT Request that push information to the action_container
   const putLogInfo = async (event, endTime ) => {
     const dataStream = {
@@ -189,7 +184,6 @@ const App = () => {
         user.email,
         token,
         cardsLength,
-        handleStartTime,
         handleReadyLog,
       );
     }

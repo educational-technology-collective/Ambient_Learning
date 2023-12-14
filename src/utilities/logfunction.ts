@@ -9,12 +9,13 @@ This also contains functions to move on the cards deck.
 import { CapacitorHttp } from "@capacitor/core";
 import { StatsStore } from "../state"
 
+const { startTime, updateStartTime } = StatsStore;
+
 // Function that requests the latest available record or make a new one
 export const getLatestRecord = async (
   userId: string,
   accessToken: string,
   total: number,
-  handleStartTime: (time: string) => void,
   handleReadyLog: () => void,
 ) => {
   const response = await CapacitorHttp.get({
@@ -26,14 +27,14 @@ export const getLatestRecord = async (
   // Check to see if there is a record not done yet in the database
   if (data.new && total) {
     // Create a new record if there isn't
-    postInitialize(userId, accessToken, handleStartTime);
+    postInitialize(userId, accessToken);
   }
   // If there is available record, push a resume action to the database
   else {
     const session = data.session;
     if(session !== undefined){
 
-    handleStartTime(session.startTime);
+    updateStartTime(session.startTime);
 
     if (total) {
       const event = {
@@ -86,11 +87,10 @@ export const getLatestRecord = async (
 export const postInitialize = async (
   userId: string,
   accessToken: string,
-  handleStartTime: (time: string) => void
 ) => {
   let startTimeString = new Date().toISOString();
   // We use convert toISOString() for MongoDB Date Format
-  handleStartTime(startTimeString);
+  updateStartTime(startTimeString);
   const log = {
     userId: userId,
     startTime: startTimeString,

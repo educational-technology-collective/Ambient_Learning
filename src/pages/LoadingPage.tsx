@@ -14,6 +14,14 @@ import { useAuth0 } from "@auth0/auth0-react";
 import AppNameHeader from "./AppNameHeader";
 import logo from "../../assets/logo.png";
 
+import LoadingSegement from "../LoadingComp/LoadingSegment.jsx";
+
+const segments = [
+  {icon: <FiUser size="3em" className="segment-icon" />, text: "Authenticating User", type: "user"},
+  {icon: <BiServer className="segment-icon" size="3em" />, text: "Connecting to Server", type: "server"},
+  {icon: <TbCards className="segment-icon" size="3em" />, text: "Retrieving Cards", type: "cards"},
+]
+
 const LoadingPage: React.FC<{
   total: number;
   isFetched: boolean;
@@ -127,29 +135,19 @@ const LoadingPage: React.FC<{
           {/* <WalkingPerson /> */}
           <img src={logo} alt="logo-pic" className="logo-pic" />
 
-          {/* Segment for Authenticating User */}
-          <div className="segment-container">
-            <div className="dot-bricks user-bricks"></div>
-            <AiOutlineCheck size="3em" className="check user-check" />
-            <FiUser size="3em" className="segment-icon" />
-            <IonText className="segment-text">Authenticating User</IonText>
-          </div>
+          {segments.map((segment, index) => {
+            return (
+              <LoadingSegement
+                key={index}
+                icon={segment.icon}
+                text={segment.text}
+                type={segment.type}
+                showLoad={showLoad}
+              />
+            );
+          })}
 
-          {/* Segment for Connecting to Server */}
-          <div className="segment-container server-container">
-            <div className="dot-bricks server-bricks"></div>
-            <AiOutlineCheck size="3em" className="check server-check" />
-            <BiServer className="segment-icon" size="3em" />
-            <IonText className="segment-text">Connecting to Server</IonText>
-          </div>
-
-          {/* Segment for Retrieving Cards */}
-          <div className="segment-container cards-container">
-            <div className="dot-bricks cards-bricks"></div>
-            <AiOutlineCheck size="3em" className="check cards-check" />
-            <TbCards className="segment-icon" size="3em" />
-            <IonText className="segment-text">Retrieving Cards</IonText>
-          </div>
+          
 
           {/* Segment for Configurating Deck.  */}
           <div className="segment-container deck-container">

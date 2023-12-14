@@ -25,10 +25,19 @@ const updateDuration = (duration) => {
     console.log('Duration updated to ' + duration);
 }
 
+const startTime = signal('');
+
+const updateStartTime = (time) => {
+    startTime.value = time;
+    console.log('StartTime updated to ' + time);
+}
+
 const StatsStore = {
     stats,
     updateStats,
-    updateDuration
+    updateDuration,
+    startTime,
+    updateStartTime,
 };
 
 export default StatsStore;
