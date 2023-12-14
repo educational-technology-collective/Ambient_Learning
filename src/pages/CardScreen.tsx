@@ -27,7 +27,6 @@ const CardScreen: React.FC<{
   counter: number;
   tupleCounter: number;
   isShake: boolean;
-  stats: statistics;
   cardCol: flashCard[][];
   putLogInfo: (event: action, endTime: string | null) => void;
   swipeNextCard: (
@@ -53,7 +52,6 @@ const CardScreen: React.FC<{
   counter,
   tupleCounter,
   isShake,
-  stats,
   cardCol,
   putLogInfo,
   swipeNextCard,
@@ -271,7 +269,7 @@ const CardScreen: React.FC<{
             />
           </>
         ) : (
-          <Statistics stats={stats} />
+          <Statistics />
         )}
         {/* <FeedbackModal
           identifier={

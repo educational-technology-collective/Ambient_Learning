@@ -81,19 +81,6 @@ const App = () => {
   // Time State Variable used for Quary
   const [startTime, setTime] = useState("");
 
-  // State Variable used for session stats
-  const [stats, setStatistics] = useState({
-    total: 0,
-    duration: 0,
-    correct: 0,
-    incorrect: 0,
-    skipped: 0,
-    know: 0,
-    dontKnow: 0,
-    oneMore: 0,
-    poorCard: 0,
-  });
-
   // readyLog used to determine if initialize/resume is logged so we can navigate to card screen
   const [readyLog, setReadyLog] = useState(false);
 
@@ -320,7 +307,7 @@ const App = () => {
     // Log Session is Finished. 350ms delay so session finished is logged last
     if (finished === total - 1) {
       setTimeout(
-        () => putSessionFinished(startTime, handleDuration, putLogInfo),
+        () => putSessionFinished(startTime,  putLogInfo),
         350
       );
     }
@@ -491,7 +478,6 @@ const App = () => {
                   counter={counter}
                   tupleCounter={tupleCounter}
                   cardCol={cardCol}
-                  stats={stats}
                   isShake={isShake}
                   putLogInfo={putLogInfo}
                   swipeNextCard={swipeNextCard}
