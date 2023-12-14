@@ -1,3 +1,4 @@
+import React from "react";
 import {
   IonCard,
   IonCardContent,
@@ -15,7 +16,10 @@ import {
 import { MdDoneOutline, MdOutlineClose } from "react-icons/md";
 import { FaPoop } from "react-icons/fa";
 import "./Statistics.css";
-const Statistics: React.FC<{ stats: statistics }> = ({ stats }) => {
+import { StatsStore } from "../state";
+
+const Statistics = ({ }) => {
+  const stats = StatsStore.stats.value
   return (
     <>
       <IonContent scrollY={true} className="statistics-content">
