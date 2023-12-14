@@ -78,9 +78,7 @@ const App = () => {
     });
   }, [handleRedirectCallback]);
 
-  // User_Id and Time State Variable used for Quary
-  // const [userId, setUser] = useState("");
-  const userId = AuthStore.userId.value;
+  // Time State Variable used for Quary
   const [startTime, setTime] = useState("");
 
   // State Variable used for session stats
@@ -98,36 +96,13 @@ const App = () => {
 
   // Update the stats variable if user swipes
   const handleStatisticsUpdate = (testEval, selfEval) => {
-    if (
-      testEval === "correct" ||
-      testEval === "incorrect" ||
-      testEval === "skipped"
-    ) {
-      if (
-        selfEval === "know" ||
-        selfEval === "dontKnow" ||
-        selfEval === "oneMore" ||
-        selfEval === "poorCard"
-      )
-        setStatistics((stats) => ({
-          ...stats,
-          total: stats.total + 1,
-          [testEval]: stats[testEval] + 1,
-          [selfEval]: stats[selfEval] + 1,
-        }));
-    } else {
-      if (
-        selfEval === "know" ||
-        selfEval === "dontKnow" ||
-        selfEval === "oneMore" ||
-        selfEval === "poorCard"
-      )
-        setStatistics((stats) => ({
-          ...stats,
-          total: stats.total + 1,
-          [selfEval]: stats[selfEval] + 1,
-        }));
-    }
+    console.log('HANDLE STATISTICS UPDATE: ', testEval, selfEval)
+    setStatistics((stats) => ({
+      ...stats,
+      total: stats.total + 1,
+      [selfEval]: stats[selfEval] + 1,
+    }));
+
   };
 
   // Update the session duration when it finishes
@@ -159,7 +134,7 @@ const App = () => {
       data: dataStream,
       headers: {
         "content-type": "application/json",
-        authorization: `Bearer ${accessToken}`,
+        authorization: `Bearer ${AuthStore.accessToken}`,
       },
     });
     console.log("Put Response", response);
@@ -187,7 +162,6 @@ const App = () => {
   const [tupleCounter, setTupleCounter] = useState(0);
 
   // AccessToken used for authorization requests
-  // const [accessToken, setToken] = useState("");
   const accessToken = AuthStore.accessToken.value;
 
   const isPhone = isPlatform("hybrid");
@@ -235,7 +209,6 @@ const App = () => {
   };
   // Run useEffect to get token and set user_id as long as isAuthenticated is changed
   useEffect(() => {
-
     const init = async () => {
       const token = await tokenHandler();
       const cardsLength = await getCards(
@@ -252,10 +225,6 @@ const App = () => {
       );
     }
     if (isAuthenticated && user !== undefined && user.email !== undefined) {
-      console.log('AUTH0 USER OBJECT:', user)
-
-      // setUser(user.email);
-      AuthStore.updateUser(user.email)
       init();
     }
   }, [isAuthenticated]);
@@ -344,16 +313,6 @@ const App = () => {
     }
     return cardsLen;
   };
-
-  // ISSUE: useEffect not needed if we just use the getCards during the isAuthenticated useEffect above
-  // UseEffect to fetch the cards as long as user_Id is updated
-  // useEffect(() => {
-  //   if (user.email !== "") {
-  //     getCards(
-  //       `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/${user.email}/fcs/now`
-  //     );
-  //   }
-  // }, [user]);
 
   // Card-Stacker Visual Effect. Will shake screen when it's true
   const [isShake, setShake] = useState(false);

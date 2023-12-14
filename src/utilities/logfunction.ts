@@ -7,6 +7,7 @@ This also contains functions to move on the cards deck.
 ------------**********-----------
 */
 import { CapacitorHttp } from "@capacitor/core";
+import { StatsStore } from "../state"
 
 // Function that requests the latest available record or make a new one
 export const getLatestRecord = async (
@@ -74,7 +75,8 @@ export const getLatestRecord = async (
         event.testEval !== null &&
         event.selfEval
       ) {
-        handleStatisticsUpdate(event.testEval, event.selfEval);
+        // handleStatisticsUpdate(event.testEval, event.selfEval);
+        StatsStore.updateStats(event.testEval, event.selfEval);
       }
     });
   }
@@ -196,7 +198,9 @@ export const putSwipe = (
     tapResult: machineEvaluation,
     swipeResult: selfEvaluation,
   };
-  handleStatisticsUpdate(machineEvaluation, selfEvaluation);
+  // handleStatisticsUpdate(machineEvaluation, selfEvaluation);
+  StatsStore.updateStats(event.testEval, event.selfEval);
+
   nextCardFunc(
     tupleIndex,
     event,
