@@ -17,11 +17,18 @@ const updateStats = (testEval, selfEval) => {
     stats.value.total += 1;
     if (testEval !== '') stats.value[testEval] += 1;
     stats.value[selfEval] += 1;
+    console.log('UPDATE STATS: ', stats.value);
+}
+
+const updateDuration = (duration) => {
+    stats.value.duration = duration;
+    console.log('Duration updated to ' + duration);
 }
 
 const StatsStore = {
     stats,
-    updateStats
+    updateStats,
+    updateDuration
 };
 
 export default StatsStore;

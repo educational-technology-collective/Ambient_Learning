@@ -16,7 +16,6 @@ export const getLatestRecord = async (
   total: number,
   handleStartTime: (time: string) => void,
   handleReadyLog: () => void,
-  handleDuration: (minutes: number) => void,
 ) => {
   const response = await CapacitorHttp.get({
     url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?userId=${userId}`,
@@ -65,7 +64,7 @@ export const getLatestRecord = async (
         new Date(session.endTime).getTime() -
         new Date(session.startTime).getTime();
       const diff = Math.ceil(time / 60000);
-      handleDuration(diff);
+      StatsStore.updateDuration(diff);
     }
     const actionContainer = session.actionContainer;
     actionContainer.forEach((event: action) => {
@@ -209,7 +208,6 @@ export const putSwipe = (
 // Log Function happens after session is finished
 export const putSessionFinished = (
   startTime: string,
-  handleDuration: (minutes: number) => void,
   putLogInfo: (event: action, endTime: string | null) => void
 ) => {
   const event = {
@@ -223,6 +221,6 @@ export const putSessionFinished = (
   const startTimeObj = new Date(startTime);
   const diff = new Date().getTime() - startTimeObj.getTime();
   const minutes = Math.ceil(diff / 60000);
-  handleDuration(minutes);
+  StatsStore.updateDuration(minutes);
   putLogInfo(event, new Date().toISOString());
 };

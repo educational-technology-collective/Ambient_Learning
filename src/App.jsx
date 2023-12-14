@@ -94,11 +94,6 @@ const App = () => {
     poorCard: 0,
   });
 
-  // Update the session duration when it finishes
-  const handleDuration = (minutes) => {
-    setStatistics((stats) => ({ ...stats, duration: minutes }));
-  };
-
   // readyLog used to determine if initialize/resume is logged so we can navigate to card screen
   const [readyLog, setReadyLog] = useState(false);
 
@@ -209,7 +204,6 @@ const App = () => {
         cardsLength,
         handleStartTime,
         handleReadyLog,
-        handleDuration,
       );
     }
     if (isAuthenticated && user !== undefined && user.email !== undefined) {
@@ -382,7 +376,7 @@ const App = () => {
     // Log Session is Finished. 350ms delay so it's logged last
     if (finished === total - 1) {
       setTimeout(
-        () => putSessionFinished(startTime, handleDuration, putLogInfo),
+        () => putSessionFinished(startTime, putLogInfo),
         350
       );
     }
