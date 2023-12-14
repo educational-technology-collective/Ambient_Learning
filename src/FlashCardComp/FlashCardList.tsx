@@ -23,7 +23,6 @@ const FlashCardList: React.FC<{
     isBuffer: boolean,
     latestRecord: latestResult
   ) => void;
-  handleStatisticsUpdate: (testEval: string, selfEval: string) => void;
   direction: number;
   directionHandler: (direction: number) => void;
   closeButton: () => void;
@@ -40,7 +39,6 @@ const FlashCardList: React.FC<{
   isFrontTuple,
   swipeNextCard,
   swipeOneMoreCard,
-  handleStatisticsUpdate,
   direction,
   directionHandler,
   closeButton,
@@ -69,7 +67,6 @@ const FlashCardList: React.FC<{
       oneMore={swipeOneMoreCard}
       refTuple={refTuple}
       tupleCounter={tupleCounter}
-      handleStatisticsUpdate={handleStatisticsUpdate}
       direction={direction}
       directionHandler={directionHandler}
       openButton={openButton}
@@ -102,7 +99,6 @@ const FlashCardList: React.FC<{
                     oneMore={swipeOneMoreCard}
                     refTuple={refTuple}
                     tupleCounter={tupleCounter}
-                    handleStatisticsUpdate={handleStatisticsUpdate}
                     directionHandler={directionHandler}
                     direction={direction}
                     openButton={openButton}

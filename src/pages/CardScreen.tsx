@@ -44,7 +44,6 @@ const CardScreen: React.FC<{
     isBuffer: boolean,
     latestRecord: latestResult
   ) => void;
-  handleStatisticsUpdate: (testEval: string, selfEval: string) => void;
   handleHomeScreen: () => void;
   isCardScreen: boolean;
   accessToken: string;
@@ -59,7 +58,6 @@ const CardScreen: React.FC<{
   putLogInfo,
   swipeNextCard,
   swipeOneMoreCard,
-  handleStatisticsUpdate,
   handleHomeScreen,
   isCardScreen,
   accessToken,
@@ -223,7 +221,6 @@ const CardScreen: React.FC<{
                       swipeOneMoreCard={swipeOneMoreCard}
                       tupleIndex={index}
                       tupleCounter={tupleCounter}
-                      handleStatisticsUpdate={handleStatisticsUpdate}
                       direction={direction}
                       directionHandler={directionHandler}
                       closeButton={closeButton}
@@ -248,7 +245,6 @@ const CardScreen: React.FC<{
                       swipeOneMoreCard={swipeOneMoreCard}
                       tupleIndex={index}
                       tupleCounter={tupleCounter}
-                      handleStatisticsUpdate={handleStatisticsUpdate}
                       direction={direction}
                       directionHandler={directionHandler}
                       openButton={openButton}

@@ -22,7 +22,6 @@ const Card: React.FC<{
   tupleIndex: number;
   tupleCounter: number;
   direction: number;
-  handleStatisticsUpdate: (testEval: string, selfEval: string) => void;
   moveOn: (
     tupleIndex: number,
     event: action,
@@ -53,7 +52,6 @@ const Card: React.FC<{
   tupleIndex,
   tupleCounter,
   direction,
-  handleStatisticsUpdate,
   moveOn,
   oneMore,
   refTuple,
@@ -151,7 +149,6 @@ const Card: React.FC<{
       cardIndex,
       tupleLength,
       tupleIndex,
-      handleStatisticsUpdate,
       moveOn
     );
   };
@@ -169,7 +166,6 @@ const Card: React.FC<{
       cardIndex,
       tupleLength,
       tupleIndex,
-      handleStatisticsUpdate,
       moveOn
     );
   };
@@ -187,7 +183,6 @@ const Card: React.FC<{
       cardIndex,
       tupleLength,
       tupleIndex,
-      handleStatisticsUpdate,
       oneMore
     );
   };
@@ -205,7 +200,6 @@ const Card: React.FC<{
       cardIndex,
       tupleLength,
       tupleIndex,
-      handleStatisticsUpdate,
       oneMore
     );
   };
@@ -223,7 +217,6 @@ const Card: React.FC<{
       cardIndex,
       tupleLength,
       tupleIndex,
-      handleStatisticsUpdate,
       oneMore
     );
   };

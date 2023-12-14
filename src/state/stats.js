@@ -13,7 +13,7 @@ const stats = signal({
   });
 
 const updateStats = (testEval, selfEval) => {
-    console.log('StatsStore: stats updated to ' + testEval + ' ' + selfEval);
+    console.log('StatsStore.updateStats:  ' + testEval + ' ' + selfEval);
     stats.value.total += 1;
     if (testEval !== '') stats.value[testEval] += 1;
     stats.value[selfEval] += 1;

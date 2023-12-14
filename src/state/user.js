@@ -11,7 +11,6 @@ const accessToken = signal('');
 
 const updateAccessToken = (token) => {
     accessToken.value = token;
-    console.log('UserStore: accessToken updated to ' + token);
 }
 
 const AuthStore = {

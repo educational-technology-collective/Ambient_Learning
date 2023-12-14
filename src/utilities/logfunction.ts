@@ -17,7 +17,6 @@ export const getLatestRecord = async (
   handleStartTime: (time: string) => void,
   handleReadyLog: () => void,
   handleDuration: (minutes: number) => void,
-  handleStatisticsUpdate: (testEval: string, selfEval: string) => void
 ) => {
   const response = await CapacitorHttp.get({
     url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?userId=${userId}`,
@@ -75,7 +74,6 @@ export const getLatestRecord = async (
         event.testEval !== null &&
         event.selfEval
       ) {
-        // handleStatisticsUpdate(event.testEval, event.selfEval);
         StatsStore.updateStats(event.testEval, event.selfEval);
       }
     });
@@ -146,7 +144,6 @@ export const putSwipe = (
   cardIndex: number,
   tupleLength: number,
   tupleIndex: number,
-  handleStatisticsUpdate: (testEval: string, selfEval: string) => void,
   nextCardFunc: (
     tupleIndex: number,
     event: action,
@@ -198,7 +195,6 @@ export const putSwipe = (
     tapResult: machineEvaluation,
     swipeResult: selfEvaluation,
   };
-  // handleStatisticsUpdate(machineEvaluation, selfEvaluation);
   StatsStore.updateStats(event.testEval, event.selfEval);
 
   nextCardFunc(

@@ -143,7 +143,6 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
                   swipeOneMoreCard={swipeOneMoreTutorial}
                   tupleIndex={index}
                   tupleCounter={tutorialTupleCounter}
-                  handleStatisticsUpdate={() => {}}
                   direction={direction}
                   directionHandler={directionHandler}
                   closeButton={closeButton}
@@ -166,7 +165,6 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
                   swipeOneMoreCard={swipeOneMoreTutorial}
                   tupleIndex={index}
                   tupleCounter={tutorialTupleCounter}
-                  handleStatisticsUpdate={() => {}}
                   direction={direction}
                   directionHandler={directionHandler}
                   closeButton={closeButton}

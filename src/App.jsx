@@ -94,17 +94,6 @@ const App = () => {
     poorCard: 0,
   });
 
-  // Update the stats variable if user swipes
-  const handleStatisticsUpdate = (testEval, selfEval) => {
-    console.log('HANDLE STATISTICS UPDATE: ', testEval, selfEval)
-    setStatistics((stats) => ({
-      ...stats,
-      total: stats.total + 1,
-      [selfEval]: stats[selfEval] + 1,
-    }));
-
-  };
-
   // Update the session duration when it finishes
   const handleDuration = (minutes) => {
     setStatistics((stats) => ({ ...stats, duration: minutes }));
@@ -221,7 +210,6 @@ const App = () => {
         handleStartTime,
         handleReadyLog,
         handleDuration,
-        handleStatisticsUpdate
       );
     }
     if (isAuthenticated && user !== undefined && user.email !== undefined) {
@@ -514,7 +502,6 @@ const App = () => {
                   putLogInfo={putLogInfo}
                   swipeNextCard={swipeNextCard}
                   swipeOneMoreCard={swipeOneMoreCard}
-                  handleStatisticsUpdate={handleStatisticsUpdate}
                   handleHomeScreen={handleHomeScreen}
                   isCardScreen={isCardScreen}
                   accessToken={accessToken}
