@@ -155,7 +155,7 @@ const App = () => {
       endTime: endTime,
     };
     const response = await CapacitorHttp.put({
-      url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?userId=${userId}&startTime=${startTime}`,
+      url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/telemetry/mobile?userId=${user.email}&startTime=${startTime}`,
       data: dataStream,
       headers: {
         "content-type": "application/json",
@@ -223,8 +223,10 @@ const App = () => {
     try {
       const token = await getAccessTokenSilently();
       // if (token !== "" && token !== undefined) setToken(token);
-      if (token !== "" && token !== undefined) AuthStore.updateAccessToken(token);
-      else {
+      if (token !== "" && token !== undefined) {
+        AuthStore.updateAccessToken(token);
+        return token;
+      } else {
         doLogout();
       }
     } catch (e) {
@@ -233,29 +235,46 @@ const App = () => {
   };
   // Run useEffect to get token and set user_id as long as isAuthenticated is changed
   useEffect(() => {
-    if (isAuthenticated && user !== undefined && user.email !== undefined) {
-      console.log('AUTH0 USER OBJECT:', user)
 
-      // setUser(user.email);
-      AuthStore.updateUser(user.email)
-      tokenHandler();
-    }
-  }, [isAuthenticated]);
-
-  // Initialize the Log Info if the user is signed and cardcollection is not empty
-  useEffect(() => {
-    if (isAuthenticated && isFetched && accessToken !== "" && userId !== "") {
-      getLatestRecord(
-        userId,
-        accessToken,
-        total,
+    const init = async () => {
+      const token = await tokenHandler();
+      const cardsLength = await getCards(
+        `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/${user.email}/fcs/now`
+      );
+      await getLatestRecord(
+        user.email,
+        token,
+        cardsLength,
         handleStartTime,
         handleReadyLog,
         handleDuration,
         handleStatisticsUpdate
       );
     }
-  }, [isAuthenticated, isFetched, accessToken]);
+    if (isAuthenticated && user !== undefined && user.email !== undefined) {
+      console.log('AUTH0 USER OBJECT:', user)
+
+      // setUser(user.email);
+      AuthStore.updateUser(user.email)
+      init();
+    }
+  }, [isAuthenticated]);
+
+  // Initialize the Log Info if the user is signed and cardcollection is not empty
+  // useEffect(() => {
+  //   if (isAuthenticated && cardCol[0].length && accessToken !== "" && user.email !== "") {
+  //     console.log('INITIALIZING LOG INFO')
+  //     getLatestRecord(
+  //       user.email,
+  //       accessToken,
+  //       total,
+  //       handleStartTime,
+  //       handleReadyLog,
+  //       handleDuration,
+  //       handleStatisticsUpdate
+  //     );
+  //   }
+  // }, [isAuthenticated, cardCol[0].length, accessToken]);
 
   // State Variable to check if there is error fetching and flagging for redirecting to error page
   const [isError, setError] = useState(false);
@@ -268,6 +287,7 @@ const App = () => {
 
   // GET Function for fetching cards
   const getCards = async (url) => {
+    let cardsLen = 0;
     try {
       let response = await CapacitorHttp.get({ url: url });
       console.log(response);
@@ -281,6 +301,7 @@ const App = () => {
         // See how many cards in total the user has in the database
         // If there is card available. Update the info
         let cards = data;
+        cardsLen = cards.length;
         // Randomize cards within each LM
         if (cards.length !== 0) {
           for (let i = cards.length - 1; i > 0; i--) {
@@ -301,7 +322,7 @@ const App = () => {
       // If ther is no this user in the database
       else if (data === "no user found") {
         const postResponse = await CapacitorHttp.post({
-          url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/${userId}`,
+          url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/${user.email}`,
           headers: {
             "content-type": "application/json",
             authorization: `Bearer ${accessToken}`,
@@ -337,16 +358,18 @@ const App = () => {
       console.log("There is Error");
       setError(true);
     }
+    return cardsLen;
   };
 
+  // ISSUE: useEffect not needed if we just use the getCards during the isAuthenticated useEffect above
   // UseEffect to fetch the cards as long as user_Id is updated
-  useEffect(() => {
-    if (userId !== "") {
-      getCards(
-        `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/${userId}/fcs/now`
-      );
-    }
-  }, [userId]);
+  // useEffect(() => {
+  //   if (user.email !== "") {
+  //     getCards(
+  //       `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/${user.email}/fcs/now`
+  //     );
+  //   }
+  // }, [user]);
 
   // Card-Stacker Visual Effect. Will shake screen when it's true
   const [isShake, setShake] = useState(false);
@@ -389,7 +412,7 @@ const App = () => {
       latestRecord: latestRecord,
     };
     const response = await CapacitorHttp.put({
-      url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/${userId}/${lm_id}`,
+      url: `https://a97mj46gc1.execute-api.us-east-1.amazonaws.com/dev/${user.email}/${lm_id}`,
       data: dataStream,
       headers: {
         "content-type": "application/json",
@@ -460,7 +483,7 @@ const App = () => {
 
       // Visual Vibration
       handleShake();
-      setFinished((prevFinished) => prevFinished + 1)
+      setFinished((prevFinished) => prevFinished + 1);
       setCounter((prevCounter) => prevCounter - 1);
     } else {
       setFinished((prevFinished) => prevFinished + 1);
