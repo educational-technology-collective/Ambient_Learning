@@ -260,22 +260,6 @@ const App = () => {
     }
   }, [isAuthenticated]);
 
-  // Initialize the Log Info if the user is signed and cardcollection is not empty
-  // useEffect(() => {
-  //   if (isAuthenticated && cardCol[0].length && accessToken !== "" && user.email !== "") {
-  //     console.log('INITIALIZING LOG INFO')
-  //     getLatestRecord(
-  //       user.email,
-  //       accessToken,
-  //       total,
-  //       handleStartTime,
-  //       handleReadyLog,
-  //       handleDuration,
-  //       handleStatisticsUpdate
-  //     );
-  //   }
-  // }, [isAuthenticated, cardCol[0].length, accessToken]);
-
   // State Variable to check if there is error fetching and flagging for redirecting to error page
   const [isError, setError] = useState(false);
 
