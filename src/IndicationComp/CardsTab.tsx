@@ -1,12 +1,14 @@
 import "./CardsTab.css";
 import { FaMedal } from "react-icons/fa";
+import { useHistory } from "react-router";
 
 const CardsTab: React.FC<{ cardsLeft: number; isCardScreen: boolean }> = ({
   cardsLeft,
   isCardScreen,
 }) => {
   let firstStyle: string, secondStyle: string, thirdStyle: string;
-
+  const history = useHistory();
+  console.log("RENDERING CARDS TAB: ", history.location.pathname);
   // If we go to cardscreen, set cards to spread
   if (isCardScreen) {
     firstStyle = "tab-card activate first-activate";

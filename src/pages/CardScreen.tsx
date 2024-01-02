@@ -17,6 +17,7 @@ import { useHistory } from "react-router";
 import { hideBar, showBar } from "../utilities/showTabBarAndButtons";
 import { App as CapApp } from "@capacitor/app";
 import CardsTab from "../IndicationComp/CardsTab";
+import ProgressBar from "../IndicationComp/ProgressBar";
 import ActionButtons from "../IndicationComp/ActionButtons";
 import Settings from "../PageComp/Settings";
 import FeedbackModal from "./FeedbackModal";
@@ -105,7 +106,7 @@ const CardScreen: React.FC<{
 
   let toolBar =
     finished !== total ? (
-      <CardsTab cardsLeft={total - finished} isCardScreen={isCardScreen} />
+      <ProgressBar finished={finished} total={total} />
     ) : (
       <IonTitle className="stats-title">Session Overview</IonTitle>
     );
