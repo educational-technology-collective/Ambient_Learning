@@ -57,6 +57,8 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
     setTimeout(leaveTimeOut, 1000);
   };
 
+  const switchFeedback = () => {};
+
   const [direction, setDirection] = useState(0);
 
   // Set directions that will trigger swiping/loging of each direction
@@ -153,6 +155,7 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
                   handleAnimateOneMore={handleAnimateOneMore}
                   handleAnimatePoorCard={handleAnimatePoorCard}
                   handleNoAnimation={handleNoAnimation}
+                  switchFeedback={switchFeedback}
                 />
               );
             } else if (index === tutorialCounter - 2) {
@@ -176,6 +179,7 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
                   handleAnimateOneMore={handleAnimateOneMore}
                   handleAnimatePoorCard={handleAnimatePoorCard}
                   handleNoAnimation={handleNoAnimation}
+                  switchFeedback={switchFeedback}
                 />
               );
             }
