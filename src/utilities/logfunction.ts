@@ -158,6 +158,7 @@ export const putSwipe = (
   let machineEvaluation = testEvaluation;
 
   // If the selfEvaluation is poorCard, log that fcId to poorFcs collection in the database
+
   if (selfEvaluation === "poorCard") {
     // send fcId to the server
     CapacitorHttp.post({

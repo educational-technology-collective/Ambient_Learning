@@ -14,6 +14,7 @@ import {
   showOneMore,
   showPoorCard,
 } from "../utilities/showTabBarAndButtons";
+import PoorCardFeedback from "./PoorCardFeedback";
 
 const Card: React.FC<{
   obj: flashCard;
@@ -46,6 +47,7 @@ const Card: React.FC<{
   handleAnimatePoorCard: () => void;
   handleAnimateOneMore: () => void;
   handleNoAnimation: () => void;
+  switchFeedback: () => void;
 }> = ({
   obj,
   tupleLength,
@@ -65,6 +67,7 @@ const Card: React.FC<{
   handleAnimatePoorCard,
   handleAnimateOneMore,
   handleNoAnimation,
+  switchFeedback,
 }) => {
   // Reference of the single card element. We transform its style only in onemore
   const ref = useRef<HTMLInputElement>(null);
@@ -72,7 +75,7 @@ const Card: React.FC<{
   // This isClicked is for the tap of the card
   const [isClicked, setIsClicked] = useState(false);
 
-  const [showFeedBack, setShowFeedback] = useState(false);
+  const [showFeedback, setShowFeedback] = useState(false);
   const openQuestion = () => {
     console.log("Openquestion");
     setShowFeedback(true);
@@ -195,6 +198,7 @@ const Card: React.FC<{
   // Function for no more before answering
   const poorCardBeforeTimeout = () => {
     closeButton();
+    switchFeedback();
     putSwipe(
       false,
       testEvaluation,
@@ -213,6 +217,7 @@ const Card: React.FC<{
   // Function for no more after answering
   const poorCardAfterTimeOut = () => {
     closeButton();
+    switchFeedback();
     putSwipe(
       true,
       testEvaluation,
@@ -341,6 +346,7 @@ const Card: React.FC<{
   return (
     <>
       <div className="card-wrapper" ref={ref}>
+
         <IonCard
           className="card-container"
           onClick={clickHandler}
@@ -360,6 +366,7 @@ const Card: React.FC<{
             <BackIndicator indicatorOpacity={indicatorOpacity} />
           </div>
         </IonCard>
+          
       </div>
     </>
   );

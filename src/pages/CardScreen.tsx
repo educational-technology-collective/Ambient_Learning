@@ -12,7 +12,7 @@ import React, { useEffect, useState } from "react";
 import FlashCardList from "../FlashCardComp/FlashCardList";
 import OneMoreFailMessage from "../IndicationComp/OneMoreFailMessage";
 import Statistics from "../StatisticsComp/Statistics";
-import { TbHomeEdit, TbSettings } from "react-icons/tb";
+import { TbArrowBackUp , TbSettings } from "react-icons/tb";
 import { useHistory } from "react-router";
 import { hideBar, showBar } from "../utilities/showTabBarAndButtons";
 import { App as CapApp } from "@capacitor/app";
@@ -20,6 +20,7 @@ import CardsTab from "../IndicationComp/CardsTab";
 import ActionButtons from "../IndicationComp/ActionButtons";
 import Settings from "../PageComp/Settings";
 import FeedbackModal from "./FeedbackModal";
+import ProgressBar from "../IndicationComp/ProgressBar";
 
 const CardScreen: React.FC<{
   finished: number;
@@ -82,8 +83,7 @@ const CardScreen: React.FC<{
     handleHomeScreen();
   });
   const [showFeedback, setFeedback] = useState("translateY(-120%)");
-  const switchFeedback = (event: any) => {
-    event.stopPropagation();
+  const switchFeedback = () => {
     showFeedback === "translateY(-120%)"
       ? setFeedback("translateY(0)")
       : setFeedback("translateY(-120%)");
@@ -188,8 +188,9 @@ const CardScreen: React.FC<{
     <IonPage>
       <IonHeader color="tertiary">
         <IonToolbar>
-          <TbHomeEdit className="home-icon" onClick={navigateToHome} />
-          {toolBar}
+          <TbArrowBackUp  className="back-icon" onClick={navigateToHome} />
+          {/* {toolBar} */}
+          <ProgressBar finished={finished} total={total} />
           <TbSettings
             className="settings-icon"
             onClick={switchToggle}
@@ -233,6 +234,7 @@ const CardScreen: React.FC<{
                       handleAnimateOneMore={handleAnimateOneMore}
                       handleAnimatePoorCard={handleAnimatePoorCard}
                       handleNoAnimation={handleNoAnimation}
+                      switchFeedback={switchFeedback}
                     />
                   );
                 }
@@ -258,6 +260,7 @@ const CardScreen: React.FC<{
                       handleAnimateOneMore={handleAnimateOneMore}
                       handleAnimatePoorCard={handleAnimatePoorCard}
                       handleNoAnimation={handleNoAnimation}
+                      switchFeedback={switchFeedback}
                     />
                   );
                 }
