@@ -17,6 +17,7 @@ import { useHistory } from "react-router";
 import { hideBar, showBar } from "../utilities/showTabBarAndButtons";
 import { App as CapApp } from "@capacitor/app";
 import CardsTab from "../IndicationComp/CardsTab";
+import ProgressBar from "../IndicationComp/ProgressBar";
 import ActionButtons from "../IndicationComp/ActionButtons";
 import Settings from "../PageComp/Settings";
 import FeedbackModal from "./FeedbackModal";
@@ -189,7 +190,7 @@ const CardScreen: React.FC<{
       <IonHeader color="tertiary">
         <IonToolbar>
           <TbHomeEdit className="home-icon" onClick={navigateToHome} />
-          {toolBar}
+          <ProgressBar finished={finished} total={total} />
           <TbSettings
             className="settings-icon"
             onClick={switchToggle}
