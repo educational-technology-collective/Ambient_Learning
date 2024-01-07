@@ -14,7 +14,7 @@ const FeedbackModal: React.FC<{
 }> = ({ accessToken, showFeedback, identifier, closeQuestion }) => {
   Keyboard.setAccessoryBarVisible({ isVisible: true });
   const form = useRef(null);
-
+  const placeholder = "Give us feedback! This could be a bug report, a feature request, issues with a card, or anything else you want to tell us."
   const postFeedback = async (content: string) => {
     const body = {
       identifier: identifier,
@@ -56,7 +56,7 @@ const FeedbackModal: React.FC<{
             cols={30}
             rows={9}
             className="feedback-textarea"
-            placeholder="Leave Feedback"
+            placeholder={placeholder}
             inputMode="text"
           ></textarea>
 
