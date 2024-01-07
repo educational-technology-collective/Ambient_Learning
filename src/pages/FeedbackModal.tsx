@@ -60,7 +60,7 @@ const FeedbackModal: React.FC<{
             inputMode="text"
           ></textarea>
 
-        <button className="feedback-button">Send Message</button>
+        <button className="feedback-button">Send Feedback</button>
       </form>
     </div>
     </div>
