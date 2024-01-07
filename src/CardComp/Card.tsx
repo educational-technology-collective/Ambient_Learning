@@ -46,6 +46,7 @@ const Card: React.FC<{
   handleAnimatePoorCard: () => void;
   handleAnimateOneMore: () => void;
   handleNoAnimation: () => void;
+  switchFeedback: () => void;
 }> = ({
   obj,
   tupleLength,
@@ -65,6 +66,7 @@ const Card: React.FC<{
   handleAnimatePoorCard,
   handleAnimateOneMore,
   handleNoAnimation,
+  switchFeedback,
 }) => {
   // Reference of the single card element. We transform its style only in onemore
   const ref = useRef<HTMLInputElement>(null);
@@ -192,6 +194,7 @@ const Card: React.FC<{
   // Function for no more before answering
   const poorCardBeforeTimeout = () => {
     closeButton();
+    switchFeedback();
     putSwipe(
       false,
       testEvaluation,
@@ -209,6 +212,7 @@ const Card: React.FC<{
   // Function for no more after answering
   const poorCardAfterTimeOut = () => {
     closeButton();
+    switchFeedback();
     putSwipe(
       true,
       testEvaluation,

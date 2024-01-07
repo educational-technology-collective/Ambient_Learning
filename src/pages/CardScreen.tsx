@@ -12,7 +12,7 @@ import React, { useEffect, useState } from "react";
 import FlashCardList from "../FlashCardComp/FlashCardList";
 import OneMoreFailMessage from "../IndicationComp/OneMoreFailMessage";
 import Statistics from "../StatisticsComp/Statistics";
-import { TbHomeEdit, TbSettings } from "react-icons/tb";
+import { TbArrowBackUp, TbSettings } from "react-icons/tb";
 import { useHistory } from "react-router";
 import { hideBar, showBar } from "../utilities/showTabBarAndButtons";
 import { App as CapApp } from "@capacitor/app";
@@ -83,8 +83,7 @@ const CardScreen: React.FC<{
     handleHomeScreen();
   });
   const [showFeedback, setFeedback] = useState("translateY(-120%)");
-  const switchFeedback = (event: any) => {
-    event.stopPropagation();
+  const switchFeedback = () => {
     showFeedback === "translateY(-120%)"
       ? setFeedback("translateY(0)")
       : setFeedback("translateY(-120%)");
@@ -189,7 +188,7 @@ const CardScreen: React.FC<{
     <IonPage>
       <IonHeader color="tertiary">
         <IonToolbar>
-          <TbHomeEdit className="home-icon" onClick={navigateToHome} />
+          <TbArrowBackUp className="back-icon" onClick={navigateToHome} />
           <ProgressBar finished={finished} total={total} />
           <TbSettings
             className="settings-icon"
@@ -234,6 +233,7 @@ const CardScreen: React.FC<{
                       handleAnimateOneMore={handleAnimateOneMore}
                       handleAnimatePoorCard={handleAnimatePoorCard}
                       handleNoAnimation={handleNoAnimation}
+                      switchFeedback={switchFeedback}
                     />
                   );
                 }
@@ -259,6 +259,7 @@ const CardScreen: React.FC<{
                       handleAnimateOneMore={handleAnimateOneMore}
                       handleAnimatePoorCard={handleAnimatePoorCard}
                       handleNoAnimation={handleNoAnimation}
+                      switchFeedback={switchFeedback}
                     />
                   );
                 }

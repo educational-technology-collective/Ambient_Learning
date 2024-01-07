@@ -22,6 +22,6 @@
 
 /* Styling for the incorrect button after clicking */
 .incorrect-button {
-  --background: crimson;
-  --background-activated: crimson;
+  --background: #b30021;
+  --background-activated: #b30021;
 }

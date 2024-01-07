@@ -33,6 +33,7 @@ const FlashCardList: React.FC<{
   handleAnimatePoorCard: () => void;
   handleAnimateOneMore: () => void;
   handleNoAnimation: () => void;
+  switchFeedback: () => void;
 }> = ({
   array,
   tupleIndex,
@@ -50,6 +51,7 @@ const FlashCardList: React.FC<{
   handleAnimatePoorCard,
   handleAnimateOneMore,
   handleNoAnimation,
+  switchFeedback,
 }) => {
   // The Reference of the Whole Tuple, used for poorcard/know/dont know swipe
   const refTuple = useRef<HTMLInputElement>(null);
@@ -79,6 +81,7 @@ const FlashCardList: React.FC<{
       handleAnimatePoorCard={handleAnimatePoorCard}
       handleAnimateOneMore={handleAnimateOneMore}
       handleNoAnimation={handleNoAnimation}
+      switchFeedback={switchFeedback}
     />
   );
 
@@ -112,6 +115,7 @@ const FlashCardList: React.FC<{
                     handleAnimatePoorCard={handleAnimatePoorCard}
                     handleAnimateOneMore={handleAnimateOneMore}
                     handleNoAnimation={handleNoAnimation}
+                    switchFeedback={switchFeedback}
                   />
                 );
               }

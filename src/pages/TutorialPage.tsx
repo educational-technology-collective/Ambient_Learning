@@ -153,6 +153,7 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
                   handleAnimateOneMore={handleAnimateOneMore}
                   handleAnimatePoorCard={handleAnimatePoorCard}
                   handleNoAnimation={handleNoAnimation}
+                  switchFeedback={() => {}}
                 />
               );
             } else if (index === tutorialCounter - 2) {
@@ -176,6 +177,7 @@ const TutorialPage: React.FC<{ handleCardScreen: () => void }> = ({
                   handleAnimateOneMore={handleAnimateOneMore}
                   handleAnimatePoorCard={handleAnimatePoorCard}
                   handleNoAnimation={handleNoAnimation}
+                  switchFeedback={() => {}}
                 />
               );
             }

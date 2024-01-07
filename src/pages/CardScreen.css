@@ -46,11 +46,11 @@
   }
 }
 
-.home-icon {
+.back-icon {
   position: absolute;
   align-self: center;
   margin-left: 1rem;
   top: 28%;
   left: 0;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
 }
