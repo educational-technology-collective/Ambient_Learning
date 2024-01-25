@@ -1,8 +1,0 @@
-{
-  "name": "Ambient Learning",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "react-vite"
-  
-}
